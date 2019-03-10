@@ -5,7 +5,7 @@ import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 
 const TabBarIcon = ({ name, focused }) => (
-  <Icon.Ionicons
+  <Icon.MaterialIcons
     name={name}
     size={26}
     style={{ marginBottom: -3 }}

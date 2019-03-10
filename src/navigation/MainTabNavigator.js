@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
@@ -7,48 +6,64 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import TimelineScreen from '../screens/TimelineScreen';
+import SearchScreen from '../screens/SearchScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 
 const sharedScreens = {
   Setting: SettingScreen,
 };
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-  ...sharedScreens,
-});
-
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => ( // eslint-disable-line react/prop-types
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-  ...sharedScreens,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => ( // eslint-disable-line react/prop-types
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
+const tabBarIcon = icon => props => ( // eslint-disable-line react/prop-types
+  <TabBarIcon {...props} name={icon} />
+);
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
+  HomeStack: createStackNavigator({
+    Home: HomeScreen,
+    ...sharedScreens,
+  }, {
+    navigationOptions: {
+      tabBarLabel: '首頁',
+      tabBarIcon: tabBarIcon('home'),
+    },
+  }),
+  TimelineStack: createStackNavigator({
+    Timeline: TimelineScreen,
+    ...sharedScreens,
+  }, {
+    navigationOptions: {
+      tabBarLabel: '分享',
+      tabBarIcon: tabBarIcon('timeline'),
+    },
+  }),
+  SearchStack: createStackNavigator({
+    Search: SearchScreen,
+    ...sharedScreens,
+  }, {
+    navigationOptions: {
+      tabBarLabel: '搜尋DIY',
+      tabBarIcon: tabBarIcon('search'),
+    },
+  }),
+  NotificationStack: createStackNavigator({
+    Notification: NotificationScreen,
+    ...sharedScreens,
+  }, {
+    navigationOptions: {
+      tabBarLabel: '通知',
+      tabBarIcon: tabBarIcon('notifications'),
+    },
+  }),
+  ProfileStack: createStackNavigator({
+    Profile: ProfileScreen,
+    ...sharedScreens,
+  }, {
+    navigationOptions: {
+      tabBarLabel: '我的工作室',
+      tabBarIcon: tabBarIcon('person'),
+    },
+  }),
 });
