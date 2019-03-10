@@ -1,17 +1,55 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import {
+  AppLoading,
+  Asset,
+  Font,
+  Icon,
+  Constants,
+} from 'expo';
+import AppNavigator from './navigation/AppNavigator';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
 });
 
-export default () => (
-  <View style={styles.container}>
-    <Text>Open up App.js to start working on your app!</Text>
-  </View>
-);
+export default class App extends Component {
+  state = {
+    isLoadingComplete: false,
+  };
+
+  loadResourcesAsync = async () => Promise.all([
+    Asset.loadAsync([
+    ]),
+    Font.loadAsync({
+      ...Icon.Ionicons.font,
+    }),
+  ]);
+
+  handleLoadingError = () => {
+  };
+
+  handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true });
+  };
+
+  render() {
+    const { isLoadingComplete } = this.state;
+
+    return isLoadingComplete ? (
+      <View style={styles.container}>
+        <AppNavigator />
+      </View>
+    ) : (
+      <AppLoading
+        startAsync={this.loadResourcesAsync}
+        onError={this.handleLoadingError}
+        onFinish={this.handleFinishLoading}
+      />
+    );
+  }
+}

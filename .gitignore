@@ -1,7 +1,7 @@
 # From https://github.com/expo/new-project-template/blob/master/.gitignore
 
-node_modules/**/*
-.expo/*
+node_modules/
+.expo/
 npm-debug.*
 *.jks
 *.p12
