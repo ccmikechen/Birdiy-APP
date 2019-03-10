@@ -12,6 +12,8 @@ import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 
+import Colors from '../constants/Colors';
+
 const sharedScreens = {
   Setting: SettingScreen,
 };
@@ -19,6 +21,10 @@ const sharedScreens = {
 const tabBarIcon = icon => props => ( // eslint-disable-line react/prop-types
   <TabBarIcon {...props} name={icon} />
 );
+
+const tabBarOptions = {
+  activeTintColor: Colors.tabIconSelected,
+};
 
 export default createBottomTabNavigator({
   HomeStack: createStackNavigator({
@@ -28,6 +34,7 @@ export default createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '首頁',
       tabBarIcon: tabBarIcon('home'),
+      tabBarOptions,
     },
   }),
   TimelineStack: createStackNavigator({
@@ -37,6 +44,7 @@ export default createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '分享',
       tabBarIcon: tabBarIcon('timeline'),
+      tabBarOptions,
     },
   }),
   SearchStack: createStackNavigator({
@@ -46,6 +54,7 @@ export default createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '搜尋DIY',
       tabBarIcon: tabBarIcon('search'),
+      tabBarOptions,
     },
   }),
   NotificationStack: createStackNavigator({
@@ -55,6 +64,7 @@ export default createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '通知',
       tabBarIcon: tabBarIcon('notifications'),
+      tabBarOptions,
     },
   }),
   ProfileStack: createStackNavigator({
@@ -64,6 +74,7 @@ export default createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '我的工作室',
       tabBarIcon: tabBarIcon('person'),
+      tabBarOptions,
     },
   }),
 });

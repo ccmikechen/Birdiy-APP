@@ -11,5 +11,5 @@ export default createAppContainer(createDrawerNavigator({
 }, {
   initialRouteName: 'Main',
   contentComponent: DrawerScreen,
-  drawerWidth: 250,
+  drawerWidth: 300,
 }));
