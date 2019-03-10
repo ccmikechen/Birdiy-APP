@@ -4,15 +4,28 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "lint": "node node_modules/eslint/bin/eslint.js src/ --ext .js",
+    "test": "node_modules/.bin/jest"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "babel-preset-expo": "^5.0.0",
+    "eslint": "^5.15.0",
+    "jest-expo": "^32.0.0",
+    "react-test-renderer": "^16.8.3"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "private": true
 }
