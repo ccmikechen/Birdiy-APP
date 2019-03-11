@@ -66,4 +66,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
   },
+  menuContainer: {
+  },
+  menu: {
+    marginTop: 20,
+  },
 });

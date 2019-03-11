@@ -7,8 +7,11 @@ import {
   Text,
   Image,
 } from 'react-native';
+import { Icon } from 'expo';
 
 import PostButton from '../../components/PostButton';
+import DrawerMenu from '../../components/DrawerMenu';
+import DrawerMenuItem from '../../components/DrawerMenuItem';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -35,22 +38,70 @@ export default class DrawerScreen extends Component {
     },
   };
 
-  renderItem = screen => (
-    <TouchableOpacity
-      style={styles.menuItem}
-      onPress={this.navigateToScreen(screen)}
-    >
-      <Text>
-        { screen }
-      </Text>
-    </TouchableOpacity>
-  );
-
   navigateToScreen = screen => () => {
     const { navigation } = this.props;
     navigation.navigate(screen);
     navigation.closeDrawer();
   };
+
+  renderIcon = (IconComponent, name) => () => (
+    <IconComponent
+      name={name}
+      size={30}
+      color="#666666"
+    />
+  );
+
+  renderMenu = () => (
+    <View style={styles.menuContainer}>
+      <DrawerMenu>
+        <DrawerMenuItem
+          title="首頁"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'home')}
+        />
+        <DrawerMenuItem
+          title="升級VIP"
+          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'crown')}
+        />
+      </DrawerMenu>
+      <DrawerMenu style={styles.menu} title="我的工作坊">
+        <DrawerMenuItem
+          title="我的分享"
+          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
+        />
+        <DrawerMenuItem
+          title="我的DIY"
+          renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
+        />
+        <DrawerMenuItem
+          title="DIY統計"
+          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'chart-bar')}
+        />
+        <DrawerMenuItem
+          title="我的收藏"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'folder-special')}
+        />
+      </DrawerMenu>
+      <DrawerMenu style={styles.menu} title="其他">
+        <DrawerMenuItem
+          title="近期瀏覽"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'history')}
+        />
+        <DrawerMenuItem
+          title="關於Wediy"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'info')}
+        />
+        <DrawerMenuItem
+          title="意見回饋"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
+        />
+        <DrawerMenuItem
+          title="設定"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'settings')}
+        />
+      </DrawerMenu>
+    </View>
+  );
 
   render() {
     const { profile } = this.props;
@@ -94,6 +145,7 @@ export default class DrawerScreen extends Component {
             />
           </View>
         </View>
+        {this.renderMenu()}
       </ScrollView>
     );
   }
