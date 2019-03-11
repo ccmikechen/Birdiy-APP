@@ -7,13 +7,15 @@ import {
   Text,
   Image,
 } from 'react-native';
-import { Icon } from 'expo';
+import { LinearGradient, Icon } from 'expo';
 
 import PostButton from '../../components/PostButton';
 import DrawerMenu from '../../components/DrawerMenu';
 import DrawerMenuItem from '../../components/DrawerMenuItem';
 
 import { DEFAULT_PROFILE } from '../../images';
+
+import { Primary, Base } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -108,7 +110,10 @@ export default class DrawerScreen extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        <View style={styles.headerContainer}>
+        <LinearGradient
+          style={styles.headerContainer}
+          colors={['#4c669f', '#3b5998', '#192f6a']}
+        >
           <TouchableOpacity style={styles.profileContainer}>
             <View style={styles.profileImageContainer}>
               <Image
@@ -121,7 +126,7 @@ export default class DrawerScreen extends Component {
                 <Text style={styles.profileName}>{ profile.name }</Text>
               </View>
               <View style={styles.profileHintContainer}>
-                <Text style={styles.profileHint}>我的工作室</Text>
+                <Text style={styles.profileHint}>我的工作坊</Text>
               </View>
             </View>
             <View style={styles.profileLevelContainer}>
@@ -140,11 +145,11 @@ export default class DrawerScreen extends Component {
           </View>
           <View style={styles.postButtonContainer}>
             <PostButton
-              color="#ffffff"
-              backgroundColor="#44aa44"
+              color={Base.primaryText}
+              backgroundColor={Primary(600)}
             />
           </View>
-        </View>
+        </LinearGradient>
         {this.renderMenu()}
       </ScrollView>
     );

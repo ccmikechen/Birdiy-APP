@@ -1,16 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-const MAIN_TEXT_COLOR = '#ffffff';
-const SUB_TEXT_COLOR = '#aaaaaa';
+import { Base } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Base.lightest,
   },
   headerContainer: {
     height: 200,
-    backgroundColor: '#555',
     padding: 10,
   },
   profileContainer: {
@@ -31,13 +29,13 @@ export default StyleSheet.create({
   },
   profileName: {
     fontSize: 20,
-    color: MAIN_TEXT_COLOR,
+    color: Base.primaryText,
   },
   profileHintContainer: {
   },
   profileHint: {
     fontSize: 12,
-    color: SUB_TEXT_COLOR,
+    color: Base.subText,
   },
   profileLevelContainer: {
   },
@@ -52,11 +50,11 @@ export default StyleSheet.create({
   },
   followingNumber: {
     fontSize: 16,
-    color: MAIN_TEXT_COLOR,
+    color: Base.primaryText,
   },
   following: {
     fontSize: 16,
-    color: SUB_TEXT_COLOR,
+    color: Base.subText,
     marginLeft: 10,
   },
   postButtonContainer: {

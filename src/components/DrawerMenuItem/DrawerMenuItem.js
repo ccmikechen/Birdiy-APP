@@ -6,6 +6,8 @@ import {
   Text,
 } from 'react-native';
 
+import { Primary } from '../../constants/Colors';
+
 import styles from './styles';
 
 const DrawerMenuItem = ({
@@ -13,7 +15,10 @@ const DrawerMenuItem = ({
   title,
   onPress,
 }) => (
-  <TouchableHighlight onPress={onPress}>
+  <TouchableHighlight
+    underlayColor={Primary(300)}
+    onPress={onPress}
+  >
     <View style={styles.container}>
       <View style={styles.iconContainer}>
         {renderIcon()}
