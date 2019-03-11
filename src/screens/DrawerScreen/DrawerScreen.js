@@ -60,46 +60,56 @@ export default class DrawerScreen extends Component {
         <DrawerMenuItem
           title="首頁"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'home')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="升級VIP"
           renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'crown')}
+          onPress={this.navigateToScreen('Home')}
         />
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="我的工作坊">
         <DrawerMenuItem
           title="我的分享"
           renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="我的DIY"
           renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="DIY統計"
           renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'chart-bar')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="我的收藏"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'folder-special')}
+          onPress={this.navigateToScreen('Home')}
         />
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="其他">
         <DrawerMenuItem
           title="近期瀏覽"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'history')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="關於Wediy"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'info')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="意見回饋"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
+          onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
           title="設定"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'settings')}
+          onPress={this.navigateToScreen('Home')}
         />
       </DrawerMenu>
     </View>
