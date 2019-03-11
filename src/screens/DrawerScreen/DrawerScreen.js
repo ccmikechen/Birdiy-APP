@@ -122,7 +122,9 @@ export default class DrawerScreen extends Component {
       <ScrollView style={styles.container}>
         <LinearGradient
           style={styles.headerContainer}
-          colors={['#4c669f', '#3b5998', '#192f6a']}
+          colors={['#64a1bc', '#3b5998', '#192f6a']}
+          start={[0, 0]}
+          end={[1, 1]}
         >
           <TouchableOpacity style={styles.profileContainer}>
             <View style={styles.profileImageContainer}>

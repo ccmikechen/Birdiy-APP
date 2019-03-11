@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Constants } from 'expo';
 
 import { Base } from '../../constants/Colors';
 
@@ -10,6 +11,7 @@ export default StyleSheet.create({
   headerContainer: {
     height: 200,
     padding: 10,
+    paddingTop: Constants.statusBarHeight + 10,
   },
   profileContainer: {
     flex: 0.4,
