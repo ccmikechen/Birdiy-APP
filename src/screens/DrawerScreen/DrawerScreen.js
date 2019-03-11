@@ -97,7 +97,7 @@ export default class DrawerScreen extends Component {
           onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
-          title="關於Wediy"
+          title="關於Birdiy"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'info')}
           onPress={this.navigateToScreen('Home')}
         />

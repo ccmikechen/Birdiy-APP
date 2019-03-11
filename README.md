@@ -1,4 +1,4 @@
-# Wedly APP
+# Birdiy APP
 
 ## Requirements
 

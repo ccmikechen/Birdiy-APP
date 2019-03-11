@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Wediy",
-    "slug": "wediy",
+    "name": "Birdiy",
+    "slug": "birdiy",
     "privacy": "unlisted",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": false
-    }
+    },
+    "description": ""
   }
 }
