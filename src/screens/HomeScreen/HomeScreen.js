@@ -13,7 +13,7 @@ import ProjectThumbnailsTable from '../../components/ProjectThumbnailsTable';
 
 import styles from './styles';
 
-import { categories, projects } from './mocks';
+import { categories, projects, keywords } from './mocks';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -44,6 +44,10 @@ export default class HomeScreen extends Component {
     />
   );
 
+  renderHotKeywords = () => (
+    <CategoriesTable categories={keywords} />
+  );
+
   render() {
     const { navigation } = this.props;
 
@@ -64,6 +68,10 @@ export default class HomeScreen extends Component {
           <HomeSection
             title="最新DIY"
             renderContent={this.renderNewProjects}
+          />
+          <HomeSection
+            title="熱門關鍵字"
+            renderContent={this.renderHotKeywords}
           />
         </ScrollView>
       </View>

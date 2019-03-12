@@ -22,14 +22,6 @@ export const categories = [{
   image: ICON,
 }, {
   name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
 }];
 
 export const projects = [{
@@ -44,4 +36,21 @@ export const projects = [{
 }, {
   title: 'John...西那！！',
   imageURI: 'https://images.abeautifulmess.com/uploads/2017/12/Wooden-Ring-Crinkle-Teether-DIY-click-through-for-tutorial-1.jpg',
+}];
+
+export const keywords = [{
+  name: 'Arduino',
+}, {
+  name: '牆壁',
+  image: ICON,
+}, {
+  name: '自然捲',
+}, {
+  name: 'Workshop',
+  image: ICON,
+}, {
+  name: 'Birdiy',
+}, {
+  name: '螺絲',
+  image: ICON,
 }];
