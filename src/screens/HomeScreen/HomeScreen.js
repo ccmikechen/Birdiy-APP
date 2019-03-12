@@ -9,42 +9,11 @@ import NormalTopHeader from '../../components/NormalTopHeader';
 import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 import CategoriesTable from '../../components/CategoriesTable';
+import ProjectThumbnailsTable from '../../components/ProjectThumbnailsTable';
 
 import styles from './styles';
 
-import { ICON } from '../../images';
-
-const categories = [{
-  name: '木工',
-}, {
-  name: '手工',
-  image: ICON,
-}, {
-  name: '刀工',
-}, {
-  name: '白工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}];
+import { categories, projects } from './mocks';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -66,6 +35,15 @@ export default class HomeScreen extends Component {
     />
   );
 
+  renderNewProjects = () => (
+    <ExtensibleSectionContent
+      onMorePress={() => {}}
+      renderContent={() => (
+        <ProjectThumbnailsTable projects={projects} />
+      )}
+    />
+  );
+
   render() {
     const { navigation } = this.props;
 
@@ -82,6 +60,10 @@ export default class HomeScreen extends Component {
           <HomeSection
             title="熱門分類"
             renderContent={this.renderHotCategories}
+          />
+          <HomeSection
+            title="最新DIY"
+            renderContent={this.renderNewProjects}
           />
         </ScrollView>
       </View>
