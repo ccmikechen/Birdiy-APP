@@ -15,7 +15,7 @@ import DrawerMenuItem from '../../components/DrawerMenuItem';
 
 import { DEFAULT_PROFILE } from '../../images';
 
-import { Primary, Base } from '../../constants/Colors';
+import { Primary, TextColor } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -157,7 +157,7 @@ export default class DrawerScreen extends Component {
           </View>
           <View style={styles.postButtonContainer}>
             <PostButton
-              color={Base.primaryText}
+              color={TextColor.primaryLight}
               backgroundColor={Primary(600)}
             />
           </View>

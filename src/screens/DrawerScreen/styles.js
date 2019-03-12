@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
-import { Base } from '../../constants/Colors';
+import { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -31,13 +31,13 @@ export default StyleSheet.create({
   },
   profileName: {
     fontSize: 20,
-    color: Base.primaryText,
+    color: TextColor.primaryLight,
   },
   profileHintContainer: {
   },
   profileHint: {
     fontSize: 12,
-    color: Base.subText,
+    color: TextColor.subLight,
   },
   profileLevelContainer: {
   },
@@ -52,11 +52,11 @@ export default StyleSheet.create({
   },
   followingNumber: {
     fontSize: 16,
-    color: Base.primaryText,
+    color: TextColor.primaryLight,
   },
   following: {
     fontSize: 16,
-    color: Base.subText,
+    color: TextColor.subLight,
     marginLeft: 10,
   },
   postButtonContainer: {

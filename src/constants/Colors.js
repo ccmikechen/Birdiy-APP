@@ -43,11 +43,11 @@ export const Base = {
   dark: '#e1e1e1',
   light: '#f5f5f5',
   lightest: '#ffffff',
-  primaryText: '#ffffff',
-  subText: '#eeeeee',
 };
 
 export const TextColor = {
+  primaryLight: '#ffffff',
+  subLight: '#eeeeee',
   sectionTitle: '#666666',
 };
 

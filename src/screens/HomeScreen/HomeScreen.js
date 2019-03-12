@@ -2,15 +2,49 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   ScrollView,
-  Text,
   View,
 } from 'react-native';
 
 import NormalTopHeader from '../../components/NormalTopHeader';
 import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
+import CategoriesTable from '../../components/CategoriesTable';
 
 import styles from './styles';
+
+import { ICON } from '../../images';
+
+const categories = [{
+  name: '木工',
+}, {
+  name: '手工',
+  image: ICON,
+}, {
+  name: '刀工',
+}, {
+  name: '白工',
+  image: ICON,
+}, {
+  name: '童工',
+}, {
+  name: '走路工',
+  image: ICON,
+}, {
+  name: '童工',
+}, {
+  name: '走路工',
+  image: ICON,
+}, {
+  name: '童工',
+}, {
+  name: '走路工',
+  image: ICON,
+}, {
+  name: '童工',
+}, {
+  name: '走路工',
+  image: ICON,
+}];
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -27,9 +61,7 @@ export default class HomeScreen extends Component {
     <ExtensibleSectionContent
       onMorePress={() => {}}
       renderContent={() => (
-        <View style={{ height: 300, backgroundColor: '#aaa' }}>
-          <Text>Categories</Text>
-        </View>
+        <CategoriesTable categories={categories} />
       )}
     />
   );
