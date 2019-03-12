@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 
 import NormalTopHeader from '../../components/NormalTopHeader';
+import HomeSection from '../../components/HomeSection';
+import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 
 import styles from './styles';
 
@@ -21,6 +23,17 @@ export default class HomeScreen extends Component {
     }).isRequired,
   };
 
+  renderHotCategories = () => (
+    <ExtensibleSectionContent
+      onMorePress={() => {}}
+      renderContent={() => (
+        <View style={{ height: 300, backgroundColor: '#aaa' }}>
+          <Text>Categories</Text>
+        </View>
+      )}
+    />
+  );
+
   render() {
     const { navigation } = this.props;
 
@@ -34,7 +47,10 @@ export default class HomeScreen extends Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          <Text>Home</Text>
+          <HomeSection
+            title="熱門分類"
+            renderContent={this.renderHotCategories}
+          />
         </ScrollView>
       </View>
     );

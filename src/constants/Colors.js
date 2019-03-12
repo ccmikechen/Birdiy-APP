@@ -21,6 +21,17 @@ const MATERIAL_COLORS = {
     800: '#283593',
     900: '#1A237E',
   },
+  bluegray: {
+    100: '#CFD8DC',
+    200: '#B0BEC5',
+    300: '#90A4AE',
+    400: '#78909C',
+    500: '#607D8B',
+    600: '#546E7A',
+    700: '#455A64',
+    800: '#37474F',
+    900: '#263238',
+  },
 };
 
 export const Material = (color) => {
@@ -36,8 +47,13 @@ export const Base = {
   subText: '#eeeeee',
 };
 
+export const TextColor = {
+  sectionTitle: '#666666',
+};
+
 export const Primary = Material('blue');
 export const Secondary = Material('indigo');
+export const Tertiary = Material('blueGray');
 
 export default {
   tabIconDefault: '#cccccc',
