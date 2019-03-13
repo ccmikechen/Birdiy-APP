@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.birdiy.birdiy"
+    },
+    "android": {
+      "package": "com.birdiy.birdiy"
     },
     "description": "DIY sharing"
   }
