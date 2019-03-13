@@ -5,9 +5,9 @@ import {
   Animated,
 } from 'react-native';
 
-import styles from './styles';
+import Size from '../../constants/Size';
 
-const HEADER_OFFSET = 80;
+import styles from './styles';
 
 export default class TopScreenView extends Component {
   static propTypes = {
@@ -27,19 +27,19 @@ export default class TopScreenView extends Component {
     children: null,
   };
 
-  state = {
-    offset: new Animated.Value(0),
-  };
-
   constructor() {
     super();
     this.lastY = 0;
     this.isTabBarHidden = false;
+    this.offset = new Animated.Value(0);
   }
 
-  startHeaderAnimation = (toValue, duration = 200) => {
-    const { offset } = this.state;
-    Animated.timing(offset, { toValue, duration }).start();
+  startHeaderAnimation = (toValue, duration = 100) => {
+    Animated.timing(this.offset, {
+      toValue,
+      duration,
+      useNativeDriver: true,
+    }).start();
   };
 
   handleScroll = (event) => {
@@ -54,7 +54,7 @@ export default class TopScreenView extends Component {
       this.isTabBarHidden = true;
       this.lastY = currentY;
       navigation.setParams({ isTabBarVisible: false });
-      this.startHeaderAnimation(-HEADER_OFFSET);
+      this.startHeaderAnimation(-Size.headerHeight);
     } else if (currentY - this.lastY < -3) {
       this.isTabBarHidden = false;
       this.lastY = currentY;
@@ -69,14 +69,17 @@ export default class TopScreenView extends Component {
       children,
       animatedBottomTabBar,
     } = this.props;
-    const { offset } = this.state;
 
     return (
       <View style={[styles.container, {
         marginBottom: animatedBottomTabBar ? 0 : 60,
       }]}
       >
-        <Animated.View style={[styles.headerContainer, { top: offset }]}>
+        <Animated.View
+          style={[styles.headerContainer, {
+            transform: [{ translateY: this.offset }],
+          }]}
+        >
           {renderHeader()}
         </Animated.View>
         <Animated.ScrollView

@@ -5,7 +5,8 @@ import { BottomTabBar } from 'react-navigation';
 
 import styles from './styles';
 
-const TAB_BAR_OFFSET = -60;
+const TAB_BAR_OFFSET = 60;
+const offset = new Animated.Value(0);
 
 const getTabBarVisibleFromNavigationState = (navigation) => {
   const mainRoute = navigation.state;
@@ -51,14 +52,16 @@ export default class TabBar extends Component {
     const wasVisible = prevState.isVisible;
 
     if (wasVisible && !isVisible) {
-      Animated.timing(prevState.offset, {
+      Animated.timing(offset, {
         toValue: TAB_BAR_OFFSET,
         duration: animationDuration,
+        useNativeDriver: true,
       }).start();
     } else if (isVisible && !wasVisible) {
-      Animated.timing(prevState.offset, {
+      Animated.timing(offset, {
         toValue: 0,
         duration: animationDuration,
+        useNativeDriver: true,
       }).start();
     }
 
@@ -66,17 +69,16 @@ export default class TabBar extends Component {
   }
 
   state = {
-    offset: new Animated.Value(0),
     isVisible: true,
   };
 
   render() {
-    const { offset } = this.state;
-
     return (
       <BottomTabBar
         {...this.props}
-        style={[styles.container, { bottom: offset }]}
+        style={[styles.container, {
+          transform: [{ translateY: offset }],
+        }]}
       />
     );
   }

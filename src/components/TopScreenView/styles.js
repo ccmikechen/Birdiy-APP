@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import Size from '../../constants/Size';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -14,6 +16,6 @@ export default StyleSheet.create({
     zIndex: 10,
   },
   paddingView: {
-    height: 80,
+    height: Size.headerHeight,
   },
 });

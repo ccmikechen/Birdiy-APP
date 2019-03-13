@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
 import { Base } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '100%',
-    height: 80,
+    height: Size.headerHeight,
     paddingTop: Constants.statusBarHeight,
   },
   title: {
