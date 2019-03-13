@@ -4,6 +4,7 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 
+import TabBar from '../components/TabBar';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TimelineScreen from '../screens/TimelineScreen';
@@ -72,9 +73,11 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '我的工作室',
+      tabBarLabel: '我的工作坊',
       tabBarIcon: tabBarIcon('person'),
       tabBarOptions,
     },
   }),
+}, {
+  tabBarComponent: TabBar,
 });

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
 
+import TopScreenView from '../../components/TopScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
-
-import styles from './styles';
 
 export default class TimelineScreen extends Component {
   static navigationOptions = {
@@ -25,18 +19,15 @@ export default class TimelineScreen extends Component {
     const { navigation } = this.props;
 
     return (
-      <View style={styles.container}>
-        <NormalTopHeader
-          title="分享"
-          onOpenDrawer={() => navigation.openDrawer()}
-        />
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <Text>Timeline</Text>
-        </ScrollView>
-      </View>
+      <TopScreenView
+        navigation={navigation}
+        renderHeader={() => (
+          <NormalTopHeader
+            title="分享"
+            onOpenDrawer={() => navigation.openDrawer()}
+          />
+        )}
+      />
     );
   }
 }
