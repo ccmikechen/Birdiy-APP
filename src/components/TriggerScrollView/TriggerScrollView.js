@@ -51,6 +51,7 @@ export default class TriggerScrollView extends Component {
       <ScrollView
         {...this.props}
         onScroll={this.handleScroll}
+        scrollEventThrottle={16}
       >
         {children}
       </ScrollView>

@@ -55,7 +55,7 @@ export default class HomeScreen extends Component {
             onOpenDrawer={() => navigation.openDrawer()}
           />
         )}
-        animatedBottomTabBar
+        animatedScroll
       >
         <HomeSection
           title="熱門分類"
