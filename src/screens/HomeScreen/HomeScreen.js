@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TopScreenView from '../../components/TopScreenView';
-import NormalTopHeader from '../../components/NormalTopHeader';
+import HomeHeader from '../../components/HomeHeader';
 import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 import CategoriesTable from '../../components/CategoriesTable';
@@ -43,6 +43,12 @@ export default class HomeScreen extends Component {
     <CategoriesTable categories={keywords} />
   );
 
+  handleSearch = () => {
+  }
+
+  handleOpenCart = () => {
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -50,9 +56,10 @@ export default class HomeScreen extends Component {
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
-          <NormalTopHeader
-            title="首頁"
+          <HomeHeader
             onOpenDrawer={() => navigation.openDrawer()}
+            onSearch={this.handleSearch}
+            onOpenCart={this.handleOpenCart}
           />
         )}
         animatedScroll

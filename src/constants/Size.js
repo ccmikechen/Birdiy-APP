@@ -1,4 +1,4 @@
 export default {
-  headerHeight: 70,
+  headerHeight: 75,
   bottomTabBarHeight: 50,
 };
