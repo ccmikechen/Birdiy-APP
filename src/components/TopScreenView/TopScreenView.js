@@ -5,6 +5,8 @@ import {
   Animated,
 } from 'react-native';
 
+import TriggerScrollView from '../TriggerScrollView';
+
 import Size from '../../constants/Size';
 
 import styles from './styles';
@@ -29,8 +31,6 @@ export default class TopScreenView extends Component {
 
   constructor() {
     super();
-    this.lastY = 0;
-    this.isTabBarHidden = false;
     this.offset = new Animated.Value(0);
   }
 
@@ -42,26 +42,17 @@ export default class TopScreenView extends Component {
     }).start();
   };
 
-  handleScroll = (event) => {
+  handleScrollDown = () => {
     const { navigation } = this.props;
-    const currentY = event.nativeEvent.contentOffset.y;
+    navigation.setParams({ isTabBarVisible: false });
+    this.startHeaderAnimation(-Size.headerHeight);
+  }
 
-    if (currentY < 0) {
-      return;
-    }
-
-    if (currentY - this.lastY > 3) {
-      this.isTabBarHidden = true;
-      this.lastY = currentY;
-      navigation.setParams({ isTabBarVisible: false });
-      this.startHeaderAnimation(-Size.headerHeight);
-    } else if (currentY - this.lastY < -3) {
-      this.isTabBarHidden = false;
-      this.lastY = currentY;
-      navigation.setParams({ isTabBarVisible: true });
-      this.startHeaderAnimation(0);
-    }
-  };
+  handleScrollUp = () => {
+    const { navigation } = this.props;
+    navigation.setParams({ isTabBarVisible: true });
+    this.startHeaderAnimation(0);
+  }
 
   render() {
     const {
@@ -82,12 +73,13 @@ export default class TopScreenView extends Component {
         >
           {renderHeader()}
         </Animated.View>
-        <Animated.ScrollView
-          onScroll={animatedBottomTabBar ? this.handleScroll : null}
+        <TriggerScrollView
+          onScrollDown={animatedBottomTabBar ? this.handleScrollDown : null}
+          onScrollUp={animatedBottomTabBar ? this.handleScrollUp : null}
         >
           <View style={styles.paddingView} />
           {children}
-        </Animated.ScrollView>
+        </TriggerScrollView>
       </View>
     );
   }
