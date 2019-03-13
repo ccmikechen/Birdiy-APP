@@ -1,4 +1,5 @@
 import React from 'react';
+import { Animated, Easing } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
@@ -12,6 +13,7 @@ import SearchScreen from '../screens/SearchScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
+import SearchDetailScreen from '../screens/SearchDetailScreen';
 
 import Colors from '../constants/Colors';
 
@@ -30,6 +32,7 @@ const tabBarOptions = {
 export default createBottomTabNavigator({
   HomeStack: createStackNavigator({
     Home: HomeScreen,
+    SearchDetail: SearchDetailScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {
@@ -37,6 +40,13 @@ export default createBottomTabNavigator({
       tabBarIcon: tabBarIcon('home'),
       tabBarOptions,
     },
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 0,
+        timing: Animated.timing,
+        easing: Easing.step0,
+      },
+    }),
   }),
   TimelineStack: createStackNavigator({
     Timeline: TimelineScreen,

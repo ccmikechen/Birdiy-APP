@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 import BasicHeader from '../BasicHeader';
@@ -19,11 +20,18 @@ const HomeHeader = ({
       onPress: onOpenDrawer,
     }}
     centerComponent={() => (
-      <Searchbar
+      <TouchableOpacity
         style={styles.searchBar}
-        placeholder="找作法、材料"
-        onFocus={() => onSearch()}
-      />
+        onPress={() => onSearch()}
+        activeOpacity={0.9}
+      >
+        <Searchbar
+          style={styles.searchBar}
+          placeholder="找作法、材料"
+          editable={false}
+          pointerEvents="none"
+        />
+      </TouchableOpacity>
     )}
     rightButton={{
       icon: 'shopping-cart',
