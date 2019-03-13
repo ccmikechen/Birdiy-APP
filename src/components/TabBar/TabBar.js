@@ -37,7 +37,7 @@ export default class TabBar extends Component {
 
   static defaultProps = {
     navigation: undefined,
-    animationDuration: 300,
+    animationDuration: 200,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {

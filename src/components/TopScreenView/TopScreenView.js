@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ScrollView,
   View,
+  Animated,
 } from 'react-native';
 
 import styles from './styles';
+
+const HEADER_OFFSET = 80;
 
 export default class TopScreenView extends Component {
   static propTypes = {
@@ -25,11 +27,20 @@ export default class TopScreenView extends Component {
     children: null,
   };
 
+  state = {
+    offset: new Animated.Value(0),
+  };
+
   constructor() {
     super();
     this.lastY = 0;
     this.isTabBarHidden = false;
   }
+
+  startHeaderAnimation = (toValue, duration = 200) => {
+    const { offset } = this.state;
+    Animated.timing(offset, { toValue, duration }).start();
+  };
 
   handleScroll = (event) => {
     const { navigation } = this.props;
@@ -43,10 +54,12 @@ export default class TopScreenView extends Component {
       this.isTabBarHidden = true;
       this.lastY = currentY;
       navigation.setParams({ isTabBarVisible: false });
+      this.startHeaderAnimation(-HEADER_OFFSET);
     } else if (currentY - this.lastY < -3) {
       this.isTabBarHidden = false;
       this.lastY = currentY;
       navigation.setParams({ isTabBarVisible: true });
+      this.startHeaderAnimation(0);
     }
   };
 
@@ -56,20 +69,22 @@ export default class TopScreenView extends Component {
       children,
       animatedBottomTabBar,
     } = this.props;
+    const { offset } = this.state;
 
     return (
       <View style={[styles.container, {
         marginBottom: animatedBottomTabBar ? 0 : 60,
       }]}
       >
-        {renderHeader()}
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
+        <Animated.View style={[styles.headerContainer, { top: offset }]}>
+          {renderHeader()}
+        </Animated.View>
+        <Animated.ScrollView
           onScroll={animatedBottomTabBar ? this.handleScroll : null}
         >
+          <View style={styles.paddingView} />
           {children}
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
     );
   }
