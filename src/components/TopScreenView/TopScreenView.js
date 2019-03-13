@@ -72,7 +72,7 @@ export default class TopScreenView extends Component {
 
     return (
       <View style={[styles.container, {
-        marginBottom: animatedBottomTabBar ? 0 : 60,
+        marginBottom: animatedBottomTabBar ? 0 : Size.bottomTabBarHeight,
       }]}
       >
         <Animated.View

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import Size from '../../constants/Size';
+
 export default StyleSheet.create({
   container: {
     overflow: 'hidden',
@@ -9,5 +11,6 @@ export default StyleSheet.create({
     right: 0,
     backgroundColor: 'white',
     elevation: 8,
+    height: Size.bottomTabBarHeight,
   },
 });
