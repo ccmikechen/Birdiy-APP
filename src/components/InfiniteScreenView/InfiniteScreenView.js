@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ListView } from 'react-native';
-import InfiniteScrollView from 'react-native-infinite-scroll-view';
+import { View } from 'react-native';
 
 import AnimatedHeader from '../AnimatedHeader';
-import scrollViewTrigger from '../../helpers/scrollViewTrigger';
+import InfiniteList from '../InfiniteList';
 
 import Size from '../../constants/Size';
 
 import styles from './styles';
-
-const TriggerScrollView = scrollViewTrigger(InfiniteScrollView);
-
-const rowHasChanged = (r1, r2) => (
-  JSON.stringify(r1) !== JSON.stringify(r2)
-);
 
 export default class InfiniteScreenView extends Component {
   static propTypes = {
@@ -34,21 +27,9 @@ export default class InfiniteScreenView extends Component {
     onToggleTabBar: () => {},
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { data } = nextProps;
-    const { dataSource } = prevState;
-    const ids = data.map((_, index) => index);
-
-    return {
-      ...prevState,
-      dataSource: dataSource.cloneWithRows(data, ids),
-    };
-  }
-
   state = {
     isHeaderVisible: true,
     canLoadMoreContent: true,
-    dataSource: new ListView.DataSource({ rowHasChanged }),
   };
 
   handleVisible = visible => () => {
@@ -67,6 +48,7 @@ export default class InfiniteScreenView extends Component {
 
   render() {
     const {
+      data,
       renderHeader,
       animatedScroll,
       loadMoreContentAsync,
@@ -74,7 +56,6 @@ export default class InfiniteScreenView extends Component {
     } = this.props;
     const {
       isHeaderVisible,
-      dataSource,
       canLoadMoreContent,
     } = this.state;
 
@@ -87,18 +68,12 @@ export default class InfiniteScreenView extends Component {
           renderHeader={renderHeader}
           visible={isHeaderVisible}
         />
-        <ListView
-          renderScrollComponent={props => (
-            <TriggerScrollView
-              {...props}
-              onScrollDown={this.handleVisible(false)}
-              onScrollUp={this.handleVisible(true)}
-            />
-          )}
-          dataSource={dataSource}
-          renderRow={renderSection}
-          canLoadMore={canLoadMoreContent}
-          onLoadMoreAsync={loadMoreContentAsync}
+        <InfiniteList
+          data={data}
+          loadMoreContentAsync={loadMoreContentAsync}
+          renderSection={renderSection}
+          onScrollTrigger={this.handleVisible}
+          canLoadMoreContent={canLoadMoreContent}
           renderHeader={() => <View style={styles.paddingView} />}
         />
       </View>
