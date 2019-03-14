@@ -41,7 +41,7 @@ export default class TimelineScreen extends Component {
         })),
       ],
     });
-  }
+  };
 
   renderSection = (section) => {
     const { navigation } = this.props;

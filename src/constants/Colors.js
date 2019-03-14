@@ -61,4 +61,5 @@ export default {
   tabIconDefault: '#cccccc',
   tabIconSelected: '#3b5998',
   tabBar: '#fefefe',
+  headerGradient: ['#64a1bc', '#647fbc', '#3b5998', '#192f6a'],
 };

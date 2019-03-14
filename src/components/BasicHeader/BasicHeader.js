@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import { LinearGradient, Icon } from 'expo';
 
+import Colors from '../../constants/Colors';
+
 import styles from './styles';
 
 const BasicHeader = ({
@@ -16,9 +18,9 @@ const BasicHeader = ({
 }) => (
   <LinearGradient
     style={styles.container}
-    colors={['#64a1bc', '#647fbc', '#3b5998', '#192f6a']}
+    colors={Colors.headerGradient}
     start={[0, 0]}
-    end={[1, 1]}
+    end={[1, 0]}
   >
     {leftButton && (
       <View style={styles.leftButtonContainer}>
