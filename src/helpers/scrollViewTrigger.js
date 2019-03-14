@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native';
 
-export default class TriggerScrollView extends Component {
+export default ScrollView => class extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -57,4 +56,4 @@ export default class TriggerScrollView extends Component {
       </ScrollView>
     );
   }
-}
+};

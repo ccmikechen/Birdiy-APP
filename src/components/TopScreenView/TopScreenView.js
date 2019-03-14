@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import AnimatedHeader from '../AnimatedHeader';
-import TriggerScrollView from '../TriggerScrollView';
+import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
 import Size from '../../constants/Size';
 
 import styles from './styles';
+
+const TriggerScrollView = scrollViewTrigger(ScrollView);
 
 export default class TopScreenView extends Component {
   static propTypes = {

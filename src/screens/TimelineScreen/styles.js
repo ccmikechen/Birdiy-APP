@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+  postContainer: {
     flex: 1,
     backgroundColor: '#fff',
+    marginBottom: 10,
   },
 });

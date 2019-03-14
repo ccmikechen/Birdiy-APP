@@ -6101,6 +6101,19 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-android-image-polyfill@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-android-image-polyfill/-/react-native-android-image-polyfill-1.0.0.tgz#f0b61bac0c6a91b8f8f81233ab1998613adf64ac"
+  integrity sha1-8LYbrAxqkbj4+BIzqxmYYTrfZKw=
+
+react-native-auto-height-image@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-auto-height-image/-/react-native-auto-height-image-1.1.0.tgz#509f441b4d5fc83ce9abfd5f459640f0273f5d01"
+  integrity sha512-vJH0NKyvzp9NtTNlcX/oEnKGgY2ZXW0VhQoz1TGNaxDHqpgtkTi645kS4ehjU95GV8h4pxIYYd/6SyuwXH2vrw==
+  dependencies:
+    prop-types "^15.5.8"
+    react-native-android-image-polyfill "^1.0.0"
+
 react-native-branch@2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
@@ -6127,6 +6140,15 @@ react-native-gesture-handler@~1.0.14:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-infinite-scroll-view@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-infinite-scroll-view/-/react-native-infinite-scroll-view-0.4.5.tgz#5200590519716ee0694f12b81d2f091b6df4571f"
+  integrity sha512-k0POtHqrCyQ75EQXB0raN20lt+UlOC1VbyOPb7lFJ8bUUJ+MMGKR7YkSZ2Sh+nPZ3V2NR9URTPIbPigbp1kjnw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-clone-referenced-element "^1.0.1"
+    react-native-scrollable-mixin "^1.0.0"
 
 react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
@@ -6182,6 +6204,11 @@ react-native-screens@1.0.0-alpha.22, "react-native-screens@^1.0.0 || ^1.0.0-alph
   version "1.0.0-alpha.22"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
+
+react-native-scrollable-mixin@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-scrollable-mixin/-/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
+  integrity sha1-NKMhZ7ZCSFlBVP0NaosD8idAVI4=
 
 react-native-status-bar-height@^2.2.0:
   version "2.2.0"

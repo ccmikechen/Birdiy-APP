@@ -49,6 +49,8 @@ export const TextColor = {
   primaryLight: '#ffffff',
   subLight: '#eeeeee',
   sectionTitle: '#666666',
+  primaryDark: '#222222',
+  subDark: '#888888',
 };
 
 export const Primary = Material('blue');
