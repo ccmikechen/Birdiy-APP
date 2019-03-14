@@ -14,6 +14,7 @@ import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
+import PostDetailScreen from '../screens/PostDetailScreen';
 
 import Colors from '../constants/Colors';
 
@@ -50,6 +51,7 @@ export default createBottomTabNavigator({
   }),
   TimelineStack: createStackNavigator({
     Timeline: TimelineScreen,
+    PostDetail: PostDetailScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

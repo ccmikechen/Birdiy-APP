@@ -44,11 +44,18 @@ export default class TimelineScreen extends Component {
   }
 
   renderSection = (section) => {
+    const { navigation } = this.props;
+
     switch (section.type) {
       case 'post':
         return (
           <View style={styles.postContainer}>
-            <PostSection post={section.data} />
+            <PostSection
+              post={section.data}
+              onPostPress={() => {
+                navigation.push('PostDetail');
+              }}
+            />
           </View>
         );
       default:

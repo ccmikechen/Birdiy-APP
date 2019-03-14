@@ -10,6 +10,11 @@ export default class SearchDetailHeader extends Component {
   static propTypes = {
     onBack: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+  };
+
+  static defaultProps = {
+    placeholder: '',
   };
 
   state = {
@@ -27,7 +32,7 @@ export default class SearchDetailHeader extends Component {
   };
 
   render() {
-    const { onBack } = this.props;
+    const { onBack, placeholder } = this.props;
 
     return (
       <BasicHeader
@@ -41,7 +46,7 @@ export default class SearchDetailHeader extends Component {
           <Searchbar
             ref={(searchBar) => { this.searchBar = searchBar; }}
             style={styles.searchBar}
-            placeholder="找作法、材料"
+            placeholder={placeholder}
             onChangeText={text => this.setState({ inputText: text })}
             onSubmitEditing={this.handleSubmit}
           />

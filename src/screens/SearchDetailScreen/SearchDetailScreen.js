@@ -37,6 +37,7 @@ export default class SearchDetailScreen extends Component {
             ref={(header) => { this.header = header; }}
             onBack={() => navigation.goBack()}
             onSearch={this.handleSearch}
+            placeholder="找作法、材料"
           />
         )}
       >
