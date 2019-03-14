@@ -19,8 +19,8 @@ const PostButton = ({
     onPress={onPress}
   >
     <View style={styles.iconContainer}>
-      <Icon.MaterialIcons
-        name="add-circle-outline"
+      <Icon.FontAwesome
+        name="pencil-square-o"
         size={30}
         color="#ffffff"
       />

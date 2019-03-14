@@ -54,7 +54,7 @@ export default StyleSheet.create({
   sourceContainer: {
     minHeight: 60,
     backgroundColor: Base.light,
-    padding: 5,
+    padding: 10,
   },
   source: {
     color: Tertiary(900),

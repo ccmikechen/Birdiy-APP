@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated } from 'react-native';
-
-import Size from '../../constants/Size';
+import {
+  Animated,
+  ViewPropTypes,
+  TouchableOpacity,
+} from 'react-native';
+import { Icon } from 'expo';
 
 import styles from './styles';
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const startOffsetAnimation = (offset, toValue, duration) => {
   Animated.timing(offset, {
@@ -14,25 +19,30 @@ const startOffsetAnimation = (offset, toValue, duration) => {
   }).start();
 };
 
-export default class AnimatedHeader extends Component {
+export default class AnimatedAddPostButton extends Component {
   static propTypes = {
-    renderHeader: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+    translate: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+    style: ViewPropTypes.style,
+    onPress: PropTypes.func,
   };
 
   static defaultProps = {
     duration: 100,
+    translate: 0,
+    style: {},
+    onPress: () => {},
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { duration, visible } = nextProps;
+    const { duration, translate, visible } = nextProps;
     const { offset } = prevState;
 
     const wasVisible = prevState.isVisible;
 
     if (wasVisible && !visible) {
-      startOffsetAnimation(offset, -Size.headerHeight, duration);
+      startOffsetAnimation(offset, translate, duration);
     } else if (visible && !wasVisible) {
       startOffsetAnimation(offset, 0, duration);
     }
@@ -46,17 +56,22 @@ export default class AnimatedHeader extends Component {
   };
 
   render() {
-    const { renderHeader } = this.props;
+    const { style, onPress } = this.props;
     const { offset } = this.state;
 
     return (
-      <Animated.View
-        style={[styles.container, {
-          transform: [{ translateY: offset }],
+      <AnimatedTouchable
+        style={[style, styles.container, {
+          transform: [{ translateX: offset }],
         }]}
+        onPress={onPress}
       >
-        {renderHeader()}
-      </Animated.View>
+        <Icon.FontAwesome
+          name="pencil-square-o"
+          size={26}
+          color="#ffffff"
+        />
+      </AnimatedTouchable>
     );
   }
 }

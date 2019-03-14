@@ -1,5 +1,5 @@
 export default {
-  headerHeight: 75,
+  headerHeight: 80,
   bottomTabBarHeight: 50,
   searchBarHeight: 35,
 };

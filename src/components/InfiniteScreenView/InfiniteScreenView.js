@@ -26,10 +26,12 @@ export default class InfiniteScreenView extends Component {
     data: PropTypes.arrayOf(PropTypes.any).isRequired,
     loadMoreContentAsync: PropTypes.func.isRequired,
     renderSection: PropTypes.func.isRequired,
+    onToggleTabBar: PropTypes.func,
   };
 
   static defaultProps = {
     animatedScroll: false,
+    onToggleTabBar: () => {},
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -50,12 +52,17 @@ export default class InfiniteScreenView extends Component {
   };
 
   handleVisible = visible => () => {
-    const { navigation, animatedScroll } = this.props;
+    const {
+      navigation,
+      animatedScroll,
+      onToggleTabBar,
+    } = this.props;
     if (!animatedScroll) {
       return;
     }
     navigation.setParams({ isTabBarVisible: visible });
     this.setState({ isHeaderVisible: visible });
+    onToggleTabBar(visible);
   };
 
   render() {
