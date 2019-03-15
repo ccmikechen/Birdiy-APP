@@ -12,9 +12,6 @@ export default StyleSheet.create({
     zIndex: 10,
     height: Size.topTabBarHeight,
   },
-  tabBar: {
-    backgroundColor: 'transparent',
-  },
   indicator: {
     backgroundColor: Secondary(100),
     height: 3,

@@ -17,15 +17,16 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "expo": "^32.0.0",
+    "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-auto-height-image": "^1.1.0",
     "react-native-elements": "^1.1.0",
     "react-native-infinite-scroll-view": "^0.4.5",
+    "react-native-material-tabs": "^3.8.1",
     "react-native-paper": "^2.13.0",
     "react-native-super-grid": "^3.0.3",
-    "react-native-tab-view": "^2.0.3",
     "react-navigation": "^3.3.2"
   },
   "devDependencies": {

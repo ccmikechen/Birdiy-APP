@@ -16,40 +16,37 @@ export default class SearchScreen extends Component {
   };
 
   state = {
-    tabs: {
-      a: {
-        title: 'AA',
-        data: [1, 2],
-      },
-      b: {
-        title: 'BB',
-        data: [3, 4],
-      },
+    data: {
+      a: [1, 2],
+      b: [3, 4],
     },
   };
 
   loadMoreContentAsync = key => async () => {
-    const { tabs } = this.state;
-    const tab = tabs[key];
+    const { data } = this.state;
+    const tabData = data[key];
     this.setState({
-      tabs: {
-        ...tabs,
-        [key]: {
-          ...tab,
-          data: [...tab.data, 1],
-        },
+      data: {
+        ...data,
+        [key]: [...tabData, 1],
       },
     });
   };
 
-  renderSection = () => () => (
-    <View style={{ height: 500 }}><Text>Hello</Text></View>
+  renderSection = tabKey => () => (
+    <View style={{
+      height: 500,
+      backgroundColor: tabKey === 'a' ? 'red' : 'blue',
+    }}
+    >
+      <Text>Hello</Text>
+    </View>
   );
 
   render() {
     const { navigation } = this.props;
-    const { tabs } = this.state;
-
+    const { data } = this.state;
+    const tabs = [{ key: 'a', title: 'AA' }, { key: 'b', title: 'BB' }];
     return (
       <InfiniteTabsScreenView
         navigation={navigation}
@@ -60,6 +57,7 @@ export default class SearchScreen extends Component {
           />
         )}
         tabs={tabs}
+        data={data}
         loadMoreContentAsync={this.loadMoreContentAsync}
         renderSection={this.renderSection}
         animatedScroll

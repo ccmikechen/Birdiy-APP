@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { TabView } from 'react-native-tab-view';
 
 import AnimatedHeader from '../AnimatedHeader';
 import InfiniteList from '../InfiniteList';
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
+import AnimatedMultipleView from '../AnimatedMultipleView';
 
 import Size from '../../constants/Size';
 
@@ -19,7 +19,11 @@ export default class InfiniteTabsScreenView extends Component {
     renderHeader: PropTypes.func.isRequired,
     animatedScroll: PropTypes.bool,
     onToggleTabBar: PropTypes.func,
-    tabs: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })).isRequired,
+    data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
     loadMoreContentAsync: PropTypes.func.isRequired,
     renderSection: PropTypes.func.isRequired,
   };
@@ -49,22 +53,20 @@ export default class InfiniteTabsScreenView extends Component {
     onToggleTabBar(visible);
   };
 
-  renderScene = ({ route }) => {
+  renderScene = (key, data) => {
     const {
-      tabs,
       loadMoreContentAsync,
       renderSection,
     } = this.props;
     const { canLoadMoreContent } = this.state;
-    const tab = tabs[route.key];
 
     return (
-      <View>
+      <View key={key}>
         <View style={styles.tabBarPaddingView} />
         <InfiniteList
-          data={tab.data}
-          loadMoreContentAsync={loadMoreContentAsync(route.key)}
-          renderSection={renderSection(route.key)}
+          data={data}
+          loadMoreContentAsync={loadMoreContentAsync(key)}
+          renderSection={renderSection(key)}
           onScrollTrigger={this.handleVisible}
           canLoadMoreContent={canLoadMoreContent}
           renderHeader={() => <View style={styles.paddingView} />}
@@ -78,18 +80,14 @@ export default class InfiniteTabsScreenView extends Component {
       renderHeader,
       animatedScroll,
       tabs,
+      data,
+      navigation,
+      onToggleTabBar,
     } = this.props;
     const {
       isHeaderVisible,
       tabIndex,
     } = this.state;
-    const navigationState = {
-      index: tabIndex,
-      routes: Object.keys(tabs).map(key => ({
-        key,
-        title: tabs[key].title,
-      })),
-    };
 
     return (
       <View style={[styles.container, {
@@ -100,17 +98,19 @@ export default class InfiniteTabsScreenView extends Component {
           renderHeader={renderHeader}
           visible={isHeaderVisible}
         />
-        <TabView
-          navigationState={navigationState}
-          renderScene={this.renderScene}
-          onIndexChange={(index) => {
-            this.handleVisible(true)();
-            this.setState({ tabIndex: index });
+        <AnimatedTopTabBar
+          visible={isHeaderVisible}
+          tabs={tabs.map(({ title }) => title)}
+          index={tabIndex}
+          onChange={(index) => {
+            this.setState({ tabIndex: index, isHeaderVisible: true });
+            navigation.setParams({ isTabBarVisible: true });
+            onToggleTabBar(true);
           }}
-          renderTabBar={props => (
-            <AnimatedTopTabBar {...props} visible={isHeaderVisible} />
-          )}
         />
+        <AnimatedMultipleView index={tabIndex}>
+          {tabs.map(({ key }) => this.renderScene(key, data[key]))}
+        </AnimatedMultipleView>
       </View>
     );
   }

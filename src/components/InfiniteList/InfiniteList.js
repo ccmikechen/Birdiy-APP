@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ListView } from 'react-native';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
+import { isEqual } from 'lodash';
 
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
@@ -41,6 +42,11 @@ export default class InfiniteList extends Component {
     onScrollTrigger: () => {},
     canLoadMoreContent: false,
   };
+
+  shouldComponentUpdate(nextProps) {
+    const { data } = this.props;
+    return !isEqual(data, nextProps.data);
+  }
 
   render() {
     const {

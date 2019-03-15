@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
 import { LinearGradient } from 'expo';
-import { TabBar } from 'react-native-tab-view';
+import MaterialTabs from 'react-native-material-tabs';
 
 import Size from '../../constants/Size';
 import Colors from '../../constants/Colors';
@@ -23,12 +23,15 @@ export default class AnimatedTopTabBar extends Component {
   static propTypes = {
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-    onPress: PropTypes.func,
+    tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    index: PropTypes.number,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
     duration: 100,
-    onPress: () => {},
+    index: 0,
+    onChange: () => {},
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -52,7 +55,17 @@ export default class AnimatedTopTabBar extends Component {
     offset: new Animated.Value(0),
   };
 
+  shouldComponentUpdate(nextProps) {
+    const { visible, index } = this.props;
+
+    return (visible !== nextProps.visible)
+      || (index !== nextProps.index);
+  }
+
   render() {
+    const {
+      tabs, index, onChange,
+    } = this.props;
     const { offset } = this.state;
 
     return (
@@ -64,10 +77,14 @@ export default class AnimatedTopTabBar extends Component {
           transform: [{ translateY: offset }],
         }]}
       >
-        <TabBar
+        <MaterialTabs
           {...this.props}
           style={styles.tabBar}
-          indicatorStyle={styles.indicator}
+          items={tabs}
+          selectedIndex={index}
+          barColor="transparent"
+          indicatorColor="transparent"
+          onChange={onChange}
         />
       </AnimatedLinearGradient>
     );

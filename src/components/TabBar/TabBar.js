@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated } from 'react-native';
+import { Animated, StatusBar } from 'react-native';
 import { BottomTabBar } from 'react-navigation';
 
 import styles from './styles';
@@ -73,13 +73,20 @@ export default class TabBar extends Component {
   };
 
   render() {
+    const { isVisible } = this.state;
+
     return (
-      <BottomTabBar
-        {...this.props}
+      <Animated.View
         style={[styles.container, {
           transform: [{ translateY: offset }],
         }]}
-      />
+      >
+        <StatusBar
+          hidden={!isVisible}
+          showHideTransition="slide"
+        />
+        <BottomTabBar {...this.props} />
+      </Animated.View>
     );
   }
 }
