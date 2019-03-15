@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
-import InfiniteScreenView from '../../components/InfiniteScreenView';
+import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
 import PostSection from '../../components/PostSection';
 import AnimatedAddPostButton from '../../components/AnimatedAddPostButton';
@@ -10,6 +10,12 @@ import AnimatedAddPostButton from '../../components/AnimatedAddPostButton';
 import styles from './styles';
 
 import { posts } from './mocks';
+
+const TABS = [{
+  key: 'all', title: '所有人',
+}, {
+  key: 'following', title: '關注中',
+}];
 
 export default class TimelineScreen extends Component {
   static navigationOptions = {
@@ -23,27 +29,38 @@ export default class TimelineScreen extends Component {
   };
 
   state = {
-    sections: posts.map(post => ({
-      type: 'post',
-      data: post,
-    })),
+    data: {
+      all: posts.map(post => ({
+        type: 'post',
+        data: post,
+      })),
+      following: posts.map(post => ({
+        type: 'post',
+        data: post,
+      })),
+    },
     addPostButtonVisible: true,
   };
 
-  loadMoreContentAsync = async () => {
-    const { sections } = this.state;
+  loadMoreContentAsync = key => async () => {
+    const { data } = this.state;
+    const sections = data[key];
+
     this.setState({
-      sections: [
-        ...sections,
-        ...posts.map(post => ({
-          type: 'post',
-          data: post,
-        })),
-      ],
+      data: {
+        ...data,
+        [key]: [
+          ...sections,
+          ...posts.map(post => ({
+            type: 'post',
+            data: post,
+          })),
+        ],
+      },
     });
   };
 
-  renderSection = (section) => {
+  renderSection = () => (section) => {
     const { navigation } = this.props;
 
     switch (section.type) {
@@ -65,11 +82,11 @@ export default class TimelineScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { sections, addPostButtonVisible } = this.state;
+    const { data, addPostButtonVisible } = this.state;
 
     return (
       <View style={styles.container}>
-        <InfiniteScreenView
+        <InfiniteTabsScreenView
           navigation={navigation}
           renderHeader={() => (
             <NormalTopHeader
@@ -77,7 +94,8 @@ export default class TimelineScreen extends Component {
               onOpenDrawer={() => navigation.openDrawer()}
             />
           )}
-          data={sections}
+          tabs={TABS}
+          data={data}
           loadMoreContentAsync={this.loadMoreContentAsync}
           renderSection={this.renderSection}
           onToggleTabBar={(visible) => {
