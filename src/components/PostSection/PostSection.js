@@ -58,7 +58,7 @@ const PostSection = ({
           color="#222222"
           onPress={onFollowPress}
         >
-          關注
+          跟隨
         </Button>
       </View>
     </View>

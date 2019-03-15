@@ -70,17 +70,17 @@ export default class DrawerScreen extends Component {
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="我的工作坊">
         <DrawerMenuItem
-          title="我的分享"
+          title="我的投稿"
           renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
           onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
-          title="我的DIY"
+          title="我的項目"
           renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
           onPress={this.navigateToScreen('Home')}
         />
         <DrawerMenuItem
-          title="DIY統計"
+          title="統計"
           renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'chart-bar')}
           onPress={this.navigateToScreen('Home')}
         />
@@ -148,11 +148,11 @@ export default class DrawerScreen extends Component {
           <View style={styles.relationInfoContainer}>
             <View style={styles.followingContainer}>
               <Text style={styles.followingNumber}>{ profile.followingCount }</Text>
-              <Text style={styles.following}>個關注中</Text>
+              <Text style={styles.following}>個跟隨中</Text>
             </View>
             <View style={styles.followingContainer}>
               <Text style={styles.followingNumber}>{ profile.followerCount }</Text>
-              <Text style={styles.following}>個被關注</Text>
+              <Text style={styles.following}>個跟隨者</Text>
             </View>
           </View>
           <View style={styles.postButtonContainer}>

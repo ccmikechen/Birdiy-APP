@@ -71,7 +71,7 @@ export default class HomeScreen extends Component {
           renderContent={this.renderHotCategories}
         />
         <HomeSection
-          title="最新DIY"
+          title="最新DIY項目"
           renderContent={this.renderNewProjects}
         />
         <HomeSection

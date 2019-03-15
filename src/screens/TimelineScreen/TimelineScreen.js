@@ -14,7 +14,7 @@ import { posts } from './mocks';
 const TABS = [{
   key: 'all', title: '所有人',
 }, {
-  key: 'following', title: '關注中',
+  key: 'following', title: '跟隨中',
 }];
 
 export default class TimelineScreen extends Component {

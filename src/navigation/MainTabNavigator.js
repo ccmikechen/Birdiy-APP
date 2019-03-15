@@ -55,7 +55,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '分享',
+      tabBarLabel: '動態',
       tabBarIcon: tabBarIcon('timeline'),
       tabBarOptions,
     },
@@ -65,7 +65,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '搜尋DIY',
+      tabBarLabel: '瀏覽DIY',
       tabBarIcon: tabBarIcon('search'),
       tabBarOptions,
     },

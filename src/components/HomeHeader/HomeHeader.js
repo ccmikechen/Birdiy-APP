@@ -27,7 +27,7 @@ const HomeHeader = ({
       >
         <Searchbar
           style={styles.searchBar}
-          placeholder="找作法、材料"
+          placeholder="找項目、點子"
           editable={false}
           pointerEvents="none"
         />
