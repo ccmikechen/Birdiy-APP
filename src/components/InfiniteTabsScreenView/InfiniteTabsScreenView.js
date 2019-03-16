@@ -39,7 +39,12 @@ export default class InfiniteTabsScreenView extends Component {
     tabIndex: 0,
   };
 
-  handleVisible = visible => () => {
+  handleVisible = index => visible => () => {
+    const { tabIndex } = this.state;
+    if (index !== tabIndex) {
+      return;
+    }
+
     const {
       navigation,
       animatedScroll,
@@ -53,7 +58,7 @@ export default class InfiniteTabsScreenView extends Component {
     onToggleTabBar(visible);
   };
 
-  renderScene = (key, data) => {
+  renderScene = (key, data, index) => {
     const {
       loadMoreContentAsync,
       renderSection,
@@ -67,7 +72,7 @@ export default class InfiniteTabsScreenView extends Component {
           data={data}
           loadMoreContentAsync={loadMoreContentAsync(key)}
           renderSection={renderSection(key)}
-          onScrollTrigger={this.handleVisible}
+          onScrollTrigger={this.handleVisible(index)}
           canLoadMoreContent={canLoadMoreContent}
           renderHeader={() => <View style={styles.paddingView} />}
         />
@@ -109,7 +114,9 @@ export default class InfiniteTabsScreenView extends Component {
           }}
         />
         <AnimatedMultipleView index={tabIndex}>
-          {tabs.map(({ key }) => this.renderScene(key, data[key]))}
+          {tabs.map(({ key }, index) => (
+            this.renderScene(key, data[key], index)
+          ))}
         </AnimatedMultipleView>
       </View>
     );
