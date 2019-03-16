@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
-import NormalTopHeader from '../../components/NormalTopHeader';
+import TimelineHeader from '../../components/TimelineHeader';
 import PostSection from '../../components/PostSection';
 import AnimatedAddPostButton from '../../components/AnimatedAddPostButton';
 
@@ -80,6 +80,14 @@ export default class TimelineScreen extends Component {
     }
   };
 
+  handleSearch = () => {
+    const { navigation } = this.props;
+    navigation.push('SearchUser');
+  }
+
+  handleOpenFilter = () => {
+  }
+
   render() {
     const { navigation } = this.props;
     const { data, addPostButtonVisible } = this.state;
@@ -89,9 +97,10 @@ export default class TimelineScreen extends Component {
         <InfiniteTabsScreenView
           navigation={navigation}
           renderHeader={() => (
-            <NormalTopHeader
-              title="分享"
+            <TimelineHeader
               onOpenDrawer={() => navigation.openDrawer()}
+              onSearch={this.handleSearch}
+              onOpenFilter={this.handleOpenFilter}
             />
           )}
           tabs={TABS}

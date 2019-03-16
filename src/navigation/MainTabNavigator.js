@@ -15,12 +15,21 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
+import SearchUserScreen from '../screens/SearchUserScreen';
 
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
   Setting: SettingScreen,
 };
+
+const noAnimationTransitionConfig = () => ({
+  transitionSpec: {
+    duration: 0,
+    timing: Animated.timing,
+    easing: Easing.step0,
+  },
+});
 
 const tabBarIcon = icon => props => ( // eslint-disable-line react/prop-types
   <TabBarIcon {...props} name={icon} />
@@ -41,17 +50,12 @@ export default createBottomTabNavigator({
       tabBarIcon: tabBarIcon('home'),
       tabBarOptions,
     },
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 0,
-        timing: Animated.timing,
-        easing: Easing.step0,
-      },
-    }),
+    transitionConfig: noAnimationTransitionConfig,
   }),
   TimelineStack: createStackNavigator({
     Timeline: TimelineScreen,
     PostDetail: PostDetailScreen,
+    SearchUser: SearchUserScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {
@@ -59,6 +63,7 @@ export default createBottomTabNavigator({
       tabBarIcon: tabBarIcon('timeline'),
       tabBarOptions,
     },
+    transitionConfig: noAnimationTransitionConfig,
   }),
   SearchStack: createStackNavigator({
     Search: SearchScreen,

@@ -6,7 +6,7 @@ import { NavigationEvents } from 'react-navigation';
 import TopScreenView from '../../components/TopScreenView';
 import SearchDetailHeader from '../../components/SearchDetailHeader';
 
-export default class SearchDetailScreen extends Component {
+export default class SearchUserScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -37,7 +37,7 @@ export default class SearchDetailScreen extends Component {
             ref={(header) => { this.header = header; }}
             onBack={() => navigation.goBack()}
             onSearch={this.handleSearch}
-            placeholder="找項目、點子"
+            placeholder="找用戶"
           />
         )}
       >
