@@ -49,6 +49,8 @@ export default class HomeScreen extends Component {
   }
 
   handleOpenCart = () => {
+    const { navigation } = this.props;
+    navigation.push('Cart');
   }
 
   render() {

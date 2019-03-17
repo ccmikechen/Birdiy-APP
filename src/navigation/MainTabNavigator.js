@@ -16,6 +16,7 @@ import SettingScreen from '../screens/SettingScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
+import CartScreen from '../screens/CartScreen';
 
 import Colors from '../constants/Colors';
 
@@ -43,6 +44,7 @@ export default createBottomTabNavigator({
   HomeStack: createStackNavigator({
     Home: HomeScreen,
     SearchDetail: SearchDetailScreen,
+    Cart: CartScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {
