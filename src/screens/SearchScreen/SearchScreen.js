@@ -30,6 +30,7 @@ export default class SearchScreen extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
     }).isRequired,
   };
 
@@ -51,16 +52,27 @@ export default class SearchScreen extends Component {
     });
   };
 
+  handleOpenProject = () => {
+    const { navigation } = this.props;
+    navigation.push('ProjectDetail');
+  };
+
   renderSection = () => (section) => {
     switch (section.type) {
       case 'project':
         return (
           <View style={styles.projectColumn}>
             <View style={styles.projectSectionContainer}>
-              <ProjectSection project={section.data[0]} />
+              <ProjectSection
+                project={section.data[0]}
+                onPress={this.handleOpenProject}
+              />
             </View>
             <View style={styles.projectSectionContainer}>
-              <ProjectSection project={section.data[1]} />
+              <ProjectSection
+                project={section.data[1]}
+                onPress={this.handleOpenProject}
+              />
             </View>
           </View>
 

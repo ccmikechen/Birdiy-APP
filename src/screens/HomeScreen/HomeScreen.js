@@ -18,7 +18,19 @@ export default class HomeScreen extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
     }).isRequired,
+  };
+
+  handleOpenProject = () => {
+    const { navigation } = this.props;
+    navigation.push('ProjectDetail');
+  };
+
+  handleMoreProject = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Search');
   };
 
   renderHotCategories = () => (
@@ -32,9 +44,12 @@ export default class HomeScreen extends Component {
 
   renderNewProjects = () => (
     <ExtensibleSectionContent
-      onMorePress={() => {}}
+      onMorePress={this.handleMoreProject}
       renderContent={() => (
-        <ProjectThumbnailsTable projects={projects} />
+        <ProjectThumbnailsTable
+          projects={projects}
+          onPressProject={this.handleOpenProject}
+        />
       )}
     />
   );

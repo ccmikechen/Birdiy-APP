@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-
+import { Dimensions } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
+
+import ProjectSection from '../ProjectSection';
 
 import styles from './styles';
 
@@ -22,19 +17,11 @@ const ProjectThumbnailsTable = ({ projects, onPressProject }) => (
     items={projects}
     style={styles.container}
     itemContainerStyle={styles.itemContainer}
-    renderItem={({ item, index }) => (
-      <TouchableOpacity
-        style={styles.itemContainer}
-        onPress={onPressProject(index)}
-      >
-        <Image
-          source={{ uri: item.imageURI }}
-          style={styles.image}
-        />
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{item.title}</Text>
-        </View>
-      </TouchableOpacity>
+    renderItem={({ item }) => (
+      <ProjectSection
+        project={item}
+        onPress={() => onPressProject(item)}
+      />
     )}
   />
 );
@@ -42,7 +29,9 @@ const ProjectThumbnailsTable = ({ projects, onPressProject }) => (
 ProjectThumbnailsTable.propTypes = {
   projects: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    imageURI: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
   })).isRequired,
   onPressProject: PropTypes.func,
 };

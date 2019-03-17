@@ -10,7 +10,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TimelineScreen from '../screens/TimelineScreen';
 import SearchScreen from '../screens/SearchScreen';
-import NotificationScreen from '../screens/NotificationScreen';
+// import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
@@ -18,11 +18,13 @@ import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
+import ProjectDetailScreen from '../screens/ProjectDetailScreen';
 
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
   Setting: SettingScreen,
+  ProjectDetail: ProjectDetailScreen,
 };
 
 const noAnimationTransitionConfig = () => ({
@@ -79,16 +81,16 @@ export default createBottomTabNavigator({
       tabBarOptions,
     },
   }),
-  NotificationStack: createStackNavigator({
-    Notification: NotificationScreen,
-    ...sharedScreens,
-  }, {
-    navigationOptions: {
-      tabBarLabel: '通知',
-      tabBarIcon: tabBarIcon('notifications'),
-      tabBarOptions,
-    },
-  }),
+  // NotificationStack: createStackNavigator({
+  //   Notification: NotificationScreen,
+  //   ...sharedScreens,
+  // }, {
+  //   navigationOptions: {
+  //     tabBarLabel: '通知',
+  //     tabBarIcon: tabBarIcon('notifications'),
+  //     tabBarOptions,
+  //   },
+  // }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
     ...sharedScreens,

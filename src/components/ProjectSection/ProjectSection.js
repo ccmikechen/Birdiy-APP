@@ -20,10 +20,7 @@ const ProjectSection = ({ project, onPress }) => (
     />
     <View style={styles.titleContainer}>
       <Text style={styles.title}>{project.title}</Text>
-      <Text style={styles.author}>
-by
-        {project.author}
-      </Text>
+      <Text style={styles.author}>{`by ${project.author}`}</Text>
     </View>
   </TouchableOpacity>
 );

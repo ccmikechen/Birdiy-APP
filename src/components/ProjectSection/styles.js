@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Tertiary } from '../../constants/Colors';
+import { Base, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     backgroundColor: Tertiary(900),
   },
   titleContainer: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: Base.lightest,
     minHeight: 40,
   },
   title: {
