@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { chunk } from 'lodash';
+
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
+import ProjectSection from '../../components/ProjectSection';
+
+import styles from './styles';
+
+import { projects } from './mocks';
+
+const projectPair = chunk(projects, 2).map(project => ({
+  type: 'project',
+  data: project,
+}));
+
+const TABS = [{
+  key: 'newest', title: '最新',
+}, {
+  key: 'hotest', title: '最熱門',
+}];
 
 export default class SearchScreen extends Component {
   static navigationOptions = {
@@ -17,38 +35,48 @@ export default class SearchScreen extends Component {
 
   state = {
     data: {
-      a: [1, 2],
-      b: [3, 4],
+      newest: projectPair,
+      hotest: projectPair,
     },
   };
 
   loadMoreContentAsync = key => async () => {
     const { data } = this.state;
-    const tabData = data[key];
+    const projectData = data[key];
     this.setState({
       data: {
         ...data,
-        [key]: [...tabData, 1],
+        [key]: [...projectData, ...projectPair],
       },
     });
   };
 
-  renderSection = tabKey => () => (
-    <View style={{
-      height: 500,
-      backgroundColor: tabKey === 'a' ? 'red' : 'blue',
-    }}
-    >
-      <Text>Hello</Text>
-    </View>
-  );
+  renderSection = () => (section) => {
+    switch (section.type) {
+      case 'project':
+        return (
+          <View style={styles.projectColumn}>
+            <View style={styles.projectSectionContainer}>
+              <ProjectSection project={section.data[0]} />
+            </View>
+            <View style={styles.projectSectionContainer}>
+              <ProjectSection project={section.data[1]} />
+            </View>
+          </View>
+
+        );
+      default:
+        return null;
+    }
+  };
 
   render() {
     const { navigation } = this.props;
     const { data } = this.state;
-    const tabs = [{ key: 'a', title: 'AA' }, { key: 'b', title: 'BB' }];
+
     return (
       <InfiniteTabsScreenView
+        style={styles.container}
         navigation={navigation}
         renderHeader={() => (
           <NormalTopHeader
@@ -56,7 +84,7 @@ export default class SearchScreen extends Component {
             onOpenDrawer={() => navigation.openDrawer()}
           />
         )}
-        tabs={tabs}
+        tabs={TABS}
         data={data}
         loadMoreContentAsync={this.loadMoreContentAsync}
         renderSection={this.renderSection}

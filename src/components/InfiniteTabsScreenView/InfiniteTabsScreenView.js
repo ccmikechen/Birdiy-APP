@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, ViewPropTypes } from 'react-native';
 
 import AnimatedHeader from '../AnimatedHeader';
 import InfiniteList from '../InfiniteList';
@@ -26,11 +26,13 @@ export default class InfiniteTabsScreenView extends Component {
     data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
     loadMoreContentAsync: PropTypes.func.isRequired,
     renderSection: PropTypes.func.isRequired,
+    style: ViewPropTypes.style,
   };
 
   static defaultProps = {
     animatedScroll: false,
     onToggleTabBar: () => {},
+    style: {},
   };
 
   state = {
@@ -88,6 +90,7 @@ export default class InfiniteTabsScreenView extends Component {
       data,
       navigation,
       onToggleTabBar,
+      style,
     } = this.props;
     const {
       isHeaderVisible,
@@ -95,7 +98,7 @@ export default class InfiniteTabsScreenView extends Component {
     } = this.state;
 
     return (
-      <View style={[styles.container, {
+      <View style={[styles.container, style, {
         marginBottom: animatedScroll ? 0 : Size.bottomTabBarHeight,
       }]}
       >
