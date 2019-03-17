@@ -17,6 +17,7 @@ import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
+import UserFilterScreen from '../screens/UserFilterScreen';
 
 import Colors from '../constants/Colors';
 
@@ -58,6 +59,7 @@ export default createBottomTabNavigator({
     Timeline: TimelineScreen,
     PostDetail: PostDetailScreen,
     SearchUser: SearchUserScreen,
+    UserFilter: UserFilterScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

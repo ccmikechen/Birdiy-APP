@@ -86,6 +86,8 @@ export default class TimelineScreen extends Component {
   }
 
   handleOpenFilter = () => {
+    const { navigation } = this.props;
+    navigation.push('UserFilter');
   }
 
   render() {
