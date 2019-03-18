@@ -4,6 +4,7 @@ import { TextColor, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
+    elevation: 4,
   },
   profileContainer: {
     flexDirection: 'row',

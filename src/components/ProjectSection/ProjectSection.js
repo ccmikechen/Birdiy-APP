@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { Surface } from 'react-native-paper';
 
 import styles from './styles';
 
@@ -14,14 +15,16 @@ const ProjectSection = ({ project, onPress }) => (
     style={styles.container}
     onPress={onPress}
   >
-    <Image
-      source={{ uri: project.image }}
-      style={styles.image}
-    />
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>{project.title}</Text>
-      <Text style={styles.author}>{`by ${project.author}`}</Text>
-    </View>
+    <Surface style={styles.container}>
+      <Image
+        source={{ uri: project.image }}
+        style={styles.image}
+      />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{project.title}</Text>
+        <Text style={styles.author}>{`by ${project.author}`}</Text>
+      </View>
+    </Surface>
   </TouchableOpacity>
 );
 

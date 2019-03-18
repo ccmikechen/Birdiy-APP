@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Surface } from 'react-native-paper';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import { DEFAULT_PROFILE } from '../../images';
@@ -27,7 +27,7 @@ const PostSection = ({
   onPostPress,
   onSourcePress,
 }) => (
-  <View style={styles.container}>
+  <Surface style={styles.container}>
     <View style={styles.profileContainer}>
       <TouchableOpacity
         style={styles.userImageContainer}
@@ -88,7 +88,7 @@ const PostSection = ({
         {source}
       </Text>
     </TouchableOpacity>
-  </View>
+  </Surface>
 );
 
 PostSection.propTypes = {
