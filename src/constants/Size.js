@@ -4,4 +4,5 @@ export default {
   topTabBarHeight: 40,
   searchBarHeight: 35,
   profileImageSize: 70,
+  myProjectListImageSize: 100,
 };

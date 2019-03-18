@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import TopScreenView from '../../components/TopScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
 import ProfileSection from '../../components/ProfileSection';
+import ProfileTabMenu from '../../components/ProfileTabMenu';
 
 import { profile } from './mocks';
 
@@ -42,6 +43,7 @@ export default class ProfileScreen extends Component {
           onFollowerPress={this.handleFollowerPress}
           onFollowingPress={this.handleFollowingPress}
         />
+        <ProfileTabMenu />
       </TopScreenView>
     );
   }
