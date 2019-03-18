@@ -39,7 +39,6 @@ export default class SearchDetailHeader extends Component {
         placement="center"
         leftButton={{
           icon: 'arrow-back',
-          color: '#ffffff',
           onPress: onBack,
         }}
         centerComponent={() => (

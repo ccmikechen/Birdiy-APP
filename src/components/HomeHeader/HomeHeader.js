@@ -5,6 +5,8 @@ import { Searchbar } from 'react-native-paper';
 
 import BasicHeader from '../BasicHeader';
 
+import Colors from '../../constants/Colors';
+
 import styles from './styles';
 
 const HomeHeader = ({
@@ -16,7 +18,7 @@ const HomeHeader = ({
     placement="center"
     leftButton={{
       icon: 'menu',
-      color: '#ffffff',
+      color: Colors.headerIcon,
       onPress: onOpenDrawer,
     }}
     centerComponent={() => (
@@ -35,7 +37,7 @@ const HomeHeader = ({
     )}
     rightButton={{
       icon: 'shopping-cart',
-      color: '#ffffff',
+      color: Colors.headerIcon,
       onPress: onOpenCart,
     }}
   />

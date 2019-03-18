@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import Size from '../../constants/Size';
-import { Secondary } from '../../constants/Colors';
+import { Base } from '../../constants/Colors';
 
 export default StyleSheet.create({
   tabBarContainer: {
@@ -11,9 +11,6 @@ export default StyleSheet.create({
     right: 0,
     zIndex: 10,
     height: Size.topTabBarHeight,
-  },
-  indicator: {
-    backgroundColor: Secondary(100),
-    height: 3,
+    backgroundColor: Base.light,
   },
 });

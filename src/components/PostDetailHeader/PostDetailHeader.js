@@ -8,12 +8,11 @@ const PostDetailHeader = ({ title, onBack }) => (
     placement="center"
     leftButton={{
       icon: 'arrow-back',
-      color: '#ffffff',
       onPress: onBack,
     }}
     centerComponent={{
       title,
-      style: { color: '#ffffff', fontSize: 20 },
+      style: { fontSize: 20 },
     }}
   />
 );

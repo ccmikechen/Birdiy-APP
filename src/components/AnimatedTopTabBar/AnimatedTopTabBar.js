@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
-import { LinearGradient } from 'expo';
 import MaterialTabs from 'react-native-material-tabs';
 
 import Size from '../../constants/Size';
-import Colors from '../../constants/Colors';
+import { TextColor } from '../../constants/Colors';
 
 import styles from './styles';
-
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
 const startOffsetAnimation = (offset, toValue, duration) => {
   Animated.timing(offset, {
@@ -69,10 +66,7 @@ export default class AnimatedTopTabBar extends Component {
     const { offset } = this.state;
 
     return (
-      <AnimatedLinearGradient
-        colors={Colors.headerGradient}
-        start={[0, 0]}
-        end={[1, 0]}
+      <Animated.View
         style={[styles.tabBarContainer, {
           transform: [{ translateY: offset }],
         }]}
@@ -83,10 +77,11 @@ export default class AnimatedTopTabBar extends Component {
           items={tabs}
           selectedIndex={index}
           barColor="transparent"
-          indicatorColor="transparent"
+          activeTextColor={TextColor.primaryDark}
+          inactiveTextColor={TextColor.subDark}
           onChange={onChange}
         />
-      </AnimatedLinearGradient>
+      </Animated.View>
     );
   }
 }

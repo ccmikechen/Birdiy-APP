@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
-import { Base } from '../../constants/Colors';
+import Colors, { Base } from '../../constants/Colors';
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
@@ -10,6 +10,7 @@ export default StyleSheet.create({
     width: '100%',
     height: Size.headerHeight,
     paddingTop: Constants.statusBarHeight,
+    backgroundColor: Base.light,
   },
   title: {
     color: Base.primaryText,
@@ -26,6 +27,9 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginLeft: 10,
+  },
+  centerText: {
+    color: Colors.headerIcon,
   },
   rightButtonContainer: {
     justifyContent: 'center',

@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { LinearGradient, Icon } from 'expo';
+import { Icon } from 'expo';
 
 import Colors from '../../constants/Colors';
 
@@ -16,12 +16,7 @@ const BasicHeader = ({
   centerComponent,
   rightButton,
 }) => (
-  <LinearGradient
-    style={styles.container}
-    colors={Colors.headerGradient}
-    start={[0, 0]}
-    end={[1, 0]}
-  >
+  <View style={styles.container}>
     {leftButton && (
       <View style={styles.leftButtonContainer}>
         <TouchableOpacity
@@ -31,7 +26,7 @@ const BasicHeader = ({
           <Icon.MaterialIcons
             name={leftButton.icon}
             size={30}
-            color={leftButton.color}
+            color={leftButton.color || Colors.headerIcon}
           />
         </TouchableOpacity>
       </View>
@@ -40,7 +35,7 @@ const BasicHeader = ({
       {
         typeof centerComponent === 'function'
           ? centerComponent() : (
-            <Text style={centerComponent.style}>
+            <Text style={[styles.centerText, centerComponent.style]}>
               {centerComponent.title}
             </Text>
           )
@@ -55,12 +50,12 @@ const BasicHeader = ({
           <Icon.MaterialIcons
             name={rightButton.icon}
             size={30}
-            color={rightButton.color}
+            color={rightButton.color || Colors.headerIcon}
           />
         </TouchableOpacity>
       </View>
     )}
-  </LinearGradient>
+  </View>
 );
 
 BasicHeader.propTypes = {

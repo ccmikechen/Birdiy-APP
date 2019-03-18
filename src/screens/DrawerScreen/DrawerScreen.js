@@ -89,6 +89,11 @@ export default class DrawerScreen extends Component {
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'folder-special')}
           onPress={this.navigateToScreen('Home')}
         />
+        <DrawerMenuItem
+          title="採買清單"
+          renderIcon={this.renderIcon(Icon.MaterialIcons, 'shopping-cart')}
+          onPress={this.navigateToScreen('Cart')}
+        />
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="其他">
         <DrawerMenuItem

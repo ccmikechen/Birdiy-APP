@@ -16,7 +16,6 @@ const TimelineHeader = ({
     placement="center"
     leftButton={{
       icon: 'menu',
-      color: '#ffffff',
       onPress: onOpenDrawer,
     }}
     centerComponent={() => (
@@ -35,7 +34,6 @@ const TimelineHeader = ({
     )}
     rightButton={{
       icon: 'filter-list',
-      color: '#ffffff',
       onPress: onOpenFilter,
     }}
   />

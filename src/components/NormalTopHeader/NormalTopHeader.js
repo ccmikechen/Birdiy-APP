@@ -8,12 +8,11 @@ const NormalTopHeader = ({ title, onOpenDrawer }) => (
     placement="center"
     leftButton={{
       icon: 'menu',
-      color: '#ffffff',
       onPress: onOpenDrawer,
     }}
     centerComponent={{
       title,
-      style: { color: '#ffffff', fontSize: 20 },
+      style: { fontSize: 20 },
     }}
   />
 );
