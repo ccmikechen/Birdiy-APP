@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import PostDetailHeader from '../../components/PostDetailHeader';
 import PostSection from '../../components/PostSection';
+
+import styles from './styles';
 
 import { post } from './mocks';
 
@@ -31,7 +34,9 @@ export default class PostDetailScreen extends Component {
           />
         )}
       >
-        <PostSection post={post} />
+        <View style={styles.postContainer}>
+          <PostSection post={post} />
+        </View>
       </TopScreenView>
     );
   }

@@ -15,5 +15,6 @@ export default StyleSheet.create({
   projectSectionContainer: {
     flex: 1,
     margin: 5,
+    elevation: 1,
   },
 });

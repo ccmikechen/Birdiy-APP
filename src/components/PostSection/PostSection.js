@@ -77,7 +77,7 @@ const PostSection = ({
       <AutoHeightImage
         style={styles.image}
         source={{ uri: image }}
-        width={Dimensions.get('window').width}
+        width={Dimensions.get('window').width - 20}
       />
     </TouchableOpacity>
     <TouchableOpacity

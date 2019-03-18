@@ -5,6 +5,7 @@ import { Base, Tertiary } from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    elevation: 1,
   },
   image: {
     aspectRatio: 1,

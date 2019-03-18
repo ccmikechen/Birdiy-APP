@@ -79,6 +79,7 @@ export default class AnimatedTopTabBar extends Component {
           barColor="transparent"
           activeTextColor={TextColor.primaryDark}
           inactiveTextColor={TextColor.subDark}
+          indicatorColor="transparent"
           onChange={onChange}
         />
       </Animated.View>

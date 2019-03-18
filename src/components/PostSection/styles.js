@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, TextColor, Tertiary } from '../../constants/Colors';
+import { TextColor, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -53,7 +53,6 @@ export default StyleSheet.create({
   },
   sourceContainer: {
     minHeight: 60,
-    backgroundColor: Base.light,
     padding: 10,
   },
   source: {
