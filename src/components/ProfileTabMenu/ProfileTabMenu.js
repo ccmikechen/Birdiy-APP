@@ -5,6 +5,7 @@ import {
 import NormalTabBar from '../NormalTabBar';
 import MyProjectsScene from '../MyProjectsScene';
 import MyPostsScene from '../MyPostsScene';
+import MyFavoritesScene from '../MyFavoritesScene';
 
 import { projects, posts } from './mocks';
 
@@ -19,7 +20,7 @@ export default class ProfileTabMenu extends Component {
 
   renderPosts = () => <MyPostsScene posts={posts} />;
 
-  renderFavorites = () => <MyProjectsScene projects={projects} />;
+  renderFavorites = () => <MyFavoritesScene projects={projects} />;
 
   renderTabContent = () => {
     const { index } = this.state;
