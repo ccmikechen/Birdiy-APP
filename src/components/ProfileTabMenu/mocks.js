@@ -31,3 +31,45 @@ export const projects = [{
   title: '傳說中的廚具永靈刀',
   image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
 }];
+
+export const posts = [{
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}, {
+  postedAt: '2019/08/01 13:33',
+  message: '做了一個傳說中的廚具，姑且先叫它永靈刀好了，用它做生魚片很好用喔！',
+  image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+}];

@@ -4,8 +4,9 @@ import {
 } from 'react-native';
 import NormalTabBar from '../NormalTabBar';
 import MyProjectsScene from '../MyProjectsScene';
+import MyPostsScene from '../MyPostsScene';
 
-import { projects } from './mocks';
+import { projects, posts } from './mocks';
 
 const TABS = ['專案', '投稿', '收藏'];
 
@@ -16,7 +17,7 @@ export default class ProfileTabMenu extends Component {
 
   renderProjects = () => <MyProjectsScene projects={projects} />;
 
-  renderPosts = () => <MyProjectsScene projects={projects} />;
+  renderPosts = () => <MyPostsScene posts={posts} />;
 
   renderFavorites = () => <MyProjectsScene projects={projects} />;
 
