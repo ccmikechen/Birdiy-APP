@@ -41,7 +41,7 @@ export const Material = (color) => {
 
 export const Base = {
   dark: '#e1e1e1',
-  light: '#f5f5f5',
+  light: '#f8f8f8',
   lightest: '#ffffff',
 };
 
@@ -51,6 +51,7 @@ export const TextColor = {
   sectionTitle: '#666666',
   primaryDark: '#222222',
   subDark: '#888888',
+  secondaryDark: '#444444',
 };
 
 export const Primary = Material('blue');

@@ -9,8 +9,11 @@ export default StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, .9)',
     elevation: 8,
     height: Size.bottomTabBarHeight,
+  },
+  tabBar: {
+    backgroundColor: 'transparent',
   },
 });

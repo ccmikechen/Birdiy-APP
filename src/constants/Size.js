@@ -3,4 +3,5 @@ export default {
   bottomTabBarHeight: 50,
   topTabBarHeight: 40,
   searchBarHeight: 35,
+  profileImageSize: 70,
 };

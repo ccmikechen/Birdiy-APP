@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
+import ProfileSection from '../../components/ProfileSection';
+
+import { profile } from './mocks';
 
 export default class ProfileScreen extends Component {
   static navigationOptions = {
@@ -13,6 +16,12 @@ export default class ProfileScreen extends Component {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
     }).isRequired,
+  };
+
+  handleFollowerPress = () => {
+  };
+
+  handleFollowingPress = () => {
   };
 
   render() {
@@ -27,7 +36,13 @@ export default class ProfileScreen extends Component {
             onOpenDrawer={() => navigation.openDrawer()}
           />
         )}
-      />
+      >
+        <ProfileSection
+          profile={profile}
+          onFollowerPress={this.handleFollowerPress}
+          onFollowingPress={this.handleFollowingPress}
+        />
+      </TopScreenView>
     );
   }
 }

@@ -85,7 +85,10 @@ export default class TabBar extends Component {
           hidden={!isVisible}
           showHideTransition="slide"
         />
-        <BottomTabBar {...this.props} />
+        <BottomTabBar
+          {...this.props}
+          style={styles.tabBar}
+        />
       </Animated.View>
     );
   }
