@@ -157,7 +157,7 @@ export default class DrawerScreen extends Component {
             </View>
             <View style={styles.followingContainer}>
               <Text style={styles.followingNumber}>{ profile.followerCount }</Text>
-              <Text style={styles.following}>個跟隨者</Text>
+              <Text style={styles.following}>跟隨者</Text>
             </View>
           </View>
           <View style={styles.postButtonContainer}>

@@ -1,27 +1,23 @@
-import { ICON } from '../../images';
+import { ICON, categories as categoriesIcon } from '../../images';
 
 export const categories = [{
   name: '木工',
+  image: categoriesIcon.WOODWORK,
 }, {
-  name: '手工',
-  image: ICON,
+  name: '電子',
+  image: categoriesIcon.ELECTRONIC,
 }, {
-  name: '刀工',
+  name: '電腦',
+  image: categoriesIcon.COMPUTER,
 }, {
-  name: '白工',
-  image: ICON,
+  name: '摺紙',
+  image: categoriesIcon.PAPERWORK,
 }, {
-  name: '童工',
+  name: '美髮',
+  image: categoriesIcon.HAIR,
 }, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
-}, {
-  name: '走路工',
-  image: ICON,
-}, {
-  name: '童工',
+  name: '木雕',
+  image: categoriesIcon.WOODCURVING,
 }];
 
 export const projects = [{

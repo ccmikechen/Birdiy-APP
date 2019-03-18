@@ -45,10 +45,12 @@ export default StyleSheet.create({
   },
   relationInfoContainer: {
     flex: 0.3,
+    flexDirection: 'row',
+    marginTop: 20,
   },
   followingContainer: {
-    flex: 1,
     flexDirection: 'row',
+    marginRight: 10,
   },
   followingNumber: {
     fontSize: 16,
