@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {
-  View,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import NormalTabBar from '../NormalTabBar';
 import MyProjectsScene from '../MyProjectsScene';
 import MyPostsScene from '../MyPostsScene';
@@ -12,13 +11,41 @@ import { projects, posts } from './mocks';
 const TABS = ['專案', '投稿', '收藏'];
 
 export default class ProfileTabMenu extends Component {
+  static propTypes = {
+    onMoreProjectsPress: PropTypes.func,
+    onMorePostsPress: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onMoreProjectsPress: () => {},
+    onMorePostsPress: () => {},
+  };
+
   state = {
     index: 0,
   };
 
-  renderProjects = () => <MyProjectsScene projects={projects} />;
+  renderProjects = () => {
+    const { onMoreProjectsPress } = this.props;
 
-  renderPosts = () => <MyPostsScene posts={posts} />;
+    return (
+      <MyProjectsScene
+        projects={projects}
+        onMorePress={onMoreProjectsPress}
+      />
+    );
+  };
+
+  renderPosts = () => {
+    const { onMorePostsPress } = this.props;
+
+    return (
+      <MyPostsScene
+        posts={posts}
+        onMorePress={onMorePostsPress}
+      />
+    );
+  };
 
   renderFavorites = () => <MyFavoritesScene projects={projects} />;
 

@@ -19,11 +19,13 @@ import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../screens/ProjectDetailScreen';
+import MyPostsScreen from '../screens/MyPostsScreen';
 
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
   Setting: SettingScreen,
+  PostDetail: PostDetailScreen,
   ProjectDetail: ProjectDetailScreen,
 };
 
@@ -59,7 +61,6 @@ export default createBottomTabNavigator({
   }),
   TimelineStack: createStackNavigator({
     Timeline: TimelineScreen,
-    PostDetail: PostDetailScreen,
     SearchUser: SearchUserScreen,
     UserFilter: UserFilterScreen,
     ...sharedScreens,
@@ -93,6 +94,7 @@ export default createBottomTabNavigator({
   // }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
+    MyPosts: MyPostsScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

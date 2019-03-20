@@ -4,10 +4,7 @@ import { TouchableOpacity, Text } from 'react-native';
 
 import styles from './styles';
 
-const MoreButton = ({
-  text,
-  onPress,
-}) => (
+const MoreButton = ({ text, onPress }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={onPress}

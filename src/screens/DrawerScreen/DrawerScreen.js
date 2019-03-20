@@ -70,14 +70,14 @@ export default class DrawerScreen extends Component {
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="我的工作坊">
         <DrawerMenuItem
-          title="我的投稿"
-          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
-          onPress={this.navigateToScreen('Home')}
-        />
-        <DrawerMenuItem
           title="我的項目"
           renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
           onPress={this.navigateToScreen('Home')}
+        />
+        <DrawerMenuItem
+          title="我的投稿"
+          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
+          onPress={this.navigateToScreen('MyPosts')}
         />
         <DrawerMenuItem
           title="統計"

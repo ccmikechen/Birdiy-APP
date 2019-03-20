@@ -24,6 +24,11 @@ export default class MyProjectsScene extends Component {
       title: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
     })).isRequired,
+    onMorePress: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onMorePress: () => {},
   };
 
   constructor(props) {
@@ -56,6 +61,7 @@ export default class MyProjectsScene extends Component {
   );
 
   render() {
+    const { onMorePress } = this.props;
     const { dataSource } = this.state;
 
     return (
@@ -75,6 +81,7 @@ export default class MyProjectsScene extends Component {
         <View style={styles.moreButtonContainer}>
           <MoreButton
             text="更多"
+            onPress={onMorePress}
           />
         </View>
       </View>

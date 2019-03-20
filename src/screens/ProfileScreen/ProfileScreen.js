@@ -26,6 +26,14 @@ export default class ProfileScreen extends Component {
   handleFollowingPress = () => {
   };
 
+  handleMoreProjectsPress = () => {
+  };
+
+  handleMorePostsPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('MyPosts');
+  };
+
   render() {
     const { navigation } = this.props;
 
@@ -44,7 +52,10 @@ export default class ProfileScreen extends Component {
           onFollowerPress={this.handleFollowerPress}
           onFollowingPress={this.handleFollowingPress}
         />
-        <ProfileTabMenu />
+        <ProfileTabMenu
+          onMoreProjectsPress={this.handleMoreProjectsPress}
+          onMorePostsPress={this.handleMorePostsPress}
+        />
       </TopScreenView>
     );
   }
