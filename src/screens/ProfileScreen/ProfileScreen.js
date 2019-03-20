@@ -36,6 +36,11 @@ export default class ProfileScreen extends Component {
     navigation.navigate('MyPosts');
   };
 
+  handleMoreFavoritesPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('MyFavorites');
+  };
+
   render() {
     const { navigation } = this.props;
 
@@ -57,6 +62,7 @@ export default class ProfileScreen extends Component {
         <ProfileTabMenu
           onMoreProjectsPress={this.handleMoreProjectsPress}
           onMorePostsPress={this.handleMorePostsPress}
+          onMoreFavoritesPress={this.handleMoreFavoritesPress}
         />
       </TopScreenView>
     );

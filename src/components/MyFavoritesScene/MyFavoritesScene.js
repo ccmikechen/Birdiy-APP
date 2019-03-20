@@ -24,6 +24,11 @@ export default class MyFavoritesScene extends Component {
       image: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
     })).isRequired,
+    onMorePress: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onMorePress: () => {},
   };
 
   constructor(props) {
@@ -60,6 +65,7 @@ export default class MyFavoritesScene extends Component {
   );
 
   render() {
+    const { onMorePress } = this.props;
     const { dataSource } = this.state;
 
     return (
@@ -73,6 +79,7 @@ export default class MyFavoritesScene extends Component {
         <View style={styles.moreButtonContainer}>
           <MoreButton
             text="更多"
+            onPress={onMorePress}
           />
         </View>
       </View>

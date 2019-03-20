@@ -21,6 +21,7 @@ import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../screens/ProjectDetailScreen';
 import MyProjectsScreen from '../screens/MyProjectsScreen';
 import MyPostsScreen from '../screens/MyPostsScreen';
+import MyFavoritesScreen from '../screens/MyFavoritesScreen';
 
 import Colors from '../constants/Colors';
 
@@ -97,6 +98,7 @@ export default createBottomTabNavigator({
     Profile: ProfileScreen,
     MyProjects: MyProjectsScreen,
     MyPosts: MyPostsScreen,
+    MyFavorites: MyFavoritesScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

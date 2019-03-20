@@ -14,11 +14,13 @@ export default class ProfileTabMenu extends Component {
   static propTypes = {
     onMoreProjectsPress: PropTypes.func,
     onMorePostsPress: PropTypes.func,
+    onMoreFavoritesPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMoreProjectsPress: () => {},
     onMorePostsPress: () => {},
+    onMoreFavoritesPress: () => {},
   };
 
   state = {
@@ -47,7 +49,16 @@ export default class ProfileTabMenu extends Component {
     );
   };
 
-  renderFavorites = () => <MyFavoritesScene projects={projects} />;
+  renderFavorites = () => {
+    const { onMoreFavoritesPress } = this.props;
+
+    return (
+      <MyFavoritesScene
+        projects={projects}
+        onMorePress={onMoreFavoritesPress}
+      />
+    );
+  };
 
   renderTabContent = () => {
     const { index } = this.state;

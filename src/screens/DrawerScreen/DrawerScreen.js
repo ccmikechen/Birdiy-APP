@@ -80,14 +80,9 @@ export default class DrawerScreen extends Component {
           onPress={this.navigateToScreen('MyPosts')}
         />
         <DrawerMenuItem
-          title="統計"
-          renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'chart-bar')}
-          onPress={this.navigateToScreen('Home')}
-        />
-        <DrawerMenuItem
           title="我的收藏"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'folder-special')}
-          onPress={this.navigateToScreen('Home')}
+          onPress={this.navigateToScreen('MyFavorites')}
         />
         <DrawerMenuItem
           title="採買清單"
@@ -131,7 +126,10 @@ export default class DrawerScreen extends Component {
           start={[0, 0]}
           end={[1, 1]}
         >
-          <TouchableOpacity style={styles.profileContainer}>
+          <TouchableOpacity
+            style={styles.profileContainer}
+            onPress={this.navigateToScreen('Profile')}
+          >
             <View style={styles.profileImageContainer}>
               <Image
                 style={styles.profileImage}
