@@ -70,9 +70,9 @@ export default class DrawerScreen extends Component {
       </DrawerMenu>
       <DrawerMenu style={styles.menu} title="我的工作坊">
         <DrawerMenuItem
-          title="我的項目"
+          title="我的專案"
           renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
-          onPress={this.navigateToScreen('Home')}
+          onPress={this.navigateToScreen('MyProjects')}
         />
         <DrawerMenuItem
           title="我的投稿"

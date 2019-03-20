@@ -27,6 +27,8 @@ export default class ProfileScreen extends Component {
   };
 
   handleMoreProjectsPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('MyProjects');
   };
 
   handleMorePostsPress = () => {

@@ -9,17 +9,17 @@ import Colors from '../../constants/Colors';
 
 import styles from './styles';
 
-const HomeHeader = ({
-  onOpenDrawer,
+const MyProjectsHeader = ({
+  onBack,
   onSearch,
-  onOpenCart,
+  onOpenFilter,
 }) => (
   <BasicHeader
     placement="center"
     leftButton={{
-      icon: 'menu',
+      icon: 'arrow-back',
       color: Colors.headerIcon,
-      onPress: onOpenDrawer,
+      onPress: onBack,
     }}
     centerComponent={() => (
       <TouchableOpacity
@@ -29,24 +29,24 @@ const HomeHeader = ({
       >
         <Searchbar
           style={styles.searchBar}
-          placeholder="找專案、點子"
+          placeholder="找我的專案"
           editable={false}
           pointerEvents="none"
         />
       </TouchableOpacity>
     )}
     rightButton={{
-      icon: 'shopping-cart',
+      icon: 'filter-list',
       color: Colors.headerIcon,
-      onPress: onOpenCart,
+      onPress: onOpenFilter,
     }}
   />
 );
 
-HomeHeader.propTypes = {
-  onOpenDrawer: PropTypes.func.isRequired,
+MyProjectsHeader.propTypes = {
+  onBack: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
-  onOpenCart: PropTypes.func.isRequired,
+  onOpenFilter: PropTypes.func.isRequired,
 };
 
-export default HomeHeader;
+export default MyProjectsHeader;
