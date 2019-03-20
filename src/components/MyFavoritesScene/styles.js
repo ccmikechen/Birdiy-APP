@@ -25,14 +25,25 @@ export default StyleSheet.create({
     width: Size.myProjectListImageSize,
     height: Size.myProjectListImageSize,
   },
-  titleContainer: {
+  infoContainer: {
     flex: 1,
     padding: 10,
   },
+  titleContainer: {
+    flex: 1,
+  },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '400',
     color: TextColor.primaryDark,
+  },
+  authorContainer: {
+    height: 20,
+    justifyContent: 'center',
+  },
+  author: {
+    fontSize: 12,
+    color: TextColor.subDark,
   },
   moreButtonContainer: {
     width: '100%',

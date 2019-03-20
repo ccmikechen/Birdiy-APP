@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Surface } from 'react-native-paper';
 
+import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
 
 import styles from './styles';
@@ -33,6 +34,9 @@ export default class MyPostsScene extends Component {
       dataSource: dataSource.cloneWithRows(props.posts),
     };
   }
+
+  handleAddPress = () => {
+  };
 
   renderRow = project => (
     <Surface style={styles.rowContainer}>
@@ -64,6 +68,12 @@ export default class MyPostsScene extends Component {
 
     return (
       <View>
+        <View style={styles.addButtonContainer}>
+          <MyProfileAddButton
+            text="新增投稿"
+            onPress={this.handleAddPress}
+          />
+        </View>
         <ListView
           {...this.props}
           style={styles.listView}

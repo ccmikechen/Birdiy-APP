@@ -22,6 +22,7 @@ export default class MyFavoritesScene extends Component {
     projects: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
     })).isRequired,
   };
 
@@ -42,10 +43,17 @@ export default class MyFavoritesScene extends Component {
             style={styles.image}
           />
         </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>
-            {project.title}
-          </Text>
+        <View style={styles.infoContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+              {project.title}
+            </Text>
+          </View>
+          <View style={styles.authorContainer}>
+            <Text style={styles.author}>
+              {`by ${project.author}`}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
     </Surface>

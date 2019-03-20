@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Surface } from 'react-native-paper';
 
+import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
 
 import styles from './styles';
@@ -33,6 +34,9 @@ export default class MyProjectsScene extends Component {
     };
   }
 
+  handleAddPress = () => {
+  };
+
   renderRow = project => (
     <Surface style={styles.rowContainer}>
       <TouchableOpacity style={styles.touchable}>
@@ -56,6 +60,12 @@ export default class MyProjectsScene extends Component {
 
     return (
       <View>
+        <View style={styles.addButtonContainer}>
+          <MyProfileAddButton
+            text="新增專案"
+            onPress={this.handleAddPress}
+          />
+        </View>
         <ListView
           {...this.props}
           style={styles.listView}

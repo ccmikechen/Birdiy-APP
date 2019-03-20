@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TopScreenView from '../../components/TopScreenView';
-import NormalTopHeader from '../../components/NormalTopHeader';
+import ProfileHeader from '../../components/ProfileHeader';
 import ProfileSection from '../../components/ProfileSection';
 import ProfileTabMenu from '../../components/ProfileTabMenu';
 
@@ -16,6 +16,7 @@ export default class ProfileScreen extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
     }).isRequired,
   };
 
@@ -32,9 +33,9 @@ export default class ProfileScreen extends Component {
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
-          <NormalTopHeader
-            title="我的工作坊"
+          <ProfileHeader
             onOpenDrawer={() => navigation.openDrawer()}
+            onOpenSettings={() => navigation.navigate('Setting')}
           />
         )}
       >

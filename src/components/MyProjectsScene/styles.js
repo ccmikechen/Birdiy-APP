@@ -31,8 +31,13 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '400',
     color: TextColor.primaryDark,
+  },
+  addButtonContainer: {
+    width: '100%',
+    alignItems: 'center',
+    paddingBottom: 10,
   },
   moreButtonContainer: {
     width: '100%',
