@@ -12,7 +12,6 @@ import TimelineScreen from '../screens/TimelineScreen';
 import SearchScreen from '../screens/SearchScreen';
 // import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SettingScreen from '../screens/SettingScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
@@ -26,7 +25,6 @@ import MyFavoritesScreen from '../screens/MyFavoritesScreen';
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
-  Setting: SettingScreen,
   PostDetail: PostDetailScreen,
   ProjectDetail: ProjectDetailScreen,
 };

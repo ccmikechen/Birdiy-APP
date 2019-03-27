@@ -109,7 +109,7 @@ export default class DrawerScreen extends Component {
         <DrawerMenuItem
           title="設定"
           renderIcon={this.renderIcon(Icon.MaterialIcons, 'settings')}
-          onPress={this.navigateToScreen('Setting')}
+          onPress={this.navigateToScreen('SettingModal')}
         />
       </DrawerMenu>
     </View>

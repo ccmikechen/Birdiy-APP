@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import Size from '../../constants/Size';
 import { Base } from '../../constants/Colors';
 
 export default StyleSheet.create({
@@ -16,5 +17,9 @@ export default StyleSheet.create({
     flex: 1,
     margin: 5,
     elevation: 1,
+  },
+  addProjectButton: {
+    right: 20,
+    bottom: Size.bottomTabBarHeight + 20,
   },
 });

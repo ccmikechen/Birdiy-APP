@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { Icon } from 'expo';
 import { chunk } from 'lodash';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
 import ProjectSection from '../../components/ProjectSection';
+import AnimatedAddButton from '../../components/AnimatedAddButton';
 
 import styles from './styles';
 
@@ -31,6 +33,7 @@ export default class SearchScreen extends Component {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
     }).isRequired,
   };
 
@@ -39,6 +42,7 @@ export default class SearchScreen extends Component {
       newest: projectPair,
       hotest: projectPair,
     },
+    addProjectButtonVisible: true,
   };
 
   loadMoreContentAsync = key => async () => {
@@ -84,24 +88,42 @@ export default class SearchScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { data } = this.state;
+    const { data, addProjectButtonVisible } = this.state;
 
     return (
-      <InfiniteTabsScreenView
-        style={styles.container}
-        navigation={navigation}
-        renderHeader={() => (
-          <NormalTopHeader
-            title="搜尋"
-            onOpenDrawer={() => navigation.openDrawer()}
-          />
-        )}
-        tabs={TABS}
-        data={data}
-        loadMoreContentAsync={this.loadMoreContentAsync}
-        renderSection={this.renderSection}
-        animatedScroll
-      />
+      <View style={styles.container}>
+        <InfiniteTabsScreenView
+          style={styles.container}
+          navigation={navigation}
+          renderHeader={() => (
+            <NormalTopHeader
+              title="搜尋"
+              onOpenDrawer={() => navigation.openDrawer()}
+            />
+          )}
+          tabs={TABS}
+          data={data}
+          loadMoreContentAsync={this.loadMoreContentAsync}
+          renderSection={this.renderSection}
+          onToggleTabBar={(visible) => {
+            this.setState({ addProjectButtonVisible: visible });
+          }}
+          animatedScroll
+        />
+        <AnimatedAddButton
+          style={styles.addProjectButton}
+          visible={addProjectButtonVisible}
+          translate={80}
+          renderIcon={() => (
+            <Icon.MaterialIcons
+              name="add"
+              size={26}
+              color="#ffffff"
+            />
+          )}
+          onPress={() => navigation.navigate('CreateProjectModal')}
+        />
+      </View>
     );
   }
 }

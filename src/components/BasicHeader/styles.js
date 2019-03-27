@@ -32,10 +32,23 @@ export default StyleSheet.create({
     color: Colors.headerIcon,
   },
   rightButtonContainer: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    width: 50,
+    width: 45,
+    paddingRight: 5,
+  },
+  rightButtonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingRight: 5,
   },
   rightButton: {
+  },
+  buttonText: {
+    fontSize: 14,
+    marginLeft: 10,
   },
 });

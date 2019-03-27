@@ -5,7 +5,6 @@ import {
   ViewPropTypes,
   TouchableOpacity,
 } from 'react-native';
-import { Icon } from 'expo';
 
 import styles from './styles';
 
@@ -19,8 +18,9 @@ const startOffsetAnimation = (offset, toValue, duration) => {
   }).start();
 };
 
-export default class AnimatedAddPostButton extends Component {
+export default class AnimatedAddButton extends Component {
   static propTypes = {
+    renderIcon: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
     translate: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
@@ -56,7 +56,7 @@ export default class AnimatedAddPostButton extends Component {
   };
 
   render() {
-    const { style, onPress } = this.props;
+    const { renderIcon, style, onPress } = this.props;
     const { offset } = this.state;
 
     return (
@@ -66,11 +66,7 @@ export default class AnimatedAddPostButton extends Component {
         }]}
         onPress={onPress}
       >
-        <Icon.FontAwesome
-          name="pencil-square-o"
-          size={26}
-          color="#ffffff"
-        />
+        {renderIcon()}
       </AnimatedTouchable>
     );
   }

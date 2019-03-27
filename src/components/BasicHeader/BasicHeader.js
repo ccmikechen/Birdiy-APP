@@ -11,6 +11,40 @@ import Colors from '../../constants/Colors';
 
 import styles from './styles';
 
+const rightButtonShape = PropTypes.shape({
+  icon: PropTypes.string,
+  text: PropTypes.string,
+  color: PropTypes.string,
+  onPress: PropTypes.func,
+});
+
+const renderRightButton = ({
+  icon, text, color, onPress, // eslint-disable-line react/prop-types
+}, index = 1) => (
+  <TouchableOpacity
+    style={styles.rightButton}
+    onPress={onPress}
+    key={`rightButton-${index}`}
+  >
+    {
+      icon ? (
+        <Icon.MaterialIcons
+          name={icon}
+          size={30}
+          color={color || Colors.headerIcon}
+        />
+      ) : (
+        <Text style={[styles.buttonText, {
+          color,
+        }]}
+        >
+          {text}
+        </Text>
+      )
+    }
+  </TouchableOpacity>
+);
+
 const BasicHeader = ({
   leftButton,
   centerComponent,
@@ -34,7 +68,8 @@ const BasicHeader = ({
     <View style={styles.centerComponentContainer}>
       {
         typeof centerComponent === 'function'
-          ? centerComponent() : (
+          ? centerComponent()
+          : (
             <Text style={[styles.centerText, centerComponent.style]}>
               {centerComponent.title}
             </Text>
@@ -43,16 +78,11 @@ const BasicHeader = ({
     </View>
     {rightButton && (
       <View style={styles.rightButtonContainer}>
-        <TouchableOpacity
-          style={styles.rightButton}
-          onPress={rightButton.onPress}
-        >
-          <Icon.MaterialIcons
-            name={rightButton.icon}
-            size={30}
-            color={rightButton.color || Colors.headerIcon}
-          />
-        </TouchableOpacity>
+        {
+          Array.isArray(rightButton)
+            ? rightButton.map(renderRightButton)
+            : renderRightButton(rightButton)
+        }
       </View>
     )}
   </View>
@@ -71,11 +101,10 @@ BasicHeader.propTypes = {
     }),
     PropTypes.func,
   ]),
-  rightButton: PropTypes.shape({
-    icon: PropTypes.string,
-    color: PropTypes.string,
-    onPress: PropTypes.func,
-  }),
+  rightButton: PropTypes.oneOfType([
+    rightButtonShape,
+    PropTypes.arrayOf(rightButtonShape),
+  ]),
 };
 
 BasicHeader.defaultProps = {

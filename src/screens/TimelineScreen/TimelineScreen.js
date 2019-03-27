@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { Icon } from 'expo';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
 import TimelineHeader from '../../components/TimelineHeader';
 import PostSection from '../../components/PostSection';
-import AnimatedAddPostButton from '../../components/AnimatedAddPostButton';
+import AnimatedAddButton from '../../components/AnimatedAddButton';
 
 import styles from './styles';
 
@@ -114,10 +115,17 @@ export default class TimelineScreen extends Component {
           }}
           animatedScroll
         />
-        <AnimatedAddPostButton
+        <AnimatedAddButton
           style={styles.addPostButton}
           visible={addPostButtonVisible}
           translate={80}
+          renderIcon={() => (
+            <Icon.FontAwesome
+              name="pencil-square-o"
+              size={26}
+              color="#ffffff"
+            />
+          )}
         />
       </View>
     );

@@ -50,7 +50,7 @@ export default class ProfileScreen extends Component {
         renderHeader={() => (
           <ProfileHeader
             onOpenDrawer={() => navigation.openDrawer()}
-            onOpenSettings={() => navigation.navigate('Setting')}
+            onOpenSettings={() => navigation.navigate('SettingModal')}
           />
         )}
       >
