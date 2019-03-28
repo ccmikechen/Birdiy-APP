@@ -24,7 +24,6 @@ const PureTextInput = (props) => {
       <TextInput
         {...props}
         style={styles.input}
-        multiline
         underlineColorAndroid="transparent"
         placeholderTextColor={Colors.placeholder}
       />

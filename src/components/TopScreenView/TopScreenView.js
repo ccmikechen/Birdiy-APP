@@ -22,10 +22,12 @@ export default class TopScreenView extends Component {
       PropTypes.node,
     ]),
     animatedScroll: PropTypes.bool,
+    fullScreen: PropTypes.bool,
   };
 
   static defaultProps = {
     animatedScroll: false,
+    fullScreen: false,
     children: null,
   };
 
@@ -47,12 +49,13 @@ export default class TopScreenView extends Component {
       renderHeader,
       children,
       animatedScroll,
+      fullScreen,
     } = this.props;
     const { isHeaderVisible } = this.state;
 
     return (
       <View style={[styles.container, {
-        marginBottom: animatedScroll ? 0 : Size.bottomTabBarHeight,
+        marginBottom: animatedScroll || fullScreen ? 0 : Size.bottomTabBarHeight,
       }]}
       >
         <AnimatedHeader

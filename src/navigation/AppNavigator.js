@@ -9,10 +9,12 @@ import MainTabNavigator from './MainTabNavigator';
 
 import CreateProjectScreen from '../screens/CreateProjectScreen';
 import SettingScreen from '../screens/SettingScreen';
+import SelectCategoryScreen from '../screens/SelectCategoryScreen';
 
 const modals = {
   CreateProjectModal: CreateProjectScreen,
   SettingModal: SettingScreen,
+  SelectCategoryModal: SelectCategoryScreen,
 };
 
 export default createAppContainer(createStackNavigator({

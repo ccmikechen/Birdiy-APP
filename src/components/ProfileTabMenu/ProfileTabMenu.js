@@ -13,12 +13,14 @@ const TABS = ['專案', '投稿', '收藏'];
 export default class ProfileTabMenu extends Component {
   static propTypes = {
     onMoreProjectsPress: PropTypes.func,
+    onAddProjectPress: PropTypes.func,
     onMorePostsPress: PropTypes.func,
     onMoreFavoritesPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMoreProjectsPress: () => {},
+    onAddProjectPress: () => {},
     onMorePostsPress: () => {},
     onMoreFavoritesPress: () => {},
   };
@@ -28,12 +30,16 @@ export default class ProfileTabMenu extends Component {
   };
 
   renderProjects = () => {
-    const { onMoreProjectsPress } = this.props;
+    const {
+      onMoreProjectsPress,
+      onAddProjectPress,
+    } = this.props;
 
     return (
       <MyProjectsScene
         projects={projects}
         onMorePress={onMoreProjectsPress}
+        onAddPress={onAddProjectPress}
       />
     );
   };

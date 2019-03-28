@@ -11,6 +11,8 @@ import PureSelector from '../../components/PureSelector';
 
 import styles from './styles';
 
+import { categories } from './mocks';
+
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -20,21 +22,34 @@ export default class CreateProjectScreen extends Component {
     navigation: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
     }).isRequired,
   };
 
   state = {
     projectName: '',
-    category: null,
+    categoryIndex: null,
+  };
+
+  handleSelectCategory = (index) => {
+    this.setState({ categoryIndex: index });
+  };
+
+  handleSelecteCategoryPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('SelectCategoryModal', {
+      categories,
+      onSelect: this.handleSelectCategory,
+    });
   };
 
   handleSubmit = () => {
-
   };
 
   render() {
     const { navigation } = this.props;
-    const { projectName, category } = this.state;
+    const { projectName, categoryIndex } = this.state;
+    const category = categories[categoryIndex] && categories[categoryIndex].name;
 
     return (
       <TopScreenView
@@ -49,6 +64,7 @@ export default class CreateProjectScreen extends Component {
             }}
           />
         )}
+        fullScreen
       >
         <ScrollView style={styles.container}>
           <EditSection title="專案名稱">
@@ -64,6 +80,7 @@ export default class CreateProjectScreen extends Component {
             <PureSelector
               placeholder="選擇你的專案分類"
               value={category}
+              onPress={this.handleSelecteCategoryPress}
             />
           </EditSection>
           <View style={styles.submitButtonContainer}>
