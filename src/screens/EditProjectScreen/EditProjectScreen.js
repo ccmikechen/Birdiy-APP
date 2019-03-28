@@ -4,10 +4,12 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from 'react-native';
 
 import TabSectionScreenView from '../../components/TabSectionScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
+import ImageUploadView from '../../components/ImageUploadView';
 import EditSection from '../../components/EditSection';
 import PureTextInput from '../../components/PureTextInput';
 import PureSelector from '../../components/PureSelector';
@@ -72,9 +74,11 @@ export default class EditProjectScreen extends Component {
       case 'intro':
         return (
           <View style={styles.section}>
-            <TouchableOpacity style={styles.projectImageContainer}>
-              <Image style={styles.projectImage} />
-            </TouchableOpacity>
+            <ImageUploadView
+              width="100%"
+              aspectRatio={1}
+              iconSize={Dimensions.get('window').width / 2}
+            />
             <EditSection title="專案名稱">
               <PureTextInput
                 value={projectName}
