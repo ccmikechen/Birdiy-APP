@@ -8,11 +8,13 @@ import DrawerScreen from '../screens/DrawerScreen';
 import MainTabNavigator from './MainTabNavigator';
 
 import CreateProjectScreen from '../screens/CreateProjectScreen';
+import EditProjectScreen from '../screens/EditProjectScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SelectCategoryScreen from '../screens/SelectCategoryScreen';
 
 const modals = {
   CreateProjectModal: CreateProjectScreen,
+  EditProjectModal: EditProjectScreen,
   SettingModal: SettingScreen,
   SelectCategoryModal: SelectCategoryScreen,
 };

@@ -43,7 +43,15 @@ export default class CreateProjectScreen extends Component {
     });
   };
 
+  handleSave = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  };
+
   handleSubmit = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+    navigation.navigate('EditProjectModal');
   };
 
   render() {
@@ -61,6 +69,7 @@ export default class CreateProjectScreen extends Component {
             rightButton={{
               icon: 'save',
               color: '#666666',
+              onPress: this.handleSave,
             }}
           />
         )}
