@@ -24,6 +24,7 @@
     "react-native-auto-height-image": "^1.1.0",
     "react-native-elements": "^1.1.0",
     "react-native-infinite-scroll-view": "^0.4.5",
+    "react-native-input-scroll-view": "birdiy/react-native-input-scroll-view#master",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-material-tabs": "^3.8.1",
     "react-native-paper": "^2.13.0",

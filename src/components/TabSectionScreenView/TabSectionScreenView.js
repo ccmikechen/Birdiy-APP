@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import InputScrollView from 'react-native-input-scroll-view';
 import {
   ScrollIntoView,
   wrapScrollViewConfigured,
@@ -15,12 +15,12 @@ import styles from './styles';
 
 const ScrollIntoViewScrollView = wrapScrollViewConfigured({
   refPropName: 'innerRef',
-})(KeyboardAwareScrollView);
+})(InputScrollView);
 
 const options = {
   align: 'top',
-  animated: true,
-  immediate: false,
+  animated: false,
+  immediate: true,
 };
 
 export default class TabSectionScreenView extends Component {
@@ -76,11 +76,7 @@ export default class TabSectionScreenView extends Component {
           index={tabIndex}
           onChange={this.handleTabChange}
         />
-        <ScrollIntoViewScrollView
-          scrollIntoViewOptions={options}
-          enableOnAndroid
-          extraHeight={120}
-        >
+        <ScrollIntoViewScrollView>
           {tabs.map(({ key }, index) => (
             <ScrollIntoView
               key={`section-${key}`}
@@ -89,6 +85,7 @@ export default class TabSectionScreenView extends Component {
               {renderSection(key)}
             </ScrollIntoView>
           ))}
+          <View style={{ height: 5000 }} />
         </ScrollIntoViewScrollView>
       </View>
     );

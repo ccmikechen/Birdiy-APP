@@ -10,4 +10,11 @@ export default StyleSheet.create({
   section: {
     width: '100%',
   },
+  projectImageContainer: {
+
+  },
+  projectImage: {
+    width: '100%',
+    aspectRatio: 1,
+  },
 });

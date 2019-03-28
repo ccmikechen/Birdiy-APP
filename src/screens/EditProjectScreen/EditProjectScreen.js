@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 
 import TabSectionScreenView from '../../components/TabSectionScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -68,6 +72,9 @@ export default class EditProjectScreen extends Component {
       case 'intro':
         return (
           <View style={styles.section}>
+            <TouchableOpacity style={styles.projectImageContainer}>
+              <Image style={styles.projectImage} />
+            </TouchableOpacity>
             <EditSection title="專案名稱">
               <PureTextInput
                 value={projectName}

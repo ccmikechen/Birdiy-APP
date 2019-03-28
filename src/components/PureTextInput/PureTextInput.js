@@ -26,6 +26,7 @@ const PureTextInput = (props) => {
         style={styles.input}
         underlineColorAndroid="transparent"
         placeholderTextColor={Colors.placeholder}
+        keyboardShouldPersistTaps="always"
       />
       {counter && (
         <View style={styles.counterContainer}>
