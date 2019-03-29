@@ -14,21 +14,16 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: Tertiary(100),
   },
-  nameContainer: {
+  titleContainer: {
     flex: 1,
-    borderRightWidth: 1,
+    borderWidth: 1,
     borderColor: Tertiary(100),
   },
-  amountContainer: {
+  contentContainer: {
     flex: 1,
-  },
-  linkContainer: {
-    flexDirection: 'row',
-  },
-  iconContainer: {
-    justifyContent: 'center',
-    width: 30,
-    marginLeft: 8,
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderColor: Tertiary(100),
   },
   optionsContainer: {
     flexDirection: 'row',

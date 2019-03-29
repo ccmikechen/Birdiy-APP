@@ -17,6 +17,8 @@ export default class ImageUploadView extends Component {
     ]),
     aspectRatio: PropTypes.number,
     iconSize: PropTypes.number,
+    image: PropTypes.string,
+    onUpload: PropTypes.func,
   };
 
   static defaultProps = {
@@ -24,10 +26,8 @@ export default class ImageUploadView extends Component {
     height: '100%',
     aspectRatio: null,
     iconSize: 30,
-  };
-
-  state = {
     image: null,
+    onUpload: () => {},
   };
 
   handlePress = () => {
@@ -35,6 +35,7 @@ export default class ImageUploadView extends Component {
   };
 
   pickImage = async () => {
+    const { onUpload } = this.props;
     const {
       status: cameraRollPerm,
     } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -49,15 +50,18 @@ export default class ImageUploadView extends Component {
     });
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      onUpload(result);
     }
   };
 
   render() {
     const {
-      width, height, aspectRatio, iconSize,
+      width,
+      height,
+      aspectRatio,
+      iconSize,
+      image,
     } = this.props;
-    const { image } = this.state;
     const imageStyle = aspectRatio
       ? { width, aspectRatio }
       : { width, height };

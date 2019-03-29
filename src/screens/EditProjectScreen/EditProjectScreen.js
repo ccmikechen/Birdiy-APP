@@ -13,6 +13,7 @@ import PureTextInput from '../../components/PureTextInput';
 import PureSelector from '../../components/PureSelector';
 import EditMaterialList from '../../components/EditMaterialList';
 import EditFileList from '../../components/EditFileList';
+import EditMethodList from '../../components/EditMethodList';
 
 import styles from './styles';
 
@@ -42,12 +43,18 @@ export default class EditProjectScreen extends Component {
   };
 
   state = {
+    projectImage: null,
     projectName: '',
     categoryIndex: null,
     introduction: '',
     tip: '',
     materials: [{ name: '', amount: '', link: '' }],
     files: [{ type: 'external', name: '', link: 'http://' }],
+    methods: [{ image: null, title: '', content: '' }],
+  };
+
+  handleImageUpload = (image) => {
+    this.setState({ projectImage: image.uri });
   };
 
   handleSelectCategory = (index) => {
@@ -70,17 +77,23 @@ export default class EditProjectScreen extends Component {
     this.setState({ files });
   };
 
+  handleMethodChange = (methods) => {
+    this.setState({ methods });
+  };
+
   handleSubmit = () => {
   };
 
   renderSection = (key) => {
     const {
+      projectImage,
       projectName,
       categoryIndex,
       introduction,
       tip,
       materials,
       files,
+      methods,
     } = this.state;
     const category = categories[categoryIndex] && categories[categoryIndex].name;
 
@@ -92,6 +105,8 @@ export default class EditProjectScreen extends Component {
               width="100%"
               aspectRatio={1}
               iconSize={Dimensions.get('window').width / 2}
+              image={projectImage}
+              onUpload={this.handleImageUpload}
             />
             <EditSection title="專案名稱">
               <PureTextInput
@@ -144,7 +159,12 @@ export default class EditProjectScreen extends Component {
       case 'method':
         return (
           <View style={styles.section}>
-            <EditSection title="作法" />
+            <EditSection title="作法">
+              <EditMethodList
+                data={methods}
+                onChange={this.handleMethodChange}
+              />
+            </EditSection>
           </View>
         );
       case 'tip':
