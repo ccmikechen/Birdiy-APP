@@ -10,7 +10,7 @@ import styles from './styles';
 
 import Colors from '../../constants/Colors';
 
-const EditMaterialListItem = ({
+const EditFileListItem = ({
   data,
   onChange,
   onMoveUp,
@@ -22,38 +22,48 @@ const EditMaterialListItem = ({
       <View style={styles.nameContainer}>
         <PureTextInput
           value={data.name}
-          placeholder="材料名稱"
+          placeholder="檔案名稱"
           onChangeText={(value) => {
             onChange({ ...data, name: value });
           }}
         />
       </View>
-      <View style={styles.amountContainer}>
-        <PureTextInput
-          value={data.amount}
-          placeholder="數量單位"
-          onChangeText={(value) => {
-            onChange({ ...data, amount: value });
-          }}
-        />
-      </View>
     </View>
-    <View style={styles.linkContainer}>
-      <View style={styles.iconContainer}>
-        <Icon.Entypo
-          name="shop"
-          size={26}
-          color={Colors.headerIcon}
-        />
-      </View>
-      <PureTextInput
-        value={data.link}
-        placeholder="（可選）商店或購買連結"
-        onChangeText={(value) => {
-          onChange({ ...data, link: value });
-        }}
-      />
-    </View>
+    {
+      data.type === 'local' ? (
+        <View style={styles.linkContainer}>
+          <View style={styles.iconContainer}>
+            <Icon.MaterialCommunityIcons
+              name="file-upload"
+              size={26}
+              color={Colors.headerIcon}
+            />
+          </View>
+          <PureTextInput
+            value={data.link}
+            editable={false}
+            multiline
+          />
+        </View>
+      ) : (
+        <View style={styles.linkContainer}>
+          <View style={styles.iconContainer}>
+            <Icon.MaterialCommunityIcons
+              name="link-variant"
+              size={26}
+              color={Colors.headerIcon}
+            />
+          </View>
+          <PureTextInput
+            value={data.link}
+            placeholder="輸入檔案下載連結"
+            onChangeText={(value) => {
+              onChange({ ...data, link: value });
+            }}
+          />
+        </View>
+      )
+    }
     <View style={styles.optionsContainer}>
       <View style={styles.moveContainer}>
         <TouchableOpacity
@@ -91,7 +101,7 @@ const EditMaterialListItem = ({
   </Surface>
 );
 
-EditMaterialListItem.propTypes = {
+EditFileListItem.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
     amount: PropTypes.string,
@@ -103,11 +113,11 @@ EditMaterialListItem.propTypes = {
   onDelete: PropTypes.func,
 };
 
-EditMaterialListItem.defaultProps = {
+EditFileListItem.defaultProps = {
   onChange: () => {},
   onMoveUp: () => {},
   onMoveDown: () => {},
   onDelete: () => {},
 };
 
-export default EditMaterialListItem;
+export default EditFileListItem;

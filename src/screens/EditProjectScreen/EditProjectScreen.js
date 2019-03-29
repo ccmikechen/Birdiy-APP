@@ -12,6 +12,7 @@ import EditSection from '../../components/EditSection';
 import PureTextInput from '../../components/PureTextInput';
 import PureSelector from '../../components/PureSelector';
 import EditMaterialList from '../../components/EditMaterialList';
+import EditFileList from '../../components/EditFileList';
 
 import styles from './styles';
 
@@ -46,6 +47,7 @@ export default class EditProjectScreen extends Component {
     introduction: '',
     tip: '',
     materials: [{ name: '', amount: '', link: '' }],
+    files: [{ type: 'external', name: '', link: 'http://' }],
   };
 
   handleSelectCategory = (index) => {
@@ -64,6 +66,10 @@ export default class EditProjectScreen extends Component {
     this.setState({ materials });
   };
 
+  handleFileChange = (files) => {
+    this.setState({ files });
+  };
+
   handleSubmit = () => {
   };
 
@@ -74,6 +80,7 @@ export default class EditProjectScreen extends Component {
       introduction,
       tip,
       materials,
+      files,
     } = this.state;
     const category = categories[categoryIndex] && categories[categoryIndex].name;
 
@@ -124,6 +131,12 @@ export default class EditProjectScreen extends Component {
               <EditMaterialList
                 data={materials}
                 onChange={this.handleMaterialChange}
+              />
+            </EditSection>
+            <EditSection title="檔案資料">
+              <EditFileList
+                data={files}
+                onChange={this.handleFileChange}
               />
             </EditSection>
           </View>
