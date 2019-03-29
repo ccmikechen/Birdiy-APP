@@ -7,6 +7,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Base.light,
   },
+  listContainer: {
+    width: '100%',
+  },
   addButtonContainer: {
     justifyContent: 'center',
     alignItems: 'center',

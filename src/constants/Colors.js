@@ -65,4 +65,5 @@ export default {
   headerGradient: ['#64a1bc', '#647fbc', '#3b5998', '#192f6a'],
   headerIcon: '#666666',
   placeholder: '#cccccc',
+  closeButton: '#ff0000',
 };

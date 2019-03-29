@@ -139,6 +139,7 @@ export default class EditProjectScreen extends Component {
           <View style={styles.section}>
             <EditSection title="小技巧">
               <PureTextInput
+                style={styles.textInput}
                 value={introduction}
                 placeholder="（可選）分享跟著做的一些小技巧及需要注意的地方"
                 onChangeText={value => this.setState({ introduction: value })}

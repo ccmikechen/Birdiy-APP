@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, Tertiary } from '../../constants/Colors';
+import Colors, { Base, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -29,5 +29,32 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 30,
     marginLeft: 8,
+  },
+  optionsContainer: {
+    flexDirection: 'row',
+    height: 30,
+    width: '100%',
+  },
+  moveContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: Tertiary(200),
+  },
+  moveButtonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRightWidth: 1,
+    borderColor: Tertiary(100),
+  },
+  dragTip: {
+    fontSize: 16,
+    color: Base.lightest,
+  },
+  deleteContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 30,
+    backgroundColor: Colors.closeButton,
   },
 });
