@@ -1,13 +1,11 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { Base, TextColor, Tertiary } from '../../constants/Colors';
+import { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     backgroundColor: Base.lightest,
-    width: '100%',
-    borderWidth: 1,
-    borderColor: Tertiary(100),
+    flex: 1,
   },
   input: {
     padding: Platform.OS === 'ios' ? 10 : 8,

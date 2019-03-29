@@ -78,6 +78,7 @@ export default class CreateProjectScreen extends Component {
         <ScrollView style={styles.container}>
           <EditSection title="專案名稱">
             <PureTextInput
+              style={styles.textInput}
               value={projectName}
               placeholder="輸入你的專案名稱"
               onChangeText={value => this.setState({ projectName: value })}

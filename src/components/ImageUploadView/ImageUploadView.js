@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, View, Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { Icon, ImagePicker, Permissions } from 'expo';
 
 import styles from './styles';
@@ -36,7 +36,7 @@ export default class ImageUploadView extends Component {
 
   pickImage = async () => {
     const {
-      status: cameraRollPerm
+      status: cameraRollPerm,
     } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
     if (cameraRollPerm !== 'granted') {
@@ -54,11 +54,13 @@ export default class ImageUploadView extends Component {
   };
 
   render() {
-    const { width, height, aspectRatio, iconSize } = this.props;
+    const {
+      width, height, aspectRatio, iconSize,
+    } = this.props;
     const { image } = this.state;
     const imageStyle = aspectRatio
-          ? { width, aspectRatio }
-          : { width, height };
+      ? { width, aspectRatio }
+      : { width, height };
 
     return (
       <TouchableOpacity

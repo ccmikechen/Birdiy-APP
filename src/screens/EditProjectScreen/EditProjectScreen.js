@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  TouchableOpacity,
-  Image,
   Dimensions,
 } from 'react-native';
 
@@ -13,6 +11,7 @@ import ImageUploadView from '../../components/ImageUploadView';
 import EditSection from '../../components/EditSection';
 import PureTextInput from '../../components/PureTextInput';
 import PureSelector from '../../components/PureSelector';
+import EditMaterialList from '../../components/EditMaterialList';
 
 import styles from './styles';
 
@@ -45,6 +44,8 @@ export default class EditProjectScreen extends Component {
     projectName: '',
     categoryIndex: null,
     introduction: '',
+    tip: '',
+    materials: [{ name: '', amount: '', link: '' }],
   };
 
   handleSelectCategory = (index) => {
@@ -59,6 +60,10 @@ export default class EditProjectScreen extends Component {
     });
   };
 
+  handleMaterialChange = (materials) => {
+    this.setState({ materials });
+  };
+
   handleSubmit = () => {
   };
 
@@ -67,6 +72,8 @@ export default class EditProjectScreen extends Component {
       projectName,
       categoryIndex,
       introduction,
+      tip,
+      materials,
     } = this.state;
     const category = categories[categoryIndex] && categories[categoryIndex].name;
 
@@ -81,6 +88,7 @@ export default class EditProjectScreen extends Component {
             />
             <EditSection title="專案名稱">
               <PureTextInput
+                style={styles.textInput}
                 value={projectName}
                 placeholder="輸入你的專案名稱"
                 onChangeText={value => this.setState({ projectName: value })}
@@ -90,6 +98,7 @@ export default class EditProjectScreen extends Component {
             </EditSection>
             <EditSection title="分類">
               <PureSelector
+                style={styles.textInput}
                 placeholder="選擇你的專案分類"
                 value={category}
                 onPress={this.handleSelecteCategoryPress}
@@ -97,9 +106,10 @@ export default class EditProjectScreen extends Component {
             </EditSection>
             <EditSection title="介紹">
               <PureTextInput
-                value={introduction}
+                style={styles.textInput}
+                value={tip}
                 placeholder="介紹你的專案"
-                onChangeText={value => this.setState({ introduction: value })}
+                onChangeText={value => this.setState({ tip: value })}
                 maxLength={300}
                 multiline
                 counter
@@ -109,15 +119,35 @@ export default class EditProjectScreen extends Component {
         );
       case 'material':
         return (
-          <View style={styles.section} />
+          <View style={styles.section}>
+            <EditSection title="材料">
+              <EditMaterialList
+                data={materials}
+                onChange={this.handleMaterialChange}
+              />
+            </EditSection>
+          </View>
         );
       case 'method':
         return (
-          <View style={styles.section} />
+          <View style={styles.section}>
+            <EditSection title="作法" />
+          </View>
         );
       case 'tip':
         return (
-          <View style={styles.section} />
+          <View style={styles.section}>
+            <EditSection title="小技巧">
+              <PureTextInput
+                value={introduction}
+                placeholder="（可選）分享跟著做的一些小技巧及需要注意的地方"
+                onChangeText={value => this.setState({ introduction: value })}
+                maxLength={300}
+                multiline
+                counter
+              />
+            </EditSection>
+          </View>
         );
       default:
         return null;

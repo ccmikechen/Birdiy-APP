@@ -1,32 +1,29 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, Primary, Tertiary } from '../../constants/Colors';
+import { Base, Primary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Base.light,
   },
-  submitButtonContainer: {
+  addButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
+    marginTop: 10,
   },
-  submitButton: {
+  addButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 60,
     width: '90%',
-    maxWidth: 300,
-    borderRadius: 20,
+    height: 40,
+    borderRadius: 10,
     backgroundColor: Primary(500),
+    padding: 5,
   },
-  submitButtonText: {
-    fontSize: 20,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: Tertiary(100),
+  addButtonText: {
+    fontSize: 16,
+    color: '#ffffff',
   },
 });

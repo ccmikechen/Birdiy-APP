@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base } from '../../constants/Colors';
+import { Base, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -16,5 +16,9 @@ export default StyleSheet.create({
   projectImage: {
     width: '100%',
     aspectRatio: 1,
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: Tertiary(100),
   },
 });
