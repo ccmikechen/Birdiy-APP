@@ -27,6 +27,7 @@ export default class TabSectionScreenView extends Component {
   static propTypes = {
     renderHeader: PropTypes.func.isRequired,
     renderSection: PropTypes.func.isRequired,
+    renderFooter: PropTypes.func,
     onTabChange: PropTypes.func,
     tabs: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string.isRequired,
@@ -36,6 +37,7 @@ export default class TabSectionScreenView extends Component {
   };
 
   static defaultProps = {
+    renderFooter: () => null,
     fullScreen: false,
     onTabChange: () => {},
   };
@@ -61,6 +63,7 @@ export default class TabSectionScreenView extends Component {
       tabs,
       renderHeader,
       renderSection,
+      renderFooter,
       fullScreen,
     } = this.props;
     const { tabIndex } = this.state;
@@ -76,9 +79,7 @@ export default class TabSectionScreenView extends Component {
           index={tabIndex}
           onChange={this.handleTabChange}
         />
-        <ScrollIntoViewScrollView
-          keyboardShouldPersistTaps="always"
-        >
+        <ScrollIntoViewScrollView>
           <KeyboardAvoidingView behavior="padding" enabled>
             {tabs.map(({ key }, index) => (
               <ScrollIntoView
@@ -89,6 +90,7 @@ export default class TabSectionScreenView extends Component {
               </ScrollIntoView>
             ))}
           </KeyboardAvoidingView>
+          {renderFooter()}
           <View style={{ height: 200 }} />
         </ScrollIntoViewScrollView>
       </View>

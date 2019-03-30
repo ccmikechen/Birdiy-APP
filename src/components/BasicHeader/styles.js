@@ -46,6 +46,7 @@ export default StyleSheet.create({
     paddingRight: 5,
   },
   rightButton: {
+    marginLeft: 5,
   },
   buttonText: {
     fontSize: 14,

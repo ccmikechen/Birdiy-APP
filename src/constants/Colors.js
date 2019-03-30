@@ -66,4 +66,6 @@ export default {
   headerIcon: '#666666',
   placeholder: '#cccccc',
   closeButton: '#ff0000',
+  publish: '#4caf50',
+  unpublish: '#c62828',
 };

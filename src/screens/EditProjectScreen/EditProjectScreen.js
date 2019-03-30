@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import {
   View,
   Dimensions,
+  Alert,
+  Text,
 } from 'react-native';
+import { Button } from 'react-native-paper';
 
 import TabSectionScreenView from '../../components/TabSectionScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -81,7 +84,30 @@ export default class EditProjectScreen extends Component {
     this.setState({ methods });
   };
 
-  handleSubmit = () => {
+  handleDeletePress = () => {
+    Alert.alert(
+      '刪除專案',
+      '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
+      [
+        { text: '取消' },
+        { text: '確定', onPress: this.deleteProject },
+      ],
+    );
+  };
+
+  deleteProject = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+    Alert.alert(
+      '專案刪除成功',
+      '專案已成功刪除，若要復原請聯繫客服人員。',
+    );
+  };
+
+  handleSave = () => {
+  };
+
+  handlePublish = () => {
   };
 
   renderSection = (key) => {
@@ -188,6 +214,27 @@ export default class EditProjectScreen extends Component {
     }
   };
 
+  renderFooter = () => (
+    <View style={styles.footerContainer}>
+      <View style={styles.buttonsContainer}>
+        <Button
+          style={styles.submitButton}
+          mode="contained"
+          onPress={this.handleSave}
+        >
+          <Text style={styles.submitButtonText}>儲存</Text>
+        </Button>
+        <Button
+          style={[styles.submitButton, styles.publishButton]}
+          mode="contained"
+          onPress={this.handlePublish}
+        >
+          <Text style={styles.submitButtonText}>公開</Text>
+        </Button>
+      </View>
+    </View>
+  );
+
   render() {
     const { navigation } = this.props;
 
@@ -199,13 +246,18 @@ export default class EditProjectScreen extends Component {
           <NormalBackHeader
             onBack={() => navigation.goBack()}
             title="編輯專案"
-            rightButton={{
+            rightButton={[{
+              icon: 'delete',
+              color: '#666666',
+              onPress: this.handleDeletePress,
+            }, {
               icon: 'save',
               color: '#666666',
-            }}
+            }]}
           />
         )}
         renderSection={this.renderSection}
+        renderFooter={this.renderFooter}
         fullScreen
       />
     );
