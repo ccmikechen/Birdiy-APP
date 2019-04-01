@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Image,
+  Linking,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -11,6 +12,7 @@ import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
 import MaterialList from '../../components/MaterialList';
+import FileList from '../../components/FileList';
 
 import styles from './styles';
 
@@ -67,6 +69,10 @@ export default class ProjectDetailScreen extends Component {
   handleMaterialAddPress = () => {
   };
 
+  handleFileLinkPress = (link) => {
+    Linking.openURL(link);
+  };
+
   render() {
     const { navigation, project } = this.props;
 
@@ -111,7 +117,12 @@ export default class ProjectDetailScreen extends Component {
             onAddPress={this.handleMaterialAddPress}
           />
         </ProjectDetailSection>
-        <ProjectDetailSection title="檔案資料" />
+        <ProjectDetailSection title="檔案資料">
+          <FileList
+            files={project.files}
+            onLinkPress={this.handleFileLinkPress}
+          />
+        </ProjectDetailSection>
         <ProjectDetailSection title="作法" />
       </TopScreenView>
     );
