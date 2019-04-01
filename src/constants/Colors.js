@@ -42,6 +42,7 @@ export const Material = (color) => {
 export const Base = {
   dark: '#e1e1e1',
   light: '#f8f8f8',
+  lighter: '#fbfbfb',
   lightest: '#ffffff',
 };
 
@@ -68,4 +69,6 @@ export default {
   closeButton: '#ff0000',
   publish: '#4caf50',
   unpublish: '#c62828',
+  divider: '#dfdfdf',
+  like: '#c62828',
 };

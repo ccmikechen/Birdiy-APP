@@ -10,7 +10,9 @@ import { WebBrowser } from 'expo';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
+import LikeButton from '../../components/LikeButton';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
+import ProjectOptionButtons from '../../components/ProjectOptionButtons';
 import MaterialList from '../../components/MaterialList';
 import FileList from '../../components/FileList';
 import MethodList from '../../components/MethodList';
@@ -41,6 +43,7 @@ export default class ProjectDetailScreen extends Component {
       likes: PropTypes.number.isRequired,
       favorites: PropTypes.number.isRequired,
       posts: PropTypes.number.isRequired,
+      liked: PropTypes.bool.isRequired,
       materials: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         amount: PropTypes.string.isRequired,
@@ -63,6 +66,16 @@ export default class ProjectDetailScreen extends Component {
     project: mockProject,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { liked: props.project.liked };
+  }
+
+  handleLikePress = () => {
+    const { liked } = this.state;
+    this.setState({ liked: !liked });
+  };
+
   handleMaterialLinkPress = (link) => {
     WebBrowser.openBrowserAsync(link);
   };
@@ -76,6 +89,7 @@ export default class ProjectDetailScreen extends Component {
 
   render() {
     const { navigation, project } = this.props;
+    const { liked } = this.state;
 
     return (
       <TopScreenView
@@ -94,17 +108,26 @@ export default class ProjectDetailScreen extends Component {
             source={{ uri: project.image }}
           />
         </View>
-        <View style={[styles.contentSection, styles.titleContainer]}>
-          <Text style={styles.title}>
-            {project.title}
-          </Text>
+        <View style={styles.headerSection}>
+          <View style={styles.headerInfoContainer}>
+            <View style={[styles.contentSection, styles.titleContainer]}>
+              <Text style={styles.title}>
+                {project.title}
+              </Text>
+            </View>
+            <View style={[styles.contentSection, styles.statisticsContainer]}>
+              <Text style={styles.statistics}>
+                {`${project.viewed} 看過．${project.likes} 喜歡．${project.favorites} 收藏．${project.posts} 跟著做`}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.likeButtonContainer}>
+            <LikeButton liked={liked} onPress={this.handleLikePress} />
+          </View>
         </View>
-        <View style={[styles.contentSection, styles.statisticsContainer]}>
-          <Text style={styles.statistics}>
-            {`${project.viewed} 看過．${project.likes} 喜歡．${project.favorites} 收藏．${project.posts} 跟著做`}
-          </Text>
+        <View style={styles.optionsContainer}>
+          <ProjectOptionButtons />
         </View>
-        <View style={styles.optionsContainer} />
         <View style={styles.authorContainer} />
         <View style={[styles.contentSection, styles.introContainer]}>
           <Text style={styles.intro}>
@@ -127,9 +150,14 @@ export default class ProjectDetailScreen extends Component {
         <ProjectDetailSection title="作法">
           <MethodList methods={project.methods} />
         </ProjectDetailSection>
-        <ProjectDetailSection title="小技巧" />
+        <ProjectDetailSection title="小技巧">
+          <View style={styles.tipContainer}>
+            <Text style={styles.tip}>
+              {project.tip}
+            </Text>
+          </View>
+        </ProjectDetailSection>
         <ProjectDetailSection title="跟著做" />
-        <ProjectDetailSection title="留言" />
       </TopScreenView>
     );
   }

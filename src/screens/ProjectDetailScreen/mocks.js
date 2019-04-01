@@ -13,6 +13,7 @@ export const project = {
   likes: 999,
   favorites: 4321,
   posts: 567,
+  liked: false,
   materials: [{
     name: '鋼鐵',
     amount: '10公斤',

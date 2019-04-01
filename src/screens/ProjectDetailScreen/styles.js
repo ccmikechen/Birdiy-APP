@@ -15,6 +15,15 @@ export default StyleSheet.create({
     paddingBottom: 0,
     backgroundColor: Base.lightest,
   },
+  headerSection: {
+    flexDirection: 'row',
+    width: '100%',
+    paddingBottom: 20,
+    backgroundColor: Base.lightest,
+  },
+  headerInfoContainer: {
+    flex: 1,
+  },
   titleContainer: {
   },
   title: {
@@ -28,16 +37,28 @@ export default StyleSheet.create({
     fontSize: 12,
     color: TextColor.subDark,
   },
+  likeButtonContainer: {
+    width: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   optionsContainer: {
-
   },
   authorContainer: {
-
   },
   introContainer: {
-    paddingBottom: 10,
+    padding: 20,
+    paddingBottom: 20,
   },
   intro: {
+    fontSize: 14,
+    color: TextColor.secondaryDark,
+  },
+  tipContainer: {
+    padding: 20,
+    paddingTop: 0,
+  },
+  tip: {
     fontSize: 14,
     color: TextColor.secondaryDark,
   },
