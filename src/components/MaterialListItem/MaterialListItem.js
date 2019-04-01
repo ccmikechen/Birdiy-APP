@@ -30,8 +30,8 @@ const MaterialListItem = ({
             style={styles.linkButton}
             onPress={onLinkPress}
           >
-            <Icon.Entypo
-              name="shop"
+            <Icon.FontAwesome
+              name="external-link"
               size={26}
               color={Colors.headerIcon}
             />
