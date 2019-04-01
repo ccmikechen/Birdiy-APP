@@ -155,9 +155,9 @@ export default class EditProjectScreen extends Component {
             <EditSection title="介紹">
               <PureTextInput
                 style={styles.textInput}
-                value={tip}
+                value={introduction}
                 placeholder="介紹你的專案"
-                onChangeText={value => this.setState({ tip: value })}
+                onChangeText={value => this.setState({ introduction: value })}
                 maxLength={300}
                 multiline
                 counter
@@ -199,9 +199,9 @@ export default class EditProjectScreen extends Component {
             <EditSection title="小技巧">
               <PureTextInput
                 style={styles.textInput}
-                value={introduction}
+                value={tip}
                 placeholder="（可選）分享跟著做的一些小技巧及需要注意的地方"
-                onChangeText={value => this.setState({ introduction: value })}
+                onChangeText={value => this.setState({ tip: value })}
                 maxLength={300}
                 multiline
                 counter

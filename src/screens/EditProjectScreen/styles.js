@@ -12,7 +12,6 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   projectImageContainer: {
-
   },
   projectImage: {
     width: '100%',
