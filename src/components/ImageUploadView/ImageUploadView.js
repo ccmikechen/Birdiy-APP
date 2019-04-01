@@ -11,11 +11,7 @@ export default class ImageUploadView extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
-    height: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-    aspectRatio: PropTypes.number,
+    aspect: PropTypes.arrayOf(PropTypes.number),
     iconSize: PropTypes.number,
     image: PropTypes.string,
     onUpload: PropTypes.func,
@@ -23,8 +19,7 @@ export default class ImageUploadView extends Component {
 
   static defaultProps = {
     width: '100%',
-    height: '100%',
-    aspectRatio: null,
+    aspect: [1, 1],
     iconSize: 30,
     image: null,
     onUpload: () => {},
@@ -35,7 +30,7 @@ export default class ImageUploadView extends Component {
   };
 
   pickImage = async () => {
-    const { onUpload } = this.props;
+    const { onUpload, aspect } = this.props;
     const {
       status: cameraRollPerm,
     } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -46,7 +41,7 @@ export default class ImageUploadView extends Component {
 
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [1, 1],
+      aspect,
     });
 
     if (!result.cancelled) {
@@ -57,14 +52,11 @@ export default class ImageUploadView extends Component {
   render() {
     const {
       width,
-      height,
-      aspectRatio,
+      aspect,
       iconSize,
       image,
     } = this.props;
-    const imageStyle = aspectRatio
-      ? { width, aspectRatio }
-      : { width, height };
+    const imageStyle = { width, aspectRatio: aspect[0] / aspect[1] };
 
     return (
       <TouchableOpacity

@@ -13,6 +13,7 @@ import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
 import MaterialList from '../../components/MaterialList';
 import FileList from '../../components/FileList';
+import MethodList from '../../components/MethodList';
 
 import styles from './styles';
 
@@ -123,7 +124,12 @@ export default class ProjectDetailScreen extends Component {
             onLinkPress={this.handleFileLinkPress}
           />
         </ProjectDetailSection>
-        <ProjectDetailSection title="作法" />
+        <ProjectDetailSection title="作法">
+          <MethodList methods={project.methods} />
+        </ProjectDetailSection>
+        <ProjectDetailSection title="小技巧" />
+        <ProjectDetailSection title="跟著做" />
+        <ProjectDetailSection title="留言" />
       </TopScreenView>
     );
   }

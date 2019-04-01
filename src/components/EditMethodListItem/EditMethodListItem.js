@@ -20,7 +20,7 @@ const EditMethodListItem = ({
   <Surface style={styles.container}>
     <ImageUploadView
       width="100%"
-      aspectRatio={1}
+      aspect={[4, 3]}
       iconSize={Dimensions.get('window').width / 2}
       image={data.image}
       onUpload={onImageUpload}

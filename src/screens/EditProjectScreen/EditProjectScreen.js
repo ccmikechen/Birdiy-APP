@@ -129,7 +129,7 @@ export default class EditProjectScreen extends Component {
           <View style={styles.section}>
             <ImageUploadView
               width="100%"
-              aspectRatio={1}
+              aspect={[1, 1]}
               iconSize={Dimensions.get('window').width / 2}
               image={projectImage}
               onUpload={this.handleImageUpload}
