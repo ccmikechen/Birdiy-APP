@@ -57,4 +57,29 @@ export const project = {
     content: '準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料準備材料',
   }],
   tip: '別把永靈刀拿來做料理以外的事，否則會使其能力失效！',
+  followPosts: [{
+    image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+    author: {
+      image: 'https://cdn4.iconfinder.com/data/icons/standard-free-icons/139/Profile01-512.png',
+      name: 'Name',
+    },
+  }, {
+    image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+    author: {
+      image: 'https://cdn4.iconfinder.com/data/icons/standard-free-icons/139/Profile01-512.png',
+      name: 'Name',
+    },
+  }, {
+    image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+    author: {
+      image: 'https://cdn4.iconfinder.com/data/icons/standard-free-icons/139/Profile01-512.png',
+      name: 'Name',
+    },
+  }, {
+    image: 'https://i2.kknews.cc/SIG=24ao12m/3p6o00027520sp12po55.jpg',
+    author: {
+      image: 'https://cdn4.iconfinder.com/data/icons/standard-free-icons/139/Profile01-512.png',
+      name: 'Name',
+    },
+  }],
 };

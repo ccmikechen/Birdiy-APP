@@ -17,6 +17,7 @@ import ProjectOptionButtons from '../../components/ProjectOptionButtons';
 import MaterialList from '../../components/MaterialList';
 import FileList from '../../components/FileList';
 import MethodList from '../../components/MethodList';
+import FollowPostView from '../../components/FollowPostView';
 
 import styles from './styles';
 
@@ -60,6 +61,13 @@ export default class ProjectDetailScreen extends Component {
         image: PropTypes.string,
       })),
       tip: PropTypes.string,
+      followPosts: PropTypes.arrayOf(PropTypes.shape({
+        image: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          image: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+      })).isRequired,
     }),
   };
 
@@ -69,7 +77,10 @@ export default class ProjectDetailScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { liked: props.project.liked };
+    this.state = {
+      liked: props.project.liked,
+      followPosts: props.project.followPosts,
+    };
   }
 
   handleLikePress = () => {
@@ -88,9 +99,21 @@ export default class ProjectDetailScreen extends Component {
     Linking.openURL(link);
   };
 
+  loadMoreFollowPost = async () => {
+    const { project } = this.props;
+    const { followPosts } = this.state;
+    const newFollowPosts = [...followPosts, ...project.followPosts];
+    this.setState({ followPosts: newFollowPosts });
+  };
+
+  handleFollowPostPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('PostDetail');
+  };
+
   render() {
     const { navigation, project } = this.props;
-    const { liked } = this.state;
+    const { liked, followPosts } = this.state;
 
     return (
       <TopScreenView
@@ -162,7 +185,14 @@ export default class ProjectDetailScreen extends Component {
             </Text>
           </View>
         </ProjectDetailSection>
-        <ProjectDetailSection title="跟著做" />
+        <ProjectDetailSection title="跟著做">
+          <FollowPostView
+            posts={followPosts}
+            loadMore={this.loadMoreFollowPost}
+            hasMore
+            onPress={this.handleFollowPostPress}
+          />
+        </ProjectDetailSection>
       </TopScreenView>
     );
   }

@@ -5,4 +5,7 @@ export default {
   searchBarHeight: 35,
   profileImageSize: 70,
   myProjectListImageSize: 100,
+  followPostImageSize: 200,
+  followPostAuthorInfoHeight: 50,
+  followPostAuthorImageSize: 30,
 };
