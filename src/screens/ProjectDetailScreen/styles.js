@@ -42,13 +42,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  authorContainer: {
+    paddingBottom: 10,
+    backgroundColor: Base.lightest,
+  },
   optionsContainer: {
   },
-  authorContainer: {
-  },
   introContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
-    paddingBottom: 20,
+    paddingTop: 0,
   },
   intro: {
     fontSize: 14,

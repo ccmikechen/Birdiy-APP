@@ -12,6 +12,7 @@ import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import LikeButton from '../../components/LikeButton';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
+import ProjectAuthor from '../../components/ProjectAuthor';
 import ProjectOptionButtons from '../../components/ProjectOptionButtons';
 import MaterialList from '../../components/MaterialList';
 import FileList from '../../components/FileList';
@@ -125,15 +126,19 @@ export default class ProjectDetailScreen extends Component {
             <LikeButton liked={liked} onPress={this.handleLikePress} />
           </View>
         </View>
+        <View style={styles.authorContainer}>
+          <ProjectAuthor author={project.author} />
+        </View>
         <View style={styles.optionsContainer}>
           <ProjectOptionButtons />
         </View>
-        <View style={styles.authorContainer} />
-        <View style={[styles.contentSection, styles.introContainer]}>
-          <Text style={styles.intro}>
-            {project.introduction}
-          </Text>
-        </View>
+        <ProjectDetailSection title="介紹">
+          <View style={styles.introContainer}>
+            <Text style={styles.intro}>
+              {project.introduction}
+            </Text>
+          </View>
+        </ProjectDetailSection>
         <ProjectDetailSection title="材料">
           <MaterialList
             materials={project.materials}
