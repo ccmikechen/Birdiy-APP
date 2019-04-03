@@ -84,12 +84,17 @@ export default class TimelineScreen extends Component {
   handleSearch = () => {
     const { navigation } = this.props;
     navigation.push('SearchUser');
-  }
+  };
 
   handleOpenFilter = () => {
     const { navigation } = this.props;
     navigation.push('UserFilter');
-  }
+  };
+
+  handleAddPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('CreatePostModal');
+  };
 
   render() {
     const { navigation } = this.props;
@@ -126,6 +131,7 @@ export default class TimelineScreen extends Component {
               color="#ffffff"
             />
           )}
+          onPress={this.handleAddPress}
         />
       </View>
     );

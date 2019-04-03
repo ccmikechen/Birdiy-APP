@@ -26,10 +26,12 @@ export default class MyPostsScene extends Component {
       image: PropTypes.string.isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
+    onAddPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
+    onAddPress: () => {},
   };
 
   constructor(props) {
@@ -39,9 +41,6 @@ export default class MyPostsScene extends Component {
       dataSource: dataSource.cloneWithRows(props.posts),
     };
   }
-
-  handleAddPress = () => {
-  };
 
   renderRow = project => (
     <Surface style={styles.rowContainer}>
@@ -69,7 +68,7 @@ export default class MyPostsScene extends Component {
   );
 
   render() {
-    const { onMorePress } = this.props;
+    const { onMorePress, onAddPress } = this.props;
     const { dataSource } = this.state;
 
     return (
@@ -77,7 +76,7 @@ export default class MyPostsScene extends Component {
         <View style={styles.addButtonContainer}>
           <MyProfileAddButton
             text="新增投稿"
-            onPress={this.handleAddPress}
+            onPress={onAddPress}
           />
         </View>
         <ListView

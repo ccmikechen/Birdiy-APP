@@ -41,6 +41,11 @@ export default class ProfileScreen extends Component {
     navigation.navigate('MyPosts');
   };
 
+  handleAddPostPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('CreatePostModal');
+  };
+
   handleMoreFavoritesPress = () => {
     const { navigation } = this.props;
     navigation.navigate('MyFavorites');
@@ -68,6 +73,7 @@ export default class ProfileScreen extends Component {
           onMoreProjectsPress={this.handleMoreProjectsPress}
           onAddProjectPress={this.handleAddProjectPress}
           onMorePostsPress={this.handleMorePostsPress}
+          onAddPostPress={this.handleAddPostPress}
           onMoreFavoritesPress={this.handleMoreFavoritesPress}
         />
       </TopScreenView>
