@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Icon } from 'expo';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
-import TimelineHeader from '../../components/TimelineHeader';
+import NormalTopHeader from '../../components/NormalTopHeader';
 import PostSection from '../../components/PostSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 
@@ -105,10 +105,9 @@ export default class TimelineScreen extends Component {
         <InfiniteTabsScreenView
           navigation={navigation}
           renderHeader={() => (
-            <TimelineHeader
+            <NormalTopHeader
+              title="動態"
               onOpenDrawer={() => navigation.openDrawer()}
-              onSearch={this.handleSearch}
-              onOpenFilter={this.handleOpenFilter}
             />
           )}
           tabs={TABS}

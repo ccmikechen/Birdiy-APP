@@ -19,11 +19,13 @@ export default class InfiniteList extends Component {
     renderSection: PropTypes.func.isRequired,
     onScrollTrigger: PropTypes.func,
     canLoadMoreContent: PropTypes.bool,
+    innerRef: PropTypes.func,
   };
 
   static defaultProps = {
     onScrollTrigger: () => {},
     canLoadMoreContent: false,
+    innerRef: () => {},
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -54,6 +56,7 @@ export default class InfiniteList extends Component {
       renderSection,
       onScrollTrigger,
       canLoadMoreContent,
+      innerRef,
     } = this.props;
     const { dataSource } = this.state;
 
@@ -65,6 +68,7 @@ export default class InfiniteList extends Component {
             {...props}
             onScrollDown={onScrollTrigger(false)}
             onScrollUp={onScrollTrigger(true)}
+            ref={innerRef}
           />
         )}
         dataSource={dataSource}

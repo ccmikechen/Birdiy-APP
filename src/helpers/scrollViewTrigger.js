@@ -24,6 +24,10 @@ export default ScrollView => class extends Component {
     this.lastY = 0;
   }
 
+  scrollTo = (...params) => {
+    this.scrollView.scrollTo(...params);
+  };
+
   handleScroll = (event) => {
     const { onScroll, onScrollUp, onScrollDown } = this.props;
     onScroll(event);
@@ -48,6 +52,7 @@ export default ScrollView => class extends Component {
 
     return (
       <ScrollView
+        ref={(ref) => { this.scrollView = ref; }}
         {...this.props}
         onScroll={this.handleScroll}
         scrollEventThrottle={16}

@@ -5,7 +5,7 @@ import { Icon } from 'expo';
 import { chunk } from 'lodash';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
-import NormalTopHeader from '../../components/NormalTopHeader';
+import SearchHeader from '../../components/SearchHeader';
 import ProjectSection from '../../components/ProjectSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 
@@ -34,16 +34,42 @@ export default class SearchScreen extends Component {
       openDrawer: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
+      getParam: PropTypes.func.isRequired,
     }).isRequired,
   };
 
-  state = {
-    data: {
-      newest: projectPair,
-      hotest: projectPair,
-    },
-    addProjectButtonVisible: true,
-  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const keyword = nextProps.navigation.getParam('keyword') || '';
+
+    if (keyword === prevState.lastKeywordParam) {
+      return null;
+    }
+
+    return {
+      ...prevState,
+      data: {
+        newest: projectPair,
+        hotest: projectPair,
+      },
+      lastKeywordParam: keyword,
+      keyword,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    const keyword = props.navigation.getParam('keyword') || '';
+    this.state = {
+      data: {
+        newest: projectPair,
+        hotest: projectPair,
+      },
+      addProjectButtonVisible: true,
+      lastKeywordParam: keyword,
+      keyword,
+    };
+  }
 
   loadMoreContentAsync = key => async () => {
     const { data } = this.state;
@@ -59,6 +85,17 @@ export default class SearchScreen extends Component {
   handleOpenProject = () => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail');
+  };
+
+  handleSearch = () => {
+    this.setState({
+      data: {
+        newest: projectPair,
+        hotest: projectPair,
+      },
+    });
+    this.screenView.scrollToTop('newest');
+    this.screenView.scrollToTop('hotest');
   };
 
   renderSection = () => (section) => {
@@ -88,17 +125,20 @@ export default class SearchScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { data, addProjectButtonVisible } = this.state;
+    const { data, addProjectButtonVisible, keyword } = this.state;
 
     return (
       <View style={styles.container}>
         <InfiniteTabsScreenView
+          ref={(ref) => { this.screenView = ref; }}
           style={styles.container}
           navigation={navigation}
           renderHeader={() => (
-            <NormalTopHeader
-              title="搜尋"
+            <SearchHeader
               onOpenDrawer={() => navigation.openDrawer()}
+              keyword={keyword}
+              onKeywordChange={value => this.setState({ keyword: value })}
+              onSearch={this.handleSearch}
             />
           )}
           tabs={TABS}

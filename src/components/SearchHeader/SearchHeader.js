@@ -6,12 +6,12 @@ import BasicHeader from '../BasicHeader';
 
 import styles from './styles';
 
-const HomeHeader = ({
+const SearchHeader = ({
   keyword,
   onKeywordChange,
   onOpenDrawer,
   onSearch,
-  onOpenCart,
+  onOpenFilter,
 }) => (
   <BasicHeader
     placement="center"
@@ -30,25 +30,25 @@ const HomeHeader = ({
       />
     )}
     rightButton={{
-      icon: 'shopping-cart',
-      onPress: onOpenCart,
+      icon: 'filter-list',
+      onPress: onOpenFilter,
     }}
   />
 );
 
-HomeHeader.propTypes = {
+SearchHeader.propTypes = {
   keyword: PropTypes.string,
   onKeywordChange: PropTypes.func,
   onOpenDrawer: PropTypes.func.isRequired,
   onSearch: PropTypes.func,
-  onOpenCart: PropTypes.func,
+  onOpenFilter: PropTypes.func,
 };
 
-HomeHeader.defaultProps = {
+SearchHeader.defaultProps = {
   keyword: '',
   onKeywordChange: () => {},
   onSearch: () => {},
-  onOpenCart: () => {},
+  onOpenFilter: () => {},
 };
 
-export default HomeHeader;
+export default SearchHeader;

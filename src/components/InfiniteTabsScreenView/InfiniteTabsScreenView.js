@@ -41,6 +41,9 @@ export default class InfiniteTabsScreenView extends Component {
     tabIndex: 0,
   };
 
+  scrollView = {
+  };
+
   handleVisible = index => visible => () => {
     const { tabIndex } = this.state;
     if (index !== tabIndex) {
@@ -77,9 +80,17 @@ export default class InfiniteTabsScreenView extends Component {
           onScrollTrigger={this.handleVisible(index)}
           canLoadMoreContent={canLoadMoreContent}
           renderHeader={() => <View style={styles.paddingView} />}
+          innerRef={(ref) => { this.scrollView[key] = ref; }}
         />
       </View>
     );
+  };
+
+  scrollToTop = (key) => {
+    if (!this.scrollView[key]) {
+      return;
+    }
+    this.scrollView[key].scrollTo({ x: 0, y: 0, animated: false });
   };
 
   render() {

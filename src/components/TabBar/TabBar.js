@@ -51,6 +51,10 @@ export default class TabBar extends Component {
     const isVisible = getTabBarVisibleFromNavigationState(navigation);
     const wasVisible = prevState.isVisible;
 
+    if (isVisible === undefined) {
+      return null;
+    }
+
     if (wasVisible && !isVisible) {
       Animated.timing(offset, {
         toValue: TAB_BAR_OFFSET,
