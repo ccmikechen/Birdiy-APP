@@ -11,7 +11,7 @@ import AnimatedAddButton from '../../components/AnimatedAddButton';
 
 import styles from './styles';
 
-import { projects } from './mocks';
+import { projects, categories } from './mocks';
 
 const projectPair = chunk(projects, 2).map(project => ({
   type: 'project',
@@ -68,6 +68,7 @@ export default class SearchScreen extends Component {
       addProjectButtonVisible: true,
       lastKeywordParam: keyword,
       keyword,
+      categories: [],
     };
   }
 
@@ -96,6 +97,19 @@ export default class SearchScreen extends Component {
     });
     this.screenView.scrollToTop('newest');
     this.screenView.scrollToTop('hotest');
+  };
+
+  handleSelectCategory = (selected) => {
+    this.setState({ categories: selected });
+  };
+
+  handleOpenFilter = () => {
+    const { navigation } = this.props;
+    navigation.navigate('SelectCategoryModal', {
+      categories,
+      multipleSelect: true,
+      onSelect: this.handleSelectCategory,
+    });
   };
 
   renderSection = () => (section) => {
@@ -139,6 +153,7 @@ export default class SearchScreen extends Component {
               keyword={keyword}
               onKeywordChange={value => this.setState({ keyword: value })}
               onSearch={this.handleSearch}
+              onOpenFilter={this.handleOpenFilter}
             />
           )}
           tabs={TABS}

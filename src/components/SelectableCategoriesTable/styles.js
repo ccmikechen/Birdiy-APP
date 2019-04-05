@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Tertiary, TextColor } from '../../constants/Colors';
+import { Primary, Tertiary, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -18,6 +18,12 @@ export default StyleSheet.create({
   },
   image: {
     borderRadius: 10,
+    borderWidth: 3,
+    borderColor: 'transparent',
+  },
+  selection: {
+    borderWidth: 3,
+    borderColor: Primary(300),
   },
   name: {
     color: TextColor.primaryLight,

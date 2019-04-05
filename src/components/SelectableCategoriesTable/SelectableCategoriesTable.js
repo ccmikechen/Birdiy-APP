@@ -14,7 +14,11 @@ import styles from './styles';
 const SPACING = 5;
 const DIMENSION = Dimensions.get('window').width / 3 - SPACING * 2;
 
-const SelectableCategoriesTable = ({ categories, onSelect }) => (
+const SelectableCategoriesTable = ({
+  categories,
+  onSelect,
+  selection,
+}) => (
   <FlatGrid
     itemDimension={DIMENSION}
     spacing={SPACING}
@@ -24,10 +28,14 @@ const SelectableCategoriesTable = ({ categories, onSelect }) => (
       <TouchableOpacity
         style={styles.itemContainer}
         onPress={() => onSelect(index)}
+        activeOpacity={0.9}
       >
         <ImageBackground
           source={item.image}
-          style={styles.imageBackground}
+          style={[
+            styles.imageBackground,
+            selection[index] ? styles.selection : null,
+          ]}
           imageStyle={styles.image}
         >
           <Text style={styles.name}>{item.name}</Text>
@@ -43,10 +51,12 @@ SelectableCategoriesTable.propTypes = {
     image: PropTypes.number,
   })).isRequired,
   onSelect: PropTypes.func,
+  selection: PropTypes.arrayOf(PropTypes.bool),
 };
 
 SelectableCategoriesTable.defaultProps = {
   onSelect: () => {},
+  selection: [],
 };
 
 export default SelectableCategoriesTable;

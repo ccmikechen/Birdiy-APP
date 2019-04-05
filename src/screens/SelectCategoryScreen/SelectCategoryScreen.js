@@ -20,15 +20,37 @@ export default class SelectCategoryScreen extends Component {
     }).isRequired,
   };
 
-  handleOnSelect = (index) => {
+  state = {
+    selection: [],
+  };
+
+  constructor(props) {
+    super(props);
+
+    const categories = props.navigation.getParam('categories');
+    this.state = {
+      selection: new Array(categories.length).fill(false),
+    };
+  }
+
+  handleSelect = (index) => {
     const { navigation } = this.props;
-    const onSelect = navigation.getParam('onSelect');
-    onSelect(index);
-    navigation.goBack();
+    const { selection } = this.state;
+    const multipleSelect = navigation.getParam('multipleSelect') || false;
+
+    if (multipleSelect) {
+      selection[index] = !selection[index];
+      this.setState({ selection });
+    } else {
+      const onSelect = navigation.getParam('onSelect');
+      onSelect(index);
+      navigation.goBack();
+    }
   };
 
   render() {
     const { navigation } = this.props;
+    const { selection } = this.state;
     const categories = navigation.getParam('categories');
 
     return (
@@ -45,7 +67,8 @@ export default class SelectCategoryScreen extends Component {
         <ScrollView style={styles.container}>
           <SelectableCategoriesTable
             categories={categories}
-            onSelect={this.handleOnSelect}
+            onSelect={this.handleSelect}
+            selection={selection}
           />
         </ScrollView>
       </TopScreenView>
