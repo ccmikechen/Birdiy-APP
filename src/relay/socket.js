@@ -1,6 +1,8 @@
 import * as AbsintheSocket from '@absinthe/socket';
 import { Socket as PhoenixSocket } from 'phoenix';
 
+const ENDPOINT = process.env.BIRDIY_SERVER_HOST || 'localhost';
+
 export default AbsintheSocket.create(
-  new PhoenixSocket('ws://192.168.43.154:4000/socket'),
+  new PhoenixSocket(`ws://${ENDPOINT}/socket`),
 );
