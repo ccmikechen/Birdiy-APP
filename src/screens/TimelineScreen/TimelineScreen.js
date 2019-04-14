@@ -5,12 +5,10 @@ import { Icon } from 'expo';
 
 import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
-import PostSection from '../../components/PostSection';
+import PostSection from '../../containers/PostSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 
 import styles from './styles';
-
-import { posts } from './mocks';
 
 const TABS = [{
   key: 'all', title: '所有人',
@@ -27,58 +25,36 @@ export default class TimelineScreen extends Component {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      all: PropTypes.arrayOf(PropTypes.object),
+      following: PropTypes.arrayOf(PropTypes.object),
+    }),
+  };
+
+  static defaultProps = {
+    query: null,
   };
 
   state = {
-    data: {
-      all: posts.map(post => ({
-        type: 'post',
-        data: post,
-      })),
-      following: posts.map(post => ({
-        type: 'post',
-        data: post,
-      })),
-    },
     addPostButtonVisible: true,
   };
 
-  loadMoreContentAsync = key => async () => {
-    const { data } = this.state;
-    const sections = data[key];
-
-    this.setState({
-      data: {
-        ...data,
-        [key]: [
-          ...sections,
-          ...posts.map(post => ({
-            type: 'post',
-            data: post,
-          })),
-        ],
-      },
-    });
+  loadMoreContentAsync = () => async () => {
   };
 
-  renderSection = () => (section) => {
+  renderSection = () => (data) => {
     const { navigation } = this.props;
 
-    switch (section.type) {
-      case 'post':
-        return (
-          <View style={styles.postContainer}>
-            <PostSection
-              post={section.data}
-              onPostPress={() => {
-                navigation.push('PostDetail');
-              }}
-            />
-          </View>
-        );
-      default:
-        return null;
-    }
+    return (
+      <View style={styles.postContainer}>
+        <PostSection
+          post={data}
+          onPostPress={() => {
+            navigation.push('PostDetail');
+          }}
+        />
+      </View>
+    );
   };
 
   handleSearch = () => {
@@ -97,8 +73,8 @@ export default class TimelineScreen extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
-    const { data, addPostButtonVisible } = this.state;
+    const { navigation, query } = this.props;
+    const { addPostButtonVisible } = this.state;
 
     return (
       <View style={styles.container}>
@@ -111,7 +87,7 @@ export default class TimelineScreen extends Component {
             />
           )}
           tabs={TABS}
-          data={data}
+          data={query}
           loadMoreContentAsync={this.loadMoreContentAsync}
           renderSection={this.renderSection}
           onToggleTabBar={(visible) => {

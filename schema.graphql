@@ -2,6 +2,8 @@ schema {
   query: RootQueryType
 }
 
+scalar Datetime
+
 """An object with an ID"""
 interface Node {
   """The id of the object."""
@@ -10,11 +12,13 @@ interface Node {
 
 type Post {
   author: User!
+  insertedAt: Datetime
   message: String
   photos: [PostPhoto]
   relatedProject: Project
   relatedProjectName: String
   relatedProjectType: String!
+  thumbnail: PostPhoto
 }
 
 type PostPhoto {

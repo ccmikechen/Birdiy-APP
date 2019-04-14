@@ -15,13 +15,7 @@ import { DEFAULT_PROFILE } from '../../images';
 import styles from './styles';
 
 const PostSection = ({
-  post: {
-    user,
-    postedAt,
-    message,
-    image,
-    source,
-  },
+  post,
   onUserPress,
   onFollowPress,
   onPostPress,
@@ -35,19 +29,19 @@ const PostSection = ({
       >
         <Image
           style={styles.userImage}
-          source={{ uri: user.image }}
+          source={{ uri: post.author.image }}
           defaultSource={DEFAULT_PROFILE}
         />
       </TouchableOpacity>
       <View style={styles.infoContainer}>
         <View style={styles.userNameContainer}>
           <Text style={styles.userName}>
-            {user.name}
+            {post.author.name}
           </Text>
         </View>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
-            {postedAt}
+            {post.insertedAt}
           </Text>
         </View>
       </View>
@@ -67,7 +61,7 @@ const PostSection = ({
       onPress={onPostPress}
     >
       <Text style={styles.message}>
-        {message}
+        {post.message}
       </Text>
     </TouchableOpacity>
     <TouchableOpacity
@@ -76,7 +70,7 @@ const PostSection = ({
     >
       <AutoHeightImage
         style={styles.image}
-        source={{ uri: image }}
+        source={{ uri: post.thumbnail.image }}
         width={Dimensions.get('window').width - 20}
       />
     </TouchableOpacity>
@@ -85,7 +79,7 @@ const PostSection = ({
       onPress={onSourcePress}
     >
       <Text style={styles.source}>
-        {source}
+        {post.relatedProject.name}
       </Text>
     </TouchableOpacity>
   </Surface>
@@ -93,14 +87,20 @@ const PostSection = ({
 
 PostSection.propTypes = {
   post: PropTypes.shape({
-    user: PropTypes.shape({
+    author: PropTypes.shape({
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
     }).isRequired,
-    postedAt: PropTypes.string.isRequired,
+    insertedAt: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      image: PropTypes.string.isRequired,
+    }).isRequired,
+    relatedProjectType: PropTypes.string.isRequired,
+    relatedProject: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+    relatedProjectName: PropTypes.string,
   }).isRequired,
   onUserPress: PropTypes.func,
   onFollowPress: PropTypes.func,

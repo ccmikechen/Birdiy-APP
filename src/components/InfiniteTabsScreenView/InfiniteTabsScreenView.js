@@ -23,15 +23,22 @@ export default class InfiniteTabsScreenView extends Component {
       key: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
     })).isRequired,
-    data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.any, // eslint-disable-line react/forbid-prop-types
     loadMoreContentAsync: PropTypes.func.isRequired,
     renderSection: PropTypes.func.isRequired,
+    renderNoItem: PropTypes.func,
+    refreshing: PropTypes.bool,
+    renderRefresh: PropTypes.func,
     style: ViewPropTypes.style,
   };
 
   static defaultProps = {
+    data: null,
     animatedScroll: false,
     onToggleTabBar: () => {},
+    renderNoItem: () => null,
+    refreshing: false,
+    renderRefresh: () => null,
     style: {},
   };
 
@@ -67,8 +74,19 @@ export default class InfiniteTabsScreenView extends Component {
     const {
       loadMoreContentAsync,
       renderSection,
+      renderNoItem,
+      refreshing,
+      renderRefresh,
     } = this.props;
     const { canLoadMoreContent } = this.state;
+
+    if (refreshing) {
+      return renderRefresh();
+    }
+
+    if (!data) {
+      return renderNoItem();
+    }
 
     return (
       <View key={key}>
@@ -128,9 +146,11 @@ export default class InfiniteTabsScreenView extends Component {
           }}
         />
         <AnimatedMultipleView index={tabIndex}>
-          {tabs.map(({ key }, index) => (
-            this.renderScene(key, data[key], index)
-          ))}
+          {
+            tabs.map(({ key }, index) => (
+              this.renderScene(key, data && data[key], index)
+            ))
+          }
         </AnimatedMultipleView>
       </View>
     );

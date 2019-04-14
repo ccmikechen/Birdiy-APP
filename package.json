@@ -21,6 +21,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "expo": "^32.0.0",
+    "hoist-non-react-statics": "^3.3.0",
     "lodash": "^4.17.11",
     "phoenix": "^1.4.3",
     "prop-types": "^15.7.2",

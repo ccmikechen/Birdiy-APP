@@ -6,8 +6,6 @@ import {
   Font,
   Icon,
 } from 'expo';
-import { QueryRenderer, graphql } from 'react-relay';
-import environment from './relay/environment';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -17,10 +15,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-const query = graphql`
-  query AppQuery { users { name } }
-`;
 
 export default class App extends Component {
   state = {
@@ -46,15 +40,9 @@ export default class App extends Component {
     const { isLoadingComplete } = this.state;
 
     return isLoadingComplete ? (
-      <QueryRenderer
-        environment={environment}
-        query={query}
-        render={() => (
-          <View style={styles.container}>
-            <AppNavigator />
-          </View>
-        )}
-      />
+      <View style={styles.container}>
+        <AppNavigator />
+      </View>
     ) : (
       <AppLoading
         startAsync={this.loadResourcesAsync}
