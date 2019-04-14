@@ -1,0 +1,87 @@
+schema {
+  query: RootQueryType
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Post {
+  author: User!
+  message: String
+  photos: [PostPhoto]
+  relatedProject: Project
+  relatedProjectName: String
+  relatedProjectType: String!
+}
+
+type PostPhoto {
+  image: String!
+  post: Post!
+}
+
+type Project {
+  author: User!
+  category: ProjectCategory!
+  fileResources: [ProjectFileResource]
+  introduction: String
+  materials: [ProjectMaterial]
+  methods: [ProjectMethod]
+  name: String!
+  relatedPosts: [Post]
+  tip: String
+}
+
+type ProjectCategory {
+  name: String!
+  projects: [Project]
+}
+
+type ProjectFileResource {
+  name: String!
+  order: Int!
+  project: Project
+  url: String!
+}
+
+type ProjectMaterial {
+  amountUnit: String!
+  name: String!
+  order: Int!
+  project: Project
+  url: String
+}
+
+type ProjectMethod {
+  content: String!
+  image: String
+  order: Int!
+  project: Project
+  title: String
+}
+
+type RootQueryType {
+  """Fetches an object given its ID"""
+  node(
+    """The id of an object."""
+    id: ID!
+  ): Node
+  posts: [Post]
+  projects: [Project]
+  users: [User]
+}
+
+type User {
+  favoriteProjects: [Project]
+  followedUsers: [User]
+  followingUsers: [User]
+  image: String
+  likedProjects: [Project]
+  name: String!
+  posts: [Post]
+  projects: [Project]
+  viewedProjects: [Project]
+}
+
