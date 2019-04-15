@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListView } from 'react-native';
+import { ListView, View } from 'react-native';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import { isEqual } from 'lodash';
 
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
+
+import styles from './styles';
 
 const TriggerScrollView = scrollViewTrigger(InfiniteScrollView);
 
@@ -73,6 +75,7 @@ export default class InfiniteList extends Component {
         )}
         dataSource={dataSource}
         renderRow={renderSection}
+        renderFooter={() => <View style={styles.paddingView} />}
         canLoadMore={canLoadMoreContent}
         onLoadMoreAsync={loadMoreContentAsync}
         enableEmptySections

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Icon } from 'expo';
 
-import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
+import TabsScreenView from '../../components/TabsScreenView';
 import NormalTopHeader from '../../components/NormalTopHeader';
-import PostSection from '../../containers/PostSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
+import AllPostList from '../../containers/AllPostList';
+import FollowingPostList from '../../containers/FollowingPostList';
 
 import styles from './styles';
 
@@ -26,8 +27,12 @@ export default class TimelineScreen extends Component {
       openDrawer: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
-      all: PropTypes.arrayOf(PropTypes.object),
-      following: PropTypes.arrayOf(PropTypes.object),
+      all: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+      following: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
     }),
   };
 
@@ -37,24 +42,6 @@ export default class TimelineScreen extends Component {
 
   state = {
     addPostButtonVisible: true,
-  };
-
-  loadMoreContentAsync = () => async () => {
-  };
-
-  renderSection = () => (data) => {
-    const { navigation } = this.props;
-
-    return (
-      <View style={styles.postContainer}>
-        <PostSection
-          post={data}
-          onPostPress={() => {
-            navigation.push('PostDetail');
-          }}
-        />
-      </View>
-    );
   };
 
   handleSearch = () => {
@@ -72,13 +59,18 @@ export default class TimelineScreen extends Component {
     navigation.navigate('CreatePostModal');
   };
 
+  handlePostPress = id => () => {
+    const { navigation } = this.props;
+    navigation.push('PostDetail', { id });
+  }
+
   render() {
     const { navigation, query } = this.props;
     const { addPostButtonVisible } = this.state;
 
     return (
       <View style={styles.container}>
-        <InfiniteTabsScreenView
+        <TabsScreenView
           navigation={navigation}
           renderHeader={() => (
             <NormalTopHeader
@@ -87,14 +79,20 @@ export default class TimelineScreen extends Component {
             />
           )}
           tabs={TABS}
-          data={query}
-          loadMoreContentAsync={this.loadMoreContentAsync}
-          renderSection={this.renderSection}
           onToggleTabBar={(visible) => {
             this.setState({ addPostButtonVisible: visible });
           }}
           animatedScroll
-        />
+        >
+          <AllPostList
+            posts={query && query.all}
+            onPostPress={this.handlePostPress}
+          />
+          <FollowingPostList
+            posts={query && query.following}
+            onPostPress={this.handlePostPress}
+          />
+        </TabsScreenView>
         <AnimatedAddButton
           style={styles.addPostButton}
           visible={addPostButtonVisible}

@@ -10,8 +10,25 @@ interface Node {
   id: ID!
 }
 
-type Post {
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+type Post implements Node {
   author: User!
+
+  """The ID of an object"""
+  id: ID!
   insertedAt: Datetime
   message: String
   photos: [PostPhoto]
@@ -19,6 +36,19 @@ type Post {
   relatedProjectName: String
   relatedProjectType: String!
   thumbnail: PostPhoto
+}
+
+type PostConnection {
+  edges: [PostEdge]
+  pageInfo: PageInfo!
+}
+
+type PostEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: Post
 }
 
 type PostPhoto {
@@ -67,14 +97,16 @@ type ProjectMethod {
 }
 
 type RootQueryType {
+  allPosts(after: String, before: String, first: Int, last: Int): PostConnection
+
   """Fetches an object given its ID"""
   node(
     """The id of an object."""
     id: ID!
   ): Node
-  posts: [Post]
   projects: [Project]
   users: [User]
+  viewer: User
 }
 
 type User {
