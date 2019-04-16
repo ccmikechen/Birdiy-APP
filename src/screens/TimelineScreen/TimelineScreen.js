@@ -85,11 +85,11 @@ export default class TimelineScreen extends Component {
           animatedScroll
         >
           <AllPostList
-            posts={query && query.all}
+            query={query}
             onPostPress={this.handlePostPress}
           />
           <FollowingPostList
-            posts={query && query.following}
+            query={query}
             onPostPress={this.handlePostPress}
           />
         </TabsScreenView>

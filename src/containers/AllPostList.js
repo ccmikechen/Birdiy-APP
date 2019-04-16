@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createPaginationContainer } from 'react-relay';
 
 import PostList from '../components/PostList';
 
 class AllPostList extends Component {
   static propTypes = {
-    posts: PropTypes.shape({
-      edges: PropTypes.arrayOf(PropTypes.shape({
-        node: PropTypes.object,
-      })),
+    query: PropTypes.shape({
+      all: PropTypes.object,
     }),
+    relay: PropTypes.shape({
+      hasMore: PropTypes.func.isRequired,
+      isLoading: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   static defaultProps = {
-    posts: null,
+    query: null,
   };
 
   loadMore = async () => {
+    const { relay } = this.props;
+
+    if (!relay.hasMore() || relay.isLoading()) {
+      return;
+    }
+    relay.loadMore(4);
   }
 
   render() {
-    const { posts } = this.props;
-    const data = posts && posts.edges.map(({ node }) => node);
+    const { query, relay } = this.props;
+    const data = query && query.all.edges.map(({ node }) => node);
 
-    return posts ? (
+    return query ? (
       <PostList
         {...this.props}
         posts={data}
+        canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
       />
     ) : null;
@@ -35,19 +44,49 @@ class AllPostList extends Component {
 }
 
 
-export default createFragmentContainer(
+export default createPaginationContainer(
   AllPostList,
-  graphql`
-    fragment AllPostList_posts on PostConnection {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      edges {
-        node {
-          ...PostSection_post
+  {
+    query: graphql`
+      fragment AllPostList_query on RootQueryType {
+        all: allPosts(
+          first: $count,
+          after: $allCursor
+        ) @connection(key: "AllPostList_all") {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            node {
+              ...PostSection_post
+            }
+          }
         }
       }
-    }
-  `,
+    `,
+  },
+  {
+    direction: 'forward',
+    getConnectionFromProps: props => (
+      props.query && props.query.all
+    ),
+    getFragmentVariables: (prevVars, totalCount) => ({
+      ...prevVars,
+      count: totalCount,
+    }),
+    getVariables: (props, { count, cursor }) => ({
+      count,
+      allCursor: cursor,
+    }),
+    variables: { allCursor: null },
+    query: graphql`
+      query AllPostListPaginationQuery (
+        $count: Int!,
+        $allCursor: String
+      ) {
+        ...AllPostList_query
+      }
+    `,
+  },
 );

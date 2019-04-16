@@ -78,7 +78,7 @@ export default class PostList extends Component {
           loadMoreContentAsync={loadMore}
           renderSection={this.renderPost}
           onScrollTrigger={onScrollTrigger}
-          canLoadMore={canLoadMore}
+          canLoadMoreContent={canLoadMore}
           renderHeader={() => <View style={styles.paddingView} />}
           innerRef={(ref) => { this.scrollView = ref; }}
         />

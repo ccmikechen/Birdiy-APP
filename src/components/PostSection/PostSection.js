@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Button, Surface } from 'react-native-paper';
-import AutoHeightImage from 'react-native-auto-height-image';
+
+import ImageView from '../ImageView';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -68,9 +69,9 @@ const PostSection = ({
       style={styles.imageContainer}
       onPress={onPostPress}
     >
-      <AutoHeightImage
+      <ImageView
         style={styles.image}
-        source={{ uri: post.thumbnail.image }}
+        uri={post.thumbnail ? post.thumbnail.image : null}
         width={Dimensions.get('window').width - 20}
       />
     </TouchableOpacity>
@@ -95,7 +96,7 @@ PostSection.propTypes = {
     message: PropTypes.string.isRequired,
     thumbnail: PropTypes.shape({
       image: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
     relatedProjectType: PropTypes.string.isRequired,
     relatedProject: PropTypes.shape({
       name: PropTypes.string.isRequired,

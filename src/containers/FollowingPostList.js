@@ -6,23 +6,21 @@ import PostList from '../components/PostList';
 
 class FollowingPostList extends Component {
   static propTypes = {
-    posts: PropTypes.shape({
-      edges: PropTypes.arrayOf(PropTypes.shape({
-        node: PropTypes.object,
-      })),
+    query: PropTypes.shape({
+      all: PropTypes.object,
     }),
   };
 
   static defaultProps = {
-    posts: null,
+    query: null,
   };
 
   loadMore = async () => {
   }
 
   render() {
-    const { posts } = this.props;
-    const data = posts && posts.edges.map(({ node }) => node);
+    const { query } = this.props;
+    const data = query && query.following.edges.map(({ node }) => node);
 
     return data ? (
       <PostList
@@ -38,14 +36,19 @@ class FollowingPostList extends Component {
 export default createFragmentContainer(
   FollowingPostList,
   graphql`
-    fragment FollowingPostList_posts on PostConnection {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      edges {
-        node {
-          ...PostSection_post
+    fragment FollowingPostList_query on RootQueryType {
+      following: allPosts(
+        first: $count,
+        after: $followingCursor
+      ) @connection(key: "FollowingPostList_following") {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            ...PostSection_post
+          }
         }
       }
     }

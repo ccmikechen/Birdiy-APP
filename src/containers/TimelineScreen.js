@@ -8,18 +8,8 @@ const TimelineScreenFragmentContainer = createFragmentContainer(
   TimelineScreen,
   graphql`
     fragment TimelineScreen_query on RootQueryType {
-      all: allPosts(
-        first: $count,
-        after: $all_cursor
-      ) {
-        ...AllPostList_posts
-      }
-      following: allPosts(
-        first: $count,
-        after: $following_cursor
-      ) {
-        ...FollowingPostList_posts
-      }
+      ...AllPostList_query
+      ...FollowingPostList_query
     }
   `,
 );
@@ -32,14 +22,16 @@ export default withNavigation(
       query: graphql`
         query TimelineScreenQuery (
           $count: Int!,
-          $all_cursor: String,
-          $following_cursor: String
+          $allCursor: String,
+          $followingCursor: String
         ) {
           ...TimelineScreen_query
         }
       `,
       variables: {
         count: 4,
+        allCursor: null,
+        followingCursor: null,
       },
     },
   ),
