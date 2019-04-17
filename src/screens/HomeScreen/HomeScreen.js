@@ -34,7 +34,7 @@ export default class HomeScreen extends Component {
 
   handleMoreProject = () => {
     const { navigation } = this.props;
-    navigation.navigate('Search');
+    navigation.navigate('Projects');
   };
 
   renderHotCategories = () => (
@@ -65,7 +65,7 @@ export default class HomeScreen extends Component {
   handleSearch = () => {
     const { navigation } = this.props;
     const { keyword } = this.state;
-    navigation.navigate('Search', { keyword });
+    navigation.navigate('Projects', { keyword });
   }
 
   handleOpenCart = () => {

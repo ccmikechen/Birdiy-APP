@@ -9,7 +9,7 @@ import TabBar from '../components/TabBar';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TimelineScreen from '../containers/TimelineScreen';
-import SearchScreen from '../screens/SearchScreen';
+import ProjectsScreen from '../screens/ProjectsScreen';
 // import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
@@ -72,8 +72,8 @@ export default createBottomTabNavigator({
     },
     transitionConfig: noAnimationTransitionConfig,
   }),
-  SearchStack: createStackNavigator({
-    Search: SearchScreen,
+  ProjectsStack: createStackNavigator({
+    Projects: ProjectsScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

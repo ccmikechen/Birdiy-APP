@@ -24,7 +24,7 @@ const TABS = [{
   key: 'hotest', title: '最熱門',
 }];
 
-export default class SearchScreen extends Component {
+export default class ProjectsScreen extends Component {
   static navigationOptions = {
     header: null,
   };
