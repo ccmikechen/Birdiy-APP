@@ -29,7 +29,7 @@ export default withNavigation(
         }
       `,
       variables: {
-        count: 4,
+        count: 5,
         allCursor: null,
         followingCursor: null,
       },

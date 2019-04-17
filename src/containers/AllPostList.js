@@ -13,19 +13,21 @@ class AllPostList extends Component {
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
     }).isRequired,
+    batchLoad: PropTypes.number,
   };
 
   static defaultProps = {
     query: null,
+    batchLoad: 5,
   };
 
   loadMore = async () => {
-    const { relay } = this.props;
+    const { relay, batchLoad } = this.props;
 
     if (!relay.hasMore() || relay.isLoading()) {
       return;
     }
-    relay.loadMore(4);
+    relay.loadMore(batchLoad);
   }
 
   render() {

@@ -34,6 +34,9 @@ export default class TimelineScreen extends Component {
         edges: PropTypes.arrayOf(PropTypes.object),
       }),
     }),
+    variables: PropTypes.shape({
+      count: PropTypes.number,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -65,7 +68,7 @@ export default class TimelineScreen extends Component {
   }
 
   render() {
-    const { navigation, query } = this.props;
+    const { navigation, query, variables } = this.props;
     const { addPostButtonVisible } = this.state;
 
     return (
@@ -87,10 +90,12 @@ export default class TimelineScreen extends Component {
           <AllPostList
             query={query}
             onPostPress={this.handlePostPress}
+            batchLoad={variables.count}
           />
           <FollowingPostList
             query={query}
             onPostPress={this.handlePostPress}
+            batchLoad={variables.count}
           />
         </TabsScreenView>
         <AnimatedAddButton

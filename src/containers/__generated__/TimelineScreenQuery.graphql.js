@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d9b87b5386f86eac2deab391413229e0
+ * @relayHash c123970b6133a498003b2f345b7adfba
  */
 
 /* eslint-disable */
@@ -57,18 +57,20 @@ fragment AllPostList_query on RootQueryType {
 }
 
 fragment FollowingPostList_query on RootQueryType {
-  following: allPosts(first: $count, after: $followingCursor) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        ...PostSection_post
-        id
-        __typename
+  viewer {
+    following: followingUserPosts(first: $count, after: $followingCursor) {
+      pageInfo {
+        hasNextPage
+        endCursor
       }
-      cursor
+      edges {
+        node {
+          ...PostSection_post
+          id
+          __typename
+        }
+        cursor
+      }
     }
   }
 }
@@ -327,22 +329,33 @@ return {
       },
       {
         "kind": "LinkedField",
-        "alias": "following",
-        "name": "allPosts",
+        "alias": null,
+        "name": "viewer",
         "storageKey": null,
-        "args": (v6/*: any*/),
-        "concreteType": "PostConnection",
+        "args": null,
+        "concreteType": "User",
         "plural": false,
-        "selections": (v5/*: any*/)
-      },
-      {
-        "kind": "LinkedHandle",
-        "alias": "following",
-        "name": "allPosts",
-        "args": (v6/*: any*/),
-        "handle": "connection",
-        "key": "FollowingPostList_following",
-        "filters": null
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": "following",
+            "name": "followingUserPosts",
+            "storageKey": null,
+            "args": (v6/*: any*/),
+            "concreteType": "PostConnection",
+            "plural": false,
+            "selections": (v5/*: any*/)
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": "following",
+            "name": "followingUserPosts",
+            "args": (v6/*: any*/),
+            "handle": "connection",
+            "key": "FollowingPostList_following",
+            "filters": null
+          }
+        ]
       }
     ]
   },
@@ -350,7 +363,7 @@ return {
     "operationKind": "query",
     "name": "TimelineScreenQuery",
     "id": null,
-    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllPostList_query\n  ...FollowingPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  following: allPosts(first: $count, after: $followingCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    name\n  }\n}\n",
+    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllPostList_query\n  ...FollowingPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

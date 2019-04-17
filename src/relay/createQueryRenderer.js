@@ -29,6 +29,7 @@ export default (FragmentComponent, Component, config) => {
               {...componentProps}
               query={props}
               loading={!props}
+              variables={variables}
             />
           );
         }}
