@@ -13,7 +13,7 @@ import styles from './styles';
 const ProjectSection = ({ project, onPress }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={onPress}
+    onPress={onPress(project.id)}
   >
     <Surface style={styles.container}>
       <Image
@@ -21,8 +21,8 @@ const ProjectSection = ({ project, onPress }) => (
         style={styles.image}
       />
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{project.title}</Text>
-        <Text style={styles.author}>{`by ${project.author}`}</Text>
+        <Text style={styles.title}>{project.name}</Text>
+        <Text style={styles.author}>{`by ${project.author.name}`}</Text>
       </View>
     </Surface>
   </TouchableOpacity>
@@ -30,16 +30,18 @@ const ProjectSection = ({ project, onPress }) => (
 
 ProjectSection.propTypes = {
   project: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    likes: PropTypes.number.isRequired,
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   onPress: PropTypes.func,
 };
 
 ProjectSection.defaultProps = {
-  onPress: () => {},
+  onPress: () => () => {},
 };
 
 export default ProjectSection;

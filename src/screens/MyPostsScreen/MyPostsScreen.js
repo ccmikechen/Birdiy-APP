@@ -24,10 +24,7 @@ export default class MyPostsScreen extends Component {
   };
 
   state = {
-    data: posts.map(post => ({
-      type: 'post',
-      data: post,
-    })),
+    data: posts,
     addPostButtonVisible: true,
   };
 
@@ -37,32 +34,24 @@ export default class MyPostsScreen extends Component {
     this.setState({
       data: [
         ...data,
-        ...posts.map(post => ({
-          type: 'post',
-          data: post,
-        })),
+        ...posts,
       ],
     });
   };
 
-  renderSection = (section) => {
+  renderSection = (data) => {
     const { navigation } = this.props;
 
-    switch (section.type) {
-      case 'post':
-        return (
-          <View style={styles.postContainer}>
-            <PostSection
-              post={section.data}
-              onPostPress={() => {
-                navigation.push('PostDetail');
-              }}
-            />
-          </View>
-        );
-      default:
-        return null;
-    }
+    return (
+      <View style={styles.postContainer}>
+        <PostSection
+          post={data}
+          onPostPress={() => {
+            navigation.push('PostDetail');
+          }}
+        />
+      </View>
+    );
   };
 
   handleSearch = () => {

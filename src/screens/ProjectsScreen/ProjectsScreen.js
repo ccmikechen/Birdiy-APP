@@ -2,21 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Icon } from 'expo';
-import { chunk } from 'lodash';
 
-import InfiniteTabsScreenView from '../../components/InfiniteTabsScreenView';
+import TabsScreenView from '../../components/TabsScreenView';
 import SearchHeader from '../../components/SearchHeader';
-import ProjectSection from '../../components/ProjectSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
+import NewestProjectList from '../../containers/NewestProjectList';
+import HotestProjectList from '../../containers/HotestProjectList';
+
+import { categories } from './mocks';
 
 import styles from './styles';
-
-import { projects, categories } from './mocks';
-
-const projectPair = chunk(projects, 2).map(project => ({
-  type: 'project',
-  data: project,
-}));
 
 const TABS = [{
   key: 'newest', title: '最新',
@@ -36,6 +31,21 @@ export default class ProjectsScreen extends Component {
       navigate: PropTypes.func.isRequired,
       getParam: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      newest: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+      hotest: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }),
+    variables: PropTypes.shape({
+      count: PropTypes.number,
+    }).isRequired,
+  };
+
+  static defaultProps = {
+    query: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -47,10 +57,6 @@ export default class ProjectsScreen extends Component {
 
     return {
       ...prevState,
-      data: {
-        newest: projectPair,
-        hotest: projectPair,
-      },
       lastKeywordParam: keyword,
       keyword,
     };
@@ -61,27 +67,12 @@ export default class ProjectsScreen extends Component {
 
     const keyword = props.navigation.getParam('keyword') || '';
     this.state = {
-      data: {
-        newest: projectPair,
-        hotest: projectPair,
-      },
       addProjectButtonVisible: true,
       lastKeywordParam: keyword,
       keyword,
       categories: [],
     };
   }
-
-  loadMoreContentAsync = key => async () => {
-    const { data } = this.state;
-    const projectData = data[key];
-    this.setState({
-      data: {
-        ...data,
-        [key]: [...projectData, ...projectPair],
-      },
-    });
-  };
 
   handleOpenProject = () => {
     const { navigation } = this.props;
@@ -90,13 +81,9 @@ export default class ProjectsScreen extends Component {
 
   handleSearch = () => {
     this.setState({
-      data: {
-        newest: projectPair,
-        hotest: projectPair,
-      },
+      // Refresh
     });
-    this.screenView.scrollToTop('newest');
-    this.screenView.scrollToTop('hotest');
+    // scrollToTop
   };
 
   handleSelectCategory = (selected) => {
@@ -112,38 +99,13 @@ export default class ProjectsScreen extends Component {
     });
   };
 
-  renderSection = () => (section) => {
-    switch (section.type) {
-      case 'project':
-        return (
-          <View style={styles.projectColumn}>
-            <View style={styles.projectSectionContainer}>
-              <ProjectSection
-                project={section.data[0]}
-                onPress={this.handleOpenProject}
-              />
-            </View>
-            <View style={styles.projectSectionContainer}>
-              <ProjectSection
-                project={section.data[1]}
-                onPress={this.handleOpenProject}
-              />
-            </View>
-          </View>
-
-        );
-      default:
-        return null;
-    }
-  };
-
   render() {
-    const { navigation } = this.props;
-    const { data, addProjectButtonVisible, keyword } = this.state;
+    const { navigation, query, variables } = this.props;
+    const { addProjectButtonVisible, keyword } = this.state;
 
     return (
       <View style={styles.container}>
-        <InfiniteTabsScreenView
+        <TabsScreenView
           ref={(ref) => { this.screenView = ref; }}
           style={styles.container}
           navigation={navigation}
@@ -157,14 +119,20 @@ export default class ProjectsScreen extends Component {
             />
           )}
           tabs={TABS}
-          data={data}
-          loadMoreContentAsync={this.loadMoreContentAsync}
-          renderSection={this.renderSection}
           onToggleTabBar={(visible) => {
             this.setState({ addProjectButtonVisible: visible });
           }}
           animatedScroll
-        />
+        >
+          <NewestProjectList
+            query={query}
+            batchLoad={variables.count}
+          />
+          <HotestProjectList
+            query={query}
+            batchLoad={variables.count}
+          />
+        </TabsScreenView>
         <AnimatedAddButton
           style={styles.addProjectButton}
           visible={addProjectButtonVisible}

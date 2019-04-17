@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 78ce74dfc56d8c06a206128fc57433f7
+ * @relayHash 57d1cd2ec43e05514ac4b7e1500fd8d8
  */
 
 /* eslint-disable */
@@ -9,38 +9,38 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type AllPostList_query$ref = any;
-export type AllPostListPaginationQueryVariables = {|
+type NewestProjectList_query$ref = any;
+export type NewestProjectListPaginationQueryVariables = {|
   count: number,
-  allCursor?: ?string,
+  newestCursor?: ?string,
 |};
-export type AllPostListPaginationQueryResponse = {|
-  +$fragmentRefs: AllPostList_query$ref
+export type NewestProjectListPaginationQueryResponse = {|
+  +$fragmentRefs: NewestProjectList_query$ref
 |};
-export type AllPostListPaginationQuery = {|
-  variables: AllPostListPaginationQueryVariables,
-  response: AllPostListPaginationQueryResponse,
+export type NewestProjectListPaginationQuery = {|
+  variables: NewestProjectListPaginationQueryVariables,
+  response: NewestProjectListPaginationQueryResponse,
 |};
 */
 
 
 /*
-query AllPostListPaginationQuery(
+query NewestProjectListPaginationQuery(
   $count: Int!
-  $allCursor: String
+  $newestCursor: String
 ) {
-  ...AllPostList_query
+  ...NewestProjectList_query
 }
 
-fragment AllPostList_query on RootQueryType {
-  all: allPosts(first: $count, after: $allCursor) {
+fragment NewestProjectList_query on RootQueryType {
+  newest: allProjects(first: $count, after: $newestCursor) {
     pageInfo {
       hasNextPage
       endCursor
     }
     edges {
       node {
-        ...PostSection_post
+        ...ProjectSection_project
         id
         __typename
       }
@@ -49,21 +49,12 @@ fragment AllPostList_query on RootQueryType {
   }
 }
 
-fragment PostSection_post on Post {
+fragment ProjectSection_project on Project {
+  id
+  name
+  image
   author {
     name
-    image
-  }
-  insertedAt
-  message
-  thumbnail {
-    image
-  }
-  relatedProjectType
-  relatedProjectName
-  relatedProject {
-    name
-    id
   }
 }
 */
@@ -78,7 +69,7 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "allCursor",
+    "name": "newestCursor",
     "type": "String",
     "defaultValue": null
   }
@@ -87,7 +78,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "allCursor",
+    "variableName": "newestCursor",
     "type": "String"
   },
   {
@@ -103,49 +94,35 @@ v2 = {
   "name": "name",
   "args": null,
   "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
 };
 return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "AllPostListPaginationQuery",
+    "name": "NewestProjectListPaginationQuery",
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "AllPostList_query",
+        "name": "NewestProjectList_query",
         "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "AllPostListPaginationQuery",
+    "name": "NewestProjectListPaginationQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
-        "alias": "all",
-        "name": "allPosts",
+        "alias": "newest",
+        "name": "allProjects",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "PostConnection",
+        "concreteType": "ProjectConnection",
         "plural": false,
         "selections": [
           {
@@ -179,7 +156,7 @@ return {
             "name": "edges",
             "storageKey": null,
             "args": null,
-            "concreteType": "PostEdge",
+            "concreteType": "ProjectEdge",
             "plural": true,
             "selections": [
               {
@@ -188,9 +165,24 @@ return {
                 "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Post",
+                "concreteType": "Project",
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "id",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v2/*: any*/),
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "image",
+                    "args": null,
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -200,64 +192,9 @@ return {
                     "concreteType": "User",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
-                      (v3/*: any*/)
+                      (v2/*: any*/)
                     ]
                   },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "insertedAt",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "message",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "thumbnail",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "PostPhoto",
-                    "plural": false,
-                    "selections": [
-                      (v3/*: any*/)
-                    ]
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "relatedProjectType",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "relatedProjectName",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "relatedProject",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Project",
-                    "plural": false,
-                    "selections": [
-                      (v2/*: any*/),
-                      (v4/*: any*/)
-                    ]
-                  },
-                  (v4/*: any*/),
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -280,24 +217,24 @@ return {
       },
       {
         "kind": "LinkedHandle",
-        "alias": "all",
-        "name": "allPosts",
+        "alias": "newest",
+        "name": "allProjects",
         "args": (v1/*: any*/),
         "handle": "connection",
-        "key": "AllPostList_all",
+        "key": "NewestProjectList_newest",
         "filters": null
       }
     ]
   },
   "params": {
     "operationKind": "query",
-    "name": "AllPostListPaginationQuery",
+    "name": "NewestProjectListPaginationQuery",
     "id": null,
-    "text": "query AllPostListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    name\n    id\n  }\n}\n",
+    "text": "query NewestProjectListPaginationQuery(\n  $count: Int!\n  $newestCursor: String\n) {\n  ...NewestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5b0a0d8a8c4c343eaf551e2ebc9bace7';
+(node/*: any*/).hash = '3be95a8468047506730d4b4f864b4f22';
 module.exports = node;

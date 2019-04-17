@@ -9,7 +9,7 @@ import TabBar from '../components/TabBar';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TimelineScreen from '../containers/TimelineScreen';
-import ProjectsScreen from '../screens/ProjectsScreen';
+import ProjectsScreen from '../containers/ProjectsScreen';
 // import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';

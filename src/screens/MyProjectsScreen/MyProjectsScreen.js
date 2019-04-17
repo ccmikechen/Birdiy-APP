@@ -11,10 +11,7 @@ import styles from './styles';
 
 import { projects } from './mocks';
 
-const projectPair = chunk(projects, 2).map(project => ({
-  type: 'project',
-  data: project,
-}));
+const projectPair = chunk(projects, 2);
 
 export default class MyProjectsScreen extends Component {
   static navigationOptions = {
@@ -39,7 +36,7 @@ export default class MyProjectsScreen extends Component {
     });
   };
 
-  handleOpenProject = () => {
+  handleOpenProject = () => () => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail');
   };
@@ -50,30 +47,22 @@ export default class MyProjectsScreen extends Component {
   handleOpenFilter = () => {
   };
 
-  renderSection = (section) => {
-    switch (section.type) {
-      case 'project':
-        return (
-          <View style={styles.projectColumn}>
-            <View style={styles.projectSectionContainer}>
-              <ProjectSection
-                project={section.data[0]}
-                onPress={this.handleOpenProject}
-              />
-            </View>
-            <View style={styles.projectSectionContainer}>
-              <ProjectSection
-                project={section.data[1]}
-                onPress={this.handleOpenProject}
-              />
-            </View>
-          </View>
-
-        );
-      default:
-        return null;
-    }
-  };
+  renderSection = data => (
+    <View style={styles.projectColumn}>
+      <View style={styles.projectSectionContainer}>
+        <ProjectSection
+          project={data[0]}
+          onPress={this.handleOpenProject}
+        />
+      </View>
+      <View style={styles.projectSectionContainer}>
+        <ProjectSection
+          project={data[1]}
+          onPress={this.handleOpenProject}
+        />
+      </View>
+    </View>
+  );
 
   render() {
     const { navigation } = this.props;
