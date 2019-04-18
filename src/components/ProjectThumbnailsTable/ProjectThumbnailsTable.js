@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Dimensions } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 
-import ProjectSection from '../ProjectSection';
+import ProjectSection from '../../containers/ProjectSection';
 
 import styles from './styles';
 
@@ -14,7 +14,7 @@ const ProjectThumbnailsTable = ({ projects, onPressProject }) => (
   <FlatGrid
     itemDimension={DIMENSION}
     spacing={SPACING}
-    items={projects}
+    items={projects || []}
     style={styles.container}
     itemContainerStyle={styles.itemContainer}
     renderItem={({ item }) => (
@@ -27,16 +27,12 @@ const ProjectThumbnailsTable = ({ projects, onPressProject }) => (
 );
 
 ProjectThumbnailsTable.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    likes: PropTypes.number.isRequired,
-  })).isRequired,
+  projects: PropTypes.arrayOf(PropTypes.object),
   onPressProject: PropTypes.func,
 };
 
 ProjectThumbnailsTable.defaultProps = {
+  projects: [],
   onPressProject: () => {},
 };
 

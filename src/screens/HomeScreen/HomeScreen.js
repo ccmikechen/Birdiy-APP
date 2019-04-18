@@ -6,9 +6,9 @@ import HomeHeader from '../../components/HomeHeader';
 import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 import CategoriesTable from '../../components/CategoriesTable';
-import ProjectThumbnailsTable from '../../components/ProjectThumbnailsTable';
+import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
 
-import { categories, projects, keywords } from './mocks';
+import { categories, keywords } from './mocks';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -21,6 +21,20 @@ export default class HomeScreen extends Component {
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      all: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+      following: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }),
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    query: null,
+    loading: true,
   };
 
   state = {
@@ -46,17 +60,21 @@ export default class HomeScreen extends Component {
     />
   );
 
-  renderNewProjects = () => (
-    <ExtensibleSectionContent
-      onMorePress={this.handleMoreProject}
-      renderContent={() => (
-        <ProjectThumbnailsTable
-          projects={projects}
-          onPressProject={this.handleOpenProject}
-        />
-      )}
-    />
-  );
+  renderNewProjects = () => {
+    const { query } = this.props;
+
+    return (
+      <ExtensibleSectionContent
+        onMorePress={this.handleMoreProject}
+        renderContent={() => (
+          <ProjectThumbnailsTable
+            query={query}
+            onPressProject={this.handleOpenProject}
+          />
+        )}
+      />
+    );
+  };
 
   renderHotKeywords = () => (
     <CategoriesTable categories={keywords} />
@@ -74,7 +92,7 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, loading } = this.props;
     const { keyword } = this.state;
 
     return (
@@ -90,13 +108,14 @@ export default class HomeScreen extends Component {
           />
         )}
         animatedScroll
+        loading={loading}
       >
         <HomeSection
           title="熱門分類"
           renderContent={this.renderHotCategories}
         />
         <HomeSection
-          title="最新DIY項目"
+          title="最新專案"
           renderContent={this.renderNewProjects}
         />
         <HomeSection

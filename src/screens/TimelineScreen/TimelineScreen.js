@@ -37,10 +37,12 @@ export default class TimelineScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
+    loading: true,
   };
 
   state = {
@@ -68,7 +70,9 @@ export default class TimelineScreen extends Component {
   }
 
   render() {
-    const { navigation, query, variables } = this.props;
+    const {
+      navigation, query, variables, loading,
+    } = this.props;
     const { addPostButtonVisible } = this.state;
 
     return (
@@ -86,6 +90,7 @@ export default class TimelineScreen extends Component {
             this.setState({ addPostButtonVisible: visible });
           }}
           animatedScroll
+          loading={loading}
         >
           <AllPostList
             query={query}

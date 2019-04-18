@@ -4,6 +4,7 @@ import { View, ScrollView } from 'react-native';
 
 import AnimatedHeader from '../AnimatedHeader';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
+import LoadingIndicator from '../LoadingIndicator';
 
 import styles from './styles';
 
@@ -21,12 +22,14 @@ export default class TopScreenView extends Component {
     ]),
     animatedScroll: PropTypes.bool,
     fullScreen: PropTypes.bool,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     animatedScroll: false,
     fullScreen: false,
     children: null,
+    loading: false,
   };
 
   state = {
@@ -48,6 +51,7 @@ export default class TopScreenView extends Component {
       children,
       animatedScroll,
       fullScreen,
+      loading,
     } = this.props;
     const { isHeaderVisible } = this.state;
 
@@ -62,7 +66,7 @@ export default class TopScreenView extends Component {
           onScrollUp={this.handleVisible(true)}
         >
           <View style={styles.paddingView} />
-          {children}
+          {loading ? <LoadingIndicator /> : children}
         </TriggerScrollView>
         {animatedScroll || fullScreen ? null : (
           <View style={styles.bottomTabBarPaddingView} />

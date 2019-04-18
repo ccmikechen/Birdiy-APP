@@ -5,6 +5,7 @@ import { View, ViewPropTypes } from 'react-native';
 import AnimatedHeader from '../AnimatedHeader';
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
 import AnimatedMultipleView from '../AnimatedMultipleView';
+import LoadingIndicator from '../LoadingIndicator';
 
 import styles from './styles';
 
@@ -25,12 +26,14 @@ export default class TabsScreenView extends Component {
       PropTypes.node,
     ]).isRequired,
     style: ViewPropTypes.style,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     animatedScroll: false,
     onToggleTabBar: () => {},
     style: {},
+    loading: false,
   };
 
   state = {
@@ -66,6 +69,7 @@ export default class TabsScreenView extends Component {
       onToggleTabBar,
       style,
       children,
+      loading,
     } = this.props;
     const {
       isHeaderVisible,
@@ -73,9 +77,13 @@ export default class TabsScreenView extends Component {
     } = this.state;
 
     const newChildren = React.Children.map(children, (child, index) => (
-      React.cloneElement(child, {
-        onScrollTrigger: this.handleVisible(index),
-      })
+      loading ? (
+        <LoadingIndicator />
+      ) : (
+        React.cloneElement(child, {
+          onScrollTrigger: this.handleVisible(index),
+        })
+      )
     ));
 
     return (

@@ -42,10 +42,12 @@ export default class ProjectsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
+    loading: true,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -100,7 +102,9 @@ export default class ProjectsScreen extends Component {
   };
 
   render() {
-    const { navigation, query, variables } = this.props;
+    const {
+      navigation, query, variables, loading,
+    } = this.props;
     const { addProjectButtonVisible, keyword } = this.state;
 
     return (
@@ -123,6 +127,7 @@ export default class ProjectsScreen extends Component {
             this.setState({ addProjectButtonVisible: visible });
           }}
           animatedScroll
+          loading={loading}
         >
           <NewestProjectList
             query={query}

@@ -25,10 +25,12 @@ export default class MyProjectsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
+    loading: true,
   };
 
   handleOpenProject = () => {
@@ -43,7 +45,9 @@ export default class MyProjectsScreen extends Component {
   };
 
   render() {
-    const { navigation, query, variables } = this.props;
+    const {
+      navigation, query, variables, loading,
+    } = this.props;
 
     return (
       <TopScreenView
@@ -57,6 +61,7 @@ export default class MyProjectsScreen extends Component {
           />
         )}
         animatedScroll
+        loading={loading}
       >
         {query ? (
           <MyProjectList
