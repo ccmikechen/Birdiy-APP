@@ -4,11 +4,11 @@ import { graphql, createPaginationContainer } from 'react-relay';
 
 import PostList from '../components/PostList';
 
-class FollowingPostList extends Component {
+class MyPostList extends Component {
   static propTypes = {
     query: PropTypes.shape({
       viewer: PropTypes.shape({
-        following: PropTypes.shape({
+        posts: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
             node: PropTypes.object,
           })),
@@ -38,7 +38,7 @@ class FollowingPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.viewer.following.edges.map(({ node }) => node);
+    const data = query && query.viewer.posts.edges.map(({ node }) => node);
 
     return query ? (
       <PostList
@@ -51,16 +51,17 @@ class FollowingPostList extends Component {
   }
 }
 
+
 export default createPaginationContainer(
-  FollowingPostList,
+  MyPostList,
   {
     query: graphql`
-      fragment FollowingPostList_query on RootQueryType {
+      fragment MyPostList_query on RootQueryType {
         viewer {
-          following: followingUserPosts(
+          posts(
             first: $count,
-            after: $followingCursor
-          ) @connection(key: "FollowingPostList_following") {
+            after: $cursor
+          ) @connection(key: "MyPostList_posts") {
             pageInfo {
               hasNextPage
               endCursor
@@ -78,7 +79,7 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.viewer.following
+      props.query && props.query.viewer.posts
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
@@ -86,15 +87,15 @@ export default createPaginationContainer(
     }),
     getVariables: (props, { count, cursor }) => ({
       count,
-      followingCursor: cursor,
+      cursor,
     }),
-    variables: { followingCursor: null },
+    variables: { cursor: null },
     query: graphql`
-      query FollowingPostListPaginationQuery (
+      query MyPostListPaginationQuery (
         $count: Int!,
-        $followingCursor: String
+        $cursor: String
       ) {
-        ...FollowingPostList_query
+        ...MyPostList_query
       }
     `,
   },

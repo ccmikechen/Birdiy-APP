@@ -17,6 +17,7 @@ export default class PostList extends Component {
     onScrollTrigger: PropTypes.func,
     onPostPress: PropTypes.func,
     headerPadding: PropTypes.bool,
+    canLoadMore: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -27,10 +28,7 @@ export default class PostList extends Component {
     onScrollTrigger: () => {},
     onPostPress: () => {},
     headerPadding: false,
-  };
-
-  state = {
-    canLoadMore: true,
+    canLoadMore: false,
   };
 
   renderPost = (post) => {
@@ -62,8 +60,8 @@ export default class PostList extends Component {
       renderRefresh,
       onScrollTrigger,
       headerPadding,
+      canLoadMore,
     } = this.props;
-    const { canLoadMore } = this.state;
 
     if (refreshing) {
       return renderRefresh();

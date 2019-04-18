@@ -51,7 +51,6 @@ class MyProjectList extends Component {
   }
 }
 
-
 export default createPaginationContainer(
   MyProjectList,
   {

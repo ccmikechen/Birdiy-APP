@@ -52,6 +52,7 @@ export default class TabsScreenView extends Component {
       animatedScroll,
       onToggleTabBar,
     } = this.props;
+
     if (!animatedScroll) {
       return;
     }

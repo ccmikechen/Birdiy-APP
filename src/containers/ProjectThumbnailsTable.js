@@ -4,7 +4,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 
 import ProjectThumbnailsTable from '../components/ProjectThumbnailsTable';
 
-const ProjectThumbnailsFragmentComponent = (props) => {
+const ProjectThumbnailsFragmentContainer = (props) => {
   const { query } = props;
   const projects = query && query.projects.edges.map(({ node }) => node);
 
@@ -16,7 +16,7 @@ const ProjectThumbnailsFragmentComponent = (props) => {
   );
 };
 
-ProjectThumbnailsFragmentComponent.propTypes = {
+ProjectThumbnailsFragmentContainer.propTypes = {
   query: PropTypes.shape({
     projects: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({
@@ -26,12 +26,12 @@ ProjectThumbnailsFragmentComponent.propTypes = {
   }),
 };
 
-ProjectThumbnailsFragmentComponent.defaultProps = {
+ProjectThumbnailsFragmentContainer.defaultProps = {
   query: null,
 };
 
 export default createFragmentContainer(
-  ProjectThumbnailsFragmentComponent,
+  ProjectThumbnailsFragmentContainer,
   graphql`
     fragment ProjectThumbnailsTable_query on RootQueryType {
       projects: allProjects(

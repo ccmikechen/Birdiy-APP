@@ -18,6 +18,7 @@ export default class ProjectList extends Component {
     onScrollTrigger: PropTypes.func,
     onProjectPress: PropTypes.func,
     headerPadding: PropTypes.bool,
+    canLoadMore: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -28,10 +29,7 @@ export default class ProjectList extends Component {
     onScrollTrigger: () => {},
     onProjectPress: () => () => {},
     headerPadding: false,
-  };
-
-  state = {
-    canLoadMore: true,
+    canLoadMore: false,
   };
 
   scrollToTop = () => {
@@ -74,8 +72,8 @@ export default class ProjectList extends Component {
       renderRefresh,
       onScrollTrigger,
       headerPadding,
+      canLoadMore,
     } = this.props;
-    const { canLoadMore } = this.state;
 
     if (refreshing) {
       return renderRefresh();

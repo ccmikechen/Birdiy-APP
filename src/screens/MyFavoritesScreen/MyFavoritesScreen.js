@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TopScreenView from '../../components/TopScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import MyFavoritesHeader from '../../components/MyFavoritesHeader';
 import MyFavoriteProjectList from '../../containers/MyFavoriteProjectList';
 
@@ -47,7 +47,7 @@ export default class MyFavoritesScreen extends Component {
     } = this.props;
 
     return (
-      <TopScreenView
+      <SimpleScreenView
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
@@ -59,13 +59,12 @@ export default class MyFavoritesScreen extends Component {
         animatedScroll
         loading={loading}
       >
-        {query ? (
-          <MyFavoriteProjectList
-            query={query}
-            batchLoad={variables.count}
-          />
-        ) : null}
-      </TopScreenView>
+        <MyFavoriteProjectList
+          query={query}
+          batchLoad={variables.count}
+          headerPadding
+        />
+      </SimpleScreenView>
     );
   }
 }

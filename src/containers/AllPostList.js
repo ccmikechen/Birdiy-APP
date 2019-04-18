@@ -7,7 +7,11 @@ import PostList from '../components/PostList';
 class AllPostList extends Component {
   static propTypes = {
     query: PropTypes.shape({
-      all: PropTypes.object,
+      all: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.shape({
+          node: PropTypes.object,
+        })),
+      }),
     }),
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,

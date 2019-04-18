@@ -8,9 +8,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Base.light,
   },
-  paddingView: {
-    height: Size.headerHeight,
-  },
   bottomTabBarPaddingView: {
     height: Size.bottomTabBarHeight,
   },

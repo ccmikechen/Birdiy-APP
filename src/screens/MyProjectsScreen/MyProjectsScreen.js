@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TopScreenView from '../../components/TopScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import MyProjectsHeader from '../../components/MyProjectsHeader';
 import MyProjectList from '../../containers/MyProjectList';
 
@@ -50,7 +50,7 @@ export default class MyProjectsScreen extends Component {
     } = this.props;
 
     return (
-      <TopScreenView
+      <SimpleScreenView
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
@@ -63,13 +63,12 @@ export default class MyProjectsScreen extends Component {
         animatedScroll
         loading={loading}
       >
-        {query ? (
-          <MyProjectList
-            query={query}
-            batchLoad={variables.count}
-          />
-        ) : null}
-      </TopScreenView>
+        <MyProjectList
+          query={query}
+          batchLoad={variables.count}
+          headerPadding
+        />
+      </SimpleScreenView>
     );
   }
 }

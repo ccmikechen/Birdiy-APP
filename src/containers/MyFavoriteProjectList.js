@@ -51,7 +51,6 @@ class MyFavoriteProjectList extends Component {
   }
 }
 
-
 export default createPaginationContainer(
   MyFavoriteProjectList,
   {

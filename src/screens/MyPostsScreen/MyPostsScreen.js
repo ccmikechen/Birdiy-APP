@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Icon } from 'expo';
 
-import InfiniteScreenView from '../../components/InfiniteScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import MyPostsHeader from '../../components/MyPostsHeader';
-import PostSection from '../../components/PostSection';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
+import MyPostList from '../../containers/MyPostList';
 
 import styles from './styles';
-
-import { posts } from './mocks';
 
 export default class MyPostsScreen extends Component {
   static navigationOptions = {
@@ -19,39 +17,27 @@ export default class MyPostsScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
+      push: PropTypes.func.isRequired,
       goBack: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      posts: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }),
+    variables: PropTypes.shape({
+      count: PropTypes.number,
+    }).isRequired,
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    query: null,
+    loading: true,
   };
 
   state = {
-    data: posts,
     addPostButtonVisible: true,
-  };
-
-  loadMoreContentAsync = async () => {
-    const { data } = this.state;
-
-    this.setState({
-      data: [
-        ...data,
-        ...posts,
-      ],
-    });
-  };
-
-  renderSection = (data) => {
-    const { navigation } = this.props;
-
-    return (
-      <View style={styles.postContainer}>
-        <PostSection
-          post={data}
-          onPostPress={() => {
-            navigation.push('PostDetail');
-          }}
-        />
-      </View>
-    );
   };
 
   handleSearch = () => {
@@ -62,13 +48,20 @@ export default class MyPostsScreen extends Component {
   handleReorder = () => {
   }
 
-  render() {
+  handlePostPress = id => () => {
     const { navigation } = this.props;
-    const { data, addPostButtonVisible } = this.state;
+    navigation.push('PostDetail', { id });
+  }
+
+  render() {
+    const {
+      navigation, query, variables, loading,
+    } = this.props;
+    const { addPostButtonVisible } = this.state;
 
     return (
       <View style={styles.container}>
-        <InfiniteScreenView
+        <SimpleScreenView
           navigation={navigation}
           renderHeader={() => (
             <MyPostsHeader
@@ -77,14 +70,19 @@ export default class MyPostsScreen extends Component {
               onReorder={this.handleReorder}
             />
           )}
-          data={data}
-          loadMoreContentAsync={this.loadMoreContentAsync}
-          renderSection={this.renderSection}
           onToggleTabBar={(visible) => {
             this.setState({ addPostButtonVisible: visible });
           }}
           animatedScroll
-        />
+          loading={loading}
+        >
+          <MyPostList
+            query={query}
+            onPostPress={this.handlePostPress}
+            batchLoad={variables.count}
+            headerPadding
+          />
+        </SimpleScreenView>
         <AnimatedAddButton
           style={styles.addPostButton}
           visible={addPostButtonVisible}
