@@ -16,6 +16,7 @@ export default class PostList extends Component {
     renderRefresh: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onPostPress: PropTypes.func,
+    headerPadding: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -25,6 +26,7 @@ export default class PostList extends Component {
     renderRefresh: () => null,
     onScrollTrigger: () => {},
     onPostPress: () => {},
+    headerPadding: false,
   };
 
   state = {
@@ -59,6 +61,7 @@ export default class PostList extends Component {
       refreshing,
       renderRefresh,
       onScrollTrigger,
+      headerPadding,
     } = this.props;
     const { canLoadMore } = this.state;
 
@@ -71,18 +74,17 @@ export default class PostList extends Component {
     }
 
     return (
-      <View>
-        <View style={styles.tabBarPaddingView} />
-        <InfiniteList
-          data={posts}
-          loadMoreContentAsync={loadMore}
-          renderSection={this.renderPost}
-          onScrollTrigger={onScrollTrigger}
-          canLoadMoreContent={canLoadMore}
-          renderHeader={() => <View style={styles.paddingView} />}
-          innerRef={(ref) => { this.scrollView = ref; }}
-        />
-      </View>
+      <InfiniteList
+        data={posts}
+        loadMoreContentAsync={loadMore}
+        renderSection={this.renderPost}
+        onScrollTrigger={onScrollTrigger}
+        canLoadMoreContent={canLoadMore}
+        renderHeader={() => (headerPadding ? (
+          <View style={styles.paddingView} />
+        ) : null)}
+        innerRef={(ref) => { this.scrollView = ref; }}
+      />
     );
   }
 }

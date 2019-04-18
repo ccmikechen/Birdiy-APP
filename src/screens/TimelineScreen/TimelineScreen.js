@@ -91,11 +91,13 @@ export default class TimelineScreen extends Component {
             query={query}
             onPostPress={this.handlePostPress}
             batchLoad={variables.count}
+            headerPadding
           />
           <FollowingPostList
             query={query}
             onPostPress={this.handlePostPress}
             batchLoad={variables.count}
+            headerPadding
           />
         </TabsScreenView>
         <AnimatedAddButton

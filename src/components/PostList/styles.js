@@ -4,9 +4,6 @@ import Size from '../../constants/Size';
 import { Base } from '../../constants/Colors';
 
 export default StyleSheet.create({
-  tabBarPaddingView: {
-    height: Size.topTabBarHeight,
-  },
   paddingView: {
     height: Size.headerHeight,
     zIndex: 0,

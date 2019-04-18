@@ -17,6 +17,7 @@ export default class ProjectList extends Component {
     renderRefresh: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onProjectPress: PropTypes.func,
+    headerPadding: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class ProjectList extends Component {
     renderRefresh: () => null,
     onScrollTrigger: () => {},
     onProjectPress: () => () => {},
+    headerPadding: false,
   };
 
   state = {
@@ -71,6 +73,7 @@ export default class ProjectList extends Component {
       refreshing,
       renderRefresh,
       onScrollTrigger,
+      headerPadding,
     } = this.props;
     const { canLoadMore } = this.state;
 
@@ -85,18 +88,17 @@ export default class ProjectList extends Component {
     const projectSections = chunk(projects, 2);
 
     return (
-      <View>
-        <View style={styles.tabBarPaddingView} />
-        <InfiniteList
-          data={projectSections}
-          loadMoreContentAsync={loadMore}
-          renderSection={this.renderProjectSection}
-          onScrollTrigger={onScrollTrigger}
-          canLoadMoreContent={canLoadMore}
-          renderHeader={() => <View style={styles.paddingView} />}
-          innerRef={(ref) => { this.scrollView = ref; }}
-        />
-      </View>
+      <InfiniteList
+        data={projectSections}
+        loadMoreContentAsync={loadMore}
+        renderSection={this.renderProjectSection}
+        onScrollTrigger={onScrollTrigger}
+        canLoadMoreContent={canLoadMore}
+        renderHeader={() => (headerPadding ? (
+          <View style={styles.paddingView} />
+        ) : null)}
+        innerRef={(ref) => { this.scrollView = ref; }}
+      />
     );
   }
 }

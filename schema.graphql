@@ -127,15 +127,15 @@ type RootQueryType {
 }
 
 type User {
-  favoriteProjects: [Project]
+  favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   followedUsers: [User]
   followingUserPosts(after: String, before: String, first: Int, last: Int): PostConnection
   followingUsers: [User]
   image: String
-  likedProjects: [Project]
+  likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   name: String!
-  posts: [Post]
-  projects: [Project]
-  viewedProjects: [Project]
+  posts(after: String, before: String, first: Int, last: Int): PostConnection
+  projects(after: String, before: String, first: Int, last: Int): ProjectConnection
+  viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
 }
 

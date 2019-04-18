@@ -5,8 +5,6 @@ import { View, ScrollView } from 'react-native';
 import AnimatedHeader from '../AnimatedHeader';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
-import Size from '../../constants/Size';
-
 import styles from './styles';
 
 const TriggerScrollView = scrollViewTrigger(ScrollView);
@@ -54,10 +52,7 @@ export default class TopScreenView extends Component {
     const { isHeaderVisible } = this.state;
 
     return (
-      <View style={[styles.container, {
-        marginBottom: animatedScroll || fullScreen ? 0 : Size.bottomTabBarHeight,
-      }]}
-      >
+      <View style={styles.container}>
         <AnimatedHeader
           renderHeader={renderHeader}
           visible={isHeaderVisible}
@@ -69,6 +64,9 @@ export default class TopScreenView extends Component {
           <View style={styles.paddingView} />
           {children}
         </TriggerScrollView>
+        {animatedScroll || fullScreen ? null : (
+          <View style={styles.bottomTabBarPaddingView} />
+        )}
       </View>
     );
   }

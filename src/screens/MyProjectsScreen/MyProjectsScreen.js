@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
-import { chunk } from 'lodash';
 
-import InfiniteScreenView from '../../components/InfiniteScreenView';
+import TopScreenView from '../../components/TopScreenView';
 import MyProjectsHeader from '../../components/MyProjectsHeader';
-import ProjectSection from '../../components/ProjectSection';
+import MyProjectList from '../../containers/MyProjectList';
 
 import styles from './styles';
-
-import { projects } from './mocks';
-
-const projectPair = chunk(projects, 2);
 
 export default class MyProjectsScreen extends Component {
   static navigationOptions = {
@@ -23,20 +17,21 @@ export default class MyProjectsScreen extends Component {
       goBack: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      projects: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }),
+    variables: PropTypes.shape({
+      count: PropTypes.number,
+    }).isRequired,
   };
 
-  state = {
-    data: projectPair,
+  static defaultProps = {
+    query: null,
   };
 
-  loadMoreContentAsync = async () => {
-    const { data } = this.state;
-    this.setState({
-      data: [...data, ...projectPair],
-    });
-  };
-
-  handleOpenProject = () => () => {
+  handleOpenProject = () => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail');
   };
@@ -47,29 +42,11 @@ export default class MyProjectsScreen extends Component {
   handleOpenFilter = () => {
   };
 
-  renderSection = data => (
-    <View style={styles.projectColumn}>
-      <View style={styles.projectSectionContainer}>
-        <ProjectSection
-          project={data[0]}
-          onPress={this.handleOpenProject}
-        />
-      </View>
-      <View style={styles.projectSectionContainer}>
-        <ProjectSection
-          project={data[1]}
-          onPress={this.handleOpenProject}
-        />
-      </View>
-    </View>
-  );
-
   render() {
-    const { navigation } = this.props;
-    const { data } = this.state;
+    const { navigation, query, variables } = this.props;
 
     return (
-      <InfiniteScreenView
+      <TopScreenView
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
@@ -79,11 +56,13 @@ export default class MyProjectsScreen extends Component {
             onOpenFilter={this.handleOpenFilter}
           />
         )}
-        data={data}
-        loadMoreContentAsync={this.loadMoreContentAsync}
-        renderSection={this.renderSection}
         animatedScroll
-      />
+      >
+        <MyProjectList
+          query={query}
+          batchLoad={variables.count}
+        />
+      </TopScreenView>
     );
   }
 }

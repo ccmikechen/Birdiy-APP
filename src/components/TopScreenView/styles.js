@@ -19,4 +19,7 @@ export default StyleSheet.create({
   paddingView: {
     height: Size.headerHeight,
   },
+  bottomTabBarPaddingView: {
+    height: Size.bottomTabBarHeight,
+  },
 });

@@ -18,7 +18,7 @@ import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../screens/ProjectDetailScreen';
-import MyProjectsScreen from '../screens/MyProjectsScreen';
+import MyProjectsScreen from '../containers/MyProjectsScreen';
 import MyPostsScreen from '../screens/MyPostsScreen';
 import MyFavoritesScreen from '../screens/MyFavoritesScreen';
 

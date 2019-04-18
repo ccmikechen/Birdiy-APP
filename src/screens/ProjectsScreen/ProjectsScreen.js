@@ -127,10 +127,12 @@ export default class ProjectsScreen extends Component {
           <NewestProjectList
             query={query}
             batchLoad={variables.count}
+            headerPadding
           />
           <HotestProjectList
             query={query}
             batchLoad={variables.count}
+            headerPadding
           />
         </TabsScreenView>
         <AnimatedAddButton

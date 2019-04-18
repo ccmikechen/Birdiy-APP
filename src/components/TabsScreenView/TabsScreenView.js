@@ -6,8 +6,6 @@ import AnimatedHeader from '../AnimatedHeader';
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
 import AnimatedMultipleView from '../AnimatedMultipleView';
 
-import Size from '../../constants/Size';
-
 import styles from './styles';
 
 export default class TabsScreenView extends Component {
@@ -81,14 +79,12 @@ export default class TabsScreenView extends Component {
     ));
 
     return (
-      <View style={[styles.container, style, {
-        marginBottom: animatedScroll ? 0 : Size.bottomTabBarHeight,
-      }]}
-      >
+      <View style={[styles.container, style]}>
         <AnimatedHeader
           renderHeader={renderHeader}
           visible={isHeaderVisible}
         />
+        <View style={styles.tabBarPaddingView} />
         <AnimatedTopTabBar
           visible={isHeaderVisible}
           tabs={tabs.map(({ title }) => title)}
@@ -102,6 +98,9 @@ export default class TabsScreenView extends Component {
         <AnimatedMultipleView index={tabIndex}>
           {newChildren}
         </AnimatedMultipleView>
+        {animatedScroll ? null : (
+          <View style={styles.bottomTabBarPaddingView} />
+        )}
       </View>
     );
   }

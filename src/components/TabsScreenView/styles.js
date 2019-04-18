@@ -1,11 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 import { Base } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Base.light,
+  },
+  tabBarPaddingView: {
+    height: Size.topTabBarHeight,
+  },
+  bottomTabBarPaddingView: {
+    height: Size.bottomTabBarHeight,
   },
   headerContainer: {
     position: 'absolute',
