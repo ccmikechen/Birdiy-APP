@@ -10,7 +10,6 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../containers/HomeScreen';
 import TimelineScreen from '../containers/TimelineScreen';
 import ProjectsScreen from '../containers/ProjectsScreen';
-// import NotificationScreen from '../screens/NotificationScreen';
 import ProfileScreen from '../containers/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
@@ -37,7 +36,7 @@ const noAnimationTransitionConfig = () => ({
   },
 });
 
-const tabBarIcon = icon => props => ( // eslint-disable-line react/prop-types
+const tabBarIcon = icon => props => (
   <TabBarIcon {...props} name={icon} />
 );
 
@@ -82,16 +81,6 @@ export default createBottomTabNavigator({
       tabBarOptions,
     },
   }),
-  // NotificationStack: createStackNavigator({
-  //   Notification: NotificationScreen,
-  //   ...sharedScreens,
-  // }, {
-  //   navigationOptions: {
-  //     tabBarLabel: '通知',
-  //     tabBarIcon: tabBarIcon('notifications'),
-  //     tabBarOptions,
-  //   },
-  // }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
     MyProjects: MyProjectsScreen,
