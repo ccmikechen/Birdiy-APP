@@ -38,7 +38,7 @@ class MyPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.viewer.posts.edges.map(({ node }) => node);
+    const data = query.viewer.posts.edges.map(({ node }) => node);
 
     return query ? (
       <PostList

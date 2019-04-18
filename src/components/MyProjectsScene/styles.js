@@ -25,11 +25,11 @@ export default StyleSheet.create({
     width: Size.myProjectListImageSize,
     height: Size.myProjectListImageSize,
   },
-  titleContainer: {
+  nameContainer: {
     flex: 1,
     padding: 10,
   },
-  title: {
+  name: {
     fontSize: 16,
     fontWeight: '400',
     color: TextColor.primaryDark,

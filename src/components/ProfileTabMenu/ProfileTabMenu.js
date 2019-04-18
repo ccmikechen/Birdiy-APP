@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import NormalTabBar from '../NormalTabBar';
-import MyProjectsScene from '../MyProjectsScene';
-import MyPostsScene from '../MyPostsScene';
-import MyFavoritesScene from '../MyFavoritesScene';
-
-import { projects, posts } from './mocks';
+import MyProjectsScene from '../../containers/MyProjectsScene';
+import MyPostsScene from '../../containers/MyPostsScene';
+import MyFavoritesScene from '../../containers/MyFavoritesScene';
 
 const TABS = ['專案', '投稿', '收藏'];
 
 export default class ProfileTabMenu extends Component {
   static propTypes = {
+    profile: PropTypes.shape({
+      projects: PropTypes.object,
+      posts: PropTypes.object,
+      favoriteProjects: PropTypes.object,
+    }),
     onMoreProjectsPress: PropTypes.func,
     onAddProjectPress: PropTypes.func,
     onMorePostsPress: PropTypes.func,
@@ -20,6 +23,7 @@ export default class ProfileTabMenu extends Component {
   };
 
   static defaultProps = {
+    profile: null,
     onMoreProjectsPress: () => {},
     onAddProjectPress: () => {},
     onMorePostsPress: () => {},
@@ -35,11 +39,12 @@ export default class ProfileTabMenu extends Component {
     const {
       onMoreProjectsPress,
       onAddProjectPress,
+      profile,
     } = this.props;
 
     return (
       <MyProjectsScene
-        projects={projects}
+        projects={profile.projects}
         onMorePress={onMoreProjectsPress}
         onAddPress={onAddProjectPress}
       />
@@ -50,11 +55,12 @@ export default class ProfileTabMenu extends Component {
     const {
       onMorePostsPress,
       onAddPostPress,
+      profile,
     } = this.props;
 
     return (
       <MyPostsScene
-        posts={posts}
+        posts={profile.posts}
         onMorePress={onMorePostsPress}
         onAddPress={onAddPostPress}
       />
@@ -62,11 +68,11 @@ export default class ProfileTabMenu extends Component {
   };
 
   renderFavorites = () => {
-    const { onMoreFavoritesPress } = this.props;
+    const { onMoreFavoritesPress, profile } = this.props;
 
     return (
       <MyFavoritesScene
-        projects={projects}
+        projects={profile.favoriteProjects}
         onMorePress={onMoreFavoritesPress}
       />
     );

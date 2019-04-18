@@ -38,7 +38,7 @@ class MyProjectList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.viewer.projects.edges.map(({ node }) => node);
+    const data = query.viewer.projects.edges.map(({ node }) => node);
 
     return query ? (
       <ProjectList

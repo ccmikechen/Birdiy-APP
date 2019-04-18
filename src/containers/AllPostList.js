@@ -36,7 +36,7 @@ class AllPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.all.edges.map(({ node }) => node);
+    const data = query.all.edges.map(({ node }) => node);
 
     return query ? (
       <PostList

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 
 import TopScreenView from '../../components/TopScreenView';
 import ProfileHeader from '../../components/ProfileHeader';
-import ProfileSection from '../../components/ProfileSection';
-import ProfileTabMenu from '../../components/ProfileTabMenu';
-
-import { profile } from './mocks';
+import ProfileSection from '../../containers/ProfileSection';
+import ProfileTabMenu from '../../containers/ProfileTabMenu';
 
 export default class ProfileScreen extends Component {
   static navigationOptions = {
@@ -18,6 +16,15 @@ export default class ProfileScreen extends Component {
       openDrawer: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      viewer: PropTypes.object,
+    }),
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    query: null,
+    loading: true,
   };
 
   handleFollowerPress = () => {
@@ -52,7 +59,8 @@ export default class ProfileScreen extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, query, loading } = this.props;
+    const profile = query && query.viewer;
 
     return (
       <TopScreenView
@@ -63,6 +71,7 @@ export default class ProfileScreen extends Component {
             onOpenSettings={() => navigation.navigate('SettingModal')}
           />
         )}
+        loading={loading}
       >
         <ProfileSection
           profile={profile}
@@ -70,6 +79,7 @@ export default class ProfileScreen extends Component {
           onFollowingPress={this.handleFollowingPress}
         />
         <ProfileTabMenu
+          profile={profile}
           onMoreProjectsPress={this.handleMoreProjectsPress}
           onAddProjectPress={this.handleAddProjectPress}
           onMorePostsPress={this.handleMorePostsPress}

@@ -18,8 +18,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: Size.myProjectListImageSize,
     aspectRatio: 1,
+    backgroundColor: Base.dark,
   },
   image: {
     width: Size.myProjectListImageSize,

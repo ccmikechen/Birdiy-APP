@@ -29,10 +29,10 @@ export default StyleSheet.create({
     flex: 1,
     padding: 10,
   },
-  titleContainer: {
+  nameContainer: {
     flex: 1,
   },
-  title: {
+  name: {
     fontSize: 16,
     fontWeight: '400',
     color: TextColor.primaryDark,

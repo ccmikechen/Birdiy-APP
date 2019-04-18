@@ -7,10 +7,13 @@ import {
   ListView,
   TouchableOpacity,
 } from 'react-native';
+import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 
 import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
+
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -21,9 +24,11 @@ const rowHasChanged = (r1, r2) => (
 export default class MyPostsScene extends Component {
   static propTypes = {
     posts: PropTypes.arrayOf(PropTypes.shape({
-      postedAt: PropTypes.string.isRequired,
+      insertedAt: PropTypes.string.isRequired,
       message: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      thumbnail: PropTypes.shape({
+        image: PropTypes.string.isRequired,
+      }),
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,
@@ -42,24 +47,32 @@ export default class MyPostsScene extends Component {
     };
   }
 
-  renderRow = project => (
+  renderRow = post => (
     <Surface style={styles.rowContainer}>
       <TouchableOpacity style={styles.touchable}>
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: project.image }}
-            style={styles.image}
-          />
+          {post.thumbnail ? (
+            <Image
+              source={{ uri: post.thumbnail.image }}
+              style={styles.image}
+            />
+          ) : (
+            <Icon.MaterialCommunityIcons
+              name="image-filter"
+              size={Size.myProjectListImageSize / 2}
+              color="#ffffff"
+            />
+          )}
         </View>
         <View style={styles.contentContainer}>
           <View style={styles.messageContainer}>
             <Text style={styles.message} numberOfLines={3}>
-              {project.message}
+              {post.message}
             </Text>
           </View>
           <View style={styles.dateContainer}>
             <Text style={styles.date}>
-              {project.postedAt}
+              {post.insertedAt}
             </Text>
           </View>
         </View>

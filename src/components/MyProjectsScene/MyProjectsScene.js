@@ -21,7 +21,7 @@ const rowHasChanged = (r1, r2) => (
 export default class MyProjectsScene extends Component {
   static propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
@@ -50,9 +50,9 @@ export default class MyProjectsScene extends Component {
             style={styles.image}
           />
         </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>
-            {project.title}
+        <View style={styles.nameContainer}>
+          <Text style={styles.name}>
+            {project.name}
           </Text>
         </View>
       </TouchableOpacity>

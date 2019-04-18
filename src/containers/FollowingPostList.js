@@ -38,7 +38,7 @@ class FollowingPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.viewer.following.edges.map(({ node }) => node);
+    const data = query.viewer.following.edges.map(({ node }) => node);
 
     return query ? (
       <PostList

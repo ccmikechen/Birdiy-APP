@@ -11,7 +11,7 @@ import HomeScreen from '../containers/HomeScreen';
 import TimelineScreen from '../containers/TimelineScreen';
 import ProjectsScreen from '../containers/ProjectsScreen';
 // import NotificationScreen from '../screens/NotificationScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileScreen from '../containers/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
 import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';

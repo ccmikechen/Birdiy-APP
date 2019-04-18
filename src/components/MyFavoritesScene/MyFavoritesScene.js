@@ -20,9 +20,11 @@ const rowHasChanged = (r1, r2) => (
 export default class MyFavoritesScene extends Component {
   static propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
+      author: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
   };
@@ -49,14 +51,14 @@ export default class MyFavoritesScene extends Component {
           />
         </View>
         <View style={styles.infoContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>
-              {project.title}
+          <View style={styles.nameContainer}>
+            <Text style={styles.name}>
+              {project.name}
             </Text>
           </View>
           <View style={styles.authorContainer}>
             <Text style={styles.author}>
-              {`by ${project.author}`}
+              {`by ${project.author.name}`}
             </Text>
           </View>
         </View>

@@ -129,6 +129,8 @@ type RootQueryType {
 type User {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   followedUsers: [User]
+  followerCount: Int
+  followingCount: Int
   followingUserPosts(after: String, before: String, first: Int, last: Int): PostConnection
   followingUsers: [User]
   image: String

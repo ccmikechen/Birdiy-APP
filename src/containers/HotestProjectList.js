@@ -32,7 +32,7 @@ class HotestProjectList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.hotest.edges.map(({ node }) => node);
+    const data = query.hotest.edges.map(({ node }) => node);
 
     return query ? (
       <ProjectList

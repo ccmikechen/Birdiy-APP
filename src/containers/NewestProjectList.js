@@ -32,7 +32,7 @@ class NewestProjectList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query && query.newest.edges.map(({ node }) => node);
+    const data = query.newest.edges.map(({ node }) => node);
 
     return query ? (
       <ProjectList

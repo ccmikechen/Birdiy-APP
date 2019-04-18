@@ -6,7 +6,7 @@ import ProjectThumbnailsTable from '../components/ProjectThumbnailsTable';
 
 const ProjectThumbnailsFragmentContainer = (props) => {
   const { query } = props;
-  const projects = query && query.projects.edges.map(({ node }) => node);
+  const projects = query.projects.edges.map(({ node }) => node);
 
   return (
     <ProjectThumbnailsTable
