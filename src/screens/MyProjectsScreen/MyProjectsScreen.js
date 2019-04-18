@@ -58,10 +58,12 @@ export default class MyProjectsScreen extends Component {
         )}
         animatedScroll
       >
-        <MyProjectList
-          query={query}
-          batchLoad={variables.count}
-        />
+        {query ? (
+          <MyProjectList
+            query={query}
+            batchLoad={variables.count}
+          />
+        ) : null}
       </TopScreenView>
     );
   }

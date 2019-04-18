@@ -20,7 +20,7 @@ import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../screens/ProjectDetailScreen';
 import MyProjectsScreen from '../containers/MyProjectsScreen';
 import MyPostsScreen from '../screens/MyPostsScreen';
-import MyFavoritesScreen from '../screens/MyFavoritesScreen';
+import MyFavoritesScreen from '../containers/MyFavoritesScreen';
 
 import Colors from '../constants/Colors';
 
