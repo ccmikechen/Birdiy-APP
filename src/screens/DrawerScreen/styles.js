@@ -34,6 +34,7 @@ export default StyleSheet.create({
     color: TextColor.primaryLight,
   },
   profileHintContainer: {
+    marginTop: 5,
   },
   profileHint: {
     fontSize: 12,

@@ -12,6 +12,7 @@ import { LinearGradient, Icon } from 'expo';
 import PostButton from '../../components/PostButton';
 import DrawerMenu from '../../components/DrawerMenu';
 import DrawerMenuItem from '../../components/DrawerMenuItem';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -25,19 +26,20 @@ export default class DrawerScreen extends Component {
       navigate: PropTypes.func.isRequired,
       closeDrawer: PropTypes.func.isRequired,
     }).isRequired,
-    profile: PropTypes.shape({
-      name: PropTypes.string,
-      followingCount: PropTypes.number,
-      followerCount: PropTypes.number,
+    query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.string,
+        followingCount: PropTypes.number,
+        followerCount: PropTypes.number,
+      }),
     }),
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
-    profile: {
-      name: '無名氏',
-      followingCount: 0,
-      followerCount: 0,
-    },
+    query: null,
+    loading: true,
   };
 
   navigateToScreen = screen => () => {
@@ -116,9 +118,11 @@ export default class DrawerScreen extends Component {
   );
 
   render() {
-    const { profile } = this.props;
+    const { query, loading } = this.props;
 
-    return (
+    return loading ? (
+      <LoadingIndicator />
+    ) : (
       <ScrollView style={styles.container}>
         <LinearGradient
           style={styles.headerContainer}
@@ -133,12 +137,12 @@ export default class DrawerScreen extends Component {
             <View style={styles.profileImageContainer}>
               <Image
                 style={styles.profileImage}
-                source={DEFAULT_PROFILE}
+                source={query.viewer.image ? { uri: query.viewer.image } : DEFAULT_PROFILE}
               />
             </View>
             <View style={styles.profileInfoContainer}>
               <View style={styles.profileNameContainer}>
-                <Text style={styles.profileName}>{ profile.name }</Text>
+                <Text style={styles.profileName}>{ query.viewer.name }</Text>
               </View>
               <View style={styles.profileHintContainer}>
                 <Text style={styles.profileHint}>我的工作坊</Text>
@@ -150,11 +154,11 @@ export default class DrawerScreen extends Component {
           </TouchableOpacity>
           <View style={styles.relationInfoContainer}>
             <View style={styles.followingContainer}>
-              <Text style={styles.followingNumber}>{ profile.followingCount }</Text>
+              <Text style={styles.followingNumber}>{ query.viewer.followingCount }</Text>
               <Text style={styles.following}>跟隨中</Text>
             </View>
             <View style={styles.followingContainer}>
-              <Text style={styles.followingNumber}>{ profile.followerCount }</Text>
+              <Text style={styles.followingNumber}>{ query.viewer.followerCount }</Text>
               <Text style={styles.following}>跟隨者</Text>
             </View>
           </View>

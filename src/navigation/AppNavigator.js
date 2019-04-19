@@ -4,7 +4,7 @@ import {
   createDrawerNavigator,
 } from 'react-navigation';
 
-import DrawerScreen from '../screens/DrawerScreen';
+import DrawerScreen from '../containers/DrawerScreen';
 import MainTabNavigator from './MainTabNavigator';
 
 import CreateProjectScreen from '../screens/CreateProjectScreen';
