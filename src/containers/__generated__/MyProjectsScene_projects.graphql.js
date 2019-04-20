@@ -13,6 +13,7 @@ declare export opaque type MyProjectsScene_projects$ref: FragmentReference;
 export type MyProjectsScene_projects = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
+      +id: string,
       +name: string,
       +image: string,
     |}
@@ -50,6 +51,13 @@ const node/*: ReaderFragment*/ = {
             {
               "kind": "ScalarField",
               "alias": null,
+              "name": "id",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
               "name": "name",
               "args": null,
               "storageKey": null
@@ -68,5 +76,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '06968daf692605ea1c435d9c0fc9264b';
+(node/*: any*/).hash = '130507150b6cba3c20bbf76b562cd043';
 module.exports = node;

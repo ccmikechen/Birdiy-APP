@@ -76,9 +76,9 @@ export default class ProjectsScreen extends Component {
     };
   }
 
-  handleOpenProject = () => {
+  handleOpenProject = (id) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail');
+    navigation.push('ProjectDetail', { id });
   };
 
   handleSearch = () => {
@@ -133,11 +133,13 @@ export default class ProjectsScreen extends Component {
             query={query}
             batchLoad={variables.count}
             headerPadding
+            onProjectPress={this.handleOpenProject}
           />
           <HotestProjectList
             query={query}
             batchLoad={variables.count}
             headerPadding
+            onProjectPress={this.handleOpenProject}
           />
         </TabsScreenView>
         <AnimatedAddButton

@@ -33,9 +33,9 @@ export default class MyProjectsScreen extends Component {
     loading: true,
   };
 
-  handleOpenProject = () => {
+  handleOpenProject = (id) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail');
+    navigation.push('ProjectDetail', { id });
   };
 
   handleSearch = () => {
@@ -67,6 +67,7 @@ export default class MyProjectsScreen extends Component {
           query={query}
           batchLoad={variables.count}
           headerPadding
+          onProjectPress={this.handleOpenProject}
         />
       </SimpleScreenView>
     );

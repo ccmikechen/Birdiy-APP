@@ -43,6 +43,11 @@ export default class ProfileScreen extends Component {
     navigation.navigate('CreateProjectModal');
   };
 
+  handleOpenProject = (id) => {
+    const { navigation } = this.props;
+    navigation.navigate('ProjectDetail', { id });
+  };
+
   handleMorePostsPress = () => {
     const { navigation } = this.props;
     navigation.navigate('MyPosts');
@@ -82,6 +87,7 @@ export default class ProfileScreen extends Component {
           profile={profile}
           onMoreProjectsPress={this.handleMoreProjectsPress}
           onAddProjectPress={this.handleAddProjectPress}
+          onProjectPress={this.handleOpenProject}
           onMorePostsPress={this.handleMorePostsPress}
           onAddPostPress={this.handleAddPostPress}
           onMoreFavoritesPress={this.handleMoreFavoritesPress}

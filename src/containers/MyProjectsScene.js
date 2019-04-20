@@ -29,6 +29,7 @@ export default createFragmentContainer(
     fragment MyProjectsScene_projects on ProjectConnection {
       edges {
         node {
+          id
           name
           image
         }

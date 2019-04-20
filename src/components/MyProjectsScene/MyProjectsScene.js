@@ -21,16 +21,19 @@ const rowHasChanged = (r1, r2) => (
 export default class MyProjectsScene extends Component {
   static propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,
+    onProjectPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
     onAddPress: () => {},
+    onProjectPress: () => {},
   };
 
   constructor(props) {
@@ -41,23 +44,30 @@ export default class MyProjectsScene extends Component {
     };
   }
 
-  renderRow = project => (
-    <Surface style={styles.rowContainer}>
-      <TouchableOpacity style={styles.touchable}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: project.image }}
-            style={styles.image}
-          />
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.name}>
-            {project.name}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </Surface>
-  );
+  renderRow = (project) => {
+    const { onProjectPress } = this.props;
+
+    return (
+      <Surface style={styles.rowContainer}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => onProjectPress(project.id)}
+        >
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: project.image }}
+              style={styles.image}
+            />
+          </View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.name}>
+              {project.name}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Surface>
+    );
+  };
 
   render() {
     const { onMorePress, onAddPress } = this.props;
