@@ -13,6 +13,7 @@ declare export opaque type MyFavoritesScene_projects$ref: FragmentReference;
 export type MyFavoritesScene_projects = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
+      +id: string,
       +image: string,
       +name: string,
       +author: {|
@@ -61,6 +62,13 @@ return {
             {
               "kind": "ScalarField",
               "alias": null,
+              "name": "id",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
               "name": "image",
               "args": null,
               "storageKey": null
@@ -86,5 +94,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e860323b2cf9b97273eb9bdb5b21c545';
+(node/*: any*/).hash = '0e0ebb4db2ffb3ccef2d57ecbd44387d';
 module.exports = node;

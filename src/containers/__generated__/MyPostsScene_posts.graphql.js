@@ -13,6 +13,7 @@ declare export opaque type MyPostsScene_posts$ref: FragmentReference;
 export type MyPostsScene_posts = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
+      +id: string,
       +thumbnail: ?{|
         +image: string
       |},
@@ -50,6 +51,13 @@ const node/*: ReaderFragment*/ = {
           "concreteType": "Post",
           "plural": false,
           "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "id",
+              "args": null,
+              "storageKey": null
+            },
             {
               "kind": "LinkedField",
               "alias": null,
@@ -89,5 +97,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '111d8cb8f731deeb3d7285f720a74172';
+(node/*: any*/).hash = '7e85d2032bac5f92ce67382fad876a47';
 module.exports = node;

@@ -29,6 +29,7 @@ export default createFragmentContainer(
     fragment MyFavoritesScene_projects on ProjectConnection {
       edges {
         node {
+          id
           image
           name
           author {

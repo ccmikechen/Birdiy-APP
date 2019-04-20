@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8c8fb3790b816a8a1077d7be8f5ac3d1
+ * @relayHash 09edee8433c198c364d716fea85372f9
  */
 
 /* eslint-disable */
@@ -69,12 +69,12 @@ fragment MyProjectsScene_projects on ProjectConnection {
 fragment MyPostsScene_posts on PostConnection {
   edges {
     node {
+      id
       thumbnail {
         image
       }
       message
       insertedAt
-      id
     }
   }
 }
@@ -82,12 +82,12 @@ fragment MyPostsScene_posts on PostConnection {
 fragment MyFavoritesScene_projects on ProjectConnection {
   edges {
     node {
+      id
       image
       name
       author {
         name
       }
-      id
     }
   }
 }
@@ -240,6 +240,7 @@ return {
                     "concreteType": "Post",
                     "plural": false,
                     "selections": [
+                      (v4/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -265,8 +266,7 @@ return {
                         "name": "insertedAt",
                         "args": null,
                         "storageKey": null
-                      },
-                      (v4/*: any*/)
+                      }
                     ]
                   }
                 ]
@@ -300,6 +300,7 @@ return {
                     "concreteType": "Project",
                     "plural": false,
                     "selections": [
+                      (v4/*: any*/),
                       (v2/*: any*/),
                       (v1/*: any*/),
                       {
@@ -313,8 +314,7 @@ return {
                         "selections": [
                           (v1/*: any*/)
                         ]
-                      },
-                      (v4/*: any*/)
+                      }
                     ]
                   }
                 ]
@@ -329,7 +329,7 @@ return {
     "operationKind": "query",
     "name": "ProfileScreenQuery",
     "id": null,
-    "text": "query ProfileScreenQuery(\n  $count: Int!\n) {\n  ...ProfileScreen_query\n}\n\nfragment ProfileScreen_query on RootQueryType {\n  viewer {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n  }\n}\n\nfragment ProfileSection_profile on User {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on User {\n  projects(first: $count) {\n    ...MyProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...MyPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...MyFavoritesScene_projects\n  }\n}\n\nfragment MyProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n    }\n  }\n}\n\nfragment MyPostsScene_posts on PostConnection {\n  edges {\n    node {\n      thumbnail {\n        image\n      }\n      message\n      insertedAt\n      id\n    }\n  }\n}\n\nfragment MyFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      image\n      name\n      author {\n        name\n      }\n      id\n    }\n  }\n}\n",
+    "text": "query ProfileScreenQuery(\n  $count: Int!\n) {\n  ...ProfileScreen_query\n}\n\nfragment ProfileScreen_query on RootQueryType {\n  viewer {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n  }\n}\n\nfragment ProfileSection_profile on User {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on User {\n  projects(first: $count) {\n    ...MyProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...MyPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...MyFavoritesScene_projects\n  }\n}\n\nfragment MyProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n    }\n  }\n}\n\nfragment MyPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment MyFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -6,6 +6,7 @@ export default createFragmentContainer(
   PostSection,
   graphql`
     fragment PostSection_post on Post {
+      id
       author {
         name
         image
@@ -18,6 +19,7 @@ export default createFragmentContainer(
       relatedProjectType
       relatedProjectName
       relatedProject {
+        id
         name
       }
     }

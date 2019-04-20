@@ -12,7 +12,7 @@ import TimelineScreen from '../containers/TimelineScreen';
 import ProjectsScreen from '../containers/ProjectsScreen';
 import ProfileScreen from '../containers/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
-import PostDetailScreen from '../screens/PostDetailScreen';
+import PostDetailScreen from '../containers/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';

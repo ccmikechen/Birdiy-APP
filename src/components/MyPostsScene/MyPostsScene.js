@@ -32,11 +32,13 @@ export default class MyPostsScene extends Component {
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,
+    onPostPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
     onAddPress: () => {},
+    onPostPress: () => {},
   };
 
   constructor(props) {
@@ -47,38 +49,45 @@ export default class MyPostsScene extends Component {
     };
   }
 
-  renderRow = post => (
-    <Surface style={styles.rowContainer}>
-      <TouchableOpacity style={styles.touchable}>
-        <View style={styles.imageContainer}>
-          {post.thumbnail ? (
-            <Image
-              source={{ uri: post.thumbnail.image }}
-              style={styles.image}
-            />
-          ) : (
-            <Icon.MaterialCommunityIcons
-              name="image-filter"
-              size={Size.myProjectListImageSize / 2}
-              color="#ffffff"
-            />
-          )}
-        </View>
-        <View style={styles.contentContainer}>
-          <View style={styles.messageContainer}>
-            <Text style={styles.message} numberOfLines={3}>
-              {post.message}
-            </Text>
+  renderRow = (post) => {
+    const { onPostPress } = this.props;
+
+    return (
+      <Surface style={styles.rowContainer}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => onPostPress(post.id)}
+        >
+          <View style={styles.imageContainer}>
+            {post.thumbnail ? (
+              <Image
+                source={{ uri: post.thumbnail.image }}
+                style={styles.image}
+              />
+            ) : (
+              <Icon.MaterialCommunityIcons
+                name="image-filter"
+                size={Size.myProjectListImageSize / 2}
+                color="#ffffff"
+              />
+            )}
           </View>
-          <View style={styles.dateContainer}>
-            <Text style={styles.date}>
-              {post.insertedAt}
-            </Text>
+          <View style={styles.contentContainer}>
+            <View style={styles.messageContainer}>
+              <Text style={styles.message} numberOfLines={3}>
+                {post.message}
+              </Text>
+            </View>
+            <View style={styles.dateContainer}>
+              <Text style={styles.date}>
+                {post.insertedAt}
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-    </Surface>
-  );
+        </TouchableOpacity>
+      </Surface>
+    );
+  };
 
   render() {
     const { onMorePress, onAddPress } = this.props;

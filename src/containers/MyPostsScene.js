@@ -29,6 +29,7 @@ export default createFragmentContainer(
     fragment MyPostsScene_posts on PostConnection {
       edges {
         node {
+          id
           thumbnail {
             image 
           }

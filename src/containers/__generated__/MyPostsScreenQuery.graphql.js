@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dc5fc0708c669c21985629caa0d702ef
+ * @relayHash d71534928065f507f4dd4d252c885d22
  */
 
 /* eslint-disable */
@@ -56,6 +56,7 @@ fragment MyPostList_query on RootQueryType {
 }
 
 fragment PostSection_post on Post {
+  id
   author {
     name
     image
@@ -68,8 +69,8 @@ fragment PostSection_post on Post {
   relatedProjectType
   relatedProjectName
   relatedProject {
-    name
     id
+    name
   }
 }
 */
@@ -106,21 +107,21 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "image",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "image",
   "args": null,
   "storageKey": null
 };
@@ -206,6 +207,7 @@ return {
                     "concreteType": "Post",
                     "plural": false,
                     "selections": [
+                      (v2/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -215,8 +217,8 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
-                          (v3/*: any*/)
+                          (v3/*: any*/),
+                          (v4/*: any*/)
                         ]
                       },
                       {
@@ -242,7 +244,7 @@ return {
                         "concreteType": "PostPhoto",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/)
+                          (v4/*: any*/)
                         ]
                       },
                       {
@@ -269,10 +271,9 @@ return {
                         "plural": false,
                         "selections": [
                           (v2/*: any*/),
-                          (v4/*: any*/)
+                          (v3/*: any*/)
                         ]
                       },
-                      (v4/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -310,7 +311,7 @@ return {
     "operationKind": "query",
     "name": "MyPostsScreenQuery",
     "id": null,
-    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    name\n    id\n  }\n}\n",
+    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

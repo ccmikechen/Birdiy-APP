@@ -57,17 +57,14 @@ const PostSection = ({
         </Button>
       </View>
     </View>
-    <TouchableOpacity
-      style={styles.messageContainer}
-      onPress={onPostPress}
-    >
+    <View style={styles.messageContainer}>
       <Text style={styles.message}>
         {post.message}
       </Text>
-    </TouchableOpacity>
+    </View>
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={onPostPress}
+      onPress={() => onPostPress(post.id)}
     >
       <ImageView
         style={styles.image}
@@ -75,14 +72,25 @@ const PostSection = ({
         width={Dimensions.get('window').width - 20}
       />
     </TouchableOpacity>
-    <TouchableOpacity
-      style={styles.sourceContainer}
-      onPress={onSourcePress}
-    >
-      <Text style={styles.source}>
-        {post.relatedProject.name}
-      </Text>
-    </TouchableOpacity>
+    {
+      post.relatedProjectType === 'project' ? (
+        <TouchableOpacity
+          style={styles.sourceContainer}
+          onPress={() => onSourcePress(post.relatedProject.id)}
+        >
+          <Text style={styles.source}>
+            {post.relatedProject.name}
+          </Text>
+        </TouchableOpacity>
+
+      ) : (
+        <View style={styles.sourceContainer}>
+          <Text style={styles.source}>
+            {post.relatedProjectName}
+          </Text>
+        </View>
+      )
+    }
   </Surface>
 );
 

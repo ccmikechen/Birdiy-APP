@@ -95,7 +95,7 @@ export default class ProjectDetailScreen extends Component {
     Linking.openURL(link);
   };
 
-  handleFollowPostPress = (id) => {
+  handleOpenPost = (id) => {
     const { navigation } = this.props;
     navigation.navigate('PostDetail', { id });
   };
@@ -176,7 +176,7 @@ export default class ProjectDetailScreen extends Component {
         <ProjectDetailFollowPostList
           projectId={projectId}
           project={project}
-          onPress={this.handleFollowPostPress}
+          onPress={this.handleOpenPost}
         />
       </TopScreenView>
     );

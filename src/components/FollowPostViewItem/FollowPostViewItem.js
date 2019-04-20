@@ -44,6 +44,7 @@ const FollowPostViewItem = ({ post, onPress }) => (
 
 FollowPostViewItem.propTypes = {
   post: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     thumbnail: PropTypes.shape({
       image: PropTypes.string,
     }),

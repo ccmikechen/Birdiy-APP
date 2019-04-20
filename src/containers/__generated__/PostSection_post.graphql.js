@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PostSection_post$ref: FragmentReference;
 export type PostSection_post = {|
+  +id: string,
   +author: {|
     +name: string,
     +image: ?string,
@@ -23,7 +24,8 @@ export type PostSection_post = {|
   +relatedProjectType: string,
   +relatedProjectName: ?string,
   +relatedProject: ?{|
-    +name: string
+    +id: string,
+    +name: string,
   |},
   +$refType: PostSection_post$ref,
 |};
@@ -34,11 +36,18 @@ const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "image",
@@ -52,6 +61,7 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    (v0/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
@@ -61,8 +71,8 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
-        (v0/*: any*/),
-        (v1/*: any*/)
+        (v1/*: any*/),
+        (v2/*: any*/)
       ]
     },
     {
@@ -88,7 +98,7 @@ return {
       "concreteType": "PostPhoto",
       "plural": false,
       "selections": [
-        (v1/*: any*/)
+        (v2/*: any*/)
       ]
     },
     {
@@ -114,12 +124,13 @@ return {
       "concreteType": "Project",
       "plural": false,
       "selections": [
-        (v0/*: any*/)
+        (v0/*: any*/),
+        (v1/*: any*/)
       ]
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8ba1ef2bd69dc6d044428a043cb403bb';
+(node/*: any*/).hash = '4f5e5ce87541108427b1b0a8d266f093';
 module.exports = node;

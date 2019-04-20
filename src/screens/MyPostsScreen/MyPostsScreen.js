@@ -48,7 +48,7 @@ export default class MyPostsScreen extends Component {
   handleReorder = () => {
   }
 
-  handlePostPress = id => () => {
+  handleOpenPost = (id) => {
     const { navigation } = this.props;
     navigation.push('PostDetail', { id });
   }
@@ -78,7 +78,7 @@ export default class MyPostsScreen extends Component {
         >
           <MyPostList
             query={query}
-            onPostPress={this.handlePostPress}
+            onPostPress={this.handleOpenPost}
             batchLoad={variables.count}
             headerPadding
           />

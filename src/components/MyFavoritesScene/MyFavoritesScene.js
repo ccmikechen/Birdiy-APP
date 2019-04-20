@@ -27,10 +27,12 @@ export default class MyFavoritesScene extends Component {
       }).isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
+    onProjectPress: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
+    onProjectPress: () => {},
   };
 
   constructor(props) {
@@ -41,30 +43,37 @@ export default class MyFavoritesScene extends Component {
     };
   }
 
-  renderRow = project => (
-    <Surface style={styles.rowContainer}>
-      <TouchableOpacity style={styles.touchable}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: project.image }}
-            style={styles.image}
-          />
-        </View>
-        <View style={styles.infoContainer}>
-          <View style={styles.nameContainer}>
-            <Text style={styles.name}>
-              {project.name}
-            </Text>
+  renderRow = (project) => {
+    const { onProjectPress } = this.props;
+
+    return (
+      <Surface style={styles.rowContainer}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => onProjectPress(project.id)}
+        >
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: project.image }}
+              style={styles.image}
+            />
           </View>
-          <View style={styles.authorContainer}>
-            <Text style={styles.author}>
-              {`by ${project.author.name}`}
-            </Text>
+          <View style={styles.infoContainer}>
+            <View style={styles.nameContainer}>
+              <Text style={styles.name}>
+                {project.name}
+              </Text>
+            </View>
+            <View style={styles.authorContainer}>
+              <Text style={styles.author}>
+                {`by ${project.author.name}`}
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-    </Surface>
-  );
+        </TouchableOpacity>
+      </Surface>
+    );
+  };
 
   render() {
     const { onMorePress } = this.props;

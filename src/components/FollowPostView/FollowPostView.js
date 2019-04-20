@@ -29,6 +29,7 @@ const FollowPostView = ({
 
 FollowPostView.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     thumbnail: PropTypes.shape({
       image: PropTypes.string,
     }),

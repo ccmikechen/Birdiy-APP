@@ -20,6 +20,7 @@ export default class ProfileTabMenu extends Component {
     onProjectPress: PropTypes.func,
     onMorePostsPress: PropTypes.func,
     onAddPostPress: PropTypes.func,
+    onPostPress: PropTypes.func,
     onMoreFavoritesPress: PropTypes.func,
   };
 
@@ -30,6 +31,7 @@ export default class ProfileTabMenu extends Component {
     onProjectPress: () => {},
     onMorePostsPress: () => {},
     onAddPostPress: () => {},
+    onPostPress: () => {},
     onMoreFavoritesPress: () => {},
   };
 
@@ -59,6 +61,7 @@ export default class ProfileTabMenu extends Component {
     const {
       onMorePostsPress,
       onAddPostPress,
+      onPostPress,
       profile,
     } = this.props;
 
@@ -67,17 +70,23 @@ export default class ProfileTabMenu extends Component {
         posts={profile.posts}
         onMorePress={onMorePostsPress}
         onAddPress={onAddPostPress}
+        onPostPress={onPostPress}
       />
     );
   };
 
   renderFavorites = () => {
-    const { onMoreFavoritesPress, profile } = this.props;
+    const {
+      onMoreFavoritesPress,
+      onProjectPress,
+      profile,
+    } = this.props;
 
     return (
       <MyFavoritesScene
         projects={profile.favoriteProjects}
         onMorePress={onMoreFavoritesPress}
+        onProjectPress={onProjectPress}
       />
     );
   };
