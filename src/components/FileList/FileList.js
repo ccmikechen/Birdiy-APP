@@ -12,21 +12,23 @@ const FileList = ({
   files,
   onLinkPress,
 }) => (
-  <Surface style={styles.container}>
-    {files.map((file, index) => (
-      <FileListItem
-        key={`file-${index}`}
-        file={file}
-        onLinkPress={() => onLinkPress(file.link)}
-      />
-    ))}
-  </Surface>
+  files.length === 0 ? null : (
+    <Surface style={styles.container}>
+      {files.map((file, index) => (
+        <FileListItem
+          key={`file-${index}`}
+          file={file}
+          onLinkPress={onLinkPress}
+        />
+      ))}
+    </Surface>
+  )
 );
 
 FileList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    link: PropTypes.string,
+    url: PropTypes.string,
   })).isRequired,
   onLinkPress: PropTypes.func,
 };

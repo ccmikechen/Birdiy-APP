@@ -10,9 +10,10 @@ export default (FragmentComponent, Component, config) => {
   const { query, queriesParams } = config;
 
   const QueryRendererWrapper = (componentProps) => {
-    const variables = queriesParams
-      ? queriesParams(componentProps)
-      : config.variables;
+    const variables = {
+      ...(queriesParams && queriesParams(componentProps)),
+      ...config.variables,
+    };
 
     return (
       <QueryRenderer

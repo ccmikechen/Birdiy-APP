@@ -20,15 +20,15 @@ const MaterialListItem = ({
     </View>
     <View style={styles.amountContainer}>
       <Text style={styles.amount}>
-        {material.amount}
+        {material.amountUnit}
       </Text>
     </View>
     <View style={styles.buttonsContainer}>
       <View style={styles.buttonContainer}>
-        {material.link && (
+        {material.url && (
           <TouchableOpacity
             style={styles.linkButton}
-            onPress={onLinkPress}
+            onPress={() => onLinkPress(material.url)}
           >
             <Icon.FontAwesome
               name="external-link"
@@ -54,8 +54,8 @@ const MaterialListItem = ({
 MaterialListItem.propTypes = {
   material: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    amount: PropTypes.string.isRequired,
-    link: PropTypes.string,
+    amountUnit: PropTypes.string.isRequired,
+    url: PropTypes.string,
   }).isRequired,
   onLinkPress: PropTypes.func,
   onAddPress: PropTypes.func,

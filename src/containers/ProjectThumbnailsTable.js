@@ -23,11 +23,7 @@ ProjectThumbnailsFragmentContainer.propTypes = {
         node: PropTypes.object,
       })),
     }),
-  }),
-};
-
-ProjectThumbnailsFragmentContainer.defaultProps = {
-  query: null,
+  }).isRequired,
 };
 
 export default createFragmentContainer(

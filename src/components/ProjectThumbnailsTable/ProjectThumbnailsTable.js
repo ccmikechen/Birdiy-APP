@@ -20,7 +20,7 @@ const ProjectThumbnailsTable = ({ projects, onPressProject }) => (
     renderItem={({ item }) => (
       <ProjectSection
         project={item}
-        onPress={() => onPressProject(item)}
+        onPress={onPressProject}
       />
     )}
   />

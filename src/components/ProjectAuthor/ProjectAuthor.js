@@ -36,7 +36,7 @@ const ProjectAuthor = ({
       </View>
       <View style={styles.statisticsContainer}>
         <Text style={styles.statistics}>
-          {`${author.amountOfProjects} 專案．${author.followed} 跟隨`}
+          {`${author.projectCount} 專案．${author.followerCount} 跟隨`}
         </Text>
       </View>
     </View>
@@ -57,8 +57,8 @@ ProjectAuthor.propTypes = {
   author: PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    followed: PropTypes.number.isRequired,
-    amountOfProjects: PropTypes.number.isRequired,
+    followerCount: PropTypes.number.isRequired,
+    projectCount: PropTypes.number.isRequired,
   }).isRequired,
   onUserPress: PropTypes.func,
   onFollowPress: PropTypes.func,

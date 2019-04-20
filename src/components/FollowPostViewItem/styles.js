@@ -11,7 +11,6 @@ export default StyleSheet.create({
     marginTop: 0,
   },
   image: {
-    width: Size.followPostImageSize,
     aspectRatio: 1,
   },
   authorContainer: {

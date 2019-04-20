@@ -8,17 +8,22 @@ import {
 } from 'react-native';
 import { Surface } from 'react-native-paper';
 
+import ImageView from '../ImageView';
+
+import Size from '../../constants/Size';
+
 import styles from './styles';
 
 const FollowPostViewItem = ({ post, onPress }) => (
   <Surface style={styles.container}>
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={onPress}
+      onPress={() => onPress(post.id)}
     >
-      <Image
+      <ImageView
         style={styles.image}
-        source={{ uri: post.image }}
+        uri={post.thumbnail ? post.thumbnail.image : null}
+        width={Size.followPostImageSize}
       />
     </TouchableOpacity>
     <View style={styles.authorContainer}>
@@ -39,7 +44,9 @@ const FollowPostViewItem = ({ post, onPress }) => (
 
 FollowPostViewItem.propTypes = {
   post: PropTypes.shape({
-    image: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      image: PropTypes.string,
+    }),
     author: PropTypes.shape({
       image: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,

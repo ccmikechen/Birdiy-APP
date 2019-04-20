@@ -18,7 +18,7 @@ const MaterialList = ({
       <MaterialListItem
         key={`material-${index}`}
         material={material}
-        onLinkPress={() => onLinkPress(material.link)}
+        onLinkPress={onLinkPress}
         onAddPress={() => onAddPress(index)}
       />
     ))}
@@ -28,8 +28,8 @@ const MaterialList = ({
 MaterialList.propTypes = {
   materials: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    amount: PropTypes.string.isRequired,
-    link: PropTypes.string,
+    amountUnit: PropTypes.string.isRequired,
+    url: PropTypes.string,
   })).isRequired,
   onLinkPress: PropTypes.func,
   onAddPress: PropTypes.func,

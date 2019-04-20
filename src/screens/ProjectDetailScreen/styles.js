@@ -49,8 +49,6 @@ export default StyleSheet.create({
   optionsContainer: {
   },
   introContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 20,
     paddingTop: 0,
   },

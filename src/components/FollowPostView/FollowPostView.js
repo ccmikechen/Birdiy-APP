@@ -10,7 +10,7 @@ const FollowPostView = ({
   posts,
   onPress,
   loadMore,
-  hasMore,
+  canLoadMore,
 }) => (
   <InfiniteList
     style={styles.container}
@@ -22,14 +22,16 @@ const FollowPostView = ({
       />
     )}
     loadMoreContentAsync={loadMore}
-    canLoadMoreContent={hasMore}
+    canLoadMoreContent={canLoadMore}
     horizontal
   />
 );
 
 FollowPostView.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      image: PropTypes.string,
+    }),
     author: PropTypes.shape({
       image: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
@@ -37,13 +39,13 @@ FollowPostView.propTypes = {
   })).isRequired,
   onPress: PropTypes.func,
   loadMore: PropTypes.func,
-  hasMore: PropTypes.bool,
+  canLoadMore: PropTypes.bool,
 };
 
 FollowPostView.defaultProps = {
   onPress: () => {},
   loadMore: () => {},
-  hasMore: true,
+  canLoadMore: true,
 };
 
 export default FollowPostView;

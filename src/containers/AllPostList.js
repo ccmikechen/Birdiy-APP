@@ -12,7 +12,7 @@ class AllPostList extends Component {
           node: PropTypes.object,
         })),
       }),
-    }),
+    }).isRequired,
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
@@ -21,7 +21,6 @@ class AllPostList extends Component {
   };
 
   static defaultProps = {
-    query: null,
     batchLoad: 5,
   };
 

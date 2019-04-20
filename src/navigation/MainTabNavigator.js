@@ -16,7 +16,7 @@ import PostDetailScreen from '../screens/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
-import ProjectDetailScreen from '../screens/ProjectDetailScreen';
+import ProjectDetailScreen from '../containers/ProjectDetailScreen';
 import MyProjectsScreen from '../containers/MyProjectsScreen';
 import MyPostsScreen from '../containers/MyPostsScreen';
 import MyFavoritesScreen from '../containers/MyFavoritesScreen';

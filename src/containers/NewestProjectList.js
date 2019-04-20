@@ -8,7 +8,7 @@ class NewestProjectList extends Component {
   static propTypes = {
     query: PropTypes.shape({
       newest: PropTypes.object,
-    }),
+    }).isRequired,
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
@@ -17,7 +17,6 @@ class NewestProjectList extends Component {
   };
 
   static defaultProps = {
-    query: null,
     batchLoad: 5,
   };
 

@@ -21,7 +21,7 @@ const FileListItem = ({
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.linkButton}
-          onPress={onLinkPress}
+          onPress={() => onLinkPress(file.url)}
         >
           <Icon.MaterialCommunityIcons
             name="file-download-outline"
@@ -37,7 +37,7 @@ const FileListItem = ({
 FileListItem.propTypes = {
   file: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
   }).isRequired,
   onLinkPress: PropTypes.func,
 };

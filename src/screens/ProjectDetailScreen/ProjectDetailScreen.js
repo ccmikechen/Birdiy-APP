@@ -12,16 +12,14 @@ import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import LikeButton from '../../components/LikeButton';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
-import ProjectAuthor from '../../components/ProjectAuthor';
+import ProjectAuthor from '../../containers/ProjectAuthor';
 import ProjectOptionButtons from '../../components/ProjectOptionButtons';
-import MaterialList from '../../components/MaterialList';
-import FileList from '../../components/FileList';
-import MethodList from '../../components/MethodList';
-import FollowPostView from '../../components/FollowPostView';
+import ProjectDetailMaterialList from '../../containers/ProjectDetailMaterialList';
+import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
+import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
+import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
 
 import styles from './styles';
-
-import { project as mockProject } from './mocks';
 
 export default class ProjectDetailScreen extends Component {
   static navigationOptions = {
@@ -32,54 +30,52 @@ export default class ProjectDetailScreen extends Component {
     navigation: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
     }).isRequired,
-    project: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      author: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-      }).isRequired,
-      category: PropTypes.string.isRequired,
-      introduction: PropTypes.string.isRequired,
-      viewed: PropTypes.number.isRequired,
-      likes: PropTypes.number.isRequired,
-      favorites: PropTypes.number.isRequired,
-      posts: PropTypes.number.isRequired,
-      liked: PropTypes.bool.isRequired,
-      materials: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        amount: PropTypes.string.isRequired,
-        link: PropTypes.string,
-      })).isRequired,
-      files: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        link: PropTypes.string,
-      })),
-      methods: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        content: PropTypes.string.isRequired,
+    query: PropTypes.shape({
+      project: PropTypes.shape({
+        name: PropTypes.string,
         image: PropTypes.string,
-      })),
-      tip: PropTypes.string,
-      followPosts: PropTypes.arrayOf(PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        author: PropTypes.shape({
-          image: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
+        author: PropTypes.object,
+        category: PropTypes.shape({
+          name: PropTypes.string,
         }),
-      })).isRequired,
+        introduction: PropTypes.string,
+        viewCount: PropTypes.number,
+        favoriteCount: PropTypes.number,
+        likeCount: PropTypes.number,
+        relatedPostCount: PropTypes.number,
+        materials: PropTypes.object,
+        fileResources: PropTypes.object,
+        methods: PropTypes.object,
+        tip: PropTypes.string,
+        relatedPosts: PropTypes.object,
+      }),
     }),
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
-    project: mockProject,
+    query: null,
+    loading: true,
+  };
+
+  defaultProject = {
+    name: '',
+    image: '',
+    category: {
+      name: '',
+    },
+    introduction: '',
+    viewCount: 0,
+    favoriteCount: 0,
+    likeCount: 0,
+    relatedPostCount: 0,
+    tip: '',
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      liked: props.project.liked,
-      followPosts: props.project.followPosts,
+      liked: false,
     };
   }
 
@@ -99,32 +95,28 @@ export default class ProjectDetailScreen extends Component {
     Linking.openURL(link);
   };
 
-  loadMoreFollowPost = async () => {
-    const { project } = this.props;
-    const { followPosts } = this.state;
-    const newFollowPosts = [...followPosts, ...project.followPosts];
-    this.setState({ followPosts: newFollowPosts });
-  };
-
-  handleFollowPostPress = () => {
+  handleFollowPostPress = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('PostDetail');
+    navigation.navigate('PostDetail', { id });
   };
 
   render() {
-    const { navigation, project } = this.props;
-    const { liked, followPosts } = this.state;
+    const { navigation, query, loading } = this.props;
+    const { liked } = this.state;
+    const project = query ? query.project : this.defaultProject;
+    const projectId = navigation.getParam('id');
 
     return (
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
-            title={project.title}
+            title={project.name}
             onBack={() => navigation.goBack()}
           />
         )}
         animatedScroll
+        loading={loading}
       >
         <View style={styles.projectImageContainer}>
           <Image
@@ -136,12 +128,12 @@ export default class ProjectDetailScreen extends Component {
           <View style={styles.headerInfoContainer}>
             <View style={[styles.contentSection, styles.titleContainer]}>
               <Text style={styles.title}>
-                {project.title}
+                {project.name}
               </Text>
             </View>
             <View style={[styles.contentSection, styles.statisticsContainer]}>
               <Text style={styles.statistics}>
-                {`${project.viewed} 看過．${project.likes} 喜歡．${project.favorites} 收藏．${project.posts} 跟著做`}
+                {`${project.viewCount} 看過．${project.likeCount} 喜歡．${project.favoriteCount} 收藏．${project.relatedPostCount} 跟著做`}
               </Text>
             </View>
           </View>
@@ -150,7 +142,7 @@ export default class ProjectDetailScreen extends Component {
           </View>
         </View>
         <View style={styles.authorContainer}>
-          <ProjectAuthor author={project.author} />
+          <ProjectAuthor project={project} />
         </View>
         <View style={styles.optionsContainer}>
           <ProjectOptionButtons />
@@ -162,37 +154,30 @@ export default class ProjectDetailScreen extends Component {
             </Text>
           </View>
         </ProjectDetailSection>
-        <ProjectDetailSection title="材料">
-          <MaterialList
-            materials={project.materials}
-            onLinkPress={this.handleMaterialLinkPress}
-            onAddPress={this.handleMaterialAddPress}
-          />
-        </ProjectDetailSection>
-        <ProjectDetailSection title="檔案資料">
-          <FileList
-            files={project.files}
-            onLinkPress={this.handleFileLinkPress}
-          />
-        </ProjectDetailSection>
-        <ProjectDetailSection title="作法">
-          <MethodList methods={project.methods} />
-        </ProjectDetailSection>
-        <ProjectDetailSection title="小技巧">
-          <View style={styles.tipContainer}>
-            <Text style={styles.tip}>
-              {project.tip}
-            </Text>
-          </View>
-        </ProjectDetailSection>
-        <ProjectDetailSection title="跟著做">
-          <FollowPostView
-            posts={followPosts}
-            loadMore={this.loadMoreFollowPost}
-            hasMore
-            onPress={this.handleFollowPostPress}
-          />
-        </ProjectDetailSection>
+        <ProjectDetailMaterialList
+          project={project}
+          onLinkPress={this.handleMaterialLinkPress}
+          onAddPress={this.handleMaterialAddPress}
+        />
+        <ProjectDetailFileList
+          project={project}
+          onLinkPress={this.handleFileLinkPress}
+        />
+        <ProjectDetailMethodList project={project} />
+        {project.tip ? (
+          <ProjectDetailSection title="小技巧">
+            <View style={styles.tipContainer}>
+              <Text style={styles.tip}>
+                {project.tip}
+              </Text>
+            </View>
+          </ProjectDetailSection>
+        ) : null}
+        <ProjectDetailFollowPostList
+          projectId={projectId}
+          project={project}
+          onPress={this.handleFollowPostPress}
+        />
       </TopScreenView>
     );
   }

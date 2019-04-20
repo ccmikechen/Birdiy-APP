@@ -14,7 +14,7 @@ class MyPostList extends Component {
           })),
         }),
       }),
-    }),
+    }).isRequired,
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
@@ -23,7 +23,6 @@ class MyPostList extends Component {
   };
 
   static defaultProps = {
-    query: null,
     batchLoad: 5,
   };
 

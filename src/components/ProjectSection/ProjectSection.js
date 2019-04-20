@@ -13,7 +13,7 @@ import styles from './styles';
 const ProjectSection = ({ project, onPress }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={onPress(project.id)}
+    onPress={() => onPress(project.id)}
   >
     <Surface style={styles.container}>
       <Image

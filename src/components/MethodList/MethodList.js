@@ -9,15 +9,17 @@ import MethodListItem from '../MethodListItem';
 import styles from './styles';
 
 const MethodList = ({ methods }) => (
-  <View style={styles.container}>
-    {methods.map((method, index) => (
-      <MethodListItem
-        key={`method-${index}`}
-        method={method}
-        order={index + 1}
-      />
-    ))}
-  </View>
+  methods.length === 0 ? null : (
+    <View style={styles.container}>
+      {methods.map((method, index) => (
+        <MethodListItem
+          key={`method-${index}`}
+          method={method}
+          order={index + 1}
+        />
+      ))}
+    </View>
+  )
 );
 
 MethodList.propTypes = {
