@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c5cbd778fecd1f016aea74306bcd3fc7
+ * @relayHash e3ea6cade8678243de23461ba397d9ce
  */
 
 /* eslint-disable */
@@ -10,10 +10,15 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type ProjectsScreen_query$ref = any;
+export type ProjectFilter = {|
+  categories?: ?$ReadOnlyArray<?string>,
+  name?: ?string,
+|};
 export type ProjectsScreenQueryVariables = {|
   count: number,
   newestCursor?: ?string,
   hotestCursor?: ?string,
+  filter?: ?ProjectFilter,
 |};
 export type ProjectsScreenQueryResponse = {|
   +$fragmentRefs: ProjectsScreen_query$ref
@@ -30,6 +35,7 @@ query ProjectsScreenQuery(
   $count: Int!
   $newestCursor: String
   $hotestCursor: String
+  $filter: ProjectFilter
 ) {
   ...ProjectsScreen_query
 }
@@ -49,7 +55,7 @@ fragment ProjectsScreen_query on RootQueryType {
 }
 
 fragment NewestProjectList_query on RootQueryType {
-  newest: allProjects(first: $count, after: $newestCursor) {
+  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -66,7 +72,7 @@ fragment NewestProjectList_query on RootQueryType {
 }
 
 fragment HotestProjectList_query on RootQueryType {
-  hotest: allProjects(first: $count, after: $hotestCursor) {
+  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -111,45 +117,58 @@ var v0 = [
     "name": "hotestCursor",
     "type": "String",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "filter",
+    "type": "ProjectFilter",
+    "defaultValue": null
   }
 ],
 v1 = {
+  "kind": "Variable",
+  "name": "filter",
+  "variableName": "filter",
+  "type": "ProjectFilter"
+},
+v2 = {
   "kind": "Variable",
   "name": "first",
   "variableName": "count",
   "type": "Int"
 },
-v2 = [
+v3 = [
   {
     "kind": "Variable",
     "name": "after",
     "variableName": "newestCursor",
     "type": "String"
   },
-  (v1/*: any*/)
+  (v1/*: any*/),
+  (v2/*: any*/)
 ],
-v3 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "image",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -193,9 +212,9 @@ v6 = [
         "concreteType": "Project",
         "plural": false,
         "selections": [
-          (v3/*: any*/),
           (v4/*: any*/),
           (v5/*: any*/),
+          (v6/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -205,7 +224,7 @@ v6 = [
             "concreteType": "User",
             "plural": false,
             "selections": [
-              (v4/*: any*/)
+              (v5/*: any*/)
             ]
           },
           {
@@ -227,14 +246,18 @@ v6 = [
     ]
   }
 ],
-v7 = [
+v8 = [
+  "filter"
+],
+v9 = [
   {
     "kind": "Variable",
     "name": "after",
     "variableName": "hotestCursor",
     "type": "String"
   },
-  (v1/*: any*/)
+  (v1/*: any*/),
+  (v2/*: any*/)
 ];
 return {
   "kind": "Request",
@@ -262,38 +285,38 @@ return {
         "alias": "newest",
         "name": "allProjects",
         "storageKey": null,
-        "args": (v2/*: any*/),
+        "args": (v3/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v7/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": "newest",
         "name": "allProjects",
-        "args": (v2/*: any*/),
+        "args": (v3/*: any*/),
         "handle": "connection",
         "key": "NewestProjectList_newest",
-        "filters": null
+        "filters": (v8/*: any*/)
       },
       {
         "kind": "LinkedField",
         "alias": "hotest",
         "name": "allProjects",
         "storageKey": null,
-        "args": (v7/*: any*/),
+        "args": (v9/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v7/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": "hotest",
         "name": "allProjects",
-        "args": (v7/*: any*/),
+        "args": (v9/*: any*/),
         "handle": "connection",
         "key": "HotestProjectList_hotest",
-        "filters": null
+        "filters": (v8/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -335,9 +358,9 @@ return {
                 "concreteType": "ProjectCategory",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
                   (v4/*: any*/),
-                  (v5/*: any*/)
+                  (v5/*: any*/),
+                  (v6/*: any*/)
                 ]
               }
             ]
@@ -350,11 +373,11 @@ return {
     "operationKind": "query",
     "name": "ProjectsScreenQuery",
     "id": null,
-    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
+    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b9ae72e3ca9a801ec67cd1fbed16378e';
+(node/*: any*/).hash = '9e93e53c36e02a63e81b137f44395271';
 module.exports = node;

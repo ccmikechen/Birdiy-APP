@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9c41f6fd04e4ab57f297f11033382e25
+ * @relayHash 57671f2ca9f0f9f22ecf39e6089772e2
  */
 
 /* eslint-disable */
@@ -10,9 +10,14 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type HotestProjectList_query$ref = any;
+export type ProjectFilter = {|
+  categories?: ?$ReadOnlyArray<?string>,
+  name?: ?string,
+|};
 export type HotestProjectListPaginationQueryVariables = {|
   count: number,
   hotestCursor?: ?string,
+  filter?: ?ProjectFilter,
 |};
 export type HotestProjectListPaginationQueryResponse = {|
   +$fragmentRefs: HotestProjectList_query$ref
@@ -28,12 +33,13 @@ export type HotestProjectListPaginationQuery = {|
 query HotestProjectListPaginationQuery(
   $count: Int!
   $hotestCursor: String
+  $filter: ProjectFilter
 ) {
   ...HotestProjectList_query
 }
 
 fragment HotestProjectList_query on RootQueryType {
-  hotest: allProjects(first: $count, after: $hotestCursor) {
+  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -72,6 +78,12 @@ var v0 = [
     "name": "hotestCursor",
     "type": "String",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "filter",
+    "type": "ProjectFilter",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -80,6 +92,12 @@ v1 = [
     "name": "after",
     "variableName": "hotestCursor",
     "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "filter",
+    "variableName": "filter",
+    "type": "ProjectFilter"
   },
   {
     "kind": "Variable",
@@ -222,7 +240,9 @@ return {
         "args": (v1/*: any*/),
         "handle": "connection",
         "key": "HotestProjectList_hotest",
-        "filters": null
+        "filters": [
+          "filter"
+        ]
       }
     ]
   },
@@ -230,11 +250,11 @@ return {
     "operationKind": "query",
     "name": "HotestProjectListPaginationQuery",
     "id": null,
-    "text": "query HotestProjectListPaginationQuery(\n  $count: Int!\n  $hotestCursor: String\n) {\n  ...HotestProjectList_query\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
+    "text": "query HotestProjectListPaginationQuery(\n  $count: Int!\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...HotestProjectList_query\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3d07ed595abf8d28733d6f02023313c6';
+(node/*: any*/).hash = '87e32c0f2f75e9534b420ba17916d930';
 module.exports = node;

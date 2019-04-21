@@ -54,6 +54,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "RootArgument",
       "name": "hotestCursor",
       "type": "String"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "filter",
+      "type": "ProjectFilter"
     }
   ],
   "selections": [
@@ -62,7 +67,14 @@ const node/*: ReaderFragment*/ = {
       "alias": "hotest",
       "name": "__HotestProjectList_hotest_connection",
       "storageKey": null,
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "filter",
+          "variableName": "filter",
+          "type": "ProjectFilter"
+        }
+      ],
       "concreteType": "ProjectConnection",
       "plural": false,
       "selections": [
@@ -137,5 +149,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4e3c996e741f5f4df4b7ccff87aa5ba7';
+(node/*: any*/).hash = 'ad1fa1421394f7cf1219750e5009141f';
 module.exports = node;

@@ -36,6 +36,7 @@ export default withNavigation(
           $count: Int!,
           $newestCursor: String,
           $hotestCursor: String,
+          $filter: ProjectFilter,
         ) {
           ...ProjectsScreen_query
         }
@@ -45,6 +46,11 @@ export default withNavigation(
         newestCursor: null,
         hotestCursor: null,
       },
+      queriesParams: props => ({
+        filter: {
+          name: props.navigation.getParam('keyword'),
+        },
+      }),
     },
   ),
 );

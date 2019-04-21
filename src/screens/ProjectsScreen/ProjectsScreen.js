@@ -80,9 +80,10 @@ export default class ProjectsScreen extends Component {
   };
 
   handleSearch = () => {
-    this.setState({
-      // Refresh
-    });
+    const { navigation } = this.props;
+    const { keyword } = this.state;
+    navigation.setParams({ keyword });
+    // Refresh
     // scrollToTop
   };
 

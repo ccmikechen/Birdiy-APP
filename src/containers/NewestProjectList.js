@@ -52,7 +52,8 @@ export default createPaginationContainer(
       fragment NewestProjectList_query on RootQueryType {
         newest: allProjects(
           first: $count,
-          after: $newestCursor
+          after: $newestCursor,
+          filter: $filter,
         ) @connection(key: "NewestProjectList_newest") {
           pageInfo {
             hasNextPage
@@ -79,12 +80,16 @@ export default createPaginationContainer(
     getVariables: (props, { count, cursor }) => ({
       count,
       newestCursor: cursor,
+      filter: {
+        name: props.navigation.getParam('keyword'),
+      },
     }),
     variables: { newestCursor: null },
     query: graphql`
       query NewestProjectListPaginationQuery (
         $count: Int!,
-        $newestCursor: String
+        $newestCursor: String,
+        $filter: ProjectFilter,
       ) {
         ...NewestProjectList_query
       }

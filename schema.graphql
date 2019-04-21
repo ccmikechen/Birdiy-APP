@@ -117,6 +117,11 @@ type ProjectFileResource {
   url: String!
 }
 
+input ProjectFilter {
+  categories: [String]
+  name: String
+}
+
 type ProjectMaterial {
   amountUnit: String!
   name: String!
@@ -133,6 +138,11 @@ type ProjectMethod {
   title: String
 }
 
+enum ProjectOrder {
+  HOTEST
+  NEWEST
+}
+
 enum RankOrder {
   NAME
 }
@@ -140,7 +150,7 @@ enum RankOrder {
 type RootQueryType {
   allPosts(after: String, before: String, first: Int, last: Int): PostConnection
   allProjectCategories(after: String, before: String, first: Int, last: Int, order: RankOrder = NAME): ProjectCategoryConnection
-  allProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
+  allProjects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
 
   """Fetches an object given its ID"""
   node(
@@ -164,7 +174,7 @@ type User {
   name: String!
   posts(after: String, before: String, first: Int, last: Int): PostConnection
   projectCount: Int
-  projects(after: String, before: String, first: Int, last: Int): ProjectConnection
+  projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
 }
 

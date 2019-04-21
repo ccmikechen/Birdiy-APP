@@ -52,7 +52,8 @@ export default createPaginationContainer(
       fragment HotestProjectList_query on RootQueryType {
         hotest: allProjects(
           first: $count,
-          after: $hotestCursor
+          after: $hotestCursor,
+          filter: $filter,
         ) @connection(key: "HotestProjectList_hotest") {
           pageInfo {
             hasNextPage
@@ -79,12 +80,16 @@ export default createPaginationContainer(
     getVariables: (props, { count, cursor }) => ({
       count,
       hotestCursor: cursor,
+      filter: {
+        name: props.navigation.getParam('keyword'),
+      },
     }),
     variables: { hotestCursor: null },
     query: graphql`
       query HotestProjectListPaginationQuery (
         $count: Int!,
-        $hotestCursor: String
+        $hotestCursor: String,
+        $filter: ProjectFilter,
       ) {
         ...HotestProjectList_query
       }
