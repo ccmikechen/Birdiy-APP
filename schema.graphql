@@ -76,9 +76,25 @@ type Project implements Node {
   viewCount: Int
 }
 
-type ProjectCategory {
+type ProjectCategory implements Node {
+  """The ID of an object"""
+  id: ID!
+  image: String
   name: String!
   projects: [Project]
+}
+
+type ProjectCategoryConnection {
+  edges: [ProjectCategoryEdge]
+  pageInfo: PageInfo!
+}
+
+type ProjectCategoryEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: ProjectCategory
 }
 
 type ProjectConnection {
@@ -117,8 +133,13 @@ type ProjectMethod {
   title: String
 }
 
+enum RankOrder {
+  NAME
+}
+
 type RootQueryType {
   allPosts(after: String, before: String, first: Int, last: Int): PostConnection
+  allProjectCategories(after: String, before: String, first: Int, last: Int, order: RankOrder = NAME): ProjectCategoryConnection
   allProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
 
   """Fetches an object given its ID"""
@@ -128,7 +149,6 @@ type RootQueryType {
   ): Node
   post(id: ID!): Post
   project(id: ID!): Project
-  users: [User]
   viewer: User
 }
 

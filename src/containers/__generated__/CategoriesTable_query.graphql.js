@@ -8,11 +8,9 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type HotestProjectList_query$ref = any;
-type NewestProjectList_query$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type ProjectsScreen_query$ref: FragmentReference;
-export type ProjectsScreen_query = {|
+declare export opaque type CategoriesTable_query$ref: FragmentReference;
+export type CategoriesTable_query = {|
   +categories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -22,45 +20,45 @@ export type ProjectsScreen_query = {|
       |}
     |}>
   |},
-  +$fragmentRefs: NewestProjectList_query$ref & HotestProjectList_query$ref,
-  +$refType: ProjectsScreen_query$ref,
+  +$refType: CategoriesTable_query$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "ProjectsScreen_query",
+  "name": "CategoriesTable_query",
   "type": "RootQueryType",
   "metadata": null,
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "hotCategoryCount",
+      "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "hotCategoryOrder",
+      "type": "RankOrder"
+    }
+  ],
   "selections": [
-    {
-      "kind": "FragmentSpread",
-      "name": "NewestProjectList_query",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "HotestProjectList_query",
-      "args": null
-    },
     {
       "kind": "LinkedField",
       "alias": "categories",
       "name": "allProjectCategories",
-      "storageKey": "allProjectCategories(first:100000,order:\"NAME\")",
+      "storageKey": null,
       "args": [
         {
-          "kind": "Literal",
+          "kind": "Variable",
           "name": "first",
-          "value": 100000,
+          "variableName": "hotCategoryCount",
           "type": "Int"
         },
         {
-          "kind": "Literal",
+          "kind": "Variable",
           "name": "order",
-          "value": "NAME",
+          "variableName": "hotCategoryOrder",
           "type": "RankOrder"
         }
       ],
@@ -115,5 +113,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '67998e637d038e1e46b15cc37d2a7818';
+(node/*: any*/).hash = 'd685bacc200fdaa2e4249b3febfaf232';
 module.exports = node;

@@ -10,6 +10,18 @@ const ProjectsScreenFragmentContainer = createFragmentContainer(
     fragment ProjectsScreen_query on RootQueryType {
       ...NewestProjectList_query
       ...HotestProjectList_query
+      categories: allProjectCategories(
+        first: 100000,
+        order: NAME,
+      ) {
+        edges {
+          node {
+            id
+            name
+            image
+          }
+        }
+      }
     }
   `,
 );
@@ -23,7 +35,7 @@ export default withNavigation(
         query ProjectsScreenQuery (
           $count: Int!,
           $newestCursor: String,
-          $hotestCursor: String
+          $hotestCursor: String,
         ) {
           ...ProjectsScreen_query
         }

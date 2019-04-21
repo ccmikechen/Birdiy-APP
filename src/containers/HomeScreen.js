@@ -9,6 +9,7 @@ const HomeScreenFragmentContainer = createFragmentContainer(
   graphql`
     fragment HomeScreen_query on RootQueryType {
       ...ProjectThumbnailsTable_query
+      ...CategoriesTable_query
     }
   `,
 );
@@ -20,12 +21,16 @@ export default withNavigation(
     {
       query: graphql`
         query HomeScreenQuery (
+          $hotCategoryCount: Int!,
+          $hotCategoryOrder: RankOrder,
           $newProjectCount: Int!,
         ) {
           ...HomeScreen_query
         }
       `,
       variables: {
+        hotCategoryCount: 6,
+        hotCategoryOrder: 'NAME',
         newProjectCount: 4,
       },
     },

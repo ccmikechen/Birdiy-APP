@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1f75f960085ccac72022dbf5ed52753a
+ * @relayHash 5002e44e16506a38f78f392783f6b8e4
  */
 
 /* eslint-disable */
@@ -41,6 +41,7 @@ fragment ProjectDetailScreen_query on RootQueryType {
     ...ProjectAuthor_project
     category {
       name
+      id
     }
     introduction
     viewCount
@@ -150,11 +151,18 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "url",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -167,14 +175,7 @@ v4 = [
     "variableName": "relatedPostsCount",
     "type": "Int"
   }
-],
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -256,7 +257,8 @@ return {
             "concreteType": "ProjectCategory",
             "plural": false,
             "selections": [
-              (v1/*: any*/)
+              (v1/*: any*/),
+              (v3/*: any*/)
             ]
           },
           {
@@ -305,7 +307,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              (v3/*: any*/)
+              (v4/*: any*/)
             ]
           },
           {
@@ -318,7 +320,7 @@ return {
             "plural": true,
             "selections": [
               (v1/*: any*/),
-              (v3/*: any*/)
+              (v4/*: any*/)
             ]
           },
           {
@@ -359,7 +361,7 @@ return {
             "alias": null,
             "name": "relatedPosts",
             "storageKey": null,
-            "args": (v4/*: any*/),
+            "args": (v5/*: any*/),
             "concreteType": "PostConnection",
             "plural": false,
             "selections": [
@@ -406,7 +408,7 @@ return {
                     "concreteType": "Post",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
+                      (v3/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -456,12 +458,12 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "relatedPosts",
-            "args": (v4/*: any*/),
+            "args": (v5/*: any*/),
             "handle": "connection",
             "key": "ProjectDetailFollowPostList_relatedPosts",
             "filters": null
           },
-          (v5/*: any*/)
+          (v3/*: any*/)
         ]
       }
     ]
@@ -470,7 +472,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailScreenQuery",
     "id": null,
-    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

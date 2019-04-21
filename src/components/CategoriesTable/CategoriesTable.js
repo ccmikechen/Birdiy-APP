@@ -20,13 +20,13 @@ const CategoriesTable = ({ categories, onPressCategory }) => (
     spacing={SPACING}
     items={categories}
     style={styles.container}
-    renderItem={({ item, index }) => (
+    renderItem={({ item }) => (
       <TouchableOpacity
         style={styles.itemContainer}
-        onPress={onPressCategory(index)}
+        onPress={() => onPressCategory(item)}
       >
         <ImageBackground
-          source={item.image}
+          source={item.image ? { uri: item.image } : null}
           style={styles.imageBackground}
           imageStyle={styles.image}
         >
@@ -40,7 +40,7 @@ const CategoriesTable = ({ categories, onPressCategory }) => (
 CategoriesTable.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.number,
+    image: PropTypes.string,
   })).isRequired,
   onPressCategory: PropTypes.func,
 };

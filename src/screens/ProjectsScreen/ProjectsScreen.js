@@ -9,8 +9,6 @@ import AnimatedAddButton from '../../components/AnimatedAddButton';
 import NewestProjectList from '../../containers/NewestProjectList';
 import HotestProjectList from '../../containers/HotestProjectList';
 
-import { categories } from './mocks';
-
 import styles from './styles';
 
 const TABS = [{
@@ -93,7 +91,9 @@ export default class ProjectsScreen extends Component {
   };
 
   handleOpenFilter = () => {
-    const { navigation } = this.props;
+    const { navigation, query } = this.props;
+    const categories = query.categories.edges.map(({ node }) => node);
+
     navigation.navigate('SelectCategoryModal', {
       categories,
       multipleSelect: true,

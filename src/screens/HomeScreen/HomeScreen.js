@@ -5,10 +5,8 @@ import TopScreenView from '../../components/TopScreenView';
 import HomeHeader from '../../components/HomeHeader';
 import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
-import CategoriesTable from '../../components/CategoriesTable';
+import CategoriesTable from '../../containers/CategoriesTable';
 import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
-
-import { categories, keywords } from './mocks';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -51,14 +49,18 @@ export default class HomeScreen extends Component {
     navigation.navigate('Projects');
   };
 
-  renderHotCategories = () => (
-    <ExtensibleSectionContent
-      onMorePress={() => {}}
-      renderContent={() => (
-        <CategoriesTable categories={categories} />
-      )}
-    />
-  );
+  renderHotCategories = () => {
+    const { query } = this.props;
+
+    return (
+      <ExtensibleSectionContent
+        onMorePress={() => {}}
+        renderContent={() => (
+          <CategoriesTable query={query} />
+        )}
+      />
+    );
+  };
 
   renderNewProjects = () => {
     const { query } = this.props;
@@ -75,10 +77,6 @@ export default class HomeScreen extends Component {
       />
     );
   };
-
-  renderHotKeywords = () => (
-    <CategoriesTable categories={keywords} />
-  );
 
   handleSearch = () => {
     const { navigation } = this.props;
@@ -117,10 +115,6 @@ export default class HomeScreen extends Component {
         <HomeSection
           title="最新專案"
           renderContent={this.renderNewProjects}
-        />
-        <HomeSection
-          title="熱門關鍵字"
-          renderContent={this.renderHotKeywords}
         />
       </TopScreenView>
     );

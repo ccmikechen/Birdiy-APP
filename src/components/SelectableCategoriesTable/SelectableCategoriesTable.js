@@ -31,14 +31,16 @@ const SelectableCategoriesTable = ({
         activeOpacity={0.9}
       >
         <ImageBackground
-          source={item.image}
+          source={item.image ? { uri: item.image } : null}
           style={[
             styles.imageBackground,
             selection[index] ? styles.selection : null,
           ]}
           imageStyle={styles.image}
         >
-          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.name}>
+            {item.name}
+          </Text>
         </ImageBackground>
       </TouchableOpacity>
     )}

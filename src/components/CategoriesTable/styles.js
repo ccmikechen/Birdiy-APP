@@ -13,15 +13,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 1,
-    borderRadius: 10,
-    backgroundColor: Tertiary(900),
+    borderRadius: 20,
+    backgroundColor: Tertiary(800),
   },
   image: {
-    borderRadius: 10,
+    borderRadius: 20,
   },
   name: {
+    textAlign: 'center',
     color: TextColor.primaryLight,
     fontWeight: '600',
-    fontSize: 20,
+    fontSize: 16,
   },
 });
