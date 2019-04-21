@@ -49,6 +49,7 @@ export default withNavigation(
       queriesParams: props => ({
         filter: {
           name: props.navigation.getParam('keyword'),
+          categories: props.navigation.getParam('categories'),
         },
       }),
     },

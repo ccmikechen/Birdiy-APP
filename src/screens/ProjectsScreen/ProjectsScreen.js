@@ -87,16 +87,23 @@ export default class ProjectsScreen extends Component {
     // scrollToTop
   };
 
-  handleSelectCategory = (selected) => {
-    this.setState({ categories: selected });
+  handleSelectCategory = (selection) => {
+    const { navigation, query } = this.props;
+    const categories = query.categories.edges.map(({ node }, index) => (
+      selection[index] ? node.name : null
+    )).filter(Boolean);
+
+    navigation.setParams({ categories });
   };
 
   handleOpenFilter = () => {
     const { navigation, query } = this.props;
     const categories = query.categories.edges.map(({ node }) => node);
+    const selected = navigation.getParam('categories');
 
     navigation.navigate('SelectCategoryModal', {
       categories,
+      selected,
       multipleSelect: true,
       onSelect: this.handleSelectCategory,
     });
@@ -133,12 +140,16 @@ export default class ProjectsScreen extends Component {
           <NewestProjectList
             query={query}
             batchLoad={variables.count}
+            keyword={navigation.getParam('keyword')}
+            categories={navigation.getParam('categories')}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />
           <HotestProjectList
             query={query}
             batchLoad={variables.count}
+            keyword={navigation.getParam('keyword')}
+            categories={navigation.getParam('categories')}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />

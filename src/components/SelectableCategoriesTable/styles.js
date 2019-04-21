@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Primary, Tertiary, TextColor } from '../../constants/Colors';
+import { Tertiary, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     aspectRatio: 1,
     borderRadius: 20,
-    backgroundColor: Tertiary(800),
+    backgroundColor: Tertiary(300),
   },
   image: {
     borderRadius: 20,
@@ -22,8 +22,7 @@ export default StyleSheet.create({
     borderColor: 'transparent',
   },
   selection: {
-    borderWidth: 3,
-    borderColor: Primary(300),
+    backgroundColor: Tertiary(800),
   },
   name: {
     textAlign: 'center',

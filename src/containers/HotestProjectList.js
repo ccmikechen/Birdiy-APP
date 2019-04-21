@@ -81,7 +81,8 @@ export default createPaginationContainer(
       count,
       hotestCursor: cursor,
       filter: {
-        name: props.navigation.getParam('keyword'),
+        name: props.keyword,
+        categories: props.categories,
       },
     }),
     variables: { hotestCursor: null },

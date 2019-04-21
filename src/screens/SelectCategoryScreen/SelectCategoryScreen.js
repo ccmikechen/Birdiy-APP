@@ -28,9 +28,11 @@ export default class SelectCategoryScreen extends Component {
     super(props);
 
     const categories = props.navigation.getParam('categories');
-    this.state = {
-      selection: new Array(categories.length).fill(false),
-    };
+    const selected = props.navigation.getParam('selected');
+    const selection = selected
+      ? categories.map(({ name }) => selected.includes(name))
+      : new Array(categories.length).fill(false);
+    this.state = { selection };
   }
 
   handleSelect = (index) => {
@@ -48,10 +50,19 @@ export default class SelectCategoryScreen extends Component {
     }
   };
 
+  handleSubmit = () => {
+    const { navigation } = this.props;
+    const { selection } = this.state;
+    const onSelect = navigation.getParam('onSelect');
+    onSelect(selection);
+    navigation.goBack();
+  };
+
   render() {
     const { navigation } = this.props;
     const { selection } = this.state;
     const categories = navigation.getParam('categories');
+    const multipleSelect = navigation.getParam('multipleSelect') || false;
 
     return (
       <TopScreenView
@@ -60,6 +71,10 @@ export default class SelectCategoryScreen extends Component {
           <NormalBackHeader
             onBack={() => navigation.goBack()}
             title="選擇分類"
+            rightButton={multipleSelect ? {
+              icon: 'check',
+              onPress: this.handleSubmit,
+            } : null}
           />
         )}
         fullScreen
