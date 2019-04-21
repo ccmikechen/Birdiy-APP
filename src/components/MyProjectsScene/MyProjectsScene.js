@@ -7,10 +7,13 @@ import {
   ListView,
   TouchableOpacity,
 } from 'react-native';
+import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 
 import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
+
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -54,10 +57,18 @@ export default class MyProjectsScene extends Component {
           onPress={() => onProjectPress(project.id)}
         >
           <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: project.image }}
-              style={styles.image}
-            />
+            {project.image ? (
+              <Image
+                source={{ uri: project.image }}
+                style={styles.image}
+              />
+            ) : (
+              <Icon.MaterialCommunityIcons
+                name="image-filter"
+                size={Size.myProjectListImageSize / 2}
+                color="#ffffff"
+              />
+            )}
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.name}>

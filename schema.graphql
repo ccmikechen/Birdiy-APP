@@ -1,8 +1,19 @@
 schema {
   query: RootQueryType
+  mutation: RootMutationType
+}
+
+input CreateProjectInput {
+  category: String!
+  name: String!
 }
 
 scalar Datetime
+
+type InputError {
+  key: String!
+  message: String!
+}
 
 """An object with an ID"""
 interface Node {
@@ -143,8 +154,17 @@ enum ProjectOrder {
   NEWEST
 }
 
+type ProjectResult {
+  errors: [InputError]
+  project: Project
+}
+
 enum RankOrder {
   NAME
+}
+
+type RootMutationType {
+  createProject(input: CreateProjectInput!): ProjectResult
 }
 
 type RootQueryType {

@@ -8,8 +8,10 @@ export default StyleSheet.create({
     elevation: 4,
   },
   image: {
+    justifyContent: 'center',
+    alignItems: 'center',
     aspectRatio: 1,
-    backgroundColor: Tertiary(900),
+    backgroundColor: Base.dark,
   },
   titleContainer: {
     backgroundColor: Base.lightest,

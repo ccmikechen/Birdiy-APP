@@ -5,7 +5,9 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
+import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 
 import styles from './styles';
@@ -16,10 +18,20 @@ const ProjectSection = ({ project, onPress }) => (
     onPress={() => onPress(project.id)}
   >
     <Surface style={styles.container}>
-      <Image
-        source={{ uri: project.image }}
-        style={styles.image}
-      />
+      {project.image ? (
+        <Image
+          source={{ uri: project.image }}
+          style={styles.image}
+        />
+      ) : (
+        <View style={styles.image}>
+          <Icon.MaterialCommunityIcons
+            name="image-filter"
+            size={Dimensions.get('window').width / 6}
+            color="#ffffff"
+          />
+        </View>
+      )}
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{project.name}</Text>
         <Text style={styles.author}>{`by ${project.author.name}`}</Text>
