@@ -35,14 +35,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: 45,
-    paddingRight: 5,
-  },
-  rightButtonsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
     paddingRight: 5,
   },
   rightButton: {

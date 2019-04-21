@@ -35,7 +35,7 @@ const renderRightButton = ({
         />
       ) : (
         <Text style={[styles.buttonText, {
-          color,
+          color: color || Colors.headerIcon,
         }]}
         >
           {text}

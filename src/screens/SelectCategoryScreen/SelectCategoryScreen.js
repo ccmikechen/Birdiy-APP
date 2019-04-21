@@ -50,6 +50,16 @@ export default class SelectCategoryScreen extends Component {
     }
   };
 
+  handleSelectAll = () => {
+    const { selection } = this.state;
+    this.setState({ selection: selection.fill(true) });
+  };
+
+  handleClear = () => {
+    const { selection } = this.state;
+    this.setState({ selection: selection.fill(false) });
+  };
+
   handleSubmit = () => {
     const { navigation } = this.props;
     const { selection } = this.state;
@@ -71,10 +81,16 @@ export default class SelectCategoryScreen extends Component {
           <NormalBackHeader
             onBack={() => navigation.goBack()}
             title="選擇分類"
-            rightButton={multipleSelect ? {
-              icon: 'check',
+            rightButton={multipleSelect ? [{
+              text: '全選',
+              onPress: this.handleSelectAll,
+            }, {
+              text: '清除',
+              onPress: this.handleClear,
+            }, {
+              text: '確定',
               onPress: this.handleSubmit,
-            } : null}
+            }] : null}
           />
         )}
         fullScreen
