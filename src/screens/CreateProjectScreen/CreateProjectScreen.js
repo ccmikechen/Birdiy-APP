@@ -9,9 +9,9 @@ import EditSection from '../../components/EditSection';
 import PureTextInput from '../../components/PureTextInput';
 import PureSelector from '../../components/PureSelector';
 
-import styles from './styles';
+import CreateProjectMutation from '../../mutations/CreateProjectMutation';
 
-import { categories } from './mocks';
+import styles from './styles';
 
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
@@ -24,6 +24,23 @@ export default class CreateProjectScreen extends Component {
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      categories: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.shape({
+          node: PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+            image: PropTypes.string,
+          }),
+        })),
+      }),
+    }),
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    query: null,
+    loading: true,
   };
 
   state = {
@@ -38,7 +55,7 @@ export default class CreateProjectScreen extends Component {
   handleSelecteCategoryPress = () => {
     const { navigation } = this.props;
     navigation.navigate('SelectCategoryModal', {
-      categories,
+      categories: this.getCategories(),
       onSelect: this.handleSelectCategory,
     });
   };
@@ -50,14 +67,41 @@ export default class CreateProjectScreen extends Component {
 
   handleSubmit = () => {
     const { navigation } = this.props;
-    navigation.goBack();
-    navigation.navigate('EditProjectModal');
+    const { projectName } = this.state;
+    const category = this.getCategory();
+    const mutation = new CreateProjectMutation({
+      name: projectName,
+      category,
+    });
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+        navigation.navigate('EditProjectModal');
+      })
+      .catch(() => {
+        // TODO: Error handling
+      });
+  };
+
+  getCategories = () => {
+    const { query } = this.props;
+
+    return query && query.categories.edges.map(({ node }) => node);
+  };
+
+  getCategory = () => {
+    const { categoryIndex } = this.state;
+    const categories = this.getCategories();
+    return (categories
+            && categories[categoryIndex]
+            && categories[categoryIndex].name) || null;
   };
 
   render() {
-    const { navigation } = this.props;
-    const { projectName, categoryIndex } = this.state;
-    const category = categories[categoryIndex] && categories[categoryIndex].name;
+    const { navigation, loading } = this.props;
+    const { projectName } = this.state;
+    const category = this.getCategory();
 
     return (
       <TopScreenView
@@ -74,6 +118,7 @@ export default class CreateProjectScreen extends Component {
           />
         )}
         fullScreen
+        loading={loading}
       >
         <ScrollView style={styles.container}>
           <EditSection title="專案名稱">

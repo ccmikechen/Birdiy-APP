@@ -10,6 +10,14 @@ input CreateProjectInput {
 
 scalar Datetime
 
+input EditProjectInput {
+  category: String!
+  methods: [ProjectMethodInput]
+  name: String!
+  publish: Boolean
+  tip: String
+}
+
 type InputError {
   key: String!
   message: String!
@@ -149,6 +157,11 @@ type ProjectMethod {
   title: String
 }
 
+input ProjectMethodInput {
+  content: String!
+  id: Int
+}
+
 enum ProjectOrder {
   HOTEST
   NEWEST
@@ -165,6 +178,7 @@ enum RankOrder {
 
 type RootMutationType {
   createProject(input: CreateProjectInput!): ProjectResult
+  editProject(input: EditProjectInput!): ProjectResult
 }
 
 type RootQueryType {

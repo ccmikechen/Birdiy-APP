@@ -36,6 +36,15 @@ export default class ProjectsScreen extends Component {
       hotest: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.object),
       }),
+      categories: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.shape({
+          node: PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+            image: PropTypes.string,
+          }),
+        })),
+      }),
     }),
     variables: PropTypes.shape({
       count: PropTypes.number,

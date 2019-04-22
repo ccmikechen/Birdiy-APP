@@ -50,7 +50,7 @@ const SelectableCategoriesTable = ({
 SelectableCategoriesTable.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.number,
+    image: PropTypes.string,
   })).isRequired,
   onSelect: PropTypes.func,
   selection: PropTypes.arrayOf(PropTypes.bool),

@@ -1,9 +1,12 @@
+/* eslint-disable no-param-reassign */
+
 import { commitMutation } from 'react-relay';
 import validate from 'validate.js';
 
 import environment from './environment';
+import { FormFile } from '../helpers/formFile';
 
-class MutationValidationError extends Error {
+export class MutationValidationError extends Error {
   constructor(message, object) {
     super(message);
     this.object = object;
@@ -24,12 +27,34 @@ export default class Mutation {
   constructor(input) {
     const { defaultInput } = this.constructor;
 
-    this.input = Object.freeze({
+    this.input = {
       ...defaultInput,
       ...input,
-    });
+    };
+    this.uploadables = {};
+    this.fileCounter = 1;
+    this.generateUploadables(this.input);
     this.validated = false;
   }
+
+  generateUploadables = (input) => {
+    const keys = Object.keys(input);
+
+    return keys.forEach((key) => {
+      if (typeof input[key] !== 'object') {
+        return;
+      }
+      if (input[key] instanceof FormFile) {
+        const fileName = `file-${this.fileCounter}`;
+        this.fileCounter += 1;
+        this.uploadables[fileName] = input[key].getFormData();
+        input[key] = fileName;
+
+        return;
+      }
+      this.generateUploadables(input[key]);
+    });
+  };
 
   isValid = () => {
     this.validate();
@@ -83,6 +108,7 @@ export default class Mutation {
             ...this.input,
           },
         },
+        uploadables: this.uploadables,
         onCompleted: (response, errors) => resolve({ response, errors }),
         onError: error => reject(error),
       },
