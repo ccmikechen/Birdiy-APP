@@ -8,6 +8,7 @@ import {
 } from 'react-native-scroll-into-view';
 
 import NormalTabBar from '../NormalTabBar';
+import LoadingIndicator from '../LoadingIndicator';
 
 import Size from '../../constants/Size';
 
@@ -34,12 +35,14 @@ export default class TabSectionScreenView extends Component {
       title: PropTypes.string.isRequired,
     })).isRequired,
     fullScreen: PropTypes.bool,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     renderFooter: () => null,
     fullScreen: false,
     onTabChange: () => {},
+    loading: false,
   };
 
   state = {
@@ -65,6 +68,7 @@ export default class TabSectionScreenView extends Component {
       renderSection,
       renderFooter,
       fullScreen,
+      loading,
     } = this.props;
     const { tabIndex } = this.state;
 
@@ -79,20 +83,22 @@ export default class TabSectionScreenView extends Component {
           index={tabIndex}
           onChange={this.handleTabChange}
         />
-        <ScrollIntoViewScrollView>
-          <KeyboardAvoidingView behavior="padding" enabled>
-            {tabs.map(({ key }, index) => (
-              <ScrollIntoView
-                key={`section-${key}`}
-                ref={(ref) => { this.sections[index] = ref; }}
-              >
-                {renderSection(key)}
-              </ScrollIntoView>
-            ))}
-          </KeyboardAvoidingView>
-          {renderFooter()}
-          <View style={{ height: 200 }} />
-        </ScrollIntoViewScrollView>
+        {loading ? <LoadingIndicator /> : (
+          <ScrollIntoViewScrollView>
+            <KeyboardAvoidingView behavior="padding" enabled>
+              {tabs.map(({ key }, index) => (
+                <ScrollIntoView
+                  key={`section-${key}`}
+                  ref={(ref) => { this.sections[index] = ref; }}
+                >
+                  {renderSection(key)}
+                </ScrollIntoView>
+              ))}
+            </KeyboardAvoidingView>
+            {renderFooter()}
+            <View style={{ height: 200 }} />
+          </ScrollIntoViewScrollView>
+        )}
       </View>
     );
   }

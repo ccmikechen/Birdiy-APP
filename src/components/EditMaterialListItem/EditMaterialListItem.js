@@ -30,15 +30,15 @@ const EditMaterialListItem = ({
       </View>
       <View style={styles.amountContainer}>
         <PureTextInput
-          value={data.amount}
+          value={data.amountUnit}
           placeholder="數量單位"
           onChangeText={(value) => {
-            onChange({ ...data, amount: value });
+            onChange({ ...data, amountUnit: value });
           }}
         />
       </View>
     </View>
-    <View style={styles.linkContainer}>
+    <View style={styles.urlContainer}>
       <View style={styles.iconContainer}>
         <Icon.Entypo
           name="shop"
@@ -47,10 +47,10 @@ const EditMaterialListItem = ({
         />
       </View>
       <PureTextInput
-        value={data.link}
+        value={data.url}
         placeholder="（可選）商店或購買連結"
         onChangeText={(value) => {
-          onChange({ ...data, link: value });
+          onChange({ ...data, url: value });
         }}
       />
     </View>
@@ -94,8 +94,8 @@ const EditMaterialListItem = ({
 EditMaterialListItem.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
-    amount: PropTypes.string,
-    link: PropTypes.string,
+    amountUnit: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
   onChange: PropTypes.func,
   onMoveUp: PropTypes.func,

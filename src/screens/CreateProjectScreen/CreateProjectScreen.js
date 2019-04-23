@@ -75,9 +75,11 @@ export default class CreateProjectScreen extends Component {
     });
 
     mutation.commit()
-      .then(() => {
+      .then(({ response }) => {
+        const { id } = response.createProject.project;
+
         navigation.goBack();
-        navigation.navigate('EditProjectModal');
+        navigation.navigate('EditProjectModal', { id });
       })
       .catch(() => {
         // TODO: Error handling

@@ -27,6 +27,7 @@ export default class MyProjectsScene extends Component {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
+      publishedAt: PropTypes.string,
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,

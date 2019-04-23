@@ -41,7 +41,7 @@ export default class Mutation {
     const keys = Object.keys(input);
 
     return keys.forEach((key) => {
-      if (typeof input[key] !== 'object') {
+      if (!input[key] || typeof input[key] !== 'object') {
         return;
       }
       if (input[key] instanceof FormFile) {

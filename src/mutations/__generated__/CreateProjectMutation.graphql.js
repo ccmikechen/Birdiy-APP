@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 56da209c9877fdda44f42326db972c93
+ * @relayHash 108745eee7b894a88091acdff5b6941e
  */
 
 /* eslint-disable */
@@ -19,10 +19,7 @@ export type CreateProjectMutationVariables = {|
 export type CreateProjectMutationResponse = {|
   +createProject: ?{|
     +project: ?{|
-      +name: string,
-      +category: {|
-        +name: string
-      |},
+      +id: string
     |}
   |}
 |};
@@ -39,11 +36,6 @@ mutation CreateProjectMutation(
 ) {
   createProject(input: $input) {
     project {
-      name
-      category {
-        name
-        id
-      }
       id
     }
   }
@@ -61,26 +53,42 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "input",
-    "variableName": "input",
-    "type": "CreateProjectInput!"
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "createProject",
+    "storageKey": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "input",
+        "variableName": "input",
+        "type": "CreateProjectInput!"
+      }
+    ],
+    "concreteType": "ProjectResult",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "project",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Project",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
   }
-],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -89,97 +97,23 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "createProject",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "ProjectResult",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "project",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Project",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "category",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/)
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "CreateProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "createProject",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "ProjectResult",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "project",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Project",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "category",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/)
-                ]
-              },
-              (v3/*: any*/)
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
     "name": "CreateProjectMutation",
     "id": null,
-    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      name\n      category {\n        name\n        id\n      }\n      id\n    }\n  }\n}\n",
+    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a5c06647e83a49a48969f33be4056aed';
+(node/*: any*/).hash = 'afbc69dd702c045bcd07b8a9db119f2a';
 module.exports = node;

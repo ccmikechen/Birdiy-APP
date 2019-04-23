@@ -8,7 +8,7 @@ import DrawerScreen from '../containers/DrawerScreen';
 import MainTabNavigator from './MainTabNavigator';
 
 import CreateProjectScreen from '../containers/CreateProjectScreen';
-import EditProjectScreen from '../screens/EditProjectScreen';
+import EditProjectScreen from '../containers/EditProjectScreen';
 import SettingScreen from '../screens/SettingScreen';
 import SelectCategoryScreen from '../screens/SelectCategoryScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';

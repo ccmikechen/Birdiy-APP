@@ -7,6 +7,7 @@ import {
   Text,
 } from 'react-native';
 import { Button } from 'react-native-paper';
+import { clone, cloneDeep } from 'lodash';
 
 import TabSectionScreenView from '../../components/TabSectionScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -18,9 +19,10 @@ import EditMaterialList from '../../components/EditMaterialList';
 import EditFileList from '../../components/EditFileList';
 import EditMethodList from '../../components/EditMethodList';
 
-import styles from './styles';
+import { ImageFile } from '../../helpers/formFile';
+import EditProjectMutation from '../../mutations/EditProjectMutation';
 
-import { categories } from './mocks';
+import styles from './styles';
 
 const TABS = [{
   key: 'intro', title: '簡介',
@@ -31,6 +33,9 @@ const TABS = [{
 }, {
   key: 'tip', title: '小技巧',
 }];
+const DEFAULT_MATERIAL = { name: '', amountUnit: '', url: '' };
+const DEFAULT_FILE = { type: 'external', name: '', url: 'http://' };
+const DEFAULT_METHOD = { image: null, title: '', content: '' };
 
 export default class EditProjectScreen extends Component {
   static navigationOptions = {
@@ -43,18 +48,86 @@ export default class EditProjectScreen extends Component {
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      name: PropTypes.string,
+      image: PropTypes.string,
+      category: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }),
+      tip: PropTypes.string,
+      materials: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        amountUnit: PropTypes.string.isRequired,
+        url: PropTypes.string,
+      })),
+      fileResources: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      })),
+      methods: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        title: PropTypes.string,
+        content: PropTypes.string.isRequired,
+      })),
+      categories: PropTypes.shape({
+        edges: PropTypes.arrayOf(PropTypes.shape({
+          node: PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+            image: PropTypes.string,
+          }),
+        })),
+      }),
+    }),
+    loading: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    query: null,
+    loading: true,
   };
 
   state = {
-    projectImage: null,
-    projectName: '',
-    categoryIndex: null,
-    introduction: '',
-    tip: '',
-    materials: [{ name: '', amount: '', link: '' }],
-    files: [{ type: 'external', name: '', link: 'http://' }],
-    methods: [{ image: null, title: '', content: '' }],
+    initialized: false,
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { query } = nextProps;
+    const { initialized } = prevState;
+
+    if (!query || initialized) {
+      return null;
+    }
+
+    const { project, categories } = query;
+    const categoryIndex = categories.edges.reduce((
+      acc, { node: { name } }, index,
+    ) => (
+      name === project.category.name ? index : acc
+    ), null);
+
+    return {
+      initialized: true,
+      projectImage: project.image,
+      projectName: project.name,
+      categoryIndex,
+      introduction: project.introduction || '',
+      tip: project.tip || '',
+
+      materials: project.materials.length > 0
+        ? cloneDeep(project.materials)
+        : [clone(DEFAULT_MATERIAL)],
+
+      files: [clone(DEFAULT_FILE)],
+
+      methods: project.methods.length > 0
+        ? cloneDeep(project.methods)
+        : [clone(DEFAULT_METHOD)],
+    };
+  }
 
   handleImageUpload = (image) => {
     this.setState({ projectImage: image.uri });
@@ -66,8 +139,9 @@ export default class EditProjectScreen extends Component {
 
   handleSelecteCategoryPress = () => {
     const { navigation } = this.props;
+
     navigation.navigate('SelectCategoryModal', {
-      categories,
+      categories: this.getCategories(),
       onSelect: this.handleSelectCategory,
     });
   };
@@ -84,7 +158,7 @@ export default class EditProjectScreen extends Component {
     this.setState({ methods });
   };
 
-  handleDeletePress = () => {
+  handleDelete = () => {
     Alert.alert(
       '刪除專案',
       '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
@@ -105,6 +179,46 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSave = () => {
+    const mutation = this.getEditProjectMutation();
+    mutation.commit()
+      .catch(() => {});
+  };
+
+  getEditProjectMutation = () => {
+    const { navigation } = this.props;
+    const {
+      projectImage,
+      projectName,
+      introduction,
+      tip,
+      materials,
+      //      files,
+      methods,
+    } = this.state;
+
+    return new EditProjectMutation({
+      id: navigation.getParam('id'),
+      name: projectName,
+      category: this.getCategory(),
+      introduction,
+      tip,
+      ...(projectImage
+          && projectImage.startsWith('file://')
+          && { image: new ImageFile(projectImage) }),
+      materials: materials.map((material, index) => ({
+        ...material,
+        order: index + 1,
+      })),
+      methods: methods.map((method, index) => ({
+        id: method.id,
+        title: method.title,
+        content: method.content,
+        ...(method.image
+            && method.image.startsWith('file://')
+            && { image: new ImageFile(method.image) }),
+        order: index + 1,
+      })),
+    });
   };
 
   handlePublish = () => {
@@ -114,14 +228,13 @@ export default class EditProjectScreen extends Component {
     const {
       projectImage,
       projectName,
-      categoryIndex,
       introduction,
       tip,
       materials,
       files,
       methods,
     } = this.state;
-    const category = categories[categoryIndex] && categories[categoryIndex].name;
+    const category = this.getCategory();
 
     switch (key) {
       case 'intro':
@@ -235,8 +348,22 @@ export default class EditProjectScreen extends Component {
     </View>
   );
 
+  getCategories = () => {
+    const { query } = this.props;
+
+    return query && query.categories.edges.map(({ node }) => node);
+  };
+
+  getCategory = () => {
+    const { categoryIndex } = this.state;
+    const categories = this.getCategories();
+    return (categories
+            && categories[categoryIndex]
+            && categories[categoryIndex].name) || null;
+  };
+
   render() {
-    const { navigation } = this.props;
+    const { navigation, loading } = this.props;
 
     return (
       <TabSectionScreenView
@@ -249,16 +376,18 @@ export default class EditProjectScreen extends Component {
             rightButton={[{
               icon: 'delete',
               color: '#666666',
-              onPress: this.handleDeletePress,
+              onPress: this.handleDelete,
             }, {
               icon: 'save',
               color: '#666666',
+              onPress: this.handleSave,
             }]}
           />
         )}
         renderSection={this.renderSection}
         renderFooter={this.renderFooter}
         fullScreen
+        loading={loading}
       />
     );
   }

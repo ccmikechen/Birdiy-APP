@@ -22,7 +22,7 @@ export default StyleSheet.create({
   amountContainer: {
     flex: 1,
   },
-  linkContainer: {
+  urlContainer: {
     flexDirection: 'row',
   },
   iconContainer: {

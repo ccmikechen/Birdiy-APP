@@ -45,7 +45,8 @@ export default class ProfileScreen extends Component {
 
   handleOpenProject = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('ProjectDetail', { id });
+    //    navigation.navigate('ProjectDetail', { id });
+    navigation.navigate('EditProjectModal', { id });
   };
 
   handleMorePostsPress = () => {

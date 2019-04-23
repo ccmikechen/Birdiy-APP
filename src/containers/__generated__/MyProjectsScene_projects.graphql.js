@@ -16,6 +16,7 @@ export type MyProjectsScene_projects = {|
       +id: string,
       +name: string,
       +image: string,
+      +publishedAt: ?any,
     |}
   |}>,
   +$refType: MyProjectsScene_projects$ref,
@@ -68,6 +69,13 @@ const node/*: ReaderFragment*/ = {
               "name": "image",
               "args": null,
               "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "publishedAt",
+              "args": null,
+              "storageKey": null
             }
           ]
         }
@@ -76,5 +84,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '130507150b6cba3c20bbf76b562cd043';
+(node/*: any*/).hash = '7b94f9889e93cfc4aeebd038f7339b3a';
 module.exports = node;

@@ -10,9 +10,10 @@ import styles from './styles';
 export default class EditMaterialList extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
       name: PropTypes.string,
-      amount: PropTypes.string,
-      link: PropTypes.string,
+      amountUnit: PropTypes.string,
+      url: PropTypes.string,
     })).isRequired,
     onChange: PropTypes.func,
   };
@@ -65,8 +66,8 @@ export default class EditMaterialList extends Component {
     const { data, onChange } = this.props;
     onChange([...data, {
       name: '',
-      amount: '',
-      link: '',
+      amountUnit: '',
+      url: '',
     }]);
   };
 

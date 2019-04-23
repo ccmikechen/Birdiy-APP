@@ -12,6 +12,11 @@ scalar Datetime
 
 input EditProjectInput {
   category: String!
+  fileResources: [ProjectFileResourceInput]
+  id: ID!
+  image: Upload
+  introduction: String
+  materials: [ProjectMaterialInput]
   methods: [ProjectMethodInput]
   name: String!
   publish: Boolean
@@ -89,6 +94,7 @@ type Project implements Node {
   materials: [ProjectMaterial]
   methods: [ProjectMethod]
   name: String!
+  publishedAt: Datetime
   relatedPostCount: Int
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
@@ -129,10 +135,19 @@ type ProjectEdge {
   node: Project
 }
 
-type ProjectFileResource {
+type ProjectFileResource implements Node {
+  """The ID of an object"""
+  id: ID!
   name: String!
   order: Int!
   project: Project
+  url: String!
+}
+
+input ProjectFileResourceInput {
+  id: ID
+  name: String!
+  order: Int!
   url: String!
 }
 
@@ -141,16 +156,30 @@ input ProjectFilter {
   name: String
 }
 
-type ProjectMaterial {
+type ProjectMaterial implements Node {
   amountUnit: String!
+
+  """The ID of an object"""
+  id: ID!
   name: String!
   order: Int!
   project: Project
   url: String
 }
 
-type ProjectMethod {
+input ProjectMaterialInput {
+  amountUnit: String!
+  id: ID
+  name: String!
+  order: Int!
+  url: String
+}
+
+type ProjectMethod implements Node {
   content: String!
+
+  """The ID of an object"""
+  id: ID!
   image: String
   order: Int!
   project: Project
@@ -159,7 +188,10 @@ type ProjectMethod {
 
 input ProjectMethodInput {
   content: String!
-  id: Int
+  id: ID
+  image: Upload
+  order: Int
+  title: String
 }
 
 enum ProjectOrder {
@@ -195,6 +227,12 @@ type RootQueryType {
   project(id: ID!): Project
   viewer: User
 }
+
+"""
+Represents an uploaded file.
+
+"""
+scalar Upload
 
 type User {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection

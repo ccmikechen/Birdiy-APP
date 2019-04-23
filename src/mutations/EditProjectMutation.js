@@ -2,12 +2,15 @@ import { graphql } from 'react-relay';
 
 import Mutation from '../relay/Mutation';
 
-export default class CreateProjectMutation extends Mutation {
+export default class EditProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation CreateProjectMutation($input: CreateProjectInput!) {
-      createProject(input: $input) {
+    mutation EditProjectMutation($input: EditProjectInput!) {
+      editProject(input: $input) {
         project {
-          id
+          name
+          category {
+            name
+          }
         }
       }
     }

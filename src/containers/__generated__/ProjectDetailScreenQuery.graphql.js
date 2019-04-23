@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5002e44e16506a38f78f392783f6b8e4
+ * @relayHash 0342831c21c3739abdba2a62a9457423
  */
 
 /* eslint-disable */
@@ -71,6 +71,7 @@ fragment ProjectDetailMaterialList_project on Project {
     name
     amountUnit
     url
+    id
   }
 }
 
@@ -78,6 +79,7 @@ fragment ProjectDetailFileList_project on Project {
   fileResources {
     name
     url
+    id
   }
 }
 
@@ -86,6 +88,7 @@ fragment ProjectDetailMethodList_project on Project {
     image
     title
     content
+    id
   }
 }
 
@@ -307,7 +310,8 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v4/*: any*/),
+              (v3/*: any*/)
             ]
           },
           {
@@ -320,7 +324,8 @@ return {
             "plural": true,
             "selections": [
               (v1/*: any*/),
-              (v4/*: any*/)
+              (v4/*: any*/),
+              (v3/*: any*/)
             ]
           },
           {
@@ -346,7 +351,8 @@ return {
                 "name": "content",
                 "args": null,
                 "storageKey": null
-              }
+              },
+              (v3/*: any*/)
             ]
           },
           {
@@ -472,7 +478,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailScreenQuery",
     "id": null,
-    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n    id\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n    id\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
