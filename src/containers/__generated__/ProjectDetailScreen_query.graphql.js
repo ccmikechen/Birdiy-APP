@@ -18,7 +18,7 @@ declare export opaque type ProjectDetailScreen_query$ref: FragmentReference;
 export type ProjectDetailScreen_query = {|
   +project: ?{|
     +name: string,
-    +image: string,
+    +image: ?string,
     +category: {|
       +name: string
     |},

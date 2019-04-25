@@ -88,7 +88,7 @@ type Project implements Node {
 
   """The ID of an object"""
   id: ID!
-  image: String!
+  image: String
   introduction: String
   likeCount: Int
   materials: [ProjectMaterial]
@@ -141,14 +141,16 @@ type ProjectFileResource implements Node {
   name: String!
   order: Int!
   project: Project
+  type: String
   url: String!
 }
 
 input ProjectFileResourceInput {
+  file: Upload
   id: ID
   name: String!
   order: Int!
-  url: String!
+  url: String
 }
 
 input ProjectFilter {

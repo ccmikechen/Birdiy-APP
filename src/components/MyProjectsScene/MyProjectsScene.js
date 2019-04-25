@@ -26,7 +26,7 @@ export default class MyProjectsScene extends Component {
     projects: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       publishedAt: PropTypes.string,
     })).isRequired,
     onMorePress: PropTypes.func,

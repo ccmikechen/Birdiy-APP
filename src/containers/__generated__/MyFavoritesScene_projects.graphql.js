@@ -14,7 +14,7 @@ export type MyFavoritesScene_projects = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
       +id: string,
-      +image: string,
+      +image: ?string,
       +name: string,
       +author: {|
         +name: string

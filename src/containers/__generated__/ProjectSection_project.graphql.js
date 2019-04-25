@@ -13,7 +13,7 @@ declare export opaque type ProjectSection_project$ref: FragmentReference;
 export type ProjectSection_project = {|
   +id: string,
   +name: string,
-  +image: string,
+  +image: ?string,
   +author: {|
     +name: string
   |},

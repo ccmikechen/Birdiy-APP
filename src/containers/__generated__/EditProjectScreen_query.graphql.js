@@ -13,7 +13,7 @@ declare export opaque type EditProjectScreen_query$ref: FragmentReference;
 export type EditProjectScreen_query = {|
   +project: ?{|
     +name: string,
-    +image: string,
+    +image: ?string,
     +category: {|
       +name: string
     |},
@@ -29,6 +29,7 @@ export type EditProjectScreen_query = {|
       +id: string,
       +name: string,
       +url: string,
+      +type: ?string,
     |}>,
     +methods: ?$ReadOnlyArray<?{|
       +id: string,
@@ -169,7 +170,14 @@ return {
           "selections": [
             (v2/*: any*/),
             (v0/*: any*/),
-            (v3/*: any*/)
+            (v3/*: any*/),
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "type",
+              "args": null,
+              "storageKey": null
+            }
           ]
         },
         {
@@ -254,5 +262,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8c80f1a248d8b13b690fa2e3dfb02df6';
+(node/*: any*/).hash = 'd2ff0d468f48ea820521940051a9dc39';
 module.exports = node;

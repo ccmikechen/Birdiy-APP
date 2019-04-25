@@ -28,6 +28,7 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
           id
           name
           url
+          type
         }
         methods {
           id

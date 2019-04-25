@@ -15,7 +15,7 @@ export type MyProjectsScene_projects = {|
     +node: ?{|
       +id: string,
       +name: string,
-      +image: string,
+      +image: ?string,
       +publishedAt: ?any,
     |}
   |}>,

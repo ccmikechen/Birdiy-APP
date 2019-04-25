@@ -12,11 +12,11 @@ export default class EditFileList extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
       type: PropTypes.oneOf([
-        'external', 'local',
+        'link', 'file',
       ]).isRequired,
       name: PropTypes.string,
-      link: PropTypes.string,
-      uri: PropTypes.string,
+      localFileName: PropTypes.string,
+      url: PropTypes.string,
     })).isRequired,
     onChange: PropTypes.func,
   };
@@ -68,9 +68,9 @@ export default class EditFileList extends Component {
   handleFileLinkAdd = () => {
     const { data, onChange } = this.props;
     onChange([...data, {
-      type: 'external',
+      type: 'link',
       name: '',
-      link: 'http://',
+      url: 'http://',
     }]);
   };
 
@@ -82,10 +82,10 @@ export default class EditFileList extends Component {
       return;
     }
     onChange([...data, {
-      type: 'local',
+      type: 'file',
       name: result.name,
-      link: result.name,
-      uri: result.uri,
+      localFileName: result.name,
+      url: result.uri,
     }]);
   };
 

@@ -44,7 +44,7 @@ ProjectSection.propTypes = {
   project: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     author: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,

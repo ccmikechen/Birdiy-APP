@@ -8,9 +8,6 @@ export default class EditProjectMutation extends Mutation {
       editProject(input: $input) {
         project {
           name
-          category {
-            name
-          }
         }
       }
     }

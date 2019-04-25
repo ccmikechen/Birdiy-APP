@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d49c61e9929aa723438b7cdf19e2b5f0
+ * @relayHash 5c1e9af7b978f71acde8d7196e10b6b9
  */
 
 /* eslint-disable */
@@ -22,10 +22,11 @@ export type EditProjectInput = {|
   tip?: ?string,
 |};
 export type ProjectFileResourceInput = {|
+  file?: ?any,
   id?: ?string,
   name: string,
   order: number,
-  url: string,
+  url?: ?string,
 |};
 export type ProjectMaterialInput = {|
   amountUnit: string,
@@ -47,10 +48,7 @@ export type EditProjectMutationVariables = {|
 export type EditProjectMutationResponse = {|
   +editProject: ?{|
     +project: ?{|
-      +name: string,
-      +category: {|
-        +name: string
-      |},
+      +name: string
     |}
   |}
 |};
@@ -68,10 +66,6 @@ mutation EditProjectMutation(
   editProject(input: $input) {
     project {
       name
-      category {
-        name
-        id
-      }
       id
     }
   }
@@ -99,13 +93,6 @@ v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
   "args": null,
   "storageKey": null
 };
@@ -136,19 +123,7 @@ return {
             "concreteType": "Project",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "category",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/)
-                ]
-              }
+              (v2/*: any*/)
             ]
           }
         ]
@@ -180,19 +155,12 @@ return {
             "selections": [
               (v2/*: any*/),
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
-                "name": "category",
-                "storageKey": null,
+                "name": "id",
                 "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/)
-                ]
-              },
-              (v3/*: any*/)
+                "storageKey": null
+              }
             ]
           }
         ]
@@ -203,11 +171,11 @@ return {
     "operationKind": "mutation",
     "name": "EditProjectMutation",
     "id": null,
-    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  editProject(input: $input) {\n    project {\n      name\n      category {\n        name\n        id\n      }\n      id\n    }\n  }\n}\n",
+    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  editProject(input: $input) {\n    project {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '37dc3189e761d168d391473db3f690f2';
+(node/*: any*/).hash = '3c6fb1287a6a0317912055abbbbd60c1';
 module.exports = node;

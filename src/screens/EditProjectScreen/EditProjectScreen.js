@@ -19,7 +19,7 @@ import EditMaterialList from '../../components/EditMaterialList';
 import EditFileList from '../../components/EditFileList';
 import EditMethodList from '../../components/EditMethodList';
 
-import { ImageFile } from '../../helpers/formFile';
+import { ImageFile, DocumentFile } from '../../helpers/formFile';
 import EditProjectMutation from '../../mutations/EditProjectMutation';
 
 import styles from './styles';
@@ -34,7 +34,7 @@ const TABS = [{
   key: 'tip', title: '小技巧',
 }];
 const DEFAULT_MATERIAL = { name: '', amountUnit: '', url: '' };
-const DEFAULT_FILE = { type: 'external', name: '', url: 'http://' };
+const DEFAULT_FILE = { type: 'link', name: '', url: '' };
 const DEFAULT_METHOD = { image: null, title: '', content: '' };
 
 export default class EditProjectScreen extends Component {
@@ -65,6 +65,7 @@ export default class EditProjectScreen extends Component {
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
       })),
       methods: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -121,7 +122,9 @@ export default class EditProjectScreen extends Component {
         ? cloneDeep(project.materials)
         : [clone(DEFAULT_MATERIAL)],
 
-      files: [clone(DEFAULT_FILE)],
+      files: project.fileResources.length > 0
+        ? cloneDeep(project.fileResources)
+        : [clone(DEFAULT_FILE)],
 
       methods: project.methods.length > 0
         ? cloneDeep(project.methods)
@@ -180,6 +183,7 @@ export default class EditProjectScreen extends Component {
 
   handleSave = () => {
     const mutation = this.getEditProjectMutation();
+
     mutation.commit()
       .catch(() => {});
   };
@@ -192,7 +196,7 @@ export default class EditProjectScreen extends Component {
       introduction,
       tip,
       materials,
-      //      files,
+      files,
       methods,
     } = this.state;
 
@@ -202,20 +206,29 @@ export default class EditProjectScreen extends Component {
       category: this.getCategory(),
       introduction,
       tip,
-      ...(projectImage
-          && projectImage.startsWith('file://')
-          && { image: new ImageFile(projectImage) }),
+      ...((projectImage)
+          && (projectImage.startsWith('file://'))
+          && ({ image: new ImageFile(projectImage) })),
       materials: materials.map((material, index) => ({
         ...material,
+        order: index + 1,
+      })),
+      fileResources: files.map((file, index) => ({
+        id: file.id,
+        name: file.name,
+        ...((file.type === 'link') && ({ url: file.url })),
+        ...((file.type === 'file')
+            && (file.url.startsWith('file://'))
+            && ({ file: new DocumentFile(file.url, file.name, file.localFileName) })),
         order: index + 1,
       })),
       methods: methods.map((method, index) => ({
         id: method.id,
         title: method.title,
         content: method.content,
-        ...(method.image
-            && method.image.startsWith('file://')
-            && { image: new ImageFile(method.image) }),
+        ...((method.image)
+            && (method.image.startsWith('file://'))
+            && ({ image: new ImageFile(method.image) })),
         order: index + 1,
       })),
     });

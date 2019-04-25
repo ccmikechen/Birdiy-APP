@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 27c7402cff8872b6a8144b5e81ebab08
+ * @relayHash 1f5902f8784ca68b7eb71507577f8127
  */
 
 /* eslint-disable */
@@ -50,6 +50,7 @@ fragment EditProjectScreen_query on RootQueryType {
       id
       name
       url
+      type
     }
     methods {
       id
@@ -206,7 +207,14 @@ return {
             "selections": [
               (v3/*: any*/),
               (v1/*: any*/),
-              (v4/*: any*/)
+              (v4/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "type",
+                "args": null,
+                "storageKey": null
+              }
             ]
           },
           {
@@ -294,7 +302,7 @@ return {
     "operationKind": "query",
     "name": "EditProjectScreenQuery",
     "id": null,
-    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    name\n    image\n    category {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n    id\n  }\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n",
+    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    name\n    image\n    category {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n    id\n  }\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

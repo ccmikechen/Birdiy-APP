@@ -30,7 +30,7 @@ const EditFileListItem = ({
       </View>
     </View>
     {
-      data.type === 'local' ? (
+      data.type === 'file' ? (
         <View style={styles.linkContainer}>
           <View style={styles.iconContainer}>
             <Icon.MaterialCommunityIcons
@@ -40,7 +40,7 @@ const EditFileListItem = ({
             />
           </View>
           <PureTextInput
-            value={data.link}
+            value={data.localFileName || data.url}
             editable={false}
             multiline
           />
@@ -55,10 +55,10 @@ const EditFileListItem = ({
             />
           </View>
           <PureTextInput
-            value={data.link}
+            value={data.url}
             placeholder="輸入檔案下載連結"
             onChangeText={(value) => {
-              onChange({ ...data, link: value });
+              onChange({ ...data, url: value });
             }}
           />
         </View>
@@ -104,8 +104,8 @@ const EditFileListItem = ({
 EditFileListItem.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
-    amount: PropTypes.string,
-    link: PropTypes.string,
+    localFileName: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
   onChange: PropTypes.func,
   onMoveUp: PropTypes.func,
