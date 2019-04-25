@@ -19,7 +19,6 @@ import EditMaterialList from '../../components/EditMaterialList';
 import EditFileList from '../../components/EditFileList';
 import EditMethodList from '../../components/EditMethodList';
 
-import { ImageFile, DocumentFile } from '../../helpers/formFile';
 import EditProjectMutation from '../../mutations/EditProjectMutation';
 
 import styles from './styles';
@@ -182,10 +181,17 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSave = () => {
+    const { navigation } = this.props;
     const mutation = this.getEditProjectMutation();
 
     mutation.commit()
-      .catch(() => {});
+      .then(() => {
+        navigation.goBack();
+        Alert.alert('專案儲存成功');
+      })
+      .catch(() => {
+        Alert.alert('專案儲存失敗');
+      });
   };
 
   getEditProjectMutation = () => {
@@ -206,31 +212,10 @@ export default class EditProjectScreen extends Component {
       category: this.getCategory(),
       introduction,
       tip,
-      ...((projectImage)
-          && (projectImage.startsWith('file://'))
-          && ({ image: new ImageFile(projectImage) })),
-      materials: materials.map((material, index) => ({
-        ...material,
-        order: index + 1,
-      })),
-      fileResources: files.map((file, index) => ({
-        id: file.id,
-        name: file.name,
-        ...((file.type === 'link') && ({ url: file.url })),
-        ...((file.type === 'file')
-            && (file.url.startsWith('file://'))
-            && ({ file: new DocumentFile(file.url, file.name, file.localFileName) })),
-        order: index + 1,
-      })),
-      methods: methods.map((method, index) => ({
-        id: method.id,
-        title: method.title,
-        content: method.content,
-        ...((method.image)
-            && (method.image.startsWith('file://'))
-            && ({ image: new ImageFile(method.image) })),
-        order: index + 1,
-      })),
+      image: projectImage,
+      materials,
+      files,
+      methods,
     });
   };
 
