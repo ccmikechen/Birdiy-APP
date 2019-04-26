@@ -32,7 +32,7 @@ export default createFragmentContainer(
           id
           name
           image
-          publishedAt
+          published
         }
       }
     }

@@ -12,7 +12,9 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type EditProjectScreen_query$ref: FragmentReference;
 export type EditProjectScreen_query = {|
   +project: ?{|
+    +id: string,
     +name: string,
+    +published: ?boolean,
     +image: ?string,
     +category: {|
       +name: string
@@ -56,21 +58,21 @@ const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "image",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "image",
   "args": null,
   "storageKey": null
 },
@@ -113,6 +115,14 @@ return {
         (v0/*: any*/),
         (v1/*: any*/),
         {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "published",
+          "args": null,
+          "storageKey": null
+        },
+        (v2/*: any*/),
+        {
           "kind": "LinkedField",
           "alias": null,
           "name": "category",
@@ -121,7 +131,7 @@ return {
           "concreteType": "ProjectCategory",
           "plural": false,
           "selections": [
-            (v0/*: any*/)
+            (v1/*: any*/)
           ]
         },
         {
@@ -147,8 +157,8 @@ return {
           "concreteType": "ProjectMaterial",
           "plural": true,
           "selections": [
-            (v2/*: any*/),
             (v0/*: any*/),
+            (v1/*: any*/),
             {
               "kind": "ScalarField",
               "alias": null,
@@ -168,8 +178,8 @@ return {
           "concreteType": "ProjectFileResource",
           "plural": true,
           "selections": [
-            (v2/*: any*/),
             (v0/*: any*/),
+            (v1/*: any*/),
             (v3/*: any*/),
             {
               "kind": "ScalarField",
@@ -189,8 +199,8 @@ return {
           "concreteType": "ProjectMethod",
           "plural": true,
           "selections": [
+            (v0/*: any*/),
             (v2/*: any*/),
-            (v1/*: any*/),
             {
               "kind": "ScalarField",
               "alias": null,
@@ -249,9 +259,9 @@ return {
               "concreteType": "ProjectCategory",
               "plural": false,
               "selections": [
-                (v2/*: any*/),
                 (v0/*: any*/),
-                (v1/*: any*/)
+                (v1/*: any*/),
+                (v2/*: any*/)
               ]
             }
           ]
@@ -262,5 +272,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd2ff0d468f48ea820521940051a9dc39';
+(node/*: any*/).hash = '532384eefe8480e5fcf6c6d875069ad5';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5c1e9af7b978f71acde8d7196e10b6b9
+ * @relayHash 3562234733b2f512c3420fc256270671
  */
 
 /* eslint-disable */
@@ -46,10 +46,8 @@ export type EditProjectMutationVariables = {|
   input: EditProjectInput
 |};
 export type EditProjectMutationResponse = {|
-  +editProject: ?{|
-    +project: ?{|
-      +name: string
-    |}
+  +project: ?{|
+    +id: string
   |}
 |};
 export type EditProjectMutation = {|
@@ -63,11 +61,8 @@ export type EditProjectMutation = {|
 mutation EditProjectMutation(
   $input: EditProjectInput!
 ) {
-  editProject(input: $input) {
-    project {
-      name
-      id
-    }
+  project: editProject(input: $input) {
+    id
   }
 }
 */
@@ -83,19 +78,31 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "Variable",
-    "name": "input",
-    "variableName": "input",
-    "type": "EditProjectInput!"
+    "kind": "LinkedField",
+    "alias": "project",
+    "name": "editProject",
+    "storageKey": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "input",
+        "variableName": "input",
+        "type": "EditProjectInput!"
+      }
+    ],
+    "concreteType": "Project",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "id",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   }
-],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -104,78 +111,23 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "editProject",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "ProjectResult",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "project",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Project",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/)
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "EditProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "editProject",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "ProjectResult",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "project",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Project",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "id",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
     "name": "EditProjectMutation",
     "id": null,
-    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  editProject(input: $input) {\n    project {\n      name\n      id\n    }\n  }\n}\n",
+    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  project: editProject(input: $input) {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3c6fb1287a6a0317912055abbbbd60c1';
+(node/*: any*/).hash = '394b3546ebca1a7c05709111188fc278';
 module.exports = node;

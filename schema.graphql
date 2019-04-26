@@ -23,11 +23,6 @@ input EditProjectInput {
   tip: String
 }
 
-type InputError {
-  key: String!
-  message: String!
-}
-
 """An object with an ID"""
 interface Node {
   """The id of the object."""
@@ -94,7 +89,7 @@ type Project implements Node {
   materials: [ProjectMaterial]
   methods: [ProjectMethod]
   name: String!
-  publishedAt: Datetime
+  published: Boolean
   relatedPostCount: Int
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
@@ -158,6 +153,10 @@ input ProjectFilter {
   name: String
 }
 
+input ProjectInput {
+  id: ID!
+}
+
 type ProjectMaterial implements Node {
   amountUnit: String!
 
@@ -201,18 +200,16 @@ enum ProjectOrder {
   NEWEST
 }
 
-type ProjectResult {
-  errors: [InputError]
-  project: Project
-}
-
 enum RankOrder {
   NAME
 }
 
 type RootMutationType {
-  createProject(input: CreateProjectInput!): ProjectResult
-  editProject(input: EditProjectInput!): ProjectResult
+  createProject(input: CreateProjectInput!): Project
+  deleteProject(input: ProjectInput!): Project
+  editProject(input: EditProjectInput!): Project
+  publishProject(input: ProjectInput!): Project
+  unpublishProject(input: ProjectInput!): Project
 }
 
 type RootQueryType {

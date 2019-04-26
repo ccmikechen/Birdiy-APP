@@ -43,10 +43,8 @@ const parseMethods = methods => (
 export default class EditProjectMutation extends Mutation {
   static mutation = graphql`
     mutation EditProjectMutation($input: EditProjectInput!) {
-      editProject(input: $input) {
-        project {
-          name
-        }
+      project: editProject(input: $input) {
+        id
       }
     }
   `;

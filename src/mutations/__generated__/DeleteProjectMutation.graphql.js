@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 00323f9a7089bee4b5c402edd18af516
+ * @relayHash abfe648e410015623638edc5741d1fc5
  */
 
 /* eslint-disable */
@@ -9,30 +9,29 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CreateProjectInput = {|
-  category: string,
-  name: string,
+export type ProjectInput = {|
+  id: string
 |};
-export type CreateProjectMutationVariables = {|
-  input: CreateProjectInput
+export type DeleteProjectMutationVariables = {|
+  input: ProjectInput
 |};
-export type CreateProjectMutationResponse = {|
+export type DeleteProjectMutationResponse = {|
   +project: ?{|
     +id: string
   |}
 |};
-export type CreateProjectMutation = {|
-  variables: CreateProjectMutationVariables,
-  response: CreateProjectMutationResponse,
+export type DeleteProjectMutation = {|
+  variables: DeleteProjectMutationVariables,
+  response: DeleteProjectMutationResponse,
 |};
 */
 
 
 /*
-mutation CreateProjectMutation(
-  $input: CreateProjectInput!
+mutation DeleteProjectMutation(
+  $input: ProjectInput!
 ) {
-  project: createProject(input: $input) {
+  project: deleteProject(input: $input) {
     id
   }
 }
@@ -43,7 +42,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "CreateProjectInput!",
+    "type": "ProjectInput!",
     "defaultValue": null
   }
 ],
@@ -51,14 +50,14 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": "project",
-    "name": "createProject",
+    "name": "deleteProject",
     "storageKey": null,
     "args": [
       {
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "CreateProjectInput!"
+        "type": "ProjectInput!"
       }
     ],
     "concreteType": "Project",
@@ -78,7 +77,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CreateProjectMutation",
+    "name": "DeleteProjectMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -86,19 +85,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CreateProjectMutation",
+    "name": "DeleteProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "CreateProjectMutation",
+    "name": "DeleteProjectMutation",
     "id": null,
-    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  project: createProject(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation DeleteProjectMutation(\n  $input: ProjectInput!\n) {\n  project: deleteProject(input: $input) {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f6d575c7e4d0042463296dd79e311c70';
+(node/*: any*/).hash = '139ae23e4e876ebe5f245838cfacaacd';
 module.exports = node;

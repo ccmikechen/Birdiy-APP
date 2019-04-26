@@ -11,7 +11,9 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
       project(
         id: $id,
       ) {
+        id
         name
+        published
         image
         category {
           name

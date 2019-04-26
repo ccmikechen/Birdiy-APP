@@ -20,6 +20,9 @@ import EditFileList from '../../components/EditFileList';
 import EditMethodList from '../../components/EditMethodList';
 
 import EditProjectMutation from '../../mutations/EditProjectMutation';
+import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
+import PublishProjectMutation from '../../mutations/PublishProjectMutation';
+import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
 import styles from './styles';
 
@@ -48,30 +51,34 @@ export default class EditProjectScreen extends Component {
       navigate: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
-      name: PropTypes.string,
-      image: PropTypes.string,
-      category: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }),
-      tip: PropTypes.string,
-      materials: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        amountUnit: PropTypes.string.isRequired,
-        url: PropTypes.string,
-      })),
-      fileResources: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-      })),
-      methods: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
+      project: PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        published: PropTypes.bool,
         image: PropTypes.string,
-        title: PropTypes.string,
-        content: PropTypes.string.isRequired,
-      })),
+        category: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        tip: PropTypes.string,
+        materials: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          amountUnit: PropTypes.string.isRequired,
+          url: PropTypes.string,
+        })),
+        fileResources: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+          type: PropTypes.string.isRequired,
+        })),
+        methods: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          title: PropTypes.string,
+          content: PropTypes.string.isRequired,
+        })),
+      }),
       categories: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.shape({
           node: PropTypes.shape({
@@ -172,12 +179,22 @@ export default class EditProjectScreen extends Component {
   };
 
   deleteProject = () => {
-    const { navigation } = this.props;
-    navigation.goBack();
-    Alert.alert(
-      '專案刪除成功',
-      '專案已成功刪除，若要復原請聯繫客服人員。',
-    );
+    const { navigation, query } = this.props;
+    const mutation = new DeleteProjectMutation({
+      id: query.project.id,
+    });
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+        Alert.alert(
+          '專案刪除成功',
+          '專案已成功刪除，若要復原請聯繫客服人員。',
+        );
+      })
+      .catch(() => {
+        Alert.alert('專案刪除失敗');
+      });
   };
 
   handleSave = () => {
@@ -195,7 +212,7 @@ export default class EditProjectScreen extends Component {
   };
 
   getEditProjectMutation = () => {
-    const { navigation } = this.props;
+    const { query } = this.props;
     const {
       projectImage,
       projectName,
@@ -207,7 +224,7 @@ export default class EditProjectScreen extends Component {
     } = this.state;
 
     return new EditProjectMutation({
-      id: navigation.getParam('id'),
+      id: query.project.id,
       name: projectName,
       category: this.getCategory(),
       introduction,
@@ -220,6 +237,31 @@ export default class EditProjectScreen extends Component {
   };
 
   handlePublish = () => {
+    const { navigation, query } = this.props;
+    const mutation = new PublishProjectMutation({
+      id: query.project.id,
+    });
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+        Alert.alert('專案已設為公開');
+      })
+      .catch(() => {});
+  };
+
+  handleUnpublish = () => {
+    const { navigation, query } = this.props;
+    const mutation = new UnpublishProjectMutation({
+      id: query.project.id,
+    });
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+        Alert.alert('專案已設為不公開');
+      })
+      .catch(() => {});
   };
 
   renderSection = (key) => {
@@ -325,26 +367,40 @@ export default class EditProjectScreen extends Component {
     }
   };
 
-  renderFooter = () => (
-    <View style={styles.footerContainer}>
-      <View style={styles.buttonsContainer}>
-        <Button
-          style={styles.submitButton}
-          mode="contained"
-          onPress={this.handleSave}
-        >
-          <Text style={styles.submitButtonText}>儲存</Text>
-        </Button>
-        <Button
-          style={[styles.submitButton, styles.publishButton]}
-          mode="contained"
-          onPress={this.handlePublish}
-        >
-          <Text style={styles.submitButtonText}>公開</Text>
-        </Button>
+  renderFooter = () => {
+    const { query } = this.props;
+
+    return (
+      <View style={styles.footerContainer}>
+        <View style={styles.buttonsContainer}>
+          <Button
+            style={styles.submitButton}
+            mode="contained"
+            onPress={this.handleSave}
+          >
+            <Text style={styles.submitButtonText}>儲存</Text>
+          </Button>
+          {query && query.project.published ? (
+            <Button
+              style={[styles.submitButton, styles.unpublishButton]}
+              mode="contained"
+              onPress={this.handleUnpublish}
+            >
+              <Text style={styles.submitButtonText}>取消公開</Text>
+            </Button>
+          ) : (
+            <Button
+              style={[styles.submitButton, styles.publishButton]}
+              mode="contained"
+              onPress={this.handlePublish}
+            >
+              <Text style={styles.submitButtonText}>公開</Text>
+            </Button>
+          )}
+        </View>
       </View>
-    </View>
-  );
+    );
+  };
 
   getCategories = () => {
     const { query } = this.props;

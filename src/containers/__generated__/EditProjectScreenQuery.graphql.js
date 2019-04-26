@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1f5902f8784ca68b7eb71507577f8127
+ * @relayHash 64f57516133157624a9c5a4c23dcf3a5
  */
 
 /* eslint-disable */
@@ -32,7 +32,9 @@ query EditProjectScreenQuery(
 
 fragment EditProjectScreen_query on RootQueryType {
   project(id: $id) {
+    id
     name
+    published
     image
     category {
       name
@@ -58,7 +60,6 @@ fragment EditProjectScreen_query on RootQueryType {
       title
       content
     }
-    id
   }
   categories: allProjectCategories(first: 100000, order: NAME) {
     edges {
@@ -84,21 +85,21 @@ var v0 = [
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "image",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "image",
   "args": null,
   "storageKey": null
 },
@@ -149,6 +150,14 @@ return {
           (v1/*: any*/),
           (v2/*: any*/),
           {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "published",
+            "args": null,
+            "storageKey": null
+          },
+          (v3/*: any*/),
+          {
             "kind": "LinkedField",
             "alias": null,
             "name": "category",
@@ -157,8 +166,8 @@ return {
             "concreteType": "ProjectCategory",
             "plural": false,
             "selections": [
-              (v1/*: any*/),
-              (v3/*: any*/)
+              (v2/*: any*/),
+              (v1/*: any*/)
             ]
           },
           {
@@ -184,8 +193,8 @@ return {
             "concreteType": "ProjectMaterial",
             "plural": true,
             "selections": [
-              (v3/*: any*/),
               (v1/*: any*/),
+              (v2/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -205,8 +214,8 @@ return {
             "concreteType": "ProjectFileResource",
             "plural": true,
             "selections": [
-              (v3/*: any*/),
               (v1/*: any*/),
+              (v2/*: any*/),
               (v4/*: any*/),
               {
                 "kind": "ScalarField",
@@ -226,8 +235,8 @@ return {
             "concreteType": "ProjectMethod",
             "plural": true,
             "selections": [
+              (v1/*: any*/),
               (v3/*: any*/),
-              (v2/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -243,8 +252,7 @@ return {
                 "storageKey": null
               }
             ]
-          },
-          (v3/*: any*/)
+          }
         ]
       },
       {
@@ -287,9 +295,9 @@ return {
                 "concreteType": "ProjectCategory",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
                   (v1/*: any*/),
-                  (v2/*: any*/)
+                  (v2/*: any*/),
+                  (v3/*: any*/)
                 ]
               }
             ]
@@ -302,7 +310,7 @@ return {
     "operationKind": "query",
     "name": "EditProjectScreenQuery",
     "id": null,
-    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    name\n    image\n    category {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n    id\n  }\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n",
+    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    category {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
