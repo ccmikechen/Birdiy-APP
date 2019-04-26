@@ -1,7 +1,14 @@
 import { graphql } from 'react-relay';
+import { isEqual } from 'lodash';
 
 import Mutation from '../relay/Mutation';
 import { ImageFile, DocumentFile } from '../helpers/formFile';
+
+import {
+  DEFAULT_MATERIAL,
+  DEFAULT_FILE,
+  DEFAULT_METHOD,
+} from '../constants/defaults';
 
 const parseProjectImage = image => (
   image
@@ -10,14 +17,18 @@ const parseProjectImage = image => (
 );
 
 const parseMaterials = materials => (
-  materials.map((material, index) => ({
+  materials.filter(material => (
+    !isEqual(material, DEFAULT_MATERIAL)
+  )).map((material, index) => ({
     ...material,
     order: index + 1,
   }))
 );
 
 const parseFiles = files => (
-  files.map((file, index) => ({
+  files.filter(file => (
+    !isEqual(file, DEFAULT_FILE)
+  )).map((file, index) => ({
     id: file.id,
     name: file.name,
     ...((file.type === 'link') && ({ url: file.url })),
@@ -29,7 +40,9 @@ const parseFiles = files => (
 );
 
 const parseMethods = methods => (
-  methods.map((method, index) => ({
+  methods.filter(method => (
+    !isEqual(method, DEFAULT_METHOD)
+  )).map((method, index) => ({
     id: method.id,
     title: method.title,
     content: method.content,

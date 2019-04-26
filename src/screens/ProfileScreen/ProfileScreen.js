@@ -19,6 +19,9 @@ export default class ProfileScreen extends Component {
     query: PropTypes.shape({
       viewer: PropTypes.object,
     }),
+    relay: PropTypes.shape({
+      refetch: PropTypes.func.isRequired,
+    }).isRequired,
     loading: PropTypes.bool,
   };
 
@@ -46,7 +49,10 @@ export default class ProfileScreen extends Component {
   handleOpenProject = (id) => {
     const { navigation } = this.props;
     //    navigation.navigate('ProjectDetail', { id });
-    navigation.navigate('EditProjectModal', { id });
+    navigation.navigate('EditProjectModal', {
+      id,
+      reload: this.reload,
+    });
   };
 
   handleMorePostsPress = () => {
@@ -67,6 +73,12 @@ export default class ProfileScreen extends Component {
   handleMoreFavoritesPress = () => {
     const { navigation } = this.props;
     navigation.navigate('MyFavorites');
+  };
+
+  reload = () => {
+    const { relay } = this.props;
+
+    relay.refetch();
   };
 
   render() {

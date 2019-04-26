@@ -24,6 +24,12 @@ import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 import PublishProjectMutation from '../../mutations/PublishProjectMutation';
 import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
+import {
+  DEFAULT_MATERIAL,
+  DEFAULT_FILE,
+  DEFAULT_METHOD,
+} from '../../constants/defaults';
+
 import styles from './styles';
 
 const TABS = [{
@@ -35,9 +41,6 @@ const TABS = [{
 }, {
   key: 'tip', title: '小技巧',
 }];
-const DEFAULT_MATERIAL = { name: '', amountUnit: '', url: '' };
-const DEFAULT_FILE = { type: 'link', name: '', url: '' };
-const DEFAULT_METHOD = { image: null, title: '', content: '' };
 
 export default class EditProjectScreen extends Component {
   static navigationOptions = {
@@ -179,14 +182,14 @@ export default class EditProjectScreen extends Component {
   };
 
   deleteProject = () => {
-    const { navigation, query } = this.props;
+    const { query } = this.props;
     const mutation = new DeleteProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        navigation.goBack();
+        this.reloadAndGoBack();
         Alert.alert(
           '專案刪除成功',
           '專案已成功刪除，若要復原請聯繫客服人員。',
@@ -198,12 +201,11 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSave = () => {
-    const { navigation } = this.props;
     const mutation = this.getEditProjectMutation();
 
     mutation.commit()
       .then(() => {
-        navigation.goBack();
+        this.reloadAndGoBack();
         Alert.alert('專案儲存成功');
       })
       .catch(() => {
@@ -237,31 +239,45 @@ export default class EditProjectScreen extends Component {
   };
 
   handlePublish = () => {
-    const { navigation, query } = this.props;
+    const { query } = this.props;
     const mutation = new PublishProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        navigation.goBack();
+        this.reloadAndGoBack();
         Alert.alert('專案已設為公開');
       })
-      .catch(() => {});
+      .catch(() => {
+        Alert.alert('專案設定失敗');
+      });
   };
 
   handleUnpublish = () => {
-    const { navigation, query } = this.props;
+    const { query } = this.props;
     const mutation = new UnpublishProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        navigation.goBack();
+        this.reloadAndGoBack();
         Alert.alert('專案已設為不公開');
       })
-      .catch(() => {});
+      .catch(() => {
+        Alert.alert('專案設定失敗');
+      });
+  };
+
+  reloadAndGoBack = () => {
+    const { navigation } = this.props;
+    const reload = navigation.getParam('reload');
+
+    if (reload) {
+      reload();
+    }
+    navigation.goBack();
   };
 
   renderSection = (key) => {

@@ -1,10 +1,18 @@
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createRefetchContainer } from 'react-relay';
 import { withNavigation } from 'react-navigation';
 
 import createQueryRenderer from '../relay/createQueryRenderer';
 import ProfileScreen from '../screens/ProfileScreen';
 
-const ProfileScreenFragmentContainer = createFragmentContainer(
+const query = graphql`
+  query ProfileScreenQuery(
+    $count: Int!
+  ) {
+    ...ProfileScreen_query
+  }
+`;
+
+const ProfileScreenFragmentContainer = createRefetchContainer(
   ProfileScreen,
   graphql`
     fragment ProfileScreen_query on RootQueryType {
@@ -14,6 +22,7 @@ const ProfileScreenFragmentContainer = createFragmentContainer(
       }
     }
   `,
+  query,
 );
 
 export default withNavigation(
@@ -21,13 +30,7 @@ export default withNavigation(
     ProfileScreenFragmentContainer,
     ProfileScreen,
     {
-      query: graphql`
-        query ProfileScreenQuery(
-          $count: Int!
-        ) {
-          ...ProfileScreen_query
-        }
-      `,
+      query,
       variables: {
         count: 10,
       },

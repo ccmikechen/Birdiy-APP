@@ -5,6 +5,8 @@ import { Button } from 'react-native-paper';
 
 import EditMethodListItem from '../EditMethodListItem';
 
+import { DEFAULT_METHOD } from '../../constants/defaults';
+
 import styles from './styles';
 
 export default class EditMethodList extends Component {
@@ -69,11 +71,7 @@ export default class EditMethodList extends Component {
 
   handleItemAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, {
-      image: null,
-      title: '',
-      content: '',
-    }]);
+    onChange([...data, DEFAULT_METHOD]);
   };
 
   renderItem = (item, index) => (

@@ -7,9 +7,12 @@ import {
   ListView,
   TouchableOpacity,
 } from 'react-native';
+import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 
 import MoreButton from '../MoreButton';
+
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -21,7 +24,7 @@ export default class MyFavoritesScene extends Component {
   static propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       author: PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired,
@@ -43,6 +46,16 @@ export default class MyFavoritesScene extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { projects } = nextProps;
+    const { dataSource } = prevState;
+
+    return {
+      ...prevState,
+      dataSource: dataSource.cloneWithRows(projects),
+    };
+  }
+
   renderRow = (project) => {
     const { onProjectPress } = this.props;
 
@@ -53,10 +66,18 @@ export default class MyFavoritesScene extends Component {
           onPress={() => onProjectPress(project.id)}
         >
           <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: project.image }}
-              style={styles.image}
-            />
+            {project.image ? (
+              <Image
+                source={{ uri: project.image }}
+                style={styles.image}
+              />
+            ) : (
+              <Icon.MaterialCommunityIcons
+                name="image-filter"
+                size={Size.myProjectListImageSize / 2}
+                color="#ffffff"
+              />
+            )}
           </View>
           <View style={styles.infoContainer}>
             <View style={styles.nameContainer}>

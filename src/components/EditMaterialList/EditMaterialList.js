@@ -5,6 +5,8 @@ import { Button } from 'react-native-paper';
 
 import EditMaterialListItem from '../EditMaterialListItem';
 
+import { DEFAULT_MATERIAL } from '../../constants/defaults';
+
 import styles from './styles';
 
 export default class EditMaterialList extends Component {
@@ -64,11 +66,7 @@ export default class EditMaterialList extends Component {
 
   handleItemAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, {
-      name: '',
-      amountUnit: '',
-      url: '',
-    }]);
+    onChange([...data, DEFAULT_MATERIAL]);
   };
 
   renderItem = (item, index) => (

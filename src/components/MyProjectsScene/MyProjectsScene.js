@@ -48,6 +48,16 @@ export default class MyProjectsScene extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { projects } = nextProps;
+    const { dataSource } = prevState;
+
+    return {
+      ...prevState,
+      dataSource: dataSource.cloneWithRows(projects),
+    };
+  }
+
   renderRow = (project) => {
     const { onProjectPress } = this.props;
 

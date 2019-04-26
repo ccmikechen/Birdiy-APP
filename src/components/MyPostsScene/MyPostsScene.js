@@ -49,6 +49,16 @@ export default class MyPostsScene extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { posts } = nextProps;
+    const { dataSource } = prevState;
+
+    return {
+      ...prevState,
+      dataSource: dataSource.cloneWithRows(posts),
+    };
+  }
+
   renderRow = (post) => {
     const { onPostPress } = this.props;
 

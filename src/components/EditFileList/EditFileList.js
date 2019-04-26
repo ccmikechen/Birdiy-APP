@@ -6,6 +6,8 @@ import { Button } from 'react-native-paper';
 
 import EditFileListItem from '../EditFileListItem';
 
+import { DEFAULT_FILE } from '../../constants/defaults';
+
 import styles from './styles';
 
 export default class EditFileList extends Component {
@@ -67,11 +69,7 @@ export default class EditFileList extends Component {
 
   handleFileLinkAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, {
-      type: 'link',
-      name: '',
-      url: 'http://',
-    }]);
+    onChange([...data, DEFAULT_FILE]);
   };
 
   handleUploadFile = async () => {
