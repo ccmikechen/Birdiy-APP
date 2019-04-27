@@ -18,6 +18,7 @@ const ProjectDetailSection = ({
     <View style={styles.contentContainer}>
       {children}
     </View>
+    <View style={styles.seperateLine} />
   </View>
 );
 

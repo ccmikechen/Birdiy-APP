@@ -4,7 +4,6 @@ import { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
-    marginTop: 10,
     backgroundColor: Base.lightest,
   },
   titleContainer: {
@@ -18,5 +17,11 @@ export default StyleSheet.create({
     color: TextColor.sectionTitle,
   },
   contentContainer: {
+  },
+  seperateLine: {
+    height: 1,
+    width: '90%',
+    backgroundColor: Base.dark,
+    alignSelf: 'center',
   },
 });
