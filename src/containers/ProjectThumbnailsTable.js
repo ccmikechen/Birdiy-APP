@@ -31,7 +31,8 @@ export default createFragmentContainer(
   graphql`
     fragment ProjectThumbnailsTable_query on RootQueryType {
       projects: allProjects(
-        first: $newProjectCount 
+        first: $newProjectCount,
+        filter: $projectsFilter,
       ) {
         edges {
           node {

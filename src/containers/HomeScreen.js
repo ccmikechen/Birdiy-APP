@@ -24,6 +24,7 @@ export default withNavigation(
           $hotCategoryCount: Int!,
           $hotCategoryOrder: RankOrder,
           $newProjectCount: Int!,
+          $projectsFilter: ProjectFilter,
         ) {
           ...HomeScreen_query
         }
@@ -32,6 +33,9 @@ export default withNavigation(
         hotCategoryCount: 6,
         hotCategoryOrder: 'NAME',
         newProjectCount: 4,
+        projectsFilter: {
+          published: true,
+        },
       },
     },
   ),

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 57671f2ca9f0f9f22ecf39e6089772e2
+ * @relayHash c56e1c827d9fd794c763c01bf3c0cb69
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type HotestProjectList_query$ref = any;
 export type ProjectFilter = {|
   categories?: ?$ReadOnlyArray<?string>,
   name?: ?string,
+  published?: ?boolean,
 |};
 export type HotestProjectListPaginationQueryVariables = {|
   count: number,

@@ -83,6 +83,7 @@ export default createPaginationContainer(
       filter: {
         name: props.keyword,
         categories: props.categories,
+        published: true,
       },
     }),
     variables: { hotestCursor: null },

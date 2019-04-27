@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0bcddb924bae37382247839fcb7add79
+ * @relayHash 33190377c512eef68cb294617c7ab10b
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type NewestProjectList_query$ref = any;
 export type ProjectFilter = {|
   categories?: ?$ReadOnlyArray<?string>,
   name?: ?string,
+  published?: ?boolean,
 |};
 export type NewestProjectListPaginationQueryVariables = {|
   count: number,

@@ -164,6 +164,7 @@ input ProjectFileResourceInput {
 input ProjectFilter {
   categories: [String]
   name: String
+  published: Boolean
 }
 
 input ProjectInput {

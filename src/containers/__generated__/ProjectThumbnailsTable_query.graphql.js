@@ -34,6 +34,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "RootArgument",
       "name": "newProjectCount",
       "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "projectsFilter",
+      "type": "ProjectFilter"
     }
   ],
   "selections": [
@@ -43,6 +48,12 @@ const node/*: ReaderFragment*/ = {
       "name": "allProjects",
       "storageKey": null,
       "args": [
+        {
+          "kind": "Variable",
+          "name": "filter",
+          "variableName": "projectsFilter",
+          "type": "ProjectFilter"
+        },
         {
           "kind": "Variable",
           "name": "first",
@@ -85,5 +96,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c75dd3413e463160c36d7b0fb624e8b5';
+(node/*: any*/).hash = 'd6e706c03dabd0e1959b77d9a11eb480';
 module.exports = node;

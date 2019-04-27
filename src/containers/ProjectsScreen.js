@@ -50,6 +50,7 @@ export default withNavigation(
         filter: {
           name: props.navigation.getParam('keyword'),
           categories: props.navigation.getParam('categories'),
+          published: true,
         },
       }),
     },
