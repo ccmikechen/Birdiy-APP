@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Alert } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
-import EditSection from '../../components/EditSection';
-import PureTextInput from '../../components/PureTextInput';
-import PureSelector from '../../components/PureSelector';
+import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
 import CreateProjectMutation from '../../mutations/CreateProjectMutation';
-
-import styles from './styles';
 
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
@@ -44,15 +39,28 @@ export default class CreateProjectScreen extends Component {
   };
 
   state = {
-    projectName: '',
-    categoryIndex: null,
+    project: {
+      name: '',
+      category: null,
+    },
+  };
+
+  handleChange = (data) => {
+    const { project } = this.state;
+    this.setState({ project: { ...project, ...data } });
   };
 
   handleSelectCategory = (index) => {
-    this.setState({ categoryIndex: index });
+    const { project } = this.state;
+    this.setState({
+      project: {
+        ...project,
+        category: this.getCategory(index),
+      },
+    });
   };
 
-  handleSelecteCategoryPress = () => {
+  handleOpenCategorySelector = () => {
     const { navigation } = this.props;
     navigation.navigate('SelectCategoryModal', {
       categories: this.getCategories(),
@@ -62,17 +70,21 @@ export default class CreateProjectScreen extends Component {
 
   handleSave = () => {
     const { navigation } = this.props;
-    navigation.goBack();
+    const { project } = this.state;
+    const mutation = new CreateProjectMutation(project);
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+        Alert.alert('專案儲存成功');
+      })
+      .catch(this.handleSaveError);
   };
 
   handleSubmit = () => {
     const { navigation } = this.props;
-    const { projectName } = this.state;
-    const category = this.getCategory();
-    const mutation = new CreateProjectMutation({
-      name: projectName,
-      category,
-    });
+    const { project } = this.state;
+    const mutation = new CreateProjectMutation(project);
 
     mutation.commit()
       .then(({ response }) => {
@@ -81,9 +93,11 @@ export default class CreateProjectScreen extends Component {
         navigation.goBack();
         navigation.navigate('EditProjectModal', { id });
       })
-      .catch(() => {
-        // TODO: Error handling
-      });
+      .catch(this.handleSaveError);
+  };
+
+  handleSaveError = () => {
+    Alert.alert('專案儲存失敗');
   };
 
   getCategories = () => {
@@ -92,18 +106,16 @@ export default class CreateProjectScreen extends Component {
     return query && query.categories.edges.map(({ node }) => node);
   };
 
-  getCategory = () => {
-    const { categoryIndex } = this.state;
+  getCategory = (index) => {
     const categories = this.getCategories();
     return (categories
-            && categories[categoryIndex]
-            && categories[categoryIndex].name) || null;
+            && categories[index]
+            && categories[index].name) || null;
   };
 
   render() {
     const { navigation, loading } = this.props;
-    const { projectName } = this.state;
-    const category = this.getCategory();
+    const { project } = this.state;
 
     return (
       <TopScreenView
@@ -122,34 +134,12 @@ export default class CreateProjectScreen extends Component {
         fullScreen
         loading={loading}
       >
-        <ScrollView style={styles.container}>
-          <EditSection title="專案名稱">
-            <PureTextInput
-              style={styles.textInput}
-              value={projectName}
-              placeholder="輸入你的專案名稱"
-              onChangeText={value => this.setState({ projectName: value })}
-              maxLength={20}
-              counter
-            />
-          </EditSection>
-          <EditSection title="分類">
-            <PureSelector
-              placeholder="選擇你的專案分類"
-              value={category}
-              onPress={this.handleSelecteCategoryPress}
-            />
-          </EditSection>
-          <View style={styles.submitButtonContainer}>
-            <Button
-              style={styles.submitButton}
-              mode="contained"
-              onPress={this.handleSubmit}
-            >
-              <Text style={styles.submitButtonText}>儲存並繼續編輯</Text>
-            </Button>
-          </View>
-        </ScrollView>
+        <ProjectDraftEditor
+          project={project}
+          onChange={this.handleChange}
+          onOpenCategorySelector={this.handleOpenCategorySelector}
+          onSubmit={this.handleSubmit}
+        />
       </TopScreenView>
     );
   }
