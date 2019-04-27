@@ -16,8 +16,10 @@ const parsePhotos = photos => (
 export default class CreatePostMutation extends Mutation {
   static mutation = graphql`
     mutation CreatePostMutation($input: CreatePostInput!) {
-      post: createPost(input: $input) {
-        id
+      createPost(input: $input) {
+        post {
+          id
+        }
       }
     }
   `;

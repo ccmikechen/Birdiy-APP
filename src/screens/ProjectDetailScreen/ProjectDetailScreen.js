@@ -19,6 +19,9 @@ import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
 import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
 import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
 
+import LikeProjectMutation from '../../mutations/LikeProjectMutation';
+import CancelLikeProjectMutation from '../../mutations/CancelLikeProjectMutation';
+
 import styles from './styles';
 
 export default class ProjectDetailScreen extends Component {
@@ -42,6 +45,8 @@ export default class ProjectDetailScreen extends Component {
         viewCount: PropTypes.number,
         favoriteCount: PropTypes.number,
         likeCount: PropTypes.number,
+        liked: PropTypes.bool,
+        favorite: PropTypes.bool,
         relatedPostCount: PropTypes.number,
         materials: PropTypes.object,
         fileResources: PropTypes.object,
@@ -59,6 +64,7 @@ export default class ProjectDetailScreen extends Component {
   };
 
   defaultProject = {
+    id: '',
     name: '',
     image: '',
     category: {
@@ -69,19 +75,18 @@ export default class ProjectDetailScreen extends Component {
     favoriteCount: 0,
     likeCount: 0,
     relatedPostCount: 0,
+    liked: false,
+    favorite: false,
     tip: '',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      liked: false,
-    };
-  }
-
   handleLikePress = () => {
-    const { liked } = this.state;
-    this.setState({ liked: !liked });
+    const { query: { project: { id, liked } } } = this.props;
+    const mutation = liked
+      ? new CancelLikeProjectMutation({ id })
+      : new LikeProjectMutation({ id });
+
+    mutation.commit().catch(() => {});
   };
 
   handleMaterialLinkPress = (link) => {
@@ -102,9 +107,7 @@ export default class ProjectDetailScreen extends Component {
 
   render() {
     const { navigation, query, loading } = this.props;
-    const { liked } = this.state;
     const project = query ? query.project : this.defaultProject;
-    const projectId = navigation.getParam('id');
 
     return (
       <TopScreenView
@@ -138,7 +141,10 @@ export default class ProjectDetailScreen extends Component {
             </View>
           </View>
           <View style={styles.likeButtonContainer}>
-            <LikeButton liked={liked} onPress={this.handleLikePress} />
+            <LikeButton
+              liked={project.liked}
+              onPress={this.handleLikePress}
+            />
           </View>
         </View>
         <View style={styles.authorContainer}>
@@ -174,7 +180,7 @@ export default class ProjectDetailScreen extends Component {
           </ProjectDetailSection>
         ) : null}
         <ProjectDetailFollowPostList
-          projectId={projectId}
+          projectId={project.id}
           project={project}
           onPress={this.handleOpenPost}
         />

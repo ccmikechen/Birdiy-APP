@@ -88,7 +88,7 @@ export default class CreateProjectScreen extends Component {
 
     mutation.commit()
       .then(({ response }) => {
-        const { id } = response.project;
+        const { id } = response.createProject.project;
 
         navigation.goBack();
         navigation.navigate('EditProjectModal', { id });

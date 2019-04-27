@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3562234733b2f512c3420fc256270671
+ * @relayHash 9b25eae2f615eaaff9f7a113cfee756f
  */
 
 /* eslint-disable */
@@ -46,8 +46,10 @@ export type EditProjectMutationVariables = {|
   input: EditProjectInput
 |};
 export type EditProjectMutationResponse = {|
-  +project: ?{|
-    +id: string
+  +editProject: ?{|
+    +project: {|
+      +id: string
+    |}
   |}
 |};
 export type EditProjectMutation = {|
@@ -61,8 +63,10 @@ export type EditProjectMutation = {|
 mutation EditProjectMutation(
   $input: EditProjectInput!
 ) {
-  project: editProject(input: $input) {
-    id
+  editProject(input: $input) {
+    project {
+      id
+    }
   }
 }
 */
@@ -79,7 +83,7 @@ var v0 = [
 v1 = [
   {
     "kind": "LinkedField",
-    "alias": "project",
+    "alias": null,
     "name": "editProject",
     "storageKey": null,
     "args": [
@@ -90,15 +94,26 @@ v1 = [
         "type": "EditProjectInput!"
       }
     ],
-    "concreteType": "Project",
+    "concreteType": "ProjectResult",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "project",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Project",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -123,11 +138,11 @@ return {
     "operationKind": "mutation",
     "name": "EditProjectMutation",
     "id": null,
-    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  project: editProject(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation EditProjectMutation(\n  $input: EditProjectInput!\n) {\n  editProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '394b3546ebca1a7c05709111188fc278';
+(node/*: any*/).hash = '01cc112c3dd9974d9f202da9e6273dc7';
 module.exports = node;

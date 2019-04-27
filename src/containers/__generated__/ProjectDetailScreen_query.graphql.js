@@ -17,6 +17,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProjectDetailScreen_query$ref: FragmentReference;
 export type ProjectDetailScreen_query = {|
   +project: ?{|
+    +id: string,
     +name: string,
     +image: ?string,
     +category: {|
@@ -26,6 +27,8 @@ export type ProjectDetailScreen_query = {|
     +viewCount: ?number,
     +favoriteCount: ?number,
     +likeCount: ?number,
+    +liked: ?boolean,
+    +favorite: ?boolean,
     +relatedPostCount: ?number,
     +tip: ?string,
     +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref,
@@ -79,7 +82,20 @@ return {
           "args": null,
           "storageKey": null
         },
-        (v0/*: any*/),
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "image",
+          "args": null,
+          "storageKey": null
+        },
         {
           "kind": "FragmentSpread",
           "name": "ProjectAuthor_project",
@@ -118,10 +134,18 @@ return {
           "args": null,
           "storageKey": null
         },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "image",
+          "name": "liked",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "favorite",
           "args": null,
           "storageKey": null
         },
@@ -165,5 +189,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8c0e02aa6c8e8fd4788410311643e6d4';
+(node/*: any*/).hash = 'b85d776fa6b7af7547b0234b5a25938e';
 module.exports = node;

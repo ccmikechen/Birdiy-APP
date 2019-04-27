@@ -9,6 +9,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
   graphql`
     fragment ProjectDetailScreen_query on RootQueryType {
       project(id: $projectId) {
+        id
         name
         image
         ...ProjectAuthor_project
@@ -19,6 +20,8 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         viewCount
         favoriteCount
         likeCount
+        liked
+        favorite
         relatedPostCount
         ...ProjectDetailMaterialList_project
         ...ProjectDetailFileList_project

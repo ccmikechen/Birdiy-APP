@@ -88,9 +88,14 @@ input PostPhotoInput {
   order: Int!
 }
 
+type PostResult {
+  post: Post!
+}
+
 type Project implements Node {
   author: User!
   category: ProjectCategory!
+  favorite: Boolean
   favoriteCount: Int
   fileResources: [ProjectFileResource]
 
@@ -99,6 +104,7 @@ type Project implements Node {
   image: String
   introduction: String
   likeCount: Int
+  liked: Boolean
   materials: [ProjectMaterial]
   methods: [ProjectMethod]
   name: String!
@@ -107,6 +113,7 @@ type Project implements Node {
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
   viewCount: Int
+  viewed: Boolean
 }
 
 type ProjectCategory implements Node {
@@ -214,6 +221,10 @@ enum ProjectOrder {
   NEWEST
 }
 
+type ProjectResult {
+  project: Project!
+}
+
 enum RankOrder {
   NAME
 }
@@ -224,12 +235,17 @@ enum RelatedProjectType {
 }
 
 type RootMutationType {
-  createPost(input: CreatePostInput!): Post
-  createProject(input: CreateProjectInput!): Project
-  deleteProject(input: ProjectInput!): Project
-  editProject(input: EditProjectInput!): Project
-  publishProject(input: ProjectInput!): Project
-  unpublishProject(input: ProjectInput!): Project
+  cancelFavoriteProject(input: ProjectInput!): ProjectResult
+  cancelLikeProject(input: ProjectInput!): ProjectResult
+  createPost(input: CreatePostInput!): PostResult
+  createProject(input: CreateProjectInput!): ProjectResult
+  deleteProject(input: ProjectInput!): ProjectResult
+  editProject(input: EditProjectInput!): ProjectResult
+  favoriteProject(input: ProjectInput!): ProjectResult
+  likeProject(input: ProjectInput!): ProjectResult
+  publishProject(input: ProjectInput!): ProjectResult
+  unpublishProject(input: ProjectInput!): ProjectResult
+  viewProject(input: ProjectInput!): ProjectResult
 }
 
 type RootQueryType {

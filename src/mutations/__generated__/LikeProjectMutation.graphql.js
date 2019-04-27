@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 34605136362912e1a201e714eb424935
+ * @relayHash 689302cca88bad2a8c8e8cfd2710663c
  */
 
 /* eslint-disable */
@@ -9,32 +9,31 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CreateProjectInput = {|
-  category: string,
-  name: string,
+export type ProjectInput = {|
+  id: string
 |};
-export type CreateProjectMutationVariables = {|
-  input: CreateProjectInput
+export type LikeProjectMutationVariables = {|
+  input: ProjectInput
 |};
-export type CreateProjectMutationResponse = {|
-  +createProject: ?{|
+export type LikeProjectMutationResponse = {|
+  +likeProject: ?{|
     +project: {|
       +id: string
     |}
   |}
 |};
-export type CreateProjectMutation = {|
-  variables: CreateProjectMutationVariables,
-  response: CreateProjectMutationResponse,
+export type LikeProjectMutation = {|
+  variables: LikeProjectMutationVariables,
+  response: LikeProjectMutationResponse,
 |};
 */
 
 
 /*
-mutation CreateProjectMutation(
-  $input: CreateProjectInput!
+mutation LikeProjectMutation(
+  $input: ProjectInput!
 ) {
-  createProject(input: $input) {
+  likeProject(input: $input) {
     project {
       id
     }
@@ -47,7 +46,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "CreateProjectInput!",
+    "type": "ProjectInput!",
     "defaultValue": null
   }
 ],
@@ -55,14 +54,14 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "createProject",
+    "name": "likeProject",
     "storageKey": null,
     "args": [
       {
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "CreateProjectInput!"
+        "type": "ProjectInput!"
       }
     ],
     "concreteType": "ProjectResult",
@@ -93,7 +92,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CreateProjectMutation",
+    "name": "LikeProjectMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -101,19 +100,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CreateProjectMutation",
+    "name": "LikeProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "CreateProjectMutation",
+    "name": "LikeProjectMutation",
     "id": null,
-    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation LikeProjectMutation(\n  $input: ProjectInput!\n) {\n  likeProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'afbc69dd702c045bcd07b8a9db119f2a';
+(node/*: any*/).hash = '803fccd5728df16ef24a820ca1ebcd75';
 module.exports = node;

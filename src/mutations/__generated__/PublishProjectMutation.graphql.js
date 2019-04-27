@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 95ff480aeed5a4139380bae345f6d704
+ * @relayHash 932717c204bb19047daf79b5ff1b430b
  */
 
 /* eslint-disable */
@@ -16,8 +16,10 @@ export type PublishProjectMutationVariables = {|
   input: ProjectInput
 |};
 export type PublishProjectMutationResponse = {|
-  +project: ?{|
-    +id: string
+  +publishProject: ?{|
+    +project: {|
+      +id: string
+    |}
   |}
 |};
 export type PublishProjectMutation = {|
@@ -31,8 +33,10 @@ export type PublishProjectMutation = {|
 mutation PublishProjectMutation(
   $input: ProjectInput!
 ) {
-  project: publishProject(input: $input) {
-    id
+  publishProject(input: $input) {
+    project {
+      id
+    }
   }
 }
 */
@@ -49,7 +53,7 @@ var v0 = [
 v1 = [
   {
     "kind": "LinkedField",
-    "alias": "project",
+    "alias": null,
     "name": "publishProject",
     "storageKey": null,
     "args": [
@@ -60,15 +64,26 @@ v1 = [
         "type": "ProjectInput!"
       }
     ],
-    "concreteType": "Project",
+    "concreteType": "ProjectResult",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "project",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Project",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -93,11 +108,11 @@ return {
     "operationKind": "mutation",
     "name": "PublishProjectMutation",
     "id": null,
-    "text": "mutation PublishProjectMutation(\n  $input: ProjectInput!\n) {\n  project: publishProject(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation PublishProjectMutation(\n  $input: ProjectInput!\n) {\n  publishProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e72325460bd02592b29f711e1055bfdc';
+(node/*: any*/).hash = '01e5038cd8764bb789a316df42e95d64';
 module.exports = node;

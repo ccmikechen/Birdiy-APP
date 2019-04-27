@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0342831c21c3739abdba2a62a9457423
+ * @relayHash 37b28cdd8af99d98b7437eb0d291e277
  */
 
 /* eslint-disable */
@@ -36,6 +36,7 @@ query ProjectDetailScreenQuery(
 
 fragment ProjectDetailScreen_query on RootQueryType {
   project(id: $projectId) {
+    id
     name
     image
     ...ProjectAuthor_project
@@ -47,13 +48,14 @@ fragment ProjectDetailScreen_query on RootQueryType {
     viewCount
     favoriteCount
     likeCount
+    liked
+    favorite
     relatedPostCount
     ...ProjectDetailMaterialList_project
     ...ProjectDetailFileList_project
     ...ProjectDetailMethodList_project
     tip
     ...ProjectDetailFollowPostList_project
-    id
   }
 }
 
@@ -140,7 +142,7 @@ var v0 = [
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
@@ -154,7 +156,7 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -224,6 +226,7 @@ return {
             "storageKey": null
           },
           (v1/*: any*/),
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -233,7 +236,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              (v1/*: any*/),
+              (v3/*: any*/),
               (v2/*: any*/),
               {
                 "kind": "ScalarField",
@@ -260,8 +263,8 @@ return {
             "concreteType": "ProjectCategory",
             "plural": false,
             "selections": [
-              (v1/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v1/*: any*/)
             ]
           },
           {
@@ -285,7 +288,21 @@ return {
             "args": null,
             "storageKey": null
           },
-          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "liked",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "favorite",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -302,7 +319,7 @@ return {
             "concreteType": "ProjectMaterial",
             "plural": true,
             "selections": [
-              (v1/*: any*/),
+              (v3/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -311,7 +328,7 @@ return {
                 "storageKey": null
               },
               (v4/*: any*/),
-              (v3/*: any*/)
+              (v1/*: any*/)
             ]
           },
           {
@@ -323,9 +340,9 @@ return {
             "concreteType": "ProjectFileResource",
             "plural": true,
             "selections": [
-              (v1/*: any*/),
+              (v3/*: any*/),
               (v4/*: any*/),
-              (v3/*: any*/)
+              (v1/*: any*/)
             ]
           },
           {
@@ -352,7 +369,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              (v3/*: any*/)
+              (v1/*: any*/)
             ]
           },
           {
@@ -414,7 +431,7 @@ return {
                     "concreteType": "Post",
                     "plural": false,
                     "selections": [
-                      (v3/*: any*/),
+                      (v1/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -437,7 +454,7 @@ return {
                         "plural": false,
                         "selections": [
                           (v2/*: any*/),
-                          (v1/*: any*/)
+                          (v3/*: any*/)
                         ]
                       },
                       {
@@ -468,8 +485,7 @@ return {
             "handle": "connection",
             "key": "ProjectDetailFollowPostList_relatedPosts",
             "filters": null
-          },
-          (v3/*: any*/)
+          }
         ]
       }
     ]
@@ -478,7 +494,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailScreenQuery",
     "id": null,
-    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n    id\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n    id\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    id\n    name\n    image\n    ...ProjectAuthor_project\n    category {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    liked\n    favorite\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    name\n    image\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    name\n    amountUnit\n    url\n    id\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n    id\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

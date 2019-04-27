@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 99e979c7da0f9cb63fe436c8e1b0107f
+ * @relayHash 94e581b6285126691cd860f20b7022c4
  */
 
 /* eslint-disable */
@@ -25,8 +25,10 @@ export type CreatePostMutationVariables = {|
   input: CreatePostInput
 |};
 export type CreatePostMutationResponse = {|
-  +post: ?{|
-    +id: string
+  +createPost: ?{|
+    +post: {|
+      +id: string
+    |}
   |}
 |};
 export type CreatePostMutation = {|
@@ -40,8 +42,10 @@ export type CreatePostMutation = {|
 mutation CreatePostMutation(
   $input: CreatePostInput!
 ) {
-  post: createPost(input: $input) {
-    id
+  createPost(input: $input) {
+    post {
+      id
+    }
   }
 }
 */
@@ -58,7 +62,7 @@ var v0 = [
 v1 = [
   {
     "kind": "LinkedField",
-    "alias": "post",
+    "alias": null,
     "name": "createPost",
     "storageKey": null,
     "args": [
@@ -69,15 +73,26 @@ v1 = [
         "type": "CreatePostInput!"
       }
     ],
-    "concreteType": "Post",
+    "concreteType": "PostResult",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "post",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Post",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -102,11 +117,11 @@ return {
     "operationKind": "mutation",
     "name": "CreatePostMutation",
     "id": null,
-    "text": "mutation CreatePostMutation(\n  $input: CreatePostInput!\n) {\n  post: createPost(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation CreatePostMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e893eb08936bfe008d525ebeedb274f6';
+(node/*: any*/).hash = '1577452522141b565c8db88570dd3572';
 module.exports = node;

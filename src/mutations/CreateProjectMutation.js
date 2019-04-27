@@ -5,8 +5,10 @@ import Mutation from '../relay/Mutation';
 export default class CreateProjectMutation extends Mutation {
   static mutation = graphql`
     mutation CreateProjectMutation($input: CreateProjectInput!) {
-      project: createProject(input: $input) {
-        id
+      createProject(input: $input) {
+        project {
+          id
+        }
       }
     }
   `;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash abfe648e410015623638edc5741d1fc5
+ * @relayHash 0bc7ad26cb4937d97980c78a4d806eee
  */
 
 /* eslint-disable */
@@ -16,8 +16,10 @@ export type DeleteProjectMutationVariables = {|
   input: ProjectInput
 |};
 export type DeleteProjectMutationResponse = {|
-  +project: ?{|
-    +id: string
+  +deleteProject: ?{|
+    +project: {|
+      +id: string
+    |}
   |}
 |};
 export type DeleteProjectMutation = {|
@@ -31,8 +33,10 @@ export type DeleteProjectMutation = {|
 mutation DeleteProjectMutation(
   $input: ProjectInput!
 ) {
-  project: deleteProject(input: $input) {
-    id
+  deleteProject(input: $input) {
+    project {
+      id
+    }
   }
 }
 */
@@ -49,7 +53,7 @@ var v0 = [
 v1 = [
   {
     "kind": "LinkedField",
-    "alias": "project",
+    "alias": null,
     "name": "deleteProject",
     "storageKey": null,
     "args": [
@@ -60,15 +64,26 @@ v1 = [
         "type": "ProjectInput!"
       }
     ],
-    "concreteType": "Project",
+    "concreteType": "ProjectResult",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "project",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Project",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -93,11 +108,11 @@ return {
     "operationKind": "mutation",
     "name": "DeleteProjectMutation",
     "id": null,
-    "text": "mutation DeleteProjectMutation(\n  $input: ProjectInput!\n) {\n  project: deleteProject(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation DeleteProjectMutation(\n  $input: ProjectInput!\n) {\n  deleteProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '139ae23e4e876ebe5f245838cfacaacd';
+(node/*: any*/).hash = 'bdd4b1572e3574c8b66aad0a73a13968';
 module.exports = node;
