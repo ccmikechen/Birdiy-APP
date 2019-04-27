@@ -15,7 +15,7 @@ export default class RelatedProjectSelector extends Component {
     project: PropTypes.shape({
       type: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      id: PropTypes.number,
+      id: PropTypes.string,
     }).isRequired,
     onChange: PropTypes.func,
     tabIndex: PropTypes.number,
@@ -33,8 +33,8 @@ export default class RelatedProjectSelector extends Component {
 
     onChange({
       type: 'project',
-      name: '傳說中的廚具永靈刀',
-      id: 0,
+      name: '認真',
+      id: 'UHJvamVjdDo0Mw==',
     });
     callback();
   };

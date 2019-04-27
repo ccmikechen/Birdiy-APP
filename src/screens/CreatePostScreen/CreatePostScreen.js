@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Alert } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
+
+import CreatePostMutation from '../../mutations/CreatePostMutation';
 
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
@@ -19,13 +22,39 @@ export default class CreateProjectScreen extends Component {
   };
 
   state = {
+    post: {
+      relatedProject: {
+        type: 'custom',
+        name: '',
+        id: null,
+      },
+      message: '',
+      photos: [],
+    },
+  };
+
+  handleChange = (data) => {
+    const { post } = this.state;
+    this.setState({ post: { ...post, ...data } });
   };
 
   handleSubmit = () => {
+    const { navigation } = this.props;
+    const { post } = this.state;
+    const mutation = new CreatePostMutation(post);
+
+    mutation.commit()
+      .then(() => {
+        navigation.goBack();
+      })
+      .catch(() => {
+        Alert.alert('投稿發佈失敗');
+      });
   };
 
   render() {
     const { navigation } = this.props;
+    const { post } = this.state;
 
     return (
       <TopScreenView
@@ -43,7 +72,10 @@ export default class CreateProjectScreen extends Component {
         )}
         fullScreen
       >
-        <PostEditor />
+        <PostEditor
+          post={post}
+          onChange={this.handleChange}
+        />
       </TopScreenView>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, KeyboardAvoidingView } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
 
@@ -11,37 +12,50 @@ import styles from './styles';
 
 export default class PostEditor extends Component {
   static propTypes = {
+    post: PropTypes.shape({
+      relatedProject: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        id: PropTypes.string,
+      }).isRequired,
+      message: PropTypes.string,
+      photos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        image: PropTypes.string,
+      })),
+    }).isRequired,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onChange: () => {},
   };
 
   state = {
-    relatedProject: {
-      type: 'custom',
-      name: '',
-      id: null,
-    },
     relatedProjectTabIndex: 2,
-    message: '',
-    images: [],
   };
 
   handleImageUpload = (image) => {
-    const { images } = this.state;
-    this.setState({ images: [...images, image.uri] });
+    const { post: { photos }, onChange } = this.props;
+
+    onChange({ photos: [...photos, { image: image.uri }] });
   };
 
   handleImageDelete = (index) => {
-    const { images } = this.state;
-    images.splice(index, 1);
-    this.setState({ images });
+    const { post: { photos }, onChange } = this.props;
+
+    photos.splice(index, 1);
+    onChange({ photos });
   };
 
   render() {
+    const { post, onChange } = this.props;
     const {
       relatedProject,
-      relatedProjectTabIndex,
       message,
-      images,
-    } = this.state;
+      photos,
+    } = post;
+    const { relatedProjectTabIndex } = this.state;
 
     return (
       <InputScrollView style={styles.container}>
@@ -51,7 +65,7 @@ export default class PostEditor extends Component {
               style={styles.textInput}
               value={message}
               placeholder="輸入投稿訊息"
-              onChangeText={value => this.setState({ message: value })}
+              onChangeText={value => onChange({ message: value })}
               maxLength={500}
               multiline
               counter
@@ -61,7 +75,7 @@ export default class PostEditor extends Component {
             <View style={styles.projectSelectorContainer}>
               <RelatedProjectSelector
                 project={relatedProject}
-                onChange={project => this.setState({ relatedProject: project })}
+                onChange={project => onChange({ relatedProject: project })}
                 tabIndex={relatedProjectTabIndex}
                 onTabChange={index => this.setState({ relatedProjectTabIndex: index })}
               />
@@ -69,7 +83,7 @@ export default class PostEditor extends Component {
           </EditSection>
           <EditSection title="照片">
             <MultipleImageUploadView
-              images={images}
+              images={photos.map(({ image }) => image)}
               onUpload={this.handleImageUpload}
               onDeleteImage={this.handleImageDelete}
             />

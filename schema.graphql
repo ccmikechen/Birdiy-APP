@@ -3,6 +3,14 @@ schema {
   mutation: RootMutationType
 }
 
+input CreatePostInput {
+  message: String!
+  photos: [PostPhotoInput]
+  relatedProjectId: ID
+  relatedProjectName: String
+  relatedProjectType: RelatedProjectType!
+}
+
 input CreateProjectInput {
   category: String!
   name: String!
@@ -73,6 +81,11 @@ type PostEdge {
 type PostPhoto {
   image: String!
   post: Post!
+}
+
+input PostPhotoInput {
+  image: Upload
+  order: Int!
 }
 
 type Project implements Node {
@@ -204,7 +217,13 @@ enum RankOrder {
   NAME
 }
 
+enum RelatedProjectType {
+  CUSTOM
+  PROJECT
+}
+
 type RootMutationType {
+  createPost(input: CreatePostInput!): Post
   createProject(input: CreateProjectInput!): Project
   deleteProject(input: ProjectInput!): Project
   editProject(input: EditProjectInput!): Project
