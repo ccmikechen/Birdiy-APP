@@ -21,6 +21,9 @@ import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPos
 
 import LikeProjectMutation from '../../mutations/LikeProjectMutation';
 import CancelLikeProjectMutation from '../../mutations/CancelLikeProjectMutation';
+import FavoriteProjectMutation from '../../mutations/FavoriteProjectMutation';
+import CancelFavoriteProjectMutation from '../../mutations/CancelFavoriteProjectMutation';
+
 
 import styles from './styles';
 
@@ -89,6 +92,15 @@ export default class ProjectDetailScreen extends Component {
     mutation.commit().catch(() => {});
   };
 
+  handleFavoritePress = () => {
+    const { query: { project: { id, favorite } } } = this.props;
+    const mutation = favorite
+      ? new CancelFavoriteProjectMutation({ id })
+      : new FavoriteProjectMutation({ id });
+
+    mutation.commit().catch(() => {});
+  };
+
   handleMaterialLinkPress = (link) => {
     WebBrowser.openBrowserAsync(link);
   };
@@ -151,7 +163,10 @@ export default class ProjectDetailScreen extends Component {
           <ProjectAuthor project={project} />
         </View>
         <View style={styles.optionsContainer}>
-          <ProjectOptionButtons />
+          <ProjectOptionButtons
+            favorite={project.favorite}
+            onFavoritePress={this.handleFavoritePress}
+          />
         </View>
         <ProjectDetailSection title="介紹">
           <View style={styles.introContainer}>

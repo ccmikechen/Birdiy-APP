@@ -11,21 +11,38 @@ const ProjectOptionButtons = ({
   onFavoritePress,
   onSharePress,
   onPostPress,
+  favorite,
 }) => (
   <View style={styles.container}>
-    <TouchableOpacity
-      style={styles.buttonContainer}
-      onPress={onFavoritePress}
-    >
-      <Icon.AntDesign
-        name="addfolder"
-        size={26}
-        color={Colors.headerIcon}
-      />
-      <Text style={styles.buttonText}>
-        收藏專案
-      </Text>
-    </TouchableOpacity>
+    {favorite ? (
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={onFavoritePress}
+      >
+        <Icon.AntDesign
+          name="folder1"
+          size={26}
+          color={Colors.headerIcon}
+        />
+        <Text style={styles.buttonText}>
+          取消收藏
+        </Text>
+      </TouchableOpacity>
+    ) : (
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={onFavoritePress}
+      >
+        <Icon.AntDesign
+          name="addfolder"
+          size={26}
+          color={Colors.headerIcon}
+        />
+        <Text style={styles.buttonText}>
+          收藏專案
+        </Text>
+      </TouchableOpacity>
+    )}
     <View style={styles.divider} />
     <TouchableOpacity
       style={styles.buttonContainer}
@@ -61,12 +78,14 @@ ProjectOptionButtons.propTypes = {
   onFavoritePress: PropTypes.func,
   onSharePress: PropTypes.func,
   onPostPress: PropTypes.func,
+  favorite: PropTypes.bool,
 };
 
 ProjectOptionButtons.defaultProps = {
   onFavoritePress: () => {},
   onSharePress: () => {},
   onPostPress: () => {},
+  favorite: false,
 };
 
 export default ProjectOptionButtons;
