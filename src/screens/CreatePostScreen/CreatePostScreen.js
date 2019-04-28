@@ -8,7 +8,7 @@ import PostEditor from '../../components/PostEditor';
 
 import CreatePostMutation from '../../mutations/CreatePostMutation';
 
-export default class CreateProjectScreen extends Component {
+export default class CreatePostScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -53,6 +53,7 @@ export default class CreateProjectScreen extends Component {
     mutation.commit()
       .then(() => {
         navigation.goBack();
+        Alert.alert('投稿發佈成功');
       })
       .catch(() => {
         Alert.alert('投稿發佈失敗');

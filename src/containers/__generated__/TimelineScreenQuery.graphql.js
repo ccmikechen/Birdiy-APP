@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0c4638c752522c3d7f24c796a44e8ab0
+ * @relayHash e8dcaf5b9e40c46600e0a55f413a3a03
  */
 
 /* eslint-disable */
@@ -85,6 +85,7 @@ fragment PostSection_post on Post {
   message
   thumbnail {
     image
+    id
   }
   relatedProjectType
   relatedProjectName
@@ -233,7 +234,8 @@ v6 = [
             "concreteType": "PostPhoto",
             "plural": false,
             "selections": [
-              (v5/*: any*/)
+              (v5/*: any*/),
+              (v3/*: any*/)
             ]
           },
           {
@@ -367,7 +369,7 @@ return {
     "operationKind": "query",
     "name": "TimelineScreenQuery",
     "id": null,
-    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllPostList_query\n  ...FollowingPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllPostList_query\n  ...FollowingPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

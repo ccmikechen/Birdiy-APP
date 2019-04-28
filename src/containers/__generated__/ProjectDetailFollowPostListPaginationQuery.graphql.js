@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3000d3eb843fcae1a8edef9b13592318
+ * @relayHash 5964bfe2769716c22c624edc0b8d5b33
  */
 
 /* eslint-disable */
@@ -50,6 +50,7 @@ fragment ProjectDetailFollowPostList_project on Project {
         id
         thumbnail {
           image
+          id
         }
         author {
           image
@@ -223,7 +224,8 @@ return {
                         "concreteType": "PostPhoto",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/)
+                          (v4/*: any*/),
+                          (v3/*: any*/)
                         ]
                       },
                       {
@@ -283,7 +285,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailFollowPostListPaginationQuery",
     "id": null,
-    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

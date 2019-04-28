@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d71534928065f507f4dd4d252c885d22
+ * @relayHash 926fe0088e1289ef72ff3d823794a070
  */
 
 /* eslint-disable */
@@ -65,6 +65,7 @@ fragment PostSection_post on Post {
   message
   thumbnail {
     image
+    id
   }
   relatedProjectType
   relatedProjectName
@@ -244,7 +245,8 @@ return {
                         "concreteType": "PostPhoto",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/)
+                          (v4/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -311,7 +313,7 @@ return {
     "operationKind": "query",
     "name": "MyPostsScreenQuery",
     "id": null,
-    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

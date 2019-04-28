@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b4ea2b7a9aae2503101672dea9cf7e32
+ * @relayHash fe8d6b01fddbe5dc59eb030211c1543e
  */
 
 /* eslint-disable */
@@ -59,6 +59,7 @@ fragment PostSection_post on Post {
   message
   thumbnail {
     image
+    id
   }
   relatedProjectType
   relatedProjectName
@@ -229,7 +230,8 @@ return {
                     "concreteType": "PostPhoto",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/)
+                      (v4/*: any*/),
+                      (v2/*: any*/)
                     ]
                   },
                   {
@@ -294,7 +296,7 @@ return {
     "operationKind": "query",
     "name": "AllPostListPaginationQuery",
     "id": null,
-    "text": "query AllPostListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query AllPostListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

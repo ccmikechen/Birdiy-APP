@@ -18,6 +18,15 @@ input CreateProjectInput {
 
 scalar Datetime
 
+input EditPostInput {
+  id: ID!
+  message: String!
+  photos: [PostPhotoInput]
+  relatedProjectId: ID
+  relatedProjectName: String
+  relatedProjectType: RelatedProjectType!
+}
+
 input EditProjectInput {
   category: String!
   fileResources: [ProjectFileResourceInput]
@@ -78,12 +87,15 @@ type PostEdge {
   node: Post
 }
 
-type PostPhoto {
+type PostPhoto implements Node {
+  """The ID of an object"""
+  id: ID!
   image: String!
   post: Post!
 }
 
 input PostPhotoInput {
+  id: ID
   image: Upload
   order: Int!
 }
@@ -240,6 +252,7 @@ type RootMutationType {
   createPost(input: CreatePostInput!): PostResult
   createProject(input: CreateProjectInput!): ProjectResult
   deleteProject(input: ProjectInput!): ProjectResult
+  editPost(input: EditPostInput!): PostResult
   editProject(input: EditProjectInput!): ProjectResult
   favoriteProject(input: ProjectInput!): ProjectResult
   likeProject(input: ProjectInput!): ProjectResult

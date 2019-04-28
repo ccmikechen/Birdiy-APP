@@ -17,17 +17,22 @@ export default class PostEditor extends Component {
         type: PropTypes.string.isRequired,
         name: PropTypes.string,
         id: PropTypes.string,
-      }).isRequired,
+      }),
       message: PropTypes.string,
       photos: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string,
         image: PropTypes.string,
       })),
-    }).isRequired,
+    }),
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
+    post: {
+      relatedProject: null,
+      message: '',
+      photos: [],
+    },
     onChange: () => {},
   };
 

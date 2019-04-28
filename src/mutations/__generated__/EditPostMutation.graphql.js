@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8b96e895987af37d86c39b38471e8cc3
+ * @relayHash 5ccc4b3fb6f14f4409639ada72c8ab46
  */
 
 /* eslint-disable */
@@ -10,7 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type RelatedProjectType = "CUSTOM" | "PROJECT" | "%future added value";
-export type CreatePostInput = {|
+export type EditPostInput = {|
+  id: string,
   message: string,
   photos?: ?$ReadOnlyArray<?PostPhotoInput>,
   relatedProjectId?: ?string,
@@ -22,28 +23,28 @@ export type PostPhotoInput = {|
   image?: ?any,
   order: number,
 |};
-export type CreatePostMutationVariables = {|
-  input: CreatePostInput
+export type EditPostMutationVariables = {|
+  input: EditPostInput
 |};
-export type CreatePostMutationResponse = {|
-  +createPost: ?{|
+export type EditPostMutationResponse = {|
+  +editPost: ?{|
     +post: {|
       +id: string
     |}
   |}
 |};
-export type CreatePostMutation = {|
-  variables: CreatePostMutationVariables,
-  response: CreatePostMutationResponse,
+export type EditPostMutation = {|
+  variables: EditPostMutationVariables,
+  response: EditPostMutationResponse,
 |};
 */
 
 
 /*
-mutation CreatePostMutation(
-  $input: CreatePostInput!
+mutation EditPostMutation(
+  $input: EditPostInput!
 ) {
-  createPost(input: $input) {
+  editPost(input: $input) {
     post {
       id
     }
@@ -56,7 +57,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "CreatePostInput!",
+    "type": "EditPostInput!",
     "defaultValue": null
   }
 ],
@@ -64,14 +65,14 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "createPost",
+    "name": "editPost",
     "storageKey": null,
     "args": [
       {
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "CreatePostInput!"
+        "type": "EditPostInput!"
       }
     ],
     "concreteType": "PostResult",
@@ -102,7 +103,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CreatePostMutation",
+    "name": "EditPostMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -110,19 +111,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CreatePostMutation",
+    "name": "EditPostMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "CreatePostMutation",
+    "name": "EditPostMutation",
     "id": null,
-    "text": "mutation CreatePostMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
+    "text": "mutation EditPostMutation(\n  $input: EditPostInput!\n) {\n  editPost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1577452522141b565c8db88570dd3572';
+(node/*: any*/).hash = 'cb4e08bc7a4edca03b308a9a934bcb52';
 module.exports = node;

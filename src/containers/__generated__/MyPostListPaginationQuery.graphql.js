@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c85f48ebc573b83cdc5e4baa8a8f8e00
+ * @relayHash 01bf96dfef5375f9ee395e46a285d745
  */
 
 /* eslint-disable */
@@ -61,6 +61,7 @@ fragment PostSection_post on Post {
   message
   thumbnail {
     image
+    id
   }
   relatedProjectType
   relatedProjectName
@@ -240,7 +241,8 @@ return {
                         "concreteType": "PostPhoto",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/)
+                          (v4/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -307,7 +309,7 @@ return {
     "operationKind": "query",
     "name": "MyPostListPaginationQuery",
     "id": null,
-    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

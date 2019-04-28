@@ -182,14 +182,14 @@ export default class EditProjectScreen extends Component {
   };
 
   deleteProject = () => {
-    const { query } = this.props;
+    const { query, navigation } = this.props;
     const mutation = new DeleteProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        this.reloadAndGoBack();
+        navigation.goBack();
         Alert.alert(
           '專案刪除成功',
           '專案已成功刪除，若要復原請聯繫客服人員。',
@@ -201,11 +201,12 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSave = () => {
+    const { navigation } = this.props;
     const mutation = this.getEditProjectMutation();
 
     mutation.commit()
       .then(() => {
-        this.reloadAndGoBack();
+        navigation.goBack();
         Alert.alert('專案儲存成功');
       })
       .catch(() => {
@@ -239,14 +240,14 @@ export default class EditProjectScreen extends Component {
   };
 
   handlePublish = () => {
-    const { query } = this.props;
+    const { query, navigation } = this.props;
     const mutation = new PublishProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        this.reloadAndGoBack();
+        navigation.goBack();
         Alert.alert('專案已設為公開');
       })
       .catch(() => {
@@ -255,29 +256,19 @@ export default class EditProjectScreen extends Component {
   };
 
   handleUnpublish = () => {
-    const { query } = this.props;
+    const { query, navigation } = this.props;
     const mutation = new UnpublishProjectMutation({
       id: query.project.id,
     });
 
     mutation.commit()
       .then(() => {
-        this.reloadAndGoBack();
+        navigation.goBack();
         Alert.alert('專案已設為不公開');
       })
       .catch(() => {
         Alert.alert('專案設定失敗');
       });
-  };
-
-  reloadAndGoBack = () => {
-    const { navigation } = this.props;
-    const reload = navigation.getParam('reload');
-
-    if (reload) {
-      reload();
-    }
-    navigation.goBack();
   };
 
   renderSection = (key) => {

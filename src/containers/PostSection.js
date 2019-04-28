@@ -13,7 +13,7 @@ export default createFragmentContainer(
       }
       insertedAt
       message
-        thumbnail {
+      thumbnail {
         image
       }
       relatedProjectType

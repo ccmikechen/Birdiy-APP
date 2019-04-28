@@ -49,10 +49,7 @@ export default class ProfileScreen extends Component {
   handleOpenProject = (id) => {
     const { navigation } = this.props;
     //    navigation.navigate('ProjectDetail', { id });
-    navigation.navigate('EditProjectModal', {
-      id,
-      reload: this.reload,
-    });
+    navigation.navigate('EditProjectModal', { id });
   };
 
   handleMorePostsPress = () => {
@@ -67,7 +64,8 @@ export default class ProfileScreen extends Component {
 
   handleOpenPost = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('PostDetail', { id });
+    // navigation.navigate('PostDetail', { id });
+    navigation.navigate('EditPostModal', { id });
   };
 
   handleMoreFavoritesPress = () => {
