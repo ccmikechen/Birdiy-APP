@@ -12,6 +12,7 @@ import { Surface } from 'react-native-paper';
 
 import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
+import MyProjectPopupMenu from '../MyProjectPopupMenu';
 
 import Size from '../../constants/Size';
 
@@ -31,13 +32,17 @@ export default class MyProjectsScene extends Component {
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,
-    onProjectPress: PropTypes.func,
+    onOpenProject: PropTypes.func,
+    onEditProject: PropTypes.func,
+    onDeleteProject: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
     onAddPress: () => {},
-    onProjectPress: () => {},
+    onOpenProject: () => {},
+    onEditProject: () => {},
+    onDeleteProject: () => {},
   };
 
   constructor(props) {
@@ -59,13 +64,21 @@ export default class MyProjectsScene extends Component {
   }
 
   renderRow = (project) => {
-    const { onProjectPress } = this.props;
+    const {
+      onOpenProject,
+      onEditProject,
+      onDeleteProject,
+    } = this.props;
 
     return (
       <Surface style={styles.rowContainer}>
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => onProjectPress(project.id)}
+          onPress={() => (
+            project.published
+              ? onOpenProject(project.id)
+              : onEditProject(project.id)
+          )}
         >
           <View style={styles.imageContainer}>
             {project.image ? (
@@ -81,10 +94,33 @@ export default class MyProjectsScene extends Component {
               />
             )}
           </View>
-          <View style={styles.nameContainer}>
-            <Text style={styles.name}>
-              {project.name}
-            </Text>
+          <View style={styles.contentContainer}>
+            <View style={styles.topContentContainer}>
+              <View style={styles.nameContainer}>
+                <Text style={styles.name}>
+                  {project.name}
+                </Text>
+              </View>
+              <View style={styles.optionContainer}>
+                <MyProjectPopupMenu
+                  onEditProject={() => onEditProject(project.id)}
+                  onDeleteProject={() => onDeleteProject(project.id)}
+                />
+              </View>
+            </View>
+            <View style={styles.bottomContentContainer}>
+              <View style={styles.statusContainer}>
+                {project.published ? (
+                  <Text style={[styles.status, styles.publishedStatus]}>
+                    公開
+                  </Text>
+                ) : (
+                  <Text style={[styles.status, styles.draftStatus]}>
+                    草稿
+                  </Text>
+                )}
+              </View>
+            </View>
           </View>
         </TouchableOpacity>
       </Surface>

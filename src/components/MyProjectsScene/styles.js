@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import Size from '../../constants/Size';
-import { Base, TextColor } from '../../constants/Colors';
+import Colors, { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   listView: {
@@ -28,6 +28,13 @@ export default StyleSheet.create({
     width: Size.myProjectListImageSize,
     height: Size.myProjectListImageSize,
   },
+  contentContainer: {
+    flex: 1,
+  },
+  topContentContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   nameContainer: {
     flex: 1,
     padding: 10,
@@ -36,6 +43,25 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: TextColor.primaryDark,
+  },
+  optionContainer: {
+    paddingTop: 10,
+  },
+  bottomContentContainer: {
+    justifyContent: 'center',
+  },
+  statusContainer: {
+    paddingLeft: 10,
+    paddingBottom: 5,
+  },
+  status: {
+    fontSize: 12,
+  },
+  draftStatus: {
+    color: Colors.draftStatus,
+  },
+  publishedStatus: {
+    color: Colors.publishedStatus,
   },
   addButtonContainer: {
     width: '100%',

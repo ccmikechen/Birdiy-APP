@@ -30,12 +30,12 @@ export default class MyFavoritesScene extends Component {
       }).isRequired,
     })).isRequired,
     onMorePress: PropTypes.func,
-    onProjectPress: PropTypes.func,
+    onOpenProject: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
-    onProjectPress: () => {},
+    onOpenProject: () => {},
   };
 
   constructor(props) {
@@ -57,13 +57,13 @@ export default class MyFavoritesScene extends Component {
   }
 
   renderRow = (project) => {
-    const { onProjectPress } = this.props;
+    const { onOpenProject } = this.props;
 
     return (
       <Surface style={styles.rowContainer}>
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => onProjectPress(project.id)}
+          onPress={() => onOpenProject(project.id)}
         >
           <View style={styles.imageContainer}>
             {project.image ? (

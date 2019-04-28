@@ -71,4 +71,6 @@ export default {
   unpublish: '#c62828',
   divider: '#dfdfdf',
   like: '#c62828',
+  publishedStatus: '#008800',
+  draftStatus: '#666666',
 };
