@@ -18,20 +18,27 @@ export default class CreateProjectScreen extends Component {
       goBack: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
+      getParam: PropTypes.func.isRequired,
     }).isRequired,
   };
 
-  state = {
-    post: {
-      relatedProject: {
-        type: 'custom',
-        name: '',
-        id: null,
+  constructor(props) {
+    super(props);
+
+    const relatedProject = props.navigation.getParam('relatedProject');
+
+    this.state = {
+      post: {
+        relatedProject: relatedProject || {
+          type: 'custom',
+          name: '',
+          id: null,
+        },
+        message: '',
+        photos: [],
       },
-      message: '',
-      photos: [],
-    },
-  };
+    };
+  }
 
   handleChange = (data) => {
     const { post } = this.state;

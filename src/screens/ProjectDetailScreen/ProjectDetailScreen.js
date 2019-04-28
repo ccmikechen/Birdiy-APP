@@ -101,6 +101,17 @@ export default class ProjectDetailScreen extends Component {
     mutation.commit().catch(() => {});
   };
 
+  handleNewPostPress = () => {
+    const { query: { project }, navigation } = this.props;
+    const relatedProject = {
+      type: 'project',
+      name: project.name,
+      id: project.id,
+    };
+
+    navigation.navigate('CreatePostModal', { relatedProject });
+  };
+
   handleMaterialLinkPress = (link) => {
     WebBrowser.openBrowserAsync(link);
   };
@@ -166,6 +177,7 @@ export default class ProjectDetailScreen extends Component {
           <ProjectOptionButtons
             favorite={project.favorite}
             onFavoritePress={this.handleFavoritePress}
+            onNewPostPress={this.handleNewPostPress}
           />
         </View>
         <ProjectDetailSection title="介紹">

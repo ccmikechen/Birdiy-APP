@@ -31,10 +31,6 @@ export default class PostEditor extends Component {
     onChange: () => {},
   };
 
-  state = {
-    relatedProjectTabIndex: 2,
-  };
-
   handleImageUpload = (image) => {
     const { post: { photos }, onChange } = this.props;
 
@@ -55,7 +51,6 @@ export default class PostEditor extends Component {
       message,
       photos,
     } = post;
-    const { relatedProjectTabIndex } = this.state;
 
     return (
       <InputScrollView style={styles.container}>
@@ -76,8 +71,6 @@ export default class PostEditor extends Component {
               <RelatedProjectSelector
                 project={relatedProject}
                 onChange={project => onChange({ relatedProject: project })}
-                tabIndex={relatedProjectTabIndex}
-                onTabChange={index => this.setState({ relatedProjectTabIndex: index })}
               />
             </View>
           </EditSection>

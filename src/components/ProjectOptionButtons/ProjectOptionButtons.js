@@ -10,7 +10,7 @@ import styles from './styles';
 const ProjectOptionButtons = ({
   onFavoritePress,
   onSharePress,
-  onPostPress,
+  onNewPostPress,
   favorite,
 }) => (
   <View style={styles.container}>
@@ -60,7 +60,7 @@ const ProjectOptionButtons = ({
     <View style={styles.divider} />
     <TouchableOpacity
       style={styles.buttonContainer}
-      onPress={onPostPress}
+      onPress={onNewPostPress}
     >
       <Icon.MaterialCommunityIcons
         name="image-filter-frames"
@@ -77,14 +77,14 @@ const ProjectOptionButtons = ({
 ProjectOptionButtons.propTypes = {
   onFavoritePress: PropTypes.func,
   onSharePress: PropTypes.func,
-  onPostPress: PropTypes.func,
+  onNewPostPress: PropTypes.func,
   favorite: PropTypes.bool,
 };
 
 ProjectOptionButtons.defaultProps = {
   onFavoritePress: () => {},
   onSharePress: () => {},
-  onPostPress: () => {},
+  onNewPostPress: () => {},
   favorite: false,
 };
 

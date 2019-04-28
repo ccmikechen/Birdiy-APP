@@ -18,17 +18,13 @@ export default class RelatedProjectSelector extends Component {
       id: PropTypes.string,
     }).isRequired,
     onChange: PropTypes.func,
-    tabIndex: PropTypes.number,
-    onTabChange: PropTypes.func,
   };
 
   static defaultProps = {
     onChange: () => {},
-    tabIndex: 2,
-    onTabChange: () => {},
   };
 
-  handleSearch = (callback) => {
+  handleSearch = () => {
     const { onChange } = this.props;
 
     onChange({
@@ -36,14 +32,11 @@ export default class RelatedProjectSelector extends Component {
       name: '認真',
       id: 'UHJvamVjdDo0Mw==',
     });
-    callback();
   };
 
-  handleSelectFavorite = () => {
-  };
-
-  handleCustom = (callback) => {
+  handleCustom = () => {
     const { onChange, project } = this.props;
+
     if (project.type === 'custom') {
       return;
     }
@@ -52,27 +45,24 @@ export default class RelatedProjectSelector extends Component {
       name: '',
       id: null,
     });
-    callback();
   };
 
-  renderTab = ({ name, onPress = () => {} }, index) => {
-    const { tabIndex, onTabChange } = this.props;
+  renderTab = ({ name, onPress = () => {} }, type) => {
+    const { project } = this.props;
 
     return (
       <TouchableOpacity
         style={[
           styles.tab,
-          index === 0 ? styles.firstTab : null,
-          index === tabIndex ? styles.selectedTab : null,
+          type === 'project' ? styles.firstTab : null,
+          type === project.type ? styles.selectedTab : null,
         ]}
-        key={`tab-${index}`}
-        onPress={() => {
-          onPress(() => onTabChange(index));
-        }}
+        key={`tab-${type}`}
+        onPress={onPress}
       >
         <Text style={[
           styles.tabText,
-          index === tabIndex ? styles.selectedTabText : null,
+          type === project.type ? styles.selectedTabText : null,
         ]}
         >
           {name}
@@ -83,9 +73,8 @@ export default class RelatedProjectSelector extends Component {
 
   renderTabs = () => (
     <View style={styles.tabsContainer}>
-      {this.renderTab({ name: '找專案', onPress: this.handleSearch }, 0)}
-      {this.renderTab({ name: '從收藏選擇', onPress: this.handleSelectFavorite }, 1)}
-      {this.renderTab({ name: '自訂專案', onPress: this.handleCustom }, 2)}
+      {this.renderTab({ name: '從專案', onPress: this.handleSearch }, 'project')}
+      {this.renderTab({ name: '自訂專案', onPress: this.handleCustom }, 'custom')}
     </View>
   );
 
@@ -123,13 +112,12 @@ export default class RelatedProjectSelector extends Component {
   };
 
   renderContent = () => {
-    const { tabIndex } = this.props;
+    const { project } = this.props;
 
-    switch (tabIndex) {
-      case 0:
-      case 1:
+    switch (project.type) {
+      case 'project':
         return this.renderProject();
-      case 2:
+      case 'custom':
         return this.renderCustom();
       default:
         return null;
