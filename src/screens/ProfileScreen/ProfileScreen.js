@@ -8,6 +8,7 @@ import ProfileSection from '../../containers/ProfileSection';
 import ProfileTabMenu from '../../containers/ProfileTabMenu';
 
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
+import DeletePostMutation from '../../mutations/DeletePostMutation';
 
 export default class ProfileScreen extends Component {
   static navigationOptions = {
@@ -97,8 +98,27 @@ export default class ProfileScreen extends Component {
 
   handleOpenPost = (id) => {
     const { navigation } = this.props;
-    // navigation.navigate('PostDetail', { id });
+    navigation.navigate('PostDetail', { id });
+  };
+
+  handleEditPost = (id) => {
+    const { navigation } = this.props;
     navigation.navigate('EditPostModal', { id });
+  };
+
+  handleDeletePost = (id) => {
+    const mutation = new DeletePostMutation({ id });
+
+    mutation.commit()
+      .then(() => {
+        Alert.alert(
+          '投稿刪除成功',
+          '投稿已成功刪除，若要復原請聯繫客服人員。',
+        );
+      })
+      .catch(() => {
+        Alert.alert('投稿刪除失敗');
+      });
   };
 
   handleMoreFavoritesPress = () => {
@@ -141,7 +161,9 @@ export default class ProfileScreen extends Component {
           onDeleteProject={this.handleDeleteProject}
           onMorePostsPress={this.handleMorePostsPress}
           onAddPostPress={this.handleAddPostPress}
-          onPostPress={this.handleOpenPost}
+          onOpenPost={this.handleOpenPost}
+          onEditPost={this.handleEditPost}
+          onDeletePost={this.handleDeletePost}
           onMoreFavoritesPress={this.handleMoreFavoritesPress}
         />
       </TopScreenView>

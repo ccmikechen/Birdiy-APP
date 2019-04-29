@@ -45,7 +45,8 @@ export default StyleSheet.create({
     color: TextColor.primaryDark,
   },
   optionContainer: {
-    paddingTop: 10,
+    paddingTop: 5,
+    paddingRight: 5,
   },
   bottomContentContainer: {
     justifyContent: 'center',

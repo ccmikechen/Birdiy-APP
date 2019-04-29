@@ -13,9 +13,13 @@ export default StyleSheet.create({
     aspectRatio: 1,
     backgroundColor: Base.dark,
   },
-  titleContainer: {
+  infoContainer: {
     backgroundColor: Base.lightest,
     minHeight: 40,
+    flexGrow: 1,
+  },
+  infoTopContainer: {
+    flex: 1,
   },
   title: {
     color: Tertiary(900),
@@ -23,9 +27,20 @@ export default StyleSheet.create({
     fontSize: 16,
     padding: 5,
   },
+  infoBottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  authorContainer: {
+    flex: 1,
+  },
   author: {
     color: Tertiary(500),
     fontSize: 12,
     padding: 5,
+  },
+  optionContainer: {
+    justifyContent: 'flex-end',
+    paddingRight: 5,
   },
 });

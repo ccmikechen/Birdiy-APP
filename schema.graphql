@@ -87,10 +87,19 @@ type PostEdge {
   node: Post
 }
 
+input PostInput {
+  id: ID!
+}
+
+enum PostOrder {
+  NEWEST
+}
+
 type PostPhoto implements Node {
   """The ID of an object"""
   id: ID!
   image: String!
+  order: Int!
   post: Post!
 }
 
@@ -251,6 +260,7 @@ type RootMutationType {
   cancelLikeProject(input: ProjectInput!): ProjectResult
   createPost(input: CreatePostInput!): PostResult
   createProject(input: CreateProjectInput!): ProjectResult
+  deletePost(input: PostInput!): PostResult
   deleteProject(input: ProjectInput!): ProjectResult
   editPost(input: EditPostInput!): PostResult
   editProject(input: EditProjectInput!): ProjectResult
@@ -262,7 +272,7 @@ type RootMutationType {
 }
 
 type RootQueryType {
-  allPosts(after: String, before: String, first: Int, last: Int): PostConnection
+  allPosts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   allProjectCategories(after: String, before: String, first: Int, last: Int, order: RankOrder = NAME): ProjectCategoryConnection
   allProjects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
 
@@ -292,7 +302,7 @@ type User {
   image: String
   likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   name: String!
-  posts(after: String, before: String, first: Int, last: Int): PostConnection
+  posts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection

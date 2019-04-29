@@ -15,6 +15,7 @@ export default class ProjectList extends Component {
     renderNoItem: PropTypes.func,
     refreshing: PropTypes.bool,
     renderRefresh: PropTypes.func,
+    renderOptionButton: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onProjectPress: PropTypes.func,
     headerPadding: PropTypes.bool,
@@ -26,6 +27,7 @@ export default class ProjectList extends Component {
     renderNoItem: () => null,
     refreshing: false,
     renderRefresh: () => null,
+    renderOptionButton: () => null,
     onScrollTrigger: () => {},
     onProjectPress: () => () => {},
     headerPadding: false,
@@ -40,7 +42,7 @@ export default class ProjectList extends Component {
   };
 
   renderProject = (project) => {
-    const { onProjectPress } = this.props;
+    const { onProjectPress, renderOptionButton } = this.props;
 
     return (
       <View style={styles.projectContainer}>
@@ -49,6 +51,7 @@ export default class ProjectList extends Component {
             <ProjectSection
               project={project}
               onPress={onProjectPress}
+              renderOptionButton={renderOptionButton}
             />
           ) : null
         }

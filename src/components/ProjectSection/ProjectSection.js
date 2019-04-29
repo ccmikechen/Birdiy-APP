@@ -12,7 +12,11 @@ import { Surface } from 'react-native-paper';
 
 import styles from './styles';
 
-const ProjectSection = ({ project, onPress }) => (
+const ProjectSection = ({
+  project,
+  onPress,
+  renderOptionButton,
+}) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => onPress(project.id)}
@@ -32,9 +36,18 @@ const ProjectSection = ({ project, onPress }) => (
           />
         </View>
       )}
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{project.name}</Text>
-        <Text style={styles.author}>{`by ${project.author.name}`}</Text>
+      <View style={styles.infoContainer}>
+        <View style={styles.infoTopContainer}>
+          <Text style={styles.title}>{project.name}</Text>
+        </View>
+        <View style={styles.infoBottomContainer}>
+          <View style={styles.authorContainer}>
+            <Text style={styles.author}>{`by ${project.author.name}`}</Text>
+          </View>
+          <View style={styles.optionContainer}>
+            {renderOptionButton(project)}
+          </View>
+        </View>
       </View>
     </Surface>
   </TouchableOpacity>
@@ -50,10 +63,12 @@ ProjectSection.propTypes = {
     }).isRequired,
   }).isRequired,
   onPress: PropTypes.func,
+  renderOptionButton: PropTypes.func,
 };
 
 ProjectSection.defaultProps = {
   onPress: () => () => {},
+  renderOptionButton: () => null,
 };
 
 export default ProjectSection;

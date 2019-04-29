@@ -46,6 +46,10 @@ export default StyleSheet.create({
     fontSize: 12,
     color: TextColor.subDark,
   },
+  optionContainer: {
+    paddingTop: 5,
+    paddingRight: 5,
+  },
   addButtonContainer: {
     width: '100%',
     alignItems: 'center',

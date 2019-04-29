@@ -12,6 +12,7 @@ import { Surface } from 'react-native-paper';
 
 import MyProfileAddButton from '../MyProfileAddButton';
 import MoreButton from '../MoreButton';
+import MyPostPopupMenu from '../MyPostPopupMenu';
 
 import Size from '../../constants/Size';
 
@@ -32,13 +33,17 @@ export default class MyPostsScene extends Component {
     })).isRequired,
     onMorePress: PropTypes.func,
     onAddPress: PropTypes.func,
-    onPostPress: PropTypes.func,
+    onOpenPost: PropTypes.func,
+    onEditPost: PropTypes.func,
+    onDeletePost: PropTypes.func,
   };
 
   static defaultProps = {
     onMorePress: () => {},
     onAddPress: () => {},
-    onPostPress: () => {},
+    onOpenPost: () => {},
+    onEditPost: () => {},
+    onDeletePost: () => {},
   };
 
   constructor(props) {
@@ -60,13 +65,17 @@ export default class MyPostsScene extends Component {
   }
 
   renderRow = (post) => {
-    const { onPostPress } = this.props;
+    const {
+      onOpenPost,
+      onEditPost,
+      onDeletePost,
+    } = this.props;
 
     return (
       <Surface style={styles.rowContainer}>
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => onPostPress(post.id)}
+          onPress={() => onOpenPost(post.id)}
         >
           <View style={styles.imageContainer}>
             {post.thumbnail ? (
@@ -93,6 +102,12 @@ export default class MyPostsScene extends Component {
                 {post.insertedAt}
               </Text>
             </View>
+          </View>
+          <View style={styles.optionContainer}>
+            <MyPostPopupMenu
+              onEditPost={() => onEditPost(post.id)}
+              onDeletePost={() => onDeletePost(post.id)}
+            />
           </View>
         </TouchableOpacity>
       </Surface>

@@ -22,7 +22,9 @@ export default class ProfileTabMenu extends Component {
     onDeleteProject: PropTypes.func,
     onMorePostsPress: PropTypes.func,
     onAddPostPress: PropTypes.func,
-    onPostPress: PropTypes.func,
+    onOpenPost: PropTypes.func,
+    onEditPost: PropTypes.func,
+    onDeletePost: PropTypes.func,
     onMoreFavoritesPress: PropTypes.func,
   };
 
@@ -35,7 +37,9 @@ export default class ProfileTabMenu extends Component {
     onDeleteProject: () => {},
     onMorePostsPress: () => {},
     onAddPostPress: () => {},
-    onPostPress: () => {},
+    onOpenPost: () => {},
+    onEditPost: () => {},
+    onDeletePost: () => {},
     onMoreFavoritesPress: () => {},
   };
 
@@ -69,7 +73,9 @@ export default class ProfileTabMenu extends Component {
     const {
       onMorePostsPress,
       onAddPostPress,
-      onPostPress,
+      onOpenPost,
+      onEditPost,
+      onDeletePost,
       profile,
     } = this.props;
 
@@ -78,7 +84,9 @@ export default class ProfileTabMenu extends Component {
         posts={profile.posts}
         onMorePress={onMorePostsPress}
         onAddPress={onAddPostPress}
-        onPostPress={onPostPress}
+        onOpenPost={onOpenPost}
+        onEditPost={onEditPost}
+        onDeletePost={onDeletePost}
       />
     );
   };

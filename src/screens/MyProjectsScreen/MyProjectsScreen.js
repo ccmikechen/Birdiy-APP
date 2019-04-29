@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Alert } from 'react-native';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import MyProjectsHeader from '../../components/MyProjectsHeader';
 import MyProjectList from '../../containers/MyProjectList';
+
+import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 
 import styles from './styles';
 
@@ -38,6 +41,37 @@ export default class MyProjectsScreen extends Component {
     navigation.push('ProjectDetail', { id });
   };
 
+  handleEditProject = (id) => {
+    const { navigation } = this.props;
+    navigation.navigate('EditProjectModal', { id });
+  };
+
+  handleDeleteProject = (id) => {
+    Alert.alert(
+      '刪除專案',
+      '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
+      [
+        { text: '取消' },
+        { text: '確定', onPress: () => this.deleteProject(id) },
+      ],
+    );
+  };
+
+  deleteProject = (id) => {
+    const mutation = new DeleteProjectMutation({ id });
+
+    mutation.commit()
+      .then(() => {
+        Alert.alert(
+          '專案刪除成功',
+          '專案已成功刪除，若要復原請聯繫客服人員。',
+        );
+      })
+      .catch(() => {
+        Alert.alert('專案刪除失敗');
+      });
+  };
+
   handleSearch = () => {
   };
 
@@ -68,6 +102,8 @@ export default class MyProjectsScreen extends Component {
           batchLoad={variables.count}
           headerPadding
           onProjectPress={this.handleOpenProject}
+          onEditProject={this.handleEditProject}
+          onDeleteProject={this.handleDeleteProject}
         />
       </SimpleScreenView>
     );

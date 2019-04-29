@@ -10,26 +10,26 @@ import {
 
 import { TextColor } from '../../constants/Colors';
 
-export default class MyProjectPopupMenu extends Component {
+export default class MyPostPopupMenu extends Component {
   static propTypes = {
-    onEditProject: PropTypes.func,
-    onDeleteProject: PropTypes.func,
+    onEditPost: PropTypes.func,
+    onDeletePost: PropTypes.func,
   };
 
   static defaultProps = {
-    onEditProject: () => {},
-    onDeleteProject: () => {},
+    onEditPost: () => {},
+    onDeletePost: () => {},
   };
 
   handleSelect = (value) => {
-    const { onEditProject, onDeleteProject } = this.props;
+    const { onEditPost, onDeletePost } = this.props;
 
     switch (value) {
-      case 'editProject':
-        onEditProject();
+      case 'editPost':
+        onEditPost();
         break;
-      case 'deleteProject':
-        onDeleteProject();
+      case 'deletePost':
+        onDeletePost();
         break;
       default:
     }
@@ -46,8 +46,8 @@ export default class MyProjectPopupMenu extends Component {
           />
         </MenuTrigger>
         <MenuOptions>
-          <MenuOption value="editProject" text="編輯專案" />
-          <MenuOption value="deleteProject" text="刪除專案" />
+          <MenuOption value="editPost" text="編輯投稿" />
+          <MenuOption value="deletePost" text="刪除投稿" />
         </MenuOptions>
       </Menu>
     );
