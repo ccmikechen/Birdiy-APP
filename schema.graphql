@@ -40,6 +40,11 @@ input EditProjectInput {
   tip: String
 }
 
+type FollowUserResult {
+  followedUser: User!
+  followingUser: User!
+}
+
 """An object with an ID"""
 interface Node {
   """The id of the object."""
@@ -257,6 +262,7 @@ enum RelatedProjectType {
 
 type RootMutationType {
   cancelFavoriteProject(input: ProjectInput!): ProjectResult
+  cancelFollowUser(input: UserInput!): FollowUserResult
   cancelLikeProject(input: ProjectInput!): ProjectResult
   createPost(input: CreatePostInput!): PostResult
   createProject(input: CreateProjectInput!): ProjectResult
@@ -265,6 +271,7 @@ type RootMutationType {
   editPost(input: EditPostInput!): PostResult
   editProject(input: EditProjectInput!): ProjectResult
   favoriteProject(input: ProjectInput!): ProjectResult
+  followUser(input: UserInput!): FollowUserResult
   likeProject(input: ProjectInput!): ProjectResult
   publishProject(input: ProjectInput!): ProjectResult
   unpublishProject(input: ProjectInput!): ProjectResult
@@ -292,13 +299,17 @@ Represents an uploaded file.
 """
 scalar Upload
 
-type User {
+type User implements Node {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   followedUsers: [User]
   followerCount: Int
+  following: Boolean!
   followingCount: Int
   followingUserPosts(after: String, before: String, first: Int, last: Int): PostConnection
   followingUsers: [User]
+
+  """The ID of an object"""
+  id: ID!
   image: String
   likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   name: String!
@@ -306,5 +317,9 @@ type User {
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
+}
+
+input UserInput {
+  id: ID!
 }
 

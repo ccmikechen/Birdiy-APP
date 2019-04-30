@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1525386008f561c3dc28538b75faf02f
+ * @relayHash d6e69f7fb6f6178915c822b6073abc3a
  */
 
 /* eslint-disable */
@@ -52,6 +52,7 @@ fragment MyProjectList_query on RootQueryType {
         cursor
       }
     }
+    id
   }
 }
 
@@ -61,6 +62,7 @@ fragment ProjectSection_project on Project {
   image
   author {
     name
+    id
   }
 }
 */
@@ -95,6 +97,13 @@ v1 = [
   }
 ],
 v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
@@ -183,14 +192,8 @@ return {
                     "concreteType": "Project",
                     "plural": false,
                     "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "id",
-                        "args": null,
-                        "storageKey": null
-                      },
                       (v2/*: any*/),
+                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -207,6 +210,7 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
+                          (v3/*: any*/),
                           (v2/*: any*/)
                         ]
                       },
@@ -238,7 +242,8 @@ return {
             "handle": "connection",
             "key": "MyProjectList_projects",
             "filters": null
-          }
+          },
+          (v2/*: any*/)
         ]
       }
     ]
@@ -247,7 +252,7 @@ return {
     "operationKind": "query",
     "name": "MyProjectsScreenQuery",
     "id": null,
-    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
+    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

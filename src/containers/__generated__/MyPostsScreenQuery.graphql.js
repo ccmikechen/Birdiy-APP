@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 926fe0088e1289ef72ff3d823794a070
+ * @relayHash 25ba67e70b86695cf62e23896a2e9c00
  */
 
 /* eslint-disable */
@@ -52,6 +52,7 @@ fragment MyPostList_query on RootQueryType {
         cursor
       }
     }
+    id
   }
 }
 
@@ -60,6 +61,7 @@ fragment PostSection_post on Post {
   author {
     name
     image
+    id
   }
   insertedAt
   message
@@ -219,7 +221,8 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          (v4/*: any*/)
+                          (v4/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -304,7 +307,8 @@ return {
             "handle": "connection",
             "key": "MyPostList_posts",
             "filters": null
-          }
+          },
+          (v2/*: any*/)
         ]
       }
     ]
@@ -313,7 +317,7 @@ return {
     "operationKind": "query",
     "name": "MyPostsScreenQuery",
     "id": null,
-    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n    id\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 220c145f9afbc129e5e2d3daf746a93c
+ * @relayHash 01cb9e3209eda204f0b21ed3bc8e2b36
  */
 
 /* eslint-disable */
@@ -76,6 +76,7 @@ fragment ProjectSection_project on Project {
   image
   author {
     name
+    id
   }
 }
 */
@@ -201,7 +202,8 @@ return {
                     "concreteType": "User",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/)
+                      (v2/*: any*/),
+                      (v1/*: any*/)
                     ]
                   }
                 ]
@@ -265,7 +267,7 @@ return {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $newProjectCount: Int!\n  $projectsFilter: ProjectFilter\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...ProjectThumbnailsTable_query\n  ...CategoriesTable_query\n}\n\nfragment ProjectThumbnailsTable_query on RootQueryType {\n  projects: allProjects(first: $newProjectCount, filter: $projectsFilter) {\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n      }\n    }\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n  }\n}\n",
+    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $newProjectCount: Int!\n  $projectsFilter: ProjectFilter\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...ProjectThumbnailsTable_query\n  ...CategoriesTable_query\n}\n\nfragment ProjectThumbnailsTable_query on RootQueryType {\n  projects: allProjects(first: $newProjectCount, filter: $projectsFilter) {\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n      }\n    }\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

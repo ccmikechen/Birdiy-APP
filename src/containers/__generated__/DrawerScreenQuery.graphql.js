@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 705a050bceeb999382d5ae69d61b307f
+ * @relayHash 9d90c6c47375066fe0f1817368447afe
  */
 
 /* eslint-disable */
@@ -32,6 +32,7 @@ fragment DrawerScreen_query on RootQueryType {
     image
     followingCount
     followerCount
+    id
   }
 }
 */
@@ -93,6 +94,13 @@ const node/*: ConcreteRequest*/ = {
             "name": "followerCount",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -102,7 +110,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "DrawerScreenQuery",
     "id": null,
-    "text": "query DrawerScreenQuery {\n  ...DrawerScreen_query\n}\n\nfragment DrawerScreen_query on RootQueryType {\n  viewer {\n    name\n    image\n    followingCount\n    followerCount\n  }\n}\n",
+    "text": "query DrawerScreenQuery {\n  ...DrawerScreen_query\n}\n\nfragment DrawerScreen_query on RootQueryType {\n  viewer {\n    name\n    image\n    followingCount\n    followerCount\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

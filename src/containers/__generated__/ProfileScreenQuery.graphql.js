@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 319559469ab975c104273356d12c7e37
+ * @relayHash 101c06c85715e356c6925a376f95b29f
  */
 
 /* eslint-disable */
@@ -34,6 +34,7 @@ fragment ProfileScreen_query on RootQueryType {
   viewer {
     ...ProfileSection_profile
     ...ProfileTabMenu_profile
+    id
   }
 }
 
@@ -89,6 +90,7 @@ fragment MyFavoritesScene_projects on ProjectConnection {
       name
       author {
         name
+        id
       }
     }
   }
@@ -322,7 +324,8 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          (v1/*: any*/)
+                          (v1/*: any*/),
+                          (v4/*: any*/)
                         ]
                       }
                     ]
@@ -330,7 +333,8 @@ return {
                 ]
               }
             ]
-          }
+          },
+          (v4/*: any*/)
         ]
       }
     ]
@@ -339,7 +343,7 @@ return {
     "operationKind": "query",
     "name": "ProfileScreenQuery",
     "id": null,
-    "text": "query ProfileScreenQuery(\n  $count: Int!\n) {\n  ...ProfileScreen_query\n}\n\nfragment ProfileScreen_query on RootQueryType {\n  viewer {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n  }\n}\n\nfragment ProfileSection_profile on User {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on User {\n  projects(first: $count) {\n    ...MyProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...MyPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...MyFavoritesScene_projects\n  }\n}\n\nfragment MyProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n      published\n    }\n  }\n}\n\nfragment MyPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n        id\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment MyFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n      }\n    }\n  }\n}\n",
+    "text": "query ProfileScreenQuery(\n  $count: Int!\n) {\n  ...ProfileScreen_query\n}\n\nfragment ProfileScreen_query on RootQueryType {\n  viewer {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n    id\n  }\n}\n\nfragment ProfileSection_profile on User {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on User {\n  projects(first: $count) {\n    ...MyProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...MyPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...MyFavoritesScene_projects\n  }\n}\n\nfragment MyProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n      published\n    }\n  }\n}\n\nfragment MyPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n        id\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment MyFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n        id\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

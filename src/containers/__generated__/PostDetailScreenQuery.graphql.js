@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 70aec7278619d223c4162b2a3be5dfa4
+ * @relayHash 326a4132fc35d5e811d06b7ed627cd54
  */
 
 /* eslint-disable */
@@ -35,6 +35,7 @@ fragment PostDetailScreen_query on RootQueryType {
     ...PostSection_post
     author {
       name
+      id
     }
     id
   }
@@ -45,6 +46,7 @@ fragment PostSection_post on Post {
   author {
     name
     image
+    id
   }
   insertedAt
   message
@@ -139,7 +141,8 @@ return {
             "plural": false,
             "selections": [
               (v2/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v1/*: any*/)
             ]
           },
           {
@@ -204,7 +207,7 @@ return {
     "operationKind": "query",
     "name": "PostDetailScreenQuery",
     "id": null,
-    "text": "query PostDetailScreenQuery(\n  $postId: ID!\n) {\n  ...PostDetailScreen_query\n}\n\nfragment PostDetailScreen_query on RootQueryType {\n  post(id: $postId) {\n    ...PostSection_post\n    author {\n      name\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query PostDetailScreenQuery(\n  $postId: ID!\n) {\n  ...PostDetailScreen_query\n}\n\nfragment PostDetailScreen_query on RootQueryType {\n  post(id: $postId) {\n    ...PostSection_post\n    author {\n      name\n      id\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n    id\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

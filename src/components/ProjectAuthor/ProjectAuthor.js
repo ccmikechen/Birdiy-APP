@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Button } from 'react-native-paper';
+
+import FollowUserButton from '../FollowUserButton';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -15,7 +16,8 @@ import styles from './styles';
 const ProjectAuthor = ({
   author,
   onUserPress,
-  onFollowPress,
+  onFollow,
+  onUnfollow,
 }) => (
   <View style={styles.container}>
     <TouchableOpacity
@@ -41,32 +43,33 @@ const ProjectAuthor = ({
       </View>
     </View>
     <View>
-      <Button
-        icon="add"
-        mode="outlined"
-        color="#222222"
-        onPress={onFollowPress}
-      >
-        跟隨
-      </Button>
+      <FollowUserButton
+        following={author.following}
+        onFollow={() => onFollow(author.id)}
+        onUnfollow={() => onUnfollow(author.id)}
+      />
     </View>
   </View>
 );
 
 ProjectAuthor.propTypes = {
   author: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    following: PropTypes.bool.isRequired,
     followerCount: PropTypes.number.isRequired,
     projectCount: PropTypes.number.isRequired,
   }).isRequired,
   onUserPress: PropTypes.func,
-  onFollowPress: PropTypes.func,
+  onFollow: PropTypes.func,
+  onUnfollow: PropTypes.func,
 };
 
 ProjectAuthor.defaultProps = {
   onUserPress: () => {},
-  onFollowPress: () => {},
+  onFollow: () => {},
+  onUnfollow: () => {},
 };
 
 export default ProjectAuthor;

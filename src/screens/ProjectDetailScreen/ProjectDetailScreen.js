@@ -23,7 +23,8 @@ import LikeProjectMutation from '../../mutations/LikeProjectMutation';
 import CancelLikeProjectMutation from '../../mutations/CancelLikeProjectMutation';
 import FavoriteProjectMutation from '../../mutations/FavoriteProjectMutation';
 import CancelFavoriteProjectMutation from '../../mutations/CancelFavoriteProjectMutation';
-
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import styles from './styles';
 
@@ -81,6 +82,16 @@ export default class ProjectDetailScreen extends Component {
     liked: false,
     favorite: false,
     tip: '',
+  };
+
+  handleFollowUser = (id) => {
+    const mutation = new FollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
+  handleUnfollowUser = (id) => {
+    const mutation = new CancelFollowUserMutation({ id });
+    mutation.commit().catch(() => {});
   };
 
   handleLikePress = () => {
@@ -171,7 +182,11 @@ export default class ProjectDetailScreen extends Component {
           </View>
         </View>
         <View style={styles.authorContainer}>
-          <ProjectAuthor project={project} />
+          <ProjectAuthor
+            project={project}
+            onFollow={this.handleFollowUser}
+            onUnfollow={this.handleUnfollowUser}
+          />
         </View>
         <View style={styles.optionsContainer}>
           <ProjectOptionButtons

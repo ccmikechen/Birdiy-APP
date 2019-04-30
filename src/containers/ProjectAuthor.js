@@ -18,10 +18,12 @@ const ProjectAuthorFragmentContainer = (props) => {
 ProjectAuthorFragmentContainer.propTypes = {
   project: PropTypes.shape({
     author: PropTypes.shape({
-      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       image: PropTypes.string,
-      followerCount: PropTypes.number,
-      projectCount: PropTypes.number,
+      following: PropTypes.bool.isRequired,
+      followerCount: PropTypes.number.isRequired,
+      projectCount: PropTypes.number.isRequired,
     }),
   }).isRequired,
 };
@@ -31,8 +33,10 @@ export default createFragmentContainer(
   graphql`
     fragment ProjectAuthor_project on Project {
       author {
+        id
         name
         image
+        following
         followerCount
         projectCount
       }

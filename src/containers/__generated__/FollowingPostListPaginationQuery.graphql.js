@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 66be9b5ba3f294b24334e68863db2416
+ * @relayHash 0ab72f116e58ab288cc4148c93d117ba
  */
 
 /* eslint-disable */
@@ -48,6 +48,7 @@ fragment FollowingPostList_query on RootQueryType {
         cursor
       }
     }
+    id
   }
 }
 
@@ -56,6 +57,7 @@ fragment PostSection_post on Post {
   author {
     name
     image
+    id
   }
   insertedAt
   message
@@ -215,7 +217,8 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          (v4/*: any*/)
+                          (v4/*: any*/),
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -300,7 +303,8 @@ return {
             "handle": "connection",
             "key": "FollowingPostList_following",
             "filters": null
-          }
+          },
+          (v2/*: any*/)
         ]
       }
     ]
@@ -309,7 +313,7 @@ return {
     "operationKind": "query",
     "name": "FollowingPostListPaginationQuery",
     "id": null,
-    "text": "query FollowingPostListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingPostList_query\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query FollowingPostListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingPostList_query\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n    id\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
