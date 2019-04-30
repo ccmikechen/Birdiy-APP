@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, KeyboardAvoidingView } from 'react-native';
+import { View } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
 import {
   ScrollIntoView,
@@ -19,7 +19,6 @@ const ScrollIntoViewScrollView = wrapScrollViewConfigured({
 })(InputScrollView);
 
 const options = {
-  align: 'top',
   animated: false,
   immediate: true,
 };
@@ -84,17 +83,20 @@ export default class TabSectionScreenView extends Component {
           onChange={this.handleTabChange}
         />
         {loading ? <LoadingIndicator /> : (
-          <ScrollIntoViewScrollView>
-            <KeyboardAvoidingView behavior="padding" enabled>
-              {tabs.map(({ key }, index) => (
-                <ScrollIntoView
-                  key={`section-${key}`}
-                  ref={(ref) => { this.sections[index] = ref; }}
-                >
-                  {renderSection(key)}
-                </ScrollIntoView>
-              ))}
-            </KeyboardAvoidingView>
+          <ScrollIntoViewScrollView
+            keyboardShouldPersistTaps="always"
+            keyboardAvoidingViewProps={{
+              behavior: 'padding',
+            }}
+          >
+            {tabs.map(({ key }, index) => (
+              <ScrollIntoView
+                key={`section-${key}`}
+                ref={(ref) => { this.sections[index] = ref; }}
+              >
+                {renderSection(key)}
+              </ScrollIntoView>
+            ))}
             {renderFooter()}
             <View style={{ height: 200 }} />
           </ScrollIntoViewScrollView>

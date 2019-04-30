@@ -12,6 +12,8 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   projectImageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   projectImage: {
     width: '100%',

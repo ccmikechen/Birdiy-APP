@@ -35,6 +35,8 @@ import styles from './styles';
 const TABS = [{
   key: 'intro', title: '簡介',
 }, {
+  key: 'image', title: '主圖',
+}, {
   key: 'material', title: '材料',
 }, {
   key: 'method', title: '作法',
@@ -205,13 +207,16 @@ export default class EditProjectScreen extends Component {
     const mutation = this.getEditProjectMutation();
 
     mutation.commit()
-      .then(() => {
+      .then((res) => {
+        if (res.errors) {
+          this.handleSavingError();
+
+          return;
+        }
         navigation.goBack();
         Alert.alert('專案儲存成功');
       })
-      .catch(() => {
-        Alert.alert('專案儲存失敗');
-      });
+      .catch(this.handleSavingError);
   };
 
   getEditProjectMutation = () => {
@@ -239,6 +244,10 @@ export default class EditProjectScreen extends Component {
     });
   };
 
+  handleSavingError = () => {
+    Alert.alert('專案儲存失敗');
+  };
+
   handlePublish = () => {
     const { query, navigation } = this.props;
     const mutation = new PublishProjectMutation({
@@ -246,13 +255,17 @@ export default class EditProjectScreen extends Component {
     });
 
     mutation.commit()
-      .then(() => {
+      .then((res) => {
+        if (res.errors) {
+          this.handlePublishingError();
+
+          return;
+        }
+
         navigation.goBack();
         Alert.alert('專案已設為公開');
       })
-      .catch(() => {
-        Alert.alert('專案設定失敗');
-      });
+      .catch(this.handlePublishingError);
   };
 
   handleUnpublish = () => {
@@ -262,13 +275,21 @@ export default class EditProjectScreen extends Component {
     });
 
     mutation.commit()
-      .then(() => {
+      .then((res) => {
+        if (res.errors) {
+          this.handlePublishingError();
+
+          return;
+        }
+
         navigation.goBack();
         Alert.alert('專案已設為不公開');
       })
-      .catch(() => {
-        Alert.alert('專案設定失敗');
-      });
+      .catch(this.handlePublishingError);
+  };
+
+  handlePublishingError = () => {
+    Alert.alert('專案設定失敗');
   };
 
   renderSection = (key) => {
@@ -287,13 +308,6 @@ export default class EditProjectScreen extends Component {
       case 'intro':
         return (
           <View style={styles.section}>
-            <ImageUploadView
-              width="100%"
-              aspect={[1, 1]}
-              iconSize={Dimensions.get('window').width / 2}
-              image={projectImage}
-              onUpload={this.handleImageUpload}
-            />
             <EditSection title="專案名稱">
               <PureTextInput
                 style={styles.textInput}
@@ -324,6 +338,20 @@ export default class EditProjectScreen extends Component {
               />
             </EditSection>
           </View>
+        );
+      case 'image':
+        return (
+          <EditSection title="主圖">
+            <View style={styles.projectImageContainer}>
+              <ImageUploadView
+                width="100%"
+                aspect={[1, 1]}
+                iconSize={Dimensions.get('window').width / 2}
+                image={projectImage}
+                onUpload={this.handleImageUpload}
+              />
+            </View>
+          </EditSection>
         );
       case 'material':
         return (

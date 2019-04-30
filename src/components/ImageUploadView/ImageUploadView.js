@@ -56,11 +56,13 @@ export default class ImageUploadView extends Component {
       iconSize,
       image,
     } = this.props;
-    const imageStyle = { width, aspectRatio: aspect[0] / aspect[1] };
+    const aspectRatio = aspect[0] / aspect[1];
+    const containerStyle = { width, aspectRatio };
+    const imageStyle = { width: '100%', aspectRatio };
 
     return (
       <TouchableOpacity
-        style={[imageStyle, styles.container]}
+        style={[containerStyle, styles.container]}
         onPress={this.handlePress}
       >
         {image ? (
