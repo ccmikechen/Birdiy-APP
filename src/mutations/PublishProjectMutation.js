@@ -8,6 +8,7 @@ export default class PublishProjectMutation extends Mutation {
       publishProject(input: $input) {
         project {
           id
+          published
         }
       }
     }

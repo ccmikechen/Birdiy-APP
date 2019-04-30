@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 83867341cb673dc639ef2285580a19f4
+ * @relayHash cf38591a8ddbae9e8d7df46c2a68f174
  */
 
 /* eslint-disable */
@@ -18,7 +18,8 @@ export type UnpublishProjectMutationVariables = {|
 export type UnpublishProjectMutationResponse = {|
   +unpublishProject: ?{|
     +project: {|
-      +id: string
+      +id: string,
+      +published: ?boolean,
     |}
   |}
 |};
@@ -36,6 +37,7 @@ mutation UnpublishProjectMutation(
   unpublishProject(input: $input) {
     project {
       id
+      published
     }
   }
 }
@@ -82,6 +84,13 @@ v1 = [
             "name": "id",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "published",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -108,11 +117,11 @@ return {
     "operationKind": "mutation",
     "name": "UnpublishProjectMutation",
     "id": null,
-    "text": "mutation UnpublishProjectMutation(\n  $input: ProjectInput!\n) {\n  unpublishProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation UnpublishProjectMutation(\n  $input: ProjectInput!\n) {\n  unpublishProject(input: $input) {\n    project {\n      id\n      published\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1edaea34856b331ef200e64afe10b60e';
+(node/*: any*/).hash = 'f7fe5c66316fb8d4e694d2d0bbbce5e1';
 module.exports = node;

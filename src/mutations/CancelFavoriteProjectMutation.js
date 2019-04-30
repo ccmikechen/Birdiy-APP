@@ -8,29 +8,21 @@ export default class CancelFavoriteProjectMutation extends Mutation {
     mutation CancelFavoriteProjectMutation($input: ProjectInput!) {
       cancelFavoriteProject(input: $input) {
         project {
-          id
+          favorite
+          favoriteCount
         }
       }
     }
   `;
 
-  updateProject = (project) => {
-    projectUpdater(project, {
-      favorite: false,
-      favoriteCount: project.getValue('favoriteCount') - 1,
-    });
-  };
-
   getMutationConfig() {
     return {
-      updater: (store) => {
-        const payload = store.getRootField('cancelFavoriteProject');
-        const project = payload.getLinkedRecord('project');
-        this.updateProject(project);
-      },
       optimisticUpdater: (store) => {
         const project = store.get(this.input.id);
-        this.updateProject(project);
+        projectUpdater(project, {
+          favorite: false,
+          favoriteCount: project.getValue('favoriteCount') - 1,
+        });
       },
     };
   }

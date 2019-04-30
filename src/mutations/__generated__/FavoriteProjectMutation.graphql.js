@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c602732307e415f2226a1d007687c63e
+ * @relayHash f83ba24544b0adf41b5c2d42158a593f
  */
 
 /* eslint-disable */
@@ -18,7 +18,8 @@ export type FavoriteProjectMutationVariables = {|
 export type FavoriteProjectMutationResponse = {|
   +favoriteProject: ?{|
     +project: {|
-      +id: string
+      +favorite: ?boolean,
+      +favoriteCount: ?number,
     |}
   |}
 |};
@@ -35,6 +36,8 @@ mutation FavoriteProjectMutation(
 ) {
   favoriteProject(input: $input) {
     project {
+      favorite
+      favoriteCount
       id
     }
   }
@@ -52,42 +55,26 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "favoriteProject",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input",
-        "type": "ProjectInput!"
-      }
-    ],
-    "concreteType": "ProjectResult",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "project",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Project",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input",
+    "type": "ProjectInput!"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "favorite",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "favoriteCount",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -96,23 +83,80 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "favoriteProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "FavoriteProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "favoriteProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "FavoriteProjectMutation",
     "id": null,
-    "text": "mutation FavoriteProjectMutation(\n  $input: ProjectInput!\n) {\n  favoriteProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation FavoriteProjectMutation(\n  $input: ProjectInput!\n) {\n  favoriteProject(input: $input) {\n    project {\n      favorite\n      favoriteCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a8ef24c79e131b899cd72ca064b6775a';
+(node/*: any*/).hash = '75b7d561b386bad47eb7084b8f6ad330';
 module.exports = node;

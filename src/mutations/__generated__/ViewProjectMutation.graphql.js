@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fdf9e7e4c9213b76d47b4601647afc1
+ * @relayHash d48434d4b5368eb518d35c244b05e912
  */
 
 /* eslint-disable */
@@ -12,32 +12,32 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type ProjectInput = {|
   id: string
 |};
-export type LikeProjectMutationVariables = {|
+export type ViewProjectMutationVariables = {|
   input: ProjectInput
 |};
-export type LikeProjectMutationResponse = {|
-  +likeProject: ?{|
+export type ViewProjectMutationResponse = {|
+  +viewProject: ?{|
     +project: {|
-      +liked: ?boolean,
-      +likeCount: ?number,
+      +viewed: ?boolean,
+      +viewCount: ?number,
     |}
   |}
 |};
-export type LikeProjectMutation = {|
-  variables: LikeProjectMutationVariables,
-  response: LikeProjectMutationResponse,
+export type ViewProjectMutation = {|
+  variables: ViewProjectMutationVariables,
+  response: ViewProjectMutationResponse,
 |};
 */
 
 
 /*
-mutation LikeProjectMutation(
+mutation ViewProjectMutation(
   $input: ProjectInput!
 ) {
-  likeProject(input: $input) {
+  viewProject(input: $input) {
     project {
-      liked
-      likeCount
+      viewed
+      viewCount
       id
     }
   }
@@ -64,14 +64,14 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "liked",
+  "name": "viewed",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "likeCount",
+  "name": "viewCount",
   "args": null,
   "storageKey": null
 };
@@ -79,7 +79,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "LikeProjectMutation",
+    "name": "ViewProjectMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -87,7 +87,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "likeProject",
+        "name": "viewProject",
         "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "ProjectResult",
@@ -112,13 +112,13 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "LikeProjectMutation",
+    "name": "ViewProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "likeProject",
+        "name": "viewProject",
         "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "ProjectResult",
@@ -150,13 +150,13 @@ return {
   },
   "params": {
     "operationKind": "mutation",
-    "name": "LikeProjectMutation",
+    "name": "ViewProjectMutation",
     "id": null,
-    "text": "mutation LikeProjectMutation(\n  $input: ProjectInput!\n) {\n  likeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation ViewProjectMutation(\n  $input: ProjectInput!\n) {\n  viewProject(input: $input) {\n    project {\n      viewed\n      viewCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6d6ff83d07202526e56e0702b3f87a7f';
+(node/*: any*/).hash = 'c30994f9e195ab1367a5c62522b0932c';
 module.exports = node;

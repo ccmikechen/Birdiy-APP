@@ -20,6 +20,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         viewCount
         favoriteCount
         likeCount
+        viewed
         liked
         favorite
         relatedPostCount

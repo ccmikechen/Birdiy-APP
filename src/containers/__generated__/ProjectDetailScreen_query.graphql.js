@@ -27,6 +27,7 @@ export type ProjectDetailScreen_query = {|
     +viewCount: ?number,
     +favoriteCount: ?number,
     +likeCount: ?number,
+    +viewed: ?boolean,
     +liked: ?boolean,
     +favorite: ?boolean,
     +relatedPostCount: ?number,
@@ -78,7 +79,7 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "likeCount",
+          "name": "viewed",
           "args": null,
           "storageKey": null
         },
@@ -131,6 +132,13 @@ return {
           "kind": "ScalarField",
           "alias": null,
           "name": "favoriteCount",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "likeCount",
           "args": null,
           "storageKey": null
         },
@@ -189,5 +197,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b85d776fa6b7af7547b0234b5a25938e';
+(node/*: any*/).hash = 'd843e0b65c010c2f85ec60a76757bbb6';
 module.exports = node;

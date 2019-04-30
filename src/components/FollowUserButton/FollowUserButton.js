@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
 
+import Colors from '../../constants/Colors';
+
 const FollowUserButton = ({
   following,
   onFollow,
@@ -9,18 +11,16 @@ const FollowUserButton = ({
 }) => (
   following ? (
     <Button
-      icon="add"
       mode="contained"
-      color="#222222"
+      color={Colors.followButton}
       onPress={onUnfollow}
     >
       取消跟隨
     </Button>
   ) : (
     <Button
-      icon="add"
       mode="outlined"
-      color="#222222"
+      color={Colors.followButton}
       onPress={onFollow}
     >
       跟隨

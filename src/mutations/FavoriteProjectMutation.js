@@ -8,29 +8,21 @@ export default class FavoriteProjectMutation extends Mutation {
     mutation FavoriteProjectMutation($input: ProjectInput!) {
       favoriteProject(input: $input) {
         project {
-          id
+          favorite
+          favoriteCount
         }
       }
     }
   `;
 
-  updateProject = (project) => {
-    projectUpdater(project, {
-      favorite: true,
-      favoriteCount: project.getValue('favoriteCount') + 1,
-    });
-  };
-
   getMutationConfig() {
     return {
-      updater: (store) => {
-        const payload = store.getRootField('favoriteProject');
-        const project = payload.getLinkedRecord('project');
-        this.updateProject(project);
-      },
       optimisticUpdater: (store) => {
         const project = store.get(this.input.id);
-        this.updateProject(project);
+        projectUpdater(project, {
+          favorite: true,
+          favoriteCount: project.getValue('favoriteCount') + 1,
+        });
       },
     };
   }

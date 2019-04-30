@@ -8,6 +8,7 @@ export default class UnpublishProjectMutation extends Mutation {
       unpublishProject(input: $input) {
         project {
           id
+          published
         }
       }
     }

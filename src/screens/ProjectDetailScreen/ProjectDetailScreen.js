@@ -19,6 +19,7 @@ import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
 import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
 import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
 
+import ViewProjectMutation from '../../mutations/ViewProjectMutation';
 import LikeProjectMutation from '../../mutations/LikeProjectMutation';
 import CancelLikeProjectMutation from '../../mutations/CancelLikeProjectMutation';
 import FavoriteProjectMutation from '../../mutations/FavoriteProjectMutation';
@@ -79,10 +80,26 @@ export default class ProjectDetailScreen extends Component {
     favoriteCount: 0,
     likeCount: 0,
     relatedPostCount: 0,
+    viewed: false,
     liked: false,
     favorite: false,
     tip: '',
   };
+
+  state = {};
+
+  static getDerivedStateFromProps(nextProps) {
+    const { query } = nextProps;
+
+    if (!query || query.project.viewed) {
+      return null;
+    }
+
+    const mutation = new ViewProjectMutation({ id: query.project.id });
+    mutation.commit().catch(() => {});
+
+    return null;
+  }
 
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });

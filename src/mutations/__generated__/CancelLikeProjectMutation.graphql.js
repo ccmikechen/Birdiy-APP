@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7d3354968ca7ff28ddf133c1d86dcd27
+ * @relayHash f82a492378c87d5caa1bbde3f0546c31
  */
 
 /* eslint-disable */
@@ -18,7 +18,8 @@ export type CancelLikeProjectMutationVariables = {|
 export type CancelLikeProjectMutationResponse = {|
   +cancelLikeProject: ?{|
     +project: {|
-      +id: string
+      +liked: ?boolean,
+      +likeCount: ?number,
     |}
   |}
 |};
@@ -35,6 +36,8 @@ mutation CancelLikeProjectMutation(
 ) {
   cancelLikeProject(input: $input) {
     project {
+      liked
+      likeCount
       id
     }
   }
@@ -52,42 +55,26 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "cancelLikeProject",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input",
-        "type": "ProjectInput!"
-      }
-    ],
-    "concreteType": "ProjectResult",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "project",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Project",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input",
+    "type": "ProjectInput!"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "liked",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "likeCount",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -96,23 +83,80 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "cancelLikeProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "CancelLikeProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "cancelLikeProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "CancelLikeProjectMutation",
     "id": null,
-    "text": "mutation CancelLikeProjectMutation(\n  $input: ProjectInput!\n) {\n  cancelLikeProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation CancelLikeProjectMutation(\n  $input: ProjectInput!\n) {\n  cancelLikeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4341efec2a218393bec84030f347ab49';
+(node/*: any*/).hash = '48c9d9a23a2e43fe5d3711e229d59046';
 module.exports = node;

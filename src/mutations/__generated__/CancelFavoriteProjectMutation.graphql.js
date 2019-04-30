@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 586bcaef98faab604dfee742452259e7
+ * @relayHash caa2c54e986abeef06f9bd09bec6b826
  */
 
 /* eslint-disable */
@@ -18,7 +18,8 @@ export type CancelFavoriteProjectMutationVariables = {|
 export type CancelFavoriteProjectMutationResponse = {|
   +cancelFavoriteProject: ?{|
     +project: {|
-      +id: string
+      +favorite: ?boolean,
+      +favoriteCount: ?number,
     |}
   |}
 |};
@@ -35,6 +36,8 @@ mutation CancelFavoriteProjectMutation(
 ) {
   cancelFavoriteProject(input: $input) {
     project {
+      favorite
+      favoriteCount
       id
     }
   }
@@ -52,42 +55,26 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "cancelFavoriteProject",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input",
-        "type": "ProjectInput!"
-      }
-    ],
-    "concreteType": "ProjectResult",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "project",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Project",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input",
+    "type": "ProjectInput!"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "favorite",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "favoriteCount",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -96,23 +83,80 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "cancelFavoriteProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "CancelFavoriteProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "cancelFavoriteProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "CancelFavoriteProjectMutation",
     "id": null,
-    "text": "mutation CancelFavoriteProjectMutation(\n  $input: ProjectInput!\n) {\n  cancelFavoriteProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation CancelFavoriteProjectMutation(\n  $input: ProjectInput!\n) {\n  cancelFavoriteProject(input: $input) {\n    project {\n      favorite\n      favoriteCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '46b02977f6876157bc1db888c446ff6e';
+(node/*: any*/).hash = 'e113ebebe5445126eeee6be2e8c8e566';
 module.exports = node;
