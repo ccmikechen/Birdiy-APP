@@ -90,13 +90,20 @@ export default class EditPostScreen extends Component {
     const mutation = new EditPostMutation(post);
 
     mutation.commit()
-      .then(() => {
+      .then((res) => {
+        if (res.errors) {
+          this.handleSavingError();
+
+          return;
+        }
         navigation.goBack();
         Alert.alert('投稿編輯成功');
       })
-      .catch(() => {
-        Alert.alert('投稿編輯失敗');
-      });
+      .catch(this.handleSavingError);
+  };
+
+  handleSavingError = () => {
+    Alert.alert('投稿編輯失敗');
   };
 
   render() {

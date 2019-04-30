@@ -51,13 +51,20 @@ export default class CreatePostScreen extends Component {
     const mutation = new CreatePostMutation(post);
 
     mutation.commit()
-      .then(() => {
+      .then((res) => {
+        if (res.errors) {
+          this.handleSubmittingError();
+
+          return;
+        }
         navigation.goBack();
         Alert.alert('投稿發佈成功');
       })
-      .catch(() => {
-        Alert.alert('投稿發佈失敗');
-      });
+      .catch(this.handleSubmittingError);
+  };
+
+  handleSubmittingError = () => {
+    Alert.alert('投稿發佈失敗');
   };
 
   render() {
