@@ -6,6 +6,9 @@ import TopScreenView from '../../components/TopScreenView';
 import PostDetailHeader from '../../components/PostDetailHeader';
 import PostSection from '../../containers/PostSection';
 
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+
 import styles from './styles';
 
 export default class PostDetailScreen extends Component {
@@ -38,6 +41,16 @@ export default class PostDetailScreen extends Component {
     navigation.navigate('ProjectDetail', { id });
   };
 
+  handleFollowUser = (id) => {
+    const mutation = new FollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
+  handleUnfollowUser = (id) => {
+    const mutation = new CancelFollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
   render() {
     const { navigation, loading, query } = this.props;
 
@@ -56,6 +69,8 @@ export default class PostDetailScreen extends Component {
           <PostSection
             post={query && query.post}
             onSourcePress={this.handleOpenSource}
+            onFollowUser={this.handleFollowUser}
+            onUnfollowUser={this.handleUnfollowUser}
           />
         </View>
       </TopScreenView>

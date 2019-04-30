@@ -8,8 +8,10 @@ export default createFragmentContainer(
     fragment PostSection_post on Post {
       id
       author {
+        id
         name
         image
+        following
       }
       insertedAt
       message

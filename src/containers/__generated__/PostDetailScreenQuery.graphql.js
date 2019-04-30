@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 326a4132fc35d5e811d06b7ed627cd54
+ * @relayHash 36797d5495e84289319d95488841ce28
  */
 
 /* eslint-disable */
@@ -44,9 +44,10 @@ fragment PostDetailScreen_query on RootQueryType {
 fragment PostSection_post on Post {
   id
   author {
+    id
     name
     image
-    id
+    following
   }
   insertedAt
   message
@@ -140,9 +141,16 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
+              (v1/*: any*/),
               (v2/*: any*/),
               (v3/*: any*/),
-              (v1/*: any*/)
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "following",
+                "args": null,
+                "storageKey": null
+              }
             ]
           },
           {
@@ -207,7 +215,7 @@ return {
     "operationKind": "query",
     "name": "PostDetailScreenQuery",
     "id": null,
-    "text": "query PostDetailScreenQuery(\n  $postId: ID!\n) {\n  ...PostDetailScreen_query\n}\n\nfragment PostDetailScreen_query on RootQueryType {\n  post(id: $postId) {\n    ...PostSection_post\n    author {\n      name\n      id\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    name\n    image\n    id\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query PostDetailScreenQuery(\n  $postId: ID!\n) {\n  ...PostDetailScreen_query\n}\n\nfragment PostDetailScreen_query on RootQueryType {\n  post(id: $postId) {\n    ...PostSection_post\n    author {\n      name\n      id\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

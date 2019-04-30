@@ -5,6 +5,9 @@ import { View } from 'react-native';
 import InfiniteList from '../InfiniteList';
 import PostSection from '../../containers/PostSection';
 
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+
 import styles from './styles';
 
 export default class PostList extends Component {
@@ -33,6 +36,16 @@ export default class PostList extends Component {
     canLoadMore: false,
   };
 
+  handleFollowUser = (id) => {
+    const mutation = new FollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
+  handleUnfollowUser = (id) => {
+    const mutation = new CancelFollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
   renderPost = (post) => {
     const { onPostPress, onSourcePress } = this.props;
 
@@ -41,6 +54,8 @@ export default class PostList extends Component {
         <PostSection
           post={post}
           onPostPress={onPostPress}
+          onFollowUser={this.handleFollowUser}
+          onUnfollowUser={this.handleUnfollowUser}
           onSourcePress={onSourcePress}
         />
       </View>

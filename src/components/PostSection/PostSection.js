@@ -7,9 +7,10 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Button, Surface } from 'react-native-paper';
+import { Surface } from 'react-native-paper';
 
 import ImageView from '../ImageView';
+import FollowUserButton from '../FollowUserButton';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -18,7 +19,8 @@ import styles from './styles';
 const PostSection = ({
   post,
   onUserPress,
-  onFollowPress,
+  onFollowUser,
+  onUnfollowUser,
   onPostPress,
   onSourcePress,
 }) => (
@@ -47,14 +49,11 @@ const PostSection = ({
         </View>
       </View>
       <View style={styles.followButtonContainer}>
-        <Button
-          icon="add"
-          mode="outlined"
-          color="#222222"
-          onPress={onFollowPress}
-        >
-          跟隨
-        </Button>
+        <FollowUserButton
+          following={post.author.following}
+          onFollow={() => onFollowUser(post.author.id)}
+          onUnfollow={() => onUnfollowUser(post.author.id)}
+        />
       </View>
     </View>
     <View style={styles.messageContainer}>
@@ -97,8 +96,10 @@ const PostSection = ({
 PostSection.propTypes = {
   post: PropTypes.shape({
     author: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
+      following: PropTypes.bool.isRequired,
     }).isRequired,
     insertedAt: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
@@ -112,14 +113,16 @@ PostSection.propTypes = {
     relatedProjectName: PropTypes.string,
   }).isRequired,
   onUserPress: PropTypes.func,
-  onFollowPress: PropTypes.func,
+  onFollowUser: PropTypes.func,
+  onUnfollowUser: PropTypes.func,
   onPostPress: PropTypes.func,
   onSourcePress: PropTypes.func,
 };
 
 PostSection.defaultProps = {
   onUserPress: () => {},
-  onFollowPress: () => {},
+  onFollowUser: () => {},
+  onUnfollowUser: () => {},
   onPostPress: () => {},
   onSourcePress: () => {},
 };

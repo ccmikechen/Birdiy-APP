@@ -13,8 +13,10 @@ declare export opaque type PostSection_post$ref: FragmentReference;
 export type PostSection_post = {|
   +id: string,
   +author: {|
+    +id: string,
     +name: string,
     +image: ?string,
+    +following: boolean,
   |},
   +insertedAt: ?any,
   +message: ?string,
@@ -71,8 +73,16 @@ return {
       "concreteType": "User",
       "plural": false,
       "selections": [
+        (v0/*: any*/),
         (v1/*: any*/),
-        (v2/*: any*/)
+        (v2/*: any*/),
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "following",
+          "args": null,
+          "storageKey": null
+        }
       ]
     },
     {
@@ -132,5 +142,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4f5e5ce87541108427b1b0a8d266f093';
+(node/*: any*/).hash = 'dc3137cc88802da04a465ca2ba09728c';
 module.exports = node;
