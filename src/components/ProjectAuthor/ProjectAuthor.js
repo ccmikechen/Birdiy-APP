@@ -22,7 +22,7 @@ const ProjectAuthor = ({
   <View style={styles.container}>
     <TouchableOpacity
       style={styles.userImageContainer}
-      onPress={onUserPress}
+      onPress={() => onUserPress(author.id)}
     >
       <Image
         style={styles.userImage}

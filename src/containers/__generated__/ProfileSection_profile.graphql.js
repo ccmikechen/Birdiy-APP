@@ -23,7 +23,7 @@ export type ProfileSection_profile = {|
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "ProfileSection_profile",
-  "type": "User",
+  "type": "Profile",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -58,5 +58,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1ca94f3ac72b5c34f63e0bef1d8231bc';
+(node/*: any*/).hash = 'f8c0110c03e3737b912085398cfd0a85';
 module.exports = node;

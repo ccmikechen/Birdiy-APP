@@ -64,6 +64,11 @@ export default class TimelineScreen extends Component {
     navigation.navigate('CreatePostModal');
   };
 
+  handleUserPress = (id) => {
+    const { navigation } = this.props;
+    navigation.push('User', { id });
+  };
+
   handleOpenPost = (id) => {
     const { navigation } = this.props;
     navigation.push('PostDetail', { id });
@@ -71,7 +76,7 @@ export default class TimelineScreen extends Component {
 
   handleOpenSource = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id });
   }
 
   render() {
@@ -99,6 +104,7 @@ export default class TimelineScreen extends Component {
         >
           <AllPostList
             query={query}
+            onUserPress={this.handleUserPress}
             onPostPress={this.handleOpenPost}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
@@ -106,6 +112,7 @@ export default class TimelineScreen extends Component {
           />
           <FollowingPostList
             query={query}
+            onUserPress={this.handleUserPress}
             onPostPress={this.handleOpenPost}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}

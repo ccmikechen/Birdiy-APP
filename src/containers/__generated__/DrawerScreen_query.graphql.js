@@ -35,7 +35,7 @@ const node/*: ReaderFragment*/ = {
       "name": "viewer",
       "storageKey": null,
       "args": null,
-      "concreteType": "User",
+      "concreteType": "Viewer",
       "plural": false,
       "selections": [
         {

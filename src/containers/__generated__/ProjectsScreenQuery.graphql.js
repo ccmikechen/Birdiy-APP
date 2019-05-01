@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 87a02817c0d9d7ca5702209f03497b54
+ * @relayHash ec072285a39af2f8f1b271104696e825
  */
 
 /* eslint-disable */
@@ -13,7 +13,6 @@ type ProjectsScreen_query$ref = any;
 export type ProjectFilter = {|
   categories?: ?$ReadOnlyArray<?string>,
   name?: ?string,
-  published?: ?boolean,
 |};
 export type ProjectsScreenQueryVariables = {|
   count: number,

@@ -118,6 +118,21 @@ type PostResult {
   post: Post!
 }
 
+interface Profile {
+  favoriteProjects(after: String, first: Int): ProjectConnection
+  followedUsers: [User]
+  followerCount: Int
+  following: Boolean!
+  followingCount: Int
+  followingUsers: [User]
+  id: ID!
+  image: String
+  likedProjects(after: String, first: Int): ProjectConnection
+  name: String!
+  posts(after: String, first: Int): PostConnection
+  projects(after: String, filter: ProjectFilter, first: Int, order: ProjectOrder = NEWEST): ProjectConnection
+}
+
 type Project implements Node {
   author: User!
   category: ProjectCategory!
@@ -197,7 +212,6 @@ input ProjectFileResourceInput {
 input ProjectFilter {
   categories: [String]
   name: String
-  published: Boolean
 }
 
 input ProjectInput {
@@ -290,7 +304,8 @@ type RootQueryType {
   ): Node
   post(id: ID!): Post
   project(id: ID!): Project
-  viewer: User
+  user(id: ID!): User
+  viewer: Viewer
 }
 
 """
@@ -299,7 +314,29 @@ Represents an uploaded file.
 """
 scalar Upload
 
-type User implements Node {
+type User implements Profile & Node {
+  favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
+  followedUsers: [User]
+  followerCount: Int
+  following: Boolean!
+  followingCount: Int
+  followingUsers: [User]
+
+  """The ID of an object"""
+  id: ID!
+  image: String
+  likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
+  name: String!
+  posts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
+  projectCount: Int
+  projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
+}
+
+input UserInput {
+  id: ID!
+}
+
+type Viewer implements Profile & Node {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   followedUsers: [User]
   followerCount: Int
@@ -317,9 +354,5 @@ type User implements Node {
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
-}
-
-input UserInput {
-  id: ID!
 }
 

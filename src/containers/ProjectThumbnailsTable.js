@@ -32,7 +32,6 @@ export default createFragmentContainer(
     fragment ProjectThumbnailsTable_query on RootQueryType {
       projects: allProjects(
         first: $newProjectCount,
-        filter: $projectsFilter,
       ) {
         edges {
           node {

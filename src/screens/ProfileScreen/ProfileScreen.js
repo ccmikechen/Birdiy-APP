@@ -19,6 +19,7 @@ export default class ProfileScreen extends Component {
     navigation: PropTypes.shape({
       openDrawer: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
       viewer: PropTypes.object,
@@ -42,7 +43,7 @@ export default class ProfileScreen extends Component {
 
   handleMoreProjectsPress = () => {
     const { navigation } = this.props;
-    navigation.navigate('MyProjects');
+    navigation.push('UserProjects');
   };
 
   handleAddProjectPress = () => {
@@ -52,7 +53,7 @@ export default class ProfileScreen extends Component {
 
   handleOpenProject = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id });
   };
 
   handleEditProject = (id) => {
@@ -88,7 +89,7 @@ export default class ProfileScreen extends Component {
 
   handleMorePostsPress = () => {
     const { navigation } = this.props;
-    navigation.navigate('MyPosts');
+    navigation.push('UserPosts');
   };
 
   handleAddPostPress = () => {
@@ -98,7 +99,7 @@ export default class ProfileScreen extends Component {
 
   handleOpenPost = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('PostDetail', { id });
+    navigation.push('PostDetail', { id });
   };
 
   handleEditPost = (id) => {
@@ -123,13 +124,7 @@ export default class ProfileScreen extends Component {
 
   handleMoreFavoritesPress = () => {
     const { navigation } = this.props;
-    navigation.navigate('MyFavorites');
-  };
-
-  reload = () => {
-    const { relay } = this.props;
-
-    relay.refetch();
+    navigation.push('UserFavorites');
   };
 
   render() {
@@ -154,6 +149,7 @@ export default class ProfileScreen extends Component {
         />
         <ProfileTabMenu
           profile={profile}
+          editable
           onMoreProjectsPress={this.handleMoreProjectsPress}
           onAddProjectPress={this.handleAddProjectPress}
           onOpenProject={this.handleOpenProject}

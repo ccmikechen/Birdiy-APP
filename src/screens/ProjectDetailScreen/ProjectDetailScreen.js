@@ -37,6 +37,8 @@ export default class ProjectDetailScreen extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
       project: PropTypes.shape({
@@ -101,6 +103,11 @@ export default class ProjectDetailScreen extends Component {
     return null;
   }
 
+  handleUserPress = (id) => {
+    const { navigation } = this.props;
+    navigation.push('User', { id });
+  };
+
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
     mutation.commit().catch(() => {});
@@ -153,7 +160,7 @@ export default class ProjectDetailScreen extends Component {
 
   handleOpenPost = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('PostDetail', { id });
+    navigation.push('PostDetail', { id });
   };
 
   render() {
@@ -201,6 +208,7 @@ export default class ProjectDetailScreen extends Component {
         <View style={styles.authorContainer}>
           <ProjectAuthor
             project={project}
+            onUserPress={this.handleUserPress}
             onFollow={this.handleFollowUser}
             onUnfollow={this.handleUnfollowUser}
           />

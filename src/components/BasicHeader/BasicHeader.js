@@ -65,17 +65,19 @@ const BasicHeader = ({
         </TouchableOpacity>
       </View>
     )}
-    <View style={styles.centerComponentContainer}>
-      {
-        typeof centerComponent === 'function'
-          ? centerComponent()
-          : (
-            <Text style={[styles.centerText, centerComponent.style]}>
-              {centerComponent.title}
-            </Text>
-          )
-      }
-    </View>
+    {centerComponent && (
+      <View style={styles.centerComponentContainer}>
+        {
+          typeof centerComponent === 'function'
+            ? centerComponent()
+            : (
+              <Text style={[styles.centerText, centerComponent.style]}>
+                {centerComponent.title}
+              </Text>
+            )
+        }
+      </View>
+    )}
     {rightButton && (
       <View style={styles.rightButtonContainer}>
         {

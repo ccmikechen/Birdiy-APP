@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import NormalTabBar from '../NormalTabBar';
-import MyProjectsScene from '../../containers/MyProjectsScene';
-import MyPostsScene from '../../containers/MyPostsScene';
-import MyFavoritesScene from '../../containers/MyFavoritesScene';
+import UserProjectsScene from '../../containers/UserProjectsScene';
+import UserPostsScene from '../../containers/UserPostsScene';
+import UserFavoritesScene from '../../containers/UserFavoritesScene';
 
 const TABS = ['專案', '投稿', '收藏'];
 
@@ -15,6 +15,7 @@ export default class ProfileTabMenu extends Component {
       posts: PropTypes.object,
       favoriteProjects: PropTypes.object,
     }),
+    editable: PropTypes.bool,
     onMoreProjectsPress: PropTypes.func,
     onAddProjectPress: PropTypes.func,
     onOpenProject: PropTypes.func,
@@ -30,6 +31,7 @@ export default class ProfileTabMenu extends Component {
 
   static defaultProps = {
     profile: null,
+    editable: false,
     onMoreProjectsPress: () => {},
     onAddProjectPress: () => {},
     onOpenProject: () => {},
@@ -55,11 +57,13 @@ export default class ProfileTabMenu extends Component {
       onEditProject,
       onDeleteProject,
       profile,
+      editable,
     } = this.props;
 
     return (
-      <MyProjectsScene
+      <UserProjectsScene
         projects={profile.projects}
+        editable={editable}
         onMorePress={onMoreProjectsPress}
         onAddPress={onAddProjectPress}
         onOpenProject={onOpenProject}
@@ -77,11 +81,13 @@ export default class ProfileTabMenu extends Component {
       onEditPost,
       onDeletePost,
       profile,
+      editable,
     } = this.props;
 
     return (
-      <MyPostsScene
+      <UserPostsScene
         posts={profile.posts}
+        editable={editable}
         onMorePress={onMorePostsPress}
         onAddPress={onAddPostPress}
         onOpenPost={onOpenPost}
@@ -99,7 +105,7 @@ export default class ProfileTabMenu extends Component {
     } = this.props;
 
     return (
-      <MyFavoritesScene
+      <UserFavoritesScene
         projects={profile.favoriteProjects}
         onMorePress={onMoreFavoritesPress}
         onOpenProject={onOpenProject}

@@ -19,7 +19,7 @@ export default class PostDetailScreen extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
-      navigate: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
       post: PropTypes.shape({
@@ -38,7 +38,7 @@ export default class PostDetailScreen extends Component {
 
   handleOpenSource = (id) => {
     const { navigation } = this.props;
-    navigation.navigate('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id });
   };
 
   handleFollowUser = (id) => {

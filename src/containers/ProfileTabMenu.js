@@ -5,21 +5,21 @@ import ProfileTabMenu from '../components/ProfileTabMenu';
 export default createFragmentContainer(
   ProfileTabMenu,
   graphql`
-    fragment ProfileTabMenu_profile on User {
+    fragment ProfileTabMenu_profile on Profile {
       projects(
         first: $count
       ) {
-        ...MyProjectsScene_projects
+        ...UserProjectsScene_projects
       }
       posts(
         first: $count
       ) {
-        ...MyPostsScene_posts
+        ...UserPostsScene_posts
       }
       favoriteProjects(
         first: $count
       ) {
-        ...MyFavoritesScene_projects
+        ...UserFavoritesScene_projects
       }
     }
   `,

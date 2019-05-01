@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 01cb9e3209eda204f0b21ed3bc8e2b36
+ * @relayHash c26cae6300b5951d1081f5276086cfec
  */
 
 /* eslint-disable */
@@ -11,16 +11,10 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type HomeScreen_query$ref = any;
 export type RankOrder = "NAME" | "%future added value";
-export type ProjectFilter = {|
-  categories?: ?$ReadOnlyArray<?string>,
-  name?: ?string,
-  published?: ?boolean,
-|};
 export type HomeScreenQueryVariables = {|
   hotCategoryCount: number,
   hotCategoryOrder?: ?RankOrder,
   newProjectCount: number,
-  projectsFilter?: ?ProjectFilter,
 |};
 export type HomeScreenQueryResponse = {|
   +$fragmentRefs: HomeScreen_query$ref
@@ -37,7 +31,6 @@ query HomeScreenQuery(
   $hotCategoryCount: Int!
   $hotCategoryOrder: RankOrder
   $newProjectCount: Int!
-  $projectsFilter: ProjectFilter
 ) {
   ...HomeScreen_query
 }
@@ -48,7 +41,7 @@ fragment HomeScreen_query on RootQueryType {
 }
 
 fragment ProjectThumbnailsTable_query on RootQueryType {
-  projects: allProjects(first: $newProjectCount, filter: $projectsFilter) {
+  projects: allProjects(first: $newProjectCount) {
     edges {
       node {
         ...ProjectSection_project
@@ -100,12 +93,6 @@ var v0 = [
     "name": "newProjectCount",
     "type": "Int!",
     "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "projectsFilter",
-    "type": "ProjectFilter",
-    "defaultValue": null
   }
 ],
 v1 = {
@@ -156,12 +143,6 @@ return {
         "name": "allProjects",
         "storageKey": null,
         "args": [
-          {
-            "kind": "Variable",
-            "name": "filter",
-            "variableName": "projectsFilter",
-            "type": "ProjectFilter"
-          },
           {
             "kind": "Variable",
             "name": "first",
@@ -267,11 +248,11 @@ return {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $newProjectCount: Int!\n  $projectsFilter: ProjectFilter\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...ProjectThumbnailsTable_query\n  ...CategoriesTable_query\n}\n\nfragment ProjectThumbnailsTable_query on RootQueryType {\n  projects: allProjects(first: $newProjectCount, filter: $projectsFilter) {\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n      }\n    }\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $newProjectCount: Int!\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...ProjectThumbnailsTable_query\n  ...CategoriesTable_query\n}\n\nfragment ProjectThumbnailsTable_query on RootQueryType {\n  projects: allProjects(first: $newProjectCount) {\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n      }\n    }\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a7bb82270a56e68703cc8d497a842c52';
+(node/*: any*/).hash = '9eb84491391449eff2325216dd0aa4fe';
 module.exports = node;

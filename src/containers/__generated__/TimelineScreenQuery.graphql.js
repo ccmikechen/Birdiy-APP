@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c0a98b644d7a9efe899e5ee207faaaa0
+ * @relayHash 06129248f515eeda0764c76392a9f72f
  */
 
 /* eslint-disable */
@@ -350,7 +350,7 @@ return {
         "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "User",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {

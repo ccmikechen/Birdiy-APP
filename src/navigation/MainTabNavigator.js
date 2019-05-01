@@ -17,15 +17,17 @@ import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../containers/ProjectDetailScreen';
-import MyProjectsScreen from '../containers/MyProjectsScreen';
-import MyPostsScreen from '../containers/MyPostsScreen';
-import MyFavoritesScreen from '../containers/MyFavoritesScreen';
+import UserProjectsScreen from '../containers/UserProjectsScreen';
+import UserPostsScreen from '../containers/UserPostsScreen';
+import UserFavoritesScreen from '../containers/UserFavoritesScreen';
+import UserScreen from '../containers/UserScreen';
 
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
   PostDetail: PostDetailScreen,
   ProjectDetail: ProjectDetailScreen,
+  User: UserScreen,
 };
 
 const noAnimationTransitionConfig = () => ({
@@ -83,9 +85,9 @@ export default createBottomTabNavigator({
   }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
-    MyProjects: MyProjectsScreen,
-    MyPosts: MyPostsScreen,
-    MyFavorites: MyFavoritesScreen,
+    UserProjects: UserProjectsScreen,
+    UserPosts: UserPostsScreen,
+    UserFavorites: UserFavoritesScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

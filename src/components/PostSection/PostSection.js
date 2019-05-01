@@ -28,7 +28,7 @@ const PostSection = ({
     <View style={styles.profileContainer}>
       <TouchableOpacity
         style={styles.userImageContainer}
-        onPress={onUserPress}
+        onPress={() => onUserPress(post.author.id)}
       >
         <Image
           style={styles.userImage}

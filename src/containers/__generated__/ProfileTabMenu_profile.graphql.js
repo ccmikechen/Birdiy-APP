@@ -8,20 +8,20 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type MyFavoritesScene_projects$ref = any;
-type MyPostsScene_posts$ref = any;
-type MyProjectsScene_projects$ref = any;
+type UserFavoritesScene_projects$ref = any;
+type UserPostsScene_posts$ref = any;
+type UserProjectsScene_projects$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProfileTabMenu_profile$ref: FragmentReference;
 export type ProfileTabMenu_profile = {|
   +projects: ?{|
-    +$fragmentRefs: MyProjectsScene_projects$ref
+    +$fragmentRefs: UserProjectsScene_projects$ref
   |},
   +posts: ?{|
-    +$fragmentRefs: MyPostsScene_posts$ref
+    +$fragmentRefs: UserPostsScene_posts$ref
   |},
   +favoriteProjects: ?{|
-    +$fragmentRefs: MyFavoritesScene_projects$ref
+    +$fragmentRefs: UserFavoritesScene_projects$ref
   |},
   +$refType: ProfileTabMenu_profile$ref,
 |};
@@ -40,7 +40,7 @@ var v0 = [
 return {
   "kind": "Fragment",
   "name": "ProfileTabMenu_profile",
-  "type": "User",
+  "type": "Profile",
   "metadata": null,
   "argumentDefinitions": [
     {
@@ -61,7 +61,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "MyProjectsScene_projects",
+          "name": "UserProjectsScene_projects",
           "args": null
         }
       ]
@@ -77,7 +77,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "MyPostsScene_posts",
+          "name": "UserPostsScene_posts",
           "args": null
         }
       ]
@@ -93,7 +93,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "MyFavoritesScene_projects",
+          "name": "UserFavoritesScene_projects",
           "args": null
         }
       ]
@@ -102,5 +102,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1df14aff075178779cb037cc33f5c00a';
+(node/*: any*/).hash = 'a281cf56246e03479a46f971af531975';
 module.exports = node;

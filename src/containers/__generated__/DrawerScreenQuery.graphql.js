@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9d90c6c47375066fe0f1817368447afe
+ * @relayHash 1da14246d6966cc2a98169732d762a60
  */
 
 /* eslint-disable */
@@ -64,7 +64,7 @@ const node/*: ConcreteRequest*/ = {
         "name": "viewer",
         "storageKey": null,
         "args": null,
-        "concreteType": "User",
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
