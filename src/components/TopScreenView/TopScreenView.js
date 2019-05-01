@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ScrollView } from 'react-native';
 
@@ -10,30 +10,38 @@ import styles from './styles';
 
 const TriggerScrollView = scrollViewTrigger(ScrollView);
 
-const TopScreenView = (props) => {
-  const { children, loading } = props;
+export default class TopScreenView extends Component {
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
+    loading: PropTypes.bool,
+    navigation: PropTypes.shape({
+      setParams: PropTypes.func.isRequired,
+    }).isRequired,
+  };
 
-  return (
-    <SimpleScreenView {...props}>
-      <TriggerScrollView>
-        <View style={styles.paddingView} />
-        {loading ? <LoadingIndicator /> : children}
-      </TriggerScrollView>
-    </SimpleScreenView>
-  );
-};
+  static defaultProps = {
+    children: null,
+    loading: false,
+  };
 
-TopScreenView.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  loading: PropTypes.bool,
-};
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.setParams({ isTabBarVisible: true });
+  }
 
-TopScreenView.defaultProps = {
-  children: null,
-  loading: false,
-};
+  render() {
+    const { children, loading } = this.props;
 
-export default TopScreenView;
+    return (
+      <SimpleScreenView {...this.props}>
+        <TriggerScrollView>
+          <View style={styles.paddingView} />
+          {loading ? <LoadingIndicator /> : children}
+        </TriggerScrollView>
+      </SimpleScreenView>
+    );
+  }
+}

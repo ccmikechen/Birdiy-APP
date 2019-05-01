@@ -36,6 +36,11 @@ export default class PostDetailScreen extends Component {
     loading: true,
   };
 
+  handleUserPress = (id) => {
+    const { navigation } = this.props;
+    navigation.push('User', { id });
+  };
+
   handleOpenSource = (id) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id });
@@ -68,6 +73,7 @@ export default class PostDetailScreen extends Component {
         <View style={styles.postContainer}>
           <PostSection
             post={query && query.post}
+            onUserPress={this.handleUserPress}
             onSourcePress={this.handleOpenSource}
             onFollowUser={this.handleFollowUser}
             onUnfollowUser={this.handleUnfollowUser}
