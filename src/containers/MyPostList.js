@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
 
-import ProjectList from '../components/ProjectList';
+import PostList from '../components/PostList';
 
-class UserProjectList extends Component {
+class MyPostList extends Component {
   static propTypes = {
     query: PropTypes.shape({
-      user: PropTypes.shape({
-        projects: PropTypes.shape({
+      viewer: PropTypes.shape({
+        posts: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
             node: PropTypes.object,
           })),
@@ -36,16 +36,13 @@ class UserProjectList extends Component {
   }
 
   render() {
-    const {
-      query,
-      relay,
-    } = this.props;
-    const data = query.user.projects.edges.map(({ node }) => node);
+    const { query, relay } = this.props;
+    const data = query.viewer.posts.edges.map(({ node }) => node);
 
     return query ? (
-      <ProjectList
+      <PostList
         {...this.props}
-        projects={data}
+        posts={data}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
       />
@@ -53,23 +50,24 @@ class UserProjectList extends Component {
   }
 }
 
+
 export default createPaginationContainer(
-  UserProjectList,
+  MyPostList,
   {
     query: graphql`
-      fragment UserProjectList_query on RootQueryType {
-        user(id: $id) {
-          projects(
+      fragment MyPostList_query on RootQueryType {
+        viewer {
+          posts(
             first: $count,
             after: $cursor
-          ) @connection(key: "UserProjectList_projects") {
+          ) @connection(key: "MyPostList_posts") {
             pageInfo {
               hasNextPage
               endCursor
             }
             edges {
               node {
-                ...ProjectSection_project
+                ...PostSection_post
               }
             }
           }
@@ -80,25 +78,23 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.user.projects
+      props.query && props.query.viewer.posts
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: ({ userId }, { count, cursor }) => ({
+    getVariables: (props, { count, cursor }) => ({
       count,
       cursor,
-      id: userId,
     }),
     variables: { cursor: null },
     query: graphql`
-      query UserProjectListPaginationQuery (
+      query MyPostListPaginationQuery (
         $count: Int!,
-        $cursor: String,
-        $id: ID!,
+        $cursor: String
       ) {
-        ...UserProjectList_query
+        ...MyPostList_query
       }
     `,
   },

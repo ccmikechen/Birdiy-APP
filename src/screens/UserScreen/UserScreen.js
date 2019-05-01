@@ -38,7 +38,8 @@ export default class UserScreen extends Component {
 
   handleMoreProjectsPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserProjects');
+    const id = navigation.getParam('id');
+    navigation.push('UserProjects', { id });
   };
 
   handleOpenProject = (id) => {
@@ -48,7 +49,8 @@ export default class UserScreen extends Component {
 
   handleMorePostsPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserPosts');
+    const id = navigation.getParam('id');
+    navigation.push('UserPosts', { id });
   };
 
   handleOpenPost = (id) => {

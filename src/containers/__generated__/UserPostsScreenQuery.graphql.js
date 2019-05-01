@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c2ff7823067cf08fd04fb71cb16aba05
+ * @relayHash c2af45837d001e7e8a77dbb87cc68825
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type UserPostsScreen_query$ref = any;
 export type UserPostsScreenQueryVariables = {|
   count: number,
   cursor?: ?string,
+  id: string,
 |};
 export type UserPostsScreenQueryResponse = {|
   +$fragmentRefs: UserPostsScreen_query$ref
@@ -28,6 +29,7 @@ export type UserPostsScreenQuery = {|
 query UserPostsScreenQuery(
   $count: Int!
   $cursor: String
+  $id: ID!
 ) {
   ...UserPostsScreen_query
 }
@@ -37,7 +39,7 @@ fragment UserPostsScreen_query on RootQueryType {
 }
 
 fragment UserPostList_query on RootQueryType {
-  viewer {
+  user(id: $id) {
     posts(first: $count, after: $cursor) {
       pageInfo {
         hasNextPage
@@ -91,6 +93,12 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "cursor",
     "type": "String",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "id",
+    "type": "ID!",
     "defaultValue": null
   }
 ],
@@ -153,10 +161,17 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
+        "name": "user",
         "storageKey": null,
-        "args": null,
-        "concreteType": "Viewer",
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "id",
+            "variableName": "id",
+            "type": "ID!"
+          }
+        ],
+        "concreteType": "User",
         "plural": false,
         "selections": [
           {
@@ -325,11 +340,11 @@ return {
     "operationKind": "query",
     "name": "UserPostsScreenQuery",
     "id": null,
-    "text": "query UserPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...UserPostsScreen_query\n}\n\nfragment UserPostsScreen_query on RootQueryType {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query UserPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserPostsScreen_query\n}\n\nfragment UserPostsScreen_query on RootQueryType {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $id) {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '726f1339d9413da0c64c66b863a69e48';
+(node/*: any*/).hash = '9363ded52067fea78ba6ac565dd291e9';
 module.exports = node;

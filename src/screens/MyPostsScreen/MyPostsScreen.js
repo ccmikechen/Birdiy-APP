@@ -3,14 +3,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { Icon } from 'expo';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserPostsHeader from '../../components/UserPostsHeader';
-import UserPostList from '../../containers/UserPostList';
+import AnimatedAddButton from '../../components/AnimatedAddButton';
+import MyPostList from '../../containers/MyPostList';
 
 import styles from './styles';
 
-export default class UserPostsScreen extends Component {
+export default class MyPostsScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -32,6 +34,10 @@ export default class UserPostsScreen extends Component {
     loading: true,
   };
 
+  state = {
+    addPostButtonVisible: true,
+  };
+
   handleSearch = () => {
     const { navigation } = this.props;
     navigation.push('SearchUser');
@@ -49,7 +55,7 @@ export default class UserPostsScreen extends Component {
     const {
       navigation, query, variables, loading,
     } = this.props;
-    const userId = navigation.getParam('id');
+    const { addPostButtonVisible } = this.state;
 
     return (
       <View style={styles.container}>
@@ -62,17 +68,31 @@ export default class UserPostsScreen extends Component {
               onReorder={this.handleReorder}
             />
           )}
+          onToggleTabBar={(visible) => {
+            this.setState({ addPostButtonVisible: visible });
+          }}
           animatedScroll
           loading={loading}
         >
-          <UserPostList
+          <MyPostList
             query={query}
             onPostPress={this.handleOpenPost}
             batchLoad={variables.count}
             headerPadding
-            userId={userId}
           />
         </SimpleScreenView>
+        <AnimatedAddButton
+          style={styles.addPostButton}
+          visible={addPostButtonVisible}
+          translate={80}
+          renderIcon={() => (
+            <Icon.FontAwesome
+              name="pencil-square-o"
+              size={26}
+              color="#ffffff"
+            />
+          )}
+        />
       </View>
     );
   }

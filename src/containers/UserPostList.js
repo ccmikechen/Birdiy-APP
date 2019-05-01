@@ -7,7 +7,7 @@ import PostList from '../components/PostList';
 class UserPostList extends Component {
   static propTypes = {
     query: PropTypes.shape({
-      viewer: PropTypes.shape({
+      user: PropTypes.shape({
         posts: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
             node: PropTypes.object,
@@ -37,7 +37,7 @@ class UserPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query.viewer.posts.edges.map(({ node }) => node);
+    const data = query.user.posts.edges.map(({ node }) => node);
 
     return query ? (
       <PostList
@@ -56,7 +56,7 @@ export default createPaginationContainer(
   {
     query: graphql`
       fragment UserPostList_query on RootQueryType {
-        viewer {
+        user(id: $id) {
           posts(
             first: $count,
             after: $cursor
@@ -78,21 +78,23 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.viewer.posts
+      props.query && props.query.user.posts
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: (props, { count, cursor }) => ({
+    getVariables: ({ userId }, { count, cursor }) => ({
       count,
       cursor,
+      id: userId,
     }),
     variables: { cursor: null },
     query: graphql`
       query UserPostListPaginationQuery (
         $count: Int!,
-        $cursor: String
+        $cursor: String,
+        $id: ID!,
       ) {
         ...UserPostList_query
       }

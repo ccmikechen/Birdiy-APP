@@ -10,9 +10,9 @@
 import type { ReaderFragment } from 'relay-runtime';
 type ProjectSection_project$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type UserProjectList_query$ref: FragmentReference;
-export type UserProjectList_query = {|
-  +user: ?{|
+declare export opaque type MyProjectList_query$ref: FragmentReference;
+export type MyProjectList_query = {|
+  +viewer: ?{|
     +projects: ?{|
       +pageInfo: {|
         +hasNextPage: boolean,
@@ -25,14 +25,14 @@ export type UserProjectList_query = {|
       |}>,
     |}
   |},
-  +$refType: UserProjectList_query$ref,
+  +$refType: MyProjectList_query$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "UserProjectList_query",
+  "name": "MyProjectList_query",
   "type": "RootQueryType",
   "metadata": {
     "connection": [
@@ -41,18 +41,13 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "user",
+          "viewer",
           "projects"
         ]
       }
     ]
   },
   "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "id",
-      "type": "ID!"
-    },
     {
       "kind": "RootArgument",
       "name": "count",
@@ -68,23 +63,16 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "user",
+      "name": "viewer",
       "storageKey": null,
-      "args": [
-        {
-          "kind": "Variable",
-          "name": "id",
-          "variableName": "id",
-          "type": "ID!"
-        }
-      ],
-      "concreteType": "User",
+      "args": null,
+      "concreteType": "Viewer",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": "projects",
-          "name": "__UserProjectList_projects_connection",
+          "name": "__MyProjectList_projects_connection",
           "storageKey": null,
           "args": null,
           "concreteType": "ProjectConnection",
@@ -163,5 +151,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a2cf747c08dc4b7b72ad5dcb0109131e';
+(node/*: any*/).hash = '231b9bf2320a7ad444185fdbc776e8b8';
 module.exports = node;

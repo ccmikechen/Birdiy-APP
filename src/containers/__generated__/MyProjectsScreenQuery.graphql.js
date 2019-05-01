@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ee11471ab8f65ff3d5d7307d393938c6
+ * @relayHash 51f9eab0ff16e1d9cfaeada50473592a
  */
 
 /* eslint-disable */
@@ -9,41 +9,43 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type UserPostList_query$ref = any;
-export type UserPostListPaginationQueryVariables = {|
+type MyProjectsScreen_query$ref = any;
+export type MyProjectsScreenQueryVariables = {|
   count: number,
   cursor?: ?string,
-  id: string,
 |};
-export type UserPostListPaginationQueryResponse = {|
-  +$fragmentRefs: UserPostList_query$ref
+export type MyProjectsScreenQueryResponse = {|
+  +$fragmentRefs: MyProjectsScreen_query$ref
 |};
-export type UserPostListPaginationQuery = {|
-  variables: UserPostListPaginationQueryVariables,
-  response: UserPostListPaginationQueryResponse,
+export type MyProjectsScreenQuery = {|
+  variables: MyProjectsScreenQueryVariables,
+  response: MyProjectsScreenQueryResponse,
 |};
 */
 
 
 /*
-query UserPostListPaginationQuery(
+query MyProjectsScreenQuery(
   $count: Int!
   $cursor: String
-  $id: ID!
 ) {
-  ...UserPostList_query
+  ...MyProjectsScreen_query
 }
 
-fragment UserPostList_query on RootQueryType {
-  user(id: $id) {
-    posts(first: $count, after: $cursor) {
+fragment MyProjectsScreen_query on RootQueryType {
+  ...MyProjectList_query
+}
+
+fragment MyProjectList_query on RootQueryType {
+  viewer {
+    projects(first: $count, after: $cursor) {
       pageInfo {
         hasNextPage
         endCursor
       }
       edges {
         node {
-          ...PostSection_post
+          ...ProjectSection_project
           id
           __typename
         }
@@ -54,25 +56,13 @@ fragment UserPostList_query on RootQueryType {
   }
 }
 
-fragment PostSection_post on Post {
+fragment ProjectSection_project on Project {
   id
+  name
+  image
   author {
-    id
     name
-    image
-    following
-  }
-  insertedAt
-  message
-  thumbnail {
-    image
     id
-  }
-  relatedProjectType
-  relatedProjectName
-  relatedProject {
-    id
-    name
   }
 }
 */
@@ -89,12 +79,6 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "cursor",
     "type": "String",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "id",
-    "type": "ID!",
     "defaultValue": null
   }
 ],
@@ -125,58 +109,44 @@ v3 = {
   "name": "name",
   "args": null,
   "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
 };
 return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "UserPostListPaginationQuery",
+    "name": "MyProjectsScreenQuery",
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "UserPostList_query",
+        "name": "MyProjectsScreen_query",
         "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "UserPostListPaginationQuery",
+    "name": "MyProjectsScreenQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "user",
+        "name": "viewer",
         "storageKey": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "id",
-            "variableName": "id",
-            "type": "ID!"
-          }
-        ],
-        "concreteType": "User",
+        "args": null,
+        "concreteType": "Viewer",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "posts",
+            "name": "projects",
             "storageKey": null,
             "args": (v1/*: any*/),
-            "concreteType": "PostConnection",
+            "concreteType": "ProjectConnection",
             "plural": false,
             "selections": [
               {
@@ -210,7 +180,7 @@ return {
                 "name": "edges",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "PostEdge",
+                "concreteType": "ProjectEdge",
                 "plural": true,
                 "selections": [
                   {
@@ -219,10 +189,18 @@ return {
                     "name": "node",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "Post",
+                    "concreteType": "Project",
                     "plural": false,
                     "selections": [
                       (v2/*: any*/),
+                      (v3/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "image",
+                        "args": null,
+                        "storageKey": null
+                      },
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -232,70 +210,8 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
                           (v3/*: any*/),
-                          (v4/*: any*/),
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "following",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "insertedAt",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "message",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "thumbnail",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "PostPhoto",
-                        "plural": false,
-                        "selections": [
-                          (v4/*: any*/),
                           (v2/*: any*/)
-                        ]
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "relatedProjectType",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "relatedProjectName",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "relatedProject",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Project",
-                        "plural": false,
-                        "selections": [
-                          (v2/*: any*/),
-                          (v3/*: any*/)
                         ]
                       },
                       {
@@ -321,10 +237,10 @@ return {
           {
             "kind": "LinkedHandle",
             "alias": null,
-            "name": "posts",
+            "name": "projects",
             "args": (v1/*: any*/),
             "handle": "connection",
-            "key": "UserPostList_posts",
+            "key": "MyProjectList_projects",
             "filters": null
           },
           (v2/*: any*/)
@@ -334,13 +250,13 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "UserPostListPaginationQuery",
+    "name": "MyProjectsScreenQuery",
     "id": null,
-    "text": "query UserPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $id) {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'cb79b9b7af54e9130dec84d1c1097b4d';
+(node/*: any*/).hash = '9950d88b8ae4a80ceb8ccf4d9114c02d';
 module.exports = node;

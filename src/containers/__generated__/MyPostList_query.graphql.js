@@ -8,31 +8,31 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type ProjectSection_project$ref = any;
+type PostSection_post$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type UserProjectList_query$ref: FragmentReference;
-export type UserProjectList_query = {|
-  +user: ?{|
-    +projects: ?{|
+declare export opaque type MyPostList_query$ref: FragmentReference;
+export type MyPostList_query = {|
+  +viewer: ?{|
+    +posts: ?{|
       +pageInfo: {|
         +hasNextPage: boolean,
         +endCursor: ?string,
       |},
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
-          +$fragmentRefs: ProjectSection_project$ref
+          +$fragmentRefs: PostSection_post$ref
         |}
       |}>,
     |}
   |},
-  +$refType: UserProjectList_query$ref,
+  +$refType: MyPostList_query$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "UserProjectList_query",
+  "name": "MyPostList_query",
   "type": "RootQueryType",
   "metadata": {
     "connection": [
@@ -41,18 +41,13 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "user",
-          "projects"
+          "viewer",
+          "posts"
         ]
       }
     ]
   },
   "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "id",
-      "type": "ID!"
-    },
     {
       "kind": "RootArgument",
       "name": "count",
@@ -68,26 +63,19 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "user",
+      "name": "viewer",
       "storageKey": null,
-      "args": [
-        {
-          "kind": "Variable",
-          "name": "id",
-          "variableName": "id",
-          "type": "ID!"
-        }
-      ],
-      "concreteType": "User",
+      "args": null,
+      "concreteType": "Viewer",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
-          "alias": "projects",
-          "name": "__UserProjectList_projects_connection",
+          "alias": "posts",
+          "name": "__MyPostList_posts_connection",
           "storageKey": null,
           "args": null,
-          "concreteType": "ProjectConnection",
+          "concreteType": "PostConnection",
           "plural": false,
           "selections": [
             {
@@ -121,7 +109,7 @@ const node/*: ReaderFragment*/ = {
               "name": "edges",
               "storageKey": null,
               "args": null,
-              "concreteType": "ProjectEdge",
+              "concreteType": "PostEdge",
               "plural": true,
               "selections": [
                 {
@@ -130,12 +118,12 @@ const node/*: ReaderFragment*/ = {
                   "name": "node",
                   "storageKey": null,
                   "args": null,
-                  "concreteType": "Project",
+                  "concreteType": "Post",
                   "plural": false,
                   "selections": [
                     {
                       "kind": "FragmentSpread",
-                      "name": "ProjectSection_project",
+                      "name": "PostSection_post",
                       "args": null
                     },
                     {
@@ -163,5 +151,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a2cf747c08dc4b7b72ad5dcb0109131e';
+(node/*: any*/).hash = '72db426583710772926eb7097b6c622d';
 module.exports = node;

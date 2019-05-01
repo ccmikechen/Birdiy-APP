@@ -17,6 +17,8 @@ import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
 import ProjectDetailScreen from '../containers/ProjectDetailScreen';
+import MyProjectsScreen from '../containers/MyProjectsScreen';
+import MyPostsScreen from '../containers/MyPostsScreen';
 import UserProjectsScreen from '../containers/UserProjectsScreen';
 import UserPostsScreen from '../containers/UserPostsScreen';
 import UserFavoritesScreen from '../containers/UserFavoritesScreen';
@@ -85,6 +87,8 @@ export default createBottomTabNavigator({
   }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
+    MyProjects: MyProjectsScreen,
+    MyPosts: MyPostsScreen,
     UserProjects: UserProjectsScreen,
     UserPosts: UserPostsScreen,
     UserFavorites: UserFavoritesScreen,

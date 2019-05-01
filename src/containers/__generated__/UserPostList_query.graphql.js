@@ -12,7 +12,7 @@ type PostSection_post$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type UserPostList_query$ref: FragmentReference;
 export type UserPostList_query = {|
-  +viewer: ?{|
+  +user: ?{|
     +posts: ?{|
       +pageInfo: {|
         +hasNextPage: boolean,
@@ -41,13 +41,18 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "viewer",
+          "user",
           "posts"
         ]
       }
     ]
   },
   "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "id",
+      "type": "ID!"
+    },
     {
       "kind": "RootArgument",
       "name": "count",
@@ -63,10 +68,17 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "viewer",
+      "name": "user",
       "storageKey": null,
-      "args": null,
-      "concreteType": "Viewer",
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "id",
+          "variableName": "id",
+          "type": "ID!"
+        }
+      ],
+      "concreteType": "User",
       "plural": false,
       "selections": [
         {
@@ -151,5 +163,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a20cda58e46f86de239c5d1515787be4';
+(node/*: any*/).hash = 'a502e426442c3543eee556c34bc8ea05';
 module.exports = node;

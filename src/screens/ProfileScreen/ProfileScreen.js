@@ -43,7 +43,7 @@ export default class ProfileScreen extends Component {
 
   handleMoreProjectsPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserProjects');
+    navigation.push('MyProjects');
   };
 
   handleAddProjectPress = () => {
@@ -89,7 +89,7 @@ export default class ProfileScreen extends Component {
 
   handleMorePostsPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserPosts');
+    navigation.push('MyPosts');
   };
 
   handleAddPostPress = () => {
