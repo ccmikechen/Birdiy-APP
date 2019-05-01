@@ -124,7 +124,7 @@ export default class ProfileScreen extends Component {
 
   handleMoreFavoritesPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserFavorites');
+    navigation.push('MyFavorites');
   };
 
   render() {

@@ -4,10 +4,10 @@ import { graphql, createPaginationContainer } from 'react-relay';
 
 import ProjectList from '../components/ProjectList';
 
-class UserFavoriteProjectList extends Component {
+class MyFavoriteProjectList extends Component {
   static propTypes = {
     query: PropTypes.shape({
-      user: PropTypes.shape({
+      viewer: PropTypes.shape({
         projects: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
             node: PropTypes.object,
@@ -37,7 +37,7 @@ class UserFavoriteProjectList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query.user.projects.edges.map(({ node }) => node);
+    const data = query.viewer.projects.edges.map(({ node }) => node);
 
     return query ? (
       <ProjectList
@@ -51,15 +51,15 @@ class UserFavoriteProjectList extends Component {
 }
 
 export default createPaginationContainer(
-  UserFavoriteProjectList,
+  MyFavoriteProjectList,
   {
     query: graphql`
-      fragment UserFavoriteProjectList_query on RootQueryType {
-        user(id: $id) {
+      fragment MyFavoriteProjectList_query on RootQueryType {
+        viewer {
           projects: favoriteProjects(
             first: $count,
             after: $cursor
-          ) @connection(key: "UserFavoriteProjectList_projects") {
+          ) @connection(key: "MyFavoriteProjectList_projects") {
             pageInfo {
               hasNextPage
               endCursor
@@ -77,25 +77,23 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.user.projects
+      props.query && props.query.viewer.projects
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: ({ userId }, { count, cursor }) => ({
+    getVariables: (props, { count, cursor }) => ({
       count,
       cursor,
-      id: userId,
     }),
     variables: { cursor: null },
     query: graphql`
-      query UserFavoriteProjectListPaginationQuery (
+      query MyFavoriteProjectListPaginationQuery (
         $count: Int!,
-        $cursor: String,
-        $id: ID!,
+        $cursor: String
       ) {
-        ...UserFavoriteProjectList_query
+        ...MyFavoriteProjectList_query
       }
     `,
   },

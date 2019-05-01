@@ -60,7 +60,8 @@ export default class UserScreen extends Component {
 
   handleMoreFavoritesPress = () => {
     const { navigation } = this.props;
-    navigation.push('UserFavorites');
+    const id = navigation.getParam('id');
+    navigation.push('UserFavorites', { id });
   };
 
   render() {

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 880b7406c72c85f3f28cccc4f2f27c22
+ * @relayHash 13e9a25658baab3c2acd9ea53275023c
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type UserFavoriteProjectList_query$ref = any;
 export type UserFavoriteProjectListPaginationQueryVariables = {|
   count: number,
   cursor?: ?string,
+  id: string,
 |};
 export type UserFavoriteProjectListPaginationQueryResponse = {|
   +$fragmentRefs: UserFavoriteProjectList_query$ref
@@ -28,12 +29,13 @@ export type UserFavoriteProjectListPaginationQuery = {|
 query UserFavoriteProjectListPaginationQuery(
   $count: Int!
   $cursor: String
+  $id: ID!
 ) {
   ...UserFavoriteProjectList_query
 }
 
 fragment UserFavoriteProjectList_query on RootQueryType {
-  viewer {
+  user(id: $id) {
     projects: favoriteProjects(first: $count, after: $cursor) {
       pageInfo {
         hasNextPage
@@ -75,6 +77,12 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "cursor",
     "type": "String",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "id",
+    "type": "ID!",
     "defaultValue": null
   }
 ],
@@ -130,10 +138,17 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
+        "name": "user",
         "storageKey": null,
-        "args": null,
-        "concreteType": "Viewer",
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "id",
+            "variableName": "id",
+            "type": "ID!"
+          }
+        ],
+        "concreteType": "User",
         "plural": false,
         "selections": [
           {
@@ -248,11 +263,11 @@ return {
     "operationKind": "query",
     "name": "UserFavoriteProjectListPaginationQuery",
     "id": null,
-    "text": "query UserFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...UserFavoriteProjectList_query\n}\n\nfragment UserFavoriteProjectList_query on RootQueryType {\n  viewer {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query UserFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserFavoriteProjectList_query\n}\n\nfragment UserFavoriteProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3b2de63037fff684953846d6be9c1ead';
+(node/*: any*/).hash = 'e71aae3c9d38f58833523d5d4767287e';
 module.exports = node;

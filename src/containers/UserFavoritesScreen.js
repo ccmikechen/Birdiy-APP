@@ -22,6 +22,7 @@ export default withNavigation(
         query UserFavoritesScreenQuery (
           $count: Int!,
           $cursor: String,
+          $id: ID!,
         ) {
           ...UserFavoritesScreen_query
         }
@@ -30,6 +31,9 @@ export default withNavigation(
         count: 10,
         cursor: null,
       },
+      queriesParams: props => ({
+        id: props.navigation.getParam('id'),
+      }),
     },
   ),
 );

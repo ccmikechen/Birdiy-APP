@@ -10,9 +10,9 @@
 import type { ReaderFragment } from 'relay-runtime';
 type ProjectSection_project$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type UserFavoriteProjectList_query$ref: FragmentReference;
-export type UserFavoriteProjectList_query = {|
-  +user: ?{|
+declare export opaque type MyFavoriteProjectList_query$ref: FragmentReference;
+export type MyFavoriteProjectList_query = {|
+  +viewer: ?{|
     +projects: ?{|
       +pageInfo: {|
         +hasNextPage: boolean,
@@ -25,14 +25,14 @@ export type UserFavoriteProjectList_query = {|
       |}>,
     |}
   |},
-  +$refType: UserFavoriteProjectList_query$ref,
+  +$refType: MyFavoriteProjectList_query$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "UserFavoriteProjectList_query",
+  "name": "MyFavoriteProjectList_query",
   "type": "RootQueryType",
   "metadata": {
     "connection": [
@@ -41,18 +41,13 @@ const node/*: ReaderFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "user",
+          "viewer",
           "projects"
         ]
       }
     ]
   },
   "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "id",
-      "type": "ID!"
-    },
     {
       "kind": "RootArgument",
       "name": "count",
@@ -68,23 +63,16 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "user",
+      "name": "viewer",
       "storageKey": null,
-      "args": [
-        {
-          "kind": "Variable",
-          "name": "id",
-          "variableName": "id",
-          "type": "ID!"
-        }
-      ],
-      "concreteType": "User",
+      "args": null,
+      "concreteType": "Viewer",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": "projects",
-          "name": "__UserFavoriteProjectList_projects_connection",
+          "name": "__MyFavoriteProjectList_projects_connection",
           "storageKey": null,
           "args": null,
           "concreteType": "ProjectConnection",
@@ -163,5 +151,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4353d8472665cb7098e8ba34ad844ee6';
+(node/*: any*/).hash = 'a0db93cf019ecf788704f2eeacb5cccc';
 module.exports = node;

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserFavoritesHeader from '../../components/UserFavoritesHeader';
-import UserFavoriteProjectList from '../../containers/UserFavoriteProjectList';
+import MyFavoriteProjectList from '../../containers/MyFavoriteProjectList';
 
 import styles from './styles';
 
-export default class UserFavoritesScreen extends Component {
+export default class MyFavoritesScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -45,7 +45,6 @@ export default class UserFavoritesScreen extends Component {
     const {
       navigation, query, variables, loading,
     } = this.props;
-    const userId = navigation.getParam('id');
 
     return (
       <SimpleScreenView
@@ -60,11 +59,10 @@ export default class UserFavoritesScreen extends Component {
         animatedScroll
         loading={loading}
       >
-        <UserFavoriteProjectList
+        <MyFavoriteProjectList
           query={query}
           batchLoad={variables.count}
           headerPadding
-          userId={userId}
         />
       </SimpleScreenView>
     );
