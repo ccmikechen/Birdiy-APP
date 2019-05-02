@@ -74,4 +74,5 @@ export default {
   publishedStatus: '#008800',
   draftStatus: '#666666',
   followButton: Primary(500),
+  coverModalBackground: 'rgba(0, 0, 0, .8)',
 };

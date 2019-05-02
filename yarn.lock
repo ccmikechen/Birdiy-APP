@@ -6606,6 +6606,11 @@ react-native-image-crop-picker@^0.23.1:
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.23.1.tgz#26c1b899dbe4358b9f2c98369109a42a8141682a"
   integrity sha512-1HU5XmkN8C3i2vd+R9UVZfObu9nurTdFViAWH/99o0MIhxGE4LzncFN3uMZuQZYtCRbAnn81WgbgPJGIw3AjZQ==
 
+react-native-image-slider-show@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-slider-show/-/react-native-image-slider-show-1.0.3.tgz#4df4c0ba520074f7a5513cca9a83ea48ac8868a5"
+  integrity sha512-9Tysqt4Q1I2OIYN1hJ+291Axy9JwsKFpr1a4uxu9uDMLGgkYsOLhbsMdgj7qVBmtLWZDQ9Kr45r+LNIRmmSvGg==
+
 react-native-indicators@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-indicators/-/react-native-indicators-0.13.0.tgz#001824bba194b1ca6e654d903beaf0168d4e6ac8"
@@ -6847,6 +6852,11 @@ react-navigation-tabs@1.0.2:
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
     react-native-tab-view "^1.0.0"
+
+react-navigation-transitions@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-navigation-transitions/-/react-navigation-transitions-1.0.10.tgz#9540aaaa6e115e7308761106ab4d7727daa1fcf5"
+  integrity sha512-CmGo3BEHbs6YtPQt65CHDKqd/WNuWk+g6Oif6sX0WrYLic9Lb7alt4GVl7syoqJGTKKjdRFKkYDuwFRuTkjs5Q==
 
 react-navigation@^3.3.2:
   version "3.3.2"

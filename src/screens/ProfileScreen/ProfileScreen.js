@@ -24,9 +24,6 @@ export default class ProfileScreen extends Component {
     query: PropTypes.shape({
       viewer: PropTypes.object,
     }),
-    relay: PropTypes.shape({
-      refetch: PropTypes.func.isRequired,
-    }).isRequired,
     loading: PropTypes.bool,
   };
 

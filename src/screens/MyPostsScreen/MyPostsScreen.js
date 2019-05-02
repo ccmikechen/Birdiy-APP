@@ -46,7 +46,9 @@ export default class MyPostsScreen extends Component {
   handleReorder = () => {
   }
 
-  handleOpenImage = () => {
+  handleOpenImage = (id) => {
+    const { navigation } = this.props;
+    navigation.push('PostImagesModal', { id });
   }
 
   render() {

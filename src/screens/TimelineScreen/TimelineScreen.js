@@ -69,7 +69,9 @@ export default class TimelineScreen extends Component {
     navigation.push('User', { id });
   };
 
-  handleOpenImage = () => {
+  handleOpenImage = (id) => {
+    const { navigation } = this.props;
+    navigation.push('PostImagesModal', { id });
   }
 
   handleOpenSource = (id) => {
