@@ -12,7 +12,6 @@ import TimelineScreen from '../containers/TimelineScreen';
 import ProjectsScreen from '../containers/ProjectsScreen';
 import ProfileScreen from '../containers/ProfileScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
-import PostDetailScreen from '../containers/PostDetailScreen';
 import SearchUserScreen from '../screens/SearchUserScreen';
 import CartScreen from '../screens/CartScreen';
 import UserFilterScreen from '../screens/UserFilterScreen';
@@ -28,7 +27,6 @@ import UserScreen from '../containers/UserScreen';
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
-  PostDetail: PostDetailScreen,
   ProjectDetail: ProjectDetailScreen,
   User: UserScreen,
   UserProjects: UserProjectsScreen,
