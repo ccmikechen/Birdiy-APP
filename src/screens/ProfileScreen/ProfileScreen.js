@@ -97,9 +97,9 @@ export default class ProfileScreen extends Component {
     navigation.navigate('CreatePostModal');
   };
 
-  handleOpenPost = (id) => {
+  handleOpenPost = (postId) => {
     const { navigation } = this.props;
-    navigation.push('PostDetail', { id });
+    navigation.push('MyPosts', { postId });
   };
 
   handleEditPost = (id) => {

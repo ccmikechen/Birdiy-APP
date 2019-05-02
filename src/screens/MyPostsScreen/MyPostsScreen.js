@@ -46,9 +46,7 @@ export default class MyPostsScreen extends Component {
   handleReorder = () => {
   }
 
-  handleOpenPost = (id) => {
-    const { navigation } = this.props;
-    navigation.push('PostDetail', { id });
+  handleOpenImage = () => {
   }
 
   render() {
@@ -56,6 +54,7 @@ export default class MyPostsScreen extends Component {
       navigation, query, variables, loading,
     } = this.props;
     const { addPostButtonVisible } = this.state;
+    const postId = navigation.getParam('postId');
 
     return (
       <View style={styles.container}>
@@ -76,9 +75,10 @@ export default class MyPostsScreen extends Component {
         >
           <MyPostList
             query={query}
-            onPostPress={this.handleOpenPost}
+            onImagePress={this.handleOpenImage}
             batchLoad={variables.count}
             headerPadding
+            postId={postId}
           />
         </SimpleScreenView>
         <AnimatedAddButton

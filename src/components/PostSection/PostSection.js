@@ -21,7 +21,7 @@ const PostSection = ({
   onUserPress,
   onFollowUser,
   onUnfollowUser,
-  onPostPress,
+  onImagePress,
   onSourcePress,
 }) => (
   <Surface style={styles.container}>
@@ -63,7 +63,7 @@ const PostSection = ({
     </View>
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={() => onPostPress(post.id)}
+      onPress={() => onImagePress(post.id)}
     >
       <ImageView
         style={styles.image}
@@ -115,7 +115,7 @@ PostSection.propTypes = {
   onUserPress: PropTypes.func,
   onFollowUser: PropTypes.func,
   onUnfollowUser: PropTypes.func,
-  onPostPress: PropTypes.func,
+  onImagePress: PropTypes.func,
   onSourcePress: PropTypes.func,
 };
 
@@ -123,7 +123,7 @@ PostSection.defaultProps = {
   onUserPress: () => {},
   onFollowUser: () => {},
   onUnfollowUser: () => {},
-  onPostPress: () => {},
+  onImagePress: () => {},
   onSourcePress: () => {},
 };
 

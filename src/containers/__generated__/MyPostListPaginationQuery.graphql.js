@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a81526caf35beb716f0f3e6082d55aef
+ * @relayHash 4b06ff45437286a2f51ef9c42bd0615e
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type MyPostList_query$ref = any;
 export type MyPostListPaginationQueryVariables = {|
   count: number,
   cursor?: ?string,
+  postId?: ?string,
 |};
 export type MyPostListPaginationQueryResponse = {|
   +$fragmentRefs: MyPostList_query$ref
@@ -28,13 +29,14 @@ export type MyPostListPaginationQuery = {|
 query MyPostListPaginationQuery(
   $count: Int!
   $cursor: String
+  $postId: ID
 ) {
   ...MyPostList_query
 }
 
 fragment MyPostList_query on RootQueryType {
   viewer {
-    posts(first: $count, after: $cursor) {
+    posts(first: $count, after: $cursor, beforeId: $postId) {
       pageInfo {
         hasNextPage
         endCursor
@@ -88,6 +90,12 @@ var v0 = [
     "name": "cursor",
     "type": "String",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "postId",
+    "type": "ID",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -96,6 +104,12 @@ v1 = [
     "name": "after",
     "variableName": "cursor",
     "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "beforeId",
+    "variableName": "postId",
+    "type": "ID"
   },
   {
     "kind": "Variable",
@@ -310,7 +324,9 @@ return {
             "args": (v1/*: any*/),
             "handle": "connection",
             "key": "MyPostList_posts",
-            "filters": null
+            "filters": [
+              "beforeId"
+            ]
           },
           (v2/*: any*/)
         ]
@@ -321,11 +337,11 @@ return {
     "operationKind": "query",
     "name": "MyPostListPaginationQuery",
     "id": null,
-    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $postId: ID\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8b44e474af60a5d83cf674dddf63b22a';
+(node/*: any*/).hash = 'd44dc5b84f61cab73478e4cc1c71f886';
 module.exports = node;

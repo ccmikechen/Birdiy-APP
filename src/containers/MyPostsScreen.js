@@ -22,6 +22,7 @@ export default withNavigation(
         query MyPostsScreenQuery (
           $count: Int!,
           $cursor: String,
+          $postId: ID,
         ) {
           ...MyPostsScreen_query
         }
@@ -30,6 +31,9 @@ export default withNavigation(
         count: 5,
         cursor: null,
       },
+      queriesParams: props => ({
+        postId: props.navigation.getParam('postId'),
+      }),
     },
   ),
 );

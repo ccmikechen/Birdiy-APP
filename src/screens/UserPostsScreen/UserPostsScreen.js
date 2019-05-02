@@ -40,9 +40,7 @@ export default class UserPostsScreen extends Component {
   handleReorder = () => {
   }
 
-  handleOpenPost = (id) => {
-    const { navigation } = this.props;
-    navigation.push('PostDetail', { id });
+  handleOpenImage = () => {
   }
 
   render() {
@@ -68,7 +66,7 @@ export default class UserPostsScreen extends Component {
         >
           <UserPostList
             query={query}
-            onPostPress={this.handleOpenPost}
+            onImagePress={this.handleOpenImage}
             batchLoad={variables.count}
             headerPadding
             userId={userId}

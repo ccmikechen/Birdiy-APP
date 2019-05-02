@@ -53,9 +53,10 @@ export default class UserScreen extends Component {
     navigation.push('UserPosts', { userId });
   };
 
-  handleOpenPost = (id) => {
+  handleOpenPost = (postId) => {
     const { navigation } = this.props;
-    navigation.push('PostDetail', { id });
+    const userId = navigation.getParam('id');
+    navigation.push('UserPosts', { userId, postId });
   };
 
   handleMoreFavoritesPress = () => {

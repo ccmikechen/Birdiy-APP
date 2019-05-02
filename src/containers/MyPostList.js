@@ -59,7 +59,8 @@ export default createPaginationContainer(
         viewer {
           posts(
             first: $count,
-            after: $cursor
+            after: $cursor,
+            beforeId: $postId,
           ) @connection(key: "MyPostList_posts") {
             pageInfo {
               hasNextPage
@@ -84,15 +85,17 @@ export default createPaginationContainer(
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: (props, { count, cursor }) => ({
+    getVariables: ({ postId }, { count, cursor }) => ({
       count,
       cursor,
+      postId,
     }),
     variables: { cursor: null },
     query: graphql`
       query MyPostListPaginationQuery (
         $count: Int!,
-        $cursor: String
+        $cursor: String,
+        $postId: ID,
       ) {
         ...MyPostList_query
       }

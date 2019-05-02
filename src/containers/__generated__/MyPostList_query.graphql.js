@@ -57,6 +57,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "RootArgument",
       "name": "cursor",
       "type": "String"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "postId",
+      "type": "ID"
     }
   ],
   "selections": [
@@ -74,7 +79,14 @@ const node/*: ReaderFragment*/ = {
           "alias": "posts",
           "name": "__MyPostList_posts_connection",
           "storageKey": null,
-          "args": null,
+          "args": [
+            {
+              "kind": "Variable",
+              "name": "beforeId",
+              "variableName": "postId",
+              "type": "ID"
+            }
+          ],
           "concreteType": "PostConnection",
           "plural": false,
           "selections": [
@@ -151,5 +163,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '72db426583710772926eb7097b6c622d';
+(node/*: any*/).hash = 'e6d4837fc9bcb069335227461670c634';
 module.exports = node;

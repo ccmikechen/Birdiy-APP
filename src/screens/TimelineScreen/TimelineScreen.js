@@ -69,7 +69,7 @@ export default class TimelineScreen extends Component {
     navigation.push('User', { id });
   };
 
-  handleOpenPost = (id) => {
+  handleOpenImage = (id) => {
     const { navigation } = this.props;
     navigation.push('PostDetail', { id });
   }
@@ -105,7 +105,7 @@ export default class TimelineScreen extends Component {
           <AllPostList
             query={query}
             onUserPress={this.handleUserPress}
-            onPostPress={this.handleOpenPost}
+            onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
             headerPadding
@@ -113,7 +113,7 @@ export default class TimelineScreen extends Component {
           <FollowingPostList
             query={query}
             onUserPress={this.handleUserPress}
-            onPostPress={this.handleOpenPost}
+            onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
             headerPadding
