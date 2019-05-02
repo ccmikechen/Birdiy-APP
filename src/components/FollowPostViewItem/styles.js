@@ -9,6 +9,7 @@ export default StyleSheet.create({
     elevation: 4,
     margin: 10,
     marginTop: 0,
+    width: Size.followPostImageSize,
   },
   image: {
     aspectRatio: 1,
@@ -24,7 +25,9 @@ export default StyleSheet.create({
     marginRight: 10,
   },
   authorNameContainer: {
+    flex: 1,
     justifyContent: 'center',
+    paddingRight: 10,
   },
   authorName: {
     fontSize: 16,

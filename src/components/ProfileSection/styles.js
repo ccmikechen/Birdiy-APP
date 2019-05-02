@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import Size from '../../constants/Size';
 import { TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '100%',
-    height: Size.profileImageSize + 20,
     paddingTop: 5,
   },
   avatarContainer: {
@@ -16,14 +14,16 @@ export default StyleSheet.create({
   profileContainer: {
     flex: 1,
     paddingLeft: 20,
+    paddingTop: 10,
   },
   nameContainer: {
     flex: 1,
     marginTop: -5,
+    justifyContent: 'center',
   },
   name: {
     fontWeight: '600',
-    fontSize: 34,
+    fontSize: 24,
     color: TextColor.secondaryDark,
   },
   followStatusContainer: {
