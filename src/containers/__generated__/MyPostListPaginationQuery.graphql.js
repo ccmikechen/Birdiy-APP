@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4b06ff45437286a2f51ef9c42bd0615e
+ * @relayHash b1f517cb18a206dac3c3580267a3962b
  */
 
 /* eslint-disable */
@@ -64,6 +64,7 @@ fragment PostSection_post on Post {
   }
   insertedAt
   message
+  photosCount
   thumbnail {
     image
     id
@@ -258,6 +259,13 @@ return {
                         "storageKey": null
                       },
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "photosCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "thumbnail",
@@ -337,7 +345,7 @@ return {
     "operationKind": "query",
     "name": "MyPostListPaginationQuery",
     "id": null,
-    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $postId: ID\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $postId: ID\n) {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

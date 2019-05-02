@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7fa0ad0ded7be18f316c60a005d8215b
+ * @relayHash e0ced48bccc5e7b665293c76db17738d
  */
 
 /* eslint-disable */
@@ -66,6 +66,7 @@ fragment PostSection_post on Post {
   }
   insertedAt
   message
+  photosCount
   thumbnail {
     image
     id
@@ -273,6 +274,13 @@ return {
                         "storageKey": null
                       },
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "photosCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "thumbnail",
@@ -352,7 +360,7 @@ return {
     "operationKind": "query",
     "name": "UserPostListPaginationQuery",
     "id": null,
-    "text": "query UserPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n  $postId: ID\n) {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $userId) {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query UserPostListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n  $postId: ID\n) {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $userId) {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

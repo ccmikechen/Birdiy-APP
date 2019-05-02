@@ -73,6 +73,7 @@ type Post implements Node {
   insertedAt: Datetime
   message: String
   photos: [PostPhoto]
+  photosCount: Int
   relatedProject: Project
   relatedProjectName: String
   relatedProjectType: String!

@@ -20,6 +20,7 @@ export type PostSection_post = {|
   |},
   +insertedAt: ?any,
   +message: ?string,
+  +photosCount: ?number,
   +thumbnail: ?{|
     +image: string
   |},
@@ -100,6 +101,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "photosCount",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "thumbnail",
@@ -142,5 +150,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'dc3137cc88802da04a465ca2ba09728c';
+(node/*: any*/).hash = '45dc0760f275ae1bc36b0767eb98f9ae';
 module.exports = node;

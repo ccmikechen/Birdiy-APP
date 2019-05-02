@@ -8,4 +8,21 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imageContainer: {
+    position: 'relative',
+  },
+  imagesInfoContainer: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  imagesAmountContainer: {
+    marginLeft: 5,
+  },
+  imagesAmount: {
+    color: Base.lightest,
+    fontSize: 24,
+  },
 });

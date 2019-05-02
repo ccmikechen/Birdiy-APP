@@ -69,6 +69,7 @@ const PostSection = ({
         style={styles.image}
         uri={post.thumbnail ? post.thumbnail.image : null}
         width={Dimensions.get('window').width - 20}
+        amount={post.photosCount}
       />
     </TouchableOpacity>
     {
@@ -103,6 +104,7 @@ PostSection.propTypes = {
     }).isRequired,
     insertedAt: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
+    photosCount: PropTypes.number.isRequired,
     thumbnail: PropTypes.shape({
       image: PropTypes.string.isRequired,
     }),

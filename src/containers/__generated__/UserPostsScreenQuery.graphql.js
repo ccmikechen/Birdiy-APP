@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1e434b18dbdc3de7db9eaab4fe4069df
+ * @relayHash ff3fefb2a6f9a906205aeab4a5bf4f29
  */
 
 /* eslint-disable */
@@ -70,6 +70,7 @@ fragment PostSection_post on Post {
   }
   insertedAt
   message
+  photosCount
   thumbnail {
     image
     id
@@ -277,6 +278,13 @@ return {
                         "storageKey": null
                       },
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "photosCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "thumbnail",
@@ -356,7 +364,7 @@ return {
     "operationKind": "query",
     "name": "UserPostsScreenQuery",
     "id": null,
-    "text": "query UserPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n  $postId: ID\n) {\n  ...UserPostsScreen_query\n}\n\nfragment UserPostsScreen_query on RootQueryType {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $userId) {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query UserPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n  $postId: ID\n) {\n  ...UserPostsScreen_query\n}\n\nfragment UserPostsScreen_query on RootQueryType {\n  ...UserPostList_query\n}\n\nfragment UserPostList_query on RootQueryType {\n  user(id: $userId) {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

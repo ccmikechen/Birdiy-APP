@@ -15,6 +15,7 @@ export default createFragmentContainer(
       }
       insertedAt
       message
+      photosCount
       thumbnail {
         image
       }

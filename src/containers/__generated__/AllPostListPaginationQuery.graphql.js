@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c2b1b95f10ce0efdfcfd629f9759d7f7
+ * @relayHash d75eb574862efe080b2bbbf2f64d2827
  */
 
 /* eslint-disable */
@@ -59,6 +59,7 @@ fragment PostSection_post on Post {
   }
   insertedAt
   message
+  photosCount
   thumbnail {
     image
     id
@@ -232,6 +233,13 @@ return {
                     "storageKey": null
                   },
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "photosCount",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "thumbnail",
@@ -306,7 +314,7 @@ return {
     "operationKind": "query",
     "name": "AllPostListPaginationQuery",
     "id": null,
-    "text": "query AllPostListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query AllPostListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
