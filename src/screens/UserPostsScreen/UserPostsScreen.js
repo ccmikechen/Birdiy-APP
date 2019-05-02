@@ -49,7 +49,8 @@ export default class UserPostsScreen extends Component {
     const {
       navigation, query, variables, loading,
     } = this.props;
-    const userId = navigation.getParam('id');
+    const userId = navigation.getParam('userId');
+    const postId = navigation.getParam('postId');
 
     return (
       <View style={styles.container}>
@@ -71,6 +72,7 @@ export default class UserPostsScreen extends Component {
             batchLoad={variables.count}
             headerPadding
             userId={userId}
+            postId={postId}
           />
         </SimpleScreenView>
       </View>

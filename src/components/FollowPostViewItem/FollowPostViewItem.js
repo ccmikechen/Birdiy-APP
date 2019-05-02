@@ -18,7 +18,7 @@ const FollowPostViewItem = ({ post, onPress }) => (
   <Surface style={styles.container}>
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={() => onPress(post.id)}
+      onPress={() => onPress(post.author.id, post.id)}
     >
       <ImageView
         style={styles.image}
@@ -49,6 +49,7 @@ FollowPostViewItem.propTypes = {
       image: PropTypes.string,
     }),
     author: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }),

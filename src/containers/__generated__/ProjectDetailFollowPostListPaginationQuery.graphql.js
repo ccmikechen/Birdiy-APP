@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c7c46c9d00af3ea0f251c2c542f8eb89
+ * @relayHash a398064c7a313fa59920715ab2c2d9d4
  */
 
 /* eslint-disable */
@@ -53,9 +53,9 @@ fragment ProjectDetailFollowPostList_project on Project {
           id
         }
         author {
+          id
           image
           name
-          id
         }
         __typename
       }
@@ -238,6 +238,7 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
+                          (v3/*: any*/),
                           (v4/*: any*/),
                           {
                             "kind": "ScalarField",
@@ -245,8 +246,7 @@ return {
                             "name": "name",
                             "args": null,
                             "storageKey": null
-                          },
-                          (v3/*: any*/)
+                          }
                         ]
                       },
                       {
@@ -287,7 +287,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailFollowPostListPaginationQuery",
     "id": null,
-    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          image\n          name\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

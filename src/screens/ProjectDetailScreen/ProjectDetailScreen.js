@@ -158,9 +158,9 @@ export default class ProjectDetailScreen extends Component {
     Linking.openURL(link);
   };
 
-  handleOpenPost = (id) => {
+  handleOpenPost = (userId, postId) => {
     const { navigation } = this.props;
-    navigation.push('PostDetail', { id });
+    navigation.push('UserPosts', { userId, postId });
   };
 
   render() {

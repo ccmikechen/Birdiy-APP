@@ -22,7 +22,8 @@ export default withNavigation(
         query UserPostsScreenQuery (
           $count: Int!,
           $cursor: String,
-          $id: ID!,
+          $userId: ID!,
+          $postId: ID,
         ) {
           ...UserPostsScreen_query
         }
@@ -32,7 +33,8 @@ export default withNavigation(
         cursor: null,
       },
       queriesParams: props => ({
-        id: props.navigation.getParam('id'),
+        userId: props.navigation.getParam('userId'),
+        postId: props.navigation.getParam('postId'),
       }),
     },
   ),

@@ -10,7 +10,17 @@ class ProjectDetailFollowPostList extends Component {
     project: PropTypes.shape({
       relatedPosts: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.shape({
-          node: PropTypes.object,
+          node: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            thumbnail: PropTypes.shape({
+              image: PropTypes.string,
+            }),
+            author: PropTypes.shape({
+              id: PropTypes.string.isRequired,
+              image: PropTypes.string.isRequired,
+              name: PropTypes.string.isRequired,
+            }),
+          }),
         })),
       }),
     }).isRequired,
@@ -71,6 +81,7 @@ export default createPaginationContainer(
                 image
               }
               author {
+                id
                 image
                 name
               }

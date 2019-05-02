@@ -129,7 +129,7 @@ interface Profile {
   image: String
   likedProjects(after: String, first: Int): ProjectConnection
   name: String!
-  posts(after: String, first: Int): PostConnection
+  posts(after: String, beforeId: ID, first: Int): PostConnection
   projects(after: String, filter: ProjectFilter, first: Int, order: ProjectOrder = NEWEST): ProjectConnection
 }
 
@@ -327,7 +327,7 @@ type User implements Profile & Node {
   image: String
   likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   name: String!
-  posts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
+  posts(after: String, before: String, beforeId: ID, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
 }
@@ -350,7 +350,7 @@ type Viewer implements Profile & Node {
   image: String
   likedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
   name: String!
-  posts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
+  posts(after: String, before: String, beforeId: ID, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection

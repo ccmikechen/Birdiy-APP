@@ -56,10 +56,11 @@ export default createPaginationContainer(
   {
     query: graphql`
       fragment UserPostList_query on RootQueryType {
-        user(id: $id) {
+        user(id: $userId) {
           posts(
             first: $count,
-            after: $cursor
+            after: $cursor,
+            beforeId: $postId,
           ) @connection(key: "UserPostList_posts") {
             pageInfo {
               hasNextPage
@@ -84,17 +85,19 @@ export default createPaginationContainer(
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: ({ userId }, { count, cursor }) => ({
+    getVariables: ({ userId, postId }, { count, cursor }) => ({
       count,
       cursor,
-      id: userId,
+      userId,
+      postId,
     }),
     variables: { cursor: null },
     query: graphql`
       query UserPostListPaginationQuery (
         $count: Int!,
         $cursor: String,
-        $id: ID!,
+        $userId: ID!,
+        $postId: ID,
       ) {
         ...UserPostList_query
       }

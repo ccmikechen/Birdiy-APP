@@ -31,6 +31,9 @@ const sharedScreens = {
   PostDetail: PostDetailScreen,
   ProjectDetail: ProjectDetailScreen,
   User: UserScreen,
+  UserProjects: UserProjectsScreen,
+  UserPosts: UserPostsScreen,
+  UserFavorites: UserFavoritesScreen,
 };
 
 const noAnimationTransitionConfig = () => ({
@@ -91,9 +94,6 @@ export default createBottomTabNavigator({
     MyProjects: MyProjectsScreen,
     MyPosts: MyPostsScreen,
     MyFavorites: MyFavoritesScreen,
-    UserProjects: UserProjectsScreen,
-    UserPosts: UserPostsScreen,
-    UserFavorites: UserFavoritesScreen,
     ...sharedScreens,
   }, {
     navigationOptions: {

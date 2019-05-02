@@ -23,6 +23,7 @@ export type ProjectDetailFollowPostList_project = {|
           +image: string
         |},
         +author: {|
+          +id: string,
           +image: ?string,
           +name: string,
         |},
@@ -36,6 +37,13 @@ export type ProjectDetailFollowPostList_project = {|
 
 const node/*: ReaderFragment*/ = (function(){
 var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "image",
@@ -123,13 +131,7 @@ return {
               "concreteType": "Post",
               "plural": false,
               "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "id",
-                  "args": null,
-                  "storageKey": null
-                },
+                (v0/*: any*/),
                 {
                   "kind": "LinkedField",
                   "alias": null,
@@ -139,7 +141,7 @@ return {
                   "concreteType": "PostPhoto",
                   "plural": false,
                   "selections": [
-                    (v0/*: any*/)
+                    (v1/*: any*/)
                   ]
                 },
                 {
@@ -152,6 +154,7 @@ return {
                   "plural": false,
                   "selections": [
                     (v0/*: any*/),
+                    (v1/*: any*/),
                     {
                       "kind": "ScalarField",
                       "alias": null,
@@ -185,5 +188,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '83e33327053d4cbb88f30e0895ba4181';
+(node/*: any*/).hash = 'f4e52f1e1585b4c34d606de9ef24dd63';
 module.exports = node;

@@ -34,6 +34,7 @@ FollowPostView.propTypes = {
       image: PropTypes.string,
     }),
     author: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }),
