@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  TouchableOpacity,
-  Image,
 } from 'react-native';
 
+import Avatar from '../Avatar';
 import FollowUserButton from '../FollowUserButton';
 
-import { DEFAULT_PROFILE } from '../../images';
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -20,16 +19,12 @@ const ProjectAuthor = ({
   onUnfollow,
 }) => (
   <View style={styles.container}>
-    <TouchableOpacity
-      style={styles.userImageContainer}
+    <Avatar
+      image={author.image}
       onPress={() => onUserPress(author.id)}
-    >
-      <Image
-        style={styles.userImage}
-        source={{ uri: author.image }}
-        defaultSource={DEFAULT_PROFILE}
-      />
-    </TouchableOpacity>
+      size={Size.projectProfileImageSize}
+      borderRadius={Size.projectProfileImageSize / 2}
+    />
     <View style={styles.infoContainer}>
       <View style={styles.userNameContainer}>
         <Text style={styles.userName}>

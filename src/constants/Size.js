@@ -3,6 +3,8 @@ export default {
   bottomTabBarHeight: 50,
   topTabBarHeight: 40,
   searchBarHeight: 35,
+  postProfileImageSize: 50,
+  projectProfileImageSize: 50,
   profileImageSize: 70,
   userProjectListImageSize: 100,
   followPostImageSize: 200,

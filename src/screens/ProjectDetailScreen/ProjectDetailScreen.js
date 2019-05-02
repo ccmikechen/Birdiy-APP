@@ -250,6 +250,7 @@ export default class ProjectDetailScreen extends Component {
           projectId={project.id}
           project={project}
           onPress={this.handleOpenPost}
+          onUserPress={this.handleUserPress}
         />
       </TopScreenView>
     );

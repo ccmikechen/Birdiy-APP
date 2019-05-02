@@ -45,6 +45,11 @@ export default class UserPostsScreen extends Component {
     navigation.push('PostImagesModal', { id });
   }
 
+  handleUserPress = (id) => {
+    const { navigation } = this.props;
+    navigation.push('User', { id });
+  };
+
   render() {
     const {
       navigation, query, variables, loading,
@@ -69,6 +74,7 @@ export default class UserPostsScreen extends Component {
           <UserPostList
             query={query}
             onImagePress={this.handleOpenImage}
+            onUserPress={this.handleUserPress}
             batchLoad={variables.count}
             headerPadding
             userId={userId}

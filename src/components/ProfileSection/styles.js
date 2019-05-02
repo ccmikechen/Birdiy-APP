@@ -10,15 +10,8 @@ export default StyleSheet.create({
     height: Size.profileImageSize + 20,
     paddingTop: 5,
   },
-  imageContainer: {
-    width: Size.profileImageSize,
-    height: Size.profileImageSize,
+  avatarContainer: {
     marginLeft: 10,
-  },
-  image: {
-    width: Size.profileImageSize,
-    aspectRatio: 1,
-    borderRadius: Size.profileImageSize / 2,
   },
   profileContainer: {
     flex: 1,

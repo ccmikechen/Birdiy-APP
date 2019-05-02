@@ -12,16 +12,6 @@ export default StyleSheet.create({
     padding: 5,
     paddingTop: 10,
   },
-  userImageContainer: {
-    width: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  userImage: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
-  },
   infoContainer: {
     flex: 1,
     paddingLeft: 10,

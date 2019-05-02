@@ -17,7 +17,7 @@ class ProjectDetailFollowPostList extends Component {
             }),
             author: PropTypes.shape({
               id: PropTypes.string.isRequired,
-              image: PropTypes.string.isRequired,
+              image: PropTypes.string,
               name: PropTypes.string.isRequired,
             }),
           }),

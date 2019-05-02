@@ -17,16 +17,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: Size.followPostAuthorInfoHeight,
   },
-  authorImageContainer: {
+  authorAvatarContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 10,
     marginRight: 10,
-  },
-  authorImage: {
-    height: Size.followPostAuthorImageSize,
-    aspectRatio: 1,
-    borderRadius: Size.followPostAuthorImageSize / 2,
   },
   authorNameContainer: {
     justifyContent: 'center',

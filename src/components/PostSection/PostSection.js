@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Image,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
@@ -11,8 +10,9 @@ import { Surface } from 'react-native-paper';
 
 import ImageView from '../ImageView';
 import FollowUserButton from '../FollowUserButton';
+import Avatar from '../Avatar';
 
-import { DEFAULT_PROFILE } from '../../images';
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -26,16 +26,12 @@ const PostSection = ({
 }) => (
   <Surface style={styles.container}>
     <View style={styles.profileContainer}>
-      <TouchableOpacity
-        style={styles.userImageContainer}
+      <Avatar
+        image={post.author.image}
         onPress={() => onUserPress(post.author.id)}
-      >
-        <Image
-          style={styles.userImage}
-          source={{ uri: post.author.image }}
-          defaultSource={DEFAULT_PROFILE}
-        />
-      </TouchableOpacity>
+        size={Size.postProfileImageSize}
+        borderRadius={Size.postProfileImageSize / 2}
+      />
       <View style={styles.infoContainer}>
         <View style={styles.userNameContainer}>
           <Text style={styles.userName}>
@@ -99,7 +95,7 @@ PostSection.propTypes = {
     author: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       following: PropTypes.bool.isRequired,
     }).isRequired,
     insertedAt: PropTypes.string.isRequired,

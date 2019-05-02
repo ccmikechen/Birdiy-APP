@@ -4,17 +4,17 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import { Surface } from 'react-native-paper';
 
 import ImageView from '../ImageView';
+import Avatar from '../Avatar';
 
 import Size from '../../constants/Size';
 
 import styles from './styles';
 
-const FollowPostViewItem = ({ post, onPress }) => (
+const FollowPostViewItem = ({ post, onPress, onUserPress }) => (
   <Surface style={styles.container}>
     <TouchableOpacity
       style={styles.imageContainer}
@@ -26,11 +26,16 @@ const FollowPostViewItem = ({ post, onPress }) => (
         width={Size.followPostImageSize}
       />
     </TouchableOpacity>
-    <View style={styles.authorContainer}>
-      <View style={styles.authorImageContainer}>
-        <Image
-          style={styles.authorImage}
-          source={{ uri: post.author.image }}
+    <TouchableOpacity
+      style={styles.authorContainer}
+      onPress={() => onUserPress(post.author.id)}
+    >
+      <View style={styles.authorAvatarContainer}>
+        <Avatar
+          image={post.author.image}
+          onPress={() => onUserPress(post.author.id)}
+          size={Size.followPostAuthorImageSize}
+          borderRadius={Size.followPostAuthorImageSize / 2}
         />
       </View>
       <View style={styles.authorNameContainer}>
@@ -38,7 +43,7 @@ const FollowPostViewItem = ({ post, onPress }) => (
           {post.author.name}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </Surface>
 );
 
@@ -50,15 +55,17 @@ FollowPostViewItem.propTypes = {
     }),
     author: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       name: PropTypes.string.isRequired,
     }),
   }).isRequired,
   onPress: PropTypes.func,
+  onUserPress: PropTypes.func,
 };
 
 FollowPostViewItem.defaultProps = {
   onPress: () => {},
+  onUserPress: () => {},
 };
 
 export default FollowPostViewItem;

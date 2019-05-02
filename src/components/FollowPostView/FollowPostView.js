@@ -9,6 +9,7 @@ import styles from './styles';
 const FollowPostView = ({
   posts,
   onPress,
+  onUserPress,
   loadMore,
   canLoadMore,
 }) => (
@@ -19,6 +20,7 @@ const FollowPostView = ({
       <FollowPostViewItem
         post={post}
         onPress={onPress}
+        onUserPress={onUserPress}
       />
     )}
     loadMoreContentAsync={loadMore}
@@ -35,17 +37,19 @@ FollowPostView.propTypes = {
     }),
     author: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       name: PropTypes.string.isRequired,
     }),
   })).isRequired,
   onPress: PropTypes.func,
+  onUserPress: PropTypes.func,
   loadMore: PropTypes.func,
   canLoadMore: PropTypes.bool,
 };
 
 FollowPostView.defaultProps = {
   onPress: () => {},
+  onUserPress: () => {},
   loadMore: () => {},
   canLoadMore: true,
 };

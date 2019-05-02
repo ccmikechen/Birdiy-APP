@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
 } from 'react-native';
+
+import Avatar from '../Avatar';
+
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -15,10 +18,11 @@ const ProfileSection = ({
   onFollowingPress,
 }) => (
   <View style={styles.container}>
-    <View style={styles.imageContainer}>
-      <Image
-        source={{ uri: profile.image }}
-        style={styles.image}
+    <View style={styles.avatarContainer}>
+      <Avatar
+        image={profile.image}
+        size={Size.profileImageSize}
+        borderRadius={Size.profileImageSize / 2}
       />
     </View>
     <View style={styles.profileContainer}>
@@ -53,7 +57,7 @@ const ProfileSection = ({
 
 ProfileSection.propTypes = {
   profile: PropTypes.shape({
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     name: PropTypes.string.isRequired,
     followerCount: PropTypes.number.isRequired,
     followingCount: PropTypes.number.isRequired,
