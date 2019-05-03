@@ -9,8 +9,8 @@ import {
 import { Surface } from 'react-native-paper';
 
 import ImageView from '../ImageView';
-import FollowUserButton from '../FollowUserButton';
 import Avatar from '../Avatar';
+import ActionMenuButton from '../ActionMenuButton';
 
 import Size from '../../constants/Size';
 
@@ -19,8 +19,7 @@ import styles from './styles';
 const PostSection = ({
   post,
   onUserPress,
-  onFollowUser,
-  onUnfollowUser,
+  onActionButtonPress,
   onImagePress,
   onSourcePress,
 }) => (
@@ -44,12 +43,10 @@ const PostSection = ({
           </Text>
         </View>
       </View>
-      <View style={styles.followButtonContainer}>
-        <FollowUserButton
-          following={post.author.following}
-          onFollow={() => onFollowUser(post.author.id)}
-          onUnfollow={() => onUnfollowUser(post.author.id)}
-        />
+      <View style={styles.actionsContainer}>
+        <View style={styles.actionButtonContainer}>
+          <ActionMenuButton onPress={() => onActionButtonPress(post.id)} />
+        </View>
       </View>
     </View>
     <View style={styles.messageContainer}>
@@ -96,7 +93,6 @@ PostSection.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string,
-      following: PropTypes.bool.isRequired,
     }).isRequired,
     insertedAt: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
@@ -111,16 +107,14 @@ PostSection.propTypes = {
     relatedProjectName: PropTypes.string,
   }).isRequired,
   onUserPress: PropTypes.func,
-  onFollowUser: PropTypes.func,
-  onUnfollowUser: PropTypes.func,
+  onActionButtonPress: PropTypes.func,
   onImagePress: PropTypes.func,
   onSourcePress: PropTypes.func,
 };
 
 PostSection.defaultProps = {
   onUserPress: () => {},
-  onFollowUser: () => {},
-  onUnfollowUser: () => {},
+  onActionButtonPress: () => {},
   onImagePress: () => {},
   onSourcePress: () => {},
 };

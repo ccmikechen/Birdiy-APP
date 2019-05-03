@@ -19,6 +19,7 @@ export default class PostList extends Component {
     renderRefresh: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onUserPress: PropTypes.func,
+    onActionButtonPress: PropTypes.func,
     onImagePress: PropTypes.func,
     onSourcePress: PropTypes.func,
     headerPadding: PropTypes.bool,
@@ -32,6 +33,7 @@ export default class PostList extends Component {
     renderRefresh: () => null,
     onScrollTrigger: () => {},
     onUserPress: () => {},
+    onActionButtonPress: () => {},
     onImagePress: () => {},
     onSourcePress: () => {},
     headerPadding: false,
@@ -51,6 +53,7 @@ export default class PostList extends Component {
   renderPost = (post) => {
     const {
       onUserPress,
+      onActionButtonPress,
       onImagePress,
       onSourcePress,
     } = this.props;
@@ -60,9 +63,8 @@ export default class PostList extends Component {
         <PostSection
           post={post}
           onUserPress={onUserPress}
+          onActionButtonPress={onActionButtonPress}
           onImagePress={onImagePress}
-          onFollowUser={this.handleFollowUser}
-          onUnfollowUser={this.handleUnfollowUser}
           onSourcePress={onSourcePress}
         />
       </View>

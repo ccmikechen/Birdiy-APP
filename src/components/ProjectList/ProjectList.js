@@ -5,7 +5,6 @@ import { chunk } from 'lodash';
 
 import InfiniteList from '../InfiniteList';
 import ProjectSection from '../../containers/ProjectSection';
-import MyProjectActions from '../MyProjectActions';
 
 import styles from './styles';
 
@@ -19,8 +18,7 @@ export default class ProjectList extends Component {
     actionButtonVisible: PropTypes.bool,
     onScrollTrigger: PropTypes.func,
     onProjectPress: PropTypes.func,
-    onEditProject: PropTypes.func,
-    onDeleteProject: PropTypes.func,
+    onActionButtonPress: PropTypes.func,
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
     showStatus: PropTypes.bool,
@@ -34,8 +32,7 @@ export default class ProjectList extends Component {
     actionButtonVisible: false,
     onScrollTrigger: () => {},
     onProjectPress: () => () => {},
-    onEditProject: () => {},
-    onDeleteProject: () => {},
+    onActionButtonPress: () => {},
     headerPadding: false,
     canLoadMore: false,
     showStatus: false,
@@ -51,6 +48,7 @@ export default class ProjectList extends Component {
   renderProject = (project) => {
     const {
       onProjectPress,
+      onActionButtonPress,
       actionButtonVisible,
       showStatus,
     } = this.props;
@@ -62,7 +60,7 @@ export default class ProjectList extends Component {
             <ProjectSection
               project={project}
               onPress={onProjectPress}
-              onActionButtonPress={id => this.actions.show(id)}
+              onActionButtonPress={onActionButtonPress}
               actionButtonVisible={actionButtonVisible}
               showStatus={showStatus}
             />
@@ -89,8 +87,6 @@ export default class ProjectList extends Component {
       onScrollTrigger,
       headerPadding,
       canLoadMore,
-      onEditProject,
-      onDeleteProject,
     } = this.props;
 
     if (refreshing) {
@@ -115,11 +111,6 @@ export default class ProjectList extends Component {
             <View style={styles.paddingView} />
           ) : null)}
           innerRef={(ref) => { this.scrollView = ref; }}
-        />
-        <MyProjectActions
-          ref={(ref) => { this.actions = ref; }}
-          onEditProject={onEditProject}
-          onDeleteProject={onDeleteProject}
         />
       </View>
     );

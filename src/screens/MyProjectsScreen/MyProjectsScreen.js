@@ -7,6 +7,7 @@ import { Alert } from 'react-native';
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserProjectsHeader from '../../components/UserProjectsHeader';
 import MyProjectList from '../../containers/MyProjectList';
+import MyProjectActions from '../../components/MyProjectActions';
 
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 
@@ -104,9 +105,15 @@ export default class MyProjectsScreen extends Component {
           batchLoad={variables.count}
           headerPadding
           onProjectPress={this.handleProjectPress}
+          onActionButtonPress={(id) => this.actions.show(id)}
           onEditProject={this.handleEditProject}
           onDeleteProject={this.handleDeleteProject}
           showStatus
+        />
+        <MyProjectActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditProject={this.handleEditProject}
+          onDeleteProject={this.handleDeleteProject}
         />
       </SimpleScreenView>
     );

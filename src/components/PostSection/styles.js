@@ -31,6 +31,12 @@ export default StyleSheet.create({
     color: TextColor.subDark,
     fontSize: 14,
   },
+  actionsContainer: {
+    marginRight: 5,
+  },
+  actionButtonContainer: {
+    alignItems: 'flex-end',
+  },
   messageContainer: {
     padding: 10,
   },

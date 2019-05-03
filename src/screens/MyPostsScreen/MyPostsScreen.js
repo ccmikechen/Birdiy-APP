@@ -2,13 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Icon } from 'expo';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserPostsHeader from '../../components/UserPostsHeader';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 import MyPostList from '../../containers/MyPostList';
+import MyPostActions from '../../components/MyPostActions';
+
+import DeletePostMutation from '../../mutations/DeletePostMutation';
 
 import styles from './styles';
 
@@ -56,6 +59,26 @@ export default class MyPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
+  handleEditPost = (id) => {
+    const { navigation } = this.props;
+    navigation.navigate('EditPostModal', { id });
+  };
+
+  handleDeletePost = (id) => {
+    const mutation = new DeletePostMutation({ id });
+
+    mutation.commit()
+      .then(() => {
+        Alert.alert(
+          '投稿刪除成功',
+          '投稿已成功刪除，若要復原請聯繫客服人員。',
+        );
+      })
+      .catch(() => {
+        Alert.alert('投稿刪除失敗');
+      });
+  };
+
   render() {
     const {
       navigation, query, variables, loading,
@@ -84,9 +107,15 @@ export default class MyPostsScreen extends Component {
             query={query}
             onImagePress={this.handleOpenImage}
             onUserPress={this.handleUserPress}
+            onActionButtonPress={(id) => this.actions.show(id)}
             batchLoad={variables.count}
             headerPadding
             postId={postId}
+          />
+          <MyPostActions
+            ref={(ref) => { this.actions = ref; }}
+            onEditPost={this.handleEditPost}
+            onDeletePost={this.handleDeletePost}
           />
         </SimpleScreenView>
         <AnimatedAddButton
