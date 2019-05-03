@@ -8,6 +8,10 @@ import NormalTopHeader from '../../components/NormalTopHeader';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 import AllPostList from '../../containers/AllPostList';
 import FollowingPostList from '../../containers/FollowingPostList';
+import PostActions from '../../components/PostActions';
+
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import styles from './styles';
 
@@ -79,6 +83,16 @@ export default class TimelineScreen extends Component {
     navigation.push('ProjectDetail', { id });
   }
 
+  handleFollowUser = (id) => {
+    const mutation = new FollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
+  handleUnfollowUser = (id) => {
+    const mutation = new CancelFollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
   render() {
     const {
       navigation, query, variables, loading,
@@ -105,6 +119,7 @@ export default class TimelineScreen extends Component {
           <AllPostList
             query={query}
             onUserPress={this.handleUserPress}
+            onActionButtonPress={post => this.actions.show(post)}
             onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
@@ -113,6 +128,7 @@ export default class TimelineScreen extends Component {
           <FollowingPostList
             query={query}
             onUserPress={this.handleUserPress}
+            onActionButtonPress={post => this.actions.show(post)}
             onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
@@ -131,6 +147,11 @@ export default class TimelineScreen extends Component {
             />
           )}
           onPress={this.handleAddPress}
+        />
+        <PostActions
+          ref={(ref) => { this.actions = ref; }}
+          onFollowUser={this.handleFollowUser}
+          onUnfollowUser={this.handleUnfollowUser}
         />
       </View>
     );

@@ -7,6 +7,10 @@ import { View } from 'react-native';
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserPostsHeader from '../../components/UserPostsHeader';
 import UserPostList from '../../containers/UserPostList';
+import PostActions from '../../components/PostActions';
+
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import styles from './styles';
 
@@ -50,6 +54,16 @@ export default class UserPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
+  handleFollowUser = (id) => {
+    const mutation = new FollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
+  handleUnfollowUser = (id) => {
+    const mutation = new CancelFollowUserMutation({ id });
+    mutation.commit().catch(() => {});
+  };
+
   render() {
     const {
       navigation, query, variables, loading,
@@ -75,12 +89,18 @@ export default class UserPostsScreen extends Component {
             query={query}
             onImagePress={this.handleOpenImage}
             onUserPress={this.handleUserPress}
+            onActionButtonPress={post => this.actions.show(post)}
             batchLoad={variables.count}
             headerPadding
             userId={userId}
             postId={postId}
           />
         </SimpleScreenView>
+        <PostActions
+          ref={(ref) => { this.actions = ref; }}
+          onFollowUser={this.handleFollowUser}
+          onUnfollowUser={this.handleUnfollowUser}
+        />
       </View>
     );
   }

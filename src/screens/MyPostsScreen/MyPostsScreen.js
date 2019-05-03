@@ -112,11 +112,6 @@ export default class MyPostsScreen extends Component {
             headerPadding
             postId={postId}
           />
-          <MyPostActions
-            ref={(ref) => { this.actions = ref; }}
-            onEditPost={this.handleEditPost}
-            onDeletePost={this.handleDeletePost}
-          />
         </SimpleScreenView>
         <AnimatedAddButton
           style={styles.addPostButton}
@@ -129,6 +124,11 @@ export default class MyPostsScreen extends Component {
               color="#ffffff"
             />
           )}
+        />
+        <MyPostActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditPost={this.handleEditPost}
+          onDeletePost={this.handleDeletePost}
         />
       </View>
     );

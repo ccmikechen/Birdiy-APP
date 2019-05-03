@@ -39,9 +39,9 @@ export default class HomeScreen extends Component {
     keyword: '',
   };
 
-  handleOpenProject = (id) => {
+  handleOpenProject = (project) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id: project.id });
   };
 
   handleMoreProject = () => {
