@@ -45,7 +45,7 @@ const PostSection = ({
       </View>
       <View style={styles.actionsContainer}>
         <View style={styles.actionButtonContainer}>
-          <ActionMenuButton onPress={() => onActionButtonPress(post.id)} />
+          <ActionMenuButton onPress={() => onActionButtonPress(post)} />
         </View>
       </View>
     </View>

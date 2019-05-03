@@ -105,7 +105,7 @@ export default class UserProjectsScene extends Component {
               </View>
               <View style={styles.optionContainer}>
                 <ActionMenuButton
-                  onPress={() => this.actions.show(project.id)}
+                  onPress={() => this.actions.show(project)}
                 />
               </View>
             </View>
@@ -126,8 +126,8 @@ export default class UserProjectsScene extends Component {
         </TouchableOpacity>
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}
-          onEditProject={onEditProject}
-          onDeleteProject={onDeleteProject}
+          onEditProject={() => onEditProject(project.id)}
+          onDeleteProject={() => onDeleteProject(project.id)}
         />
       </Surface>
     );

@@ -109,15 +109,15 @@ export default class UserPostsScene extends Component {
           {editable ? (
             <View style={styles.optionContainer}>
               <ActionMenuButton
-                onPress={() => this.actions.show(post.id)}
+                onPress={() => this.actions.show(post)}
               />
             </View>
           ) : null}
         </TouchableOpacity>
         <MyPostActions
           ref={(ref) => { this.actions = ref; }}
-          onEditPost={onEditPost}
-          onDeletePost={onDeletePost}
+          onEditPost={() => onEditPost(post.id)}
+          onDeletePost={() => onDeletePost(post.id)}
         />
       </Surface>
     );

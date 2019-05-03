@@ -13,8 +13,8 @@ export default class MyPostActions extends Component {
     onDeletePost: () => {},
   };
 
-  show = (postId) => {
-    this.postId = postId;
+  show = (post) => {
+    this.post = post;
     this.actionSheet.show();
   };
 
@@ -23,10 +23,10 @@ export default class MyPostActions extends Component {
 
     switch (index) {
       case 0:
-        onEditPost(this.postId);
+        onEditPost(this.post);
         break;
       case 1:
-        onDeletePost(this.postId);
+        onDeletePost(this.post);
         break;
       default:
     }

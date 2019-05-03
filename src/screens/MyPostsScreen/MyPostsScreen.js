@@ -59,13 +59,13 @@ export default class MyPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
-  handleEditPost = (id) => {
+  handleEditPost = (post) => {
     const { navigation } = this.props;
-    navigation.navigate('EditPostModal', { id });
+    navigation.navigate('EditPostModal', { id: post.id });
   };
 
-  handleDeletePost = (id) => {
-    const mutation = new DeletePostMutation({ id });
+  handleDeletePost = (post) => {
+    const mutation = new DeletePostMutation({ id: post.id });
 
     mutation.commit()
       .then(() => {
@@ -107,7 +107,7 @@ export default class MyPostsScreen extends Component {
             query={query}
             onImagePress={this.handleOpenImage}
             onUserPress={this.handleUserPress}
-            onActionButtonPress={(id) => this.actions.show(id)}
+            onActionButtonPress={post => this.actions.show(post)}
             batchLoad={variables.count}
             headerPadding
             postId={postId}

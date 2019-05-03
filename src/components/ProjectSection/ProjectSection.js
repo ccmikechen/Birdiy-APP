@@ -22,7 +22,7 @@ const ProjectSection = ({
 }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={() => onPress(project.id, project.published)}
+    onPress={() => onPress(project)}
   >
     <Surface style={styles.container}>
       {project.image ? (
@@ -64,7 +64,7 @@ const ProjectSection = ({
           </View>
           {actionButtonVisible && (
             <View style={styles.optionContainer}>
-              <ActionMenuButton onPress={() => onActionButtonPress(project.id)} />
+              <ActionMenuButton onPress={() => onActionButtonPress(project)} />
             </View>
           )}
         </View>

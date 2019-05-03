@@ -13,8 +13,8 @@ export default class MyProjectActions extends Component {
     onDeleteProject: () => {},
   };
 
-  show = (projectId) => {
-    this.projectId = projectId;
+  show = (project) => {
+    this.project = project;
     this.actionSheet.show();
   };
 
@@ -23,10 +23,10 @@ export default class MyProjectActions extends Component {
 
     switch (index) {
       case 0:
-        onEditProject(this.projectId);
+        onEditProject(this.project);
         break;
       case 1:
-        onDeleteProject(this.projectId);
+        onDeleteProject(this.project);
         break;
       default:
     }

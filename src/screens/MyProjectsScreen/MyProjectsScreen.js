@@ -35,18 +35,20 @@ export default class MyProjectsScreen extends Component {
     loading: true,
   };
 
-  handleProjectPress = (id, published) => (
-    published ? this.handleOpenProject(id) : this.handleEditProject(id)
+  handleProjectPress = project => (
+    project.published
+      ? this.handleOpenProject(project)
+      : this.handleEditProject(project)
   );
 
-  handleOpenProject = (id) => {
+  handleOpenProject = (project) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id: project.id });
   };
 
-  handleEditProject = (id) => {
+  handleEditProject = (project) => {
     const { navigation } = this.props;
-    navigation.navigate('EditProjectModal', { id });
+    navigation.navigate('EditProjectModal', { id: project.id });
   };
 
   handleDeleteProject = (id) => {
@@ -105,9 +107,7 @@ export default class MyProjectsScreen extends Component {
           batchLoad={variables.count}
           headerPadding
           onProjectPress={this.handleProjectPress}
-          onActionButtonPress={(id) => this.actions.show(id)}
-          onEditProject={this.handleEditProject}
-          onDeleteProject={this.handleDeleteProject}
+          onActionButtonPress={project => this.actions.show(project)}
           showStatus
         />
         <MyProjectActions
