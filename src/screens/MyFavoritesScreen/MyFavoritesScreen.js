@@ -33,9 +33,9 @@ export default class MyFavoritesScreen extends Component {
     loading: true,
   };
 
-  handleOpenProject = () => () => {
+  handleOpenProject = (project) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail');
+    navigation.push('ProjectDetail', { id: project.id });
   };
 
   handleOpenFilter = () => {
@@ -63,6 +63,7 @@ export default class MyFavoritesScreen extends Component {
           query={query}
           batchLoad={variables.count}
           headerPadding
+          onProjectPress={this.handleOpenProject}
         />
       </SimpleScreenView>
     );

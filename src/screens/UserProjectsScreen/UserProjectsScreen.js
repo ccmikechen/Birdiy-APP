@@ -31,9 +31,9 @@ export default class UserProjectsScreen extends Component {
     loading: true,
   };
 
-  handleOpenProject = (id) => {
+  handleOpenProject = (project) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail', { id });
+    navigation.push('ProjectDetail', { id: project.id });
   };
 
   handleSearch = () => {
