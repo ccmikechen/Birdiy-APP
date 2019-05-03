@@ -12,7 +12,8 @@ import { Surface } from 'react-native-paper';
 
 import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
-import UserPostPopupMenu from '../UserPostPopupMenu';
+import ActionMenuButton from '../ActionMenuButton';
+import MyPostActions from '../MyPostActions';
 
 import Size from '../../constants/Size';
 
@@ -107,13 +108,17 @@ export default class UserPostsScene extends Component {
           </View>
           {editable ? (
             <View style={styles.optionContainer}>
-              <UserPostPopupMenu
-                onEditPost={() => onEditPost(post.id)}
-                onDeletePost={() => onDeletePost(post.id)}
+              <ActionMenuButton
+                onPress={() => this.actions.show(post.id)}
               />
             </View>
           ) : null}
         </TouchableOpacity>
+        <MyPostActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditPost={onEditPost}
+          onDeletePost={onDeletePost}
+        />
       </Surface>
     );
   };
