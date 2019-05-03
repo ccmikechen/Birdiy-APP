@@ -34,6 +34,10 @@ export default class MyProjectsScreen extends Component {
     loading: true,
   };
 
+  handleProjectPress = (id, published) => (
+    published ? this.handleOpenProject(id) : this.handleEditProject(id)
+  );
+
   handleOpenProject = (id) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id });
@@ -99,9 +103,10 @@ export default class MyProjectsScreen extends Component {
           query={query}
           batchLoad={variables.count}
           headerPadding
-          onProjectPress={this.handleOpenProject}
+          onProjectPress={this.handleProjectPress}
           onEditProject={this.handleEditProject}
           onDeleteProject={this.handleDeleteProject}
+          showStatus
         />
       </SimpleScreenView>
     );

@@ -29,6 +29,7 @@ export default class Settings extends Component {
           titleStyle={styles.title}
           itemWidth={70}
           icon={this.renderIcon(Icon.AntDesign, 'profile')}
+          onPress={() => { this.actionSheet.show(); }}
         />
         <Item
           title="編輯帳戶"

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 121095499df1ed860e3047f2fb2b89e0
+ * @relayHash a0792ef92e0d6fd66926cbf96fd21665
  */
 
 /* eslint-disable */
@@ -60,6 +60,7 @@ fragment ProjectSection_project on Project {
     name
     id
   }
+  published
 }
 */
 
@@ -213,6 +214,13 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "published",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -248,7 +256,7 @@ return {
     "operationKind": "query",
     "name": "MyFavoriteProjectListPaginationQuery",
     "id": null,
-    "text": "query MyFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyFavoriteProjectList_query\n}\n\nfragment MyFavoriteProjectList_query on RootQueryType {\n  viewer {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query MyFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyFavoriteProjectList_query\n}\n\nfragment MyFavoriteProjectList_query on RootQueryType {\n  viewer {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
     "metadata": {}
   }
 };

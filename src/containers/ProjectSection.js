@@ -12,6 +12,7 @@ export default createFragmentContainer(
       author {
         name
       }
+      published
     }
   `,
 );

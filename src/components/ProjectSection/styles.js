@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, Tertiary } from '../../constants/Colors';
+import Colors, { Base, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -20,12 +20,29 @@ export default StyleSheet.create({
   },
   infoTopContainer: {
     flex: 1,
+    flexDirection: 'row',
   },
-  title: {
+  nameContainer: {
+    flex: 1,
+  },
+  name: {
     color: Tertiary(900),
     fontWeight: '600',
     fontSize: 16,
     padding: 5,
+  },
+  statusContainer: {
+    paddingTop: 5,
+    paddingRight: 5,
+  },
+  status: {
+    fontSize: 12,
+  },
+  draftStatus: {
+    color: Colors.draftStatus,
+  },
+  publishedStatus: {
+    color: Colors.publishedStatus,
   },
   infoBottomContainer: {
     flexDirection: 'row',

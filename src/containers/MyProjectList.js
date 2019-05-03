@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
 
 import ProjectList from '../components/ProjectList';
-import UserProjectPopupMenu from '../components/UserProjectPopupMenu';
 
 class MyProjectList extends Component {
   static propTypes = {
@@ -21,14 +20,10 @@ class MyProjectList extends Component {
       isLoading: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
-    onEditProject: PropTypes.func,
-    onDeleteProject: PropTypes.func,
   };
 
   static defaultProps = {
     batchLoad: 5,
-    onEditProject: () => {},
-    onDeleteProject: () => {},
   };
 
   loadMore = async () => {
@@ -44,8 +39,6 @@ class MyProjectList extends Component {
     const {
       query,
       relay,
-      onEditProject,
-      onDeleteProject,
     } = this.props;
     const data = query.viewer.projects.edges.map(({ node }) => node);
 
@@ -55,12 +48,7 @@ class MyProjectList extends Component {
         projects={data}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
-        renderOptionButton={project => (
-          <UserProjectPopupMenu
-            onEditProject={() => onEditProject(project.id)}
-            onDeleteProject={() => onDeleteProject(project.id)}
-          />
-        )}
+        actionButtonVisible
       />
     ) : null;
   }

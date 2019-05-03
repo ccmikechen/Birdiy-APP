@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8cc3c3eef617f61777042b18ed4b8deb
+ * @relayHash 2f7a23832972c8d97b8afdaf57b4e7e2
  */
 
 /* eslint-disable */
@@ -62,6 +62,7 @@ fragment ProjectSection_project on Project {
     name
     id
   }
+  published
 }
 */
 
@@ -228,6 +229,13 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "published",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -263,7 +271,7 @@ return {
     "operationKind": "query",
     "name": "UserProjectListPaginationQuery",
     "id": null,
-    "text": "query UserProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserProjectList_query\n}\n\nfragment UserProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query UserProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserProjectList_query\n}\n\nfragment UserProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
     "metadata": {}
   }
 };

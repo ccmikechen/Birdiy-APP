@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 21842e31a1f6a0abd3e77b851d1ace8e
+ * @relayHash 40d83d7d9820b1983a83906c81177749
  */
 
 /* eslint-disable */
@@ -63,6 +63,7 @@ fragment ProjectSection_project on Project {
     name
     id
   }
+  published
 }
 */
 
@@ -219,6 +220,13 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
+                    "name": "published",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
@@ -253,7 +261,7 @@ return {
     "operationKind": "query",
     "name": "NewestProjectListPaginationQuery",
     "id": null,
-    "text": "query NewestProjectListPaginationQuery(\n  $count: Int!\n  $newestCursor: String\n  $filter: ProjectFilter\n) {\n  ...NewestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query NewestProjectListPaginationQuery(\n  $count: Int!\n  $newestCursor: String\n  $filter: ProjectFilter\n) {\n  ...NewestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
     "metadata": {}
   }
 };

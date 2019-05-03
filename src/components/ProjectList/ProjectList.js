@@ -5,6 +5,7 @@ import { chunk } from 'lodash';
 
 import InfiniteList from '../InfiniteList';
 import ProjectSection from '../../containers/ProjectSection';
+import MyProjectActions from '../MyProjectActions';
 
 import styles from './styles';
 
@@ -15,11 +16,14 @@ export default class ProjectList extends Component {
     renderNoItem: PropTypes.func,
     refreshing: PropTypes.bool,
     renderRefresh: PropTypes.func,
-    renderOptionButton: PropTypes.func,
+    actionButtonVisible: PropTypes.bool,
     onScrollTrigger: PropTypes.func,
     onProjectPress: PropTypes.func,
+    onEditProject: PropTypes.func,
+    onDeleteProject: PropTypes.func,
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
+    showStatus: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -27,11 +31,14 @@ export default class ProjectList extends Component {
     renderNoItem: () => null,
     refreshing: false,
     renderRefresh: () => null,
-    renderOptionButton: () => null,
+    actionButtonVisible: false,
     onScrollTrigger: () => {},
     onProjectPress: () => () => {},
+    onEditProject: () => {},
+    onDeleteProject: () => {},
     headerPadding: false,
     canLoadMore: false,
+    showStatus: false,
   };
 
   scrollToTop = () => {
@@ -42,7 +49,11 @@ export default class ProjectList extends Component {
   };
 
   renderProject = (project) => {
-    const { onProjectPress, renderOptionButton } = this.props;
+    const {
+      onProjectPress,
+      actionButtonVisible,
+      showStatus,
+    } = this.props;
 
     return (
       <View style={styles.projectContainer}>
@@ -51,7 +62,9 @@ export default class ProjectList extends Component {
             <ProjectSection
               project={project}
               onPress={onProjectPress}
-              renderOptionButton={renderOptionButton}
+              onActionButtonPress={id => this.actions.show(id)}
+              actionButtonVisible={actionButtonVisible}
+              showStatus={showStatus}
             />
           ) : null
         }
@@ -76,6 +89,8 @@ export default class ProjectList extends Component {
       onScrollTrigger,
       headerPadding,
       canLoadMore,
+      onEditProject,
+      onDeleteProject,
     } = this.props;
 
     if (refreshing) {
@@ -89,17 +104,24 @@ export default class ProjectList extends Component {
     const projectSections = chunk(projects, 2);
 
     return (
-      <InfiniteList
-        data={projectSections}
-        loadMoreContentAsync={loadMore}
-        renderSection={this.renderProjectSection}
-        onScrollTrigger={onScrollTrigger}
-        canLoadMoreContent={canLoadMore}
-        renderHeader={() => (headerPadding ? (
-          <View style={styles.paddingView} />
-        ) : null)}
-        innerRef={(ref) => { this.scrollView = ref; }}
-      />
+      <View style={styles.container}>
+        <InfiniteList
+          data={projectSections}
+          loadMoreContentAsync={loadMore}
+          renderSection={this.renderProjectSection}
+          onScrollTrigger={onScrollTrigger}
+          canLoadMoreContent={canLoadMore}
+          renderHeader={() => (headerPadding ? (
+            <View style={styles.paddingView} />
+          ) : null)}
+          innerRef={(ref) => { this.scrollView = ref; }}
+        />
+        <MyProjectActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditProject={onEditProject}
+          onDeleteProject={onDeleteProject}
+        />
+      </View>
     );
   }
 }

@@ -9,17 +9,20 @@ import {
 } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
+import ActionMenuButton from '../ActionMenuButton';
 
 import styles from './styles';
 
 const ProjectSection = ({
   project,
   onPress,
-  renderOptionButton,
+  onActionButtonPress,
+  actionButtonVisible,
+  showStatus,
 }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={() => onPress(project.id)}
+    onPress={() => onPress(project.id, project.published)}
   >
     <Surface style={styles.container}>
       {project.image ? (
@@ -38,15 +41,32 @@ const ProjectSection = ({
       )}
       <View style={styles.infoContainer}>
         <View style={styles.infoTopContainer}>
-          <Text style={styles.title}>{project.name}</Text>
+          <View style={styles.nameContainer}>
+            <Text style={styles.name}>{project.name}</Text>
+          </View>
+          {showStatus && (
+            <View style={styles.statusContainer}>
+              {project.published ? (
+                <Text style={[styles.status, styles.publishedStatus]}>
+                  公開
+                </Text>
+              ) : (
+                <Text style={[styles.status, styles.draftStatus]}>
+                  草稿
+                </Text>
+              )}
+            </View>
+          )}
         </View>
         <View style={styles.infoBottomContainer}>
           <View style={styles.authorContainer}>
             <Text style={styles.author}>{`by ${project.author.name}`}</Text>
           </View>
-          <View style={styles.optionContainer}>
-            {renderOptionButton(project)}
-          </View>
+          {actionButtonVisible && (
+            <View style={styles.optionContainer}>
+              <ActionMenuButton onPress={() => onActionButtonPress(project.id)} />
+            </View>
+          )}
         </View>
       </View>
     </Surface>
@@ -61,14 +81,19 @@ ProjectSection.propTypes = {
     author: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
+    published: PropTypes.bool.isRequired,
   }).isRequired,
   onPress: PropTypes.func,
-  renderOptionButton: PropTypes.func,
+  onActionButtonPress: PropTypes.func,
+  actionButtonVisible: PropTypes.bool,
+  showStatus: PropTypes.bool,
 };
 
 ProjectSection.defaultProps = {
   onPress: () => () => {},
-  renderOptionButton: () => null,
+  onActionButtonPress: () => () => {},
+  actionButtonVisible: false,
+  showStatus: false,
 };
 
 export default ProjectSection;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 51f9eab0ff16e1d9cfaeada50473592a
+ * @relayHash 20ae9c594f4388b40408703eae20e428
  */
 
 /* eslint-disable */
@@ -64,6 +64,7 @@ fragment ProjectSection_project on Project {
     name
     id
   }
+  published
 }
 */
 
@@ -217,6 +218,13 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "published",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -252,7 +260,7 @@ return {
     "operationKind": "query",
     "name": "MyProjectsScreenQuery",
     "id": null,
-    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n}\n",
+    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
     "metadata": {}
   }
 };

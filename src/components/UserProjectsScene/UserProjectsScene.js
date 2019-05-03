@@ -12,7 +12,8 @@ import { Surface } from 'react-native-paper';
 
 import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
-import UserProjectPopupMenu from '../UserProjectPopupMenu';
+import ActionMenuButton from '../ActionMenuButton';
+import MyProjectActions from '../MyProjectActions';
 
 import Size from '../../constants/Size';
 
@@ -103,9 +104,8 @@ export default class UserProjectsScene extends Component {
                 </Text>
               </View>
               <View style={styles.optionContainer}>
-                <UserProjectPopupMenu
-                  onEditProject={() => onEditProject(project.id)}
-                  onDeleteProject={() => onDeleteProject(project.id)}
+                <ActionMenuButton
+                  onPress={() => this.actions.show(project.id)}
                 />
               </View>
             </View>
@@ -124,6 +124,11 @@ export default class UserProjectsScene extends Component {
             </View>
           </View>
         </TouchableOpacity>
+        <MyProjectActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditProject={onEditProject}
+          onDeleteProject={onDeleteProject}
+        />
       </Surface>
     );
   };

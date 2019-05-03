@@ -17,6 +17,7 @@ export type ProjectSection_project = {|
   +author: {|
     +name: string
   |},
+  +published: ?boolean,
   +$refType: ProjectSection_project$ref,
 |};
 */
@@ -63,10 +64,17 @@ return {
       "selections": [
         (v0/*: any*/)
       ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "published",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e26d4378faa71ca3ae9d5d0cb4002c7a';
+(node/*: any*/).hash = '5c27f262d8bf36e21ca5ac0a20bbbbe0';
 module.exports = node;
