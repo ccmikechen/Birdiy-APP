@@ -76,4 +76,5 @@ export default {
   draftStatus: '#666666',
   followButton: Primary(500),
   coverModalBackground: 'rgba(0, 0, 0, .8)',
+  logoutButton: '#cc0000',
 };
