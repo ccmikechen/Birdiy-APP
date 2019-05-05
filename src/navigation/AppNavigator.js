@@ -8,6 +8,7 @@ import { fromBottom } from 'react-navigation-transitions';
 import DrawerScreen from '../containers/DrawerScreen';
 import MainTabNavigator from './MainTabNavigator';
 
+import LoginScreen from '../screens/LoginScreen';
 import CreateProjectScreen from '../containers/CreateProjectScreen';
 import EditProjectScreen from '../containers/EditProjectScreen';
 import EditPostScreen from '../containers/EditPostScreen';
@@ -17,6 +18,7 @@ import CreatePostScreen from '../screens/CreatePostScreen';
 import PostImagesScreen from '../containers/PostImagesScreen';
 
 const modals = {
+  LoginModal: LoginScreen,
   CreateProjectModal: CreateProjectScreen,
   EditProjectModal: EditProjectScreen,
   EditPostModal: EditPostScreen,

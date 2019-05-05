@@ -12,8 +12,14 @@ export default class SettingScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
+      push: PropTypes.func.isRequired,
       goBack: PropTypes.func.isRequired,
     }).isRequired,
+  };
+
+  handleLogout = () => {
+    const { navigation } = this.props;
+    navigation.push('LoginModal');
   };
 
   render() {
@@ -30,7 +36,9 @@ export default class SettingScreen extends Component {
         )}
         fullScreen
       >
-        <Settings />
+        <Settings
+          onLogout={this.handleLogout}
+        />
       </TopScreenView>
     );
   }

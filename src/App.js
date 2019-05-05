@@ -6,7 +6,6 @@ import {
   Font,
   Icon,
 } from 'expo';
-import { MenuProvider } from 'react-native-popup-menu';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -42,9 +41,7 @@ export default class App extends Component {
 
     return isLoadingComplete ? (
       <View style={styles.container}>
-        <MenuProvider>
-          <AppNavigator />
-        </MenuProvider>
+        <AppNavigator />
       </View>
     ) : (
       <AppLoading

@@ -40,9 +40,24 @@ input EditProjectInput {
   tip: String
 }
 
+input EditUserInput {
+  image: Upload
+  name: String
+}
+
 type FollowUserResult {
   followedUser: User!
   followingUser: User!
+}
+
+input LoginInput {
+  credential: String!
+  method: LoginMethod!
+}
+
+enum LoginMethod {
+  FACEBOOK
+  GOOGLE
 }
 
 """An object with an ID"""
@@ -285,9 +300,11 @@ type RootMutationType {
   deleteProject(input: ProjectInput!): ProjectResult
   editPost(input: EditPostInput!): PostResult
   editProject(input: EditProjectInput!): ProjectResult
+  editViewer(input: EditUserInput!): ViewerResult
   favoriteProject(input: ProjectInput!): ProjectResult
   followUser(input: UserInput!): FollowUserResult
   likeProject(input: ProjectInput!): ProjectResult
+  login(input: LoginInput!): Session
   publishProject(input: ProjectInput!): ProjectResult
   unpublishProject(input: ProjectInput!): ProjectResult
   viewProject(input: ProjectInput!): ProjectResult
@@ -307,6 +324,12 @@ type RootQueryType {
   project(id: ID!): Project
   user(id: ID!): User
   viewer: Viewer
+}
+
+type Session {
+  accessToken: String!
+  refreshToken: String!
+  user: Viewer!
 }
 
 """
@@ -355,5 +378,9 @@ type Viewer implements Profile & Node {
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
+}
+
+type ViewerResult {
+  viewer: Viewer!
 }
 

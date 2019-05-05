@@ -6,22 +6,27 @@ import {
   Store,
 } from 'relay-runtime';
 
+import { getTokens } from '../helpers/credentails';
 import socket from './socket';
 
 const ENDPOINT = process.env.BIRDIY_SERVER_HOST || 'localhost';
 
-function fetchQuery(
+const fetchQuery = async (
   operation,
   variables,
   cacheConfig,
   uploadables,
-) {
+) => {
   const request = {
     method: 'POST',
-    headers: {
-      //      Authorization: `JWT ${auth.getToken()}`,
-    },
+    headers: {},
   };
+
+  const tokens = await getTokens();
+
+  if (tokens) {
+    request.headers.Authorization = `Bearer ${tokens.accessToken}`;
+  }
 
   if (uploadables && Object.keys(uploadables).length > 0) {
     const formData = new FormData();
@@ -44,8 +49,21 @@ function fetchQuery(
   }
 
   return fetch(`http://${ENDPOINT}/api`, request)
-    .then(response => response.json());
-}
+    .then(response => response.json())
+    .then((json) => {
+      if (json.errors) {
+        throw json.errors[0];
+      }
+
+      return json;
+    })
+    .catch((error) => {
+      if (error.message && error.code) {
+        throw { message: error.message, code: error.code };
+      }
+      throw { message: null, code: 0 };
+    });
+};
 
 export default new Environment({
   network: Network.create(

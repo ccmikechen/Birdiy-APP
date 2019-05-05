@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Text } from 'react-native';
 import hoistStatics from 'hoist-non-react-statics';
 import { QueryRenderer } from 'react-relay';
 
@@ -20,20 +19,15 @@ export default (FragmentComponent, Component, config) => {
         environment={environment}
         query={query}
         variables={variables}
-        render={({ error, props }) => {
-          if (error) {
-            return <Text>{error.toString()}</Text>;
-          }
-
-          return (
-            <FragmentComponent
-              {...componentProps}
-              query={props}
-              loading={!props}
-              variables={variables}
-            />
-          );
-        }}
+        render={({ error, props }) => (
+          <FragmentComponent
+            {...componentProps}
+            query={props}
+            error={error}
+            loading={!(error || props)}
+            variables={variables}
+          />
+        )}
       />
     );
   };

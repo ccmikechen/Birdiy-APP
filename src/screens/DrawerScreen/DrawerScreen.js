@@ -34,11 +34,16 @@ export default class DrawerScreen extends Component {
         followerCount: PropTypes.number,
       }),
     }),
+    error: PropTypes.shape({
+      message: PropTypes.string,
+      code: PropTypes.number,
+    }),
     loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
+    error: null,
     loading: true,
   };
 
@@ -55,6 +60,58 @@ export default class DrawerScreen extends Component {
       color="#666666"
     />
   );
+
+  renderHeader = () => {
+    const { query } = this.props;
+
+    return (
+      <LinearGradient
+        style={styles.headerContainer}
+        colors={['#64a1bc', '#3b5998', '#192f6a']}
+        start={[0, 0]}
+        end={[1, 1]}
+      >
+        <TouchableOpacity
+          style={styles.profileContainer}
+          onPress={this.navigateToScreen('Profile')}
+        >
+          <View style={styles.profileImageContainer}>
+            <Image
+              style={styles.profileImage}
+              source={query.viewer.image ? { uri: query.viewer.image } : DEFAULT_PROFILE}
+            />
+          </View>
+          <View style={styles.profileInfoContainer}>
+            <View style={styles.profileNameContainer}>
+              <Text style={styles.profileName}>{ query.viewer.name }</Text>
+            </View>
+            <View style={styles.profileHintContainer}>
+              <Text style={styles.profileHint}>我的工作坊</Text>
+            </View>
+          </View>
+          <View style={styles.profileLevelContainer}>
+            <Image style={styles.profileLevelImage} />
+          </View>
+        </TouchableOpacity>
+        <View style={styles.relationInfoContainer}>
+          <View style={styles.followingContainer}>
+            <Text style={styles.followingNumber}>{ query.viewer.followingCount }</Text>
+            <Text style={styles.following}>跟隨中</Text>
+          </View>
+          <View style={styles.followingContainer}>
+            <Text style={styles.followingNumber}>{ query.viewer.followerCount }</Text>
+            <Text style={styles.following}>跟隨者</Text>
+          </View>
+        </View>
+        <View style={styles.postButtonContainer}>
+          <PostButton
+            color={TextColor.primaryLight}
+            backgroundColor={Primary(600)}
+          />
+        </View>
+      </LinearGradient>
+    );
+  };
 
   renderMenu = () => (
     <View style={styles.menuContainer}>
@@ -118,57 +175,13 @@ export default class DrawerScreen extends Component {
   );
 
   render() {
-    const { query, loading } = this.props;
+    const { error, loading } = this.props;
 
     return loading ? (
       <LoadingIndicator />
     ) : (
       <ScrollView style={styles.container}>
-        <LinearGradient
-          style={styles.headerContainer}
-          colors={['#64a1bc', '#3b5998', '#192f6a']}
-          start={[0, 0]}
-          end={[1, 1]}
-        >
-          <TouchableOpacity
-            style={styles.profileContainer}
-            onPress={this.navigateToScreen('Profile')}
-          >
-            <View style={styles.profileImageContainer}>
-              <Image
-                style={styles.profileImage}
-                source={query.viewer.image ? { uri: query.viewer.image } : DEFAULT_PROFILE}
-              />
-            </View>
-            <View style={styles.profileInfoContainer}>
-              <View style={styles.profileNameContainer}>
-                <Text style={styles.profileName}>{ query.viewer.name }</Text>
-              </View>
-              <View style={styles.profileHintContainer}>
-                <Text style={styles.profileHint}>我的工作坊</Text>
-              </View>
-            </View>
-            <View style={styles.profileLevelContainer}>
-              <Image style={styles.profileLevelImage} />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.relationInfoContainer}>
-            <View style={styles.followingContainer}>
-              <Text style={styles.followingNumber}>{ query.viewer.followingCount }</Text>
-              <Text style={styles.following}>跟隨中</Text>
-            </View>
-            <View style={styles.followingContainer}>
-              <Text style={styles.followingNumber}>{ query.viewer.followerCount }</Text>
-              <Text style={styles.following}>跟隨者</Text>
-            </View>
-          </View>
-          <View style={styles.postButtonContainer}>
-            <PostButton
-              color={TextColor.primaryLight}
-              backgroundColor={Primary(600)}
-            />
-          </View>
-        </LinearGradient>
+        {error ? null : this.renderHeader()}
         {this.renderMenu()}
       </ScrollView>
     );

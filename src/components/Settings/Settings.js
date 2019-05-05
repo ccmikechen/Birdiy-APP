@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Icon } from 'expo';
 import SettingsList, {
@@ -11,6 +12,10 @@ import Colors, { TextColor } from '../../constants/Colors';
 import styles from './styles';
 
 export default class Settings extends Component {
+  static propTypes = {
+    onLogout: PropTypes.func.isRequired,
+  };
+
   renderIcon = (IconComponent, name, color = TextColor.secondaryDark) => (
     <View style={styles.icon}>
       <IconComponent
@@ -22,6 +27,8 @@ export default class Settings extends Component {
   );
 
   render() {
+    const { onLogout } = this.props;
+
     return (
       <SettingsList borderColor="#c8c7cc">
         <Item
@@ -66,6 +73,7 @@ export default class Settings extends Component {
           titleStyle={[styles.title, styles.logoutTitle]}
           itemWidth={70}
           icon={this.renderIcon(Icon.MaterialCommunityIcons, 'logout', Colors.logoutButton)}
+          onPress={onLogout}
         />
       </SettingsList>
     );
