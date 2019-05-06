@@ -32,6 +32,7 @@ export default withNavigation(
     UserScreen,
     {
       query,
+      auth: true,
       variables: {
         count: 10,
       },

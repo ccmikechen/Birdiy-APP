@@ -26,6 +26,7 @@ export default withNavigation(
           ...MyProjectsScreen_query
         }
       `,
+      auth: true,
       variables: {
         count: 10,
         cursor: null,

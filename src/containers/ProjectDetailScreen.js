@@ -48,6 +48,7 @@ export default withNavigation(
           ...ProjectDetailScreen_query
         }
       `,
+      auth: true,
       variables: {
         relatedPostsCount: 5,
       },

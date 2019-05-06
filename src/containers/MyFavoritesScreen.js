@@ -26,6 +26,7 @@ export default withNavigation(
           ...MyFavoritesScreen_query
         }
       `,
+      auth: true,
       variables: {
         count: 10,
         cursor: null,

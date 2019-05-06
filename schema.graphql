@@ -285,6 +285,10 @@ enum RankOrder {
   NAME
 }
 
+input RefreshSessionInput {
+  refreshToken: String!
+}
+
 enum RelatedProjectType {
   CUSTOM
   PROJECT
@@ -306,6 +310,7 @@ type RootMutationType {
   likeProject(input: ProjectInput!): ProjectResult
   login(input: LoginInput!): Session
   publishProject(input: ProjectInput!): ProjectResult
+  refreshSession(input: RefreshSessionInput!): Session
   unpublishProject(input: ProjectInput!): ProjectResult
   viewProject(input: ProjectInput!): ProjectResult
 }

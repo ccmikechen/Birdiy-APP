@@ -28,6 +28,7 @@ export default withNavigation(
           ...TimelineScreen_query
         }
       `,
+      auth: true,
       variables: {
         count: 5,
         allCursor: null,

@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
 import { Icon, Facebook } from 'expo';
 import { Button } from 'react-native-paper';
 
@@ -53,23 +52,10 @@ export default class LoginScreen extends Component {
     const { login: { accessToken, refreshToken } } = response;
 
     await Credentials.setTokens(accessToken, refreshToken);
-    this.navigateToHome();
   };
 
   handleLogout = async () => {
     await Credentials.clearTokens();
-    this.navigateToHome();
-  };
-
-  navigateToHome = () => {
-    const { navigation } = this.props;
-
-    navigation.dispatch(StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'Main' }),
-      ],
-    }));
   };
 
   render() {

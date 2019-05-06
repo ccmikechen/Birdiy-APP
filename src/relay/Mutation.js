@@ -4,6 +4,7 @@ import { commitMutation } from 'react-relay';
 import validate from 'validate.js';
 
 import environment from './environment';
+import authEnvironment from './authEnvironment';
 import { FormFile } from '../helpers/formFile';
 
 export class MutationValidationError extends Error {
@@ -23,6 +24,8 @@ export default class Mutation {
   static inputName = 'input';
 
   static mutationConfig = {};
+
+  static auth = true;
 
   constructor(input) {
     const { defaultInput } = this.constructor;
@@ -90,7 +93,7 @@ export default class Mutation {
       return Promise.reject(error);
     }
 
-    const { mutation, inputName } = this.constructor;
+    const { mutation, inputName, auth } = this.constructor;
 
     if (!mutation) {
       return Promise.reject(new Error(`The mutation of ${this.constructor.name} is undefined`));
@@ -99,7 +102,7 @@ export default class Mutation {
     const mutationConfig = this.getMutationConfig();
 
     return new Promise((resolve, reject) => commitMutation(
-      environment,
+      auth ? authEnvironment : environment,
       {
         mutation,
         ...mutationConfig,

@@ -67,6 +67,7 @@ export default withNavigation(
           ...EditProjectScreen_query
         }
       `,
+      auth: true,
       queriesParams: props => ({
         id: props.navigation.getParam('id'),
       }),

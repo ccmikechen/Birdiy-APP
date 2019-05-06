@@ -40,6 +40,7 @@ export default withNavigation(
           ...EditPostScreen_query
         }
       `,
+      auth: true,
       queriesParams: props => ({
         id: props.navigation.getParam('id'),
       }),

@@ -7,6 +7,7 @@ import {
 } from 'relay-runtime';
 
 import fetchQuery from './fetchQuery';
+import authMiddleware from './middlewares/authMiddleware';
 import uploadMiddleware from './middlewares/uploadMiddleware';
 import { withErrorHandler } from '../errors';
 
@@ -15,6 +16,7 @@ import socket from './socket';
 export default new Environment({
   network: Network.create(
     withErrorHandler(fetchQuery([
+      authMiddleware,
       uploadMiddleware,
     ])),
     createSubscriber(socket),

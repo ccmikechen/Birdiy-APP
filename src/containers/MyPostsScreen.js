@@ -27,6 +27,7 @@ export default withNavigation(
           ...MyPostsScreen_query
         }
       `,
+      auth: true,
       variables: {
         count: 5,
         cursor: null,

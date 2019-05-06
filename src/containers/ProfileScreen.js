@@ -31,6 +31,7 @@ export default withNavigation(
     ProfileScreen,
     {
       query,
+      auth: true,
       variables: {
         count: 10,
       },

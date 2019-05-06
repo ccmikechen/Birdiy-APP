@@ -28,6 +28,7 @@ export default withNavigation(
           ...DrawerScreen_query
         }
       `,
+      auth: true,
     },
   ),
 );
