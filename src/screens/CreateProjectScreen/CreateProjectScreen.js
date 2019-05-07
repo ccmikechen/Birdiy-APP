@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
 import CreateProjectMutation from '../../mutations/CreateProjectMutation';
+
+import {
+  showSaveProjectSuccessAlert,
+  showSaveProjectFailedAlert,
+} from '../../helpers/alert';
 
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
@@ -76,7 +80,7 @@ export default class CreateProjectScreen extends Component {
     mutation.commit()
       .then(() => {
         navigation.goBack();
-        Alert.alert('專案儲存成功');
+        showSaveProjectSuccessAlert();
       })
       .catch(this.handleSaveError);
   };
@@ -97,7 +101,7 @@ export default class CreateProjectScreen extends Component {
   };
 
   handleSaveError = () => {
-    Alert.alert('專案儲存失敗');
+    showSaveProjectFailedAlert();
   };
 
   getCategories = () => {

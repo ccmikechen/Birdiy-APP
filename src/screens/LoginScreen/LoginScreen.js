@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Alert,
   View,
   TouchableOpacity,
   StatusBar,
@@ -11,7 +10,11 @@ import { Button } from 'react-native-paper';
 
 import LoginMutation from '../../mutations/LoginMutation';
 
-import * as Credentials from '../../helpers/credentails';
+import { setTokens } from '../../helpers/credentails';
+import { resetToHome } from '../../helpers/navigation';
+import { showLoginFailedAlert } from '../../helpers/alert';
+
+import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -43,19 +46,18 @@ export default class LoginScreen extends Component {
       }).commit()
         .then(this.handleLoginResponse)
         .catch(() => {});
-    } catch ({ message }) {
-      Alert.alert(`Facebook Login Error: ${message}`);
+    } catch (e) {
+      showLoginFailedAlert();
     }
   };
 
-  handleLoginResponse = async ({ response }) => {
+  handleLoginResponse = async (response) => {
+    const { navigation } = this.props;
+
     const { login: { accessToken, refreshToken } } = response;
 
-    await Credentials.setTokens(accessToken, refreshToken);
-  };
-
-  handleLogout = async () => {
-    await Credentials.clearTokens();
+    await setTokens(accessToken, refreshToken);
+    resetToHome(navigation);
   };
 
   render() {
@@ -78,8 +80,13 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.contentContainer}>
-          <Button onPress={this.handleFacebookLogin}>Login</Button>
-          <Button onPress={this.handleLogout}>Logout</Button>
+          <Button
+            mode="contained"
+            color={Primary(900)}
+            onPress={this.handleFacebookLogin}
+          >
+            透過 Facebook 登入
+          </Button>
         </View>
       </View>
     );

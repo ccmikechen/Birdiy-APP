@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-native';
 import { cloneDeep } from 'lodash';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -8,6 +7,11 @@ import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
 
 import EditPostMutation from '../../mutations/EditPostMutation';
+
+import {
+  showEditPostSuccessAlert,
+  showEditPostFailedAlert,
+} from '../../helpers/alert';
 
 export default class EditPostScreen extends Component {
   static navigationOptions = {
@@ -97,13 +101,13 @@ export default class EditPostScreen extends Component {
           return;
         }
         navigation.goBack();
-        Alert.alert('投稿編輯成功');
+        showEditPostSuccessAlert();
       })
       .catch(this.handleSavingError);
   };
 
   handleSavingError = () => {
-    Alert.alert('投稿編輯失敗');
+    showEditPostFailedAlert();
   };
 
   render() {

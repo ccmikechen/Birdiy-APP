@@ -9,14 +9,14 @@ import AnimatedAddButton from '../../components/AnimatedAddButton';
 import AllPostList from '../../containers/AllPostList';
 import FollowingPostList from '../../containers/FollowingPostList';
 import PostActions from '../../components/PostActions';
+import LoginActions from '../../components/LoginActions';
 
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
-import { showLoginAlert } from '../../helpers/alert';
 
-import { handleUnauthorizedActionError } from '../../errors';
+import { UnauthorizedError } from '../../errors';
 
 import styles from './styles';
 
@@ -70,7 +70,7 @@ export default class TimelineScreen extends Component {
 
   handleAddPress = async () => {
     if (!(await isLoggedIn())) {
-      showLoginAlert();
+      this.loginActions.show('發布投稿之前必須先登入');
       return;
     }
 
@@ -95,12 +95,25 @@ export default class TimelineScreen extends Component {
 
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
-    mutation.commit().catch(handleUnauthorizedActionError());
+    mutation.commit().catch((e) => {
+      if (e instanceof UnauthorizedError) {
+        this.loginActions.show('跟隨用戶之前必須先登入');
+      }
+    });
   };
 
   handleUnfollowUser = (id) => {
     const mutation = new CancelFollowUserMutation({ id });
-    mutation.commit().catch(handleUnauthorizedActionError());
+    mutation.commit().catch((e) => {
+      if (e instanceof UnauthorizedError) {
+        this.loginActions.show('取消跟隨用戶之前必須先登入');
+      }
+    });
+  };
+
+  handleLoginPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('LoginModal');
   };
 
   render() {
@@ -129,7 +142,7 @@ export default class TimelineScreen extends Component {
           <AllPostList
             query={query}
             onUserPress={this.handleUserPress}
-            onActionButtonPress={post => this.actions.show(post)}
+            onActionButtonPress={post => this.postActions.show(post)}
             onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
@@ -138,7 +151,7 @@ export default class TimelineScreen extends Component {
           <FollowingPostList
             query={query}
             onUserPress={this.handleUserPress}
-            onActionButtonPress={post => this.actions.show(post)}
+            onActionButtonPress={post => this.postActions.show(post)}
             onImagePress={this.handleOpenImage}
             onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
@@ -159,9 +172,13 @@ export default class TimelineScreen extends Component {
           onPress={this.handleAddPress}
         />
         <PostActions
-          ref={(ref) => { this.actions = ref; }}
+          ref={(ref) => { this.postActions = ref; }}
           onFollowUser={this.handleFollowUser}
           onUnfollowUser={this.handleUnfollowUser}
+        />
+        <LoginActions
+          ref={(ref) => { this.loginActions = ref; }}
+          onLogin={this.handleLoginPress}
         />
       </View>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { ScrollView } from 'react-navigation';
 import { Button } from 'react-native-paper';
 
 import EditSection from '../EditSection';

@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
 
 import CreatePostMutation from '../../mutations/CreatePostMutation';
+
+import {
+  showCreatePostSuccessAlert,
+  showCreatePostFailedAlert,
+} from '../../helpers/alert';
 
 export default class CreatePostScreen extends Component {
   static navigationOptions = {
@@ -58,13 +62,13 @@ export default class CreatePostScreen extends Component {
           return;
         }
         navigation.goBack();
-        Alert.alert('投稿發佈成功');
+        showCreatePostSuccessAlert();
       })
       .catch(this.handleSubmittingError);
   };
 
   handleSubmittingError = () => {
-    Alert.alert('投稿發佈失敗');
+    showCreatePostFailedAlert();
   };
 
   render() {

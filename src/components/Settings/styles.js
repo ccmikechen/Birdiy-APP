@@ -8,7 +8,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     color: TextColor.secondaryDark,
   },
   logoutTitle: {

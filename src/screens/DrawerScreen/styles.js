@@ -74,4 +74,7 @@ export default StyleSheet.create({
   menu: {
     marginTop: 20,
   },
+  loginButtonContainer: {
+    padding: 10,
+  },
 });

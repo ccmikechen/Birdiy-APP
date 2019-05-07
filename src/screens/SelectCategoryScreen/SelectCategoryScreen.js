@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native';
+import { ScrollView } from 'react-navigation';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';

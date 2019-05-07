@@ -5,6 +5,9 @@ import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import Settings from '../../components/Settings';
 
+import * as Credentials from '../../helpers/credentails';
+import { resetToHome } from '../../helpers/navigation';
+
 export default class SettingScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -17,13 +20,24 @@ export default class SettingScreen extends Component {
     }).isRequired,
   };
 
-  handleLogout = () => {
+  state = {
+    isLoggedIn: false,
+  };
+
+  async componentDidMount() {
+    const isLoggedIn = await Credentials.isLoggedIn();
+    this.setState({ isLoggedIn });
+  }
+
+  handleLogout = async () => {
     const { navigation } = this.props;
-    navigation.push('LoginModal');
+    await Credentials.clearTokens();
+    resetToHome(navigation);
   };
 
   render() {
     const { navigation } = this.props;
+    const { isLoggedIn } = this.state;
 
     return (
       <TopScreenView
@@ -37,6 +51,7 @@ export default class SettingScreen extends Component {
         fullScreen
       >
         <Settings
+          logoutButtonVisible={isLoggedIn}
           onLogout={this.handleLogout}
         />
       </TopScreenView>

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Alert } from 'react-native';
+import { View } from 'react-native';
 import { Icon } from 'expo';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
@@ -12,6 +12,11 @@ import MyPostList from '../../containers/MyPostList';
 import MyPostActions from '../../components/MyPostActions';
 
 import DeletePostMutation from '../../mutations/DeletePostMutation';
+
+import {
+  showDeletePostSuccessAlert,
+  showDeletePostFailedAlert,
+} from '../../helpers/alert';
 
 import styles from './styles';
 
@@ -68,15 +73,8 @@ export default class MyPostsScreen extends Component {
     const mutation = new DeletePostMutation({ id: post.id });
 
     mutation.commit()
-      .then(() => {
-        Alert.alert(
-          '投稿刪除成功',
-          '投稿已成功刪除，若要復原請聯繫客服人員。',
-        );
-      })
-      .catch(() => {
-        Alert.alert('投稿刪除失敗');
-      });
+      .then(showDeletePostSuccessAlert)
+      .catch(showDeletePostFailedAlert);
   };
 
   render() {

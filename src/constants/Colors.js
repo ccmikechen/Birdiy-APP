@@ -77,4 +77,5 @@ export default {
   followButton: Primary(500),
   coverModalBackground: 'rgba(0, 0, 0, .8)',
   logoutButton: '#cc0000',
+  loginButton: Primary(900),
 };

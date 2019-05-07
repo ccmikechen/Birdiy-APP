@@ -1,8 +1,5 @@
 import errorsMap from './errorsMap';
 import InternalServerError from './InternalServerError';
-import { UnauthorizedError } from './generalErrors';
-
-import { showLoginAlert } from '../helpers/alert';
 
 export const handleErrors = (error) => {
   throw new InternalServerError(error);
@@ -24,16 +21,6 @@ export const parseError = (error) => {
   }
 
   return new ErrorClass(error);
-};
-
-export const handleUnauthorizedActionError = (throwError = false) => (e) => {
-  if (e instanceof UnauthorizedError) {
-    showLoginAlert();
-  }
-
-  if (throwError) {
-    throw e;
-  }
 };
 
 export { default as ApiError } from './ApiError';

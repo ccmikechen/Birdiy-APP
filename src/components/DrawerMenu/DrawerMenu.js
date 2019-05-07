@@ -6,8 +6,6 @@ import {
   ViewPropTypes,
 } from 'react-native';
 
-import DrawerMenuItem from '../DrawerMenuItem';
-
 import styles from './styles';
 
 const DrawerMenu = ({
@@ -24,17 +22,12 @@ const DrawerMenu = ({
         <View style={styles.headerSeperateLine} />
       </View>
     ) : null}
-    {children && React.Children.map(children, (child) => {
-      if (child.type !== DrawerMenuItem) {
-        throw new Error('Child of DrawerMenu should be DrawerMenuItem only');
-      }
-      return (
-        <View style={styles.itemContainer}>
-          {child}
-          <View style={styles.itemSeperateLine} />
-        </View>
-      );
-    })}
+    {children && React.Children.map(children, child => (
+      <View style={styles.itemContainer}>
+        {child}
+        <View style={styles.itemSeperateLine} />
+      </View>
+    ))}
   </View>
 );
 

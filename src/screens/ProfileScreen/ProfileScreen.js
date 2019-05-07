@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-native';
 
 import TopScreenView from '../../components/TopScreenView';
 import ProfileHeader from '../../components/ProfileHeader';
@@ -9,6 +8,14 @@ import ProfileTabMenu from '../../containers/ProfileTabMenu';
 
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 import DeletePostMutation from '../../mutations/DeletePostMutation';
+
+import {
+  showDeleteProjectAlert,
+  showDeleteProjectSuccessAlert,
+  showDeleteProjectFailedAlert,
+  showDeletePostSuccessAlert,
+  showDeletePostFailedAlert,
+} from '../../helpers/alert';
 
 export default class ProfileScreen extends Component {
   static navigationOptions = {
@@ -59,29 +66,15 @@ export default class ProfileScreen extends Component {
   };
 
   handleDeleteProject = (id) => {
-    Alert.alert(
-      '刪除專案',
-      '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
-      [
-        { text: '取消' },
-        { text: '確定', onPress: () => this.deleteProject(id) },
-      ],
-    );
+    showDeleteProjectAlert().then(() => this.deleteProject(id));
   };
 
   deleteProject = (id) => {
     const mutation = new DeleteProjectMutation({ id });
 
     mutation.commit()
-      .then(() => {
-        Alert.alert(
-          '專案刪除成功',
-          '專案已成功刪除，若要復原請聯繫客服人員。',
-        );
-      })
-      .catch(() => {
-        Alert.alert('專案刪除失敗');
-      });
+      .then(showDeleteProjectSuccessAlert)
+      .catch(showDeleteProjectFailedAlert);
   };
 
   handleMorePostsPress = () => {
@@ -108,15 +101,8 @@ export default class ProfileScreen extends Component {
     const mutation = new DeletePostMutation({ id });
 
     mutation.commit()
-      .then(() => {
-        Alert.alert(
-          '投稿刪除成功',
-          '投稿已成功刪除，若要復原請聯繫客服人員。',
-        );
-      })
-      .catch(() => {
-        Alert.alert('投稿刪除失敗');
-      });
+      .then(showDeletePostSuccessAlert)
+      .catch(showDeletePostFailedAlert);
   };
 
   handleMoreFavoritesPress = () => {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   View,
   Dimensions,
-  Alert,
   Text,
 } from 'react-native';
 import { Button } from 'react-native-paper';
@@ -23,6 +22,17 @@ import EditProjectMutation from '../../mutations/EditProjectMutation';
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 import PublishProjectMutation from '../../mutations/PublishProjectMutation';
 import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
+
+import {
+  showSaveProjectSuccessAlert,
+  showSaveProjectFailedAlert,
+  showSetProjectFaieldAlert,
+  showPublishProjectSuccessAlert,
+  showUnpublishProjectSuccessAlert,
+  showDeleteProjectAlert,
+  showDeleteProjectSuccessAlert,
+  showDeleteProjectFailedAlert,
+} from '../../helpers/alert';
 
 import {
   DEFAULT_MATERIAL,
@@ -173,14 +183,7 @@ export default class EditProjectScreen extends Component {
   };
 
   handleDelete = () => {
-    Alert.alert(
-      '刪除專案',
-      '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
-      [
-        { text: '取消' },
-        { text: '確定', onPress: this.deleteProject },
-      ],
-    );
+    showDeleteProjectAlert().then(this.deleteProject);
   };
 
   deleteProject = () => {
@@ -192,14 +195,9 @@ export default class EditProjectScreen extends Component {
     mutation.commit()
       .then(() => {
         navigation.goBack();
-        Alert.alert(
-          '專案刪除成功',
-          '專案已成功刪除，若要復原請聯繫客服人員。',
-        );
+        showDeleteProjectSuccessAlert();
       })
-      .catch(() => {
-        Alert.alert('專案刪除失敗');
-      });
+      .catch(showDeleteProjectFailedAlert);
   };
 
   handleSave = () => {
@@ -214,7 +212,7 @@ export default class EditProjectScreen extends Component {
           return;
         }
         navigation.goBack();
-        Alert.alert('專案儲存成功');
+        showSaveProjectSuccessAlert();
       })
       .catch(this.handleSavingError);
   };
@@ -245,7 +243,7 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSavingError = () => {
-    Alert.alert('專案儲存失敗');
+    showSaveProjectFailedAlert();
   };
 
   handlePublish = () => {
@@ -263,7 +261,7 @@ export default class EditProjectScreen extends Component {
         }
 
         navigation.goBack();
-        Alert.alert('專案已設為公開');
+        showPublishProjectSuccessAlert();
       })
       .catch(this.handlePublishingError);
   };
@@ -283,13 +281,13 @@ export default class EditProjectScreen extends Component {
         }
 
         navigation.goBack();
-        Alert.alert('專案已設為不公開');
+        showUnpublishProjectSuccessAlert();
       })
       .catch(this.handlePublishingError);
   };
 
   handlePublishingError = () => {
-    Alert.alert('專案設定失敗');
+    showSetProjectFaieldAlert();
   };
 
   renderSection = (key) => {

@@ -18,6 +18,7 @@ import ProjectDetailMaterialList from '../../containers/ProjectDetailMaterialLis
 import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
 import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
 import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
+import LoginActions from '../../components/LoginActions';
 
 import ViewProjectMutation from '../../mutations/ViewProjectMutation';
 import LikeProjectMutation from '../../mutations/LikeProjectMutation';
@@ -28,9 +29,8 @@ import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
-import { showLoginAlert } from '../../helpers/alert';
 
-import { handleUnauthorizedActionError } from '../../errors';
+import { UnauthorizedError } from '../../errors';
 
 import styles from './styles';
 
@@ -118,7 +118,11 @@ export default class ProjectDetailScreen extends Component {
 
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
-    mutation.commit().catch(handleUnauthorizedActionError());
+    mutation.commit().catch((e) => {
+      if (e instanceof UnauthorizedError) {
+        this.loginActions.show('跟隨用戶之前必須先登入');
+      }
+    });
   };
 
   handleUnfollowUser = (id) => {
@@ -132,7 +136,11 @@ export default class ProjectDetailScreen extends Component {
       ? new CancelLikeProjectMutation({ id })
       : new LikeProjectMutation({ id });
 
-    mutation.commit().catch(handleUnauthorizedActionError());
+    mutation.commit().catch((e) => {
+      if (e instanceof UnauthorizedError) {
+        this.loginActions.show('喜歡專案之前必須先登入');
+      }
+    });
   };
 
   handleFavoritePress = () => {
@@ -141,12 +149,16 @@ export default class ProjectDetailScreen extends Component {
       ? new CancelFavoriteProjectMutation({ id })
       : new FavoriteProjectMutation({ id });
 
-    mutation.commit().catch(handleUnauthorizedActionError());
+    mutation.commit().catch((e) => {
+      if (e instanceof UnauthorizedError) {
+        this.loginActions.show('收藏專案之前必須先登入');
+      }
+    });
   };
 
   handleNewPostPress = async () => {
     if (!(await isLoggedIn())) {
-      showLoginAlert();
+      this.loginActions.show('發布跟著做投稿之前必須先登入');
       return;
     }
 
@@ -174,6 +186,11 @@ export default class ProjectDetailScreen extends Component {
   handleOpenPost = (userId, postId) => {
     const { navigation } = this.props;
     navigation.push('UserPosts', { userId, postId });
+  };
+
+  handleLoginPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('LoginModal');
   };
 
   render() {
@@ -264,6 +281,10 @@ export default class ProjectDetailScreen extends Component {
           project={project}
           onPress={this.handleOpenPost}
           onUserPress={this.handleUserPress}
+        />
+        <LoginActions
+          ref={(ref) => { this.loginActions = ref; }}
+          onLogin={this.handleLoginPress}
         />
       </TopScreenView>
     );

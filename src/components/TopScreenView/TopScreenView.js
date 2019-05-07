@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from 'react-navigation';
 
 import SimpleScreenView from '../SimpleScreenView';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';

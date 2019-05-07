@@ -8,9 +8,9 @@ import SearchHeader from '../../components/SearchHeader';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 import NewestProjectList from '../../containers/NewestProjectList';
 import HotestProjectList from '../../containers/HotestProjectList';
+import LoginActions from '../../components/LoginActions';
 
 import { isLoggedIn } from '../../helpers/credentails';
-import { showLoginAlert } from '../../helpers/alert';
 
 import styles from './styles';
 
@@ -123,12 +123,17 @@ export default class ProjectsScreen extends Component {
 
   handleAddProject = async () => {
     if (!(await isLoggedIn())) {
-      showLoginAlert();
+      this.loginActions.show('新增專案之前必須先登入');
       return;
     }
 
     const { navigation } = this.props;
     navigation.navigate('CreateProjectModal');
+  };
+
+  handleLoginPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('LoginModal');
   };
 
   render() {
@@ -188,6 +193,10 @@ export default class ProjectsScreen extends Component {
             />
           )}
           onPress={this.handleAddProject}
+        />
+        <LoginActions
+          ref={(ref) => { this.loginActions = ref; }}
+          onLogin={this.handleLoginPress}
         />
       </View>
     );
