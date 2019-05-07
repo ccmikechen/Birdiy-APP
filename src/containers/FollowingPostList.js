@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
+import { View } from 'react-native';
 
+import LoadingIndicator from '../components/LoadingIndicator';
 import PostList from '../components/PostList';
 
 class FollowingPostList extends Component {
@@ -37,6 +39,15 @@ class FollowingPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
+
+    if (!query.viewer) {
+      return (
+        <View style={{ flex: 1 }}>
+          <LoadingIndicator />
+        </View>
+      );
+    }
+
     const data = query.viewer.following.edges.map(({ node }) => node);
 
     return query ? (

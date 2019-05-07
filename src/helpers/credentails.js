@@ -51,3 +51,23 @@ export const getTokens = async () => {
 
   return { accessToken, refreshToken };
 };
+
+export const isLoggedIn = async (real = false) => {
+  if (real) {
+    const tokens = await getTokens();
+
+    return !!tokens;
+  }
+
+  const tokensJson = await AsyncStorage.getItem('tokens');
+
+  if (!tokensJson) {
+    return null;
+  }
+
+  const { accessToken, refreshToken } = JSON.parse(tokensJson);
+  const isAccessTokenExpired = isTokenExpired(accessToken, 60);
+  const isRefreshTokenExpired = isTokenExpired(refreshToken, 3600);
+
+  return !(isAccessTokenExpired && isRefreshTokenExpired);
+};

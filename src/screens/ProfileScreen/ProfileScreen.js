@@ -137,7 +137,7 @@ export default class ProfileScreen extends Component {
             onOpenSettings={() => navigation.navigate('SettingModal')}
           />
         )}
-        loading={loading}
+        loading={loading || !query.viewer}
       >
         <ProfileSection
           profile={profile}

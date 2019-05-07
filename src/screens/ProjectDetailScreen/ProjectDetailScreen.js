@@ -88,19 +88,22 @@ export default class ProjectDetailScreen extends Component {
     tip: '',
   };
 
-  state = {};
+  state = {
+    viewed: false,
+  };
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const { query } = nextProps;
+    const { viewed } = prevState;
 
-    if (!query || query.project.viewed) {
+    if (!query || query.project.viewed || viewed) {
       return null;
     }
 
     const mutation = new ViewProjectMutation({ id: query.project.id });
     mutation.commit().catch(() => {});
 
-    return null;
+    return { viewed: true };
   }
 
   handleUserPress = (id) => {

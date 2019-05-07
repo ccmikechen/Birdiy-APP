@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
+import { View } from 'react-native';
 
+import LoadingIndicator from '../components/LoadingIndicator';
 import ProjectList from '../components/ProjectList';
 
 class MyFavoriteProjectList extends Component {
@@ -37,6 +39,15 @@ class MyFavoriteProjectList extends Component {
 
   render() {
     const { query, relay } = this.props;
+
+    if (!query.viewer) {
+      return (
+        <View style={{ flex: 1 }}>
+          <LoadingIndicator />
+        </View>
+      );
+    }
+
     const data = query.viewer.projects.edges.map(({ node }) => node);
 
     return query ? (

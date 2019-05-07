@@ -34,16 +34,11 @@ export default class DrawerScreen extends Component {
         followerCount: PropTypes.number,
       }),
     }),
-    error: PropTypes.shape({
-      message: PropTypes.string,
-      code: PropTypes.number,
-    }),
     loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    error: null,
     loading: true,
   };
 
@@ -63,6 +58,14 @@ export default class DrawerScreen extends Component {
 
   renderHeader = () => {
     const { query } = this.props;
+
+    if (!query.viewer) {
+      return (
+        <View style={styles.headerContainer}>
+          <LoadingIndicator />
+        </View>
+      );
+    }
 
     return (
       <LinearGradient
@@ -175,13 +178,13 @@ export default class DrawerScreen extends Component {
   );
 
   render() {
-    const { error, loading } = this.props;
+    const { loading } = this.props;
 
     return loading ? (
       <LoadingIndicator />
     ) : (
       <ScrollView style={styles.container}>
-        {error ? null : this.renderHeader()}
+        {this.renderHeader()}
         {this.renderMenu()}
       </ScrollView>
     );

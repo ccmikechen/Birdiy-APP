@@ -84,6 +84,8 @@ export default class Mutation {
   }
 
   commit = () => {
+    const { mutation, inputName, auth } = this.constructor;
+
     if (!this.isValid()) {
       const fullMessage = Object.keys(this.errors).map(k => (
         this.errors[k].join(', ')
@@ -92,8 +94,6 @@ export default class Mutation {
 
       return Promise.reject(error);
     }
-
-    const { mutation, inputName, auth } = this.constructor;
 
     if (!mutation) {
       return Promise.reject(new Error(`The mutation of ${this.constructor.name} is undefined`));

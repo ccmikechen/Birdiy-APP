@@ -11,8 +11,8 @@ export default middlewares => async (
     headers: {},
   };
 
-  const promises = middlewares.map(middleware => (
-    middleware(request)(
+  const promises = middlewares.map(async middleware => (
+    await middleware(request)( // eslint-disable-line no-return-await
       operation,
       variables,
       cacheConfig,
@@ -23,10 +23,6 @@ export default middlewares => async (
 
   const response = await fetch(`http://${ENDPOINT}/api`, request);
   const json = await response.json();
-
-  if (json.errors) {
-    throw json.errors[0];
-  }
 
   return json;
 };

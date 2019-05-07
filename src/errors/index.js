@@ -1,7 +1,12 @@
 import errorsMap from './errorsMap';
+import ApiError from './ApiError';
 import InternalServerError from './InternalServerError';
 
 export const handleErrors = (error) => {
+  if (error instanceof ApiError) {
+    throw error;
+  }
+
   if (error.code) {
     const ErrorClass = errorsMap[error.code];
     throw new ErrorClass(error);
