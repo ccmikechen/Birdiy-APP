@@ -6,6 +6,7 @@ import validate from 'validate.js';
 import environment from './environment';
 import authEnvironment from './authEnvironment';
 import { FormFile } from '../helpers/formFile';
+import { parseError } from '../errors';
 
 export class MutationValidationError extends Error {
   constructor(message, object) {
@@ -112,8 +113,16 @@ export default class Mutation {
           },
         },
         uploadables: this.uploadables,
-        onCompleted: (response, errors) => resolve({ response, errors }),
-        onError: error => reject(error),
+        onCompleted: (response, errors) => {
+          const parsedError = errors && parseError(errors[0]);
+
+          if (parsedError) {
+            return reject(parsedError);
+          }
+
+          return resolve(response);
+        },
+        onError: error => reject(parseError(error)),
       },
     ));
   };

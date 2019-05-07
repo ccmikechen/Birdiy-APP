@@ -9,6 +9,9 @@ import AnimatedAddButton from '../../components/AnimatedAddButton';
 import NewestProjectList from '../../containers/NewestProjectList';
 import HotestProjectList from '../../containers/HotestProjectList';
 
+import { isLoggedIn } from '../../helpers/credentails';
+import { showLoginAlert } from '../../helpers/alert';
+
 import styles from './styles';
 
 const TABS = [{
@@ -118,6 +121,16 @@ export default class ProjectsScreen extends Component {
     });
   };
 
+  handleAddProject = async () => {
+    if (!(await isLoggedIn())) {
+      showLoginAlert();
+      return;
+    }
+
+    const { navigation } = this.props;
+    navigation.navigate('CreateProjectModal');
+  };
+
   render() {
     const {
       navigation, query, variables, loading,
@@ -174,7 +187,7 @@ export default class ProjectsScreen extends Component {
               color="#ffffff"
             />
           )}
-          onPress={() => navigation.navigate('CreateProjectModal')}
+          onPress={this.handleAddProject}
         />
       </View>
     );

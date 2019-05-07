@@ -13,6 +13,11 @@ import PostActions from '../../components/PostActions';
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
+import { isLoggedIn } from '../../helpers/credentails';
+import { showLoginAlert } from '../../helpers/alert';
+
+import { handleUnauthorizedActionError } from '../../errors';
+
 import styles from './styles';
 
 const TABS = [{
@@ -63,7 +68,12 @@ export default class TimelineScreen extends Component {
     navigation.push('UserFilter');
   };
 
-  handleAddPress = () => {
+  handleAddPress = async () => {
+    if (!(await isLoggedIn())) {
+      showLoginAlert();
+      return;
+    }
+
     const { navigation } = this.props;
     navigation.navigate('CreatePostModal');
   };
@@ -85,12 +95,12 @@ export default class TimelineScreen extends Component {
 
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
-    mutation.commit().catch(() => {});
+    mutation.commit().catch(handleUnauthorizedActionError());
   };
 
   handleUnfollowUser = (id) => {
     const mutation = new CancelFollowUserMutation({ id });
-    mutation.commit().catch(() => {});
+    mutation.commit().catch(handleUnauthorizedActionError());
   };
 
   render() {

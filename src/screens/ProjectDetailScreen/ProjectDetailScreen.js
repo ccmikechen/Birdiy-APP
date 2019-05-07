@@ -27,6 +27,11 @@ import CancelFavoriteProjectMutation from '../../mutations/CancelFavoriteProject
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
+import { isLoggedIn } from '../../helpers/credentails';
+import { showLoginAlert } from '../../helpers/alert';
+
+import { handleUnauthorizedActionError } from '../../errors';
+
 import styles from './styles';
 
 export default class ProjectDetailScreen extends Component {
@@ -113,7 +118,7 @@ export default class ProjectDetailScreen extends Component {
 
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
-    mutation.commit().catch(() => {});
+    mutation.commit().catch(handleUnauthorizedActionError());
   };
 
   handleUnfollowUser = (id) => {
@@ -127,7 +132,7 @@ export default class ProjectDetailScreen extends Component {
       ? new CancelLikeProjectMutation({ id })
       : new LikeProjectMutation({ id });
 
-    mutation.commit().catch(() => {});
+    mutation.commit().catch(handleUnauthorizedActionError());
   };
 
   handleFavoritePress = () => {
@@ -136,10 +141,15 @@ export default class ProjectDetailScreen extends Component {
       ? new CancelFavoriteProjectMutation({ id })
       : new FavoriteProjectMutation({ id });
 
-    mutation.commit().catch(() => {});
+    mutation.commit().catch(handleUnauthorizedActionError());
   };
 
-  handleNewPostPress = () => {
+  handleNewPostPress = async () => {
+    if (!(await isLoggedIn())) {
+      showLoginAlert();
+      return;
+    }
+
     const { query: { project }, navigation } = this.props;
     const relatedProject = {
       type: 'project',
