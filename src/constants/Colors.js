@@ -62,7 +62,7 @@ export const Tertiary = Material('blueGray');
 
 export default {
   tabIconDefault: '#cccccc',
-  tabIconSelected: '#3b5998',
+  tabIconSelected: Primary(900),
   tabBar: '#fefefe',
   headerGradient: ['#64a1bc', '#647fbc', '#3b5998', '#192f6a'],
   headerIcon: '#666666',

@@ -10,6 +10,10 @@ export default StyleSheet.create({
     height: Size.headerHeight,
     zIndex: 0,
   },
+  bottomPaddingView: {
+    height: Size.bottomTabBarHeight,
+    zIndex: 0,
+  },
   projectSectionContainer: {
     flexDirection: 'row',
     marginLeft: 5,

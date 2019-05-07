@@ -110,6 +110,7 @@ export default class ProjectList extends Component {
           renderHeader={() => (headerPadding ? (
             <View style={styles.paddingView} />
           ) : null)}
+          renderFooter={() => <View style={styles.bottomPaddingView} />}
           innerRef={(ref) => { this.scrollView = ref; }}
         />
       </View>

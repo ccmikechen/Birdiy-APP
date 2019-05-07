@@ -73,7 +73,6 @@ export default class InfiniteList extends Component {
         )}
         dataSource={dataSource}
         renderRow={renderSection}
-
         canLoadMore={canLoadMoreContent}
         onLoadMoreAsync={loadMoreContentAsync}
         enableEmptySections

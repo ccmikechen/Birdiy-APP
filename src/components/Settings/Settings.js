@@ -14,6 +14,12 @@ import styles from './styles';
 export default class Settings extends Component {
   static propTypes = {
     logoutButtonVisible: PropTypes.bool,
+    onProfile: PropTypes.func.isRequired,
+    onAccount: PropTypes.func.isRequired,
+    onDisplay: PropTypes.func.isRequired,
+    onNotification: PropTypes.func.isRequired,
+    onAbout: PropTypes.func.isRequired,
+    onFeedback: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired,
   };
 
@@ -32,7 +38,16 @@ export default class Settings extends Component {
   );
 
   render() {
-    const { logoutButtonVisible, onLogout } = this.props;
+    const {
+      logoutButtonVisible,
+      onProfile,
+      onAccount,
+      onDisplay,
+      onNotification,
+      onAbout,
+      onFeedback,
+      onLogout,
+    } = this.props;
 
     return (
       <SettingsList borderColor="#c8c7cc">
@@ -41,36 +56,42 @@ export default class Settings extends Component {
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.AntDesign, 'profile')}
+          onPress={onProfile}
         />
         <Item
           title="編輯帳戶"
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.MaterialCommunityIcons, 'account')}
+          onPress={onAccount}
         />
         <Item
           title="顯示設定"
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.MaterialIcons, 'smartphone')}
+          onPress={onDisplay}
         />
         <Item
           title="通知設定"
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.MaterialIcons, 'notifications')}
+          onPress={onNotification}
         />
         <Item
           title="關於Birdiy"
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.MaterialIcons, 'info')}
+          onPress={onAbout}
         />
         <Item
           title="意見回饋"
           titleStyle={styles.title}
           itemWidth={60}
           icon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
+          onPress={onFeedback}
         />
         {logoutButtonVisible && (
           <Header headerStyle={{ marginTop: 15 }} />

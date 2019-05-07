@@ -29,6 +29,36 @@ export default class SettingScreen extends Component {
     this.setState({ isLoggedIn });
   }
 
+  handleProfile = () => {
+    const { navigation } = this.props;
+    navigation.push('ProfileSettingModal');
+  };
+
+  handleAccount = () => {
+    const { navigation } = this.props;
+    navigation.push('AccountSettingModal');
+  };
+
+  handleDisplay = () => {
+    const { navigation } = this.props;
+    navigation.push('DisplaySettingModal');
+  };
+
+  handleNotification = () => {
+    const { navigation } = this.props;
+    navigation.push('NotificationSettingModal');
+  };
+
+  handleAbout = () => {
+    const { navigation } = this.props;
+    navigation.push('AboutModal');
+  };
+
+  handleFeedback = () => {
+    const { navigation } = this.props;
+    navigation.push('FeedbackModal');
+  };
+
   handleLogout = async () => {
     const { navigation } = this.props;
     await Credentials.clearTokens();
@@ -52,6 +82,12 @@ export default class SettingScreen extends Component {
       >
         <Settings
           logoutButtonVisible={isLoggedIn}
+          onProfile={this.handleProfile}
+          onAccount={this.handleAccount}
+          onDisplay={this.handleDisplay}
+          onNotification={this.handleNotification}
+          onAbout={this.handleAbout}
+          onFeedback={this.handleFeedback}
           onLogout={this.handleLogout}
         />
       </TopScreenView>

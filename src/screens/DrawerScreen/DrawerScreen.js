@@ -186,12 +186,12 @@ export default class DrawerScreen extends Component {
       <DrawerMenuItem
         title="關於Birdiy"
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'info')}
-        onPress={this.navigateToScreen('Home')}
+        onPress={this.navigateToScreen('AboutModal')}
       />
       <DrawerMenuItem
         title="意見回饋"
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
-        onPress={this.navigateToScreen('Home')}
+        onPress={this.navigateToScreen('FeedbackModal')}
       />
       <DrawerMenuItem
         title="設定"
