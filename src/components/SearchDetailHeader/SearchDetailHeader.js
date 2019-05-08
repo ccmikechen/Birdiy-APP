@@ -25,6 +25,10 @@ export default class SearchDetailHeader extends Component {
     this.searchBar.focus();
   };
 
+  blurSearchBar = () => {
+    this.searchBar.blur();
+  };
+
   render() {
     const {
       onKeywordChange,

@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableWithoutFeedback, View } from 'react-native';
-import { Searchbar } from 'react-native-paper';
 
 import BasicHeader from '../BasicHeader';
-
-import styles from './styles';
+import SearchBarButton from '../SearchBarButton';
 
 const SearchHeader = (props) => {
   const {
@@ -23,17 +20,10 @@ const SearchHeader = (props) => {
         onPress: onOpenDrawer,
       }}
       centerComponent={() => (
-        <TouchableWithoutFeedback onPress={onSearch}>
-          <View>
-            <View pointerEvents="none">
-              <Searchbar
-                style={styles.searchBar}
-                value={keyword}
-                placeholder="找專案"
-              />
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
+        <SearchBarButton
+          onPress={onSearch}
+          value={keyword}
+        />
       )}
       rightButton={{
         icon: 'filter-list',

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Icon } from 'expo';
 
 import TabsScreenView from '../../components/TabsScreenView';
-import NormalTopHeader from '../../components/NormalTopHeader';
+import TimelineHeader from '../../components/TimelineHeader';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
 import AllPostList from '../../containers/AllPostList';
 import FollowingPostList from '../../containers/FollowingPostList';
@@ -127,9 +127,9 @@ export default class TimelineScreen extends Component {
         <TabsScreenView
           navigation={navigation}
           renderHeader={() => (
-            <NormalTopHeader
-              title="動態"
+            <TimelineHeader
               onOpenDrawer={() => navigation.openDrawer()}
+              onSearch={() => navigation.navigate('SearchDetail')}
             />
           )}
           tabs={TABS}

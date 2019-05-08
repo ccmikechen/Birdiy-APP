@@ -36,12 +36,6 @@ export default class UserProjectsScreen extends Component {
     navigation.push('ProjectDetail', { id: project.id });
   };
 
-  handleSearch = () => {
-  };
-
-  handleOpenFilter = () => {
-  };
-
   render() {
     const {
       navigation, query, variables, loading,
@@ -55,8 +49,7 @@ export default class UserProjectsScreen extends Component {
         renderHeader={() => (
           <UserProjectsHeader
             onBack={() => navigation.goBack()}
-            onSearch={this.handleSearch}
-            onOpenFilter={this.handleOpenFilter}
+            onSearch={() => navigation.navigate('SearchDetail')}
           />
         )}
         animatedScroll

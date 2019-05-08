@@ -53,7 +53,7 @@ export default StyleSheet.create({
     paddingTop: 0,
   },
   intro: {
-    fontSize: 14,
+    fontSize: 16,
     color: TextColor.secondaryDark,
   },
   tipContainer: {
@@ -61,7 +61,7 @@ export default StyleSheet.create({
     paddingTop: 0,
   },
   tip: {
-    fontSize: 14,
+    fontSize: 16,
     color: TextColor.secondaryDark,
   },
 });

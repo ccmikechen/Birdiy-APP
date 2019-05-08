@@ -110,6 +110,7 @@ export default class ProfileScreen extends Component {
     navigation.push('MyFavorites');
   };
 
+
   render() {
     const { navigation, query, loading } = this.props;
     const profile = query && query.viewer;
@@ -120,6 +121,7 @@ export default class ProfileScreen extends Component {
         renderHeader={() => (
           <ProfileHeader
             onOpenDrawer={() => navigation.openDrawer()}
+            onSearch={() => navigation.navigate('SearchDetail')}
             onOpenSettings={() => navigation.navigate('SettingModal')}
           />
         )}

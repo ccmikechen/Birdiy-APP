@@ -28,6 +28,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 10,
   },
+  centerComponentPadding: {
+    paddingRight: 10,
+  },
   centerText: {
     color: Colors.headerIcon,
   },

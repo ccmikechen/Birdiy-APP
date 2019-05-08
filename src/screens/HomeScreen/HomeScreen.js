@@ -74,16 +74,6 @@ export default class HomeScreen extends Component {
     );
   };
 
-  handleSearch = () => {
-    const { navigation } = this.props;
-    navigation.navigate('SearchDetail');
-  }
-
-  handleOpenCart = () => {
-    const { navigation } = this.props;
-    navigation.push('Cart');
-  }
-
   render() {
     const { navigation, loading } = this.props;
 
@@ -93,8 +83,8 @@ export default class HomeScreen extends Component {
         renderHeader={() => (
           <HomeHeader
             onOpenDrawer={() => navigation.openDrawer()}
-            onSearch={this.handleSearch}
-            onOpenCart={this.handleOpenCart}
+            onSearch={() => navigation.navigate('SearchDetail')}
+            onOpenCart={() => navigation.push('Cart')}
           />
         )}
         animatedScroll

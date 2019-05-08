@@ -66,7 +66,11 @@ const BasicHeader = ({
       </View>
     )}
     {centerComponent && (
-      <View style={styles.centerComponentContainer}>
+      <View style={[
+        styles.centerComponentContainer,
+        rightButton ? null : styles.centerComponentPadding,
+      ]}
+      >
         {
           typeof centerComponent === 'function'
             ? centerComponent()

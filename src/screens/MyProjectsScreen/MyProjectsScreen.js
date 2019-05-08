@@ -68,12 +68,6 @@ export default class MyProjectsScreen extends Component {
       .catch(showDeleteProjectFailedAlert);
   };
 
-  handleSearch = () => {
-  };
-
-  handleOpenFilter = () => {
-  };
-
   render() {
     const {
       navigation, query, variables, loading,
@@ -86,7 +80,7 @@ export default class MyProjectsScreen extends Component {
         renderHeader={() => (
           <UserProjectsHeader
             onBack={() => navigation.goBack()}
-            onSearch={this.handleSearch}
+            onSearch={() => navigation.navigate('SearchDetail')}
             onOpenFilter={this.handleOpenFilter}
           />
         )}

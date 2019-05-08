@@ -38,9 +38,6 @@ export default class MyFavoritesScreen extends Component {
     navigation.push('ProjectDetail', { id: project.id });
   };
 
-  handleOpenFilter = () => {
-  };
-
   render() {
     const {
       navigation, query, variables, loading,
@@ -53,6 +50,7 @@ export default class MyFavoritesScreen extends Component {
         renderHeader={() => (
           <UserFavoritesHeader
             onBack={() => navigation.goBack()}
+            onSearch={() => navigation.navigate('SearchDetail')}
             onOpenFilter={this.handleOpenFilter}
           />
         )}

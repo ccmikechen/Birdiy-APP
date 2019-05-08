@@ -46,14 +46,6 @@ export default class MyPostsScreen extends Component {
     addPostButtonVisible: true,
   };
 
-  handleSearch = () => {
-    const { navigation } = this.props;
-    navigation.push('SearchUser');
-  }
-
-  handleReorder = () => {
-  }
-
   handleOpenImage = (id) => {
     const { navigation } = this.props;
     navigation.push('PostImagesModal', { id });
@@ -91,7 +83,7 @@ export default class MyPostsScreen extends Component {
           renderHeader={() => (
             <UserPostsHeader
               onBack={() => navigation.goBack()}
-              onSearch={this.handleSearch}
+              onSearch={() => navigation.navigate('SearchDetail')}
               onReorder={this.handleReorder}
             />
           )}

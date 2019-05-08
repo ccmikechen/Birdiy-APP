@@ -36,14 +36,6 @@ export default class UserPostsScreen extends Component {
     loading: true,
   };
 
-  handleSearch = () => {
-    const { navigation } = this.props;
-    navigation.push('SearchUser');
-  }
-
-  handleReorder = () => {
-  }
-
   handleOpenImage = (id) => {
     const { navigation } = this.props;
     navigation.push('PostImagesModal', { id });
@@ -78,8 +70,7 @@ export default class UserPostsScreen extends Component {
           renderHeader={() => (
             <UserPostsHeader
               onBack={() => navigation.goBack()}
-              onSearch={this.handleSearch}
-              onReorder={this.handleReorder}
+              onSearch={() => navigation.navigate('SearchDetail')}
             />
           )}
           animatedScroll

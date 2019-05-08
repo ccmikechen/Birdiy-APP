@@ -14,8 +14,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   name: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 16,
     color: TextColor.primaryDark,
   },
   buttonsContainer: {

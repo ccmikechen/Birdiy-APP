@@ -75,6 +75,7 @@ export default class UserScreen extends Component {
         renderHeader={() => (
           <UserHeader
             onBack={() => navigation.goBack()}
+            onSearch={() => navigation.navigate('SearchDetail')}
           />
         )}
         loading={loading}

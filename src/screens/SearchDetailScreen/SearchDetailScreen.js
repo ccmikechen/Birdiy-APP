@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -21,11 +22,24 @@ export default class SearchDetailScreen extends Component {
   };
 
   componentDidMount() {
+    this.keyboardListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
+
     const { navigation } = this.props;
     this.setState({
       keyword: navigation.getParam('keyword') || '',
     });
   }
+
+  componentWillUnmount() {
+    this.keyboardListener.remove();
+  }
+
+  keyboardDidHide = () => {
+    this.header.blurSearchBar();
+  };
 
   handleSearch = () => {
     const { navigation } = this.props;
@@ -50,7 +64,7 @@ export default class SearchDetailScreen extends Component {
           />
         )}
       >
-        <NavigationEvents onDidFocus={() => this.header.focusSearchBar()} />
+        <NavigationEvents onWillFocus={() => this.header.focusSearchBar()} />
       </TopScreenView>
     );
   }

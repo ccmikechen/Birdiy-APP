@@ -10,21 +10,22 @@ export default StyleSheet.create({
     padding: 10,
   },
   nameContainer: {
-    flex: 1,
+    flex: 1.5,
     justifyContent: 'center',
+    paddingRight: 5,
   },
   name: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 16,
     color: TextColor.primaryDark,
   },
   amountContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 5,
   },
   amount: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 16,
     color: TextColor.subDark,
   },
   buttonsContainer: {
