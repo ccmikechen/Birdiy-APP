@@ -16,7 +16,7 @@ import SelectCategoryScreen from '../screens/SelectCategoryScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
 import PostImagesScreen from '../containers/PostImagesScreen';
 import SettingScreen from '../screens/SettingScreen';
-import ProfileSettingScreen from '../screens/ProfileSettingScreen';
+import ProfileSettingScreen from '../containers/ProfileSettingScreen';
 import AccountSettingScreen from '../screens/AccountSettingScreen';
 import DisplaySettingScreen from '../screens/DisplaySettingScreen';
 import NotificationSettingScreen from '../screens/NotificationSettingScreen';

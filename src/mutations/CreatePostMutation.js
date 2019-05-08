@@ -6,9 +6,7 @@ import { ImageFile } from '../helpers/formFile';
 const parsePhotos = photos => (
   photos.map((photo, index) => ({
     id: photo.id,
-    ...((photo.image)
-        && (photo.image.startsWith('file://'))
-        && ({ image: new ImageFile(photo.image) })),
+    ...(ImageFile.parseURI(photo.image, 'image')),
     order: index + 1,
   }))
 );

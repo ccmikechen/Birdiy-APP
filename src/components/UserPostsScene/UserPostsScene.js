@@ -116,8 +116,8 @@ export default class UserPostsScene extends Component {
         </TouchableOpacity>
         <MyPostActions
           ref={(ref) => { this.actions = ref; }}
-          onEditPost={() => onEditPost(post.id)}
-          onDeletePost={() => onDeletePost(post.id)}
+          onEditPost={({ id }) => onEditPost(id)}
+          onDeletePost={({ id }) => onDeletePost(id)}
         />
       </Surface>
     );

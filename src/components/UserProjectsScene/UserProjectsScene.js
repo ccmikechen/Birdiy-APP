@@ -126,8 +126,8 @@ export default class UserProjectsScene extends Component {
         </TouchableOpacity>
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}
-          onEditProject={() => onEditProject(project.id)}
-          onDeleteProject={() => onDeleteProject(project.id)}
+          onEditProject={({ id }) => onEditProject(id)}
+          onDeleteProject={({ id }) => onDeleteProject(id)}
         />
       </Surface>
     );

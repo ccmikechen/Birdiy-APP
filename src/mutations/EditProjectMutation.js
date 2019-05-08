@@ -10,12 +10,6 @@ import {
   DEFAULT_METHOD,
 } from '../constants/defaults';
 
-const parseProjectImage = image => (
-  image
-    && (image.startsWith('file://'))
-    && ({ image: new ImageFile(image) })
-);
-
 const parseMaterials = materials => (
   materials.filter(material => (
     !isEqual(material, DEFAULT_MATERIAL)
@@ -46,9 +40,7 @@ const parseMethods = methods => (
     id: method.id,
     title: method.title,
     content: method.content,
-    ...((method.image)
-        && (method.image.startsWith('file://'))
-        && ({ image: new ImageFile(method.image) })),
+    ...(ImageFile.parseURI(method.image, 'image')),
     order: index + 1,
   }))
 );
@@ -93,7 +85,7 @@ export default class EditProjectMutation extends Mutation {
       category,
       introduction,
       tip,
-      ...parseProjectImage(image),
+      ...(ImageFile.parseURI(image, 'image')),
       materials: parseMaterials(materials),
       fileResources: parseFiles(files),
       methods: parseMethods(methods),

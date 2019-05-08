@@ -7,6 +7,12 @@ export class FormFile {
 }
 
 export class ImageFile extends FormFile {
+  static parseURI(uri, field) {
+    return uri && uri.startsWith('file://') && ({
+      [field]: new ImageFile(uri),
+    });
+  }
+
   constructor(uri, name) {
     super();
     this.uri = uri;

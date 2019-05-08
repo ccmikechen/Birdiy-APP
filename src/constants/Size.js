@@ -6,6 +6,7 @@ export default {
   postProfileImageSize: 50,
   projectProfileImageSize: 50,
   profileImageSize: 70,
+  profileSettingImageSize: 120,
   userProjectListImageSize: 100,
   followPostImageSize: 200,
   followPostAuthorInfoHeight: 50,

@@ -38,7 +38,9 @@ export default class TopScreenView extends Component {
 
     return (
       <SimpleScreenView {...this.props}>
-        <TriggerScrollView>
+        <TriggerScrollView
+          keyboardShouldPersistTaps="always"
+        >
           <View style={styles.paddingView} />
           {loading ? <LoadingIndicator /> : children}
         </TriggerScrollView>

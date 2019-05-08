@@ -19,7 +19,10 @@ const ProjectDraftEditor = (props) => {
   } = props;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      keyboardShouldPersistTaps="always"
+    >
       <EditSection title="專案名稱">
         <PureTextInput
           style={styles.textInput}

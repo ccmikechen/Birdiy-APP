@@ -80,3 +80,7 @@ export const showDeletePostSuccessAlert = () => (
 export const showDeletePostFailedAlert = () => (
   showAlert('投稿刪除失敗')
 );
+
+export const showEditProfileFailedAlert = () => (
+  showAlert('編輯個人檔案失敗')
+);

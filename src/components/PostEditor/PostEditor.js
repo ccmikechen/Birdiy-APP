@@ -58,7 +58,10 @@ export default class PostEditor extends Component {
     } = post;
 
     return (
-      <InputScrollView style={styles.container}>
+      <InputScrollView
+        style={styles.container}
+        keyboardShouldPersistTaps="always"
+      >
         <KeyboardAvoidingView behavior="padding" enabled>
           <EditSection title="訊息">
             <PureTextInput
