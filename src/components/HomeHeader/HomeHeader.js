@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 import BasicHeader from '../BasicHeader';
@@ -7,8 +8,6 @@ import BasicHeader from '../BasicHeader';
 import styles from './styles';
 
 const HomeHeader = ({
-  keyword,
-  onKeywordChange,
   onOpenDrawer,
   onSearch,
   onOpenCart,
@@ -20,14 +19,16 @@ const HomeHeader = ({
       onPress: onOpenDrawer,
     }}
     centerComponent={() => (
-      <Searchbar
-        style={styles.searchBar}
-        value={keyword}
-        placeholder="找專案"
-        onChangeText={onKeywordChange}
-        onSubmitEditing={onSearch}
-        onIconPress={onSearch}
-      />
+      <TouchableWithoutFeedback onPress={onSearch}>
+        <View>
+          <View pointerEvents="none">
+            <Searchbar
+              style={styles.searchBar}
+              placeholder="找專案"
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
     )}
     rightButton={{
       icon: 'shopping-cart',
@@ -37,16 +38,12 @@ const HomeHeader = ({
 );
 
 HomeHeader.propTypes = {
-  keyword: PropTypes.string,
-  onKeywordChange: PropTypes.func,
   onOpenDrawer: PropTypes.func.isRequired,
   onSearch: PropTypes.func,
   onOpenCart: PropTypes.func,
 };
 
 HomeHeader.defaultProps = {
-  keyword: '',
-  onKeywordChange: () => {},
   onSearch: () => {},
   onOpenCart: () => {},
 };

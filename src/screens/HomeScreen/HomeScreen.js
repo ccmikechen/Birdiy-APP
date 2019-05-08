@@ -35,10 +35,6 @@ export default class HomeScreen extends Component {
     loading: true,
   };
 
-  state = {
-    keyword: '',
-  };
-
   handleOpenProject = (project) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id: project.id });
@@ -80,8 +76,7 @@ export default class HomeScreen extends Component {
 
   handleSearch = () => {
     const { navigation } = this.props;
-    const { keyword } = this.state;
-    navigation.navigate('Projects', { keyword });
+    navigation.navigate('SearchDetail');
   }
 
   handleOpenCart = () => {
@@ -91,15 +86,12 @@ export default class HomeScreen extends Component {
 
   render() {
     const { navigation, loading } = this.props;
-    const { keyword } = this.state;
 
     return (
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
           <HomeHeader
-            keyword={keyword}
-            onKeywordChange={value => this.setState({ keyword: value })}
             onOpenDrawer={() => navigation.openDrawer()}
             onSearch={this.handleSearch}
             onOpenCart={this.handleOpenCart}

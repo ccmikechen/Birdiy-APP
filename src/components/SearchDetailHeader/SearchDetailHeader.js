@@ -8,31 +8,31 @@ import styles from './styles';
 
 export default class SearchDetailHeader extends Component {
   static propTypes = {
+    keyword: PropTypes.string,
+    onKeywordChange: PropTypes.func,
     onBack: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
+    onOpenFilter: PropTypes.func,
   };
 
   static defaultProps = {
-    placeholder: '',
-  };
-
-  state = {
-    inputText: '',
+    keyword: '',
+    onKeywordChange: () => {},
+    onOpenFilter: () => {},
   };
 
   focusSearchBar = () => {
     this.searchBar.focus();
   };
 
-  handleSubmit = () => {
-    const { onSearch } = this.props;
-    const { inputText } = this.state;
-    onSearch(inputText);
-  };
-
   render() {
-    const { onBack, placeholder } = this.props;
+    const {
+      onKeywordChange,
+      onBack,
+      onOpenFilter,
+      onSearch,
+      keyword,
+    } = this.props;
 
     return (
       <BasicHeader
@@ -45,11 +45,16 @@ export default class SearchDetailHeader extends Component {
           <Searchbar
             ref={(searchBar) => { this.searchBar = searchBar; }}
             style={styles.searchBar}
-            placeholder={placeholder}
-            onChangeText={text => this.setState({ inputText: text })}
-            onSubmitEditing={this.handleSubmit}
+            value={keyword}
+            placeholder="找專案"
+            onChangeText={onKeywordChange}
+            onSubmitEditing={onSearch}
           />
         )}
+        rightButton={{
+          icon: 'filter-list',
+          onPress: onOpenFilter,
+        }}
       />
     );
   }

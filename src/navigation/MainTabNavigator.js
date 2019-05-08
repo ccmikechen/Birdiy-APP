@@ -32,6 +32,7 @@ const sharedScreens = {
   UserProjects: UserProjectsScreen,
   UserPosts: UserPostsScreen,
   UserFavorites: UserFavoritesScreen,
+  SearchDetail: SearchDetailScreen,
 };
 
 const noAnimationTransitionConfig = () => ({
@@ -53,7 +54,6 @@ const tabBarOptions = {
 export default createBottomTabNavigator({
   HomeStack: createStackNavigator({
     Home: HomeScreen,
-    SearchDetail: SearchDetailScreen,
     Cart: CartScreen,
     ...sharedScreens,
   }, {

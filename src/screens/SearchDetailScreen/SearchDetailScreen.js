@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -18,16 +17,25 @@ export default class SearchDetailScreen extends Component {
   };
 
   state = {
-    searchText: '',
+    keyword: '',
   };
 
-  handleSearch = (text) => {
-    this.setState({ searchText: text });
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.setState({
+      keyword: navigation.getParam('keyword') || '',
+    });
+  }
+
+  handleSearch = () => {
+    const { navigation } = this.props;
+    const { keyword } = this.state;
+    navigation.navigate('Projects', { keyword });
   };
 
   render() {
     const { navigation } = this.props;
-    const { searchText } = this.state;
+    const { keyword } = this.state;
 
     return (
       <TopScreenView
@@ -35,14 +43,14 @@ export default class SearchDetailScreen extends Component {
         renderHeader={() => (
           <SearchDetailHeader
             ref={(header) => { this.header = header; }}
+            keyword={keyword}
+            onKeywordChange={value => this.setState({ keyword: value })}
             onBack={() => navigation.goBack()}
             onSearch={this.handleSearch}
-            placeholder="找項目、點子"
           />
         )}
       >
         <NavigationEvents onDidFocus={() => this.header.focusSearchBar()} />
-        <Text>{searchText}</Text>
       </TopScreenView>
     );
   }

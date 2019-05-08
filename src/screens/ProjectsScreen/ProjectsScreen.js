@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+
 import { Icon } from 'expo';
 
 import TabsScreenView from '../../components/TabsScreenView';
@@ -60,31 +61,9 @@ export default class ProjectsScreen extends Component {
     loading: true,
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const keyword = nextProps.navigation.getParam('keyword') || '';
-
-    if (keyword === prevState.lastKeywordParam) {
-      return null;
-    }
-
-    return {
-      ...prevState,
-      lastKeywordParam: keyword,
-      keyword,
-    };
-  }
-
-  constructor(props) {
-    super(props);
-
-    const keyword = props.navigation.getParam('keyword') || '';
-    this.state = {
-      addProjectButtonVisible: true,
-      lastKeywordParam: keyword,
-      keyword,
-      categories: [],
-    };
-  }
+  state = {
+    addProjectButtonVisible: true,
+  };
 
   handleOpenProject = (project) => {
     const { navigation } = this.props;
@@ -93,10 +72,10 @@ export default class ProjectsScreen extends Component {
 
   handleSearch = () => {
     const { navigation } = this.props;
-    const { keyword } = this.state;
-    navigation.setParams({ keyword });
-    // Refresh
-    // scrollToTop
+    const keyword = navigation.getParam('keyword');
+    const categories = navigation.getParam('categories');
+
+    navigation.navigate('SearchDetail', { keyword, categories });
   };
 
   handleSelectCategory = (selection) => {
@@ -140,7 +119,9 @@ export default class ProjectsScreen extends Component {
     const {
       navigation, query, variables, loading,
     } = this.props;
-    const { addProjectButtonVisible, keyword } = this.state;
+    const { addProjectButtonVisible } = this.state;
+    const keyword = navigation.getParam('keyword');
+    const categories = navigation.getParam('categories');
 
     return (
       <View style={styles.container}>
@@ -152,7 +133,6 @@ export default class ProjectsScreen extends Component {
             <SearchHeader
               onOpenDrawer={() => navigation.openDrawer()}
               keyword={keyword}
-              onKeywordChange={value => this.setState({ keyword: value })}
               onSearch={this.handleSearch}
               onOpenFilter={this.handleOpenFilter}
             />
@@ -167,16 +147,16 @@ export default class ProjectsScreen extends Component {
           <NewestProjectList
             query={query}
             batchLoad={variables.count}
-            keyword={navigation.getParam('keyword')}
-            categories={navigation.getParam('categories')}
+            keyword={keyword}
+            categories={categories}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />
           <HotestProjectList
             query={query}
             batchLoad={variables.count}
-            keyword={navigation.getParam('keyword')}
-            categories={navigation.getParam('categories')}
+            keyword={keyword}
+            categories={categories}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />
