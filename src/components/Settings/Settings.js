@@ -8,19 +8,14 @@ import SettingsList, {
 } from 'react-native-settings-list';
 
 import Colors, { TextColor } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
 export default class Settings extends Component {
   static propTypes = {
     logoutButtonVisible: PropTypes.bool,
-    onProfile: PropTypes.func.isRequired,
-    onAccount: PropTypes.func.isRequired,
-    onDisplay: PropTypes.func.isRequired,
-    onNotification: PropTypes.func.isRequired,
-    onAbout: PropTypes.func.isRequired,
-    onFeedback: PropTypes.func.isRequired,
-    onLogout: PropTypes.func.isRequired,
+    onItemPress: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -40,58 +35,52 @@ export default class Settings extends Component {
   render() {
     const {
       logoutButtonVisible,
-      onProfile,
-      onAccount,
-      onDisplay,
-      onNotification,
-      onAbout,
-      onFeedback,
-      onLogout,
+      onItemPress,
     } = this.props;
 
     return (
-      <SettingsList borderColor="#c8c7cc">
+      <SettingsList borderColor={Colors.settingBorder}>
         <Item
           title="編輯個人檔案"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.AntDesign, 'profile')}
-          onPress={onProfile}
+          onPress={() => onItemPress('profile')}
         />
         <Item
           title="編輯帳戶"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialCommunityIcons, 'account')}
-          onPress={onAccount}
+          onPress={() => onItemPress('account')}
         />
         <Item
           title="顯示設定"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'smartphone')}
-          onPress={onDisplay}
+          onPress={() => onItemPress('display')}
         />
         <Item
           title="通知設定"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'notifications')}
-          onPress={onNotification}
+          onPress={() => onItemPress('notification')}
         />
         <Item
           title="關於Birdiy"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'info')}
-          onPress={onAbout}
+          onPress={() => onItemPress('about')}
         />
         <Item
           title="意見回饋"
           titleStyle={styles.title}
-          itemWidth={60}
+          itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
-          onPress={onFeedback}
+          onPress={() => onItemPress('feedback')}
         />
         {logoutButtonVisible && (
           <Header headerStyle={{ marginTop: 15 }} />
@@ -100,9 +89,9 @@ export default class Settings extends Component {
           <Item
             title="登出"
             titleStyle={[styles.title, styles.logoutTitle]}
-            itemWidth={60}
+            itemWidth={Size.settingItemHeight}
             icon={this.renderIcon(Icon.MaterialCommunityIcons, 'logout', Colors.logoutButton)}
-            onPress={onLogout}
+            onPress={() => onItemPress('logout')}
             hasNavArrow={false}
           />
         )}

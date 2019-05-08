@@ -29,6 +29,33 @@ export default class SettingScreen extends Component {
     this.setState({ isLoggedIn });
   }
 
+  handleItemPress = (item) => {
+    switch (item) {
+      case 'profile':
+        this.handleProfile();
+        break;
+      case 'account':
+        this.handleAccount();
+        break;
+      case 'display':
+        this.handleDisplay();
+        break;
+      case 'notification':
+        this.handleNotification();
+        break;
+      case 'about':
+        this.handleAbout();
+        break;
+      case 'feedback':
+        this.handleFeedback();
+        break;
+      case 'logout':
+        this.handleLogout();
+        break;
+      default:
+    }
+  };
+
   handleProfile = () => {
     const { navigation } = this.props;
     navigation.push('ProfileSettingModal');
@@ -82,13 +109,7 @@ export default class SettingScreen extends Component {
       >
         <Settings
           logoutButtonVisible={isLoggedIn}
-          onProfile={this.handleProfile}
-          onAccount={this.handleAccount}
-          onDisplay={this.handleDisplay}
-          onNotification={this.handleNotification}
-          onAbout={this.handleAbout}
-          onFeedback={this.handleFeedback}
-          onLogout={this.handleLogout}
+          onItemPress={this.handleItemPress}
         />
       </TopScreenView>
     );

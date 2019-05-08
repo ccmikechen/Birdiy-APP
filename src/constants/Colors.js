@@ -78,4 +78,5 @@ export default {
   coverModalBackground: 'rgba(0, 0, 0, .8)',
   logoutButton: '#cc0000',
   loginButton: Primary(900),
+  settingBorder: '#c8c7cc',
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
+import DisplaySetting from '../../components/DisplaySetting';
 
 export default class DisplaySettingScreen extends Component {
   static navigationOptions = {
@@ -15,8 +16,27 @@ export default class DisplaySettingScreen extends Component {
     }).isRequired,
   };
 
+  state = {
+    settings: {
+      interfaceLanguage: '繁體中文',
+    },
+  };
+
+  handleItemPress = (item) => {
+    switch (item) {
+      case 'interfaceLanguage':
+        break;
+      case 'displayProjectsLanguage':
+        break;
+      case 'displayPostsLanguage':
+        break;
+      default:
+    }
+  };
+
   render() {
     const { navigation } = this.props;
+    const { settings } = this.state;
 
     return (
       <TopScreenView
@@ -28,7 +48,12 @@ export default class DisplaySettingScreen extends Component {
           />
         )}
         fullScreen
-      />
+      >
+        <DisplaySetting
+          settings={settings}
+          onItemPress={this.handleItemPress}
+        />
+      </TopScreenView>
     );
   }
 }
