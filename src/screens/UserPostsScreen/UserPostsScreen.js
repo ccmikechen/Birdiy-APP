@@ -46,6 +46,11 @@ export default class UserPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
+  handleOpenSource = (id) => {
+    const { navigation } = this.props;
+    navigation.push('ProjectDetail', { id });
+  }
+
   handleFollowUser = (id) => {
     const mutation = new FollowUserMutation({ id });
     mutation.commit().catch(() => {});
@@ -78,9 +83,10 @@ export default class UserPostsScreen extends Component {
         >
           <UserPostList
             query={query}
-            onImagePress={this.handleOpenImage}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.actions.show(post)}
+            onImagePress={this.handleOpenImage}
+            onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
             headerPadding
             userId={userId}

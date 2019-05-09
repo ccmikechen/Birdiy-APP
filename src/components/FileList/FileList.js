@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Surface } from 'react-native-paper';
+import { View } from 'react-native';
 
 import FileListItem from '../FileListItem';
 
@@ -13,7 +13,7 @@ const FileList = ({
   onLinkPress,
 }) => (
   files.length === 0 ? null : (
-    <Surface style={styles.container}>
+    <View style={styles.container}>
       {files.map((file, index) => (
         <FileListItem
           key={`file-${index}`}
@@ -21,7 +21,7 @@ const FileList = ({
           onLinkPress={onLinkPress}
         />
       ))}
-    </Surface>
+    </View>
   )
 );
 

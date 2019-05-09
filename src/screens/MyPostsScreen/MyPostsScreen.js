@@ -56,6 +56,11 @@ export default class MyPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
+  handleOpenSource = (id) => {
+    const { navigation } = this.props;
+    navigation.push('ProjectDetail', { id });
+  }
+
   handleEditPost = (post) => {
     const { navigation } = this.props;
     navigation.navigate('EditPostModal', { id: post.id });
@@ -95,9 +100,10 @@ export default class MyPostsScreen extends Component {
         >
           <MyPostList
             query={query}
-            onImagePress={this.handleOpenImage}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.actions.show(post)}
+            onImagePress={this.handleOpenImage}
+            onSourcePress={this.handleOpenSource}
             batchLoad={variables.count}
             headerPadding
             postId={postId}

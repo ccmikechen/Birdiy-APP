@@ -78,7 +78,7 @@ const PostSection = ({
 
       ) : (
         <View style={styles.sourceContainer}>
-          <Text style={styles.source}>
+          <Text style={[styles.source, styles.customSource]}>
             {post.relatedProjectName}
           </Text>
         </View>

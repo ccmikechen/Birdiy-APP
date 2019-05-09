@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
+  header: {
+    backgroundColor: 'transparent',
+  },
   projectImageContainer: {
   },
   projectImage: {
@@ -55,6 +58,7 @@ export default StyleSheet.create({
   intro: {
     fontSize: 16,
     color: TextColor.secondaryDark,
+    lineHeight: 24,
   },
   tipContainer: {
     padding: 20,
@@ -63,5 +67,6 @@ export default StyleSheet.create({
   tip: {
     fontSize: 16,
     color: TextColor.secondaryDark,
+    lineHeight: 24,
   },
 });

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { TextColor, Tertiary } from '../../constants/Colors';
+import { TextColor, Secondary, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -53,8 +53,11 @@ export default StyleSheet.create({
     padding: 10,
   },
   source: {
-    color: Tertiary(900),
+    color: Secondary(900),
     fontSize: 18,
     fontWeight: '600',
+  },
+  customSource: {
+    color: Tertiary(900),
   },
 });

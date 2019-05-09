@@ -86,6 +86,7 @@ export default createBottomTabNavigator({
       tabBarIcon: tabBarIcon('search'),
       tabBarOptions,
     },
+    transitionConfig: noAnimationTransitionConfig,
   }),
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
@@ -99,6 +100,7 @@ export default createBottomTabNavigator({
       tabBarIcon: tabBarIcon('person'),
       tabBarOptions,
     },
+    transitionConfig: noAnimationTransitionConfig,
   }),
 }, {
   tabBarComponent: TabBar,

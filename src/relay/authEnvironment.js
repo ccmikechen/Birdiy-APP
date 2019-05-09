@@ -1,4 +1,4 @@
-import { createSubscriber } from '@absinthe/socket-relay';
+// import { createSubscriber } from '@absinthe/socket-relay';
 import {
   Environment,
   Network,
@@ -11,7 +11,7 @@ import authMiddleware from './middlewares/authMiddleware';
 import uploadMiddleware from './middlewares/uploadMiddleware';
 import { withErrorHandler } from '../errors';
 
-import socket from './socket';
+// import socket from './socket';
 
 export default new Environment({
   network: Network.create(
@@ -19,7 +19,7 @@ export default new Environment({
       authMiddleware,
       uploadMiddleware,
     ])),
-    createSubscriber(socket),
+    //    createSubscriber(socket),
   ),
   store: new Store(new RecordSource()),
 });

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Surface } from 'react-native-paper';
+import { View } from 'react-native';
 
 import MaterialListItem from '../MaterialListItem';
 
@@ -13,7 +13,7 @@ const MaterialList = ({
   onLinkPress,
   onAddPress,
 }) => (
-  <Surface style={styles.container}>
+  <View style={styles.container}>
     {materials.map((material, index) => (
       <MaterialListItem
         key={`material-${index}`}
@@ -22,7 +22,7 @@ const MaterialList = ({
         onAddPress={() => onAddPress(index)}
       />
     ))}
-  </Surface>
+  </View>
 );
 
 MaterialList.propTypes = {

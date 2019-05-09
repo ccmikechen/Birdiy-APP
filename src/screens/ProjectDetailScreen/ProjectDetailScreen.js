@@ -202,10 +202,11 @@ export default class ProjectDetailScreen extends Component {
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
-            title={project.name}
             onBack={() => navigation.goBack()}
+            style={styles.header}
           />
         )}
+        headerPadding={false}
         animatedScroll
         loading={loading}
       >

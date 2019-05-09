@@ -21,7 +21,6 @@ export default StyleSheet.create({
   amountContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-end',
     paddingRight: 5,
   },
   amount: {

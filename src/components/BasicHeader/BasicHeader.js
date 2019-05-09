@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   Text,
+  ViewPropTypes,
 } from 'react-native';
 import { Icon } from 'expo';
 
@@ -49,8 +50,9 @@ const BasicHeader = ({
   leftButton,
   centerComponent,
   rightButton,
+  style,
 }) => (
-  <View style={styles.container}>
+  <View style={[styles.container, style]}>
     {leftButton && (
       <View style={styles.leftButtonContainer}>
         <TouchableOpacity
@@ -66,11 +68,7 @@ const BasicHeader = ({
       </View>
     )}
     {centerComponent && (
-      <View style={[
-        styles.centerComponentContainer,
-        rightButton ? null : styles.centerComponentPadding,
-      ]}
-      >
+      <View style={styles.centerComponentContainer}>
         {
           typeof centerComponent === 'function'
             ? centerComponent()
@@ -111,12 +109,14 @@ BasicHeader.propTypes = {
     rightButtonShape,
     PropTypes.arrayOf(rightButtonShape),
   ]),
+  style: ViewPropTypes.style,
 };
 
 BasicHeader.defaultProps = {
   leftButton: null,
   centerComponent: null,
   rightButton: null,
+  style: {},
 };
 
 export default BasicHeader;

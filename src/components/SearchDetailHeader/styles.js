@@ -6,5 +6,6 @@ export default StyleSheet.create({
   searchBar: {
     height: Size.searchBarHeight,
     marginRight: 5,
+    elevation: 2,
   },
 });

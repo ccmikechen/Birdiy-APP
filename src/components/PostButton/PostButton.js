@@ -27,7 +27,7 @@ const PostButton = ({
     </View>
     <View style={styles.textContainer}>
       <Text style={[styles.text, { color }]}>
-        分享 / 投稿
+        建立專案 / 投稿
       </Text>
     </View>
   </TouchableOpacity>

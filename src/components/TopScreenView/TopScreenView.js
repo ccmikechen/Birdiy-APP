@@ -21,11 +21,13 @@ export default class TopScreenView extends Component {
     navigation: PropTypes.shape({
       setParams: PropTypes.func.isRequired,
     }).isRequired,
+    headerPadding: PropTypes.bool,
   };
 
   static defaultProps = {
     children: null,
     loading: false,
+    headerPadding: true,
   };
 
   componentDidMount() {
@@ -34,14 +36,14 @@ export default class TopScreenView extends Component {
   }
 
   render() {
-    const { children, loading } = this.props;
+    const { children, loading, headerPadding } = this.props;
 
     return (
       <SimpleScreenView {...this.props}>
         <TriggerScrollView
           keyboardShouldPersistTaps="always"
         >
-          <View style={styles.paddingView} />
+          <View style={headerPadding ? styles.paddingView : styles.statusBarPaddingView} />
           {loading ? <LoadingIndicator /> : children}
         </TriggerScrollView>
       </SimpleScreenView>

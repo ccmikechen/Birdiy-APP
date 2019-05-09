@@ -6,10 +6,10 @@ export default StyleSheet.create({
   container: {
     borderBottomWidth: 1,
     borderColor: Tertiary(100),
-    marginBottom: 10,
-    elevation: 2,
+    marginBottom: 5,
   },
   imageContainer: {
+    marginTop: 5,
   },
   image: {
     width: '100%',
@@ -28,7 +28,8 @@ export default StyleSheet.create({
     paddingTop: 0,
   },
   content: {
-    fontSize: 14,
-    color: TextColor.secondaryDark,
+    fontSize: 15,
+    color: TextColor.sectionTitle,
+    lineHeight: 26,
   },
 });

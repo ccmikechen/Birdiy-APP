@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native';
-import { Surface } from 'react-native-paper';
 
 import styles from './styles';
 
 const MethodListItem = ({ method, order }) => (
-  <Surface style={styles.container}>
+  <View style={styles.container}>
     {method.image && (
       <View style={styles.imageContainer}>
         <Image
@@ -25,7 +24,7 @@ const MethodListItem = ({ method, order }) => (
         {method.content}
       </Text>
     </View>
-  </Surface>
+  </View>
 );
 
 MethodListItem.propTypes = {
