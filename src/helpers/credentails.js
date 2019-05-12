@@ -40,8 +40,16 @@ export const getTokens = async () => {
     }
 
     try {
-      const { response } = await new RefreshSessionMutation(refreshToken).commit();
-      const { refreshSession: { accessToken: newAccessToken } } = response;
+      const {
+        response: { refreshSession },
+      } = await new RefreshSessionMutation(refreshToken).commit();
+
+      if (!refreshSession) {
+        await clearTokens();
+        return null;
+      }
+
+      const { accessToken: newAccessToken } = refreshSession;
       await setTokens(newAccessToken, refreshToken);
       return { accessToken: newAccessToken, refreshToken };
     } catch (e) {

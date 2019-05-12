@@ -23,7 +23,7 @@ export default middlewares => async (
   ));
   await Promise.all(promises);
 
-  const response = await fetch(`http://${ENDPOINT}/api`, request);
+  const response = await fetch(`${ENDPOINT}/api`, request);
   const json = await response.json();
 
   return json;
