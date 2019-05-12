@@ -16,6 +16,8 @@ import { showLoginFailedAlert } from '../../helpers/alert';
 
 import { Primary } from '../../constants/Colors';
 
+import config from '../../configs';
+
 import styles from './styles';
 
 export default class LoginScreen extends Component {
@@ -33,11 +35,9 @@ export default class LoginScreen extends Component {
   };
 
   handleFacebookLogin = async () => {
-    const appID = process.env.FACEBOOK_APP_ID;
-
     try {
       const { token } = await Facebook.logInWithReadPermissionsAsync(
-        appID, { permissions: [] },
+        config.FACEBOOK_APP_ID, { permissions: [] },
       );
 
       new LoginMutation({

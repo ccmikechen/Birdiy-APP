@@ -1,4 +1,6 @@
-const ENDPOINT = process.env.BIRDIY_SERVER_HOST || 'localhost';
+import config from '../configs';
+
+const ENDPOINT = config.BIRDIY_SERVER_HOST || 'localhost';
 
 export default middlewares => async (
   operation,

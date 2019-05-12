@@ -1,7 +1,7 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
-    plugins: ['relay', 'inline-dotenv'],
+    presets: ['babel-preset-expo', 'module:react-native-dotenv'],
+    plugins: ['relay'],
   };
 };
