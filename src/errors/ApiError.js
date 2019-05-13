@@ -5,15 +5,15 @@ export default class ApiError extends Error {
     this.payload = payload;
   }
 
-  get code() {
+  getCode() {
     return this.code;
   }
 
-  get message() {
+  getMessage() {
     return this.message;
   }
 
-  get payload() {
+  getPayload() {
     return this.payload;
   }
 }

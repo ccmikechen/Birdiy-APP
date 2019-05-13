@@ -80,6 +80,7 @@ export default class CreateProjectScreen extends Component {
     mutation.commit()
       .then(() => {
         navigation.goBack();
+        navigation.navigate('Profile');
         showSaveProjectSuccessAlert();
       })
       .catch(this.handleSaveError);
@@ -91,7 +92,7 @@ export default class CreateProjectScreen extends Component {
     const mutation = new CreateProjectMutation(project);
 
     mutation.commit()
-      .then(({ response }) => {
+      .then((response) => {
         const { id } = response.createProject.project;
 
         navigation.goBack();
