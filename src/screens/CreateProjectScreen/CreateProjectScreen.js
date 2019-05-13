@@ -23,6 +23,12 @@ export default class CreateProjectScreen extends Component {
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    screenProps: PropTypes.shape({
+      spinner: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
     query: PropTypes.shape({
       categories: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.shape({
@@ -87,9 +93,9 @@ export default class CreateProjectScreen extends Component {
   };
 
   handleSubmit = () => {
-    const { navigation } = this.props;
+    const { navigation, screenProps: { spinner } } = this.props;
     const { project } = this.state;
-    const mutation = new CreateProjectMutation(project);
+    const mutation = new CreateProjectMutation(project).setHook(spinner);
 
     mutation.commit()
       .then((response) => {

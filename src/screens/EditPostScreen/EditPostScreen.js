@@ -25,6 +25,12 @@ export default class EditPostScreen extends Component {
       navigate: PropTypes.func.isRequired,
       getParam: PropTypes.func.isRequired,
     }).isRequired,
+    screenProps: PropTypes.shape({
+      spinner: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
     query: PropTypes.shape({
       post: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -88,10 +94,10 @@ export default class EditPostScreen extends Component {
   };
 
   handleSave = () => {
-    const { navigation } = this.props;
+    const { navigation, screenProps: { spinner } } = this.props;
     const { post } = this.state;
 
-    const mutation = new EditPostMutation(post);
+    const mutation = new EditPostMutation(post).setHook(spinner);
 
     mutation.commit()
       .then((res) => {

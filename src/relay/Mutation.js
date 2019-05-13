@@ -84,6 +84,12 @@ export default class Mutation {
     return this.constructor.mutationConfig;
   }
 
+  setHook = (obj) => {
+    this.hookObject = obj;
+
+    return this;
+  };
+
   commit = () => {
     const { mutation, inputName, auth } = this.constructor;
 
@@ -101,6 +107,9 @@ export default class Mutation {
     }
 
     const mutationConfig = this.getMutationConfig();
+    if (this.hookObject) {
+      this.hookObject.on();
+    }
 
     return new Promise((resolve, reject) => commitMutation(
       auth ? authEnvironment : environment,
@@ -114,6 +123,9 @@ export default class Mutation {
         },
         uploadables: this.uploadables,
         onCompleted: (response, errors) => {
+          if (this.hookObject) {
+            this.hookObject.off();
+          }
           const parsedError = errors && parseError(errors[0]);
 
           if (parsedError) {
@@ -122,7 +134,12 @@ export default class Mutation {
 
           return resolve(response);
         },
-        onError: error => reject(parseError(error)),
+        onError: (error) => {
+          if (this.hookObject) {
+            this.hookObject.off();
+          }
+          reject(parseError(error));
+        },
       },
     ));
   };

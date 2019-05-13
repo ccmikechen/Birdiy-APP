@@ -7,6 +7,8 @@ import {
   Icon,
 } from 'expo';
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
 import AppNavigator from './navigation/AppNavigator';
 
 const styles = StyleSheet.create({
@@ -19,6 +21,7 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   state = {
     isLoadingComplete: false,
+    isSpinnerVisible: false,
   };
 
   loadResourcesAsync = async () => Promise.all([
@@ -36,12 +39,33 @@ export default class App extends Component {
     this.setState({ isLoadingComplete: true });
   };
 
+  showLoadingSpinner = () => {
+    this.setState({ isSpinnerVisible: true });
+  };
+
+  closeLoadingSpinner = () => {
+    this.setState({ isSpinnerVisible: false });
+  };
+
   render() {
-    const { isLoadingComplete } = this.state;
+    const {
+      isLoadingComplete,
+      isSpinnerVisible,
+    } = this.state;
 
     return isLoadingComplete ? (
       <View style={styles.container}>
-        <AppNavigator />
+        <AppNavigator
+          screenProps={{
+            spinner: {
+              on: this.showLoadingSpinner,
+              off: this.closeLoadingSpinner,
+            },
+          }}
+        />
+        <Spinner
+          visible={isSpinnerVisible}
+        />
       </View>
     ) : (
       <AppLoading

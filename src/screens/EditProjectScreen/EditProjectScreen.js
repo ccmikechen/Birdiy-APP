@@ -65,6 +65,12 @@ export default class EditProjectScreen extends Component {
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    screenProps: PropTypes.shape({
+      spinner: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
     query: PropTypes.shape({
       project: PropTypes.shape({
         id: PropTypes.string,
@@ -187,10 +193,14 @@ export default class EditProjectScreen extends Component {
   };
 
   deleteProject = () => {
-    const { query, navigation } = this.props;
+    const {
+      query,
+      navigation,
+      screenProps: { spinner },
+    } = this.props;
     const mutation = new DeleteProjectMutation({
       id: query.project.id,
-    });
+    }).setHook(spinner);
 
     mutation.commit()
       .then(() => {
@@ -218,7 +228,7 @@ export default class EditProjectScreen extends Component {
   };
 
   getEditProjectMutation = () => {
-    const { query } = this.props;
+    const { query, screenProps: { spinner } } = this.props;
     const {
       projectImage,
       projectName,
@@ -239,7 +249,7 @@ export default class EditProjectScreen extends Component {
       materials,
       files,
       methods,
-    });
+    }).setHook(spinner);
   };
 
   handleSavingError = () => {
@@ -247,10 +257,14 @@ export default class EditProjectScreen extends Component {
   };
 
   handlePublish = () => {
-    const { query, navigation } = this.props;
+    const {
+      query,
+      navigation,
+      screenProps: { spinner },
+    } = this.props;
     const mutation = new PublishProjectMutation({
       id: query.project.id,
-    });
+    }).setHook(spinner);
 
     mutation.commit()
       .then((res) => {
@@ -267,10 +281,14 @@ export default class EditProjectScreen extends Component {
   };
 
   handleUnpublish = () => {
-    const { query, navigation } = this.props;
+    const {
+      query,
+      navigation,
+      screenProps: { spinner },
+    } = this.props;
     const mutation = new UnpublishProjectMutation({
       id: query.project.id,
-    });
+    }).setHook(spinner);
 
     mutation.commit()
       .then((res) => {

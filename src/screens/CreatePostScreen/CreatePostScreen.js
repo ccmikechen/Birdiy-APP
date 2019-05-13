@@ -24,6 +24,12 @@ export default class CreatePostScreen extends Component {
       navigate: PropTypes.func.isRequired,
       getParam: PropTypes.func.isRequired,
     }).isRequired,
+    screenProps: PropTypes.shape({
+      spinner: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -50,9 +56,9 @@ export default class CreatePostScreen extends Component {
   };
 
   handleSubmit = () => {
-    const { navigation } = this.props;
+    const { navigation, screenProps: { spinner } } = this.props;
     const { post } = this.state;
-    const mutation = new CreatePostMutation(post);
+    const mutation = new CreatePostMutation(post).setHook(spinner);
 
     mutation.commit()
       .then((res) => {

@@ -29,21 +29,31 @@ export default class LoginScreen extends Component {
     navigation: PropTypes.shape({
       goBack: PropTypes.func.isRequired,
     }).isRequired,
+    screenProps: PropTypes.shape({
+      spinner: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
   };
 
   static defaultProps = {
   };
 
   handleFacebookLogin = async () => {
+    const { screenProps: { spinner } } = this.props;
+
     try {
       const { token } = await Facebook.logInWithReadPermissionsAsync(
         config.FACEBOOK_APP_ID, { permissions: [] },
       );
 
-      new LoginMutation({
+      const mutation = new LoginMutation({
         method: 'facebook',
         credential: token,
-      }).commit()
+      }).setHook(spinner);
+
+      mutation.commit()
         .then(this.handleLoginResponse)
         .catch(() => {});
     } catch (e) {

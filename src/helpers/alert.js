@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
 
 export const showAlert = (message, title = '', options) => (
-  Alert.alert(title, message, options)
+  setTimeout(() => Alert.alert(title, message, options), 100)
 );
 
 export const showLoginAlert = () => (
