@@ -137,6 +137,11 @@ export default class DrawerScreen extends Component {
         onPress={this.navigateToScreen('Home')}
       />
       <DrawerMenuItem
+        title="分類"
+        renderIcon={this.renderIcon(Icon.Entypo, 'grid')}
+        onPress={this.navigateToScreen('AllCategoriesModal')}
+      />
+      <DrawerMenuItem
         title="升級VIP"
         renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'crown')}
         onPress={this.navigateToScreen('Home')}

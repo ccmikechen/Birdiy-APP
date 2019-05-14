@@ -18,6 +18,7 @@ const SelectableCategoriesTable = ({
   categories,
   onSelect,
   selection,
+  multipleSelect,
 }) => (
   <FlatGrid
     itemDimension={DIMENSION}
@@ -34,7 +35,9 @@ const SelectableCategoriesTable = ({
           source={item.image ? { uri: item.image } : null}
           style={[
             styles.imageBackground,
-            selection[index] ? styles.selection : null,
+            !multipleSelect || selection[index]
+              ? styles.selection
+              : null,
           ]}
           imageStyle={styles.image}
         >
@@ -51,14 +54,17 @@ SelectableCategoriesTable.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string,
-  })).isRequired,
+  })),
   onSelect: PropTypes.func,
   selection: PropTypes.arrayOf(PropTypes.bool),
+  multipleSelect: PropTypes.bool,
 };
 
 SelectableCategoriesTable.defaultProps = {
+  categories: [],
   onSelect: () => {},
   selection: [],
+  multipleSelect: false,
 };
 
 export default SelectableCategoriesTable;

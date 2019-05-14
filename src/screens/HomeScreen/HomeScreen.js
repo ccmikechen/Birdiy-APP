@@ -45,14 +45,27 @@ export default class HomeScreen extends Component {
     navigation.navigate('Projects');
   };
 
+  handleCategoryPress = (category) => {
+    const { navigation } = this.props;
+    navigation.navigate('Projects', { categories: [category.name] });
+  };
+
+  handleMoreCategory = () => {
+    const { navigation } = this.props;
+    navigation.navigate('AllCategoriesModal');
+  };
+
   renderHotCategories = () => {
     const { query } = this.props;
 
     return (
       <ExtensibleSectionContent
-        onMorePress={() => {}}
+        onMorePress={this.handleMoreCategory}
         renderContent={() => (
-          <CategoriesTable query={query} />
+          <CategoriesTable
+            query={query}
+            onCategoryPress={this.handleCategoryPress}
+          />
         )}
       />
     );
@@ -87,7 +100,6 @@ export default class HomeScreen extends Component {
             onOpenCart={() => navigation.push('Cart')}
           />
         )}
-        animatedScroll
         loading={loading}
       >
         <HomeSection

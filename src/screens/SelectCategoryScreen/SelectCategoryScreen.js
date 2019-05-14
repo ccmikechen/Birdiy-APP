@@ -100,6 +100,7 @@ export default class SelectCategoryScreen extends Component {
             categories={categories}
             onSelect={this.handleSelect}
             selection={selection}
+            multipleSelect={multipleSelect}
           />
         </ScrollView>
       </TopScreenView>

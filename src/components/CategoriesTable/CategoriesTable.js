@@ -14,7 +14,7 @@ import styles from './styles';
 const SPACING = 5;
 const DIMENSION = Dimensions.get('window').width / 3 - SPACING * 2;
 
-const CategoriesTable = ({ categories, onPressCategory }) => (
+const CategoriesTable = ({ categories, onCategoryPress }) => (
   <FlatGrid
     itemDimension={DIMENSION}
     spacing={SPACING}
@@ -23,7 +23,7 @@ const CategoriesTable = ({ categories, onPressCategory }) => (
     renderItem={({ item }) => (
       <TouchableOpacity
         style={styles.itemContainer}
-        onPress={() => onPressCategory(item)}
+        onPress={() => onCategoryPress(item)}
       >
         <ImageBackground
           source={item.image ? { uri: item.image } : null}
@@ -42,11 +42,11 @@ CategoriesTable.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string,
   })).isRequired,
-  onPressCategory: PropTypes.func,
+  onCategoryPress: PropTypes.func,
 };
 
 CategoriesTable.defaultProps = {
-  onPressCategory: () => {},
+  onCategoryPress: () => {},
 };
 
 export default CategoriesTable;
