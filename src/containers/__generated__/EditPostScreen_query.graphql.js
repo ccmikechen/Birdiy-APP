@@ -19,6 +19,7 @@ export type EditPostScreen_query = {|
     +relatedProject: ?{|
       +id: string,
       +name: string,
+      +image: ?string,
     |},
     +photos: ?$ReadOnlyArray<?{|
       +id: string,
@@ -35,6 +36,13 @@ var v0 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "image",
   "args": null,
   "storageKey": null
 };
@@ -105,7 +113,8 @@ return {
               "name": "name",
               "args": null,
               "storageKey": null
-            }
+            },
+            (v1/*: any*/)
           ]
         },
         {
@@ -118,13 +127,7 @@ return {
           "plural": true,
           "selections": [
             (v0/*: any*/),
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "image",
-              "args": null,
-              "storageKey": null
-            }
+            (v1/*: any*/)
           ]
         }
       ]
@@ -133,5 +136,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5a0822c16bafda0f139d94b46bc13682';
+(node/*: any*/).hash = 'bf985db5e097f3645c01894074801b1c';
 module.exports = node;

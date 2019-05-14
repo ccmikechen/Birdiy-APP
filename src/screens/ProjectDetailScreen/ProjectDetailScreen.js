@@ -166,6 +166,7 @@ export default class ProjectDetailScreen extends Component {
     const relatedProject = {
       type: 'project',
       name: project.name,
+      image: project.image,
       id: project.id,
     };
 

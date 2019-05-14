@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  Image,
-  ListView,
-  TouchableOpacity,
-} from 'react-native';
-import { Icon } from 'expo';
-import { Surface } from 'react-native-paper';
+import { View, ListView } from 'react-native';
 
 import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
-import ActionMenuButton from '../ActionMenuButton';
 import MyProjectActions from '../MyProjectActions';
-
-import Size from '../../constants/Size';
+import HorProjectSection from '../HorProjectSection';
 
 import styles from './styles';
 
@@ -66,70 +56,20 @@ export default class UserProjectsScene extends Component {
   }
 
   renderEditableRow = (project) => {
-    const {
-      onOpenProject,
-      onEditProject,
-      onDeleteProject,
-    } = this.props;
+    const { onOpenProject, onEditProject } = this.props;
 
     return (
-      <Surface style={styles.rowContainer}>
-        <TouchableOpacity
-          style={styles.touchable}
-          onPress={() => (
-            project.published
-              ? onOpenProject(project.id)
-              : onEditProject(project.id)
-          )}
-        >
-          <View style={styles.imageContainer}>
-            {project.image ? (
-              <Image
-                source={{ uri: project.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Size.userProjectListImageSize / 2}
-                color="#ffffff"
-              />
-            )}
-          </View>
-          <View style={styles.contentContainer}>
-            <View style={styles.topContentContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.name}>
-                  {project.name}
-                </Text>
-              </View>
-              <View style={styles.optionContainer}>
-                <ActionMenuButton
-                  onPress={() => this.actions.show(project)}
-                />
-              </View>
-            </View>
-            <View style={styles.bottomContentContainer}>
-              <View style={styles.statusContainer}>
-                {project.published ? (
-                  <Text style={[styles.status, styles.publishedStatus]}>
-                    公開
-                  </Text>
-                ) : (
-                  <Text style={[styles.status, styles.draftStatus]}>
-                    草稿
-                  </Text>
-                )}
-              </View>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <MyProjectActions
-          ref={(ref) => { this.actions = ref; }}
-          onEditProject={({ id }) => onEditProject(id)}
-          onDeleteProject={({ id }) => onDeleteProject(id)}
-        />
-      </Surface>
+      <HorProjectSection
+        project={project}
+        onPress={() => (
+          project.published
+            ? onOpenProject(project.id)
+            : onEditProject(project.id)
+        )}
+        hasStatus
+        hasActions
+        onActionButtonPress={() => this.actions.show(project)}
+      />
     );
   };
 
@@ -137,41 +77,21 @@ export default class UserProjectsScene extends Component {
     const { onOpenProject } = this.props;
 
     return (
-      <Surface style={styles.rowContainer}>
-        <TouchableOpacity
-          style={styles.touchable}
-          onPress={() => onOpenProject(project.id)}
-        >
-          <View style={styles.imageContainer}>
-            {project.image ? (
-              <Image
-                source={{ uri: project.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Size.userProjectListImageSize / 2}
-                color="#ffffff"
-              />
-            )}
-          </View>
-          <View style={styles.contentContainer}>
-            <View style={styles.topContentContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.name}>
-                  {project.name}
-                </Text>
-              </View>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Surface>
+      <HorProjectSection
+        project={project}
+        onPress={() => onOpenProject(project.id)}
+      />
     );
   };
 
   render() {
-    const { onMorePress, onAddPress, editable } = this.props;
+    const {
+      onMorePress,
+      onAddPress,
+      editable,
+      onEditProject,
+      onDeleteProject,
+    } = this.props;
     const { dataSource } = this.state;
 
     return (
@@ -196,6 +116,11 @@ export default class UserProjectsScene extends Component {
             onPress={onMorePress}
           />
         </View>
+        <MyProjectActions
+          ref={(ref) => { this.actions = ref; }}
+          onEditProject={({ id }) => onEditProject(id)}
+          onDeleteProject={({ id }) => onDeleteProject(id)}
+        />
       </View>
     );
   }

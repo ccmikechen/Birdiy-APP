@@ -10,7 +10,7 @@ export default StyleSheet.create({
     width: '100%',
     marginBottom: 20,
   },
-  projectSelectorContainer: {
+  relatedProjectContainer: {
   },
   textInput: {
     borderWidth: 1,

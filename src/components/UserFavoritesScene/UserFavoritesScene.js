@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  Image,
-  ListView,
-  TouchableOpacity,
-} from 'react-native';
-import { Icon } from 'expo';
-import { Surface } from 'react-native-paper';
+import { View, ListView } from 'react-native';
 
 import MoreButton from '../MoreButton';
-
-import Size from '../../constants/Size';
+import HorProjectSection from '../HorProjectSection';
 
 import styles from './styles';
 
@@ -60,39 +51,11 @@ export default class UserFavoritesScene extends Component {
     const { onOpenProject } = this.props;
 
     return (
-      <Surface style={styles.rowContainer}>
-        <TouchableOpacity
-          style={styles.touchable}
-          onPress={() => onOpenProject(project.id)}
-        >
-          <View style={styles.imageContainer}>
-            {project.image ? (
-              <Image
-                source={{ uri: project.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Size.userProjectListImageSize / 2}
-                color="#ffffff"
-              />
-            )}
-          </View>
-          <View style={styles.infoContainer}>
-            <View style={styles.nameContainer}>
-              <Text style={styles.name}>
-                {project.name}
-              </Text>
-            </View>
-            <View style={styles.authorContainer}>
-              <Text style={styles.author}>
-                {`by ${project.author.name}`}
-              </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Surface>
+      <HorProjectSection
+        project={project}
+        onPress={() => onOpenProject(project.id)}
+        hasAuthor
+      />
     );
   };
 

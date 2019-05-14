@@ -18,6 +18,7 @@ const EditPostScreenFragmentContainer = createFragmentContainer(
         relatedProject {
           id
           name
+          image
         }
         photos {
           id

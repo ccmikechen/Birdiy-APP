@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 04a9e643fbaa69d706b85b4f1f6c4e2a
+ * @relayHash b4dd283c5e5dd49015bb21268aa2cce4
  */
 
 /* eslint-disable */
@@ -39,6 +39,7 @@ fragment EditPostScreen_query on RootQueryType {
     relatedProject {
       id
       name
+      image
     }
     photos {
       id
@@ -61,6 +62,13 @@ v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "image",
   "args": null,
   "storageKey": null
 };
@@ -139,7 +147,8 @@ return {
                 "name": "name",
                 "args": null,
                 "storageKey": null
-              }
+              },
+              (v2/*: any*/)
             ]
           },
           {
@@ -152,13 +161,7 @@ return {
             "plural": true,
             "selections": [
               (v1/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "image",
-                "args": null,
-                "storageKey": null
-              }
+              (v2/*: any*/)
             ]
           }
         ]
@@ -169,7 +172,7 @@ return {
     "operationKind": "query",
     "name": "EditPostScreenQuery",
     "id": null,
-    "text": "query EditPostScreenQuery(\n  $id: ID!\n) {\n  ...EditPostScreen_query\n}\n\nfragment EditPostScreen_query on RootQueryType {\n  post(id: $id) {\n    id\n    message\n    relatedProjectType\n    relatedProjectName\n    relatedProject {\n      id\n      name\n    }\n    photos {\n      id\n      image\n    }\n  }\n}\n",
+    "text": "query EditPostScreenQuery(\n  $id: ID!\n) {\n  ...EditPostScreen_query\n}\n\nfragment EditPostScreen_query on RootQueryType {\n  post(id: $id) {\n    id\n    message\n    relatedProjectType\n    relatedProjectName\n    relatedProject {\n      id\n      name\n      image\n    }\n    photos {\n      id\n      image\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

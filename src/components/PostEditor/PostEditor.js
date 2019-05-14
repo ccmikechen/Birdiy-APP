@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { View, KeyboardAvoidingView } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
 
-import RelatedProjectSelector from '../RelatedProjectSelector';
 import EditSection from '../EditSection';
 import PureTextInput from '../PureTextInput';
+import HorProjectSection from '../HorProjectSection';
 import MultipleImageUploadView from '../MultipleImageUploadView';
 
 import styles from './styles';
@@ -75,11 +75,29 @@ export default class PostEditor extends Component {
             />
           </EditSection>
           <EditSection title="關聯專案">
-            <View style={styles.projectSelectorContainer}>
-              <RelatedProjectSelector
-                project={relatedProject}
-                onChange={project => onChange({ relatedProject: project })}
-              />
+            <View style={styles.relatedProjectContainer}>
+              {relatedProject.type === 'custom' ? (
+                <PureTextInput
+                  style={styles.textInput}
+                  value={relatedProject.name}
+                  placeholder="輸入自訂專案名稱"
+                  onChangeText={(value) => {
+                    onChange({
+                      relatedProject: {
+                        type: 'custom',
+                        name: value,
+                        id: null,
+                      },
+                    });
+                  }}
+                  maxLength={20}
+                  counter
+                />
+              ) : (
+                <HorProjectSection
+                  project={relatedProject}
+                />
+              )}
             </View>
           </EditSection>
           <EditSection title="照片">

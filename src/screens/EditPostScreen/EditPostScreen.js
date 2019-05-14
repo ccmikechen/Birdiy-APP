@@ -40,6 +40,7 @@ export default class EditPostScreen extends Component {
         relatedProject: PropTypes.shape({
           id: PropTypes.string.isRequired,
           name: PropTypes.string.isRequired,
+          image: PropTypes.string,
         }),
         photos: PropTypes.arrayOf(PropTypes.shape({
           id: PropTypes.string.isRequired,
@@ -76,6 +77,7 @@ export default class EditPostScreen extends Component {
         relatedProject: post.relatedProjectType === 'project' ? {
           type: 'project',
           name: post.relatedProject.name,
+          image: post.relatedProject.image,
           id: post.relatedProject.id,
         } : {
           type: 'custom',
