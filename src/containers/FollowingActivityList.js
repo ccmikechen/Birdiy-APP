@@ -4,15 +4,18 @@ import { graphql, createPaginationContainer } from 'react-relay';
 import { View } from 'react-native';
 
 import LoadingIndicator from '../components/LoadingIndicator';
-import PostList from '../components/PostList';
+import ActivityList from '../components/ActivityList';
 
-class FollowingPostList extends Component {
+class FollowingActivityList extends Component {
   static propTypes = {
     query: PropTypes.shape({
       viewer: PropTypes.shape({
         following: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
-            node: PropTypes.object,
+            node: PropTypes.shape({
+              project: PropTypes.object,
+              post: PropTypes.object,
+            }),
           })),
         }),
       }),
@@ -37,6 +40,21 @@ class FollowingPostList extends Component {
     relay.loadMore(batchLoad);
   }
 
+  getSections = () => {
+    const { query } = this.props;
+
+    return query.viewer.following.edges.map(({ node }) => {
+      if (node.project) {
+        return { type: 'project', data: node.project };
+      }
+      if (node.post) {
+        return { type: 'post', data: node.post };
+      }
+
+      return { type: null };
+    });
+  };
+
   render() {
     const { query, relay } = this.props;
 
@@ -48,12 +66,10 @@ class FollowingPostList extends Component {
       );
     }
 
-    const data = query.viewer.following.edges.map(({ node }) => node);
-
     return query ? (
-      <PostList
+      <ActivityList
         {...this.props}
-        posts={data}
+        sections={this.getSections()}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
       />
@@ -62,22 +78,27 @@ class FollowingPostList extends Component {
 }
 
 export default createPaginationContainer(
-  FollowingPostList,
+  FollowingActivityList,
   {
     query: graphql`
-      fragment FollowingPostList_query on RootQueryType {
+      fragment FollowingActivityList_query on RootQueryType {
         viewer {
-          following: followingUserPosts(
+          following: followingUserActivities(
             first: $count,
             after: $followingCursor
-          ) @connection(key: "FollowingPostList_following") {
+          ) @connection(key: "FollowingActivityList_following") {
             pageInfo {
               hasNextPage
               endCursor
             }
             edges {
               node {
-                ...PostSection_post
+                project {
+                  ...ProjectActivitySection_project
+                }
+                post {
+                  ...PostSection_post
+                }
               }
             }
           }
@@ -100,11 +121,11 @@ export default createPaginationContainer(
     }),
     variables: { followingCursor: null },
     query: graphql`
-      query FollowingPostListPaginationQuery (
+      query FollowingActivityListPaginationQuery (
         $count: Int!,
         $followingCursor: String
       ) {
-        ...FollowingPostList_query
+        ...FollowingActivityList_query
       }
     `,
   },

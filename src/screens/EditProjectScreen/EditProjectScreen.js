@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   Text,
+  StatusBar,
 } from 'react-native';
 import { Button } from 'react-native-paper';
 import { clone, cloneDeep } from 'lodash';
@@ -471,29 +472,32 @@ export default class EditProjectScreen extends Component {
     const { navigation, loading } = this.props;
 
     return (
-      <TabSectionScreenView
-        navigation={navigation}
-        tabs={TABS}
-        renderHeader={() => (
-          <NormalBackHeader
-            onBack={() => navigation.goBack()}
-            title="編輯專案"
-            rightButton={[{
-              icon: 'delete',
-              color: '#666666',
-              onPress: this.handleDelete,
-            }, {
-              icon: 'save',
-              color: '#666666',
-              onPress: this.handleSave,
-            }]}
-          />
-        )}
-        renderSection={this.renderSection}
-        renderFooter={this.renderFooter}
-        fullScreen
-        loading={loading}
-      />
+      <View style={{ flex: 1 }}>
+        <StatusBar hidden={false} />
+        <TabSectionScreenView
+          navigation={navigation}
+          tabs={TABS}
+          renderHeader={() => (
+            <NormalBackHeader
+              onBack={() => navigation.goBack()}
+              title="編輯專案"
+              rightButton={[{
+                icon: 'delete',
+                color: '#666666',
+                onPress: this.handleDelete,
+              }, {
+                icon: 'save',
+                color: '#666666',
+                onPress: this.handleSave,
+              }]}
+            />
+          )}
+          renderSection={this.renderSection}
+          renderFooter={this.renderFooter}
+          fullScreen
+          loading={loading}
+        />
+      </View>
     );
   }
 }

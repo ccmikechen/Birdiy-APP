@@ -6,8 +6,8 @@ import { Icon } from 'expo';
 import TabsScreenView from '../../components/TabsScreenView';
 import TimelineHeader from '../../components/TimelineHeader';
 import AnimatedAddButton from '../../components/AnimatedAddButton';
-import AllPostList from '../../containers/AllPostList';
-import FollowingPostList from '../../containers/FollowingPostList';
+import AllActivityList from '../../containers/AllActivityList';
+import FollowingActivityList from '../../containers/FollowingActivityList';
 import PostActions from '../../components/PostActions';
 import LoginActions from '../../components/LoginActions';
 
@@ -88,7 +88,7 @@ export default class TimelineScreen extends Component {
     navigation.push('PostImagesModal', { id });
   }
 
-  handleOpenSource = (id) => {
+  handleOpenProject = (id) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id });
   }
@@ -139,21 +139,21 @@ export default class TimelineScreen extends Component {
           animatedScroll
           loading={loading}
         >
-          <AllPostList
+          <AllActivityList
             query={query}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.postActions.show(post)}
             onImagePress={this.handleOpenImage}
-            onSourcePress={this.handleOpenSource}
+            onProjectPress={this.handleOpenProject}
             batchLoad={variables.count}
             headerPadding
           />
-          <FollowingPostList
+          <FollowingActivityList
             query={query}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.postActions.show(post)}
             onImagePress={this.handleOpenImage}
-            onSourcePress={this.handleOpenSource}
+            onProjectPress={this.handleOpenProject}
             batchLoad={variables.count}
             headerPadding
           />

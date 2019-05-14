@@ -3,6 +3,31 @@ schema {
   mutation: RootMutationType
 }
 
+type Activity implements Node {
+  """The ID of an object"""
+  id: ID!
+  insertedAt: Datetime
+  post: Post
+  project: Project
+}
+
+type ActivityConnection {
+  edges: [ActivityEdge]
+  pageInfo: PageInfo!
+}
+
+type ActivityEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: Activity
+}
+
+enum ActivityOrder {
+  NEWEST
+}
+
 input CreatePostInput {
   message: String!
   photos: [PostPhotoInput]
@@ -166,6 +191,7 @@ type Project implements Node {
   methods: [ProjectMethod]
   name: String!
   published: Boolean
+  publishedAt: Datetime
   relatedPostCount: Int
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
@@ -316,6 +342,7 @@ type RootMutationType {
 }
 
 type RootQueryType {
+  allActivities(after: String, before: String, first: Int, last: Int, order: ActivityOrder = NEWEST): ActivityConnection
   allPosts(after: String, before: String, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   allProjectCategories(after: String, before: String, first: Int, last: Int, order: RankOrder = NAME): ProjectCategoryConnection
   allProjects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
@@ -371,6 +398,7 @@ type Viewer implements Profile & Node {
   followerCount: Int
   following: Boolean!
   followingCount: Int
+  followingUserActivities(after: String, before: String, first: Int, last: Int, order: ActivityOrder = NEWEST): ActivityConnection
   followingUserPosts(after: String, before: String, first: Int, last: Int): PostConnection
   followingUsers: [User]
 

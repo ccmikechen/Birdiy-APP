@@ -9,9 +9,10 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type PostSection_post$ref = any;
+type ProjectActivitySection_project$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type FollowingPostList_query$ref: FragmentReference;
-export type FollowingPostList_query = {|
+declare export opaque type FollowingActivityList_query$ref: FragmentReference;
+export type FollowingActivityList_query = {|
   +viewer: ?{|
     +following: ?{|
       +pageInfo: {|
@@ -20,19 +21,24 @@ export type FollowingPostList_query = {|
       |},
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
-          +$fragmentRefs: PostSection_post$ref
+          +project: ?{|
+            +$fragmentRefs: ProjectActivitySection_project$ref
+          |},
+          +post: ?{|
+            +$fragmentRefs: PostSection_post$ref
+          |},
         |}
       |}>,
     |}
   |},
-  +$refType: FollowingPostList_query$ref,
+  +$refType: FollowingActivityList_query$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "FollowingPostList_query",
+  "name": "FollowingActivityList_query",
   "type": "RootQueryType",
   "metadata": {
     "connection": [
@@ -72,10 +78,10 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": "following",
-          "name": "__FollowingPostList_following_connection",
+          "name": "__FollowingActivityList_following_connection",
           "storageKey": null,
           "args": null,
-          "concreteType": "PostConnection",
+          "concreteType": "ActivityConnection",
           "plural": false,
           "selections": [
             {
@@ -109,7 +115,7 @@ const node/*: ReaderFragment*/ = {
               "name": "edges",
               "storageKey": null,
               "args": null,
-              "concreteType": "PostEdge",
+              "concreteType": "ActivityEdge",
               "plural": true,
               "selections": [
                 {
@@ -118,13 +124,40 @@ const node/*: ReaderFragment*/ = {
                   "name": "node",
                   "storageKey": null,
                   "args": null,
-                  "concreteType": "Post",
+                  "concreteType": "Activity",
                   "plural": false,
                   "selections": [
                     {
-                      "kind": "FragmentSpread",
-                      "name": "PostSection_post",
-                      "args": null
+                      "kind": "LinkedField",
+                      "alias": null,
+                      "name": "project",
+                      "storageKey": null,
+                      "args": null,
+                      "concreteType": "Project",
+                      "plural": false,
+                      "selections": [
+                        {
+                          "kind": "FragmentSpread",
+                          "name": "ProjectActivitySection_project",
+                          "args": null
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "LinkedField",
+                      "alias": null,
+                      "name": "post",
+                      "storageKey": null,
+                      "args": null,
+                      "concreteType": "Post",
+                      "plural": false,
+                      "selections": [
+                        {
+                          "kind": "FragmentSpread",
+                          "name": "PostSection_post",
+                          "args": null
+                        }
+                      ]
                     },
                     {
                       "kind": "ScalarField",
@@ -151,5 +184,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'aaf707916bb5bb38cc6835828f7f661e';
+(node/*: any*/).hash = 'e0bb7fd87dd979c417bc57be34196195';
 module.exports = node;

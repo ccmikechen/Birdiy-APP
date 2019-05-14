@@ -16,107 +16,91 @@ import Size from '../../constants/Size';
 
 import styles from './styles';
 
-const PostSection = ({
-  post,
+const ProjectActivitySection = ({
+  project,
   onUserPress,
   onActionButtonPress,
-  onImagePress,
   onProjectPress,
 }) => (
   <Surface style={styles.container}>
     <View style={styles.profileContainer}>
       <Avatar
-        image={post.author.image}
-        onPress={() => onUserPress(post.author.id)}
-        size={Size.postProfileImageSize}
-        borderRadius={Size.postProfileImageSize / 2}
+        image={project.author.image}
+        onPress={() => onUserPress(project.author.id)}
+        size={Size.projectProfileImageSize}
+        borderRadius={Size.projectProfileImageSize / 2}
       />
       <View style={styles.infoContainer}>
         <View style={styles.userNameContainer}>
           <Text style={styles.userName}>
-            {post.author.name}
+            {project.author.name}
           </Text>
         </View>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
-            {post.insertedAt}
+            {project.publishedAt}
           </Text>
         </View>
       </View>
       <View style={styles.actionsContainer}>
         <View style={styles.actionButtonContainer}>
-          <ActionMenuButton onPress={() => onActionButtonPress(post)} />
+          <ActionMenuButton onPress={() => onActionButtonPress(project)} />
         </View>
       </View>
     </View>
     <View style={styles.messageContainer}>
       <Text style={styles.message}>
-        {post.message}
+        {'在 '}
+        <Text style={styles.category}>
+          {project.category.name}
+        </Text>
+        {' 建立了新的專案'}
       </Text>
     </View>
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={() => onImagePress(post.id)}
+      onPress={() => onProjectPress(project.id)}
     >
       <ImageView
         style={styles.image}
-        uri={post.thumbnail ? post.thumbnail.image : null}
+        uri={project.image ? project.image : null}
         width={Dimensions.get('window').width - 20}
-        amount={post.photosCount}
       />
     </TouchableOpacity>
-    {
-      post.relatedProjectType === 'project' ? (
-        <TouchableOpacity
-          style={styles.sourceContainer}
-          onPress={() => onProjectPress(post.relatedProject.id)}
-        >
-          <Text style={styles.source}>
-            {post.relatedProject.name}
-          </Text>
-        </TouchableOpacity>
-
-      ) : (
-        <View style={styles.sourceContainer}>
-          <Text style={[styles.source, styles.customSource]}>
-            {post.relatedProjectName}
-          </Text>
-        </View>
-      )
-    }
+    <TouchableOpacity
+      style={styles.sourceContainer}
+      onPress={() => onProjectPress(project.id)}
+    >
+      <Text style={styles.source}>
+        {project.name}
+      </Text>
+    </TouchableOpacity>
   </Surface>
 );
 
-PostSection.propTypes = {
-  post: PropTypes.shape({
+ProjectActivitySection.propTypes = {
+  project: PropTypes.shape({
     author: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string,
     }).isRequired,
-    insertedAt: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired,
-    photosCount: PropTypes.number.isRequired,
-    thumbnail: PropTypes.shape({
-      image: PropTypes.string.isRequired,
-    }),
-    relatedProjectType: PropTypes.string.isRequired,
-    relatedProject: PropTypes.shape({
+    publishedAt: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.shape({
       name: PropTypes.string.isRequired,
-    }),
-    relatedProjectName: PropTypes.string,
+    }).isRequired,
   }).isRequired,
   onUserPress: PropTypes.func,
   onActionButtonPress: PropTypes.func,
-  onImagePress: PropTypes.func,
   onProjectPress: PropTypes.func,
 };
 
-PostSection.defaultProps = {
+ProjectActivitySection.defaultProps = {
   onUserPress: () => {},
   onActionButtonPress: () => {},
-  onImagePress: () => {},
   onProjectPress: () => {},
 };
 
-export default PostSection;
+export default ProjectActivitySection;

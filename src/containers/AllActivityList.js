@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
 
-import PostList from '../components/PostList';
+import ActivityList from '../components/ActivityList';
 
-class AllPostList extends Component {
+class AllActivityList extends Component {
   static propTypes = {
     query: PropTypes.shape({
       all: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.shape({
-          node: PropTypes.object,
+          node: PropTypes.shape({
+            project: PropTypes.object,
+            post: PropTypes.object,
+          }),
         })),
       }),
     }).isRequired,
@@ -33,14 +36,28 @@ class AllPostList extends Component {
     relay.loadMore(batchLoad);
   }
 
+  getSections = () => {
+    const { query } = this.props;
+
+    return query.all.edges.map(({ node }) => {
+      if (node.project) {
+        return { type: 'project', data: node.project };
+      }
+      if (node.post) {
+        return { type: 'post', data: node.post };
+      }
+
+      return { type: null };
+    });
+  };
+
   render() {
     const { query, relay } = this.props;
-    const data = query.all.edges.map(({ node }) => node);
 
     return query ? (
-      <PostList
+      <ActivityList
         {...this.props}
-        posts={data}
+        sections={this.getSections()}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
       />
@@ -50,21 +67,26 @@ class AllPostList extends Component {
 
 
 export default createPaginationContainer(
-  AllPostList,
+  AllActivityList,
   {
     query: graphql`
-      fragment AllPostList_query on RootQueryType {
-        all: allPosts(
+      fragment AllActivityList_query on RootQueryType {
+        all: allActivities(
           first: $count,
           after: $allCursor
-        ) @connection(key: "AllPostList_all") {
+        ) @connection(key: "AllActivityList_all") {
           pageInfo {
             hasNextPage
             endCursor
           }
           edges {
             node {
-              ...PostSection_post
+              project {
+                ...ProjectActivitySection_project
+              }
+              post {
+                ...PostSection_post
+              }
             }
           }
         }
@@ -86,11 +108,11 @@ export default createPaginationContainer(
     }),
     variables: { allCursor: null },
     query: graphql`
-      query AllPostListPaginationQuery (
+      query AllActivityListPaginationQuery (
         $count: Int!,
         $allCursor: String
       ) {
-        ...AllPostList_query
+        ...AllActivityList_query
       }
     `,
   },

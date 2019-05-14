@@ -8,8 +8,8 @@ const TimelineScreenFragmentContainer = createFragmentContainer(
   TimelineScreen,
   graphql`
     fragment TimelineScreen_query on RootQueryType {
-      ...AllPostList_query
-      ...FollowingPostList_query
+      ...AllActivityList_query
+      ...FollowingActivityList_query
     }
   `,
 );

@@ -56,7 +56,7 @@ export default class MyPostsScreen extends Component {
     navigation.push('User', { id });
   };
 
-  handleOpenSource = (id) => {
+  handleOpenProject = (id) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id });
   }
@@ -103,7 +103,7 @@ export default class MyPostsScreen extends Component {
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.actions.show(post)}
             onImagePress={this.handleOpenImage}
-            onSourcePress={this.handleOpenSource}
+            onProjectPress={this.handleOpenProject}
             batchLoad={variables.count}
             headerPadding
             postId={postId}

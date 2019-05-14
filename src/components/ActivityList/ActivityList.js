@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
 import InfiniteList from '../InfiniteList';
+import ProjectActivitySection from '../../containers/ProjectActivitySection';
 import PostSection from '../../containers/PostSection';
 
 import styles from './styles';
 
-export default class PostList extends Component {
+export default class ActivityList extends Component {
   static propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.object),
+    sections: PropTypes.arrayOf(PropTypes.object),
     loadMore: PropTypes.func.isRequired,
     renderNoItem: PropTypes.func,
     refreshing: PropTypes.bool,
@@ -24,7 +25,7 @@ export default class PostList extends Component {
   };
 
   static defaultProps = {
-    posts: null,
+    sections: null,
     renderNoItem: () => null,
     refreshing: false,
     renderRefresh: () => null,
@@ -37,6 +38,23 @@ export default class PostList extends Component {
     canLoadMore: false,
   };
 
+  renderProject = (project) => {
+    const {
+      onUserPress,
+      onActionButtonPress,
+      onProjectPress,
+    } = this.props;
+
+    return (
+      <ProjectActivitySection
+        project={project}
+        onUserPress={onUserPress}
+        onActionButtonPress={onActionButtonPress}
+        onProjectPress={onProjectPress}
+      />
+    );
+  };
+
   renderPost = (post) => {
     const {
       onUserPress,
@@ -46,17 +64,32 @@ export default class PostList extends Component {
     } = this.props;
 
     return (
-      <View style={styles.postContainer}>
-        <PostSection
-          post={post}
-          onUserPress={onUserPress}
-          onActionButtonPress={onActionButtonPress}
-          onImagePress={onImagePress}
-          onProjectPress={onProjectPress}
-        />
-      </View>
+      <PostSection
+        post={post}
+        onUserPress={onUserPress}
+        onActionButtonPress={onActionButtonPress}
+        onImagePress={onImagePress}
+        onProjectPress={onProjectPress}
+      />
     );
   };
+
+  renderSectionContent = (section) => {
+    switch (section.type) {
+      case 'project':
+        return this.renderProject(section.data);
+      case 'post':
+        return this.renderPost(section.data);
+      default:
+        return null;
+    }
+  }
+
+  renderSection = section => (
+    <View style={styles.sectionContainer}>
+      {this.renderSectionContent(section)}
+    </View>
+  );
 
   scrollToTop = () => {
     if (!this.scrollView) {
@@ -67,7 +100,7 @@ export default class PostList extends Component {
 
   render() {
     const {
-      posts,
+      sections,
       loadMore,
       renderNoItem,
       refreshing,
@@ -81,15 +114,15 @@ export default class PostList extends Component {
       return renderRefresh();
     }
 
-    if (!posts) {
+    if (!sections) {
       return renderNoItem();
     }
 
     return (
       <InfiniteList
-        data={posts}
+        data={sections}
         loadMoreContentAsync={loadMore}
-        renderSection={this.renderPost}
+        renderSection={this.renderSection}
         onScrollTrigger={onScrollTrigger}
         canLoadMoreContent={canLoadMore}
         renderHeader={() => (headerPadding ? (

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 85556a1747d7f764cc5c9d26af01968b
+ * @relayHash c28bdfe0bc88f85a83c7600c8c7059f9
  */
 
 /* eslint-disable */
@@ -35,19 +35,26 @@ query TimelineScreenQuery(
 }
 
 fragment TimelineScreen_query on RootQueryType {
-  ...AllPostList_query
-  ...FollowingPostList_query
+  ...AllActivityList_query
+  ...FollowingActivityList_query
 }
 
-fragment AllPostList_query on RootQueryType {
-  all: allPosts(first: $count, after: $allCursor) {
+fragment AllActivityList_query on RootQueryType {
+  all: allActivities(first: $count, after: $allCursor) {
     pageInfo {
       hasNextPage
       endCursor
     }
     edges {
       node {
-        ...PostSection_post
+        project {
+          ...ProjectActivitySection_project
+          id
+        }
+        post {
+          ...PostSection_post
+          id
+        }
         id
         __typename
       }
@@ -56,22 +63,46 @@ fragment AllPostList_query on RootQueryType {
   }
 }
 
-fragment FollowingPostList_query on RootQueryType {
+fragment FollowingActivityList_query on RootQueryType {
   viewer {
-    following: followingUserPosts(first: $count, after: $followingCursor) {
+    following: followingUserActivities(first: $count, after: $followingCursor) {
       pageInfo {
         hasNextPage
         endCursor
       }
       edges {
         node {
-          ...PostSection_post
+          project {
+            ...ProjectActivitySection_project
+            id
+          }
+          post {
+            ...PostSection_post
+            id
+          }
           id
           __typename
         }
         cursor
       }
     }
+    id
+  }
+}
+
+fragment ProjectActivitySection_project on Project {
+  id
+  author {
+    id
+    name
+    image
+    following
+  }
+  publishedAt
+  image
+  name
+  category {
+    name
     id
   }
 }
@@ -157,7 +188,28 @@ v5 = {
   "args": null,
   "storageKey": null
 },
-v6 = [
+v6 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "author",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "User",
+  "plural": false,
+  "selections": [
+    (v3/*: any*/),
+    (v4/*: any*/),
+    (v5/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "following",
+      "args": null,
+      "storageKey": null
+    }
+  ]
+},
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -189,7 +241,7 @@ v6 = [
     "name": "edges",
     "storageKey": null,
     "args": null,
-    "concreteType": "PostEdge",
+    "concreteType": "ActivityEdge",
     "plural": true,
     "selections": [
       {
@@ -198,92 +250,119 @@ v6 = [
         "name": "node",
         "storageKey": null,
         "args": null,
-        "concreteType": "Post",
+        "concreteType": "Activity",
         "plural": false,
         "selections": [
-          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "author",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "User",
-            "plural": false,
-            "selections": [
-              (v3/*: any*/),
-              (v4/*: any*/),
-              (v5/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "following",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "insertedAt",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "message",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "photosCount",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "thumbnail",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "PostPhoto",
-            "plural": false,
-            "selections": [
-              (v5/*: any*/),
-              (v3/*: any*/)
-            ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "relatedProjectType",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "relatedProjectName",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "relatedProject",
+            "name": "project",
             "storageKey": null,
             "args": null,
             "concreteType": "Project",
             "plural": false,
             "selections": [
               (v3/*: any*/),
-              (v4/*: any*/)
+              (v6/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "publishedAt",
+                "args": null,
+                "storageKey": null
+              },
+              (v5/*: any*/),
+              (v4/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "category",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "ProjectCategory",
+                "plural": false,
+                "selections": [
+                  (v4/*: any*/),
+                  (v3/*: any*/)
+                ]
+              }
             ]
           },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "post",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Post",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/),
+              (v6/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "insertedAt",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "message",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "photosCount",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "thumbnail",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PostPhoto",
+                "plural": false,
+                "selections": [
+                  (v5/*: any*/),
+                  (v3/*: any*/)
+                ]
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "relatedProjectType",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "relatedProjectName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "relatedProject",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Project",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/),
+                  (v4/*: any*/)
+                ]
+              }
+            ]
+          },
+          (v3/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -303,7 +382,7 @@ v6 = [
     ]
   }
 ],
-v7 = [
+v8 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -336,20 +415,20 @@ return {
       {
         "kind": "LinkedField",
         "alias": "all",
-        "name": "allPosts",
+        "name": "allActivities",
         "storageKey": null,
         "args": (v2/*: any*/),
-        "concreteType": "PostConnection",
+        "concreteType": "ActivityConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v7/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": "all",
-        "name": "allPosts",
+        "name": "allActivities",
         "args": (v2/*: any*/),
         "handle": "connection",
-        "key": "AllPostList_all",
+        "key": "AllActivityList_all",
         "filters": null
       },
       {
@@ -364,20 +443,20 @@ return {
           {
             "kind": "LinkedField",
             "alias": "following",
-            "name": "followingUserPosts",
+            "name": "followingUserActivities",
             "storageKey": null,
-            "args": (v7/*: any*/),
-            "concreteType": "PostConnection",
+            "args": (v8/*: any*/),
+            "concreteType": "ActivityConnection",
             "plural": false,
-            "selections": (v6/*: any*/)
+            "selections": (v7/*: any*/)
           },
           {
             "kind": "LinkedHandle",
             "alias": "following",
-            "name": "followingUserPosts",
-            "args": (v7/*: any*/),
+            "name": "followingUserActivities",
+            "args": (v8/*: any*/),
             "handle": "connection",
-            "key": "FollowingPostList_following",
+            "key": "FollowingActivityList_following",
             "filters": null
           },
           (v3/*: any*/)
@@ -389,7 +468,7 @@ return {
     "operationKind": "query",
     "name": "TimelineScreenQuery",
     "id": null,
-    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllPostList_query\n  ...FollowingPostList_query\n}\n\nfragment AllPostList_query on RootQueryType {\n  all: allPosts(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...PostSection_post\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingPostList_query on RootQueryType {\n  viewer {\n    following: followingUserPosts(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllActivityList_query\n  ...FollowingActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  publishedAt\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
