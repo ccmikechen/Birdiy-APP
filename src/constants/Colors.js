@@ -66,6 +66,7 @@ export default {
   tabBar: '#fefefe',
   headerGradient: ['#64a1bc', '#647fbc', '#3b5998', '#192f6a'],
   headerIcon: '#666666',
+  activeHeaderIcon: Primary(500),
   placeholder: '#cccccc',
   closeButton: '#ff0000',
   publish: '#4caf50',

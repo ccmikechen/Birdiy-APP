@@ -133,6 +133,7 @@ export default class ProjectsScreen extends Component {
             <SearchHeader
               onOpenDrawer={() => navigation.openDrawer()}
               keyword={keyword}
+              categories={categories || []}
               onSearch={this.handleSearch}
               onOpenFilter={this.handleOpenFilter}
             />
