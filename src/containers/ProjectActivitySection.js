@@ -13,7 +13,6 @@ export default createFragmentContainer(
         image
         following
       }
-      publishedAt
       image
       name
       category {

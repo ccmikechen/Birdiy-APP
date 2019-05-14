@@ -18,6 +18,7 @@ import styles from './styles';
 
 const ProjectActivitySection = ({
   project,
+  createdAt,
   onUserPress,
   onActionButtonPress,
   onProjectPress,
@@ -38,7 +39,7 @@ const ProjectActivitySection = ({
         </View>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
-            {project.publishedAt}
+            {createdAt}
           </Text>
         </View>
       </View>
@@ -85,13 +86,13 @@ ProjectActivitySection.propTypes = {
       name: PropTypes.string.isRequired,
       image: PropTypes.string,
     }).isRequired,
-    publishedAt: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     category: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  createdAt: PropTypes.string.isRequired,
   onUserPress: PropTypes.func,
   onActionButtonPress: PropTypes.func,
   onProjectPress: PropTypes.func,

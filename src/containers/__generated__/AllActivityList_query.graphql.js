@@ -26,6 +26,7 @@ export type AllActivityList_query = {|
         +post: ?{|
           +$fragmentRefs: PostSection_post$ref
         |},
+        +insertedAt: ?any,
       |}
     |}>,
   |},
@@ -150,6 +151,13 @@ const node/*: ReaderFragment*/ = {
                 {
                   "kind": "ScalarField",
                   "alias": null,
+                  "name": "insertedAt",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
@@ -170,5 +178,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '698b1e29a0cc6711c088bfbe9477d9ad';
+(node/*: any*/).hash = '9c1111716b0df6f8e9f4eabe42bffb0a';
 module.exports = node;

@@ -38,7 +38,7 @@ export default class ActivityList extends Component {
     canLoadMore: false,
   };
 
-  renderProject = (project) => {
+  renderProject = (project, createdAt) => {
     const {
       onUserPress,
       onActionButtonPress,
@@ -48,6 +48,7 @@ export default class ActivityList extends Component {
     return (
       <ProjectActivitySection
         project={project}
+        createdAt={createdAt}
         onUserPress={onUserPress}
         onActionButtonPress={onActionButtonPress}
         onProjectPress={onProjectPress}
@@ -77,7 +78,7 @@ export default class ActivityList extends Component {
   renderSectionContent = (section) => {
     switch (section.type) {
       case 'project':
-        return this.renderProject(section.data);
+        return this.renderProject(section.data, section.createdAt);
       case 'post':
         return this.renderPost(section.data);
       default:

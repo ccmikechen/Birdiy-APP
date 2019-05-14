@@ -41,10 +41,18 @@ class AllActivityList extends Component {
 
     return query.all.edges.map(({ node }) => {
       if (node.project) {
-        return { type: 'project', data: node.project };
+        return {
+          type: 'project',
+          data: node.project,
+          createdAt: node.insertedAt,
+        };
       }
       if (node.post) {
-        return { type: 'post', data: node.post };
+        return {
+          type: 'post',
+          data: node.post,
+          createdAt: node.insertedAt,
+        };
       }
 
       return { type: null };
@@ -87,6 +95,7 @@ export default createPaginationContainer(
               post {
                 ...PostSection_post
               }
+              insertedAt
             }
           }
         }

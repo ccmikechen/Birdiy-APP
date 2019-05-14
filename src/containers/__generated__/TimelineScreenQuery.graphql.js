@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c28bdfe0bc88f85a83c7600c8c7059f9
+ * @relayHash 7f1d140e7ac34dd15653ad5a080be139
  */
 
 /* eslint-disable */
@@ -55,6 +55,7 @@ fragment AllActivityList_query on RootQueryType {
           ...PostSection_post
           id
         }
+        insertedAt
         id
         __typename
       }
@@ -80,6 +81,7 @@ fragment FollowingActivityList_query on RootQueryType {
             ...PostSection_post
             id
           }
+          insertedAt
           id
           __typename
         }
@@ -98,7 +100,6 @@ fragment ProjectActivitySection_project on Project {
     image
     following
   }
-  publishedAt
   image
   name
   category {
@@ -209,7 +210,14 @@ v6 = {
     }
   ]
 },
-v7 = [
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "insertedAt",
+  "args": null,
+  "storageKey": null
+},
+v8 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -264,13 +272,6 @@ v7 = [
             "selections": [
               (v3/*: any*/),
               (v6/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "publishedAt",
-                "args": null,
-                "storageKey": null
-              },
               (v5/*: any*/),
               (v4/*: any*/),
               {
@@ -299,13 +300,7 @@ v7 = [
             "selections": [
               (v3/*: any*/),
               (v6/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "insertedAt",
-                "args": null,
-                "storageKey": null
-              },
+              (v7/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -362,6 +357,7 @@ v7 = [
               }
             ]
           },
+          (v7/*: any*/),
           (v3/*: any*/),
           {
             "kind": "ScalarField",
@@ -382,7 +378,7 @@ v7 = [
     ]
   }
 ],
-v8 = [
+v9 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -420,7 +416,7 @@ return {
         "args": (v2/*: any*/),
         "concreteType": "ActivityConnection",
         "plural": false,
-        "selections": (v7/*: any*/)
+        "selections": (v8/*: any*/)
       },
       {
         "kind": "LinkedHandle",
@@ -445,16 +441,16 @@ return {
             "alias": "following",
             "name": "followingUserActivities",
             "storageKey": null,
-            "args": (v8/*: any*/),
+            "args": (v9/*: any*/),
             "concreteType": "ActivityConnection",
             "plural": false,
-            "selections": (v7/*: any*/)
+            "selections": (v8/*: any*/)
           },
           {
             "kind": "LinkedHandle",
             "alias": "following",
             "name": "followingUserActivities",
-            "args": (v8/*: any*/),
+            "args": (v9/*: any*/),
             "handle": "connection",
             "key": "FollowingActivityList_following",
             "filters": null
@@ -468,7 +464,7 @@ return {
     "operationKind": "query",
     "name": "TimelineScreenQuery",
     "id": null,
-    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllActivityList_query\n  ...FollowingActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  publishedAt\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllActivityList_query\n  ...FollowingActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        insertedAt\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

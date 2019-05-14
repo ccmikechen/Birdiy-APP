@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 604e687dc3d08da28ee83d8815884b07
+ * @relayHash 40e652d428bc122a3b3b94ac9edb52f2
  */
 
 /* eslint-disable */
@@ -49,6 +49,7 @@ fragment FollowingActivityList_query on RootQueryType {
             ...PostSection_post
             id
           }
+          insertedAt
           id
           __typename
         }
@@ -67,7 +68,6 @@ fragment ProjectActivitySection_project on Project {
     image
     following
   }
-  publishedAt
   image
   name
   category {
@@ -170,6 +170,13 @@ v5 = {
       "storageKey": null
     }
   ]
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "insertedAt",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
@@ -264,13 +271,6 @@ return {
                         "selections": [
                           (v2/*: any*/),
                           (v5/*: any*/),
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "publishedAt",
-                            "args": null,
-                            "storageKey": null
-                          },
                           (v4/*: any*/),
                           (v3/*: any*/),
                           {
@@ -299,13 +299,7 @@ return {
                         "selections": [
                           (v2/*: any*/),
                           (v5/*: any*/),
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "insertedAt",
-                            "args": null,
-                            "storageKey": null
-                          },
+                          (v6/*: any*/),
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -362,6 +356,7 @@ return {
                           }
                         ]
                       },
+                      (v6/*: any*/),
                       (v2/*: any*/),
                       {
                         "kind": "ScalarField",
@@ -401,7 +396,7 @@ return {
     "operationKind": "query",
     "name": "FollowingActivityListPaginationQuery",
     "id": null,
-    "text": "query FollowingActivityListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingActivityList_query\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  publishedAt\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query FollowingActivityListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingActivityList_query\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

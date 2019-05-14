@@ -18,7 +18,6 @@ export type ProjectActivitySection_project = {|
     +image: ?string,
     +following: boolean,
   |},
-  +publishedAt: ?any,
   +image: ?string,
   +name: string,
   +category: {|
@@ -80,13 +79,6 @@ return {
         }
       ]
     },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "publishedAt",
-      "args": null,
-      "storageKey": null
-    },
     (v2/*: any*/),
     (v1/*: any*/),
     {
@@ -105,5 +97,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '12a0ba0767abbdd97fb9a8e7b8448919';
+(node/*: any*/).hash = '9a8a72358b0d9140bec81ba253b5ad38';
 module.exports = node;
