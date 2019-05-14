@@ -6,6 +6,7 @@ import * as PROD from './prod';
 
 const CONFIGS = {
   devlopment: DEV,
+  default: STAGING,
   staging: STAGING,
   production: PROD,
 };

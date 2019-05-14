@@ -14,6 +14,7 @@ import PostButton from '../../components/PostButton';
 import DrawerMenu from '../../components/DrawerMenu';
 import DrawerMenuItem from '../../components/DrawerMenuItem';
 import LoadingIndicator from '../../components/LoadingIndicator';
+import AddPostButtonActions from '../../components/AddPostButtonActions';
 
 import { DEFAULT_PROFILE } from '../../images';
 
@@ -63,7 +64,7 @@ export default class DrawerScreen extends Component {
   );
 
   renderHeader = () => {
-    const { query } = this.props;
+    const { query, navigation } = this.props;
 
     if (!query.viewer) {
       return (
@@ -116,8 +117,14 @@ export default class DrawerScreen extends Component {
           <PostButton
             color={TextColor.primaryLight}
             backgroundColor={Primary(600)}
+            onPress={() => this.addPostActions.show()}
           />
         </View>
+        <AddPostButtonActions
+          ref={(ref) => { this.addPostActions = ref; }}
+          onAddPost={() => navigation.navigate('CreatePostModal')}
+          onAddProject={() => navigation.navigate('CreateProjectModal')}
+        />
       </LinearGradient>
     );
   };
