@@ -342,7 +342,7 @@ export default class EditProjectScreen extends Component {
               <PureSelector
                 style={styles.textInput}
                 placeholder={i18n.t('category.placeholder', i18nOptions)}
-                value={category}
+                value={category && i18n.t(`categories.${category}`)}
                 onPress={this.handleSelecteCategoryPress}
               />
             </EditSection>

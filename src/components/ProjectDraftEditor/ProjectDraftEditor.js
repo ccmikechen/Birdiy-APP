@@ -39,7 +39,7 @@ const ProjectDraftEditor = (props) => {
       <EditSection title={i18n.t('category.title', i18nOptions)}>
         <PureSelector
           placeholder={i18n.t('category.placeholder', i18nOptions)}
-          value={project.category}
+          value={project.category && i18n.t(`categories.${project.category}`)}
           onPress={onOpenCategorySelector}
         />
       </EditSection>
