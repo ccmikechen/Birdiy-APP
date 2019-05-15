@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import createQueryRenderer from '../relay/createQueryRenderer';
 import UserProjectsScreen from '../screens/UserProjectsScreen';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 const UserProjectsScreenFragmentContainer = createFragmentContainer(
   UserProjectsScreen,
   graphql`
@@ -28,7 +30,7 @@ export default withNavigation(
         }
       `,
       variables: {
-        count: 10,
+        count: DEFAULT_PROJECT_BATCH_LOAD,
         cursor: null,
       },
       queriesParams: props => ({

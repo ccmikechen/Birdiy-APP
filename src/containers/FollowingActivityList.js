@@ -6,6 +6,8 @@ import { View } from 'react-native';
 import LoadingIndicator from '../components/LoadingIndicator';
 import ActivityList from '../components/ActivityList';
 
+import { DEFAULT_POST_BATCH_LOAD } from '../constants/defaults';
+
 class FollowingActivityList extends Component {
   static propTypes = {
     query: PropTypes.shape({
@@ -28,7 +30,7 @@ class FollowingActivityList extends Component {
   };
 
   static defaultProps = {
-    batchLoad: 5,
+    batchLoad: DEFAULT_POST_BATCH_LOAD,
   };
 
   loadMore = async () => {

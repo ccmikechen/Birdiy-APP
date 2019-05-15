@@ -23,6 +23,7 @@ import UserProjectsScreen from '../containers/UserProjectsScreen';
 import UserPostsScreen from '../containers/UserPostsScreen';
 import UserFavoritesScreen from '../containers/UserFavoritesScreen';
 import UserScreen from '../containers/UserScreen';
+import RecentViewedScreen from '../containers/RecentViewedScreen';
 
 import Colors from '../constants/Colors';
 
@@ -33,6 +34,7 @@ const sharedScreens = {
   UserPosts: UserPostsScreen,
   UserFavorites: UserFavoritesScreen,
   SearchDetail: SearchDetailScreen,
+  RecentViewed: RecentViewedScreen,
 };
 
 const noAnimationTransitionConfig = () => ({

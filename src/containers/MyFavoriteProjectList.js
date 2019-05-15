@@ -6,6 +6,8 @@ import { View } from 'react-native';
 import LoadingIndicator from '../components/LoadingIndicator';
 import ProjectList from '../components/ProjectList';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 class MyFavoriteProjectList extends Component {
   static propTypes = {
     query: PropTypes.shape({
@@ -25,7 +27,7 @@ class MyFavoriteProjectList extends Component {
   };
 
   static defaultProps = {
-    batchLoad: 5,
+    batchLoad: DEFAULT_PROJECT_BATCH_LOAD,
   };
 
   loadMore = async () => {

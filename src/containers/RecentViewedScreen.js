@@ -2,30 +2,30 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { withNavigation } from 'react-navigation';
 
 import createQueryRenderer from '../relay/createQueryRenderer';
-import MyProjectsScreen from '../screens/MyProjectsScreen';
+import RecentViewedScreen from '../screens/RecentViewedScreen';
 
 import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
 
-const MyProjectsScreenFragmentContainer = createFragmentContainer(
-  MyProjectsScreen,
+const RecentViewedScreenFragmentContainer = createFragmentContainer(
+  RecentViewedScreen,
   graphql`
-    fragment MyProjectsScreen_query on RootQueryType {
-      ...MyProjectList_query
+    fragment RecentViewedScreen_query on RootQueryType {
+      ...RecentViewedProjectList_query
     }
   `,
 );
 
 export default withNavigation(
   createQueryRenderer(
-    MyProjectsScreenFragmentContainer,
-    MyProjectsScreen,
+    RecentViewedScreenFragmentContainer,
+    RecentViewedScreen,
     {
       query: graphql`
-        query MyProjectsScreenQuery (
+        query RecentViewedScreenQuery (
           $count: Int!,
           $cursor: String,
         ) {
-          ...MyProjectsScreen_query
+          ...RecentViewedScreen_query
         }
       `,
       auth: true,

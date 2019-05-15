@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
+import { View } from 'react-native';
 
-import PostList from '../components/PostList';
+import LoadingIndicator from '../components/LoadingIndicator';
+import ProjectList from '../components/ProjectList';
 
-import { DEFAULT_POST_BATCH_LOAD } from '../constants/defaults';
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
 
-class UserPostList extends Component {
+class RecentViewedProjectList extends Component {
   static propTypes = {
     query: PropTypes.shape({
-      user: PropTypes.shape({
-        posts: PropTypes.shape({
+      viewer: PropTypes.shape({
+        projects: PropTypes.shape({
           edges: PropTypes.arrayOf(PropTypes.shape({
             node: PropTypes.object,
           })),
@@ -25,7 +27,7 @@ class UserPostList extends Component {
   };
 
   static defaultProps = {
-    batchLoad: DEFAULT_POST_BATCH_LOAD,
+    batchLoad: DEFAULT_PROJECT_BATCH_LOAD,
   };
 
   loadMore = async () => {
@@ -39,12 +41,21 @@ class UserPostList extends Component {
 
   render() {
     const { query, relay } = this.props;
-    const data = query.user.posts.edges.map(({ node }) => node);
+
+    if (!query.viewer) {
+      return (
+        <View style={{ flex: 1 }}>
+          <LoadingIndicator />
+        </View>
+      );
+    }
+
+    const data = query.viewer.projects.edges.map(({ node }) => node);
 
     return query ? (
-      <PostList
+      <ProjectList
         {...this.props}
-        posts={data}
+        projects={data}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
       />
@@ -52,25 +63,23 @@ class UserPostList extends Component {
   }
 }
 
-
 export default createPaginationContainer(
-  UserPostList,
+  RecentViewedProjectList,
   {
     query: graphql`
-      fragment UserPostList_query on RootQueryType {
-        user(id: $userId) {
-          posts(
+      fragment RecentViewedProjectList_query on RootQueryType {
+        viewer {
+          projects: viewedProjects(
             first: $count,
-            after: $cursor,
-            beforeId: $postId,
-          ) @connection(key: "UserPostList_posts") {
+            after: $cursor
+          ) @connection(key: "RecentViewedProjectList_projects") {
             pageInfo {
               hasNextPage
               endCursor
             }
             edges {
               node {
-                ...PostSection_post
+                ...ProjectSection_project
               }
             }
           }
@@ -81,27 +90,23 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.user.posts
+      props.query && props.query.viewer.projects
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: ({ userId, postId }, { count, cursor }) => ({
+    getVariables: (props, { count, cursor }) => ({
       count,
       cursor,
-      userId,
-      postId,
     }),
     variables: { cursor: null },
     query: graphql`
-      query UserPostListPaginationQuery (
+      query RecentViewedProjectListPaginationQuery (
         $count: Int!,
-        $cursor: String,
-        $userId: ID!,
-        $postId: ID,
+        $cursor: String
       ) {
-        ...UserPostList_query
+        ...RecentViewedProjectList_query
       }
     `,
   },

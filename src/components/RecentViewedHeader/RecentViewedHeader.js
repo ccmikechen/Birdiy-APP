@@ -2,24 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import BasicHeader from '../BasicHeader';
-import SearchBarButton from '../SearchBarButton';
 
-const UserFavoritesHeader = ({ onBack, onSearch }) => (
+const RecentViewedHeader = ({ onBack, onSearch }) => (
   <BasicHeader
     placement="center"
     leftButton={{
       icon: 'arrow-back',
       onPress: onBack,
     }}
-    centerComponent={() => (
-      <SearchBarButton onPress={onSearch} />
-    )}
+    centerComponent={{
+      title: '近期瀏覽',
+      style: { fontSize: 20 },
+    }}
+    rightButton={{
+      icon: 'search',
+      onPress: onSearch,
+    }}
   />
 );
 
-UserFavoritesHeader.propTypes = {
+RecentViewedHeader.propTypes = {
   onBack: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
 };
 
-export default UserFavoritesHeader;
+export default RecentViewedHeader;

@@ -4,6 +4,8 @@ import { graphql, createPaginationContainer } from 'react-relay';
 
 import ProjectList from '../components/ProjectList';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 class UserProjectList extends Component {
   static propTypes = {
     query: PropTypes.shape({
@@ -23,7 +25,7 @@ class UserProjectList extends Component {
   };
 
   static defaultProps = {
-    batchLoad: 5,
+    batchLoad: DEFAULT_PROJECT_BATCH_LOAD,
   };
 
   loadMore = async () => {

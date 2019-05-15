@@ -193,7 +193,7 @@ export default class DrawerScreen extends Component {
       <DrawerMenuItem
         title="近期瀏覽"
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'history')}
-        onPress={this.navigateToScreen('Home')}
+        onPress={this.navigateToScreen('RecentViewed')}
       />
       <DrawerMenuItem
         title="關於Birdiy"

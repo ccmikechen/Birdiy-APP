@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
-import UserFavoritesHeader from '../../components/UserFavoritesHeader';
+import SearchBarHeader from '../../components/SearchBarHeader';
 import UserFavoriteProjectList from '../../containers/UserFavoriteProjectList';
 
 import styles from './styles';
@@ -49,7 +49,7 @@ export default class UserFavoritesScreen extends Component {
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
-          <UserFavoritesHeader
+          <SearchBarHeader
             onBack={() => navigation.goBack()}
             onSearch={() => navigation.navigate('SearchDetail')}
           />

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
-import UserProjectsHeader from '../../components/UserProjectsHeader';
+import SearchBarHeader from '../../components/SearchBarHeader';
 import MyProjectList from '../../containers/MyProjectList';
 import MyProjectActions from '../../components/MyProjectActions';
 
@@ -78,10 +78,9 @@ export default class MyProjectsScreen extends Component {
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
-          <UserProjectsHeader
+          <SearchBarHeader
             onBack={() => navigation.goBack()}
             onSearch={() => navigation.navigate('SearchDetail')}
-            onOpenFilter={this.handleOpenFilter}
           />
         )}
         animatedScroll

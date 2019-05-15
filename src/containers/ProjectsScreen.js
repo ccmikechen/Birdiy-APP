@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import createQueryRenderer from '../relay/createQueryRenderer';
 import ProjectsScreen from '../screens/ProjectsScreen';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 const ProjectsScreenFragmentContainer = createFragmentContainer(
   ProjectsScreen,
   graphql`
@@ -42,7 +44,7 @@ export default withNavigation(
         }
       `,
       variables: {
-        count: 10,
+        count: DEFAULT_PROJECT_BATCH_LOAD,
         newestCursor: null,
         hotestCursor: null,
       },

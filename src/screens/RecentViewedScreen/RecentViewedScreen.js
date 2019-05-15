@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
-import SearchBarHeader from '../../components/SearchBarHeader';
-import MyFavoriteProjectList from '../../containers/MyFavoriteProjectList';
+import RecentViewedHeader from '../../components/RecentViewedHeader';
+import RecentViewedProjectList from '../../containers/RecentViewedProjectList';
 
 import styles from './styles';
 
-export default class MyFavoritesScreen extends Component {
+export default class RecentViewedScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -48,7 +48,7 @@ export default class MyFavoritesScreen extends Component {
         style={styles.container}
         navigation={navigation}
         renderHeader={() => (
-          <SearchBarHeader
+          <RecentViewedHeader
             onBack={() => navigation.goBack()}
             onSearch={() => navigation.navigate('SearchDetail')}
           />
@@ -56,7 +56,7 @@ export default class MyFavoritesScreen extends Component {
         animatedScroll
         loading={loading}
       >
-        <MyFavoriteProjectList
+        <RecentViewedProjectList
           query={query}
           batchLoad={variables.count}
           headerPadding

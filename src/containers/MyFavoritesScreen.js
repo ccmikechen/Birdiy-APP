@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import createQueryRenderer from '../relay/createQueryRenderer';
 import MyFavoritesScreen from '../screens/MyFavoritesScreen';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 const MyFavoritesScreenFragmentContainer = createFragmentContainer(
   MyFavoritesScreen,
   graphql`
@@ -28,7 +30,7 @@ export default withNavigation(
       `,
       auth: true,
       variables: {
-        count: 10,
+        count: DEFAULT_PROJECT_BATCH_LOAD,
         cursor: null,
       },
     },

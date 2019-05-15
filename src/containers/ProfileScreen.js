@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import createQueryRenderer from '../relay/createQueryRenderer';
 import ProfileScreen from '../screens/ProfileScreen';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 const query = graphql`
   query ProfileScreenQuery(
     $count: Int!
@@ -33,7 +35,7 @@ export default withNavigation(
       query,
       auth: true,
       variables: {
-        count: 10,
+        count: DEFAULT_PROJECT_BATCH_LOAD,
       },
     },
   ),

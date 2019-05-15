@@ -4,6 +4,8 @@ import { withNavigation } from 'react-navigation';
 import createQueryRenderer from '../relay/createQueryRenderer';
 import UserScreen from '../screens/UserScreen';
 
+import { DEFAULT_PROJECT_BATCH_LOAD } from '../constants/defaults';
+
 const query = graphql`
   query UserScreenQuery(
     $id: ID!,
@@ -34,7 +36,7 @@ export default withNavigation(
       query,
       auth: true,
       variables: {
-        count: 10,
+        count: DEFAULT_PROJECT_BATCH_LOAD,
       },
       queriesParams: props => ({
         id: props.navigation.getParam('id'),
