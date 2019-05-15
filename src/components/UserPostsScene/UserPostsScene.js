@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
@@ -132,7 +133,7 @@ export default class UserPostsScene extends Component {
         {editable ? (
           <View style={styles.addButtonContainer}>
             <UserProfileAddButton
-              text="新增投稿"
+              text={i18n.t('post.create.title')}
               onPress={onAddPress}
             />
           </View>
@@ -144,10 +145,7 @@ export default class UserPostsScene extends Component {
           renderRow={this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton
-            text="更多"
-            onPress={onMorePress}
-          />
+          <MoreButton onPress={onMorePress} />
         </View>
       </View>
     );

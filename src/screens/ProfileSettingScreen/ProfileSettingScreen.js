@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -100,7 +101,7 @@ export default class ProfileSettingScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="編輯個人檔案"
+            title={i18n.t('settings.profile.title')}
             rightButton={{
               icon: 'save',
               color: '#666666',

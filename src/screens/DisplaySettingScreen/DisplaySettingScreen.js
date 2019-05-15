@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -18,7 +19,7 @@ export default class DisplaySettingScreen extends Component {
 
   state = {
     settings: {
-      interfaceLanguage: '繁體中文',
+      interfaceLanguage: 'zh-TW',
     },
   };
 
@@ -44,7 +45,7 @@ export default class DisplaySettingScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="顯示設定"
+            title={i18n.t('settings.display.title')}
           />
         )}
         fullScreen

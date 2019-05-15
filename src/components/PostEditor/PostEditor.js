@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, KeyboardAvoidingView } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
+import i18n from 'i18n-js';
 
 import EditSection from '../EditSection';
 import PureTextInput from '../PureTextInput';
@@ -9,6 +10,8 @@ import HorProjectSection from '../HorProjectSection';
 import MultipleImageUploadView from '../MultipleImageUploadView';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'post.edit' };
 
 export default class PostEditor extends Component {
   static propTypes = {
@@ -63,24 +66,29 @@ export default class PostEditor extends Component {
         keyboardShouldPersistTaps="always"
       >
         <KeyboardAvoidingView behavior="padding" enabled>
-          <EditSection title="訊息">
+          <EditSection title={i18n.t('message.title', i18nOptions)}>
             <PureTextInput
               style={styles.textInput}
               value={message}
-              placeholder="輸入投稿訊息"
+              placeholder={i18n.t('message.placeholder', i18nOptions)}
               onChangeText={value => onChange({ message: value })}
               maxLength={500}
               multiline
               counter
             />
           </EditSection>
-          <EditSection title="關聯專案">
+          <EditSection title={i18n.t('relatedProject.title', i18nOptions)}>
             <View style={styles.relatedProjectContainer}>
               {relatedProject.type === 'custom' ? (
                 <PureTextInput
                   style={styles.textInput}
                   value={relatedProject.name}
-                  placeholder="輸入自訂專案名稱"
+                  placeholder={
+                    i18n.t(
+                      'relatedProject.custom.placeholder',
+                      i18nOptions,
+                    )
+                  }
                   onChangeText={(value) => {
                     onChange({
                       relatedProject: {
@@ -100,7 +108,7 @@ export default class PostEditor extends Component {
               )}
             </View>
           </EditSection>
-          <EditSection title="照片">
+          <EditSection title={i18n.t('photos.title', i18nOptions)}>
             <MultipleImageUploadView
               images={photos.map(({ image }) => image)}
               onUpload={this.handleImageUpload}

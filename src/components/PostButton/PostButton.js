@@ -6,6 +6,7 @@ import {
   Text,
 } from 'react-native';
 import { Icon } from 'expo';
+import i18n from 'i18n-js';
 
 import styles from './styles';
 
@@ -27,7 +28,7 @@ const PostButton = ({
     </View>
     <View style={styles.textContainer}>
       <Text style={[styles.text, { color }]}>
-        建立專案 / 投稿
+        {i18n.t('postButton.title')}
       </Text>
     </View>
   </TouchableOpacity>

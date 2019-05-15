@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-
 import { Icon } from 'expo';
+import i18n from 'i18n-js';
 
 import TabsScreenView from '../../components/TabsScreenView';
 import SearchHeader from '../../components/SearchHeader';
@@ -16,9 +16,9 @@ import { isLoggedIn } from '../../helpers/credentails';
 import styles from './styles';
 
 const TABS = [{
-  key: 'newest', title: '最新',
+  key: 'newest', title: i18n.t('projects.tabs.newest'),
 }, {
-  key: 'hotest', title: '最熱門',
+  key: 'hotest', title: i18n.t('projects.tabs.hotest'),
 }];
 
 export default class ProjectsScreen extends Component {
@@ -102,7 +102,7 @@ export default class ProjectsScreen extends Component {
 
   handleAddProject = async () => {
     if (!(await isLoggedIn())) {
-      this.loginActions.show('新增專案之前必須先登入');
+      this.loginActions.show(i18n.t('loginActions.creatingProjectMessage'));
       return;
     }
 

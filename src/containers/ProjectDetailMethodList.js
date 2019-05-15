@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createFragmentContainer } from 'react-relay';
+import i18n from 'i18n-js';
 
 import ProjectDetailSection from '../components/ProjectDetailSection';
 import MethodList from '../components/MethodList';
@@ -9,7 +10,7 @@ const ProjectDetailMethodList = (props) => {
   const { project } = props;
 
   return project.methods.length === 0 ? null : (
-    <ProjectDetailSection title="作法">
+    <ProjectDetailSection title={i18n.t('project.sections.methods.title')}>
       <MethodList
         {...props}
         methods={project.methods}

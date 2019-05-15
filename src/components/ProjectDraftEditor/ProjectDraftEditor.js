@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { ScrollView } from 'react-navigation';
 import { Button } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import EditSection from '../EditSection';
 import PureTextInput from '../PureTextInput';
 import PureSelector from '../PureSelector';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.create' };
 
 const ProjectDraftEditor = (props) => {
   const {
@@ -23,19 +26,19 @@ const ProjectDraftEditor = (props) => {
       style={styles.container}
       keyboardShouldPersistTaps="always"
     >
-      <EditSection title="專案名稱">
+      <EditSection title={i18n.t('projectName.title', i18nOptions)}>
         <PureTextInput
           style={styles.textInput}
           value={project.name}
-          placeholder="輸入你的專案名稱"
+          placeholder={i18n.t('projectName.placeholder', i18nOptions)}
           onChangeText={value => onChange({ name: value })}
           maxLength={20}
           counter
         />
       </EditSection>
-      <EditSection title="分類">
+      <EditSection title={i18n.t('category.title', i18nOptions)}>
         <PureSelector
-          placeholder="選擇你的專案分類"
+          placeholder={i18n.t('category.placeholder', i18nOptions)}
           value={project.category}
           onPress={onOpenCategorySelector}
         />
@@ -46,7 +49,9 @@ const ProjectDraftEditor = (props) => {
           mode="contained"
           onPress={onSubmit}
         >
-          <Text style={styles.submitButtonText}>儲存並繼續編輯</Text>
+          <Text style={styles.submitButtonText}>
+            {i18n.t('submit', i18nOptions)}
+          </Text>
         </Button>
       </View>
     </ScrollView>

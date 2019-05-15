@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import i18n from 'i18n-js';
+
+import '../../locales';
 
 import styles from './styles';
 
@@ -27,7 +30,7 @@ SearchBarButton.propTypes = {
 
 SearchBarButton.defaultProps = {
   value: '',
-  placeholder: '找專案',
+  placeholder: i18n.t('searchBar.placeholder'),
 };
 
 export default SearchBarButton;

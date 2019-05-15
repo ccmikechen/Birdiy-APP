@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Surface } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import ImageView from '../ImageView';
 import Avatar from '../Avatar';
@@ -15,6 +16,46 @@ import ActionMenuButton from '../ActionMenuButton';
 import Size from '../../constants/Size';
 
 import styles from './styles';
+
+const renderMessage = (category) => {
+  const translatedCategory = i18n.t(
+    `categories.${category}`, {
+      defaultValue: category,
+    },
+  );
+
+  switch (i18n.currentLocale()) {
+    case 'zh-TW':
+      return (
+        <Text style={styles.message}>
+          {'在 '}
+          <Text style={styles.category}>
+            {translatedCategory}
+          </Text>
+          {' 建立了新的專案。'}
+        </Text>
+      );
+    case 'jp':
+      return (
+        <Text style={styles.message}>
+          <Text style={styles.category}>
+            {translatedCategory}
+          </Text>
+          {' で新しいプロジェクトを作りました。'}
+        </Text>
+      );
+    case 'en':
+    default:
+      return (
+        <Text style={styles.message}>
+          {'Created new project in '}
+          <Text style={styles.category}>
+            {translatedCategory}
+          </Text>
+        </Text>
+      );
+  }
+};
 
 const ProjectActivitySection = ({
   project,
@@ -50,13 +91,7 @@ const ProjectActivitySection = ({
       </View>
     </View>
     <View style={styles.messageContainer}>
-      <Text style={styles.message}>
-        {'在 '}
-        <Text style={styles.category}>
-          {project.category.name}
-        </Text>
-        {' 建立了新的專案'}
-      </Text>
+      {renderMessage(project.category.name)}
     </View>
     <TouchableOpacity
       style={styles.imageContainer}

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import i18n from 'i18n-js';
 
 import { FlatGrid } from 'react-native-super-grid';
 
@@ -42,7 +43,7 @@ const SelectableCategoriesTable = ({
           imageStyle={styles.image}
         >
           <Text style={styles.name}>
-            {item.name}
+            {i18n.t(`categories.${item.name}`, { defaultValue: item.name })}
           </Text>
         </ImageBackground>
       </TouchableOpacity>

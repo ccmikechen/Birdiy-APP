@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createFragmentContainer } from 'react-relay';
+import i18n from 'i18n-js';
 
 import ProjectDetailSection from '../components/ProjectDetailSection';
 import MaterialList from '../components/MaterialList';
@@ -9,7 +10,7 @@ const ProjectDetailMaterialList = (props) => {
   const { project } = props;
 
   return project.materials.length === 0 ? null : (
-    <ProjectDetailSection title="材料">
+    <ProjectDetailSection title={i18n.t('project.sections.materials')}>
       <MaterialList
         {...props}
         materials={project.materials}

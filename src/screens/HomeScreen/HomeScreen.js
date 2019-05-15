@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import HomeHeader from '../../components/HomeHeader';
@@ -103,11 +104,11 @@ export default class HomeScreen extends Component {
         loading={loading}
       >
         <HomeSection
-          title="熱門分類"
+          title={i18n.t('home.hotCategories')}
           renderContent={this.renderHotCategories}
         />
         <HomeSection
-          title="最新專案"
+          title={i18n.t('home.newestProjects')}
           renderContent={this.renderNewProjects}
         />
       </TopScreenView>

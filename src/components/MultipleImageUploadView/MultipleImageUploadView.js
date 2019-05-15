@@ -9,10 +9,13 @@ import {
 import { Button } from 'react-native-paper';
 import { FlatGrid } from 'react-native-super-grid';
 import { Icon, ImagePicker, Permissions } from 'expo';
+import i18n from 'i18n-js';
 
 import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'mutlipleImageUploadView' };
 
 const getRealDimension = (dimension, spacing) => {
   const screenWidth = Dimensions.get('window').width;
@@ -126,7 +129,7 @@ export default class MultipleImageUploadView extends Component {
             color={Primary(500)}
             onPress={this.handleImageUpload}
           >
-            上傳照片
+            {i18n.t('upload', i18nOptions)}
           </Button>
           <Button
             style={styles.button}
@@ -135,7 +138,7 @@ export default class MultipleImageUploadView extends Component {
             color={Primary(500)}
             onPress={this.handleCamera}
           >
-            拍照
+            {i18n.t('camera', i18nOptions)}
           </Button>
         </View>
         <View style={styles.imagesContainer}>

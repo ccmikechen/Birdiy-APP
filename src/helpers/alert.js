@@ -1,86 +1,87 @@
 import { Alert } from 'react-native';
+import i18n from 'i18n-js';
 
 export const showAlert = (message, title = '', options) => (
   setTimeout(() => Alert.alert(title, message, options), 100)
 );
 
 export const showLoginAlert = () => (
-  showAlert('請先登入')
+  showAlert(i18n.t('alert.login'))
 );
 
 export const showLoginFailedAlert = () => (
-  showAlert('登入失敗')
+  showAlert(i18n.t('alert.loginFailed'))
 );
 
 export const showSaveProjectSuccessAlert = () => (
-  showAlert('專案儲存成功')
+  showAlert(i18n.t('alert.saveProjectSuccess'))
 );
 
 export const showSaveProjectFailedAlert = () => (
-  showAlert('專案儲存失敗')
+  showAlert(i18n.t('alert.saveProjectFailed'))
 );
 
 export const showPublishProjectSuccessAlert = () => (
-  showAlert('專案已設為公開')
+  showAlert(i18n.t('alert.publishProjectSuccess'))
 );
 
 export const showUnpublishProjectSuccessAlert = () => (
-  showAlert('專案已設為不公開')
+  showAlert(i18n.t('alert.unpublishProjectSuccess'))
 );
 
-export const showSetProjectFaieldAlert = () => (
-  showAlert('專案設定失敗')
+export const showSetProjectFailedAlert = () => (
+  showAlert(i18n.t('alert.setProjectFailed'))
 );
 
 export const showDeleteProjectAlert = () => new Promise(resolve => (
   showAlert(
-    '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',
-    '刪除專案',
+    i18n.t('alert.deleteProject.message'),
+    i18n.t('alert.deleteProject.title'),
     [
-      { text: '取消' },
-      { text: '確定', onPress: () => resolve() },
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.ok'), onPress: () => resolve() },
     ],
   )
 ));
 
 export const showDeleteProjectSuccessAlert = () => (
   showAlert(
-    '專案已成功刪除，若要復原請聯繫客服人員。',
-    '專案刪除成功',
+    i18n.t('alert.deleteProjectSuccess.message'),
+    i18n.t('alert.deleteProjectSuccess.title'),
   )
 );
 
 export const showDeleteProjectFailedAlert = () => (
-  showAlert('專案刪除失敗')
+  showAlert(i18n.t('alert.deleteProjectFailed'))
 );
 
 export const showCreatePostSuccessAlert = () => (
-  showAlert('投稿發佈成功')
+  showAlert(i18n.t('alert.createPostSuccess'))
 );
 
 export const showCreatePostFailedAlert = () => (
-  showAlert('投稿發佈失敗')
+  showAlert(i18n.t('alert.createPostFailed'))
 );
 
 export const showEditPostSuccessAlert = () => (
-  showAlert('投稿編輯成功')
+  showAlert(i18n.t('alert.editPostSuccess'))
 );
 
 export const showEditPostFailedAlert = () => (
-  showAlert('投稿編輯失敗')
+  showAlert(i18n.t('alert.editPostFailed'))
 );
 
 export const showDeletePostSuccessAlert = () => (
   showAlert(
-    '投稿已成功刪除，若要復原請聯繫客服人員。',
-    '投稿刪除成功',
+    i18n.t('alert.deletePostSuccess.message'),
+    i18n.t('alert.deletePostSUccess.title'),
   )
 );
 
 export const showDeletePostFailedAlert = () => (
-  showAlert('投稿刪除失敗')
+  showAlert(i18n.t('alert.deletePostFailed'))
 );
 
 export const showEditProfileFailedAlert = () => (
-  showAlert('編輯個人檔案失敗')
+  showAlert(i18n.t('alert.editProfileFailed'))
 );

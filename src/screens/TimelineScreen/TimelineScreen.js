@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Icon } from 'expo';
+import i18n from 'i18n-js';
 
 import TabsScreenView from '../../components/TabsScreenView';
 import TimelineHeader from '../../components/TimelineHeader';
@@ -21,9 +22,9 @@ import { UnauthorizedError } from '../../errors';
 import styles from './styles';
 
 const TABS = [{
-  key: 'all', title: '所有人',
+  key: 'all', title: i18n.t('timeline.tabs.all'),
 }, {
-  key: 'following', title: '跟隨中',
+  key: 'following', title: i18n.t('timeline.tabs.following'),
 }];
 
 export default class TimelineScreen extends Component {
@@ -97,7 +98,7 @@ export default class TimelineScreen extends Component {
     const mutation = new FollowUserMutation({ id });
     mutation.commit().catch((e) => {
       if (e instanceof UnauthorizedError) {
-        this.loginActions.show('跟隨用戶之前必須先登入');
+        this.loginActions.show(i18n.t('loginActions.followingMessage'));
       }
     });
   };
@@ -106,7 +107,7 @@ export default class TimelineScreen extends Component {
     const mutation = new CancelFollowUserMutation({ id });
     mutation.commit().catch((e) => {
       if (e instanceof UnauthorizedError) {
-        this.loginActions.show('取消跟隨用戶之前必須先登入');
+        this.loginActions.show(i18n.t('loginActions.unfollowingMessage'));
       }
     });
   };

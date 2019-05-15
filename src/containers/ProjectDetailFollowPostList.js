@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
+import i18n from 'i18n-js';
 
 import ProjectDetailSection from '../components/ProjectDetailSection';
 import FollowPostView from '../components/FollowPostView';
@@ -49,7 +50,7 @@ class ProjectDetailFollowPostList extends Component {
     const data = project.relatedPosts.edges.map(({ node }) => node);
 
     return data.length === 0 ? null : (
-      <ProjectDetailSection title="跟著做">
+      <ProjectDetailSection title={i18n.t('project.sections.followingPosts')}>
         <FollowPostView
           {...this.props}
           posts={data}

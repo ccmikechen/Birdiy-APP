@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
+import i18n from 'i18n-js';
 
 import BasicHeader from '../BasicHeader';
 import SearchBarButton from '../SearchBarButton';
@@ -39,7 +40,9 @@ const SearchHeader = (props) => {
         onPress: onOpenDrawer,
       }}
       centerComponent={() => (showCategory ? (
-        <Text style={styles.title}>{categories[0]}</Text>
+        <Text style={styles.title}>
+          {i18n.t(`categories.${categories[0]}`, { defaultValue: categories[0] })}
+        </Text>
       ) : (
         <SearchBarButton
           onPress={onSearch}

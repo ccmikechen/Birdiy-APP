@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createFragmentContainer } from 'react-relay';
+import i18n from 'i18n-js';
 
 import ProjectDetailSection from '../components/ProjectDetailSection';
 import FileList from '../components/FileList';
@@ -9,7 +10,7 @@ const ProjectDetailFileList = (props) => {
   const { project } = props;
 
   return project.fileResources.length === 0 ? null : (
-    <ProjectDetailSection title="檔案資料">
+    <ProjectDetailSection title={i18n.t('project.sections.files')}>
       <FileList
         {...props}
         files={project.fileResources}

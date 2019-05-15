@@ -5,6 +5,9 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import i18n from 'i18n-js';
+
+import '../../locales';
 
 import styles from './styles';
 
@@ -37,7 +40,7 @@ ExtensibleSectionContent.propTypes = {
 };
 
 ExtensibleSectionContent.defaultProps = {
-  moreButtonText: '更多',
+  moreButtonText: i18n.t('general.more'),
 };
 
 export default ExtensibleSectionContent;

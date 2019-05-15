@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -11,6 +12,8 @@ import {
   showSaveProjectSuccessAlert,
   showSaveProjectFailedAlert,
 } from '../../helpers/alert';
+
+const i18nOptions = { scope: 'project.create' };
 
 export default class CreateProjectScreen extends Component {
   static navigationOptions = {
@@ -134,7 +137,7 @@ export default class CreateProjectScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="建立專案"
+            title={i18n.t('title', i18nOptions)}
             rightButton={{
               icon: 'save',
               color: '#666666',

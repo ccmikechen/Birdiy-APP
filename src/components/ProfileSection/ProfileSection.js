@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import i18n from 'i18n-js';
 
 import Avatar from '../Avatar';
 
@@ -39,7 +40,9 @@ const ProfileSection = ({
           <Text style={styles.followingNumber}>
             {profile.followingCount}
           </Text>
-          <Text style={styles.following}>跟隨中</Text>
+          <Text style={styles.following}>
+            {i18n.t('profile.following')}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.followingContainer}
@@ -48,7 +51,9 @@ const ProfileSection = ({
           <Text style={styles.followingNumber}>
             {profile.followerCount}
           </Text>
-          <Text style={styles.following}>跟隨者</Text>
+          <Text style={styles.following}>
+            {i18n.t('profile.follower')}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

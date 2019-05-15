@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ActionSheet from 'react-native-actionsheet';
+import i18n from 'i18n-js';
 
-const DEFAULT_MESSAGE = '使用此功能前必須先登入';
+const DEFAULT_MESSAGE = i18n.t('loginActions.defaultMessage');
 
 export default class LoginActions extends Component {
   static propTypes = {
@@ -40,9 +41,9 @@ export default class LoginActions extends Component {
     return (
       <ActionSheet
         ref={(ref) => { this.actionSheet = ref; }}
-        title="需要登入"
+        title={i18n.t('loginActions.title')}
         message={message}
-        options={['登入', '取消']}
+        options={[i18n.t('general.login'), i18n.t('general.cancel')]}
         cancelButtonIndex={1}
         onPress={this.handlePress}
       />

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
+import i18n from 'i18n-js';
+
+import '../../locales';
 
 import styles from './styles';
 
@@ -16,11 +19,12 @@ const MoreButton = ({ text, onPress }) => (
 );
 
 MoreButton.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   onPress: PropTypes.func,
 };
 
 MoreButton.defaultProps = {
+  text: i18n.t('general.more'),
   onPress: () => {},
 };
 

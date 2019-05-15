@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
 
 import SettingsList, {
   Header,
@@ -19,22 +20,24 @@ const DisplaySetting = (props) => {
 
   return (
     <SettingsList borderColor={Colors.settingBorder}>
-      <Header headerText="語言" />
+      <Header headerText={i18n.t('settings.display.language.title')} />
       <Item
-        title="介面語言"
+        title={i18n.t('settings.display.language.interface.title')}
         titleStyle={styles.title}
-        titleInfo={settings.interfaceLanguage}
+        titleInfo={
+          i18n.t(`languages.${settings.interfaceLanguage}`)
+        }
         itemWidth={Size.settingItemHeight}
         onPress={() => onItemPress('interfaceLanguage')}
       />
       <Item
-        title="顯示專案語言"
+        title={i18n.t('settings.display.language.displayProjects.title')}
         titleStyle={styles.title}
         itemWidth={Size.settingItemHeight}
         onPress={() => onItemPress('displayProjectsLanguage')}
       />
       <Item
-        title="顯示投稿語言"
+        title={i18n.t('settings.display.language.displayPosts.title')}
         titleStyle={styles.title}
         itemWidth={Size.settingItemHeight}
         onPress={() => onItemPress('displayPostsLanguage')}

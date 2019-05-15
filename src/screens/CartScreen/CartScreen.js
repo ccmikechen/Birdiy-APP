@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18n-js';
+
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -24,7 +26,7 @@ export default class CartScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="採買清單"
+            title={i18n.t('cart.title')}
           />
         )}
       />

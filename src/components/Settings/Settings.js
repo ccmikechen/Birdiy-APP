@@ -6,6 +6,7 @@ import SettingsList, {
   Header,
   Item,
 } from 'react-native-settings-list';
+import i18n from 'i18n-js';
 
 import Colors, { TextColor } from '../../constants/Colors';
 import Size from '../../constants/Size';
@@ -41,42 +42,42 @@ export default class Settings extends Component {
     return (
       <SettingsList borderColor={Colors.settingBorder}>
         <Item
-          title="編輯個人檔案"
+          title={i18n.t('settings.profile.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.AntDesign, 'profile')}
           onPress={() => onItemPress('profile')}
         />
         <Item
-          title="編輯帳戶"
+          title={i18n.t('settings.account.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialCommunityIcons, 'account')}
           onPress={() => onItemPress('account')}
         />
         <Item
-          title="顯示設定"
+          title={i18n.t('settings.display.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'smartphone')}
           onPress={() => onItemPress('display')}
         />
         <Item
-          title="通知設定"
+          title={i18n.t('settings.notification.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'notifications')}
           onPress={() => onItemPress('notification')}
         />
         <Item
-          title="關於Birdiy"
+          title={i18n.t('about.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'info')}
           onPress={() => onItemPress('about')}
         />
         <Item
-          title="意見回饋"
+          title={i18n.t('feedback.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}
           icon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
@@ -87,7 +88,7 @@ export default class Settings extends Component {
         )}
         {logoutButtonVisible && (
           <Item
-            title="登出"
+            title={i18n.t('general.logout')}
             titleStyle={[styles.title, styles.logoutTitle]}
             itemWidth={Size.settingItemHeight}
             icon={this.renderIcon(Icon.MaterialCommunityIcons, 'logout', Colors.logoutButton)}

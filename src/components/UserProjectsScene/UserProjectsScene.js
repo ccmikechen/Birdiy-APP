@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ListView } from 'react-native';
+import i18n from 'i18n-js';
 
 import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
@@ -99,7 +100,7 @@ export default class UserProjectsScene extends Component {
         {editable ? (
           <View style={styles.addButtonContainer}>
             <UserProfileAddButton
-              text="新增專案"
+              text={i18n.t('project.create.title')}
               onPress={onAddPress}
             />
           </View>
@@ -111,10 +112,7 @@ export default class UserProjectsScene extends Component {
           renderRow={editable ? this.renderEditableRow : this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton
-            text="更多"
-            onPress={onMorePress}
-          />
+          <MoreButton onPress={onMorePress} />
         </View>
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}

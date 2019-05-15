@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-navigation';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import SelectableCategoriesTable from '../../components/SelectableCategoriesTable';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'selectCategory' };
 
 export default class SelectCategoryScreen extends Component {
   static navigationOptions = {
@@ -80,15 +83,15 @@ export default class SelectCategoryScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="選擇分類"
+            title={i18n.t('title', i18nOptions)}
             rightButton={multipleSelect ? [{
-              text: '全選',
+              text: i18n.t('options.selectAll', i18nOptions),
               onPress: this.handleSelectAll,
             }, {
-              text: '清除',
+              text: i18n.t('options.clear', i18nOptions),
               onPress: this.handleClear,
             }, {
-              text: '確定',
+              text: i18n.t('general.ok'),
               onPress: this.handleSubmit,
             }] : null}
           />

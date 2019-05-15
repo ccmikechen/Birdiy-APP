@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import i18n from 'i18n-js';
 
 import EditSection from '../EditSection';
 import PureTextInput from '../PureTextInput';
@@ -15,7 +16,7 @@ const ProfileSetting = (props) => {
 
   return (
     <View style={styles.container}>
-      <EditSection title="大頭貼照">
+      <EditSection title={i18n.t('settings.profile.avatar')}>
         <View style={styles.avatarContainer}>
           <Avatar
             image={profile.image}
@@ -27,11 +28,11 @@ const ProfileSetting = (props) => {
           />
         </View>
       </EditSection>
-      <EditSection title="名稱">
+      <EditSection title={i18n.t('settings.profile.name.title')}>
         <PureTextInput
           style={styles.textInput}
           value={profile.name}
-          placeholder="輸入你的名稱"
+          placeholder={i18n.t('settings.profile.name.placeholder')}
           onChangeText={value => onChange({ name: value })}
           maxLength={20}
           counter

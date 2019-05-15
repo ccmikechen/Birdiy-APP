@@ -23,6 +23,7 @@
     "eslint-plugin-react": "^7.12.4",
     "expo": "^32.0.0",
     "hoist-non-react-statics": "^3.3.0",
+    "i18n-js": "^3.2.2",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "phoenix": "^1.4.3",

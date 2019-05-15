@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import ActionMenuButton from '../ActionMenuButton';
 
@@ -60,11 +61,11 @@ const HorProjectSection = ({
             <View style={styles.statusContainer}>
               {project.published ? (
                 <Text style={[styles.status, styles.publishedStatus]}>
-                  公開
+                  {i18n.t('project.status.published')}
                 </Text>
               ) : (
                 <Text style={[styles.status, styles.draftStatus]}>
-                  草稿
+                  {i18n.t('project.status.draft')}
                 </Text>
               )}
             </View>

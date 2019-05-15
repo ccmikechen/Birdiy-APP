@@ -72,10 +72,7 @@ export default class UserFavoritesScene extends Component {
           renderRow={this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton
-            text="更多"
-            onPress={onMorePress}
-          />
+          <MoreButton onPress={onMorePress} />
         </View>
       </View>
     );

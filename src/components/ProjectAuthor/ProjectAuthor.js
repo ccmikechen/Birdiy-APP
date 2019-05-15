@@ -4,6 +4,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import i18n from 'i18n-js';
 
 import Avatar from '../Avatar';
 import FollowUserButton from '../FollowUserButton';
@@ -11,6 +12,8 @@ import FollowUserButton from '../FollowUserButton';
 import Size from '../../constants/Size';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.author' };
 
 const ProjectAuthor = ({
   author,
@@ -33,7 +36,7 @@ const ProjectAuthor = ({
       </View>
       <View style={styles.statisticsContainer}>
         <Text style={styles.statistics}>
-          {`${author.projectCount} 專案．${author.followerCount} 跟隨`}
+          {`${author.projectCount} ${i18n.t('projects', i18nOptions)}．${author.followerCount} ${i18n.t('followers', i18nOptions)}`}
         </Text>
       </View>
     </View>

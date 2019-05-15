@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native';
+import i18n from 'i18n-js';
 
 import styles from './styles';
 
@@ -16,7 +17,14 @@ const MethodListItem = ({ method, order }) => (
     )}
     <View style={styles.titleContainer}>
       <Text style={styles.title}>
-        {`步驟${order}${method.title ? `: ${method.title}` : ''}`}
+        {method.title ? (
+          i18n.t('project.sections.methods.stepWithTitle', {
+            step: order,
+            title: method.title,
+          })
+        ) : (
+          i18n.t('project.sections.methods.step', { step: order })
+        )}
       </Text>
     </View>
     <View style={styles.contentContainer}>

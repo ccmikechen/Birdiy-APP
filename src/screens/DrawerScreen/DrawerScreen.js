@@ -9,6 +9,7 @@ import {
 import { LinearGradient, Icon } from 'expo';
 import { Button } from 'react-native-paper';
 import { ScrollView } from 'react-navigation';
+import i18n from 'i18n-js';
 
 import PostButton from '../../components/PostButton';
 import DrawerMenu from '../../components/DrawerMenu';
@@ -96,7 +97,9 @@ export default class DrawerScreen extends Component {
               <Text style={styles.profileName}>{ query.viewer.name }</Text>
             </View>
             <View style={styles.profileHintContainer}>
-              <Text style={styles.profileHint}>我的工作坊</Text>
+              <Text style={styles.profileHint}>
+                {i18n.t('profile.title')}
+              </Text>
             </View>
           </View>
           <View style={styles.profileLevelContainer}>
@@ -106,11 +109,15 @@ export default class DrawerScreen extends Component {
         <View style={styles.relationInfoContainer}>
           <View style={styles.followingContainer}>
             <Text style={styles.followingNumber}>{ query.viewer.followingCount }</Text>
-            <Text style={styles.following}>跟隨中</Text>
+            <Text style={styles.following}>
+              {i18n.t('profile.following')}
+            </Text>
           </View>
           <View style={styles.followingContainer}>
             <Text style={styles.followingNumber}>{ query.viewer.followerCount }</Text>
-            <Text style={styles.following}>跟隨者</Text>
+            <Text style={styles.following}>
+              {i18n.t('profile.follower')}
+            </Text>
           </View>
         </View>
         <View style={styles.postButtonContainer}>
@@ -132,17 +139,17 @@ export default class DrawerScreen extends Component {
   renderDefaultMenu = () => (
     <DrawerMenu>
       <DrawerMenuItem
-        title="首頁"
+        title={i18n.t('home.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'home')}
         onPress={this.navigateToScreen('Home')}
       />
       <DrawerMenuItem
-        title="分類"
+        title={i18n.t('drawer.categories')}
         renderIcon={this.renderIcon(Icon.Entypo, 'grid')}
         onPress={this.navigateToScreen('AllCategoriesModal')}
       />
       <DrawerMenuItem
-        title="升級VIP"
+        title={i18n.t('drawer.vip')}
         renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'crown')}
         onPress={this.navigateToScreen('Home')}
       />
@@ -150,38 +157,38 @@ export default class DrawerScreen extends Component {
   );
 
   renderLoginMenu = () => (
-    <DrawerMenu style={styles.menu} title="我的工作坊">
+    <DrawerMenu style={styles.menu} title={i18n.t('profile.title')}>
       <View style={styles.loginButtonContainer}>
         <Button
           mode="contained"
           color={Colors.loginButton}
           onPress={this.handleLoginPress}
         >
-          登入
+          {i18n.t('general.login')}
         </Button>
       </View>
     </DrawerMenu>
   );
 
   renderProfileMenu = () => (
-    <DrawerMenu style={styles.menu} title="我的工作坊">
+    <DrawerMenu style={styles.menu} title={i18n.t('profile.title')}>
       <DrawerMenuItem
-        title="我的專案"
+        title={i18n.t('drawer.myProjects')}
         renderIcon={this.renderIcon(Icon.Entypo, 'tools')}
         onPress={this.navigateToScreen('MyProjects')}
       />
       <DrawerMenuItem
-        title="我的投稿"
+        title={i18n.t('drawer.myPosts')}
         renderIcon={this.renderIcon(Icon.MaterialCommunityIcons, 'lightbulb-on')}
         onPress={this.navigateToScreen('MyPosts')}
       />
       <DrawerMenuItem
-        title="我的收藏"
+        title={i18n.t('drawer.myFavorites')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'folder-special')}
         onPress={this.navigateToScreen('MyFavorites')}
       />
       <DrawerMenuItem
-        title="採買清單"
+        title={i18n.t('cart.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'shopping-cart')}
         onPress={this.navigateToScreen('Cart')}
       />
@@ -189,24 +196,24 @@ export default class DrawerScreen extends Component {
   );
 
   renderOtherMenu = () => (
-    <DrawerMenu style={styles.menu} title="其他">
+    <DrawerMenu style={styles.menu} title={i18n.t('drawer.other')}>
       <DrawerMenuItem
-        title="近期瀏覽"
+        title={i18n.t('recentViewed.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'history')}
         onPress={this.navigateToScreen('RecentViewed')}
       />
       <DrawerMenuItem
-        title="關於Birdiy"
+        title={i18n.t('about.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'info')}
         onPress={this.navigateToScreen('AboutModal')}
       />
       <DrawerMenuItem
-        title="意見回饋"
+        title={i18n.t('feedback.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'feedback')}
         onPress={this.navigateToScreen('FeedbackModal')}
       />
       <DrawerMenuItem
-        title="設定"
+        title={i18n.t('settings.title')}
         renderIcon={this.renderIcon(Icon.MaterialIcons, 'settings')}
         onPress={this.navigateToScreen('SettingModal')}
       />

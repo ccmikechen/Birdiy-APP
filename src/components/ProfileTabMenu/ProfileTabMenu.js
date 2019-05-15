@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import i18n from 'i18n-js';
+
 import NormalTabBar from '../NormalTabBar';
 import UserProjectsScene from '../../containers/UserProjectsScene';
 import UserPostsScene from '../../containers/UserPostsScene';
 import UserFavoritesScene from '../../containers/UserFavoritesScene';
 
-const TABS = ['專案', '投稿', '收藏'];
+const TABS = [
+  i18n.t('profile.tabs.projects'),
+  i18n.t('profile.tabs.posts'),
+  i18n.t('profile.tabs.favorites'),
+];
 
 export default class ProfileTabMenu extends Component {
   static propTypes = {

@@ -4,6 +4,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
 } from 'react-navigation';
+import i18n from 'i18n-js';
 
 import TabBar from '../components/TabBar';
 import TabBarIcon from '../components/TabBarIcon';
@@ -60,7 +61,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '首頁',
+      tabBarLabel: i18n.t('home.title'),
       tabBarIcon: tabBarIcon('home'),
       tabBarOptions,
     },
@@ -73,7 +74,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '動態',
+      tabBarLabel: i18n.t('timeline.title'),
       tabBarIcon: tabBarIcon('timeline'),
       tabBarOptions,
     },
@@ -84,7 +85,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '瀏覽DIY',
+      tabBarLabel: i18n.t('projects.title'),
       tabBarIcon: tabBarIcon('search'),
       tabBarOptions,
     },
@@ -98,7 +99,7 @@ export default createBottomTabNavigator({
     ...sharedScreens,
   }, {
     navigationOptions: {
-      tabBarLabel: '我的工作坊',
+      tabBarLabel: i18n.t('profile.title'),
       tabBarIcon: tabBarIcon('person'),
       tabBarOptions,
     },

@@ -11,6 +11,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppNavigator from './navigation/AppNavigator';
 
+import './locales';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

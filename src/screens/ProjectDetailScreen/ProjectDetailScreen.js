@@ -7,6 +7,7 @@ import {
   Linking,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -33,6 +34,8 @@ import { isLoggedIn } from '../../helpers/credentails';
 import { UnauthorizedError } from '../../errors';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project' };
 
 export default class ProjectDetailScreen extends Component {
   static navigationOptions = {
@@ -120,7 +123,7 @@ export default class ProjectDetailScreen extends Component {
     const mutation = new FollowUserMutation({ id });
     mutation.commit().catch((e) => {
       if (e instanceof UnauthorizedError) {
-        this.loginActions.show('跟隨用戶之前必須先登入');
+        this.loginActions.show(i18n.t('loginActions.followingMessage'));
       }
     });
   };
@@ -138,7 +141,7 @@ export default class ProjectDetailScreen extends Component {
 
     mutation.commit().catch((e) => {
       if (e instanceof UnauthorizedError) {
-        this.loginActions.show('喜歡專案之前必須先登入');
+        this.loginActions.show(i18n.t('loginActions.likeProjectMessage'));
       }
     });
   };
@@ -151,14 +154,14 @@ export default class ProjectDetailScreen extends Component {
 
     mutation.commit().catch((e) => {
       if (e instanceof UnauthorizedError) {
-        this.loginActions.show('收藏專案之前必須先登入');
+        this.loginActions.show(i18n.t('loginActions.favoriteProjectMessage'));
       }
     });
   };
 
   handleNewPostPress = async () => {
     if (!(await isLoggedIn())) {
-      this.loginActions.show('發布跟著做投稿之前必須先登入');
+      this.loginActions.show(i18n.t('loginActions.creatingFollowingPostMessage'));
       return;
     }
 
@@ -226,7 +229,7 @@ export default class ProjectDetailScreen extends Component {
             </View>
             <View style={[styles.contentSection, styles.statisticsContainer]}>
               <Text style={styles.statistics}>
-                {`${project.viewCount} 看過．${project.likeCount} 喜歡．${project.favoriteCount} 收藏．${project.relatedPostCount} 跟著做`}
+                {`${project.viewCount} ${i18n.t('statistics.viewed', i18nOptions)}．${project.likeCount} ${i18n.t('statistics.liked', i18nOptions)}．${project.favoriteCount} ${i18n.t('statistics.favorited', i18nOptions)}．${project.relatedPostCount} ${i18n.t('statistics.followed', i18nOptions)}`}
               </Text>
             </View>
           </View>
@@ -252,7 +255,7 @@ export default class ProjectDetailScreen extends Component {
             onNewPostPress={this.handleNewPostPress}
           />
         </View>
-        <ProjectDetailSection title="介紹">
+        <ProjectDetailSection title={i18n.t('sections.intro', i18nOptions)}>
           <View style={styles.introContainer}>
             <Text style={styles.intro}>
               {project.introduction}
@@ -270,7 +273,7 @@ export default class ProjectDetailScreen extends Component {
         />
         <ProjectDetailMethodList project={project} />
         {project.tip ? (
-          <ProjectDetailSection title="小技巧">
+          <ProjectDetailSection title={i18n.t('sections.tip', i18nOptions)}>
             <View style={styles.tipContainer}>
               <Text style={styles.tip}>
                 {project.tip}

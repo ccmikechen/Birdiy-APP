@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
+import i18n from 'i18n-js';
 
 import Colors from '../../constants/Colors';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.options' };
 
 const ProjectOptionButtons = ({
   onFavoritePress,
@@ -25,7 +28,7 @@ const ProjectOptionButtons = ({
           color={Colors.headerIcon}
         />
         <Text style={styles.buttonText}>
-          取消收藏
+          {i18n.t('cancelFavorite', i18nOptions)}
         </Text>
       </TouchableOpacity>
     ) : (
@@ -39,7 +42,7 @@ const ProjectOptionButtons = ({
           color={Colors.headerIcon}
         />
         <Text style={styles.buttonText}>
-          收藏專案
+          {i18n.t('favorite', i18nOptions)}
         </Text>
       </TouchableOpacity>
     )}
@@ -54,7 +57,7 @@ const ProjectOptionButtons = ({
         color={Colors.headerIcon}
       />
       <Text style={styles.buttonText}>
-        分享
+        {i18n.t('share', i18nOptions)}
       </Text>
     </TouchableOpacity>
     <View style={styles.divider} />
@@ -68,7 +71,7 @@ const ProjectOptionButtons = ({
         color={Colors.headerIcon}
       />
       <Text style={styles.buttonText}>
-        跟著做
+        {i18n.t('follow', i18nOptions)}
       </Text>
     </TouchableOpacity>
   </View>

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-paper';
 import { clone, cloneDeep } from 'lodash';
+import i18n from 'i18n-js';
 
 import TabSectionScreenView from '../../components/TabSectionScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -27,7 +28,7 @@ import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 import {
   showSaveProjectSuccessAlert,
   showSaveProjectFailedAlert,
-  showSetProjectFaieldAlert,
+  showSetProjectFailedAlert,
   showPublishProjectSuccessAlert,
   showUnpublishProjectSuccessAlert,
   showDeleteProjectAlert,
@@ -43,16 +44,18 @@ import {
 
 import styles from './styles';
 
+const i18nOptions = { scope: 'project.edit' };
+
 const TABS = [{
-  key: 'intro', title: '簡介',
+  key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
 }, {
-  key: 'image', title: '主圖',
+  key: 'image', title: i18n.t('tabs.image', i18nOptions),
 }, {
-  key: 'material', title: '材料',
+  key: 'material', title: i18n.t('tabs.materials', i18nOptions),
 }, {
-  key: 'method', title: '作法',
+  key: 'method', title: i18n.t('tabs.methods', i18nOptions),
 }, {
-  key: 'tip', title: '小技巧',
+  key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
 }];
 
 export default class EditProjectScreen extends Component {
@@ -306,7 +309,7 @@ export default class EditProjectScreen extends Component {
   };
 
   handlePublishingError = () => {
-    showSetProjectFaieldAlert();
+    showSetProjectFailedAlert();
   };
 
   renderSection = (key) => {
@@ -325,29 +328,29 @@ export default class EditProjectScreen extends Component {
       case 'intro':
         return (
           <View style={styles.section}>
-            <EditSection title="專案名稱">
+            <EditSection title={i18n.t('projectName.title', i18nOptions)}>
               <PureTextInput
                 style={styles.textInput}
                 value={projectName}
-                placeholder="輸入你的專案名稱"
+                placeholder={i18n.t('projectName.placeholder', i18nOptions)}
                 onChangeText={value => this.setState({ projectName: value })}
                 maxLength={20}
                 counter
               />
             </EditSection>
-            <EditSection title="分類">
+            <EditSection title={i18n.t('category.title', i18nOptions)}>
               <PureSelector
                 style={styles.textInput}
-                placeholder="選擇你的專案分類"
+                placeholder={i18n.t('category.placeholder', i18nOptions)}
                 value={category}
                 onPress={this.handleSelecteCategoryPress}
               />
             </EditSection>
-            <EditSection title="介紹">
+            <EditSection title={i18n.t('intro.title', i18nOptions)}>
               <PureTextInput
                 style={styles.textInput}
                 value={introduction}
-                placeholder="介紹你的專案"
+                placeholder={i18n.t('intro.placeholder', i18nOptions)}
                 onChangeText={value => this.setState({ introduction: value })}
                 maxLength={300}
                 multiline
@@ -358,7 +361,7 @@ export default class EditProjectScreen extends Component {
         );
       case 'image':
         return (
-          <EditSection title="主圖">
+          <EditSection title={i18n.t('image.title', i18nOptions)}>
             <View style={styles.projectImageContainer}>
               <ImageUploadView
                 width="100%"
@@ -373,13 +376,13 @@ export default class EditProjectScreen extends Component {
       case 'material':
         return (
           <View style={styles.section}>
-            <EditSection title="材料">
+            <EditSection title={i18n.t('materials.title', i18nOptions)}>
               <EditMaterialList
                 data={materials}
                 onChange={this.handleMaterialChange}
               />
             </EditSection>
-            <EditSection title="檔案資料">
+            <EditSection title={i18n.t('files.title', i18nOptions)}>
               <EditFileList
                 data={files}
                 onChange={this.handleFileChange}
@@ -390,7 +393,7 @@ export default class EditProjectScreen extends Component {
       case 'method':
         return (
           <View style={styles.section}>
-            <EditSection title="作法">
+            <EditSection title={i18n.t('methods.title', i18nOptions)}>
               <EditMethodList
                 data={methods}
                 onChange={this.handleMethodChange}
@@ -401,11 +404,11 @@ export default class EditProjectScreen extends Component {
       case 'tip':
         return (
           <View style={styles.section}>
-            <EditSection title="小技巧">
+            <EditSection title={i18n.t('tip.title', i18nOptions)}>
               <PureTextInput
                 style={styles.textInput}
                 value={tip}
-                placeholder="（可選）分享跟著做的一些小技巧及需要注意的地方"
+                placeholder={i18n.t('tip.placeholder', i18nOptions)}
                 onChangeText={value => this.setState({ tip: value })}
                 maxLength={300}
                 multiline
@@ -430,7 +433,9 @@ export default class EditProjectScreen extends Component {
             mode="contained"
             onPress={this.handleSave}
           >
-            <Text style={styles.submitButtonText}>儲存</Text>
+            <Text style={styles.submitButtonText}>
+              {i18n.t('general.save')}
+            </Text>
           </Button>
           {query && query.project.published ? (
             <Button
@@ -438,7 +443,9 @@ export default class EditProjectScreen extends Component {
               mode="contained"
               onPress={this.handleUnpublish}
             >
-              <Text style={styles.submitButtonText}>取消公開</Text>
+              <Text style={styles.submitButtonText}>
+                {i18n.t('unpublish', i18nOptions)}
+              </Text>
             </Button>
           ) : (
             <Button
@@ -446,7 +453,9 @@ export default class EditProjectScreen extends Component {
               mode="contained"
               onPress={this.handlePublish}
             >
-              <Text style={styles.submitButtonText}>公開</Text>
+              <Text style={styles.submitButtonText}>
+                {i18n.t('publish', i18nOptions)}
+              </Text>
             </Button>
           )}
         </View>
@@ -480,7 +489,7 @@ export default class EditProjectScreen extends Component {
           renderHeader={() => (
             <NormalBackHeader
               onBack={() => navigation.goBack()}
-              title="編輯專案"
+              title={i18n.t('title', i18nOptions)}
               rightButton={[{
                 icon: 'delete',
                 color: '#666666',
