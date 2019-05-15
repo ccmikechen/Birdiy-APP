@@ -8,6 +8,7 @@ export default {
     login: 'Login',
     logout: 'Logout',
     more: 'More',
+    confirm: 'OK',
     ok: 'OK',
     cancel: 'Cancel',
     save: 'Save',
@@ -77,7 +78,7 @@ export default {
         title: 'Materials',
         name: 'Material Name',
         amountUnit: 'Quantity',
-        link: '(Option) Store or Purchase Link',
+        link: '(Optional) Store or Purchase Link',
         add: 'Add Material',
       },
       files: {
@@ -88,14 +89,14 @@ export default {
       },
       methods: {
         title: 'Steps',
-        stepTitle: '(Option) Step Title',
+        stepTitle: '(Optional) Step Title',
         description: 'Enter description',
         step: 'Step %{step}',
         add: 'Add Step',
       },
       tip: {
         title: 'Tips',
-        placeholder: '(Option) Share some tips and things to follow',
+        placeholder: '(Optional) Share some tips and things to follow',
       },
       publish: 'Publish',
       unpublish: 'Unpublish',
@@ -104,7 +105,7 @@ export default {
       title: 'Delete Project',
     },
     status: {
-      published: 'Published',
+      published: 'Public',
       draft: 'Draft',
     },
     statistics: {
@@ -179,7 +180,7 @@ export default {
     title: 'All Categories',
   },
   selectCategory: {
-    title: 'Select Category',
+    title: 'Category',
     options: {
       selectAll: 'Select all',
       clear: 'Clear',
@@ -228,6 +229,9 @@ export default {
     notification: {
       title: 'Notifcation Settings',
     },
+  },
+  login: {
+    facebookLogin: 'Log in with facebook',
   },
   searchBar: {
     placeholder: 'Find Projects',

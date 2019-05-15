@@ -91,7 +91,7 @@ export default class SelectCategoryScreen extends Component {
               text: i18n.t('options.clear', i18nOptions),
               onPress: this.handleClear,
             }, {
-              text: i18n.t('general.ok'),
+              text: i18n.t('general.confirm'),
               onPress: this.handleSubmit,
             }] : null}
           />

@@ -3,7 +3,8 @@ export default {
     login: '登入',
     logout: '登出',
     more: '更多',
-    ok: '確定',
+    confirm: '確定',
+    ok: 'OK',
     cancel: '取消',
     save: '儲存',
   },
@@ -84,7 +85,7 @@ export default {
       methods: {
         title: '作法',
         stepTitle: '（可選）步驟標題',
-        describe: '輸入詳細的步驟說明',
+        description: '輸入詳細的步驟說明',
         step: '步驟 %{step}',
         add: '加步驟',
       },
@@ -223,6 +224,9 @@ export default {
     notification: {
       title: '通知設定',
     },
+  },
+  login: {
+    facebookLogin: '透過 Facebook 登入',
   },
   searchBar: {
     placeholder: '找專案',

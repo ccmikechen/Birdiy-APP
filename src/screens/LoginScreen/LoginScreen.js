@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Icon, Facebook } from 'expo';
 import { Button } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import LoginMutation from '../../mutations/LoginMutation';
 
@@ -19,6 +20,8 @@ import { Primary } from '../../constants/Colors';
 import config from '../../configs';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'login' };
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -95,7 +98,7 @@ export default class LoginScreen extends Component {
             color={Primary(900)}
             onPress={this.handleFacebookLogin}
           >
-            透過 Facebook 登入
+            {i18n.t('facebookLogin', i18nOptions)}
           </Button>
         </View>
       </View>

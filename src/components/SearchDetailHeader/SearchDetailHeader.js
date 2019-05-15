@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Searchbar } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import BasicHeader from '../BasicHeader';
 
@@ -50,7 +51,7 @@ export default class SearchDetailHeader extends Component {
             ref={(searchBar) => { this.searchBar = searchBar; }}
             style={styles.searchBar}
             value={keyword}
-            placeholder="找專案"
+            placeholder={i18n.t('searchBar.placeholder')}
             onChangeText={onKeywordChange}
             onSubmitEditing={onSearch}
           />
