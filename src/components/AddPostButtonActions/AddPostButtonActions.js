@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ActionSheet from 'react-native-actionsheet';
+import i18n from 'i18n-js';
 
 export default class AddPostButtonActions extends Component {
   static propTypes = {
@@ -35,7 +36,11 @@ export default class AddPostButtonActions extends Component {
     return (
       <ActionSheet
         ref={(ref) => { this.actionSheet = ref; }}
-        options={['新增專案', '新增投稿', '取消']}
+        options={[
+          i18n.t('project.create.title'),
+          i18n.t('post.create.title'),
+          i18n.t('general.cancel'),
+        ]}
         cancelButtonIndex={2}
         onPress={this.handlePress}
       />

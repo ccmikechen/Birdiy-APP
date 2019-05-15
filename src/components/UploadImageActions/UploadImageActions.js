@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ActionSheet from 'react-native-actionsheet';
+import i18n from 'i18n-js';
 
 export default class UploadImageActions extends Component {
   static propTypes = {
@@ -35,7 +36,11 @@ export default class UploadImageActions extends Component {
     return (
       <ActionSheet
         ref={(ref) => { this.actionSheet = ref; }}
-        options={['從相簿挑選', '拍攝照片', '取消']}
+        options={[
+          i18n.t('imageUploadActions.upload'),
+          i18n.t('imageUploadActions.camera'),
+          i18n.t('general.cancel'),
+        ]}
         cancelButtonIndex={2}
         onPress={this.handlePress}
       />

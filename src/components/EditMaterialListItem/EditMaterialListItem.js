@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import PureTextInput from '../PureTextInput';
 
 import styles from './styles';
 
 import Colors from '../../constants/Colors';
+
+const i18nOptions = { scope: 'project.edit.materials' };
 
 const EditMaterialListItem = ({
   data,
@@ -22,7 +25,7 @@ const EditMaterialListItem = ({
       <View style={styles.nameContainer}>
         <PureTextInput
           value={data.name}
-          placeholder="材料名稱"
+          placeholder={i18n.t('name', i18nOptions)}
           onChangeText={(value) => {
             onChange({ ...data, name: value });
           }}
@@ -31,7 +34,7 @@ const EditMaterialListItem = ({
       <View style={styles.amountContainer}>
         <PureTextInput
           value={data.amountUnit}
-          placeholder="數量單位"
+          placeholder={i18n.t('amountUnit', i18nOptions)}
           onChangeText={(value) => {
             onChange({ ...data, amountUnit: value });
           }}
@@ -48,7 +51,7 @@ const EditMaterialListItem = ({
       </View>
       <PureTextInput
         value={data.url}
-        placeholder="（可選）商店或購買連結"
+        placeholder={i18n.t('link', i18nOptions)}
         onChangeText={(value) => {
           onChange({ ...data, url: value });
         }}

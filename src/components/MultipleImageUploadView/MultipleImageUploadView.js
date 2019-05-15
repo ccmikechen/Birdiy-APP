@@ -15,7 +15,7 @@ import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
-const i18nOptions = { scope: 'mutlipleImageUploadView' };
+const i18nOptions = { scope: 'imageUploadActions' };
 
 const getRealDimension = (dimension, spacing) => {
   const screenWidth = Dimensions.get('window').width;

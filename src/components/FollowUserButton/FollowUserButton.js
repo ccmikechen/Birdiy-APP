@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import Colors from '../../constants/Colors';
+
+const i18nOptions = { scope: 'followUserActions' };
 
 const FollowUserButton = ({
   following,
@@ -15,7 +18,7 @@ const FollowUserButton = ({
       color={Colors.followButton}
       onPress={onUnfollow}
     >
-      取消跟隨
+      {i18n.t('unfollow', i18nOptions)}
     </Button>
   ) : (
     <Button
@@ -23,7 +26,7 @@ const FollowUserButton = ({
       color={Colors.followButton}
       onPress={onFollow}
     >
-      跟隨
+      {i18n.t('follow', i18nOptions)}
     </Button>
   )
 );

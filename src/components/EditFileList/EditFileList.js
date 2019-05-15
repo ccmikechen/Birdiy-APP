@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { DocumentPicker } from 'expo';
 import { Button } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import EditFileListItem from '../EditFileListItem';
 
 import { DEFAULT_FILE } from '../../constants/defaults';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.edit.files' };
 
 export default class EditFileList extends Component {
   static propTypes = {
@@ -114,7 +117,9 @@ export default class EditFileList extends Component {
             color="#ffffff"
             onPress={this.handleFileLinkAdd}
           >
-            <Text style={styles.addButtonText}>加檔案連結</Text>
+            <Text style={styles.addButtonText}>
+              {i18n.t('addLink', i18nOptions)}
+            </Text>
           </Button>
           <Button
             style={styles.addButton}
@@ -123,7 +128,9 @@ export default class EditFileList extends Component {
             color="#ffffff"
             onPress={this.handleUploadFile}
           >
-            <Text style={styles.addButtonText}>上傳檔案</Text>
+            <Text style={styles.addButtonText}>
+              {i18n.t('upload', i18nOptions)}
+            </Text>
           </Button>
         </View>
       </View>

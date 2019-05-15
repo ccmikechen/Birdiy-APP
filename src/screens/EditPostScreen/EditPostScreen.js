@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { cloneDeep } from 'lodash';
+import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
@@ -12,6 +13,8 @@ import {
   showEditPostSuccessAlert,
   showEditPostFailedAlert,
 } from '../../helpers/alert';
+
+const i18nOptions = { scope: 'post.edit' };
 
 export default class EditPostScreen extends Component {
   static navigationOptions = {
@@ -128,7 +131,7 @@ export default class EditPostScreen extends Component {
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
-            title="編輯投稿"
+            title={i18n.t('title', i18nOptions)}
             rightButton={{
               icon: 'save',
               color: '#666666',

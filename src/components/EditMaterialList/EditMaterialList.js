@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import EditMaterialListItem from '../EditMaterialListItem';
 
 import { DEFAULT_MATERIAL } from '../../constants/defaults';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.edit.materials' };
 
 export default class EditMaterialList extends Component {
   static propTypes = {
@@ -96,7 +99,9 @@ export default class EditMaterialList extends Component {
             color="#ffffff"
             onPress={this.handleItemAdd}
           >
-            <Text style={styles.addButtonText}>加材料</Text>
+            <Text style={styles.addButtonText}>
+              {i18n.t('add', i18nOptions)}
+            </Text>
           </Button>
         </View>
       </View>

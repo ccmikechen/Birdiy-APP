@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Dimensions } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
+import i18n from 'i18n-js';
 
 import ImageUploadView from '../ImageUploadView';
 import PureTextInput from '../PureTextInput';
 
 import styles from './styles';
+
+const i18nOptions = { scope: 'project.edit.methods' };
 
 const EditMethodListItem = ({
   data,
@@ -28,7 +31,7 @@ const EditMethodListItem = ({
     <View style={styles.titleContainer}>
       <PureTextInput
         value={data.title}
-        placeholder="（可選）步驟標題"
+        placeholder={i18n.t('stepTitle', i18nOptions)}
         onChangeText={(value) => {
           onChange({ ...data, title: value });
         }}
@@ -37,7 +40,7 @@ const EditMethodListItem = ({
     <View style={styles.contentContainer}>
       <PureTextInput
         value={data.content}
-        placeholder="輸入詳細的步驟說明"
+        placeholder={i18n.t('description', i18nOptions)}
         onChangeText={(value) => {
           onChange({ ...data, content: value });
         }}

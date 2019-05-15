@@ -6,10 +6,10 @@ export default StyleSheet.create({
   buttonsContainer: {
     margin: 10,
     marginTop: 0,
-    flexDirection: 'row',
   },
   button: {
     marginRight: 20,
+    marginBottom: 10,
   },
   imageContainer: {
     position: 'relative',

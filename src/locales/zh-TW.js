@@ -12,6 +12,7 @@ export default {
       title: '新增貼文',
     },
     edit: {
+      title: '編輯貼文',
       message: {
         title: '訊息',
         placeholder: '輸入貼文訊息',
@@ -25,6 +26,9 @@ export default {
       photos: {
         title: '照片',
       },
+    },
+    delete: {
+      title: '刪除貼文',
     },
   },
   project: {
@@ -66,12 +70,23 @@ export default {
       },
       materials: {
         title: '材料',
+        name: '材料名稱',
+        amountUnit: '數量',
+        link: '（可選）商店或購買連結',
+        add: '加材料',
       },
       files: {
         title: '檔案資料',
+        name: '檔案名稱',
+        addLink: '加檔案連結',
+        upload: '上傳檔案',
       },
       methods: {
         title: '作法',
+        stepTitle: '（可選）步驟標題',
+        describe: '輸入詳細的步驟說明',
+        step: '步驟 %{step}',
+        add: '加步驟',
       },
       tip: {
         title: '小技巧',
@@ -79,6 +94,9 @@ export default {
       },
       publish: '公開',
       unpublish: '取消公開',
+    },
+    delete: {
+      title: '刪除專案',
     },
     status: {
       published: '公開',
@@ -212,6 +230,10 @@ export default {
   postButton: {
     title: '建立專案 / 貼文',
   },
+  followUserActions: {
+    follow: '跟隨',
+    unfollow: '取消跟隨',
+  },
   loginActions: {
     title: '需要登入',
     defaultMessage: '使用此功能前必須先登入',
@@ -222,9 +244,9 @@ export default {
     unfollowingMessage: '取消跟隨用戶之前必須先登入',
     creatingProjectMessage: '新增專案之前必須先登入',
   },
-  mutlipleImageUploadView: {
-    upload: '上傳照片',
-    camera: '拍照',
+  imageUploadActions: {
+    upload: '從相簿挑選',
+    camera: '拍攝照片',
   },
   alert: {
     login: '請先登入',

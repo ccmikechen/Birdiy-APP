@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ActionSheet from 'react-native-actionsheet';
+import i18n from 'i18n-js';
 
 export default class PostActions extends Component {
   static propTypes = {
@@ -45,8 +46,14 @@ export default class PostActions extends Component {
     return post ? (
       <ActionSheet
         ref={(ref) => { this.actionSheet = ref; }}
-        options={[post.author.following ? '取消跟隨' : '跟隨', '取消']}
+        options={[
+          post.author.following
+            ? i18n.t('followUserActions.unfollow')
+            : i18n.t('followUserActions.follow'),
+          i18n.t('general.cancel'),
+        ]}
         cancelButtonIndex={1}
+        destructiveButtonIndex={post.author.following && 0}
         onPress={this.handlePress}
       />
     ) : null;
