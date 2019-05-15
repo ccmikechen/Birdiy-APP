@@ -12,6 +12,8 @@ import ImageView from '../ImageView';
 import Avatar from '../Avatar';
 import ActionMenuButton from '../ActionMenuButton';
 
+import { timeAgo } from '../../helpers/datetime';
+
 import Size from '../../constants/Size';
 
 import styles from './styles';
@@ -39,7 +41,7 @@ const PostSection = ({
         </View>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
-            {post.insertedAt}
+            {timeAgo(post.insertedAt)}
           </Text>
         </View>
       </View>
@@ -94,7 +96,7 @@ PostSection.propTypes = {
       name: PropTypes.string.isRequired,
       image: PropTypes.string,
     }).isRequired,
-    insertedAt: PropTypes.string.isRequired,
+    insertedAt: PropTypes.number.isRequired,
     message: PropTypes.string.isRequired,
     photosCount: PropTypes.number.isRequired,
     thumbnail: PropTypes.shape({

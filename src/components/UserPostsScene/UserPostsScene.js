@@ -16,6 +16,8 @@ import MoreButton from '../MoreButton';
 import ActionMenuButton from '../ActionMenuButton';
 import MyPostActions from '../MyPostActions';
 
+import { timeAgo } from '../../helpers/datetime';
+
 import Size from '../../constants/Size';
 
 import styles from './styles';
@@ -27,7 +29,7 @@ const rowHasChanged = (r1, r2) => (
 export default class UserPostsScene extends Component {
   static propTypes = {
     posts: PropTypes.arrayOf(PropTypes.shape({
-      insertedAt: PropTypes.string.isRequired,
+      insertedAt: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
       thumbnail: PropTypes.shape({
         image: PropTypes.string.isRequired,
@@ -103,7 +105,7 @@ export default class UserPostsScene extends Component {
             </View>
             <View style={styles.dateContainer}>
               <Text style={styles.date}>
-                {post.insertedAt}
+                {timeAgo(post.insertedAt)}
               </Text>
             </View>
           </View>

@@ -7,17 +7,17 @@ export default createFragmentContainer(
   graphql`
     fragment ProfileTabMenu_profile on Profile {
       projects(
-        first: $count
+        first: $count,
       ) {
         ...UserProjectsScene_projects
       }
       posts(
-        first: $count
+        first: $count,
       ) {
         ...UserPostsScene_posts
       }
       favoriteProjects(
-        first: $count
+        first: $count,
       ) {
         ...UserFavoritesScene_projects
       }

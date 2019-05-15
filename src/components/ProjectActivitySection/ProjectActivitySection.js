@@ -13,6 +13,8 @@ import ImageView from '../ImageView';
 import Avatar from '../Avatar';
 import ActionMenuButton from '../ActionMenuButton';
 
+import { timeAgo } from '../../helpers/datetime';
+
 import Size from '../../constants/Size';
 
 import styles from './styles';
@@ -80,7 +82,7 @@ const ProjectActivitySection = ({
         </View>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
-            {createdAt}
+            {timeAgo(createdAt)}
           </Text>
         </View>
       </View>
@@ -127,7 +129,7 @@ ProjectActivitySection.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  createdAt: PropTypes.string.isRequired,
+  createdAt: PropTypes.number.isRequired,
   onUserPress: PropTypes.func,
   onActionButtonPress: PropTypes.func,
   onProjectPress: PropTypes.func,
