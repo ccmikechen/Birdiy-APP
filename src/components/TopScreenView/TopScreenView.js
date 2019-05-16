@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-navigation';
 
 import SimpleScreenView from '../SimpleScreenView';
-import Refresh from '../Refresh';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 import LoadingIndicator from '../LoadingIndicator';
+
+import Size from '../../constants/Size';
+import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -49,26 +51,22 @@ export default class TopScreenView extends Component {
       onRefresh,
     } = this.props;
 
-    const content = (
-      <TriggerScrollView keyboardShouldPersistTaps="always">
-        <View style={headerPadding ? styles.paddingView : styles.statusBarPaddingView} />
-        {loading ? <LoadingIndicator /> : children}
-      </TriggerScrollView>
-    );
-
     return (
       <SimpleScreenView {...this.props}>
-        {onRefresh ? (
-          <Refresh
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          >
-            {content}
-          </Refresh>
-
-        ) : (
-          content
-        )}
+        <TriggerScrollView
+          keyboardShouldPersistTaps="always"
+          refreshControl={onRefresh && (
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              progressViewOffset={Size.headerHeight}
+              colors={[Primary(500)]}
+            />
+          )}
+        >
+          <View style={headerPadding ? styles.paddingView : styles.statusBarPaddingView} />
+          {loading ? <LoadingIndicator /> : children}
+        </TriggerScrollView>
       </SimpleScreenView>
     );
   }

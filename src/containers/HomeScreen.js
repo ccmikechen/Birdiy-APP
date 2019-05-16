@@ -1,10 +1,20 @@
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createRefetchContainer } from 'react-relay';
 import { withNavigation } from 'react-navigation';
 
 import createQueryRenderer from '../relay/createQueryRenderer';
 import HomeScreen from '../screens/HomeScreen';
 
-const HomeScreenFragmentContainer = createFragmentContainer(
+const query = graphql`
+  query HomeScreenQuery (
+    $hotCategoryCount: Int!,
+    $hotCategoryOrder: RankOrder,
+    $newProjectCount: Int!,
+  ) {
+    ...HomeScreen_query
+  }
+`;
+
+const HomeScreenFragmentContainer = createRefetchContainer(
   HomeScreen,
   graphql`
     fragment HomeScreen_query on RootQueryType {
@@ -12,6 +22,7 @@ const HomeScreenFragmentContainer = createFragmentContainer(
       ...CategoriesTable_query
     }
   `,
+  query,
 );
 
 export default withNavigation(
@@ -19,15 +30,7 @@ export default withNavigation(
     HomeScreenFragmentContainer,
     HomeScreen,
     {
-      query: graphql`
-        query HomeScreenQuery (
-          $hotCategoryCount: Int!,
-          $hotCategoryOrder: RankOrder,
-          $newProjectCount: Int!,
-        ) {
-          ...HomeScreen_query
-        }
-      `,
+      query,
       variables: {
         hotCategoryCount: 6,
         hotCategoryOrder: 'NAME',

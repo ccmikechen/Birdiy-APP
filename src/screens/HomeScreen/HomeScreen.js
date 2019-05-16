@@ -28,6 +28,9 @@ export default class HomeScreen extends Component {
         edges: PropTypes.arrayOf(PropTypes.object),
       }),
     }),
+    relay: PropTypes.shape({
+      refetch: PropTypes.func.isRequired,
+    }).isRequired,
     loading: PropTypes.bool,
   };
 
@@ -93,6 +96,11 @@ export default class HomeScreen extends Component {
   };
 
   handleRefresh = () => {
+    const { relay } = this.props;
+    this.setState({ refreshing: true });
+    relay.refetch(null, null, () => {
+      this.setState({ refreshing: false });
+    });
   };
 
   render() {
