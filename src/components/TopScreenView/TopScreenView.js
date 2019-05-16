@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-navigation';
+
 
 import SimpleScreenView from '../SimpleScreenView';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
@@ -22,12 +23,16 @@ export default class TopScreenView extends Component {
       setParams: PropTypes.func.isRequired,
     }).isRequired,
     headerPadding: PropTypes.bool,
+    refreshing: PropTypes.bool,
+    onRefresh: PropTypes.func,
   };
 
   static defaultProps = {
     children: null,
     loading: false,
     headerPadding: true,
+    refreshing: false,
+    onRefresh: null,
   };
 
   componentDidMount() {
@@ -36,13 +41,17 @@ export default class TopScreenView extends Component {
   }
 
   render() {
-    const { children, loading, headerPadding } = this.props;
+    const {
+      children,
+      loading,
+      headerPadding,
+      refreshing,
+      onRefresh,
+    } = this.props;
 
     return (
       <SimpleScreenView {...this.props}>
-        <TriggerScrollView
-          keyboardShouldPersistTaps="always"
-        >
+        <TriggerScrollView keyboardShouldPersistTaps="always">
           <View style={headerPadding ? styles.paddingView : styles.statusBarPaddingView} />
           {loading ? <LoadingIndicator /> : children}
         </TriggerScrollView>

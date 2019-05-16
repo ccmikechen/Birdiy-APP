@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Updates } from 'expo';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import DisplaySetting from '../../components/DisplaySetting';
+
+import { setAppLocale, getAppLocale } from '../../locales';
 
 export default class DisplaySettingScreen extends Component {
   static navigationOptions = {
@@ -19,13 +22,23 @@ export default class DisplaySettingScreen extends Component {
 
   state = {
     settings: {
-      interfaceLanguage: 'zh-TW',
+      interfaceLanguage: 'en',
     },
   };
+
+  async componentDidMount() {
+    const appLocale = await getAppLocale();
+    this.setState({
+      settings: {
+        interfaceLanguage: appLocale,
+      },
+    });
+  }
 
   handleItemPress = (item) => {
     switch (item) {
       case 'interfaceLanguage':
+        setAppLocale('zh-TW').then(() => Updates.reload());
         break;
       case 'displayProjectsLanguage':
         break;

@@ -36,6 +36,10 @@ export default class HomeScreen extends Component {
     loading: true,
   };
 
+  state = {
+    refreshing: false
+  };
+
   handleOpenProject = (project) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id: project.id });
@@ -88,8 +92,16 @@ export default class HomeScreen extends Component {
     );
   };
 
+  handleRefresh = () => {
+    this.setState({ refreshing: true });
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000)
+  };
+
   render() {
     const { navigation, loading } = this.props;
+    const { refreshing } = this.state;
 
     return (
       <TopScreenView
@@ -102,6 +114,8 @@ export default class HomeScreen extends Component {
           />
         )}
         loading={loading}
+        refreshing={refreshing}
+        onRefresh={this.handleRefresh}
       >
         <HomeSection
           title={i18n.t('home.hotCategories')}
