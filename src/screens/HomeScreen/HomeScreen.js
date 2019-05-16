@@ -37,7 +37,7 @@ export default class HomeScreen extends Component {
   };
 
   state = {
-    refreshing: false
+    refreshing: false,
   };
 
   handleOpenProject = (project) => {
@@ -93,10 +93,6 @@ export default class HomeScreen extends Component {
   };
 
   handleRefresh = () => {
-    this.setState({ refreshing: true });
-    setTimeout(() => {
-      this.setState({ refreshing: false });
-    }, 1000)
   };
 
   render() {

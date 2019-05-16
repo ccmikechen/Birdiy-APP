@@ -12,4 +12,5 @@ export default {
   followPostAuthorInfoHeight: 50,
   followPostAuthorImageSize: 30,
   settingItemHeight: 60,
+  refreshAnimationHeight: 60,
 };
