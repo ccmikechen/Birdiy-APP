@@ -4,8 +4,6 @@ import { TouchableWithoutFeedback, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import i18n from 'i18n-js';
 
-import '../../locales';
-
 import styles from './styles';
 
 const SearchBarButton = ({ onPress, value, placeholder }) => (
@@ -15,7 +13,7 @@ const SearchBarButton = ({ onPress, value, placeholder }) => (
         <Searchbar
           value={value}
           style={styles.searchBar}
-          placeholder={placeholder}
+          placeholder={placeholder || i18n.t('searchBar.placeholder')}
         />
       </View>
     </View>
@@ -30,7 +28,7 @@ SearchBarButton.propTypes = {
 
 SearchBarButton.defaultProps = {
   value: '',
-  placeholder: i18n.t('searchBar.placeholder'),
+  placeholder: null,
 };
 
 export default SearchBarButton;

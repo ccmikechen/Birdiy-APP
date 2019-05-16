@@ -21,12 +21,6 @@ import { UnauthorizedError } from '../../errors';
 
 import styles from './styles';
 
-const TABS = [{
-  key: 'all', title: i18n.t('timeline.tabs.all'),
-}, {
-  key: 'following', title: i18n.t('timeline.tabs.following'),
-}];
-
 export default class TimelineScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -122,6 +116,11 @@ export default class TimelineScreen extends Component {
       navigation, query, variables, loading,
     } = this.props;
     const { addPostButtonVisible } = this.state;
+    const tabs = [{
+      key: 'all', title: i18n.t('timeline.tabs.all'),
+    }, {
+      key: 'following', title: i18n.t('timeline.tabs.following'),
+    }];
 
     return (
       <View style={styles.container}>
@@ -133,7 +132,7 @@ export default class TimelineScreen extends Component {
               onSearch={() => navigation.navigate('SearchDetail')}
             />
           )}
-          tabs={TABS}
+          tabs={tabs}
           onToggleTabBar={(visible) => {
             this.setState({ addPostButtonVisible: visible });
           }}

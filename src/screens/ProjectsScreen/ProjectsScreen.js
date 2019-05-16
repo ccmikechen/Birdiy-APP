@@ -15,12 +15,6 @@ import { isLoggedIn } from '../../helpers/credentails';
 
 import styles from './styles';
 
-const TABS = [{
-  key: 'newest', title: i18n.t('projects.tabs.newest'),
-}, {
-  key: 'hotest', title: i18n.t('projects.tabs.hotest'),
-}];
-
 export default class ProjectsScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -122,6 +116,11 @@ export default class ProjectsScreen extends Component {
     const { addProjectButtonVisible } = this.state;
     const keyword = navigation.getParam('keyword');
     const categories = navigation.getParam('categories');
+    const tabs = [{
+      key: 'newest', title: i18n.t('projects.tabs.newest'),
+    }, {
+      key: 'hotest', title: i18n.t('projects.tabs.hotest'),
+    }];
 
     return (
       <View style={styles.container}>
@@ -138,7 +137,7 @@ export default class ProjectsScreen extends Component {
               onOpenFilter={this.handleOpenFilter}
             />
           )}
-          tabs={TABS}
+          tabs={tabs}
           onToggleTabBar={(visible) => {
             this.setState({ addProjectButtonVisible: visible });
           }}

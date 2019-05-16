@@ -8,12 +8,6 @@ import UserProjectsScene from '../../containers/UserProjectsScene';
 import UserPostsScene from '../../containers/UserPostsScene';
 import UserFavoritesScene from '../../containers/UserFavoritesScene';
 
-const TABS = [
-  i18n.t('profile.tabs.projects'),
-  i18n.t('profile.tabs.posts'),
-  i18n.t('profile.tabs.favorites'),
-];
-
 export default class ProfileTabMenu extends Component {
   static propTypes = {
     profile: PropTypes.shape({
@@ -135,11 +129,16 @@ export default class ProfileTabMenu extends Component {
 
   render() {
     const { index } = this.state;
+    const tabs = [
+      i18n.t('profile.tabs.projects'),
+      i18n.t('profile.tabs.posts'),
+      i18n.t('profile.tabs.favorites'),
+    ];
 
     return (
       <View>
         <NormalTabBar
-          tabs={TABS}
+          tabs={tabs}
           index={index}
           onChange={tabIndex => this.setState({ index: tabIndex })}
         />

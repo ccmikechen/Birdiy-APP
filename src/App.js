@@ -9,9 +9,9 @@ import {
 
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import AppNavigator from './navigation/AppNavigator';
+import createAppNavigator from './navigation/AppNavigator';
 
-import './locales';
+import { initI18n } from './locales';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +25,11 @@ export default class App extends Component {
     isLoadingComplete: false,
     isSpinnerVisible: false,
   };
+
+  async componentWillMount() {
+    await initI18n();
+    this.AppNavigator = await createAppNavigator();
+  }
 
   loadResourcesAsync = async () => Promise.all([
     Asset.loadAsync([
@@ -54,6 +59,7 @@ export default class App extends Component {
       isLoadingComplete,
       isSpinnerVisible,
     } = this.state;
+    const { AppNavigator } = this;
 
     return isLoadingComplete ? (
       <View style={styles.container}>

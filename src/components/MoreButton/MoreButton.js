@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
 import i18n from 'i18n-js';
 
-import '../../locales';
-
 import styles from './styles';
 
 const MoreButton = ({ text, onPress }) => (

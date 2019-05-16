@@ -6,7 +6,7 @@ import {
 import { fromRight } from 'react-navigation-transitions';
 
 import DrawerScreen from '../containers/DrawerScreen';
-import MainTabNavigator from './MainTabNavigator';
+import createMainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/LoginScreen';
 import AllCategoriesScreen from '../containers/AllCategoriesScreen';
@@ -44,9 +44,9 @@ const modals = {
   SearchDetailModal: SearchDetailScreen,
 };
 
-export default createAppContainer(createStackNavigator({
+export default async () => createAppContainer(createStackNavigator({
   Main: createDrawerNavigator({
-    MainTab: MainTabNavigator,
+    MainTab: await createMainTabNavigator(),
   }, {
     initialRouteName: 'MainTab',
     contentComponent: DrawerScreen,

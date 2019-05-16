@@ -3,11 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { Icon } from 'expo';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import UserPostsHeader from '../../components/UserPostsHeader';
-import AnimatedAddButton from '../../components/AnimatedAddButton';
 import MyPostList from '../../containers/MyPostList';
 import MyPostActions from '../../components/MyPostActions';
 
@@ -42,10 +40,6 @@ export default class MyPostsScreen extends Component {
     loading: true,
   };
 
-  state = {
-    addPostButtonVisible: true,
-  };
-
   handleOpenImage = (id) => {
     const { navigation } = this.props;
     navigation.push('PostImagesModal', { id });
@@ -78,7 +72,6 @@ export default class MyPostsScreen extends Component {
     const {
       navigation, query, variables, loading,
     } = this.props;
-    const { addPostButtonVisible } = this.state;
     const postId = navigation.getParam('postId');
 
     return (
@@ -92,9 +85,6 @@ export default class MyPostsScreen extends Component {
               onReorder={this.handleReorder}
             />
           )}
-          onToggleTabBar={(visible) => {
-            this.setState({ addPostButtonVisible: visible });
-          }}
           animatedScroll
           loading={loading}
         >
@@ -109,18 +99,6 @@ export default class MyPostsScreen extends Component {
             postId={postId}
           />
         </SimpleScreenView>
-        <AnimatedAddButton
-          style={styles.addPostButton}
-          visible={addPostButtonVisible}
-          translate={80}
-          renderIcon={() => (
-            <Icon.FontAwesome
-              name="pencil-square-o"
-              size={26}
-              color="#ffffff"
-            />
-          )}
-        />
         <MyPostActions
           ref={(ref) => { this.actions = ref; }}
           onEditPost={this.handleEditPost}

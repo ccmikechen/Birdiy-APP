@@ -54,7 +54,7 @@ const tabBarOptions = {
   activeTintColor: Colors.tabIconSelected,
 };
 
-export default createBottomTabNavigator({
+export default () => createBottomTabNavigator({
   HomeStack: createStackNavigator({
     Home: HomeScreen,
     Cart: CartScreen,

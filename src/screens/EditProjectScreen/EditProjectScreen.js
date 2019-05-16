@@ -46,18 +46,6 @@ import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit' };
 
-const TABS = [{
-  key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
-}, {
-  key: 'image', title: i18n.t('tabs.image', i18nOptions),
-}, {
-  key: 'material', title: i18n.t('tabs.materials', i18nOptions),
-}, {
-  key: 'method', title: i18n.t('tabs.methods', i18nOptions),
-}, {
-  key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
-}];
-
 export default class EditProjectScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -479,13 +467,24 @@ export default class EditProjectScreen extends Component {
 
   render() {
     const { navigation, loading } = this.props;
+    const tabs = [{
+      key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
+    }, {
+      key: 'image', title: i18n.t('tabs.image', i18nOptions),
+    }, {
+      key: 'material', title: i18n.t('tabs.materials', i18nOptions),
+    }, {
+      key: 'method', title: i18n.t('tabs.methods', i18nOptions),
+    }, {
+      key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
+    }];
 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar hidden={false} />
         <TabSectionScreenView
           navigation={navigation}
-          tabs={TABS}
+          tabs={tabs}
           renderHeader={() => (
             <NormalBackHeader
               onBack={() => navigation.goBack()}

@@ -147,7 +147,10 @@ export default class UserPostsScene extends Component {
           renderRow={this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton onPress={onMorePress} />
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         </View>
       </View>
     );

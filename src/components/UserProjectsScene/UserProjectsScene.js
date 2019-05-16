@@ -112,7 +112,10 @@ export default class UserProjectsScene extends Component {
           renderRow={editable ? this.renderEditableRow : this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton onPress={onMorePress} />
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         </View>
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}

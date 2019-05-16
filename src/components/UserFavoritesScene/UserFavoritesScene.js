@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ListView } from 'react-native';
+import i18n from 'i18n-js';
 
 import MoreButton from '../MoreButton';
 import HorProjectSection from '../HorProjectSection';
@@ -72,7 +73,10 @@ export default class UserFavoritesScene extends Component {
           renderRow={this.renderRow}
         />
         <View style={styles.moreButtonContainer}>
-          <MoreButton onPress={onMorePress} />
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         </View>
       </View>
     );
