@@ -30,6 +30,10 @@ export default class UserScreen extends Component {
     loading: true,
   };
 
+  state = {
+    refreshing: false,
+  };
+
   handleFollowerPress = () => {
   };
 
@@ -65,8 +69,17 @@ export default class UserScreen extends Component {
     navigation.push('UserFavorites', { id });
   };
 
+  handleRefresh = () => {
+    const { relay } = this.props;
+    this.setState({ refreshing: true });
+    relay.refetch(null, null, () => {
+      this.setState({ refreshing: false });
+    });
+  };
+
   render() {
     const { navigation, query, loading } = this.props;
+    const { refreshing } = this.state;
     const profile = query && query.user;
 
     return (
@@ -79,6 +92,8 @@ export default class UserScreen extends Component {
           />
         )}
         loading={loading}
+        refreshing={refreshing}
+        onRefresh={this.handleRefresh}
       >
         <ProfileSection
           profile={profile}
