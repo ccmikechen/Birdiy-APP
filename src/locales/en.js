@@ -231,7 +231,7 @@ export default {
     },
   },
   login: {
-    facebookLogin: 'Log in with facebook',
+    button: 'Log in with %{type}',
   },
   searchBar: {
     placeholder: 'Find Projects',

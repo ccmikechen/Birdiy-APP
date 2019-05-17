@@ -259,7 +259,7 @@ export default {
     },
   },
   login: {
-    facebookLogin: 'facebook でログインする',
+    button: '%{type} でログインする',
   },
   searchBar: {
     placeholder: 'プロジェクト検索',

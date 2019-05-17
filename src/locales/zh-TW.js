@@ -259,7 +259,7 @@ export default {
     },
   },
   login: {
-    facebookLogin: '透過 Facebook 登入',
+    button: '透過 %{type} 登入',
   },
   searchBar: {
     placeholder: '找專案',
