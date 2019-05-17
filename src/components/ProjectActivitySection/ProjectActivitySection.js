@@ -37,7 +37,7 @@ const renderMessage = (category) => {
           {' 建立了新的專案。'}
         </Text>
       );
-    case 'jp':
+    case 'ja':
       return (
         <Text style={styles.message}>
           <Text style={styles.category}>

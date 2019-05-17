@@ -71,8 +71,7 @@ class FollowingActivityList extends Component {
     if (!query.viewer) {
       return (
         // TODO
-        <View style={{ flex: 1 }}>
-        </View>
+        <View style={{ flex: 1 }} />
       );
     }
 

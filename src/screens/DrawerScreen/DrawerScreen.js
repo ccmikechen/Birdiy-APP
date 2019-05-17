@@ -78,7 +78,7 @@ export default class DrawerScreen extends Component {
     return (
       <LinearGradient
         style={styles.headerContainer}
-        colors={['#64a1bc', '#3b5998', '#192f6a']}
+        colors={Colors.headerGradient}
         start={[0, 0]}
         end={[1, 1]}
       >
