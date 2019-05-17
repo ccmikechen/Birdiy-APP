@@ -22,6 +22,7 @@ export default class ProjectList extends Component {
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
     showStatus: PropTypes.bool,
+    refresh: PropTypes.func,
   };
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class ProjectList extends Component {
     headerPadding: false,
     canLoadMore: false,
     showStatus: false,
+    refresh: null,
   };
 
   scrollToTop = () => {
@@ -87,6 +89,7 @@ export default class ProjectList extends Component {
       onScrollTrigger,
       headerPadding,
       canLoadMore,
+      refresh,
     } = this.props;
 
     if (refreshing) {
@@ -112,6 +115,7 @@ export default class ProjectList extends Component {
           ) : null)}
           renderFooter={() => <View style={styles.bottomPaddingView} />}
           innerRef={(ref) => { this.scrollView = ref; }}
+          refresh={refresh}
         />
       </View>
     );
