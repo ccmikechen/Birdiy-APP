@@ -6,7 +6,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { Icon, Facebook } from 'expo';
-import { Button } from 'react-native-paper';
+import { SocialIcon } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import LoginMutation from '../../mutations/LoginMutation';
@@ -14,8 +14,6 @@ import LoginMutation from '../../mutations/LoginMutation';
 import { setTokens } from '../../helpers/credentails';
 import { resetToHome } from '../../helpers/navigation';
 import { showLoginFailedAlert } from '../../helpers/alert';
-
-import { Primary } from '../../constants/Colors';
 
 import config from '../../configs';
 
@@ -93,13 +91,13 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.contentContainer}>
-          <Button
-            mode="contained"
-            color={Primary(900)}
+          <SocialIcon
+            style={styles.loginButton}
+            type="facebook"
+            button
             onPress={this.handleFacebookLogin}
-          >
-            {i18n.t('facebookLogin', i18nOptions)}
-          </Button>
+            title={i18n.t('facebookLogin', i18nOptions)}
+          />
         </View>
       </View>
     );

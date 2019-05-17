@@ -10,7 +10,9 @@ export default StyleSheet.create({
     width: '100%',
     height: Size.headerHeight,
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
+    elevation: 3,
+    zIndex: 100,
   },
   title: {
     color: Base.primaryText,

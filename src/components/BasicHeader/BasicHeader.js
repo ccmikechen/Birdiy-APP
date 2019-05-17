@@ -7,6 +7,7 @@ import {
   ViewPropTypes,
 } from 'react-native';
 import { Icon } from 'expo';
+import { Surface } from 'react-native-paper';
 
 import Colors from '../../constants/Colors';
 
@@ -52,7 +53,7 @@ const BasicHeader = ({
   rightButton,
   style,
 }) => (
-  <View style={[styles.container, style]}>
+  <Surface style={[styles.container, style]}>
     {leftButton && (
       <View style={styles.leftButtonContainer}>
         <TouchableOpacity
@@ -89,7 +90,7 @@ const BasicHeader = ({
         }
       </View>
     )}
-  </View>
+  </Surface>
 );
 
 BasicHeader.propTypes = {

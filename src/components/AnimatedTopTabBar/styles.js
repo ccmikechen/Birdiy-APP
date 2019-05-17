@@ -11,6 +11,8 @@ export default StyleSheet.create({
     right: 0,
     zIndex: 10,
     height: Size.topTabBarHeight,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
+    borderBottomWidth: 1,
+    borderBottomColor: Base.dark,
   },
 });

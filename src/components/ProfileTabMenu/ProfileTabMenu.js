@@ -8,6 +8,8 @@ import UserProjectsScene from '../../containers/UserProjectsScene';
 import UserPostsScene from '../../containers/UserPostsScene';
 import UserFavoritesScene from '../../containers/UserFavoritesScene';
 
+import styles from './styles';
+
 export default class ProfileTabMenu extends Component {
   static propTypes = {
     profile: PropTypes.shape({
@@ -136,13 +138,15 @@ export default class ProfileTabMenu extends Component {
     ];
 
     return (
-      <View>
+      <View style={styles.container}>
         <NormalTabBar
           tabs={tabs}
           index={index}
           onChange={tabIndex => this.setState({ index: tabIndex })}
         />
-        {this.renderTabContent()}
+        <View style={styles.contentContainer}>
+          {this.renderTabContent()}
+        </View>
       </View>
     );
   }

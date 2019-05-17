@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: '100%',
-    paddingTop: 5,
+    paddingTop: 10,
   },
   avatarContainer: {
     marginLeft: 10,

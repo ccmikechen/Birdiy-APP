@@ -4,7 +4,7 @@ import { Animated } from 'react-native';
 import MaterialTabs from 'react-native-material-tabs';
 
 import Size from '../../constants/Size';
-import { TextColor } from '../../constants/Colors';
+import { TextColor, Secondary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -77,9 +77,10 @@ export default class AnimatedTopTabBar extends Component {
           items={tabs}
           selectedIndex={index}
           barColor="transparent"
-          activeTextColor={TextColor.primaryDark}
+          activeTextColor={Secondary(500)}
+          activeTextStyle={{ fontWeight: '600' }}
           inactiveTextColor={TextColor.subDark}
-          indicatorColor="transparent"
+          indicatorColor={Secondary(500)}
           onChange={onChange}
         />
       </Animated.View>

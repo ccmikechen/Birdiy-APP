@@ -10,7 +10,7 @@ export default StyleSheet.create({
     margin: 10,
     marginTop: 0,
     elevation: 2,
-    borderRadius: 10,
+    borderRadius: Size.horCardBorderRadius,
   },
   touchable: {
     flex: 1,
@@ -22,14 +22,14 @@ export default StyleSheet.create({
     width: Size.userProjectListImageSize,
     aspectRatio: 1,
     backgroundColor: Base.dark,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: Size.horCardBorderRadius,
+    borderBottomLeftRadius: Size.horCardBorderRadius,
   },
   image: {
     width: Size.userProjectListImageSize,
     height: Size.userProjectListImageSize,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: Size.horCardBorderRadius,
+    borderBottomLeftRadius: Size.horCardBorderRadius,
   },
   contentContainer: {
     flex: 1,

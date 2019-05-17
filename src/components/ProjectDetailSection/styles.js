@@ -13,8 +13,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 18,
     color: TextColor.sectionTitle,
   },
 });

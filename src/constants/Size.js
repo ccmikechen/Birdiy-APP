@@ -1,7 +1,7 @@
 export default {
   headerHeight: 80,
   bottomTabBarHeight: 50,
-  topTabBarHeight: 40,
+  topTabBarHeight: 47,
   searchBarHeight: 35,
   postProfileImageSize: 50,
   projectProfileImageSize: 50,
@@ -13,4 +13,5 @@ export default {
   followPostAuthorImageSize: 30,
   settingItemHeight: 60,
   refreshAnimationHeight: 60,
+  horCardBorderRadius: 5,
 };

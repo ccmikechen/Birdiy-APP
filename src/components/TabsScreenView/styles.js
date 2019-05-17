@@ -6,7 +6,7 @@ import Size from '../../constants/Size';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   tabBarPaddingView: {
     height: Size.topTabBarHeight,

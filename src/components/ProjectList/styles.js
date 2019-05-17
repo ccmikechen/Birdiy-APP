@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   paddingView: {
-    height: Size.headerHeight,
+    height: Size.headerHeight + 5,
     zIndex: 0,
   },
   bottomPaddingView: {

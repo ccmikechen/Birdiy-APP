@@ -50,7 +50,7 @@ export const Base = {
 export const TextColor = {
   primaryLight: '#ffffff',
   subLight: '#eeeeee',
-  sectionTitle: '#666666',
+  sectionTitle: '#444444',
   primaryDark: '#222222',
   subDark: '#888888',
   secondaryDark: '#444444',
