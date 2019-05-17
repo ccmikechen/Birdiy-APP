@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';
+import { Surface } from 'react-native-paper';
 import { Icon, ImagePicker, Permissions } from 'expo';
 
 import UploadImageActions from '../UploadImageActions';
@@ -100,13 +100,13 @@ export default class Avatar extends Component {
           />
         )}
         {editable && (
-          <View style={styles.editIconContainer}>
+          <Surface style={styles.editIconContainer}>
             <Icon.MaterialIcons
-              name="camera-alt"
-              size={size / 3}
-              color="#999999"
+              name="edit"
+              size={size / 4}
+              color="#ffffff"
             />
-          </View>
+          </Surface>
         )}
         <UploadImageActions
           ref={(ref) => { this.uploadActions = ref; }}

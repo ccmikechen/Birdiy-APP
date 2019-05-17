@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import i18n from 'i18n-js';
 
-import TopScreenView from '../../components/TopScreenView';
+import InputScreenView from '../../components/InputScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProfileSetting from '../../components/ProfileSetting';
 
@@ -96,7 +96,7 @@ export default class ProfileSettingScreen extends Component {
     const { profile } = this.state;
 
     return (
-      <TopScreenView
+      <InputScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
@@ -116,7 +116,7 @@ export default class ProfileSettingScreen extends Component {
           profile={profile}
           onChange={this.handleChange}
         />
-      </TopScreenView>
+      </InputScreenView>
     );
   }
 }

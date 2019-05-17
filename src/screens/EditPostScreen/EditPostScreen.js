@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
-import TopScreenView from '../../components/TopScreenView';
+import InputScreenView from '../../components/InputScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
 
@@ -126,7 +126,7 @@ export default class EditPostScreen extends Component {
     const { post } = this.state;
 
     return (
-      <TopScreenView
+      <InputScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
@@ -146,7 +146,7 @@ export default class EditPostScreen extends Component {
           post={post}
           onChange={this.handleChange}
         />
-      </TopScreenView>
+      </InputScreenView>
     );
   }
 }

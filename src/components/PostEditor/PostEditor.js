@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, KeyboardAvoidingView } from 'react-native';
-import InputScrollView from 'react-native-input-scroll-view';
+import { View } from 'react-native';
 import i18n from 'i18n-js';
 
 import EditSection from '../EditSection';
@@ -61,62 +60,57 @@ export default class PostEditor extends Component {
     } = post;
 
     return (
-      <InputScrollView
-        style={styles.container}
-        keyboardShouldPersistTaps="always"
-      >
-        <KeyboardAvoidingView behavior="padding" enabled>
-          <EditSection title={i18n.t('message.title', i18nOptions)}>
-            <PureTextInput
-              style={styles.textInput}
-              value={message}
-              placeholder={i18n.t('message.placeholder', i18nOptions)}
-              onChangeText={value => onChange({ message: value })}
-              maxLength={500}
-              multiline
-              counter
-            />
-          </EditSection>
-          <EditSection title={i18n.t('relatedProject.title', i18nOptions)}>
-            <View style={styles.relatedProjectContainer}>
-              {relatedProject.type === 'custom' ? (
-                <PureTextInput
-                  style={styles.textInput}
-                  value={relatedProject.name}
-                  placeholder={
-                    i18n.t(
-                      'relatedProject.custom.placeholder',
-                      i18nOptions,
-                    )
-                  }
-                  onChangeText={(value) => {
-                    onChange({
-                      relatedProject: {
-                        type: 'custom',
-                        name: value,
-                        id: null,
-                      },
-                    });
-                  }}
-                  maxLength={20}
-                  counter
-                />
-              ) : (
-                <HorProjectSection
-                  project={relatedProject}
-                />
-              )}
-            </View>
-          </EditSection>
-          <EditSection title={i18n.t('photos.title', i18nOptions)}>
-            <MultipleImageUploadView
-              images={photos.map(({ image }) => image)}
-              onUpload={this.handleImageUpload}
-              onDeleteImage={this.handleImageDelete}
-            />
-          </EditSection>
-        </KeyboardAvoidingView>
-      </InputScrollView>
+      <View style={styles.container}>
+        <EditSection title={i18n.t('message.title', i18nOptions)}>
+          <PureTextInput
+            style={styles.textInput}
+            value={message}
+            placeholder={i18n.t('message.placeholder', i18nOptions)}
+            onChangeText={value => onChange({ message: value })}
+            maxLength={500}
+            multiline
+            counter
+          />
+        </EditSection>
+        <EditSection title={i18n.t('relatedProject.title', i18nOptions)}>
+          <View style={styles.relatedProjectContainer}>
+            {relatedProject.type === 'custom' ? (
+              <PureTextInput
+                style={styles.textInput}
+                value={relatedProject.name}
+                placeholder={
+                  i18n.t(
+                    'relatedProject.custom.placeholder',
+                    i18nOptions,
+                  )
+                }
+                onChangeText={(value) => {
+                  onChange({
+                    relatedProject: {
+                      type: 'custom',
+                      name: value,
+                      id: null,
+                    },
+                  });
+                }}
+                maxLength={20}
+                counter
+              />
+            ) : (
+              <HorProjectSection
+                project={relatedProject}
+              />
+            )}
+          </View>
+        </EditSection>
+        <EditSection title={i18n.t('photos.title', i18nOptions)}>
+          <MultipleImageUploadView
+            images={photos.map(({ image }) => image)}
+            onUpload={this.handleImageUpload}
+            onDeleteImage={this.handleImageDelete}
+          />
+        </EditSection>
+      </View>
     );
   }
 }
