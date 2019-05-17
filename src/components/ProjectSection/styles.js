@@ -6,17 +6,23 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     elevation: 4,
+    borderRadius: 10,
   },
   image: {
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 1,
     backgroundColor: Base.dark,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   infoContainer: {
     backgroundColor: Base.lightest,
     minHeight: 40,
     flexGrow: 1,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    paddingBottom: 5,
   },
   infoTopContainer: {
     flex: 1,

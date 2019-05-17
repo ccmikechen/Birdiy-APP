@@ -5,6 +5,8 @@ import i18n from 'i18n-js';
 
 import BasicHeader from '../BasicHeader';
 
+import { Tertiary } from '../../constants/Colors';
+
 import styles from './styles';
 
 export default class SearchDetailHeader extends Component {
@@ -54,6 +56,7 @@ export default class SearchDetailHeader extends Component {
             placeholder={i18n.t('searchBar.placeholder')}
             onChangeText={onKeywordChange}
             onSubmitEditing={onSearch}
+            selectionColor={Tertiary(500)}
           />
         )}
         rightButton={{

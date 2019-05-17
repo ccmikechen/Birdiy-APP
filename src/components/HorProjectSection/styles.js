@@ -4,12 +4,13 @@ import Size from '../../constants/Size';
 import Colors, { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
-  rowContainer: {
+  container: {
     height: Size.userProjectListImageSize,
     backgroundColor: Base.lightest,
     margin: 10,
     marginTop: 0,
     elevation: 2,
+    borderRadius: 10,
   },
   touchable: {
     flex: 1,
@@ -21,10 +22,14 @@ export default StyleSheet.create({
     width: Size.userProjectListImageSize,
     aspectRatio: 1,
     backgroundColor: Base.dark,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   image: {
     width: Size.userProjectListImageSize,
     height: Size.userProjectListImageSize,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   contentContainer: {
     flex: 1,

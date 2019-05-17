@@ -24,7 +24,7 @@ const HorProjectSection = ({
   hasActions,
   onActionButtonPress,
 }) => (
-  <Surface style={styles.rowContainer}>
+  <Surface style={styles.container}>
     <TouchableOpacity
       style={styles.touchable}
       onPress={onPress}

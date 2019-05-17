@@ -10,9 +10,12 @@ export default StyleSheet.create({
     margin: 10,
     marginTop: 0,
     width: Size.followPostImageSize,
+    borderRadius: 10,
   },
   image: {
     aspectRatio: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   authorContainer: {
     flexDirection: 'row',
