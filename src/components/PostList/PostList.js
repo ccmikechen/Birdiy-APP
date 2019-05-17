@@ -21,6 +21,7 @@ export default class PostList extends Component {
     onProjectPress: PropTypes.func,
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
+    refresh: PropTypes.func,
   };
 
   static defaultProps = {
@@ -35,6 +36,7 @@ export default class PostList extends Component {
     onProjectPress: () => {},
     headerPadding: false,
     canLoadMore: false,
+    refresh: null,
   };
 
   renderPost = (post) => {
@@ -75,6 +77,7 @@ export default class PostList extends Component {
       onScrollTrigger,
       headerPadding,
       canLoadMore,
+      refresh,
     } = this.props;
 
     if (refreshing) {
@@ -96,6 +99,7 @@ export default class PostList extends Component {
           <View style={styles.paddingView} />
         ) : null)}
         innerRef={(ref) => { this.scrollView = ref; }}
+        refresh={refresh}
       />
     );
   }

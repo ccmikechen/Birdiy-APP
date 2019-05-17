@@ -20,6 +20,7 @@ class UserProjectList extends Component {
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
+      refetchConnection: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
   };
@@ -38,10 +39,7 @@ class UserProjectList extends Component {
   }
 
   render() {
-    const {
-      query,
-      relay,
-    } = this.props;
+    const { query, relay, batchLoad } = this.props;
     const data = query.user.projects.edges.map(({ node }) => node);
 
     return query ? (
@@ -50,6 +48,9 @@ class UserProjectList extends Component {
         projects={data}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
+        refresh={(callback) => {
+          relay.refetchConnection(null, callback, { count: batchLoad });
+        }}
       />
     ) : null;
   }

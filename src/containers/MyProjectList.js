@@ -22,6 +22,7 @@ class MyProjectList extends Component {
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
+      refetchConnection: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
   };
@@ -40,10 +41,7 @@ class MyProjectList extends Component {
   }
 
   render() {
-    const {
-      query,
-      relay,
-    } = this.props;
+    const { query, relay, batchLoad } = this.props;
 
     if (!query.viewer) {
       return (
@@ -61,6 +59,9 @@ class MyProjectList extends Component {
         projects={data}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
+        refresh={(callback) => {
+          relay.refetchConnection(null, callback, { count: batchLoad });
+        }}
         actionButtonVisible
       />
     ) : null;
