@@ -31,12 +31,19 @@ export default class ProfileScreen extends Component {
     query: PropTypes.shape({
       viewer: PropTypes.object,
     }),
+    relay: PropTypes.shape({
+      refetch: PropTypes.func.isRequired,
+    }).isRequired,
     loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
     loading: true,
+  };
+
+  state = {
+    refreshing: false,
   };
 
   handleFollowerPress = () => {
@@ -110,9 +117,17 @@ export default class ProfileScreen extends Component {
     navigation.push('MyFavorites');
   };
 
+  handleRefresh = () => {
+    const { relay } = this.props;
+    this.setState({ refreshing: true });
+    relay.refetch(null, null, () => {
+      this.setState({ refreshing: false });
+    });
+  };
 
   render() {
     const { navigation, query, loading } = this.props;
+    const { refreshing } = this.state;
     const profile = query && query.viewer;
 
     return (
@@ -126,6 +141,8 @@ export default class ProfileScreen extends Component {
           />
         )}
         loading={loading || !query.viewer}
+        refreshing={refreshing}
+        onRefresh={this.handleRefresh}
       >
         <ProfileSection
           profile={profile}
