@@ -25,6 +25,7 @@ class FollowingActivityList extends Component {
     relay: PropTypes.shape({
       hasMore: PropTypes.func.isRequired,
       isLoading: PropTypes.func.isRequired,
+      refetchConnection: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
   };
@@ -66,7 +67,7 @@ class FollowingActivityList extends Component {
   };
 
   render() {
-    const { query, relay } = this.props;
+    const { query, relay, batchLoad } = this.props;
 
     if (!query.viewer) {
       return (
@@ -82,6 +83,9 @@ class FollowingActivityList extends Component {
         sections={this.getSections()}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
+        refresh={(callback) => {
+          relay.refetchConnection(null, callback, { count: batchLoad });
+        }}
       />
     ) : null;
   }

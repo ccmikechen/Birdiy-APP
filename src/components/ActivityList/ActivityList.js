@@ -13,8 +13,6 @@ export default class ActivityList extends Component {
     sections: PropTypes.arrayOf(PropTypes.object),
     loadMore: PropTypes.func.isRequired,
     renderNoItem: PropTypes.func,
-    refreshing: PropTypes.bool,
-    renderRefresh: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onUserPress: PropTypes.func,
     onActionButtonPress: PropTypes.func,
@@ -22,13 +20,12 @@ export default class ActivityList extends Component {
     onProjectPress: PropTypes.func,
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
+    refresh: PropTypes.func,
   };
 
   static defaultProps = {
     sections: null,
     renderNoItem: () => null,
-    refreshing: false,
-    renderRefresh: () => null,
     onScrollTrigger: () => {},
     onUserPress: () => {},
     onActionButtonPress: () => {},
@@ -36,6 +33,7 @@ export default class ActivityList extends Component {
     onProjectPress: () => {},
     headerPadding: false,
     canLoadMore: false,
+    refresh: null,
   };
 
   renderProject = (project, createdAt) => {
@@ -104,16 +102,11 @@ export default class ActivityList extends Component {
       sections,
       loadMore,
       renderNoItem,
-      refreshing,
-      renderRefresh,
       onScrollTrigger,
       headerPadding,
       canLoadMore,
+      refresh,
     } = this.props;
-
-    if (refreshing) {
-      return renderRefresh();
-    }
 
     if (!sections) {
       return renderNoItem();
@@ -130,6 +123,7 @@ export default class ActivityList extends Component {
           <View style={styles.paddingView} />
         ) : null)}
         innerRef={(ref) => { this.scrollView = ref; }}
+        refresh={refresh}
       />
     );
   }

@@ -4,6 +4,7 @@ import { ListView } from 'react-native';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import { isEqual } from 'lodash';
 
+import Refresh from '../Refresh';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
 const TriggerScrollView = scrollViewTrigger(InfiniteScrollView);
@@ -20,12 +21,14 @@ export default class InfiniteList extends Component {
     onScrollTrigger: PropTypes.func,
     canLoadMoreContent: PropTypes.bool,
     innerRef: PropTypes.func,
+    refresh: PropTypes.func,
   };
 
   static defaultProps = {
     onScrollTrigger: () => {},
     canLoadMoreContent: false,
     innerRef: () => {},
+    refresh: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -43,12 +46,27 @@ export default class InfiniteList extends Component {
     dataSource: new ListView.DataSource({ rowHasChanged }),
     onScrollTrigger: () => {},
     canLoadMoreContent: false,
+    refreshing: false,
   };
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const { data } = this.props;
-    return !isEqual(data, nextProps.data);
+    const { refreshing } = this.state;
+
+    return !isEqual(data, nextProps.data)
+      || nextState.refreshing !== refreshing;
   }
+
+  handleCallback = () => {
+    this.setState({ refreshing: false });
+  };
+
+  handleRefresh = () => {
+    const { refresh } = this.props;
+
+    this.setState({ refreshing: true });
+    refresh(() => this.setState({ refreshing: false }));
+  };
 
   render() {
     const {
@@ -57,8 +75,9 @@ export default class InfiniteList extends Component {
       onScrollTrigger,
       canLoadMoreContent,
       innerRef,
+      refresh,
     } = this.props;
-    const { dataSource } = this.state;
+    const { dataSource, refreshing } = this.state;
 
     return (
       <ListView
@@ -69,6 +88,12 @@ export default class InfiniteList extends Component {
             onScrollDown={onScrollTrigger(false)}
             onScrollUp={onScrollTrigger(true)}
             ref={innerRef}
+            refreshControl={refresh && (
+              <Refresh
+                refreshing={refreshing}
+                onRefresh={this.handleRefresh}
+              />
+            )}
           />
         )}
         dataSource={dataSource}
