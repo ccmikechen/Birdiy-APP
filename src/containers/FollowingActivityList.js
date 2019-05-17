@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
 import { View } from 'react-native';
 
-import LoadingIndicator from '../components/LoadingIndicator';
 import ActivityList from '../components/ActivityList';
 
 import { DEFAULT_POST_BATCH_LOAD } from '../constants/defaults';
@@ -71,8 +70,8 @@ class FollowingActivityList extends Component {
 
     if (!query.viewer) {
       return (
+        // TODO
         <View style={{ flex: 1 }}>
-          <LoadingIndicator />
         </View>
       );
     }
