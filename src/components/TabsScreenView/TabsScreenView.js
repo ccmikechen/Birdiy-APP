@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ViewPropTypes } from 'react-native';
+import { ViewPager } from 'rn-viewpager';
 
 import AnimatedHeader from '../AnimatedHeader';
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
-import AnimatedMultipleView from '../AnimatedMultipleView';
 import LoadingIndicator from '../LoadingIndicator';
 
 import styles from './styles';
@@ -61,13 +61,28 @@ export default class TabsScreenView extends Component {
     onToggleTabBar(visible);
   };
 
+  changeTab = (index) => {
+    const { navigation, onToggleTabBar } = this.props;
+
+    this.setState({ tabIndex: index, isHeaderVisible: true });
+    navigation.setParams({ isTabBarVisible: true });
+    onToggleTabBar(true);
+  };
+
+  handleTabChange = (index) => {
+    this.changeTab(index);
+    this.pager.setPage(index);
+  };
+
+  handlePageChange = ({ position }) => {
+    this.changeTab(position);
+  };
+
   render() {
     const {
       renderHeader,
       animatedScroll,
       tabs,
-      navigation,
-      onToggleTabBar,
       style,
       children,
       loading,
@@ -78,13 +93,9 @@ export default class TabsScreenView extends Component {
     } = this.state;
 
     const newChildren = React.Children.map(children, (child, index) => (
-      loading ? (
-        <LoadingIndicator />
-      ) : (
-        React.cloneElement(child, {
-          onScrollTrigger: this.handleVisible(index),
-        })
-      )
+      React.cloneElement(child, {
+        onScrollTrigger: this.handleVisible(index),
+      })
     ));
 
     return (
@@ -93,20 +104,26 @@ export default class TabsScreenView extends Component {
           renderHeader={renderHeader}
           visible={isHeaderVisible}
         />
-        <View style={styles.tabBarPaddingView} />
-        <AnimatedTopTabBar
-          visible={isHeaderVisible}
-          tabs={tabs.map(({ title }) => title)}
-          index={tabIndex}
-          onChange={(index) => {
-            this.setState({ tabIndex: index, isHeaderVisible: true });
-            navigation.setParams({ isTabBarVisible: true });
-            onToggleTabBar(true);
-          }}
-        />
-        <AnimatedMultipleView index={tabIndex}>
-          {newChildren}
-        </AnimatedMultipleView>
+        {loading ? (
+          <LoadingIndicator />
+        ) : (
+          <View style={styles.contentContainer}>
+            <View style={styles.tabBarPaddingView} />
+            <AnimatedTopTabBar
+              visible={isHeaderVisible}
+              tabs={tabs.map(({ title }) => title)}
+              index={tabIndex}
+              onChange={this.handleTabChange}
+            />
+            <ViewPager
+              ref={(ref) => { this.pager = ref; }}
+              style={styles.pageContainer}
+              onPageSelected={this.handlePageChange}
+            >
+              {newChildren}
+            </ViewPager>
+          </View>
+        )}
         {animatedScroll ? null : (
           <View style={styles.bottomTabBarPaddingView} />
         )}

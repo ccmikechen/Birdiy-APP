@@ -22,4 +22,10 @@ export default StyleSheet.create({
     width: '100%',
     zIndex: 10,
   },
+  contentContainer: {
+    flex: 1,
+  },
+  pageContainer: {
+    flex: 1,
+  },
 });

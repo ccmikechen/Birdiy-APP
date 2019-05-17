@@ -53,6 +53,7 @@
     "react-navigation-transitions": "^1.0.10",
     "react-relay": "^3.0.0",
     "relay-runtime": "^3.0.0",
+    "rn-viewpager": "^1.2.9",
     "validate.js": "^0.12.0"
   },
   "devDependencies": {
