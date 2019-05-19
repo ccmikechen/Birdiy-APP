@@ -65,7 +65,7 @@ export default {
   tabIconSelected: Secondary(500),
   tabBar: '#fefefe',
   headerGradient: ['#65b1bc', '#3b7998', Secondary(500)],
-  headerIcon: '#666666',
+  headerIcon: '#444444',
   activeHeaderIcon: Primary(500),
   placeholder: '#cccccc',
   closeButton: '#ff0000',

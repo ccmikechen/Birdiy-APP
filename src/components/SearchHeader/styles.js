@@ -9,6 +9,7 @@ export default StyleSheet.create({
   },
   title: {
     color: Colors.headerIcon,
+    fontWeight: '600',
     fontSize: 18,
   },
 });

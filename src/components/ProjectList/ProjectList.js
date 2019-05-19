@@ -23,6 +23,7 @@ export default class ProjectList extends Component {
     canLoadMore: PropTypes.bool,
     showStatus: PropTypes.bool,
     refresh: PropTypes.func,
+    innerRef: PropTypes.func,
   };
 
   static defaultProps = {
@@ -38,6 +39,7 @@ export default class ProjectList extends Component {
     canLoadMore: false,
     showStatus: false,
     refresh: null,
+    innerRef: null,
   };
 
   scrollToTop = () => {
@@ -90,6 +92,7 @@ export default class ProjectList extends Component {
       headerPadding,
       canLoadMore,
       refresh,
+      innerRef,
     } = this.props;
 
     if (refreshing) {
@@ -105,6 +108,7 @@ export default class ProjectList extends Component {
     return (
       <View style={styles.container}>
         <InfiniteList
+          ref={innerRef}
           data={projectSections}
           loadMoreContentAsync={loadMore}
           renderSection={this.renderProjectSection}

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     height: Size.headerHeight,
     paddingTop: Constants.statusBarHeight,
     backgroundColor: Base.lightest,
-    elevation: 3,
+    elevation: 1,
     zIndex: 100,
   },
   title: {

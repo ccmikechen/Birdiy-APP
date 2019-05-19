@@ -21,6 +21,7 @@ export default class ActivityList extends Component {
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
     refresh: PropTypes.func,
+    innerRef: PropTypes.func,
   };
 
   static defaultProps = {
@@ -34,7 +35,8 @@ export default class ActivityList extends Component {
     headerPadding: false,
     canLoadMore: false,
     refresh: null,
-  };
+    innerRef: null,
+  }
 
   renderProject = (project, createdAt) => {
     const {
@@ -90,15 +92,9 @@ export default class ActivityList extends Component {
     </View>
   );
 
-  scrollToTop = () => {
-    if (!this.scrollView) {
-      return;
-    }
-    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
-  };
-
   render() {
     const {
+      innerRef,
       sections,
       loadMore,
       renderNoItem,
@@ -114,6 +110,7 @@ export default class ActivityList extends Component {
 
     return (
       <InfiniteList
+        ref={innerRef}
         data={sections}
         loadMoreContentAsync={loadMore}
         renderSection={this.renderSection}
@@ -122,7 +119,6 @@ export default class ActivityList extends Component {
         renderHeader={() => (headerPadding ? (
           <View style={styles.paddingView} />
         ) : null)}
-        innerRef={(ref) => { this.scrollView = ref; }}
         refresh={refresh}
       />
     );

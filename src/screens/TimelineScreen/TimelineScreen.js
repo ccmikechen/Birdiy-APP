@@ -53,6 +53,16 @@ export default class TimelineScreen extends Component {
     addPostButtonVisible: true,
   };
 
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.addListener('refocus', this.handleRefocus);
+  }
+
+  handleRefocus = () => {
+    this.allList.scrollToTopOrRefresh();
+    this.followingList.scrollToTopOrRefresh();
+  };
+
   handleSearch = () => {
     const { navigation } = this.props;
     navigation.push('SearchUser');
@@ -140,6 +150,7 @@ export default class TimelineScreen extends Component {
           loading={loading}
         >
           <AllActivityList
+            innerRef={(ref) => { this.allList = ref; }}
             query={query}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.postActions.show(post)}
@@ -149,6 +160,7 @@ export default class TimelineScreen extends Component {
             headerPadding
           />
           <FollowingActivityList
+            innerRef={(ref) => { this.followingList = ref; }}
             query={query}
             onUserPress={this.handleUserPress}
             onActionButtonPress={post => this.postActions.show(post)}

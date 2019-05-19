@@ -1,27 +1,28 @@
 import { StyleSheet } from 'react-native';
 
 import Colors, { Base, Tertiary } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    elevation: 4,
-    borderRadius: 10,
+    elevation: 2,
+    borderRadius: Size.projectSectionBorderRadius,
   },
   image: {
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 1,
     backgroundColor: Base.dark,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: Size.projectSectionBorderRadius,
+    borderTopRightRadius: Size.projectSectionBorderRadius,
   },
   infoContainer: {
     backgroundColor: Base.lightest,
     minHeight: 40,
     flexGrow: 1,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: Size.projectSectionBorderRadius,
+    borderBottomRightRadius: Size.projectSectionBorderRadius,
     paddingBottom: 5,
   },
   infoTopContainer: {

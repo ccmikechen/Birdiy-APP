@@ -59,6 +59,16 @@ export default class ProjectsScreen extends Component {
     addProjectButtonVisible: true,
   };
 
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.addListener('refocus', this.handleRefocus);
+  }
+
+  handleRefocus = () => {
+    this.newestList.scrollToTopOrRefresh();
+    this.hotestList.scrollToTopOrRefresh();
+  };
+
   handleOpenProject = (project) => {
     const { navigation } = this.props;
     navigation.push('ProjectDetail', { id: project.id });
@@ -144,6 +154,7 @@ export default class ProjectsScreen extends Component {
           loading={loading}
         >
           <NewestProjectList
+            innerRef={(ref) => { this.newestList = ref; }}
             query={query}
             batchLoad={variables.count}
             keyword={keyword}
@@ -152,6 +163,7 @@ export default class ProjectsScreen extends Component {
             onProjectPress={this.handleOpenProject}
           />
           <HotestProjectList
+            innerRef={(ref) => { this.hotestList = ref; }}
             query={query}
             batchLoad={variables.count}
             keyword={keyword}

@@ -68,6 +68,30 @@ export default class InfiniteList extends Component {
     refresh(() => this.setState({ refreshing: false }));
   };
 
+  refresh = () => {
+    this.handleRefresh();
+  };
+
+  handleScroll = (e) => {
+    this.y = e.nativeEvent.contentOffset.y;
+  };
+
+  scrollToTop = () => {
+    this.scrollView.scrollTo({ x: 0, y: 0, animated: true });
+  };
+
+  scrollToTopOrRefresh = () => {
+    if (this.isOnTop()) {
+      this.refresh();
+    } else {
+      this.scrollToTop();
+    }
+  };
+
+  isOnTop = () => (
+    this.y === 0
+  );
+
   render() {
     const {
       loadMoreContentAsync,
@@ -85,9 +109,13 @@ export default class InfiniteList extends Component {
         renderScrollComponent={props => (
           <TriggerScrollView
             {...props}
+            onScroll={this.handleScroll}
             onScrollDown={onScrollTrigger(false)}
             onScrollUp={onScrollTrigger(true)}
-            ref={innerRef}
+            ref={(ref) => {
+              this.scrollView = ref;
+              innerRef(ref);
+            }}
             refreshControl={refresh && (
               <Refresh
                 refreshing={refreshing}

@@ -13,5 +13,6 @@ export default {
   followPostAuthorImageSize: 30,
   settingItemHeight: 60,
   refreshAnimationHeight: 60,
+  projectSectionBorderRadius: 5,
   horCardBorderRadius: 5,
 };

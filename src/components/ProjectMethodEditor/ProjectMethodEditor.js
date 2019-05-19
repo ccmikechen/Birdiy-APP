@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputScrollView from 'react-native-input-scroll-view';
-import i18n from 'i18n-js';
 
-import EditSection from '../EditSection';
 import EditMethodList from '../EditMethodList';
 
 import styles from './styles';
-
-const i18nOptions = { scope: 'project.edit' };
 
 export default class ProjectMethodEditor extends Component {
   static propTypes = {
@@ -41,12 +37,10 @@ export default class ProjectMethodEditor extends Component {
         }}
         contentContainerStyle={styles.contentContainer}
       >
-        <EditSection title={i18n.t('methods.title', i18nOptions)}>
-          <EditMethodList
-            data={methods}
-            onChange={this.handleMethodChange}
-          />
-        </EditSection>
+        <EditMethodList
+          data={methods}
+          onChange={this.handleMethodChange}
+        />
       </InputScrollView>
     );
   }
