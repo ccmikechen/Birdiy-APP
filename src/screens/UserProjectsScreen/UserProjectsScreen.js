@@ -7,8 +7,6 @@ import SimpleScreenView from '../../components/SimpleScreenView';
 import UserProjectsHeader from '../../components/UserProjectsHeader';
 import UserProjectList from '../../containers/UserProjectList';
 
-import styles from './styles';
-
 export default class UserProjectsScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -44,7 +42,6 @@ export default class UserProjectsScreen extends Component {
 
     return (
       <SimpleScreenView
-        style={styles.container}
         navigation={navigation}
         renderHeader={() => (
           <UserProjectsHeader

@@ -26,6 +26,8 @@ export default class TabsScreenView extends Component {
       PropTypes.node,
     ]).isRequired,
     style: ViewPropTypes.style,
+    tabsScrollable: PropTypes.bool,
+    fullScreen: PropTypes.bool,
     loading: PropTypes.bool,
   };
 
@@ -33,6 +35,8 @@ export default class TabsScreenView extends Component {
     animatedScroll: false,
     onToggleTabBar: () => {},
     style: {},
+    tabsScrollable: false,
+    fullScreen: false,
     loading: false,
   };
 
@@ -85,6 +89,8 @@ export default class TabsScreenView extends Component {
       tabs,
       style,
       children,
+      tabsScrollable,
+      fullScreen,
       loading,
     } = this.props;
     const {
@@ -114,6 +120,7 @@ export default class TabsScreenView extends Component {
               tabs={tabs.map(({ title }) => title)}
               index={tabIndex}
               onChange={this.handleTabChange}
+              scrollable={tabsScrollable}
             />
             <ViewPager
               ref={(ref) => { this.pager = ref; }}
@@ -124,7 +131,7 @@ export default class TabsScreenView extends Component {
             </ViewPager>
           </View>
         )}
-        {animatedScroll ? null : (
+        {animatedScroll || fullScreen ? null : (
           <View style={styles.bottomTabBarPaddingView} />
         )}
       </View>

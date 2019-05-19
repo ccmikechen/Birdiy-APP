@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-navigation';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import SelectableCategoriesTable from '../../components/SelectableCategoriesTable';
-
-import styles from './styles';
 
 export default class AllCategoriesScreen extends Component {
   static navigationOptions = {
@@ -74,12 +71,10 @@ export default class AllCategoriesScreen extends Component {
         fullScreen
         loading={loading}
       >
-        <ScrollView style={styles.container}>
-          <SelectableCategoriesTable
-            categories={categories}
-            onSelect={this.handleSelect}
-          />
-        </ScrollView>
+        <SelectableCategoriesTable
+          categories={categories}
+          onSelect={this.handleSelect}
+        />
       </TopScreenView>
     );
   }

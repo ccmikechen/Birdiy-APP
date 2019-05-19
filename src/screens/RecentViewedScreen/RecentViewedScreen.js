@@ -5,8 +5,6 @@ import SimpleScreenView from '../../components/SimpleScreenView';
 import RecentViewedHeader from '../../components/RecentViewedHeader';
 import RecentViewedProjectList from '../../containers/RecentViewedProjectList';
 
-import styles from './styles';
-
 export default class RecentViewedScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -45,7 +43,6 @@ export default class RecentViewedScreen extends Component {
 
     return (
       <SimpleScreenView
-        style={styles.container}
         navigation={navigation}
         renderHeader={() => (
           <RecentViewedHeader

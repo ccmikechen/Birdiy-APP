@@ -1,27 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import Colors, { Base, Primary, Tertiary } from '../../constants/Colors';
+import Colors, { Primary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
   },
   section: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  projectImageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  projectImage: {
-    width: '100%',
-    aspectRatio: 1,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: Tertiary(100),
+    flex: 1,
   },
   footerContainer: {
     width: '100%',

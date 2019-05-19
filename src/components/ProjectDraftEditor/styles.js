@@ -5,7 +5,7 @@ import { Base, Primary, Tertiary } from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   submitButtonContainer: {
     width: '100%',

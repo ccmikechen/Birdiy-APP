@@ -4,7 +4,7 @@ import { Base, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   section: {
     width: '100%',

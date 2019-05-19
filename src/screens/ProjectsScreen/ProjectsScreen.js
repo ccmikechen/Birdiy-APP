@@ -126,7 +126,6 @@ export default class ProjectsScreen extends Component {
       <View style={styles.container}>
         <TabsScreenView
           ref={(ref) => { this.screenView = ref; }}
-          style={styles.container}
           navigation={navigation}
           renderHeader={() => (
             <SearchHeader

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Dimensions,
   Text,
   StatusBar,
 } from 'react-native';
@@ -10,15 +9,14 @@ import { Button } from 'react-native-paper';
 import { clone, cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
-import TabSectionScreenView from '../../components/TabSectionScreenView';
+import TabsScreenView from '../../components/TabsScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
-import ImageUploadView from '../../components/ImageUploadView';
-import EditSection from '../../components/EditSection';
-import PureTextInput from '../../components/PureTextInput';
-import PureSelector from '../../components/PureSelector';
-import EditMaterialList from '../../components/EditMaterialList';
-import EditFileList from '../../components/EditFileList';
-import EditMethodList from '../../components/EditMethodList';
+import ProjectIntroEditor from '../../components/ProjectIntroEditor';
+import ProjectImageEditor from '../../components/ProjectImageEditor';
+import ProjectMaterialEditor from '../../components/ProjectMaterialEditor';
+import ProjectFileEditor from '../../components/ProjectFileEditor';
+import ProjectMethodEditor from '../../components/ProjectMethodEditor';
+import ProjectTipEditor from '../../components/ProjectTipEditor';
 
 import EditProjectMutation from '../../mutations/EditProjectMutation';
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
@@ -131,53 +129,40 @@ export default class EditProjectScreen extends Component {
 
     return {
       initialized: true,
-      projectImage: project.image,
-      projectName: project.name,
-      categoryIndex,
-      introduction: project.introduction || '',
-      tip: project.tip || '',
+      project: {
+        image: project.image,
+        name: project.name,
+        categoryIndex,
+        introduction: project.introduction || '',
+        tip: project.tip || '',
 
-      materials: project.materials.length > 0
-        ? cloneDeep(project.materials)
-        : [clone(DEFAULT_MATERIAL)],
+        materials: project.materials.length > 0
+          ? cloneDeep(project.materials)
+          : [clone(DEFAULT_MATERIAL)],
 
-      files: project.fileResources.length > 0
-        ? cloneDeep(project.fileResources)
-        : [clone(DEFAULT_FILE)],
+        files: project.fileResources.length > 0
+          ? cloneDeep(project.fileResources)
+          : [clone(DEFAULT_FILE)],
 
-      methods: project.methods.length > 0
-        ? cloneDeep(project.methods)
-        : [clone(DEFAULT_METHOD)],
+        methods: project.methods.length > 0
+          ? cloneDeep(project.methods)
+          : [clone(DEFAULT_METHOD)],
+      },
     };
   }
 
-  handleImageUpload = (image) => {
-    this.setState({ projectImage: image.uri });
-  };
-
   handleSelectCategory = (index) => {
-    this.setState({ categoryIndex: index });
+    const { project } = this.state;
+    this.setState({ project: { ...project, categoryIndex: index } });
   };
 
-  handleSelecteCategoryPress = () => {
+  handleSelectCategoryPress = () => {
     const { navigation } = this.props;
 
     navigation.navigate('SelectCategoryModal', {
       categories: this.getCategories(),
       onSelect: this.handleSelectCategory,
     });
-  };
-
-  handleMaterialChange = (materials) => {
-    this.setState({ materials });
-  };
-
-  handleFileChange = (files) => {
-    this.setState({ files });
-  };
-
-  handleMethodChange = (methods) => {
-    this.setState({ methods });
   };
 
   handleDelete = () => {
@@ -221,26 +206,12 @@ export default class EditProjectScreen extends Component {
 
   getEditProjectMutation = () => {
     const { query, screenProps: { spinner } } = this.props;
-    const {
-      projectImage,
-      projectName,
-      introduction,
-      tip,
-      materials,
-      files,
-      methods,
-    } = this.state;
+    const { project } = this.state;
 
     return new EditProjectMutation({
+      ...project,
       id: query.project.id,
-      name: projectName,
       category: this.getCategory(),
-      introduction,
-      tip,
-      image: projectImage,
-      materials,
-      files,
-      methods,
     }).setHook(spinner);
   };
 
@@ -300,116 +271,6 @@ export default class EditProjectScreen extends Component {
     showSetProjectFailedAlert();
   };
 
-  renderSection = (key) => {
-    const {
-      projectImage,
-      projectName,
-      introduction,
-      tip,
-      materials,
-      files,
-      methods,
-    } = this.state;
-    const category = this.getCategory();
-
-    switch (key) {
-      case 'intro':
-        return (
-          <View style={styles.section}>
-            <EditSection title={i18n.t('projectName.title', i18nOptions)}>
-              <PureTextInput
-                style={styles.textInput}
-                value={projectName}
-                placeholder={i18n.t('projectName.placeholder', i18nOptions)}
-                onChangeText={value => this.setState({ projectName: value })}
-                maxLength={20}
-                counter
-              />
-            </EditSection>
-            <EditSection title={i18n.t('category.title', i18nOptions)}>
-              <PureSelector
-                style={styles.textInput}
-                placeholder={i18n.t('category.placeholder', i18nOptions)}
-                value={category && i18n.t(`categories.${category}`)}
-                onPress={this.handleSelecteCategoryPress}
-              />
-            </EditSection>
-            <EditSection title={i18n.t('intro.title', i18nOptions)}>
-              <PureTextInput
-                style={styles.textInput}
-                value={introduction}
-                placeholder={i18n.t('intro.placeholder', i18nOptions)}
-                onChangeText={value => this.setState({ introduction: value })}
-                maxLength={300}
-                multiline
-                counter
-              />
-            </EditSection>
-          </View>
-        );
-      case 'image':
-        return (
-          <EditSection title={i18n.t('image.title', i18nOptions)}>
-            <View style={styles.projectImageContainer}>
-              <ImageUploadView
-                width="100%"
-                aspect={[1, 1]}
-                iconSize={Dimensions.get('window').width / 2}
-                image={projectImage}
-                onUpload={this.handleImageUpload}
-              />
-            </View>
-          </EditSection>
-        );
-      case 'material':
-        return (
-          <View style={styles.section}>
-            <EditSection title={i18n.t('materials.title', i18nOptions)}>
-              <EditMaterialList
-                data={materials}
-                onChange={this.handleMaterialChange}
-              />
-            </EditSection>
-            <EditSection title={i18n.t('files.title', i18nOptions)}>
-              <EditFileList
-                data={files}
-                onChange={this.handleFileChange}
-              />
-            </EditSection>
-          </View>
-        );
-      case 'method':
-        return (
-          <View style={styles.section}>
-            <EditSection title={i18n.t('methods.title', i18nOptions)}>
-              <EditMethodList
-                data={methods}
-                onChange={this.handleMethodChange}
-              />
-            </EditSection>
-          </View>
-        );
-      case 'tip':
-        return (
-          <View style={styles.section}>
-            <EditSection title={i18n.t('tip.title', i18nOptions)}>
-              <PureTextInput
-                style={styles.textInput}
-                value={tip}
-                placeholder={i18n.t('tip.placeholder', i18nOptions)}
-                onChangeText={value => this.setState({ tip: value })}
-                maxLength={300}
-                multiline
-                counter
-              />
-            </EditSection>
-          </View>
-        );
-      default:
-        return null;
-    }
-  };
-
   renderFooter = () => {
     const { query } = this.props;
 
@@ -458,15 +319,23 @@ export default class EditProjectScreen extends Component {
   };
 
   getCategory = () => {
-    const { categoryIndex } = this.state;
+    const { project: { categoryIndex } } = this.state;
     const categories = this.getCategories();
     return (categories
             && categories[categoryIndex]
             && categories[categoryIndex].name) || null;
   };
 
+  handleChange = (data) => {
+    const { project } = this.state;
+    this.setState({ project: { ...project, ...data } });
+  };
+
   render() {
     const { navigation, loading } = this.props;
+    const { project } = this.state;
+    const category = loading ? null : this.getCategory();
+
     const tabs = [{
       key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
     }, {
@@ -474,17 +343,18 @@ export default class EditProjectScreen extends Component {
     }, {
       key: 'material', title: i18n.t('tabs.materials', i18nOptions),
     }, {
+      key: 'files', title: i18n.t('tabs.files', i18nOptions),
+    }, {
       key: 'method', title: i18n.t('tabs.methods', i18nOptions),
     }, {
       key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
     }];
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <StatusBar hidden={false} />
-        <TabSectionScreenView
+        <TabsScreenView
           navigation={navigation}
-          tabs={tabs}
           renderHeader={() => (
             <NormalBackHeader
               onBack={() => navigation.goBack()}
@@ -500,11 +370,49 @@ export default class EditProjectScreen extends Component {
               }]}
             />
           )}
-          renderSection={this.renderSection}
-          renderFooter={this.renderFooter}
+          tabs={tabs}
+          tabsScrollable
           fullScreen
           loading={loading}
-        />
+        >
+          <View style={styles.section}>
+            <ProjectIntroEditor
+              project={{ ...project, category }}
+              onChange={this.handleChange}
+              onSelectCategoryPress={this.handleSelectCategoryPress}
+            />
+          </View>
+          <View style={styles.section}>
+            <ProjectImageEditor
+              project={{ ...project }}
+              onChange={this.handleChange}
+            />
+          </View>
+          <View style={styles.section}>
+            <ProjectMaterialEditor
+              project={{ ...project }}
+              onChange={this.handleChange}
+            />
+          </View>
+          <View style={styles.section}>
+            <ProjectFileEditor
+              project={{ ...project }}
+              onChange={this.handleChange}
+            />
+          </View>
+          <View style={styles.section}>
+            <ProjectMethodEditor
+              project={{ ...project }}
+              onChange={this.handleChange}
+            />
+          </View>
+          <View style={styles.section}>
+            <ProjectTipEditor
+              project={{ ...project }}
+              onChange={this.handleChange}
+            />
+          </View>
+        </TabsScreenView>
       </View>
     );
   }

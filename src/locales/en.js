@@ -56,6 +56,7 @@ export default {
         intro: 'Introduction',
         image: 'Main Photo',
         materials: 'Materials',
+        files: 'Files',
         methods: 'Steps',
         tip: 'Tip',
       },

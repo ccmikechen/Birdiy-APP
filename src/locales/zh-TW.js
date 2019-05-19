@@ -51,6 +51,7 @@ export default {
         intro: '簡介',
         image: '主圖',
         materials: '材料',
+        files: '檔案資料',
         methods: '作法',
         tip: '小技巧',
       },

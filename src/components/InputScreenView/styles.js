@@ -7,7 +7,7 @@ import { Base } from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   statusBarPaddingView: {
     height: Constants.statusBarHeight,

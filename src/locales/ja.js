@@ -51,6 +51,7 @@ export default {
         intro: '紹介',
         image: '写真',
         materials: '材料',
+        files: 'ファイル',
         methods: '作り方',
         tip: 'コツ',
       },

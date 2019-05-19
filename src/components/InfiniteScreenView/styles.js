@@ -6,7 +6,7 @@ import { Base } from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   headerContainer: {
     position: 'absolute',

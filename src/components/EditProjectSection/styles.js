@@ -4,7 +4,7 @@ import { Base, TextColor, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   titleContainer: {
     padding: 5,

@@ -5,8 +5,6 @@ import SimpleScreenView from '../../components/SimpleScreenView';
 import SearchBarHeader from '../../components/SearchBarHeader';
 import UserFavoriteProjectList from '../../containers/UserFavoriteProjectList';
 
-import styles from './styles';
-
 export default class UserFavoritesScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -46,7 +44,6 @@ export default class UserFavoritesScreen extends Component {
 
     return (
       <SimpleScreenView
-        style={styles.container}
         navigation={navigation}
         renderHeader={() => (
           <SearchBarHeader

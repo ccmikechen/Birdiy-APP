@@ -10,8 +10,6 @@ import MyProjectActions from '../../components/MyProjectActions';
 
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 
-import styles from './styles';
-
 import {
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
@@ -75,7 +73,6 @@ export default class MyProjectsScreen extends Component {
 
     return (
       <SimpleScreenView
-        style={styles.container}
         navigation={navigation}
         renderHeader={() => (
           <SearchBarHeader

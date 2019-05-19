@@ -5,7 +5,7 @@ import { Base, Primary } from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Base.light,
+    backgroundColor: Base.lightest,
   },
   listContainer: {
     width: '100%',
