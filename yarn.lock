@@ -2270,9 +2270,9 @@ color@^2.0.1:
     color-string "^1.5.2"
 
 color@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/color/-/color-3.1.0.tgz#d8e9fb096732875774c84bf922815df0308d0ffc"
-  integrity sha512-CwyopLkuRYO5ei2EpzpIh6LqJMt6Mt+jZhO5VI5f/wJLZriXQE32/SSqzmrh+QB+AZT81Cj8yv+7zwToW8ahZg==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/color/-/color-3.1.1.tgz#7abf5c0d38e89378284e873c207ae2172dcc8a61"
+  integrity sha512-PvUltIXRjehRKPSy89VnDWFKY58xyhTLyxIg21vwQBI6qLwZNPmC8k3C1uytIgFKEpOIzN4y32iPm8231zFHIg==
   dependencies:
     color-convert "^1.9.1"
     color-string "^1.5.2"
@@ -6588,13 +6588,13 @@ react-native-android-image-polyfill@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-android-image-polyfill/-/react-native-android-image-polyfill-1.0.0.tgz#f0b61bac0c6a91b8f8f81233ab1998613adf64ac"
   integrity sha1-8LYbrAxqkbj4+BIzqxmYYTrfZKw=
 
-react-native-auto-height-image@^1.1.0:
+react-native-auto-height-image@birdiy/react-native-auto-height-image#master:
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-auto-height-image/-/react-native-auto-height-image-1.1.0.tgz#509f441b4d5fc83ce9abfd5f459640f0273f5d01"
-  integrity sha512-vJH0NKyvzp9NtTNlcX/oEnKGgY2ZXW0VhQoz1TGNaxDHqpgtkTi645kS4ehjU95GV8h4pxIYYd/6SyuwXH2vrw==
+  resolved "https://codeload.github.com/birdiy/react-native-auto-height-image/tar.gz/1adce1d3a1d2e77a1a0ea4455becf0646cae05e1"
   dependencies:
     prop-types "^15.5.8"
     react-native-android-image-polyfill "^1.0.0"
+    react-native-elements "^1.1.0"
 
 react-native-branch@2.2.5:
   version "2.2.5"
@@ -6701,9 +6701,9 @@ react-native-paper@^2.13.0:
     react-native-safe-area-view "^0.12.0"
 
 react-native-ratings@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.3.0.tgz#becda9379616776a81d9d90bfc95ea40b76286fb"
-  integrity sha512-vjzsTM4L3J3n0X9fJMFSJ3ZUqbPp2ExZtgg/Ycst9SqwiHCOouEwEpEcLF+KzYp3MgL62ZACIKSUyfWIIdBafA==
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.3.1.tgz#4e4bd87f376423dc62c933f570fc1932c78adaa4"
+  integrity sha512-+WEtk4wPvnoN5YbfWcmyM4LpKOlvkrFlpQe0KrqeWBAOkN6OXOZYBtiCh97dCIb8Ovpm7goOEcTf3T1MGCi2LA==
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
@@ -6760,9 +6760,9 @@ react-native-settings-list@^1.8.0:
     prop-types "^15.5.10"
 
 react-native-status-bar-height@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.2.0.tgz#3bd51de134660efc5f5ad136ca573c7d5790f7ed"
-  integrity sha512-4WJpyZirzeMHyZiyNEy4LnSPOtuLRVy3+28Rhz7ffrjCVcc5RFcC0HVjFnkwfuhcTyXIDtzPG6canJkXzbTtBA==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
+  integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
 
 react-native-super-grid@^3.0.3:
   version "3.0.3"

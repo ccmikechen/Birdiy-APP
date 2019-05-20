@@ -4,6 +4,8 @@ import { View, ViewPropTypes, Text } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { Icon } from 'expo';
 
+import LoadingIndicator from '../LoadingIndicator';
+
 import styles from './styles';
 
 const ImageView = ({
@@ -15,6 +17,7 @@ const ImageView = ({
         style={style}
         source={{ uri }}
         width={width}
+        PlaceholderContent={<LoadingIndicator />}
       />
       {amount > 1 && (
         <View style={styles.imagesInfoContainer}>
