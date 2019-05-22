@@ -11,16 +11,18 @@ import styles from './styles';
 const PureSelector = ({
   style,
   value,
+  error,
   placeholder,
   onPress,
 }) => (
   <TouchableOpacity
-    style={[styles.container, style]}
+    style={[styles.container, style, error ? styles.error : null]}
     onPress={onPress}
   >
     <Text style={[
       styles.value,
       value === null ? styles.placeholder : null,
+      error ? styles.errorValue : null,
     ]}
     >
       { value === null ? placeholder : value}
@@ -30,6 +32,7 @@ const PureSelector = ({
 
 PureSelector.propTypes = {
   value: PropTypes.string,
+  error: PropTypes.string,
   placeholder: PropTypes.string,
   onPress: PropTypes.func,
   style: ViewPropTypes.style,
@@ -37,6 +40,7 @@ PureSelector.propTypes = {
 
 PureSelector.defaultProps = {
   value: null,
+  error: undefined,
   placeholder: '',
   onPress: () => {},
   style: {},

@@ -26,7 +26,8 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   textInput: {
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: Tertiary(100),
   },
 });

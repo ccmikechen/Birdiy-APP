@@ -9,7 +9,6 @@ import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 import CreateProjectMutation from '../../mutations/CreateProjectMutation';
 
 import {
-  showSaveProjectSuccessAlert,
   showSaveProjectFailedAlert,
 } from '../../helpers/alert';
 
@@ -51,54 +50,26 @@ export default class CreateProjectScreen extends Component {
     loading: true,
   };
 
-  state = {
-    project: {
-      name: '',
-      category: null,
-    },
+  initialProject = {
+    name: '',
+    category: null,
   };
 
-  handleChange = (data) => {
-    const { project } = this.state;
-    this.setState({ project: { ...project, ...data } });
-  };
-
-  handleSelectCategory = (index) => {
-    const { project } = this.state;
-    this.setState({
-      project: {
-        ...project,
-        category: this.getCategory(index),
-      },
-    });
-  };
-
-  handleOpenCategorySelector = () => {
+  handleOpenCategorySelector = (categories, callback) => {
     const { navigation } = this.props;
     navigation.navigate('SelectCategoryModal', {
-      categories: this.getCategories(),
-      onSelect: this.handleSelectCategory,
+      categories,
+      onSelect: callback,
     });
   };
 
-  handleSave = () => {
-    const { navigation } = this.props;
-    const { project } = this.state;
-    const mutation = new CreateProjectMutation(project);
-
-    mutation.commit()
-      .then(() => {
-        navigation.goBack();
-        navigation.navigate('Profile');
-        showSaveProjectSuccessAlert();
-      })
-      .catch(this.handleSaveError);
+  handleSubmitPress = () => {
+    this.projectDraftEditor.submit();
   };
 
-  handleSubmit = () => {
+  handleSubmit = (values) => {
     const { navigation, screenProps: { spinner } } = this.props;
-    const { project } = this.state;
-    const mutation = new CreateProjectMutation(project).setHook(spinner);
+    const mutation = new CreateProjectMutation(values).setHook(spinner);
 
     mutation.commit()
       .then((response) => {
@@ -107,29 +78,16 @@ export default class CreateProjectScreen extends Component {
         navigation.goBack();
         navigation.navigate('EditProjectModal', { id });
       })
-      .catch(this.handleSaveError);
+      .catch(this.handleSubmitError);
   };
 
-  handleSaveError = () => {
+  handleSubmitError = () => {
     showSaveProjectFailedAlert();
   };
 
-  getCategories = () => {
-    const { query } = this.props;
-
-    return query && query.categories.edges.map(({ node }) => node);
-  };
-
-  getCategory = (index) => {
-    const categories = this.getCategories();
-    return (categories
-            && categories[index]
-            && categories[index].name) || null;
-  };
-
   render() {
-    const { navigation, loading } = this.props;
-    const { project } = this.state;
+    const { navigation, loading, query } = this.props;
+    const categories = query && query.categories.edges.map(({ node }) => node);
 
     return (
       <TopScreenView
@@ -141,7 +99,7 @@ export default class CreateProjectScreen extends Component {
             rightButton={{
               icon: 'save',
               color: '#666666',
-              onPress: this.handleSave,
+              onPress: this.handleSubmitPress,
             }}
           />
         )}
@@ -149,10 +107,12 @@ export default class CreateProjectScreen extends Component {
         loading={loading}
       >
         <ProjectDraftEditor
-          project={project}
-          onChange={this.handleChange}
+          ref={(ref) => { this.projectDraftEditor = ref; }}
+          initialValue={this.initialProject}
+          categories={categories}
           onOpenCategorySelector={this.handleOpenCategorySelector}
           onSubmit={this.handleSubmit}
+          onSubmitPress={this.handleSubmitPress}
         />
       </TopScreenView>
     );
