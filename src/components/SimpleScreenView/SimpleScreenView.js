@@ -66,6 +66,7 @@ export default class SimpleScreenView extends Component {
         onScrollTrigger: visible => () => this.handleVisible(visible),
         onScrollDown: () => this.handleVisible(false),
         onScrollUp: () => this.handleVisible(true),
+        isHeaderVisible,
       })
     ));
 

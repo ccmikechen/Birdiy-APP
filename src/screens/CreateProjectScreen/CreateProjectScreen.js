@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import i18n from 'i18n-js';
 
-import TopScreenView from '../../components/TopScreenView';
+import InputScreenView from '../../components/InputScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
@@ -90,7 +90,7 @@ export default class CreateProjectScreen extends Component {
     const categories = query && query.categories.edges.map(({ node }) => node);
 
     return (
-      <TopScreenView
+      <InputScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
@@ -114,7 +114,7 @@ export default class CreateProjectScreen extends Component {
           onSubmit={this.handleSubmit}
           onSubmitPress={this.handleSubmitPress}
         />
-      </TopScreenView>
+      </InputScreenView>
     );
   }
 }

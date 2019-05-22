@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { BackHandler } from 'react-native';
 import i18n from 'i18n-js';
 
-import TopScreenView from '../../components/TopScreenView';
+import InputScreenView from '../../components/InputScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
 
@@ -96,7 +96,7 @@ export default class CreatePostScreen extends Component {
     const { navigation } = this.props;
 
     return (
-      <TopScreenView
+      <InputScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
@@ -116,7 +116,7 @@ export default class CreatePostScreen extends Component {
           initialValues={this.initialPost}
           onSubmit={this.handleSubmit}
         />
-      </TopScreenView>
+      </InputScreenView>
     );
   }
 }
