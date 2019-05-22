@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { BackHandler } from 'react-native';
 import { cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
@@ -12,6 +13,7 @@ import EditPostMutation from '../../mutations/EditPostMutation';
 import {
   showEditPostSuccessAlert,
   showEditPostFailedAlert,
+  showUnsavedGoBackAlert,
 } from '../../helpers/alert';
 
 const i18nOptions = { scope: 'post.edit' };
@@ -75,7 +77,7 @@ export default class EditPostScreen extends Component {
 
     return {
       initialized: true,
-      post: {
+      initialPost: {
         id: post.id,
         relatedProject: post.relatedProjectType === 'project' ? {
           type: 'project',
@@ -93,49 +95,62 @@ export default class EditPostScreen extends Component {
     };
   }
 
-  handleChange = (data) => {
-    const { post } = this.state;
-    this.setState({ post: { ...post, ...data } });
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
+  handleSubmitPress = () => {
+    this.postEditor.submit();
   };
 
-  handleSave = () => {
+  handleSubmit = (values) => {
     const { navigation, screenProps: { spinner } } = this.props;
-    const { post } = this.state;
 
-    const mutation = new EditPostMutation(post).setHook(spinner);
+    const mutation = new EditPostMutation(values).setHook(spinner);
 
     mutation.commit()
       .then((res) => {
         if (res.errors) {
-          this.handleSavingError();
+          this.handleSubmittingError();
 
           return;
         }
         navigation.goBack();
         showEditPostSuccessAlert();
       })
-      .catch(this.handleSavingError);
+      .catch(this.handleSubmittingError);
   };
 
-  handleSavingError = () => {
+  handleSubmittingError = () => {
     showEditPostFailedAlert();
+  };
+
+  handleGoBack = () => {
+    const { navigation } = this.props;
+    showUnsavedGoBackAlert().then(() => navigation.goBack());
+
+    return true;
   };
 
   render() {
     const { navigation, loading } = this.props;
-    const { post } = this.state;
+    const { initialPost } = this.state;
 
     return (
       <InputScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
-            onBack={() => navigation.goBack()}
+            onBack={this.handleGoBack}
             title={i18n.t('title', i18nOptions)}
             rightButton={{
               icon: 'save',
               color: '#666666',
-              onPress: this.handleSave,
+              onPress: this.handleSubmitPress,
             }}
           />
         )}
@@ -143,8 +158,9 @@ export default class EditPostScreen extends Component {
         loading={loading}
       >
         <PostEditor
-          post={post}
-          onChange={this.handleChange}
+          ref={(ref) => { this.postEditor = ref; }}
+          initialValues={initialPost}
+          onSubmit={this.handleSubmit}
         />
       </InputScreenView>
     );
