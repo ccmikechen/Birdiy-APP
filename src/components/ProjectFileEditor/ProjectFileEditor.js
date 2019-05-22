@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import InputScrollView from 'react-native-input-scroll-view';
 
@@ -6,42 +6,38 @@ import EditFileList from '../EditFileList';
 
 import styles from './styles';
 
-export default class ProjectFileEditor extends Component {
-  static propTypes = {
-    project: PropTypes.shape({
-      methods: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        url: PropTypes.string,
-        type: PropTypes.string,
-      })),
-    }).isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+const ProjectFileEditor = (props) => {
+  const { project, onChange } = props;
+  const { files } = project;
 
-  handleFileChange = (files) => {
-    const { project, onChange } = this.props;
-    onChange({ ...project, files });
-  };
+  return (
+    <InputScrollView
+      style={styles.container}
+      keyboardShouldPersistTaps="always"
+      keyboardAvoidingViewProps={{
+        behavior: 'padding',
+      }}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <EditFileList
+        data={files}
+        onChange={onChange('files')}
+      />
+    </InputScrollView>
+  );
+};
 
-  render() {
-    const { project } = this.props;
-    const { files } = project;
 
-    return (
-      <InputScrollView
-        style={styles.container}
-        keyboardShouldPersistTaps="always"
-        keyboardAvoidingViewProps={{
-          behavior: 'padding',
-        }}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <EditFileList
-          data={files}
-          onChange={this.handleFileChange}
-        />
-      </InputScrollView>
-    );
-  }
-}
+ProjectFileEditor.propTypes = {
+  project: PropTypes.shape({
+    files: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      url: PropTypes.string,
+      type: PropTypes.string,
+    })),
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default ProjectFileEditor;

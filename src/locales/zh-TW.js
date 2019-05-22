@@ -97,6 +97,7 @@ export default {
       },
       publish: '公開',
       unpublish: '取消公開',
+      saveAndPublish: '儲存並公開',
     },
     delete: {
       title: '刪除專案',

@@ -97,6 +97,7 @@ export default {
       },
       publish: '公開',
       unpublish: '非公開',
+      saveAndPublish: '保存して公開',
     },
     delete: {
       title: 'プロジェクトを削除',

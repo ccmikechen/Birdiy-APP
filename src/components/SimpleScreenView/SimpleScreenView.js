@@ -62,7 +62,7 @@ export default class SimpleScreenView extends Component {
     const { isHeaderVisible } = this.state;
 
     const newChildren = React.Children.map(children, child => (
-      React.cloneElement(child, {
+      child && React.cloneElement(child, {
         onScrollTrigger: visible => () => this.handleVisible(visible),
         onScrollDown: () => this.handleVisible(false),
         onScrollUp: () => this.handleVisible(true),

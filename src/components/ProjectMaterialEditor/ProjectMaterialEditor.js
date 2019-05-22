@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import InputScrollView from 'react-native-input-scroll-view';
 
@@ -6,42 +6,37 @@ import EditMaterialList from '../EditMaterialList';
 
 import styles from './styles';
 
-export default class ProjectMaterialEditor extends Component {
-  static propTypes = {
-    project: PropTypes.shape({
-      methods: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string,
-        image: PropTypes.string,
-        title: PropTypes.string,
-        content: PropTypes.string,
-      })),
-    }).isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+const ProjectMaterialEditor = (props) => {
+  const { project, onChange } = props;
+  const { materials } = project;
 
-  handleMaterialChange = (materials) => {
-    const { project, onChange } = this.props;
-    onChange({ ...project, materials });
-  };
+  return (
+    <InputScrollView
+      style={styles.container}
+      keyboardShouldPersistTaps="always"
+      keyboardAvoidingViewProps={{
+        behavior: 'padding',
+      }}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <EditMaterialList
+        data={materials}
+        onChange={onChange('materials')}
+      />
+    </InputScrollView>
+  );
+};
 
-  render() {
-    const { project } = this.props;
-    const { materials } = project;
+ProjectMaterialEditor.propTypes = {
+  project: PropTypes.shape({
+    materials: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      amountUnit: PropTypes.string,
+      url: PropTypes.string,
+    })),
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-    return (
-      <InputScrollView
-        style={styles.container}
-        keyboardShouldPersistTaps="always"
-        keyboardAvoidingViewProps={{
-          behavior: 'padding',
-        }}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <EditMaterialList
-          data={materials}
-          onChange={this.handleMaterialChange}
-        />
-      </InputScrollView>
-    );
-  }
-}
+export default ProjectMaterialEditor;

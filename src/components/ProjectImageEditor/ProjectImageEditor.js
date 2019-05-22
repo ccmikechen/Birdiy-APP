@@ -21,7 +21,7 @@ export default class ProjectImage extends Component {
 
   handleImageUpload = (image) => {
     const { onChange } = this.props;
-    onChange({ image: image.uri });
+    onChange('image')(image.uri);
   };
 
   render() {

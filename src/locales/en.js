@@ -102,6 +102,7 @@ export default {
       },
       publish: 'Publish',
       unpublish: 'Unpublish',
+      saveAndPublish: 'Save and Publish',
     },
     delete: {
       title: 'Delete Project',

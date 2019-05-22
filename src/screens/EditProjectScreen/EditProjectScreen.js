@@ -9,14 +9,10 @@ import { Button } from 'react-native-paper';
 import { clone, cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
-import TabsScreenView from '../../components/TabsScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
-import ProjectIntroEditor from '../../components/ProjectIntroEditor';
-import ProjectImageEditor from '../../components/ProjectImageEditor';
-import ProjectMaterialEditor from '../../components/ProjectMaterialEditor';
-import ProjectFileEditor from '../../components/ProjectFileEditor';
-import ProjectMethodEditor from '../../components/ProjectMethodEditor';
-import ProjectTipEditor from '../../components/ProjectTipEditor';
+import ProjectEditor from '../../components/ProjectEditor';
+import SaveProjectActions from '../../components/SaveProjectActions';
 
 import EditProjectMutation from '../../mutations/EditProjectMutation';
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
@@ -110,6 +106,7 @@ export default class EditProjectScreen extends Component {
 
   state = {
     initialized: false,
+    projectPublished: false,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -121,18 +118,13 @@ export default class EditProjectScreen extends Component {
     }
 
     const { project, categories } = query;
-    const categoryIndex = categories.edges.reduce((
-      acc, { node: { name } }, index,
-    ) => (
-      name === project.category.name ? index : acc
-    ), null);
 
     return {
       initialized: true,
-      project: {
+      initialProject: {
         image: project.image,
         name: project.name,
-        categoryIndex,
+        category: project.category.name,
         introduction: project.introduction || '',
         tip: project.tip || '',
 
@@ -148,20 +140,15 @@ export default class EditProjectScreen extends Component {
           ? cloneDeep(project.methods)
           : [clone(DEFAULT_METHOD)],
       },
+      projectPublished: project.published,
     };
   }
 
-  handleSelectCategory = (index) => {
-    const { project } = this.state;
-    this.setState({ project: { ...project, categoryIndex: index } });
-  };
-
-  handleSelectCategoryPress = () => {
+  handleOpenCategorySelector = (categories, callback) => {
     const { navigation } = this.props;
-
     navigation.navigate('SelectCategoryModal', {
-      categories: this.getCategories(),
-      onSelect: this.handleSelectCategory,
+      categories,
+      onSelect: callback,
     });
   };
 
@@ -187,29 +174,50 @@ export default class EditProjectScreen extends Component {
       .catch(showDeleteProjectFailedAlert);
   };
 
-  handleSave = () => {
-    const { navigation } = this.props;
-    const mutation = this.getEditProjectMutation();
-
-    mutation.commit()
-      .then((res) => {
-        if (res.errors) {
-          this.handleSavingError();
-
-          return;
-        }
-        navigation.goBack();
-        showSaveProjectSuccessAlert();
-      })
-      .catch(this.handleSavingError);
+  handleSaveButtonPress = () => {
+    this.saveProjectActions.show();
   };
 
-  getEditProjectMutation = () => {
+  handleSubmitPress = projectStatus => () => {
+    const { projectPublished } = this.state;
+    const status = projectPublished ? 'published' : projectStatus;
+    this.projectEditor.submit(status);
+  };
+
+  handleSubmit = (projectStatus) => {
+    if (projectStatus === 'published') {
+      return this.handleSaveAndPublish;
+    }
+    return this.handleSave;
+  };
+
+  handleSaveAndPublish = (values) => {
+    console.log('publish', values);
+  }
+
+  handleSave = (values) => {
+    console.log('save', values);
+    // const { navigation } = this.props;
+    // const mutation = this.getEditProjectMutation(values);
+
+    // mutation.commit()
+    //   .then((res) => {
+    //     if (res.errors) {
+    //       this.handleSavingError();
+
+    //       return;
+    //     }
+    //     navigation.goBack();
+    //     showSaveProjectSuccessAlert();
+    //   })
+    //   .catch(this.handleSavingError);
+  };
+
+  getEditProjectMutation = (values) => {
     const { query, screenProps: { spinner } } = this.props;
-    const { project } = this.state;
 
     return new EditProjectMutation({
-      ...project,
+      ...values,
       id: query.project.id,
       category: this.getCategory(),
     }).setHook(spinner);
@@ -312,48 +320,15 @@ export default class EditProjectScreen extends Component {
     );
   };
 
-  getCategories = () => {
-    const { query } = this.props;
-
-    return query && query.categories.edges.map(({ node }) => node);
-  };
-
-  getCategory = () => {
-    const { project: { categoryIndex } } = this.state;
-    const categories = this.getCategories();
-    return (categories
-            && categories[categoryIndex]
-            && categories[categoryIndex].name) || null;
-  };
-
-  handleChange = (data) => {
-    const { project } = this.state;
-    this.setState({ project: { ...project, ...data } });
-  };
-
   render() {
-    const { navigation, loading } = this.props;
-    const { project } = this.state;
-    const category = loading ? null : this.getCategory();
-
-    const tabs = [{
-      key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
-    }, {
-      key: 'image', title: i18n.t('tabs.image', i18nOptions),
-    }, {
-      key: 'material', title: i18n.t('tabs.materials', i18nOptions),
-    }, {
-      key: 'files', title: i18n.t('tabs.files', i18nOptions),
-    }, {
-      key: 'method', title: i18n.t('tabs.methods', i18nOptions),
-    }, {
-      key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
-    }];
+    const { navigation, loading, query } = this.props;
+    const { initialProject, projectPublished } = this.state;
+    const categories = query && query.categories.edges.map(({ node }) => node);
 
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
-        <TabsScreenView
+        <SimpleScreenView
           navigation={navigation}
           renderHeader={() => (
             <NormalBackHeader
@@ -366,53 +341,28 @@ export default class EditProjectScreen extends Component {
               }, {
                 icon: 'save',
                 color: '#666666',
-                onPress: this.handleSave,
+                onPress: this.handleSaveButtonPress,
               }]}
             />
           )}
-          tabs={tabs}
-          tabsScrollable
           fullScreen
           loading={loading}
         >
-          <View style={styles.section}>
-            <ProjectIntroEditor
-              project={{ ...project, category }}
-              onChange={this.handleChange}
-              onSelectCategoryPress={this.handleSelectCategoryPress}
-            />
-          </View>
-          <View style={styles.section}>
-            <ProjectImageEditor
-              project={{ ...project }}
-              onChange={this.handleChange}
-            />
-          </View>
-          <View style={styles.section}>
-            <ProjectMaterialEditor
-              project={{ ...project }}
-              onChange={this.handleChange}
-            />
-          </View>
-          <View style={styles.section}>
-            <ProjectFileEditor
-              project={{ ...project }}
-              onChange={this.handleChange}
-            />
-          </View>
-          <View style={styles.section}>
-            <ProjectMethodEditor
-              project={{ ...project }}
-              onChange={this.handleChange}
-            />
-          </View>
-          <View style={styles.section}>
-            <ProjectTipEditor
-              project={{ ...project }}
-              onChange={this.handleChange}
-            />
-          </View>
-        </TabsScreenView>
+          <ProjectEditor
+            ref={(ref) => { this.projectEditor = ref; }}
+            initialValues={initialProject}
+            onSubmit={this.handleSubmit}
+            categories={categories}
+            onOpenCategorySelector={this.handleOpenCategorySelector}
+            published={projectPublished}
+          />
+        </SimpleScreenView>
+        <SaveProjectActions
+          ref={(ref) => { this.saveProjectActions = ref; }}
+          onSave={this.handleSubmitPress('draft')}
+          onSaveAndPublish={this.handleSubmitPress('published')}
+          published={projectPublished}
+        />
       </View>
     );
   }

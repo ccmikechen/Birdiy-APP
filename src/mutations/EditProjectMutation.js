@@ -56,16 +56,6 @@ export default class EditProjectMutation extends Mutation {
     }
   `;
 
-  static constraints = {
-    name: {
-      presence: { allowEmpty: false },
-      length: { maximum: 20 },
-    },
-    category: {
-      presence: true,
-    },
-  };
-
   constructor(input) {
     const {
       id,
