@@ -12,6 +12,7 @@ export default {
     ok: 'OK',
     cancel: 'Cancel',
     save: 'Save',
+    goBack: 'Go Back',
   },
   post: {
     create: {
@@ -285,5 +286,13 @@ export default {
     },
     deletePostFailed: 'Failed to delete the post.',
     editProfileFailed: 'Failed to save profile.',
+    goBack: 'Are you sure you want to go back?',
+    unsavedGoBack: 'Are you sure you want to go back without saving?',
+  },
+  errors: {
+    required: 'Required',
+    photos: {
+      min: 'At least %{min} photo',
+    },
   },
 };

@@ -22,6 +22,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "expo": "^32.0.0",
+    "formik": "^1.5.7",
     "hoist-non-react-statics": "^3.3.0",
     "i18n-js": "^3.2.2",
     "jwt-decode": "^2.2.0",
@@ -54,7 +55,8 @@
     "react-relay": "^3.0.0",
     "relay-runtime": "^3.0.0",
     "rn-viewpager": "^1.2.9",
-    "validate.js": "^0.12.0"
+    "validate.js": "^0.12.0",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "babel-plugin-relay": "^3.0.0",

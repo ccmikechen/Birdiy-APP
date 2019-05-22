@@ -17,15 +17,16 @@ const PureTextInput = (props) => {
     counter,
     maxLength,
     value,
+    error,
   } = props;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style, error ? styles.error : null]}>
       <TextInput
         {...props}
         style={styles.input}
         underlineColorAndroid="transparent"
-        placeholderTextColor={Colors.placeholder}
+        placeholderTextColor={error ? Colors.danger : Colors.placeholder}
       />
       {counter && (
         <View style={styles.counterContainer}>
@@ -44,6 +45,7 @@ const PureTextInput = (props) => {
 
 PureTextInput.propTypes = {
   value: PropTypes.string,
+  error: PropTypes.string,
   onChangeText: PropTypes.func,
   style: ViewPropTypes.style,
   counter: PropTypes.bool,
@@ -52,6 +54,7 @@ PureTextInput.propTypes = {
 
 PureTextInput.defaultProps = {
   value: null,
+  error: undefined,
   onChangeText: () => {},
   style: {},
   counter: false,

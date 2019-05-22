@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { BackHandler } from 'react-native';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -11,6 +12,7 @@ import CreatePostMutation from '../../mutations/CreatePostMutation';
 import {
   showCreatePostSuccessAlert,
   showCreatePostFailedAlert,
+  showGoBackAlert,
 } from '../../helpers/alert';
 
 export default class CreatePostScreen extends Component {
@@ -38,28 +40,33 @@ export default class CreatePostScreen extends Component {
 
     const relatedProject = props.navigation.getParam('relatedProject');
 
-    this.state = {
-      post: {
-        relatedProject: relatedProject || {
-          type: 'custom',
-          name: '',
-          id: null,
-        },
-        message: '',
-        photos: [],
+    this.initialPost = {
+      relatedProject: relatedProject || {
+        type: 'custom',
+        name: '',
+        id: null,
       },
+      message: '',
+      photos: [],
     };
   }
 
-  handleChange = (data) => {
-    const { post } = this.state;
-    this.setState({ post: { ...post, ...data } });
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
+  handleSubmitPress = () => {
+    this.postEditor.submit();
   };
 
-  handleSubmit = () => {
+  handleSubmit = (values) => {
     const { navigation, screenProps: { spinner } } = this.props;
-    const { post } = this.state;
-    const mutation = new CreatePostMutation(post).setHook(spinner);
+
+    const mutation = new CreatePostMutation(values).setHook(spinner);
 
     mutation.commit()
       .then((res) => {
@@ -78,29 +85,36 @@ export default class CreatePostScreen extends Component {
     showCreatePostFailedAlert();
   };
 
+  handleGoBack = () => {
+    const { navigation } = this.props;
+    showGoBackAlert().then(() => navigation.goBack());
+
+    return true;
+  };
+
   render() {
     const { navigation } = this.props;
-    const { post } = this.state;
 
     return (
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
           <NormalBackHeader
-            onBack={() => navigation.goBack()}
+            onBack={this.handleGoBack}
             title={i18n.t('post.create.title')}
             rightButton={{
               icon: 'send',
               color: '#666666',
-              onPress: this.handleSubmit,
+              onPress: this.handleSubmitPress,
             }}
           />
         )}
         fullScreen
       >
         <PostEditor
-          post={post}
-          onChange={this.handleChange}
+          ref={(ref) => { this.postEditor = ref; }}
+          initialValues={this.initialPost}
+          onSubmit={this.handleSubmit}
         />
       </TopScreenView>
     );

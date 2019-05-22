@@ -7,6 +7,7 @@ export default {
     ok: 'OK',
     cancel: '取消',
     save: '儲存',
+    goBack: '返回',
   },
   post: {
     create: {
@@ -313,5 +314,13 @@ export default {
     },
     deletePostFailed: '貼文刪除失敗',
     editProfileFailed: '編輯個人檔案失敗',
+    goBack: '確定要返回嗎？',
+    unsavedGoBack: '確定要放棄編輯嗎？',
+  },
+  errors: {
+    required: '必須',
+    photos: {
+      min: '至少%{min}張照片',
+    },
   },
 };

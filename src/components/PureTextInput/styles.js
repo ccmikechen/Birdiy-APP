@@ -1,11 +1,14 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { Base, TextColor } from '../../constants/Colors';
+import Colors, { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
     backgroundColor: Base.lightest,
     flex: 1,
+  },
+  error: {
+    borderColor: Colors.danger,
   },
   input: {
     padding: Platform.OS === 'ios' ? 10 : 8,

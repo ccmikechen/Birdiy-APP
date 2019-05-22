@@ -85,3 +85,25 @@ export const showDeletePostFailedAlert = () => (
 export const showEditProfileFailedAlert = () => (
   showAlert(i18n.t('alert.editProfileFailed'))
 );
+
+export const showGoBackAlert = () => new Promise(resolve => (
+  showAlert(
+    i18n.t('alert.goBack'),
+    i18n.t('general.goBack'),
+    [
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.ok'), onPress: () => resolve() },
+    ],
+  )
+));
+
+export const showUnsavedGoBackAlert = () => new Promise(resolve => (
+  showAlert(
+    i18n.t('alert.unsavedGoBack'),
+    i18n.t('general.goBack'),
+    [
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.ok'), onPress: () => resolve() },
+    ],
+  )
+));

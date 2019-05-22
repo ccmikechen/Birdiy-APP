@@ -22,13 +22,6 @@ export default class CreatePostMutation extends Mutation {
     }
   `;
 
-  static constraints = {
-    message: {
-      presence: { allowEmpty: false },
-      length: { maximum: 500 },
-    },
-  };
-
   constructor(input) {
     const {
       message,

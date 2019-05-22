@@ -1,24 +1,14 @@
 /* eslint-disable no-param-reassign */
 
 import { commitMutation } from 'react-relay';
-import validate from 'validate.js';
 
 import environment from './environment';
 import authEnvironment from './authEnvironment';
 import { FormFile } from '../helpers/formFile';
 import { parseError } from '../errors';
 
-export class MutationValidationError extends Error {
-  constructor(message, object) {
-    super(message);
-    this.object = object;
-  }
-}
-
 export default class Mutation {
   static defaultInput = {};
-
-  static constraints = {};
 
   static mutation = undefined;
 
@@ -38,7 +28,6 @@ export default class Mutation {
     this.uploadables = {};
     this.fileCounter = 1;
     this.generateUploadables(this.input);
-    this.validated = false;
   }
 
   generateUploadables = (input) => {
@@ -60,26 +49,6 @@ export default class Mutation {
     });
   };
 
-  isValid = () => {
-    this.validate();
-
-    return !this.errors;
-  };
-
-  errors = () => {
-    this.validate();
-
-    return this.errors;
-  };
-
-  validate = () => {
-    if (this.validated) {
-      return;
-    }
-    this.errors = validate(this.input, this.constructor.constraints);
-    this.validated = true;
-  };
-
   getMutationConfig() {
     return this.constructor.mutationConfig;
   }
@@ -92,15 +61,6 @@ export default class Mutation {
 
   commit = () => {
     const { mutation, inputName, auth } = this.constructor;
-
-    if (!this.isValid()) {
-      const fullMessage = Object.keys(this.errors).map(k => (
-        this.errors[k].join(', ')
-      ));
-      const error = new MutationValidationError(fullMessage, this.errors);
-
-      return Promise.reject(error);
-    }
 
     if (!mutation) {
       return Promise.reject(new Error(`The mutation of ${this.constructor.name} is undefined`));

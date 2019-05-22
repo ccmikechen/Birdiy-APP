@@ -7,6 +7,7 @@ export default {
     ok: 'はい',
     cancel: 'キャンセル',
     save: '保存',
+    goBack: '戻る',
   },
   post: {
     create: {
@@ -313,5 +314,13 @@ export default {
     },
     deletePostFailed: '投稿の削除が失敗しました',
     editProfileFailed: 'プロフィールの保存が失敗しました',
+    goBack: '本当に戻りますか？',
+    unsavedGoBack: '本当に保存しないまま戻りますか？',
+  },
+  errors: {
+    required: '必須',
+    photos: {
+      min: '写真%{min}枚が必要',
+    },
   },
 };

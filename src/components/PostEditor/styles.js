@@ -13,7 +13,8 @@ export default StyleSheet.create({
   relatedProjectContainer: {
   },
   textInput: {
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: Tertiary(100),
   },
 });

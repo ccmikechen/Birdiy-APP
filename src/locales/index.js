@@ -6,6 +6,8 @@ import zhTW from './zh-TW';
 import ja from './ja';
 import en from './en';
 
+import initYup from './yup';
+
 export const setAppLocale = async (locale) => {
   const result = await AsyncStorage.setItem('locale', locale);
 
@@ -34,4 +36,6 @@ export const initI18n = async () => {
   };
   i18n.defaultLocale = 'en';
   i18n.locale = await getAppLocale();
+
+  initYup();
 };

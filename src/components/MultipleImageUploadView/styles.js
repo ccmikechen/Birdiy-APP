@@ -8,7 +8,6 @@ export default StyleSheet.create({
     marginTop: 0,
   },
   button: {
-    marginRight: 20,
     marginBottom: 10,
   },
   imageContainer: {
