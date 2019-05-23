@@ -28,9 +28,12 @@ export default (state) => {
             is: url => url,
             then: string().required(),
           }),
-          url: string().url().nullable().when('name', {
+          url: string().nullable().when('name', {
             is: name => name,
             then: string().required(),
+          }).when('type', {
+            is: 'link',
+            then: string().url(),
           }),
         }, ['url', 'name'])),
         methods: array().of(object().shape({
@@ -71,9 +74,12 @@ export default (state) => {
             is: url => url,
             then: string().required(),
           }),
-          url: string().url().nullable().when('name', {
+          url: string().nullable().when('name', {
             is: name => name,
             then: string().required(),
+          }).when('type', {
+            is: 'link',
+            then: string().url(),
           }),
         }, ['url', 'name'])),
         methods: array().of(object().shape({
