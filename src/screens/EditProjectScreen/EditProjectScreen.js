@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   View,
   StatusBar,
+  BackHandler,
 } from 'react-native';
 import { clone, cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
@@ -19,6 +20,7 @@ import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
 import {
+  showGoBackAlert,
   showSaveProjectSuccessAlert,
   showSaveProjectFailedAlert,
   showUnpublishProjectSuccessAlert,
@@ -143,6 +145,14 @@ export default class EditProjectScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleGoBack);
+  }
+
   handleOpenCategorySelector = (categories, callback) => {
     const { navigation } = this.props;
     navigation.navigate('SelectCategoryModal', {
@@ -252,6 +262,13 @@ export default class EditProjectScreen extends Component {
       .catch(() => showSetProjectStatusFailedAlert());
   };
 
+  handleGoBack = () => {
+    const { navigation } = this.props;
+    showGoBackAlert().then(() => navigation.goBack());
+
+    return true;
+  };
+
   render() {
     const { navigation, loading, query } = this.props;
     const { initialProject, projectPublished } = this.state;
@@ -264,7 +281,7 @@ export default class EditProjectScreen extends Component {
           navigation={navigation}
           renderHeader={() => (
             <NormalBackHeader
-              onBack={() => navigation.goBack()}
+              onBack={this.handleGoBack}
               title={i18n.t('title', i18nOptions)}
               rightButton={[{
                 icon: 'more-vert',
