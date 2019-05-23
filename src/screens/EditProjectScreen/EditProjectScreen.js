@@ -10,6 +10,7 @@ import i18n from 'i18n-js';
 import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectEditor from '../../components/ProjectEditor';
+import ProjectOptionActions from '../../components/ProjectOptionActions';
 import SaveProjectActions from '../../components/SaveProjectActions';
 
 import EditProjectMutation from '../../mutations/EditProjectMutation';
@@ -150,6 +151,10 @@ export default class EditProjectScreen extends Component {
     });
   };
 
+  handleOptionPress = () => {
+    this.projectOptionActions.show();
+  };
+
   handleDelete = () => {
     showDeleteProjectAlert().then(this.deleteProject);
   };
@@ -262,9 +267,9 @@ export default class EditProjectScreen extends Component {
               onBack={() => navigation.goBack()}
               title={i18n.t('title', i18nOptions)}
               rightButton={[{
-                icon: 'delete',
+                icon: 'more-vert',
                 color: '#666666',
-                onPress: this.handleDelete,
+                onPress: this.handleOptionPress,
               }, {
                 icon: 'save',
                 color: '#666666',
@@ -284,6 +289,12 @@ export default class EditProjectScreen extends Component {
             published={projectPublished}
           />
         </SimpleScreenView>
+        <ProjectOptionActions
+          ref={(ref) => { this.projectOptionActions = ref; }}
+          onUnpublish={this.handleUnpublish}
+          onDelete={this.handleDelete}
+          published={projectPublished}
+        />
         <SaveProjectActions
           ref={(ref) => { this.saveProjectActions = ref; }}
           onSave={this.handleSubmitPress('draft')}
