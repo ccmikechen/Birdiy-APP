@@ -1,6 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Formik } from 'formik';
 import i18n from 'i18n-js';
 
@@ -67,6 +69,15 @@ export default class ProjectEditor extends Component {
     projectStatus: 'draft',
   };
 
+  tabFields = [
+    ['name', 'category', 'introduction'],
+    ['image'],
+    ['materials'],
+    ['files'],
+    ['methods'],
+    ['tip'],
+  ];
+
   constructor(props) {
     super(props);
 
@@ -88,6 +99,14 @@ export default class ProjectEditor extends Component {
     };
   };
 
+  getTabErrors = (touched, errors) => (
+    this.tabFields.map(fields => (
+      fields.filter(field => (
+        touched[field] && errors[field]
+      )).length > 0
+    ))
+  );
+
   render() {
     const {
       initialValues,
@@ -96,20 +115,6 @@ export default class ProjectEditor extends Component {
       onOpenCategorySelector,
     } = this.props;
     const { tabIndex, projectStatus } = this.state;
-
-    const tabs = [{
-      key: 'intro', title: i18n.t('tabs.intro', i18nOptions),
-    }, {
-      key: 'image', title: i18n.t('tabs.image', i18nOptions),
-    }, {
-      key: 'material', title: i18n.t('tabs.materials', i18nOptions),
-    }, {
-      key: 'files', title: i18n.t('tabs.files', i18nOptions),
-    }, {
-      key: 'method', title: i18n.t('tabs.methods', i18nOptions),
-    }, {
-      key: 'tip', title: i18n.t('tabs.tip', i18nOptions),
-    }];
 
     return (
       <Formik
@@ -134,6 +139,26 @@ export default class ProjectEditor extends Component {
           };
 
           this.bindSubmit(submitForm);
+
+          const tabErrors = this.getTabErrors(touched, errors);
+          const tabs = [
+            i18n.t('tabs.intro', i18nOptions),
+            i18n.t('tabs.image', i18nOptions),
+            i18n.t('tabs.materials', i18nOptions),
+            i18n.t('tabs.files', i18nOptions),
+            i18n.t('tabs.methods', i18nOptions),
+            i18n.t('tabs.tip', i18nOptions),
+          ].map((tab, index) => {
+            const style = [
+              styles.tab,
+              index === tabIndex ? styles.currentTab : null,
+              index !== tabIndex && tabErrors[index] ? styles.errorTab : null,
+            ];
+
+            return (
+              <Text key={`tab-${index}`} style={style}>{tab}</Text>
+            );
+          });
 
           return (
             <TabsPager

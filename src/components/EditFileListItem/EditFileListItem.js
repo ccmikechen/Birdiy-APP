@@ -73,6 +73,7 @@ const EditFileListItem = ({
               style={styles.textInput}
               value={data.url}
               error={error.url}
+              errorPrefix
               placeholder="輸入檔案下載連結"
               onChangeText={(value) => {
                 onChange({ ...data, url: value });

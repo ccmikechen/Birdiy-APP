@@ -20,7 +20,10 @@ export default class AnimatedTopTabBar extends Component {
   static propTypes = {
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-    tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ])).isRequired,
     index: PropTypes.number,
     onChange: PropTypes.func,
   };

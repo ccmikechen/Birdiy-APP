@@ -126,11 +126,10 @@ export default class ProjectsScreen extends Component {
     const { addProjectButtonVisible } = this.state;
     const keyword = navigation.getParam('keyword');
     const categories = navigation.getParam('categories');
-    const tabs = [{
-      key: 'newest', title: i18n.t('projects.tabs.newest'),
-    }, {
-      key: 'hotest', title: i18n.t('projects.tabs.hotest'),
-    }];
+    const tabs = [
+      i18n.t('projects.tabs.newest'),
+      i18n.t('projects.tabs.hotest'),
+    ];
 
     return (
       <View style={styles.container}>

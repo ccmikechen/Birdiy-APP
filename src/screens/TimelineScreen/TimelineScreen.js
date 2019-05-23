@@ -126,11 +126,10 @@ export default class TimelineScreen extends Component {
       navigation, query, variables, loading,
     } = this.props;
     const { addPostButtonVisible } = this.state;
-    const tabs = [{
-      key: 'all', title: i18n.t('timeline.tabs.all'),
-    }, {
-      key: 'following', title: i18n.t('timeline.tabs.following'),
-    }];
+    const tabs = [
+      i18n.t('timeline.tabs.all'),
+      i18n.t('timeline.tabs.following'),
+    ];
 
     return (
       <View style={styles.container}>

@@ -10,10 +10,7 @@ export default class TabsScreenView extends Component {
       setParams: PropTypes.func.isRequired,
     }).isRequired,
     onToggleTabBar: PropTypes.func,
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,

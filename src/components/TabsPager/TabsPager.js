@@ -9,10 +9,10 @@ import styles from './styles';
 
 export default class TabsPager extends Component {
   static propTypes = {
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ])).isRequired,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,
@@ -71,7 +71,7 @@ export default class TabsPager extends Component {
         <View style={styles.tabBarPaddingView} />
         <AnimatedTopTabBar
           visible={isHeaderVisible}
-          tabs={tabs.map(({ title }) => title)}
+          tabs={tabs}
           index={tabIndex}
           onChange={this.handleTabChange}
           scrollable={tabsScrollable}
