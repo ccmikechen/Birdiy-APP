@@ -9,10 +9,10 @@ import {
 
 import Mutation from '../relay/Mutation';
 
-export default class EditProjectMutation extends Mutation {
+export default class EditAndPublishProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation EditProjectMutation($input: EditProjectInput!) {
-      editProject(input: $input) {
+    mutation EditAndPublishProjectMutation($input: EditProjectInput!) {
+      editAndPublishProject(input: $input) {
         project {
           id
         }

@@ -268,7 +268,7 @@ export default {
     saveProjectFailed: 'Failed to save the current project.',
     publishProjectSuccess: 'The project has been published.',
     unpublishProjectSuccess: 'The project has been unpublished.',
-    setProjectFailed: 'Failed to change the project\'s settings.',
+    setProjectStatusFailed: 'Failed to change status of this project.',
     deleteProject: {
       title: 'Delete Project',
       message: 'Once the project is deleted, it cannot be restored manually. Are you sure you want to delete the project?',

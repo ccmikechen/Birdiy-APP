@@ -29,8 +29,8 @@ export const showUnpublishProjectSuccessAlert = () => (
   showAlert(i18n.t('alert.unpublishProjectSuccess'))
 );
 
-export const showSetProjectFailedAlert = () => (
-  showAlert(i18n.t('alert.setProjectFailed'))
+export const showSetProjectStatusFailedAlert = () => (
+  showAlert(i18n.t('alert.setProjectStatusFailed'))
 );
 
 export const showDeleteProjectAlert = () => new Promise(resolve => (

@@ -296,7 +296,7 @@ export default {
     saveProjectFailed: '專案儲存失敗',
     publishProjectSuccess: '專案已設為公開',
     unpublishProjectSuccess: '專案已設為不公開',
-    setProjectFailed: '專案設定失敗',
+    setProjectStatusFailed: '專案狀態設定失敗',
     deleteProject: {
       title: '刪除專案',
       message: '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',

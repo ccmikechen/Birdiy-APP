@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Text,
   StatusBar,
 } from 'react-native';
-import { Button } from 'react-native-paper';
 import { clone, cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
@@ -15,16 +13,15 @@ import ProjectEditor from '../../components/ProjectEditor';
 import SaveProjectActions from '../../components/SaveProjectActions';
 
 import EditProjectMutation from '../../mutations/EditProjectMutation';
+import EditAndPublishProjectMutation from '../../mutations/EditAndPublishProjectMutation';
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
-import PublishProjectMutation from '../../mutations/PublishProjectMutation';
 import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
 import {
   showSaveProjectSuccessAlert,
   showSaveProjectFailedAlert,
-  showSetProjectFailedAlert,
-  showPublishProjectSuccessAlert,
   showUnpublishProjectSuccessAlert,
+  showSetProjectStatusFailedAlert,
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
   showDeleteProjectFailedAlert,
@@ -117,11 +114,12 @@ export default class EditProjectScreen extends Component {
       return null;
     }
 
-    const { project, categories } = query;
+    const { project } = query;
 
     return {
       initialized: true,
       initialProject: {
+        id: project.id,
         image: project.image,
         name: project.name,
         category: project.category.name,
@@ -191,64 +189,38 @@ export default class EditProjectScreen extends Component {
     return this.handleSave;
   };
 
-  handleSaveAndPublish = (values) => {
-    console.log('publish', values);
-  }
-
   handleSave = (values) => {
-    console.log('save', values);
-    // const { navigation } = this.props;
-    // const mutation = this.getEditProjectMutation(values);
+    const { screenProps: { spinner } } = this.props;
+    const mutation = new EditProjectMutation(values).setHook(spinner);
 
-    // mutation.commit()
-    //   .then((res) => {
-    //     if (res.errors) {
-    //       this.handleSavingError();
-
-    //       return;
-    //     }
-    //     navigation.goBack();
-    //     showSaveProjectSuccessAlert();
-    //   })
-    //   .catch(this.handleSavingError);
+    mutation.commit()
+      .then(this.handleSavingResponse)
+      .catch(this.handleSavingError);
   };
 
-  getEditProjectMutation = (values) => {
-    const { query, screenProps: { spinner } } = this.props;
+  handleSaveAndPublish = (values) => {
+    const { screenProps: { spinner } } = this.props;
+    const mutation = new EditAndPublishProjectMutation(values).setHook(spinner);
 
-    return new EditProjectMutation({
-      ...values,
-      id: query.project.id,
-      category: this.getCategory(),
-    }).setHook(spinner);
+    mutation.commit()
+      .then(this.handleSavingResponse)
+      .catch(() => showSetProjectStatusFailedAlert());
+  }
+
+  handleSavingResponse = (res) => {
+    const { navigation } = this.props;
+
+    if (res.errors) {
+      this.handleSavingError();
+
+      return;
+    }
+    navigation.goBack();
+    showSaveProjectSuccessAlert();
   };
 
   handleSavingError = () => {
     showSaveProjectFailedAlert();
-  };
-
-  handlePublish = () => {
-    const {
-      query,
-      navigation,
-      screenProps: { spinner },
-    } = this.props;
-    const mutation = new PublishProjectMutation({
-      id: query.project.id,
-    }).setHook(spinner);
-
-    mutation.commit()
-      .then((res) => {
-        if (res.errors) {
-          this.handlePublishingError();
-
-          return;
-        }
-
-        navigation.goBack();
-        showPublishProjectSuccessAlert();
-      })
-      .catch(this.handlePublishingError);
   };
 
   handleUnpublish = () => {
@@ -272,52 +244,7 @@ export default class EditProjectScreen extends Component {
         navigation.goBack();
         showUnpublishProjectSuccessAlert();
       })
-      .catch(this.handlePublishingError);
-  };
-
-  handlePublishingError = () => {
-    showSetProjectFailedAlert();
-  };
-
-  renderFooter = () => {
-    const { query } = this.props;
-
-    return (
-      <View style={styles.footerContainer}>
-        <View style={styles.buttonsContainer}>
-          <Button
-            style={styles.submitButton}
-            mode="contained"
-            onPress={this.handleSave}
-          >
-            <Text style={styles.submitButtonText}>
-              {i18n.t('general.save')}
-            </Text>
-          </Button>
-          {query && query.project.published ? (
-            <Button
-              style={[styles.submitButton, styles.unpublishButton]}
-              mode="contained"
-              onPress={this.handleUnpublish}
-            >
-              <Text style={styles.submitButtonText}>
-                {i18n.t('unpublish', i18nOptions)}
-              </Text>
-            </Button>
-          ) : (
-            <Button
-              style={[styles.submitButton, styles.publishButton]}
-              mode="contained"
-              onPress={this.handlePublish}
-            >
-              <Text style={styles.submitButtonText}>
-                {i18n.t('publish', i18nOptions)}
-              </Text>
-            </Button>
-          )}
-        </View>
-      </View>
-    );
+      .catch(() => showSetProjectStatusFailedAlert());
   };
 
   render() {

@@ -12,14 +12,4 @@ export default class CreateProjectMutation extends Mutation {
       }
     }
   `;
-
-  static constraints = {
-    name: {
-      presence: true,
-      length: { maximum: 20 },
-    },
-    category: {
-      presence: true,
-    },
-  };
 }

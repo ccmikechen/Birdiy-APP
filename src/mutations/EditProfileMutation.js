@@ -16,13 +16,6 @@ export default class EditProfileMutation extends Mutation {
     }
   `;
 
-  static constraints = {
-    name: {
-      presence: { allowEmpty: false },
-      length: { maximum: 20 },
-    },
-  };
-
   constructor(input) {
     const { name, image } = input;
 

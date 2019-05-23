@@ -296,7 +296,7 @@ export default {
     saveProjectFailed: 'プロジェクトの保存が失敗しました',
     publishProjectSuccess: 'プロジェクトを公開しました',
     unpublishProjectSuccess: 'プロジェクトを非公開にしました',
-    setProjectFailed: 'プロジェクトの設定が失敗しました',
+    setProjectStatusFailed: 'プロジェクト状態の設定が失敗しました',
     deleteProject: {
       title: 'プロジェクトを削除',
       message: '削除したプロジェクトは手動で復元できません。削除してもよろしいですか？',
