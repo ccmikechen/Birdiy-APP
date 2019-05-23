@@ -13,6 +13,7 @@ export default {
     cancel: 'Cancel',
     save: 'Save',
     goBack: 'Go Back',
+    bracket: '(%{text}) ',
   },
   post: {
     create: {
@@ -294,6 +295,9 @@ export default {
     required: 'Required',
     photos: {
       min: 'At least %{min} photo',
+    },
+    methods: {
+      notEmpty: 'At least 1 step',
     },
   },
 };

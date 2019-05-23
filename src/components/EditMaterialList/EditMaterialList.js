@@ -21,10 +21,22 @@ export default class EditMaterialList extends Component {
       url: PropTypes.string,
     })).isRequired,
     onChange: PropTypes.func,
+    errors: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      amountUnit: PropTypes.string,
+      url: PropTypes.string,
+    })),
+    touched: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.bool,
+      amountUnit: PropTypes.bool,
+      url: PropTypes.bool,
+    })),
   };
 
   static defaultProps = {
     onChange: () => {},
+    errors: [],
+    touched: [],
   };
 
   handleDataChange = (index, newData) => {
@@ -72,16 +84,22 @@ export default class EditMaterialList extends Component {
     onChange([...data, DEFAULT_MATERIAL]);
   };
 
-  renderItem = (item, index) => (
-    <EditMaterialListItem
-      key={`material-${index}`}
-      data={item}
-      onChange={newData => this.handleDataChange(index, newData)}
-      onMoveUp={this.handleItemMoveUp(index)}
-      onMoveDown={this.handleItemMoveDown(index)}
-      onDelete={this.handleItemDelete(index)}
-    />
-  );
+  renderItem = (item, index) => {
+    const { errors, touched } = this.props;
+
+    return (
+      <EditMaterialListItem
+        key={`material-${index}`}
+        data={item}
+        onChange={newData => this.handleDataChange(index, newData)}
+        onMoveUp={this.handleItemMoveUp(index)}
+        onMoveDown={this.handleItemMoveDown(index)}
+        onDelete={this.handleItemDelete(index)}
+        errors={errors && errors[index]}
+        touched={touched && touched[index]}
+      />
+    );
+  };
 
   render() {
     const { data } = this.props;

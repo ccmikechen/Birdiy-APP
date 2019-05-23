@@ -20,10 +20,25 @@ export default class EditMethodList extends Component {
       content: PropTypes.string,
     })).isRequired,
     onChange: PropTypes.func,
+    errors: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.shape({
+        image: PropTypes.string,
+        title: PropTypes.string,
+        content: PropTypes.string,
+      })),
+      PropTypes.string,
+    ]),
+    touched: PropTypes.arrayOf(PropTypes.shape({
+      image: PropTypes.bool,
+      title: PropTypes.bool,
+      content: PropTypes.bool,
+    })),
   };
 
   static defaultProps = {
     onChange: () => {},
+    errors: [],
+    touched: [],
   };
 
   handleImageUpload = index => (image) => {
@@ -77,26 +92,32 @@ export default class EditMethodList extends Component {
     onChange([...data, DEFAULT_METHOD]);
   };
 
-  renderItem = (item, index) => (
-    <View
-      style={styles.itemContainer}
-      key={`method-${index}`}
-    >
-      <View style={styles.stepContainer}>
-        <Text style={styles.step}>
-          {i18n.t('step', { ...i18nOptions, step: index + 1 })}
-        </Text>
+  renderItem = (item, index) => {
+    const { errors, touched } = this.props;
+
+    return (
+      <View
+        style={styles.itemContainer}
+        key={`method-${index}`}
+      >
+        <View style={styles.stepContainer}>
+          <Text style={styles.step}>
+            {i18n.t('step', { ...i18nOptions, step: index + 1 })}
+          </Text>
+        </View>
+        <EditMethodListItem
+          data={item}
+          onImageUpload={this.handleImageUpload(index)}
+          onChange={newData => this.handleDataChange(index, newData)}
+          onMoveUp={this.handleItemMoveUp(index)}
+          onMoveDown={this.handleItemMoveDown(index)}
+          onDelete={this.handleItemDelete(index)}
+          errors={Array.isArray(errors) ? errors[index] : undefined}
+          touched={touched && touched[index]}
+        />
       </View>
-      <EditMethodListItem
-        data={item}
-        onImageUpload={this.handleImageUpload(index)}
-        onChange={newData => this.handleDataChange(index, newData)}
-        onMoveUp={this.handleItemMoveUp(index)}
-        onMoveDown={this.handleItemMoveDown(index)}
-        onDelete={this.handleItemDelete(index)}
-      />
-    </View>
-  );
+    );
+  };
 
   render() {
     const { data } = this.props;

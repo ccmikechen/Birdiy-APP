@@ -7,7 +7,9 @@ import EditMaterialList from '../EditMaterialList';
 import styles from './styles';
 
 const ProjectMaterialEditor = (props) => {
-  const { project, onChange } = props;
+  const {
+    project, onChange, errors, touched,
+  } = props;
   const { materials } = project;
 
   return (
@@ -22,6 +24,8 @@ const ProjectMaterialEditor = (props) => {
       <EditMaterialList
         data={materials}
         onChange={onChange('materials')}
+        errors={errors.materials}
+        touched={touched.materials}
       />
     </InputScrollView>
   );
@@ -37,6 +41,25 @@ ProjectMaterialEditor.propTypes = {
     })),
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    materials: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      amountUnit: PropTypes.string,
+      url: PropTypes.string,
+    })),
+  }),
+  touched: PropTypes.shape({
+    materials: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.bool,
+      amountUnit: PropTypes.bool,
+      url: PropTypes.bool,
+    })),
+  }),
+};
+
+ProjectMaterialEditor.defaultProps = {
+  errors: {},
+  touched: {},
 };
 
 export default ProjectMaterialEditor;

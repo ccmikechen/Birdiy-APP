@@ -25,6 +25,10 @@ export default StyleSheet.create({
   linkContainer: {
     flexDirection: 'row',
   },
+  textInput: {
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
   iconContainer: {
     justifyContent: 'center',
     width: 30,

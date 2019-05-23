@@ -19,72 +19,86 @@ const EditMethodListItem = ({
   onMoveUp,
   onMoveDown,
   onDelete,
-}) => (
-  <Surface style={styles.container}>
-    <ImageUploadView
-      width="100%"
-      aspect={[4, 3]}
-      iconSize={Dimensions.get('window').width / 2}
-      image={data.image}
-      onUpload={onImageUpload}
-    />
-    <View style={styles.titleContainer}>
-      <PureTextInput
-        value={data.title}
-        placeholder={i18n.t('stepTitle', i18nOptions)}
-        onChangeText={(value) => {
-          onChange({ ...data, title: value });
-        }}
+  errors,
+  touched,
+}) => {
+  const error = {
+    image: touched.image && errors.image,
+    title: touched.title && errors.title,
+    content: touched.content && errors.content,
+  };
+
+  return (
+    <Surface style={styles.container}>
+      <ImageUploadView
+        width="100%"
+        aspect={[4, 3]}
+        iconSize={Dimensions.get('window').width / 2}
+        image={data.image}
+        onUpload={onImageUpload}
       />
-    </View>
-    <View style={styles.contentContainer}>
-      <PureTextInput
-        value={data.content}
-        placeholder={i18n.t('description', i18nOptions)}
-        onChangeText={(value) => {
-          onChange({ ...data, content: value });
-        }}
-        maxLength={500}
-        multiline
-        counter
-      />
-    </View>
-    <View style={styles.optionsContainer}>
-      <View style={styles.moveContainer}>
+      <View style={styles.titleContainer}>
+        <PureTextInput
+          value={data.title}
+          error={error.title}
+          errorPrefix
+          placeholder={i18n.t('stepTitle', i18nOptions)}
+          onChangeText={(value) => {
+            onChange({ ...data, title: value });
+          }}
+        />
+      </View>
+      <View style={styles.contentContainer}>
+        <PureTextInput
+          value={data.content}
+          error={error.content}
+          errorPrefix
+          placeholder={i18n.t('description', i18nOptions)}
+          onChangeText={(value) => {
+            onChange({ ...data, content: value });
+          }}
+          maxLength={500}
+          multiline
+          counter
+        />
+      </View>
+      <View style={styles.optionsContainer}>
+        <View style={styles.moveContainer}>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveUp}
+          >
+            <Icon.MaterialIcons
+              name="arrow-upward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveDown}
+          >
+            <Icon.MaterialIcons
+              name="arrow-downward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveUp}
+          style={styles.deleteContainer}
+          onPress={onDelete}
         >
           <Icon.MaterialIcons
-            name="arrow-upward"
-            size={26}
-            color="#ffffff"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveDown}
-        >
-          <Icon.MaterialIcons
-            name="arrow-downward"
+            name="close"
             size={26}
             color="#ffffff"
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.deleteContainer}
-        onPress={onDelete}
-      >
-        <Icon.MaterialIcons
-          name="close"
-          size={26}
-          color="#ffffff"
-        />
-      </TouchableOpacity>
-    </View>
-  </Surface>
-);
+    </Surface>
+  );
+};
 
 EditMethodListItem.propTypes = {
   data: PropTypes.shape({
@@ -97,6 +111,16 @@ EditMethodListItem.propTypes = {
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
   onDelete: PropTypes.func,
+  errors: PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    content: PropTypes.string,
+  }),
+  touched: PropTypes.shape({
+    image: PropTypes.bool,
+    title: PropTypes.bool,
+    content: PropTypes.bool,
+  }),
 };
 
 EditMethodListItem.defaultProps = {
@@ -105,6 +129,8 @@ EditMethodListItem.defaultProps = {
   onMoveUp: () => {},
   onMoveDown: () => {},
   onDelete: () => {},
+  errors: {},
+  touched: {},
 };
 
 export default EditMethodListItem;

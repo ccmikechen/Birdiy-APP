@@ -11,8 +11,12 @@ import styles from './styles';
 const i18nOptions = { scope: 'project.edit' };
 
 const ProjectTipEditor = (props) => {
-  const { project, onChange } = props;
+  const {
+    project, onChange, errors, touched,
+  } = props;
   const { tip } = project;
+
+  const error = touched.tip && errors.tip;
 
   return (
     <InputScrollView
@@ -27,6 +31,7 @@ const ProjectTipEditor = (props) => {
         <PureTextInput
           style={styles.textInput}
           value={tip}
+          error={error}
           placeholder={i18n.t('tip.placeholder', i18nOptions)}
           onChangeText={onChange('tip')}
           maxLength={300}
@@ -43,6 +48,17 @@ ProjectTipEditor.propTypes = {
     tip: PropTypes.string,
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    tip: PropTypes.string,
+  }),
+  touched: PropTypes.shape({
+    tip: PropTypes.bool,
+  }),
+};
+
+ProjectTipEditor.defaultProps = {
+  errors: {},
+  touched: {},
 };
 
 export default ProjectTipEditor;

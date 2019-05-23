@@ -11,12 +11,23 @@ import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit' };
 
-export default class ProjectImage extends Component {
+export default class ProjectImageEditor extends Component {
   static propTypes = {
     project: PropTypes.shape({
       image: PropTypes.string,
     }).isRequired,
     onChange: PropTypes.func.isRequired,
+    errors: PropTypes.shape({
+      image: PropTypes.string,
+    }),
+    touched: PropTypes.shape({
+      image: PropTypes.bool,
+    }),
+  };
+
+  static defaultProps = {
+    errors: {},
+    touched: {},
   };
 
   handleImageUpload = (image) => {
@@ -25,8 +36,10 @@ export default class ProjectImage extends Component {
   };
 
   render() {
-    const { project } = this.props;
+    const { project, errors, touched } = this.props;
     const { image } = project;
+
+    const error = touched.image && errors.image;
 
     return (
       <InputScrollView
@@ -37,7 +50,10 @@ export default class ProjectImage extends Component {
         }}
         contentContainerStyle={styles.contentContainer}
       >
-        <EditSection title={i18n.t('image.title', i18nOptions)}>
+        <EditSection
+          title={i18n.t('image.title', i18nOptions)}
+          error={error}
+        >
           <View style={styles.imageContainer}>
             <ImageUploadView
               width="100%"

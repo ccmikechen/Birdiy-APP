@@ -8,6 +8,7 @@ export default {
     cancel: 'キャンセル',
     save: '保存',
     goBack: '戻る',
+    bracket: '（%{text}）',
   },
   post: {
     create: {
@@ -322,6 +323,9 @@ export default {
     required: '必須',
     photos: {
       min: '写真%{min}枚が必要',
+    },
+    methods: {
+      notEmpty: '最小ステップ１つが必要',
     },
   },
 };

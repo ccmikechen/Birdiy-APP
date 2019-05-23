@@ -120,9 +120,18 @@ export default class ProjectEditor extends Component {
         {(props) => {
           const {
             values,
+            errors,
+            touched,
             handleChange,
             submitForm,
           } = props;
+
+          const sectionProps = {
+            project: values,
+            onChange: handleChange,
+            errors,
+            touched,
+          };
 
           this.bindSubmit(submitForm);
 
@@ -135,41 +144,25 @@ export default class ProjectEditor extends Component {
             >
               <View style={styles.section}>
                 <ProjectIntroEditor
-                  project={values}
+                  {...sectionProps}
                   categories={categories}
-                  onChange={handleChange}
                   onSelectCategoryPress={onOpenCategorySelector}
                 />
               </View>
               <View style={styles.section}>
-                <ProjectImageEditor
-                  project={values}
-                  onChange={handleChange}
-                />
+                <ProjectImageEditor {...sectionProps} />
               </View>
               <View style={styles.section}>
-                <ProjectMaterialEditor
-                  project={values}
-                  onChange={handleChange}
-                />
+                <ProjectMaterialEditor {...sectionProps} />
               </View>
               <View style={styles.section}>
-                <ProjectFileEditor
-                  project={values}
-                  onChange={handleChange}
-                />
+                <ProjectFileEditor {...sectionProps} />
               </View>
               <View style={styles.section}>
-                <ProjectMethodEditor
-                  project={values}
-                  onChange={handleChange}
-                />
+                <ProjectMethodEditor {...sectionProps} />
               </View>
               <View style={styles.section}>
-                <ProjectTipEditor
-                  project={values}
-                  onChange={handleChange}
-                />
+                <ProjectTipEditor {...sectionProps} />
               </View>
             </TabsPager>
           );

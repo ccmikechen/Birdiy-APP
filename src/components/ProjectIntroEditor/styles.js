@@ -8,7 +8,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   textInput: {
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: Tertiary(100),
   },
   contentContainer: {

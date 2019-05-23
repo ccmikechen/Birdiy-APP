@@ -8,6 +8,7 @@ export default {
     cancel: '取消',
     save: '儲存',
     goBack: '返回',
+    bracket: '（%{text}）',
   },
   post: {
     create: {
@@ -322,6 +323,9 @@ export default {
     required: '必須',
     photos: {
       min: '至少%{min}張照片',
+    },
+    methods: {
+      notEmpty: '至少1個步驟',
     },
   },
 };

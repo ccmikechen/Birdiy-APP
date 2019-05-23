@@ -1,5 +1,6 @@
 import { object, string, array } from 'yup';
 import { isEqual } from 'lodash';
+import i18n from 'i18n-js';
 
 import { DEFAULT_METHOD } from '../constants/defaults';
 
@@ -40,7 +41,7 @@ export default (state) => {
           }),
           image: string().nullable(),
         }, ['title', 'content', 'image']))
-          .test('notEmpty', 'Not empty', methods => (
+          .test('notEmpty', i18n.t('errors.methods.notEmpty'), methods => (
             methods
               .filter(method => !isEqual(method, DEFAULT_METHOD))
               .length > 0

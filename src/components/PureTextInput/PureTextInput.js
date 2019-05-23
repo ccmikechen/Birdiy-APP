@@ -6,6 +6,7 @@ import {
   TextInput,
   ViewPropTypes,
 } from 'react-native';
+import i18n from 'i18n-js';
 
 import Colors from '../../constants/Colors';
 
@@ -16,9 +17,15 @@ const PureTextInput = (props) => {
     style,
     counter,
     maxLength,
+    placeholder,
     value,
     error,
+    errorPrefix,
   } = props;
+
+  const parsedPlaceholder = error && errorPrefix
+    ? `${i18n.t('general.bracket', { text: error })}${placeholder}`
+    : placeholder;
 
   return (
     <View style={[styles.container, style, error ? styles.error : null]}>
@@ -26,6 +33,7 @@ const PureTextInput = (props) => {
         {...props}
         style={styles.input}
         underlineColorAndroid="transparent"
+        placeholder={parsedPlaceholder}
         placeholderTextColor={error ? Colors.danger : Colors.placeholder}
       />
       {counter && (
@@ -46,19 +54,23 @@ const PureTextInput = (props) => {
 PureTextInput.propTypes = {
   value: PropTypes.string,
   error: PropTypes.string,
+  errorPrefix: PropTypes.bool,
   onChangeText: PropTypes.func,
   style: ViewPropTypes.style,
   counter: PropTypes.bool,
   maxLength: PropTypes.number,
+  placeholder: PropTypes.string,
 };
 
 PureTextInput.defaultProps = {
   value: null,
   error: undefined,
+  errorPrefix: false,
   onChangeText: () => {},
   style: {},
   counter: false,
   maxLength: null,
+  placeholder: null,
 };
 
 export default PureTextInput;

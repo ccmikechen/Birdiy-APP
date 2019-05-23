@@ -19,80 +19,98 @@ const EditMaterialListItem = ({
   onMoveUp,
   onMoveDown,
   onDelete,
-}) => (
-  <Surface style={styles.container}>
-    <View style={styles.infoContainer}>
-      <View style={styles.nameContainer}>
+  errors,
+  touched,
+}) => {
+  const error = {
+    name: touched.name && errors.name,
+    amountUnit: touched.amountUnit && errors.amountUnit,
+    url: touched.url && errors.url,
+  };
+
+  return (
+    <Surface style={styles.container}>
+      <View style={styles.infoContainer}>
+        <View style={styles.nameContainer}>
+          <PureTextInput
+            value={data.name}
+            error={error.name}
+            errorPrefix
+            maxLength={20}
+            placeholder={i18n.t('name', i18nOptions)}
+            onChangeText={(value) => {
+              onChange({ ...data, name: value });
+            }}
+          />
+        </View>
+        <View style={styles.amountContainer}>
+          <PureTextInput
+            value={data.amountUnit}
+            error={error.amountUnit}
+            errorPrefix
+            maxLength={20}
+            placeholder={i18n.t('amountUnit', i18nOptions)}
+            onChangeText={(value) => {
+              onChange({ ...data, amountUnit: value });
+            }}
+          />
+        </View>
+      </View>
+      <View style={styles.urlContainer}>
+        <View style={styles.iconContainer}>
+          <Icon.Entypo
+            name="shop"
+            size={26}
+            color={Colors.headerIcon}
+          />
+        </View>
         <PureTextInput
-          value={data.name}
-          placeholder={i18n.t('name', i18nOptions)}
+          style={styles.textInput}
+          value={data.url}
+          error={error.url}
+          placeholder={i18n.t('link', i18nOptions)}
           onChangeText={(value) => {
-            onChange({ ...data, name: value });
+            onChange({ ...data, url: value });
           }}
         />
       </View>
-      <View style={styles.amountContainer}>
-        <PureTextInput
-          value={data.amountUnit}
-          placeholder={i18n.t('amountUnit', i18nOptions)}
-          onChangeText={(value) => {
-            onChange({ ...data, amountUnit: value });
-          }}
-        />
-      </View>
-    </View>
-    <View style={styles.urlContainer}>
-      <View style={styles.iconContainer}>
-        <Icon.Entypo
-          name="shop"
-          size={26}
-          color={Colors.headerIcon}
-        />
-      </View>
-      <PureTextInput
-        value={data.url}
-        placeholder={i18n.t('link', i18nOptions)}
-        onChangeText={(value) => {
-          onChange({ ...data, url: value });
-        }}
-      />
-    </View>
-    <View style={styles.optionsContainer}>
-      <View style={styles.moveContainer}>
+      <View style={styles.optionsContainer}>
+        <View style={styles.moveContainer}>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveUp}
+          >
+            <Icon.MaterialIcons
+              name="arrow-upward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveDown}
+          >
+            <Icon.MaterialIcons
+              name="arrow-downward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveUp}
+          style={styles.deleteContainer}
+          onPress={onDelete}
         >
           <Icon.MaterialIcons
-            name="arrow-upward"
+            name="close"
             size={26}
             color="#ffffff"
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveDown}
-        >
-          <Icon.MaterialIcons
-            name="arrow-downward"
-            size={26}
-            color="#ffffff"
-          />
-        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.deleteContainer}
-        onPress={onDelete}
-      >
-        <Icon.MaterialIcons
-          name="close"
-          size={26}
-          color="#ffffff"
-        />
-      </TouchableOpacity>
-    </View>
-  </Surface>
-);
+    </Surface>
+  );
+};
 
 EditMaterialListItem.propTypes = {
   data: PropTypes.shape({
@@ -104,6 +122,16 @@ EditMaterialListItem.propTypes = {
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
   onDelete: PropTypes.func,
+  errors: PropTypes.shape({
+    name: PropTypes.string,
+    amountUnit: PropTypes.string,
+    url: PropTypes.string,
+  }),
+  touched: PropTypes.shape({
+    name: PropTypes.bool,
+    amountUnit: PropTypes.bool,
+    url: PropTypes.bool,
+  }),
 };
 
 EditMaterialListItem.defaultProps = {
@@ -111,6 +139,8 @@ EditMaterialListItem.defaultProps = {
   onMoveUp: () => {},
   onMoveDown: () => {},
   onDelete: () => {},
+  errors: {},
+  touched: {},
 };
 
 export default EditMaterialListItem;

@@ -19,90 +19,105 @@ const EditFileListItem = ({
   onMoveUp,
   onMoveDown,
   onDelete,
-}) => (
-  <Surface style={styles.container}>
-    <View style={styles.infoContainer}>
-      <View style={styles.nameContainer}>
-        <PureTextInput
-          value={data.name}
-          placeholder={i18n.t('name', i18nOptions)}
-          onChangeText={(value) => {
-            onChange({ ...data, name: value });
-          }}
-        />
-      </View>
-    </View>
-    {
-      data.type === 'file' ? (
-        <View style={styles.linkContainer}>
-          <View style={styles.iconContainer}>
-            <Icon.MaterialCommunityIcons
-              name="file-upload"
-              size={26}
-              color={Colors.headerIcon}
-            />
-          </View>
+  errors,
+  touched,
+}) => {
+  const error = {
+    name: touched.name && errors.name,
+    url: touched.url && errors.url,
+  };
+
+  return (
+    <Surface style={styles.container}>
+      <View style={styles.infoContainer}>
+        <View style={styles.nameContainer}>
           <PureTextInput
-            value={data.localFileName || data.url}
-            editable={false}
-            multiline
-          />
-        </View>
-      ) : (
-        <View style={styles.linkContainer}>
-          <View style={styles.iconContainer}>
-            <Icon.MaterialCommunityIcons
-              name="link-variant"
-              size={26}
-              color={Colors.headerIcon}
-            />
-          </View>
-          <PureTextInput
-            value={data.url}
-            placeholder="輸入檔案下載連結"
+            value={data.name}
+            error={error.name}
+            errorPrefix
+            placeholder={i18n.t('name', i18nOptions)}
             onChangeText={(value) => {
-              onChange({ ...data, url: value });
+              onChange({ ...data, name: value });
             }}
           />
         </View>
-      )
-    }
-    <View style={styles.optionsContainer}>
-      <View style={styles.moveContainer}>
+      </View>
+      {
+        data.type === 'file' ? (
+          <View style={styles.linkContainer}>
+            <View style={styles.iconContainer}>
+              <Icon.MaterialCommunityIcons
+                name="file-upload"
+                size={26}
+                color={Colors.headerIcon}
+              />
+            </View>
+            <PureTextInput
+              style={styles.textInput}
+              value={data.localFileName || data.url}
+              error={error.url}
+              editable={false}
+              multiline
+            />
+          </View>
+        ) : (
+          <View style={styles.linkContainer}>
+            <View style={styles.iconContainer}>
+              <Icon.MaterialCommunityIcons
+                name="link-variant"
+                size={26}
+                color={Colors.headerIcon}
+              />
+            </View>
+            <PureTextInput
+              style={styles.textInput}
+              value={data.url}
+              error={error.url}
+              placeholder="輸入檔案下載連結"
+              onChangeText={(value) => {
+                onChange({ ...data, url: value });
+              }}
+            />
+          </View>
+        )
+      }
+      <View style={styles.optionsContainer}>
+        <View style={styles.moveContainer}>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveUp}
+          >
+            <Icon.MaterialIcons
+              name="arrow-upward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.moveButtonContainer}
+            onPress={onMoveDown}
+          >
+            <Icon.MaterialIcons
+              name="arrow-downward"
+              size={26}
+              color="#ffffff"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveUp}
+          style={styles.deleteContainer}
+          onPress={onDelete}
         >
           <Icon.MaterialIcons
-            name="arrow-upward"
-            size={26}
-            color="#ffffff"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.moveButtonContainer}
-          onPress={onMoveDown}
-        >
-          <Icon.MaterialIcons
-            name="arrow-downward"
+            name="close"
             size={26}
             color="#ffffff"
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.deleteContainer}
-        onPress={onDelete}
-      >
-        <Icon.MaterialIcons
-          name="close"
-          size={26}
-          color="#ffffff"
-        />
-      </TouchableOpacity>
-    </View>
-  </Surface>
-);
+    </Surface>
+  );
+};
 
 EditFileListItem.propTypes = {
   data: PropTypes.shape({
@@ -114,6 +129,14 @@ EditFileListItem.propTypes = {
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
   onDelete: PropTypes.func,
+  errors: PropTypes.shape({
+    name: PropTypes.string,
+    url: PropTypes.string,
+  }),
+  touched: PropTypes.shape({
+    name: PropTypes.bool,
+    url: PropTypes.bool,
+  }),
 };
 
 EditFileListItem.defaultProps = {
@@ -121,6 +144,8 @@ EditFileListItem.defaultProps = {
   onMoveUp: () => {},
   onMoveDown: () => {},
   onDelete: () => {},
+  errors: {},
+  touched: {},
 };
 
 export default EditFileListItem;

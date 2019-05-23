@@ -7,7 +7,9 @@ import EditFileList from '../EditFileList';
 import styles from './styles';
 
 const ProjectFileEditor = (props) => {
-  const { project, onChange } = props;
+  const {
+    project, onChange, errors, touched,
+  } = props;
   const { files } = project;
 
   return (
@@ -22,6 +24,8 @@ const ProjectFileEditor = (props) => {
       <EditFileList
         data={files}
         onChange={onChange('files')}
+        errors={errors.files}
+        touched={touched.files}
       />
     </InputScrollView>
   );
@@ -38,6 +42,23 @@ ProjectFileEditor.propTypes = {
     })),
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    files: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      url: PropTypes.string,
+    })),
+  }),
+  touched: PropTypes.shape({
+    files: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.bool,
+      url: PropTypes.bool,
+    })),
+  }),
+};
+
+ProjectFileEditor.defaultProps = {
+  errors: {},
+  touched: {},
 };
 
 export default ProjectFileEditor;
