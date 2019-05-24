@@ -139,14 +139,6 @@ export default {
       followingPosts: 'フォローした投稿',
     },
   },
-  drawer: {
-    categories: 'カテゴリー',
-    vip: 'VIPにアップグレード',
-    myProjects: 'MYプロジェクト',
-    myPosts: 'MY投稿',
-    myFavorites: 'MY気に入り',
-    other: 'ほか',
-  },
   home: {
     title: 'ホーム',
     hotCategories: '人気カテゴリー',

@@ -22,7 +22,6 @@ export default class ProjectsScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
-      openDrawer: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
       getParam: PropTypes.func.isRequired,
@@ -138,7 +137,6 @@ export default class ProjectsScreen extends Component {
           navigation={navigation}
           renderHeader={() => (
             <SearchHeader
-              onOpenDrawer={() => navigation.openDrawer()}
               keyword={keyword}
               categories={categories || []}
               onSearch={this.handleSearch}

@@ -24,7 +24,6 @@ export default class ProfileScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
-      openDrawer: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -135,7 +134,6 @@ export default class ProfileScreen extends Component {
         navigation={navigation}
         renderHeader={() => (
           <ProfileHeader
-            onOpenDrawer={() => navigation.openDrawer()}
             onSearch={() => navigation.navigate('SearchDetail')}
             onOpenSettings={() => navigation.navigate('SettingModal')}
           />

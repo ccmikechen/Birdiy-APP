@@ -14,7 +14,6 @@ const SearchHeader = (props) => {
   const {
     keyword,
     categories,
-    onOpenDrawer,
     onSearch,
     onOpenFilter,
   } = props;
@@ -35,10 +34,6 @@ const SearchHeader = (props) => {
   return (
     <BasicHeader
       placement="center"
-      leftButton={{
-        icon: 'menu',
-        onPress: onOpenDrawer,
-      }}
       centerComponent={() => (showCategory ? (
         <Text style={styles.title}>
           {i18n.t(`categories.${categories[0]}`, { defaultValue: categories[0] })}
@@ -60,7 +55,6 @@ const SearchHeader = (props) => {
 SearchHeader.propTypes = {
   keyword: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onOpenDrawer: PropTypes.func.isRequired,
   onSearch: PropTypes.func,
   onOpenFilter: PropTypes.func,
 };

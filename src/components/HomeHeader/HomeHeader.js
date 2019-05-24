@@ -5,16 +5,11 @@ import BasicHeader from '../BasicHeader';
 import SearchBarButton from '../SearchBarButton';
 
 const HomeHeader = ({
-  onOpenDrawer,
   onSearch,
   onOpenCart,
 }) => (
   <BasicHeader
     placement="center"
-    leftButton={{
-      icon: 'menu',
-      onPress: onOpenDrawer,
-    }}
     centerComponent={() => (
       <SearchBarButton onPress={onSearch} />
     )}
@@ -26,7 +21,6 @@ const HomeHeader = ({
 );
 
 HomeHeader.propTypes = {
-  onOpenDrawer: PropTypes.func.isRequired,
   onSearch: PropTypes.func,
   onOpenCart: PropTypes.func,
 };

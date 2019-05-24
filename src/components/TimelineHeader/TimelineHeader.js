@@ -4,16 +4,9 @@ import PropTypes from 'prop-types';
 import BasicHeader from '../BasicHeader';
 import SearchBarButton from '../SearchBarButton';
 
-const TimelineHeader = ({
-  onOpenDrawer,
-  onSearch,
-}) => (
+const TimelineHeader = ({ onSearch }) => (
   <BasicHeader
     placement="center"
-    leftButton={{
-      icon: 'menu',
-      onPress: onOpenDrawer,
-    }}
     centerComponent={() => (
       <SearchBarButton onPress={onSearch} />
     )}
@@ -21,7 +14,6 @@ const TimelineHeader = ({
 );
 
 TimelineHeader.propTypes = {
-  onOpenDrawer: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
 };
 

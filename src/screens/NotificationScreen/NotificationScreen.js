@@ -11,7 +11,6 @@ export default class NotificationScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
-      openDrawer: PropTypes.func.isRequired,
     }).isRequired,
   };
 
@@ -22,10 +21,7 @@ export default class NotificationScreen extends Component {
       <TopScreenView
         navigation={navigation}
         renderHeader={() => (
-          <NormalTopHeader
-            title="通知"
-            onOpenDrawer={() => navigation.openDrawer()}
-          />
+          <NormalTopHeader title="通知" />
         )}
       />
     );

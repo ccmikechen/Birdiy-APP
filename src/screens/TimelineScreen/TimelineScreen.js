@@ -28,7 +28,7 @@ export default class TimelineScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
-      openDrawer: PropTypes.func.isRequired,
+      navigate: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
       all: PropTypes.shape({
@@ -137,7 +137,6 @@ export default class TimelineScreen extends Component {
           navigation={navigation}
           renderHeader={() => (
             <TimelineHeader
-              onOpenDrawer={() => navigation.openDrawer()}
               onSearch={() => navigation.navigate('SearchDetail')}
             />
           )}

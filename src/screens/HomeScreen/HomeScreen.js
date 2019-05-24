@@ -16,7 +16,6 @@ export default class HomeScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape({
-      openDrawer: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
       navigate: PropTypes.func.isRequired,
     }).isRequired,
@@ -112,7 +111,6 @@ export default class HomeScreen extends Component {
         navigation={navigation}
         renderHeader={() => (
           <HomeHeader
-            onOpenDrawer={() => navigation.openDrawer()}
             onSearch={() => navigation.navigate('SearchDetail')}
             onOpenCart={() => navigation.push('Cart')}
           />

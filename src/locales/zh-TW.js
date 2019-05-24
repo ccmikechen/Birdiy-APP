@@ -139,14 +139,6 @@ export default {
       followingPosts: '跟著做',
     },
   },
-  drawer: {
-    categories: '分類',
-    vip: '升級VIP',
-    myProjects: '我的專案',
-    myPosts: '我的貼文',
-    myFavorites: '我的收藏',
-    other: '其他',
-  },
   home: {
     title: '首頁',
     hotCategories: '熱門分類',

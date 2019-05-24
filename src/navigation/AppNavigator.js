@@ -1,11 +1,9 @@
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator,
 } from 'react-navigation';
 import { fromRight } from 'react-navigation-transitions';
 
-import DrawerScreen from '../containers/DrawerScreen';
 import createMainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/LoginScreen';
@@ -47,13 +45,7 @@ const modals = {
 };
 
 export default async () => createAppContainer(createStackNavigator({
-  Main: createDrawerNavigator({
-    MainTab: await createMainTabNavigator(),
-  }, {
-    initialRouteName: 'MainTab',
-    contentComponent: DrawerScreen,
-    drawerWidth: 300,
-  }),
+  Main: await createMainTabNavigator(),
   ...modals,
 }, {
   mode: 'modal',

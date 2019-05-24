@@ -144,14 +144,6 @@ export default {
       followingPosts: 'Followed Posts',
     },
   },
-  drawer: {
-    categories: 'Categories',
-    vip: 'Upgrade to VIP',
-    myProjects: 'My Projects',
-    myPosts: 'My Posts',
-    myFavorites: 'My Favorites',
-    other: 'Other',
-  },
   home: {
     title: 'Home',
     hotCategories: 'Hot Categories',
