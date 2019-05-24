@@ -252,9 +252,6 @@ export default {
         displayProjects: {
           title: '表示するプロジェクトの言語',
         },
-        displayPosts: {
-          title: '表示する投稿の言語',
-        },
       },
     },
     notification: {

@@ -35,6 +35,7 @@ export default class DisplaySettingScreen extends Component {
     this.setState({
       settings: {
         interfaceLanguage: appLocale,
+        projectLanguages: [],
       },
     });
   }
@@ -59,8 +60,14 @@ export default class DisplaySettingScreen extends Component {
         });
         break;
       case 'displayProjectsLanguage':
-        break;
-      case 'displayPostsLanguage':
+        navigation.push('SelectorModal', {
+          title: i18n.t('language.displayProjects.title', i18nOptions),
+          items: LANGUAGES,
+          selected: settings.projectLanguages,
+          multiple: true,
+          i18nScope: 'languages',
+          onSelect: () => {},
+        });
         break;
       default:
     }

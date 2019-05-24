@@ -252,9 +252,6 @@ export default {
         displayProjects: {
           title: '顯示專案語言',
         },
-        displayPosts: {
-          title: '顯示貼文語言',
-        },
       },
     },
     notification: {

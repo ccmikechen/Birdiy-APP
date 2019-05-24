@@ -224,9 +224,6 @@ export default {
         displayProjects: {
           title: 'Project languages',
         },
-        displayPosts: {
-          title: 'Post languages',
-        },
       },
     },
     notification: {
