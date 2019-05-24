@@ -14,6 +14,8 @@ export default {
     save: 'Save',
     goBack: 'Go Back',
     bracket: '(%{text}) ',
+    selectAll: 'Select all',
+    clear: 'Clear',
   },
   post: {
     create: {
@@ -87,6 +89,7 @@ export default {
       files: {
         title: 'Files',
         name: 'File Name',
+        url: 'File Download Link',
         addLink: 'Add File Link',
         upload: 'Upload File',
       },
@@ -185,10 +188,6 @@ export default {
   },
   selectCategory: {
     title: 'Category',
-    options: {
-      selectAll: 'Select all',
-      clear: 'Clear',
-    },
   },
   cart: {
     title: 'Shopping Cart',

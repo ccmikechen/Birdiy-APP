@@ -24,6 +24,7 @@ import NotificationSettingScreen from '../screens/NotificationSettingScreen';
 import AboutScreen from '../screens/AboutScreen';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import SearchDetailScreen from '../screens/SearchDetailScreen';
+import SelectorScreen from '../screens/SelectorScreen';
 
 const modals = {
   LoginModal: LoginScreen,
@@ -42,6 +43,7 @@ const modals = {
   AboutModal: AboutScreen,
   FeedbackModal: FeedbackScreen,
   SearchDetailModal: SearchDetailScreen,
+  SelectorModal: SelectorScreen,
 };
 
 export default async () => createAppContainer(createStackNavigator({

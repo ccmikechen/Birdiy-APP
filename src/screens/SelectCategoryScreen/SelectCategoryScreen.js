@@ -85,10 +85,10 @@ export default class SelectCategoryScreen extends Component {
             onBack={() => navigation.goBack()}
             title={i18n.t('title', i18nOptions)}
             rightButton={multipleSelect ? [{
-              text: i18n.t('options.selectAll', i18nOptions),
+              text: i18n.t('general.selectAll'),
               onPress: this.handleSelectAll,
             }, {
-              text: i18n.t('options.clear', i18nOptions),
+              text: i18n.t('general.clear'),
               onPress: this.handleClear,
             }, {
               text: i18n.t('general.confirm'),

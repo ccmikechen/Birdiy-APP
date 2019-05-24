@@ -58,7 +58,7 @@ const ProjectIntroEditor = (props) => {
         <PureSelector
           style={styles.textInput}
           placeholder={i18n.t('category.placeholder', i18nOptions)}
-          value={category && i18n.t(`categories.${category}`)}
+          value={category && i18n.t(`categories.${category}`, { defaultValue: category })}
           error={error.category}
           onPress={() => onSelectCategoryPress(categories, (index) => {
             const selectedCategory = categories[index] && categories[index].name;

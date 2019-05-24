@@ -9,6 +9,8 @@ export default {
     save: '儲存',
     goBack: '返回',
     bracket: '（%{text}）',
+    selectAll: '全選',
+    clear: '清除',
   },
   post: {
     create: {
@@ -82,6 +84,7 @@ export default {
       files: {
         title: '檔案資料',
         name: '檔案名稱',
+        url: '檔案下載連結',
         addLink: '加檔案連結',
         upload: '上傳檔案',
       },
@@ -213,10 +216,6 @@ export default {
   },
   selectCategory: {
     title: '選擇分類',
-    options: {
-      selectAll: '全選',
-      clear: '清除',
-    },
   },
   cart: {
     title: '採買清單',

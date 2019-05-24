@@ -9,6 +9,8 @@ export default {
     save: '保存',
     goBack: '戻る',
     bracket: '（%{text}）',
+    selectAll: '全部選択',
+    clear: 'クリア',
   },
   post: {
     create: {
@@ -82,6 +84,7 @@ export default {
       files: {
         title: 'ファイル',
         name: 'ファイル名',
+        url: 'ファイルダウンロードリンク',
         addLink: 'リンクを追加',
         upload: 'ファイルをアップロード',
       },
@@ -213,10 +216,6 @@ export default {
   },
   selectCategory: {
     title: 'カテゴリー',
-    options: {
-      selectAll: '全部選択',
-      clear: 'クリア',
-    },
   },
   cart: {
     title: '買い物リスト',
