@@ -46,7 +46,7 @@ export default class Cart {
   };
 
   addMaterial = async (project, material) => {
-    let cartProject = await this.getProject(project.id);
+    let cartProject = this.getProject(project.id);
 
     if (!cartProject) {
       cartProject = await this.addProject(project);
@@ -70,7 +70,7 @@ export default class Cart {
   };
 
   deleteMaterial = async (projectId, materialId) => {
-    const project = await this.getProject(projectId);
+    const project = this.getProject(projectId);
 
     if (!project) {
       return this.projects;
@@ -100,7 +100,7 @@ export default class Cart {
     return this.projects[0];
   };
 
-  getProject = async (projectId) => {
+  getProject = (projectId) => {
     const index = findIndex(this.projects, ({ id }) => (id === projectId));
     return index === -1 ? null : this.projects[index];
   };

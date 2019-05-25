@@ -8,6 +8,7 @@ import NormalBackHeader from '../../components/NormalBackHeader';
 import PurchaseList from '../../components/PurchaseList';
 
 import Cart from '../../helpers/cart';
+import { showDeleteCartProjectAlert } from '../../helpers/alert';
 
 export default class CartScreen extends Component {
   static navigationOptions = {
@@ -34,12 +35,23 @@ export default class CartScreen extends Component {
 
   handleChange = async (newProject) => {
     const projects = await this.cart.updateProject(newProject);
-    this.setState({ projects });
+    this.setState({ projects }, () => {
+      const completed = newProject
+        .materials
+        .filter(material => !material.purchased).length === 0;
+      if (completed) {
+        this.handleDelete(newProject.id);
+      }
+    });
   };
 
-  handleDelete = async (id) => {
-    const projects = await this.cart.deleteProject(id);
-    this.setState({ projects });
+  handleDelete = (id) => {
+    const project = this.cart.getProject(id);
+
+    showDeleteCartProjectAlert(project.name).then(async () => {
+      const projects = await this.cart.deleteProject(id);
+      this.setState({ projects });
+    });
   };
 
   handleOpenProject = (id) => {

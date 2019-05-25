@@ -183,7 +183,7 @@ export default {
     title: 'Category',
   },
   cart: {
-    title: 'Shopping Cart',
+    title: 'Purchase List',
     section: {
       materials: {
         title: 'Materials',
@@ -284,6 +284,10 @@ export default {
     editProfileFailed: 'Failed to save profile.',
     goBack: 'Are you sure you want to go back?',
     unsavedGoBack: 'Are you sure you want to go back without saving?',
+    deleteCartProject: {
+      title: 'Delete purchase list',
+      message: 'Delete %{projectName} from purchase list?',
+    },
   },
   errors: {
     required: 'Required',

@@ -312,6 +312,10 @@ export default {
     editProfileFailed: '編輯個人檔案失敗',
     goBack: '確定要返回嗎？',
     unsavedGoBack: '確定要放棄編輯嗎？',
+    deleteCartProject: {
+      title: '刪除採買清單',
+      message: '將 %{projectName} 從採買清單中刪除？',
+    },
   },
   errors: {
     required: '必須',

@@ -312,6 +312,10 @@ export default {
     editProfileFailed: 'プロフィールの保存が失敗しました',
     goBack: '本当に戻りますか？',
     unsavedGoBack: '本当に保存しないまま戻りますか？',
+    deleteCartProject: {
+      title: '買い物リストを削除',
+      message: '%{projectName} を買い物リストから削除しますか？',
+    },
   },
   errors: {
     required: '必須',

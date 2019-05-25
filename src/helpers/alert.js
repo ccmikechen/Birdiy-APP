@@ -107,3 +107,14 @@ export const showUnsavedGoBackAlert = () => new Promise(resolve => (
     ],
   )
 ));
+
+export const showDeleteCartProjectAlert = projectName => new Promise(resolve => (
+  showAlert(
+    i18n.t('alert.deleteCartProject.message', { projectName }),
+    i18n.t('alert.deleteCartProject.title'),
+    [
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.ok'), onPress: () => resolve() },
+    ],
+  )
+));
