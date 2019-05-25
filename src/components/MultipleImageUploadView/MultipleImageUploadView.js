@@ -126,7 +126,7 @@ export default class MultipleImageUploadView extends Component {
             style={styles.button}
             icon="image"
             mode="contained"
-            color={Primary(500)}
+            color={Primary(700)}
             onPress={this.handleImageUpload}
           >
             {i18n.t('upload', i18nOptions)}
@@ -135,7 +135,7 @@ export default class MultipleImageUploadView extends Component {
             style={styles.button}
             icon="camera-alt"
             mode="contained"
-            color={Primary(500)}
+            color={Primary(700)}
             onPress={this.handleCamera}
           >
             {i18n.t('camera', i18nOptions)}

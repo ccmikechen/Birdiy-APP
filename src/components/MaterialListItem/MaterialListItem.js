@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
-import Colors from '../../constants/Colors';
+import ToggleButton from '../ToggleButton';
+
+import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
 const MaterialListItem = ({
   material,
+  isInCart,
   onLinkPress,
-  onAddPress,
+  onCartToggle,
 }) => (
   <View style={styles.container}>
     <View style={styles.nameContainer}>
@@ -33,19 +36,16 @@ const MaterialListItem = ({
             <Icon.FontAwesome
               name="external-link"
               size={26}
-              color={Colors.headerIcon}
+              color={Primary(700)}
             />
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPres={onAddPress}>
-          <Icon.MaterialIcons
-            name="add-shopping-cart"
-            size={26}
-            color={Colors.headerIcon}
-          />
-        </TouchableOpacity>
+        <ToggleButton
+          checked={isInCart}
+          onPress={() => onCartToggle(!isInCart)}
+        />
       </View>
     </View>
   </View>
@@ -53,17 +53,20 @@ const MaterialListItem = ({
 
 MaterialListItem.propTypes = {
   material: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     amountUnit: PropTypes.string.isRequired,
     url: PropTypes.string,
   }).isRequired,
+  isInCart: PropTypes.bool,
   onLinkPress: PropTypes.func,
-  onAddPress: PropTypes.func,
+  onCartToggle: PropTypes.func,
 };
 
 MaterialListItem.defaultProps = {
+  isInCart: false,
   onLinkPress: () => {},
-  onAddPress: () => {},
+  onCartToggle: () => {},
 };
 
 export default MaterialListItem;

@@ -34,6 +34,7 @@ export default createFragmentContainer(
   graphql`
     fragment ProjectDetailMaterialList_project on Project {
       materials {
+        id
         name
         amountUnit
         url 

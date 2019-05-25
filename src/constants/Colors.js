@@ -52,8 +52,9 @@ export const TextColor = {
   subLight: '#eeeeee',
   sectionTitle: '#444444',
   primaryDark: '#222222',
-  subDark: '#888888',
   secondaryDark: '#444444',
+  subDark: '#888888',
+  disabled: '#aaaaaa',
 };
 
 export const Primary = Material('blue');
@@ -66,7 +67,7 @@ export default {
   tabBar: '#fefefe',
   headerGradient: ['#65b1bc', '#3b7998', Secondary(500)],
   headerIcon: '#444444',
-  activeHeaderIcon: Primary(500),
+  activeHeaderIcon: Primary(700),
   placeholder: '#cccccc',
   closeButton: '#ff0000',
   publish: '#4caf50',
@@ -75,7 +76,7 @@ export default {
   like: '#c62828',
   publishedStatus: '#008800',
   draftStatus: '#666666',
-  followButton: Primary(500),
+  followButton: Primary(700),
   coverModalBackground: 'rgba(0, 0, 0, .8)',
   logoutButton: '#cc0000',
   loginButton: Primary(900),

@@ -11,6 +11,7 @@ export default {
     bracket: '（%{text}）',
     selectAll: '全部選択',
     clear: 'クリア',
+    delete: '削除',
   },
   post: {
     create: {
@@ -211,6 +212,11 @@ export default {
   },
   cart: {
     title: '買い物リスト',
+    section: {
+      materials: {
+        title: '材料',
+      },
+    },
   },
   recentViewed: {
     title: '最近見たプロジェクト',

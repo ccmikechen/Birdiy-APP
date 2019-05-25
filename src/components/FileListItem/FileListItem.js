@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
-import Colors from '../../constants/Colors';
+import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -26,7 +26,7 @@ const FileListItem = ({
           <Icon.MaterialCommunityIcons
             name="file-download-outline"
             size={26}
-            color={Colors.headerIcon}
+            color={Primary(700)}
           />
         </TouchableOpacity>
       </View>

@@ -30,6 +30,7 @@ import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
+import Cart from '../../helpers/cart';
 
 import { UnauthorizedError } from '../../errors';
 
@@ -98,7 +99,10 @@ export default class ProjectDetailScreen extends Component {
 
   state = {
     viewed: false,
+    cartMaterials: new Map(),
   };
+
+  cart = new Cart();
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { query } = nextProps;
@@ -111,7 +115,23 @@ export default class ProjectDetailScreen extends Component {
     const mutation = new ViewProjectMutation({ id: query.project.id });
     mutation.commit().catch(() => {});
 
-    return { viewed: true };
+    return { ...prevState, viewed: true };
+  }
+
+  async componentDidMount() {
+    const { navigation } = this.props;
+    const projectId = navigation.getParam('id');
+
+    await this.cart.reload();
+
+    const cartProject = await this.cart.getProject(projectId);
+    const cartMaterials = cartProject
+      ? new Map(cartProject.materials.map(material => (
+        [material.id, true]
+      )))
+      : new Map();
+
+    this.setState({ cartMaterials });
   }
 
   handleUserPress = (id) => {
@@ -180,7 +200,18 @@ export default class ProjectDetailScreen extends Component {
     WebBrowser.openBrowserAsync(link);
   };
 
-  handleMaterialAddPress = () => {
+  handleMaterialCartToggle = async (material, status) => {
+    const { query: { project } } = this.props;
+    const { cartMaterials } = this.state;
+
+    if (status) {
+      await this.cart.addMaterial(project, material);
+    } else {
+      await this.cart.deleteMaterial(project.id, material.id);
+    }
+
+    cartMaterials.set(material.id, status);
+    this.setState({ cartMaterials });
   };
 
   handleFileLinkPress = (link) => {
@@ -199,6 +230,7 @@ export default class ProjectDetailScreen extends Component {
 
   render() {
     const { navigation, query, loading } = this.props;
+    const { cartMaterials } = this.state;
     const project = query ? query.project : this.defaultProject;
 
     return (
@@ -264,8 +296,9 @@ export default class ProjectDetailScreen extends Component {
         </ProjectDetailSection>
         <ProjectDetailMaterialList
           project={project}
+          cart={cartMaterials}
           onLinkPress={this.handleMaterialLinkPress}
-          onAddPress={this.handleMaterialAddPress}
+          onCartToggle={this.handleMaterialCartToggle}
         />
         <ProjectDetailFileList
           project={project}

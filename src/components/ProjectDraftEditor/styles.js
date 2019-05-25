@@ -20,7 +20,7 @@ export default StyleSheet.create({
     width: '90%',
     maxWidth: 300,
     borderRadius: 20,
-    backgroundColor: Primary(500),
+    backgroundColor: Primary(700),
   },
   submitButtonText: {
     fontSize: 20,

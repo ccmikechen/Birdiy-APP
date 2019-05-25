@@ -13,5 +13,6 @@ export default StyleSheet.create({
   },
   contentContainer: {
     paddingTop: Size.headerHeight,
+    paddingBottom: 100,
   },
 });

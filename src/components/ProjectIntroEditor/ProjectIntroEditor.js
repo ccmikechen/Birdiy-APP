@@ -31,6 +31,7 @@ const ProjectIntroEditor = (props) => {
   return (
     <InputScrollView
       style={styles.container}
+      keyboardOffset={100}
       keyboardShouldPersistTaps="always"
       keyboardAvoidingViewProps={{
         behavior: 'padding',

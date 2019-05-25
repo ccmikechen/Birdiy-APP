@@ -34,7 +34,7 @@ export default StyleSheet.create({
     width: '90%',
     height: 40,
     borderRadius: 10,
-    backgroundColor: Primary(500),
+    backgroundColor: Primary(700),
     padding: 5,
   },
   addButtonText: {

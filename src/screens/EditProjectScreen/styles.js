@@ -25,7 +25,7 @@ export default StyleSheet.create({
     maxWidth: 300,
     margin: 10,
     borderRadius: 20,
-    backgroundColor: Primary(500),
+    backgroundColor: Primary(700),
   },
   publishButton: {
     backgroundColor: Colors.publish,

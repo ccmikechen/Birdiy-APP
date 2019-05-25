@@ -16,6 +16,7 @@ export default {
     bracket: '(%{text}) ',
     selectAll: 'Select all',
     clear: 'Clear',
+    delete: 'Delete',
   },
   post: {
     create: {
@@ -183,6 +184,11 @@ export default {
   },
   cart: {
     title: 'Shopping Cart',
+    section: {
+      materials: {
+        title: 'Materials',
+      },
+    },
   },
   recentViewed: {
     title: 'Recently viewed',

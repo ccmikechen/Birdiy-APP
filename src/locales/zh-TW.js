@@ -11,6 +11,7 @@ export default {
     bracket: '（%{text}）',
     selectAll: '全選',
     clear: '清除',
+    delete: '刪除',
   },
   post: {
     create: {
@@ -211,6 +212,11 @@ export default {
   },
   cart: {
     title: '採買清單',
+    section: {
+      materials: {
+        title: '材料',
+      },
+    },
   },
   recentViewed: {
     title: '近期瀏覽',

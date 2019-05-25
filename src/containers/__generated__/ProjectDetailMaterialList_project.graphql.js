@@ -12,6 +12,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProjectDetailMaterialList_project$ref: FragmentReference;
 export type ProjectDetailMaterialList_project = {|
   +materials: ?$ReadOnlyArray<?{|
+    +id: string,
     +name: string,
     +amountUnit: string,
     +url: ?string,
@@ -40,6 +41,13 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "name",
           "args": null,
           "storageKey": null
@@ -63,5 +71,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '0dea9f471b8321032919d6720f254dbf';
+(node/*: any*/).hash = '55f5ba29389df9dac96badc8289c47e9';
 module.exports = node;

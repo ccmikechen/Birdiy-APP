@@ -10,16 +10,18 @@ import styles from './styles';
 
 const MaterialList = ({
   materials,
+  cart,
   onLinkPress,
-  onAddPress,
+  onCartToggle,
 }) => (
   <View style={styles.container}>
     {materials.map((material, index) => (
       <MaterialListItem
         key={`material-${index}`}
         material={material}
+        isInCart={cart.get(material.id) || false}
         onLinkPress={onLinkPress}
-        onAddPress={() => onAddPress(index)}
+        onCartToggle={status => onCartToggle(material, status)}
       />
     ))}
   </View>
@@ -27,17 +29,20 @@ const MaterialList = ({
 
 MaterialList.propTypes = {
   materials: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     amountUnit: PropTypes.string.isRequired,
     url: PropTypes.string,
   })).isRequired,
+  cart: PropTypes.instanceOf(Map),
   onLinkPress: PropTypes.func,
-  onAddPress: PropTypes.func,
+  onCartToggle: PropTypes.func,
 };
 
 MaterialList.defaultProps = {
+  cart: new Map(),
   onLinkPress: () => {},
-  onAddPress: () => {},
+  onCartToggle: () => {},
 };
 
 export default MaterialList;

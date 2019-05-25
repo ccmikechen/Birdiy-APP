@@ -50,6 +50,7 @@ export default class InputScreenView extends Component {
       <SimpleScreenView {...this.props}>
         <InputScrollView
           style={styles.container}
+          keyboardOffset={100}
           keyboardShouldPersistTaps="always"
           keyboardAvoidingViewProps={{
             behavior: 'padding',

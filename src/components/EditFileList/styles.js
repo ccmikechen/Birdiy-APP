@@ -23,7 +23,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: 40,
     borderRadius: 10,
-    backgroundColor: Primary(500),
+    backgroundColor: Primary(700),
     padding: 5,
     marginLeft: 10,
     marginRight: 10,
