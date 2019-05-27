@@ -93,7 +93,7 @@ export default class ProjectDraftEditor extends Component {
                   placeholder={i18n.t('topic.placeholder', i18nOptions)}
                   value={topic && i18n.t(`topics.${topic}`)}
                   error={topicError}
-                  onPress={() => onOpenTopicSelector((selected) => {
+                  onPress={() => onOpenTopicSelector(topic, (selected) => {
                     handleChange('topic')(selected);
                   })}
                 />

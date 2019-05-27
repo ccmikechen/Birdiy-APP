@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Tertiary } from '../../constants/Colors';
+import { Primary, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -8,11 +8,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '90%',
     borderRadius: 10,
-    backgroundColor: Tertiary(100),
+    backgroundColor: Primary(700),
     padding: 5,
   },
   text: {
     fontSize: 16,
-    color: '#666666',
+    color: TextColor.primaryLight,
   },
 });

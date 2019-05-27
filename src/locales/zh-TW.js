@@ -142,7 +142,7 @@ export default {
   },
   home: {
     title: '首頁',
-    hotCategories: '熱門分類',
+    categories: '分類',
     newestProjects: '最新專案',
   },
   timeline: {

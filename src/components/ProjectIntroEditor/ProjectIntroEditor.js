@@ -60,7 +60,7 @@ const ProjectIntroEditor = (props) => {
           placeholder={i18n.t('topic.placeholder', i18nOptions)}
           value={topic && i18n.t(`topics.${topic}`, { defaultValue: topic })}
           error={error.topic}
-          onPress={() => onSelectTopicPress((selected) => {
+          onPress={() => onSelectTopicPress(topic, (selected) => {
             onChange('topic', selected);
           })}
         />

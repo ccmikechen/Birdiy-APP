@@ -38,9 +38,12 @@ export default class CreateProjectScreen extends Component {
     topic: null,
   };
 
-  handleOpenTopicSelector = (callback) => {
+  handleOpenTopicSelector = (topic, callback) => {
     const { navigation } = this.props;
-    navigation.navigate('SelectTopicModal', { onSelect: callback });
+    navigation.navigate('SelectTopicModal', {
+      selected: topic,
+      onSelect: callback,
+    });
   };
 
   handleSubmitPress = () => {

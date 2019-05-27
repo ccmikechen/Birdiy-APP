@@ -142,7 +142,7 @@ export default {
   },
   home: {
     title: 'ホーム',
-    hotCategories: '人気カテゴリー',
+    categories: 'カテゴリー',
     newestProjects: '新着プロジェクト',
   },
   timeline: {
@@ -204,8 +204,8 @@ export default {
     'Wood Carving': '木彫り',
     Woodworking: '大工',
   },
-  allCategories: {
-    title: 'すべてのカテゴリー',
+  allTopics: {
+    title: 'すべてのトピック',
   },
   selectTopic: {
     title: 'トピックを選ぶ',

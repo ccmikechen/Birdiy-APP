@@ -52,6 +52,28 @@ export default class SelectTopicScreen extends Component {
     loading: true,
   };
 
+  state ={
+    initialized: false,
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { initialized } = prevState;
+    const { query } = nextProps;
+
+    if (initialized || !query) {
+      return null;
+    }
+
+    const categoryMap = new Map();
+    query.categories.edges.forEach(({ node: { name, topics } }) => {
+      topics.edges.forEach(({ node: { name: topic } }) => {
+        categoryMap.set(topic, name);
+      });
+    });
+
+    return { initialized: true, categoryMap };
+  }
+
   constructor(props) {
     super(props);
 
@@ -62,7 +84,7 @@ export default class SelectTopicScreen extends Component {
 
   handleSelect = (item, isSelected) => {
     const { navigation } = this.props;
-    const { selected } = this.state;
+    const { selected, categoryMap } = this.state;
     const multiple = navigation.getParam('multiple');
     const onSelect = navigation.getParam('onSelect');
 
@@ -70,7 +92,7 @@ export default class SelectTopicScreen extends Component {
       this.setState({ selected: item });
 
       if (onSelect) {
-        onSelect(item);
+        onSelect(item, categoryMap.get(item));
       }
       navigation.goBack();
 
@@ -113,8 +135,13 @@ export default class SelectTopicScreen extends Component {
     const { navigation } = this.props;
     const { selected } = this.state;
     const multiple = navigation.getParam('multiple');
+    const onCategorySelect = navigation.getParam('onCategorySelect');
 
     if (!multiple) {
+      if (onCategorySelect) {
+        onCategorySelect(category);
+      }
+
       return;
     }
 

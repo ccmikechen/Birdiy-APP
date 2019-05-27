@@ -144,9 +144,12 @@ export default class EditProjectScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleGoBack);
   }
 
-  handleOpenTopicSelector = (callback) => {
+  handleOpenTopicSelector = (topic, callback) => {
     const { navigation } = this.props;
-    navigation.navigate('SelectTopicModal', { onSelect: callback });
+    navigation.navigate('SelectTopicModal', {
+      selected: topic,
+      onSelect: callback,
+    });
   };
 
   handleOptionPress = () => {

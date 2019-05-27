@@ -147,7 +147,7 @@ export default {
   },
   home: {
     title: 'Home',
-    hotCategories: 'Hot Categories',
+    categories: 'Categories',
     newestProjects: 'New Projects',
   },
   timeline: {
@@ -176,8 +176,8 @@ export default {
   },
   topics: {
   },
-  allCategories: {
-    title: 'All Categories',
+  allTopics: {
+    title: 'All Topics',
   },
   selectTopic: {
     title: 'Select Topic',

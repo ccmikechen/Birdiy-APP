@@ -110,6 +110,7 @@ export default class ProjectsScreen extends Component {
     const { addProjectButtonVisible } = this.state;
     const keyword = navigation.getParam('keyword');
     const topics = navigation.getParam('topics');
+    const categories = navigation.getParam('categories');
     const tabs = [
       i18n.t('projects.tabs.newest'),
       i18n.t('projects.tabs.hotest'),
@@ -124,6 +125,7 @@ export default class ProjectsScreen extends Component {
             <SearchHeader
               keyword={keyword}
               topics={topics || []}
+              categories={categories || []}
               onSearch={this.handleSearch}
               onOpenFilter={this.handleOpenFilter}
             />

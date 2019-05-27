@@ -54,23 +54,32 @@ export default class HomeScreen extends Component {
 
   handleCategoryPress = (category) => {
     const { navigation } = this.props;
-    navigation.navigate('Projects', { categories: [category.name] });
+    navigation.navigate('Projects', {
+      topics: [],
+      categories: [category.name],
+    });
   };
 
   handleMoreCategory = () => {
     const { navigation } = this.props;
     navigation.navigate('SelectTopicModal', {
       title: i18n.t('allTopics.title'),
-      onSelect: (topic) => {
+      onSelect: (topic, category) => {
         navigation.navigate('Projects', {
           topics: [topic],
-          categories: [],
+          categories: [category],
+        });
+      },
+      onCategorySelect: (category) => {
+        navigation.navigate('Projects', {
+          topics: [],
+          categories: [category],
         });
       },
     });
   };
 
-  renderHotCategories = () => {
+  renderCategories = () => {
     const { query } = this.props;
 
     return (
@@ -128,8 +137,8 @@ export default class HomeScreen extends Component {
         onRefresh={this.handleRefresh}
       >
         <HomeSection
-          title={i18n.t('home.hotCategories')}
-          renderContent={this.renderHotCategories}
+          title={i18n.t('home.categories')}
+          renderContent={this.renderCategories}
         />
         <HomeSection
           title={i18n.t('home.newestProjects')}
