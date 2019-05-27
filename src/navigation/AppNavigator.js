@@ -7,7 +7,6 @@ import { fromRight } from 'react-navigation-transitions';
 import createMainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/LoginScreen';
-import AllCategoriesScreen from '../containers/AllCategoriesScreen';
 import CreateProjectScreen from '../screens/CreateProjectScreen';
 import EditProjectScreen from '../containers/EditProjectScreen';
 import EditPostScreen from '../containers/EditPostScreen';
@@ -26,7 +25,6 @@ import SelectorScreen from '../screens/SelectorScreen';
 
 const modals = {
   LoginModal: LoginScreen,
-  AllCategoriesModal: AllCategoriesScreen,
   CreateProjectModal: CreateProjectScreen,
   EditProjectModal: EditProjectScreen,
   EditPostModal: EditPostScreen,

@@ -212,8 +212,8 @@ export default {
     'Wood Carving': '木雕',
     Woodworking: '木工',
   },
-  allCategories: {
-    title: '所有分類',
+  allTopics: {
+    title: '所有主題',
   },
   selectTopic: {
     title: '選擇主題',

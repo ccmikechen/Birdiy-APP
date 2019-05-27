@@ -59,7 +59,15 @@ export default class HomeScreen extends Component {
 
   handleMoreCategory = () => {
     const { navigation } = this.props;
-    navigation.navigate('AllCategoriesModal');
+    navigation.navigate('SelectTopicModal', {
+      title: i18n.t('allTopics.title'),
+      onSelect: (topic) => {
+        navigation.navigate('Projects', {
+          topics: [topic],
+          categories: [],
+        });
+      },
+    });
   };
 
   renderHotCategories = () => {
