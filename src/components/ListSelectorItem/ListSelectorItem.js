@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { Icon } from 'expo';
 
+import { Primary } from '../../constants/Colors';
+
 import styles from './styles';
 
 const ListSelectorItem = ({ text, selected, onPress }) => (
@@ -18,7 +20,7 @@ const ListSelectorItem = ({ text, selected, onPress }) => (
         <Icon.MaterialIcons
           name="check"
           size={26}
-          color="#222222"
+          color={Primary(700)}
         />
       </View>
     )}

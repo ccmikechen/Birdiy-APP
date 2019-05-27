@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash df9b7b8addaaabb86f0d2a05e229909e
+ * @relayHash 89954b23ae68acab819fbb2148495240
  */
 
 /* eslint-disable */
@@ -13,6 +13,7 @@ type ProjectsScreen_query$ref = any;
 export type ProjectFilter = {|
   categories?: ?$ReadOnlyArray<?string>,
   name?: ?string,
+  topics?: ?$ReadOnlyArray<?string>,
 |};
 export type ProjectsScreenQueryVariables = {|
   count: number,
@@ -43,15 +44,6 @@ query ProjectsScreenQuery(
 fragment ProjectsScreen_query on RootQueryType {
   ...NewestProjectList_query
   ...HotestProjectList_query
-  categories: allProjectCategories(first: 100000, order: NAME) {
-    edges {
-      node {
-        id
-        name
-        image
-      }
-    }
-  }
 }
 
 fragment NewestProjectList_query on RootQueryType {
@@ -163,14 +155,7 @@ v5 = {
   "args": null,
   "storageKey": null
 },
-v6 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
-},
-v7 = [
+v6 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -216,7 +201,13 @@ v7 = [
         "selections": [
           (v4/*: any*/),
           (v5/*: any*/),
-          (v6/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "image",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -256,10 +247,10 @@ v7 = [
     ]
   }
 ],
-v8 = [
+v7 = [
   "filter"
 ],
-v9 = [
+v8 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -298,7 +289,7 @@ return {
         "args": (v3/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v7/*: any*/)
+        "selections": (v6/*: any*/)
       },
       {
         "kind": "LinkedHandle",
@@ -307,75 +298,26 @@ return {
         "args": (v3/*: any*/),
         "handle": "connection",
         "key": "NewestProjectList_newest",
-        "filters": (v8/*: any*/)
+        "filters": (v7/*: any*/)
       },
       {
         "kind": "LinkedField",
         "alias": "hotest",
         "name": "allProjects",
         "storageKey": null,
-        "args": (v9/*: any*/),
+        "args": (v8/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v7/*: any*/)
+        "selections": (v6/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": "hotest",
         "name": "allProjects",
-        "args": (v9/*: any*/),
+        "args": (v8/*: any*/),
         "handle": "connection",
         "key": "HotestProjectList_hotest",
-        "filters": (v8/*: any*/)
-      },
-      {
-        "kind": "LinkedField",
-        "alias": "categories",
-        "name": "allProjectCategories",
-        "storageKey": "allProjectCategories(first:100000,order:\"NAME\")",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 100000,
-            "type": "Int"
-          },
-          {
-            "kind": "Literal",
-            "name": "order",
-            "value": "NAME",
-            "type": "RankOrder"
-          }
-        ],
-        "concreteType": "ProjectCategoryConnection",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "edges",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "ProjectCategoryEdge",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v4/*: any*/),
-                  (v5/*: any*/),
-                  (v6/*: any*/)
-                ]
-              }
-            ]
-          }
-        ]
+        "filters": (v7/*: any*/)
       }
     ]
   },
@@ -383,7 +325,7 @@ return {
     "operationKind": "query",
     "name": "ProjectsScreenQuery",
     "id": null,
-    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 40e652d428bc122a3b3b94ac9edb52f2
+ * @relayHash 9fe13f465f48c2024620d48754bba8d7
  */
 
 /* eslint-disable */
@@ -70,7 +70,7 @@ fragment ProjectActivitySection_project on Project {
   }
   image
   name
-  category {
+  topic {
     name
     id
   }
@@ -276,10 +276,10 @@ return {
                           {
                             "kind": "LinkedField",
                             "alias": null,
-                            "name": "category",
+                            "name": "topic",
                             "storageKey": null,
                             "args": null,
-                            "concreteType": "ProjectCategory",
+                            "concreteType": "ProjectTopic",
                             "plural": false,
                             "selections": [
                               (v3/*: any*/),
@@ -396,7 +396,7 @@ return {
     "operationKind": "query",
     "name": "FollowingActivityListPaginationQuery",
     "id": null,
-    "text": "query FollowingActivityListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingActivityList_query\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query FollowingActivityListPaginationQuery(\n  $count: Int!\n  $followingCursor: String\n) {\n  ...FollowingActivityList_query\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  topic {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

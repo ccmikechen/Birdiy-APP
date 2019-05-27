@@ -27,7 +27,7 @@ export default class ProjectEditor extends Component {
       name: PropTypes.string,
       published: PropTypes.bool,
       image: PropTypes.string,
-      category: PropTypes.string,
+      topic: PropTypes.string,
       tip: PropTypes.string,
       materials: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string,
@@ -48,18 +48,14 @@ export default class ProjectEditor extends Component {
         content: PropTypes.string,
       })),
     }),
-    categories: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-    })),
-    onOpenCategorySelector: PropTypes.func,
+    onOpenTopicSelector: PropTypes.func,
     onSubmit: PropTypes.func,
     published: PropTypes.bool,
   };
 
   static defaultProps = {
     initialValues: null,
-    categories: [],
-    onOpenCategorySelector: () => {},
+    onOpenTopicSelector: () => {},
     onSubmit: () => {},
     published: false,
   };
@@ -70,7 +66,7 @@ export default class ProjectEditor extends Component {
   };
 
   tabFields = [
-    ['name', 'category', 'introduction'],
+    ['name', 'topic', 'introduction'],
     ['image'],
     ['materials'],
     ['files'],
@@ -111,8 +107,7 @@ export default class ProjectEditor extends Component {
     const {
       initialValues,
       onSubmit,
-      categories,
-      onOpenCategorySelector,
+      onOpenTopicSelector,
     } = this.props;
     const { tabIndex, projectStatus } = this.state;
 
@@ -170,8 +165,7 @@ export default class ProjectEditor extends Component {
               <View style={styles.section}>
                 <ProjectIntroEditor
                   {...sectionProps}
-                  categories={categories}
-                  onSelectCategoryPress={onOpenCategorySelector}
+                  onSelectTopicPress={onOpenTopicSelector}
                 />
               </View>
               <View style={styles.section}>

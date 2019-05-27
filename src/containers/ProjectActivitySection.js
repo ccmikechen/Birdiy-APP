@@ -15,7 +15,7 @@ export default createFragmentContainer(
       }
       image
       name
-      category {
+      topic {
         name
       }
     }

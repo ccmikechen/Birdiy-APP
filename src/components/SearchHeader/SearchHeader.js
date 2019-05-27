@@ -13,7 +13,7 @@ import styles from './styles';
 const SearchHeader = (props) => {
   const {
     keyword,
-    categories,
+    topics,
     onSearch,
     onOpenFilter,
   } = props;
@@ -25,18 +25,18 @@ const SearchHeader = (props) => {
   const filterButton = {
     icon: 'filter-list',
     onPress: onOpenFilter,
-    color: categories.length > 1
+    color: topics.length > 1
       ? Colors.activeHeaderIcon
       : Colors.headerIcon,
   };
-  const showCategory = !keyword && categories.length === 1;
+  const showTopic = !keyword && topics.length === 1;
 
   return (
     <BasicHeader
       placement="center"
-      centerComponent={() => (showCategory ? (
+      centerComponent={() => (showTopic ? (
         <Text style={styles.title}>
-          {i18n.t(`categories.${categories[0]}`, { defaultValue: categories[0] })}
+          {i18n.t(`topics.${topics[0]}`, { defaultValue: topics[0] })}
         </Text>
       ) : (
         <SearchBarButton
@@ -45,7 +45,7 @@ const SearchHeader = (props) => {
         />
       ))}
       rightButton={
-        showCategory ? [searchButton, filterButton] : [filterButton]
+        showTopic ? [searchButton, filterButton] : [filterButton]
       }
     />
   );
@@ -54,7 +54,7 @@ const SearchHeader = (props) => {
 
 SearchHeader.propTypes = {
   keyword: PropTypes.string,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  topics: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSearch: PropTypes.func,
   onOpenFilter: PropTypes.func,
 };

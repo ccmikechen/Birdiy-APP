@@ -31,36 +31,16 @@ export default class CreateProjectScreen extends Component {
         off: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
-    query: PropTypes.shape({
-      categories: PropTypes.shape({
-        edges: PropTypes.arrayOf(PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string,
-            image: PropTypes.string,
-          }),
-        })),
-      }),
-    }),
-    loading: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    query: null,
-    loading: true,
   };
 
   initialProject = {
     name: '',
-    category: null,
+    topic: null,
   };
 
-  handleOpenCategorySelector = (categories, callback) => {
+  handleOpenTopicSelector = (callback) => {
     const { navigation } = this.props;
-    navigation.navigate('SelectCategoryModal', {
-      categories,
-      onSelect: callback,
-    });
+    navigation.navigate('SelectTopicModal', { onSelect: callback });
   };
 
   handleSubmitPress = () => {
@@ -86,8 +66,7 @@ export default class CreateProjectScreen extends Component {
   };
 
   render() {
-    const { navigation, loading, query } = this.props;
-    const categories = query && query.categories.edges.map(({ node }) => node);
+    const { navigation } = this.props;
 
     return (
       <InputScreenView
@@ -104,13 +83,11 @@ export default class CreateProjectScreen extends Component {
           />
         )}
         fullScreen
-        loading={loading}
       >
         <ProjectDraftEditor
           ref={(ref) => { this.projectDraftEditor = ref; }}
           initialValue={this.initialProject}
-          categories={categories}
-          onOpenCategorySelector={this.handleOpenCategorySelector}
+          onOpenTopicSelector={this.handleOpenTopicSelector}
           onSubmit={this.handleSubmit}
           onSubmitPress={this.handleSubmitPress}
         />

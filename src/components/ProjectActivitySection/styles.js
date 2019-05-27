@@ -44,7 +44,7 @@ export default StyleSheet.create({
     color: TextColor.primaryDark,
     fontSize: 16,
   },
-  category: {
+  topic: {
     fontWeight: '600',
   },
   imageContainer: {

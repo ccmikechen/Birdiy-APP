@@ -63,7 +63,7 @@ export default class EditProjectScreen extends Component {
         name: PropTypes.string,
         published: PropTypes.bool,
         image: PropTypes.string,
-        category: PropTypes.shape({
+        topic: PropTypes.shape({
           name: PropTypes.string.isRequired,
         }),
         tip: PropTypes.string,
@@ -84,15 +84,6 @@ export default class EditProjectScreen extends Component {
           image: PropTypes.string,
           title: PropTypes.string,
           content: PropTypes.string.isRequired,
-        })),
-      }),
-      categories: PropTypes.shape({
-        edges: PropTypes.arrayOf(PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string,
-            image: PropTypes.string,
-          }),
         })),
       }),
     }),
@@ -125,7 +116,7 @@ export default class EditProjectScreen extends Component {
         id: project.id,
         image: project.image,
         name: project.name,
-        category: project.category.name,
+        topic: project.topic.name,
         introduction: project.introduction || '',
         tip: project.tip || '',
 
@@ -153,12 +144,9 @@ export default class EditProjectScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleGoBack);
   }
 
-  handleOpenCategorySelector = (categories, callback) => {
+  handleOpenTopicSelector = (callback) => {
     const { navigation } = this.props;
-    navigation.navigate('SelectCategoryModal', {
-      categories,
-      onSelect: callback,
-    });
+    navigation.navigate('SelectTopicModal', { onSelect: callback });
   };
 
   handleOptionPress = () => {
@@ -270,9 +258,8 @@ export default class EditProjectScreen extends Component {
   };
 
   render() {
-    const { navigation, loading, query } = this.props;
+    const { navigation, loading } = this.props;
     const { initialProject, projectPublished } = this.state;
-    const categories = query && query.categories.edges.map(({ node }) => node);
 
     return (
       <View style={styles.container}>
@@ -301,8 +288,7 @@ export default class EditProjectScreen extends Component {
             ref={(ref) => { this.projectEditor = ref; }}
             initialValues={initialProject}
             onSubmit={this.handleSubmit}
-            categories={categories}
-            onOpenCategorySelector={this.handleOpenCategorySelector}
+            onOpenTopicSelector={this.handleOpenTopicSelector}
             published={projectPublished}
           />
         </SimpleScreenView>

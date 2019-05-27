@@ -12,18 +12,6 @@ const ProjectsScreenFragmentContainer = createFragmentContainer(
     fragment ProjectsScreen_query on RootQueryType {
       ...NewestProjectList_query
       ...HotestProjectList_query
-      categories: allProjectCategories(
-        first: 100000,
-        order: NAME,
-      ) {
-        edges {
-          node {
-            id
-            name
-            image
-          }
-        }
-      }
     }
   `,
 );
@@ -52,6 +40,7 @@ export default withNavigation(
         filter: {
           name: props.navigation.getParam('keyword'),
           categories: props.navigation.getParam('categories'),
+          topics: props.navigation.getParam('topics'),
         },
       }),
     },

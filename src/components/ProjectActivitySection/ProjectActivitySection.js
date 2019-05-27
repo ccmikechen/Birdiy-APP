@@ -19,10 +19,10 @@ import Size from '../../constants/Size';
 
 import styles from './styles';
 
-const renderMessage = (category) => {
-  const translatedCategory = i18n.t(
-    `categories.${category}`, {
-      defaultValue: category,
+const renderMessage = (topic) => {
+  const translatedTopic = i18n.t(
+    `categories.${topic}`, {
+      defaultValue: topic,
     },
   );
 
@@ -31,8 +31,8 @@ const renderMessage = (category) => {
       return (
         <Text style={styles.message}>
           {'在 '}
-          <Text style={styles.category}>
-            {translatedCategory}
+          <Text style={styles.topic}>
+            {translatedTopic}
           </Text>
           {' 建立了新的專案。'}
         </Text>
@@ -40,8 +40,8 @@ const renderMessage = (category) => {
     case 'ja':
       return (
         <Text style={styles.message}>
-          <Text style={styles.category}>
-            {translatedCategory}
+          <Text style={styles.topic}>
+            {translatedTopic}
           </Text>
           {' で新しいプロジェクトを作りました。'}
         </Text>
@@ -51,8 +51,8 @@ const renderMessage = (category) => {
       return (
         <Text style={styles.message}>
           {'Created new project in '}
-          <Text style={styles.category}>
-            {translatedCategory}
+          <Text style={styles.topic}>
+            {translatedTopic}
           </Text>
         </Text>
       );
@@ -93,7 +93,7 @@ const ProjectActivitySection = ({
       </View>
     </View>
     <View style={styles.messageContainer}>
-      {renderMessage(project.category.name)}
+      {renderMessage(project.topic.name)}
     </View>
     <TouchableOpacity
       style={styles.imageContainer}
@@ -125,7 +125,7 @@ ProjectActivitySection.propTypes = {
     }).isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    category: PropTypes.shape({
+    topic: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,

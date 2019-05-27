@@ -13,7 +13,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         name
         image
         ...ProjectAuthor_project
-        category {
+        topic {
           name
         }
         introduction

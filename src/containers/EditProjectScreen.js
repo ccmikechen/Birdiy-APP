@@ -15,7 +15,7 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
         name
         published
         image
-        category {
+        topic {
           name
         }
         introduction
@@ -37,18 +37,6 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
           image
           title
           content
-        }
-      }
-      categories: allProjectCategories(
-        first: 100000,
-        order: NAME,
-      ) {
-        edges {
-          node {
-            id
-            name
-            image
-          }
         }
       }
     }

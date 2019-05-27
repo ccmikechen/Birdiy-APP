@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { pull } from 'lodash';
+import { pull, clone } from 'lodash';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -23,7 +23,7 @@ export default class SelectorScreen extends Component {
     super(props);
 
     this.state = {
-      selected: props.navigation.getParam('selected'),
+      selected: clone(props.navigation.getParam('selected')),
     };
   }
 
@@ -56,7 +56,7 @@ export default class SelectorScreen extends Component {
   handleSelectAll = () => {
     const { navigation } = this.props;
     const items = navigation.getParam('items');
-    this.setState({ selected: items });
+    this.setState({ selected: clone(items) });
   };
 
   handleClear = () => {

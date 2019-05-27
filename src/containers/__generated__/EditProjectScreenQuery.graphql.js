@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 64f57516133157624a9c5a4c23dcf3a5
+ * @relayHash 203661e08fd5fbfeb88e65646936e87b
  */
 
 /* eslint-disable */
@@ -36,7 +36,7 @@ fragment EditProjectScreen_query on RootQueryType {
     name
     published
     image
-    category {
+    topic {
       name
       id
     }
@@ -59,15 +59,6 @@ fragment EditProjectScreen_query on RootQueryType {
       image
       title
       content
-    }
-  }
-  categories: allProjectCategories(first: 100000, order: NAME) {
-    edges {
-      node {
-        id
-        name
-        image
-      }
     }
   }
 }
@@ -160,10 +151,10 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "category",
+            "name": "topic",
             "storageKey": null,
             "args": null,
-            "concreteType": "ProjectCategory",
+            "concreteType": "ProjectTopic",
             "plural": false,
             "selections": [
               (v2/*: any*/),
@@ -254,55 +245,6 @@ return {
             ]
           }
         ]
-      },
-      {
-        "kind": "LinkedField",
-        "alias": "categories",
-        "name": "allProjectCategories",
-        "storageKey": "allProjectCategories(first:100000,order:\"NAME\")",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 100000,
-            "type": "Int"
-          },
-          {
-            "kind": "Literal",
-            "name": "order",
-            "value": "NAME",
-            "type": "RankOrder"
-          }
-        ],
-        "concreteType": "ProjectCategoryConnection",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "edges",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "ProjectCategoryEdge",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "ProjectCategory",
-                "plural": false,
-                "selections": [
-                  (v1/*: any*/),
-                  (v2/*: any*/),
-                  (v3/*: any*/)
-                ]
-              }
-            ]
-          }
-        ]
       }
     ]
   },
@@ -310,7 +252,7 @@ return {
     "operationKind": "query",
     "name": "EditProjectScreenQuery",
     "id": null,
-    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    category {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n  categories: allProjectCategories(first: 100000, order: NAME) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n",
+    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    topic {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

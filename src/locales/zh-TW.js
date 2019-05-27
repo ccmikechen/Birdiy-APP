@@ -44,9 +44,9 @@ export default {
         title: '專案名稱',
         placeholder: '輸入你的專案名稱',
       },
-      category: {
-        title: '分類',
-        placeholder: '選擇你的專案分類',
+      topic: {
+        title: '主題',
+        placeholder: '選擇你的專案主題',
       },
       submit: '儲存並繼續編輯',
     },
@@ -64,9 +64,9 @@ export default {
         title: '專案名稱',
         placeholder: '輸入你的專案名稱',
       },
-      category: {
-        title: '分類',
-        placeholder: '選擇你的專案分類',
+      topic: {
+        title: '主題',
+        placeholder: '選擇你的專案主題',
       },
       intro: {
         title: '介紹',
@@ -170,6 +170,14 @@ export default {
     },
   },
   categories: {
+    Craft: '手工藝',
+    Workshop: '工作坊',
+    Electronics: '電子',
+    Living: '生活',
+    Outside: '戶外',
+    Science: '科學',
+  },
+  topics: {
     '3D Printing': '3D列印',
     Appliance: '居家裝置',
     Art: '藝術',
@@ -207,8 +215,8 @@ export default {
   allCategories: {
     title: '所有分類',
   },
-  selectCategory: {
-    title: '選擇分類',
+  selectTopic: {
+    title: '選擇主題',
   },
   cart: {
     title: '採買清單',

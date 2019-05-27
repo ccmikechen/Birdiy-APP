@@ -9,7 +9,7 @@ export default (state) => {
     case 'published':
       return object({
         name: string().required().max(20),
-        category: string().nullable().required(),
+        topic: string().nullable().required(),
         introduction: string().nullable().required().max(300),
         image: string().nullable().required(),
         materials: array().of(object().shape({
@@ -55,7 +55,7 @@ export default (state) => {
     default:
       return object({
         name: string().required().max(20),
-        category: string().nullable().required(),
+        topic: string().nullable().required(),
         introduction: string().nullable().max(300),
         image: string().nullable(),
         materials: array().of(object().shape({

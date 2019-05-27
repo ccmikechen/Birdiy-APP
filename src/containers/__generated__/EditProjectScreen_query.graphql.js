@@ -16,7 +16,7 @@ export type EditProjectScreen_query = {|
     +name: string,
     +published: ?boolean,
     +image: ?string,
-    +category: {|
+    +topic: {|
       +name: string
     |},
     +introduction: ?string,
@@ -39,15 +39,6 @@ export type EditProjectScreen_query = {|
       +title: ?string,
       +content: string,
     |}>,
-  |},
-  +categories: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +name: string,
-        +image: ?string,
-      |}
-    |}>
   |},
   +$refType: EditProjectScreen_query$ref,
 |};
@@ -125,10 +116,10 @@ return {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "category",
+          "name": "topic",
           "storageKey": null,
           "args": null,
-          "concreteType": "ProjectCategory",
+          "concreteType": "ProjectTopic",
           "plural": false,
           "selections": [
             (v1/*: any*/)
@@ -218,59 +209,10 @@ return {
           ]
         }
       ]
-    },
-    {
-      "kind": "LinkedField",
-      "alias": "categories",
-      "name": "allProjectCategories",
-      "storageKey": "allProjectCategories(first:100000,order:\"NAME\")",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 100000,
-          "type": "Int"
-        },
-        {
-          "kind": "Literal",
-          "name": "order",
-          "value": "NAME",
-          "type": "RankOrder"
-        }
-      ],
-      "concreteType": "ProjectCategoryConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "edges",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "ProjectCategoryEdge",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "node",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "ProjectCategory",
-              "plural": false,
-              "selections": [
-                (v0/*: any*/),
-                (v1/*: any*/),
-                (v2/*: any*/)
-              ]
-            }
-          ]
-        }
-      ]
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '532384eefe8480e5fcf6c6d875069ad5';
+(node/*: any*/).hash = '2cd41d53f7f18a021a0a730a7e092114';
 module.exports = node;

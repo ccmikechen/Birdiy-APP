@@ -20,7 +20,7 @@ export type ProjectActivitySection_project = {|
   |},
   +image: ?string,
   +name: string,
-  +category: {|
+  +topic: {|
     +name: string
   |},
   +$refType: ProjectActivitySection_project$ref,
@@ -84,10 +84,10 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "category",
+      "name": "topic",
       "storageKey": null,
       "args": null,
-      "concreteType": "ProjectCategory",
+      "concreteType": "ProjectTopic",
       "plural": false,
       "selections": [
         (v1/*: any*/)
@@ -97,5 +97,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9a8a72358b0d9140bec81ba253b5ad38';
+(node/*: any*/).hash = 'fc84b66ac8afceb2835839c2a3174b62';
 module.exports = node;

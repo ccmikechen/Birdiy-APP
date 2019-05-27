@@ -14,17 +14,16 @@ const i18nOptions = { scope: 'project.edit' };
 const ProjectIntroEditor = (props) => {
   const {
     project,
-    categories,
-    onSelectCategoryPress,
+    onSelectTopicPress,
     onChange,
     errors,
     touched,
   } = props;
-  const { name, introduction, category } = project;
+  const { name, introduction, topic } = project;
 
   const error = {
     name: touched.name && errors.name,
-    category: touched.category && errors.category,
+    topic: touched.topic && errors.topic,
     introduction: touched.introduction && errors.introduction,
   };
 
@@ -53,17 +52,16 @@ const ProjectIntroEditor = (props) => {
         />
       </EditSection>
       <EditSection
-        title={i18n.t('category.title', i18nOptions)}
-        error={error.category}
+        title={i18n.t('topic.title', i18nOptions)}
+        error={error.topic}
       >
         <PureSelector
           style={styles.textInput}
-          placeholder={i18n.t('category.placeholder', i18nOptions)}
-          value={category && i18n.t(`categories.${category}`, { defaultValue: category })}
-          error={error.category}
-          onPress={() => onSelectCategoryPress(categories, (index) => {
-            const selectedCategory = categories[index] && categories[index].name;
-            onChange('category', selectedCategory);
+          placeholder={i18n.t('topic.placeholder', i18nOptions)}
+          value={topic && i18n.t(`topics.${topic}`, { defaultValue: topic })}
+          error={error.topic}
+          onPress={() => onSelectTopicPress((selected) => {
+            onChange('topic', selected);
           })}
         />
       </EditSection>
@@ -90,22 +88,19 @@ ProjectIntroEditor.propTypes = {
   project: PropTypes.shape({
     name: PropTypes.string,
     introduction: PropTypes.string,
-    category: PropTypes.string,
+    topic: PropTypes.string,
   }).isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-  })).isRequired,
   onChange: PropTypes.func.isRequired,
-  onSelectCategoryPress: PropTypes.func.isRequired,
+  onSelectTopicPress: PropTypes.func.isRequired,
   errors: PropTypes.shape({
     name: PropTypes.string,
     introduction: PropTypes.string,
-    category: PropTypes.string,
+    topic: PropTypes.string,
   }),
   touched: PropTypes.shape({
     name: PropTypes.bool,
     introduction: PropTypes.bool,
-    category: PropTypes.bool,
+    topic: PropTypes.bool,
   }),
 };
 

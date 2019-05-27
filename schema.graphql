@@ -37,8 +37,8 @@ input CreatePostInput {
 }
 
 input CreateProjectInput {
-  category: String!
   name: String!
+  topic: String!
 }
 
 scalar Datetime
@@ -53,7 +53,6 @@ input EditPostInput {
 }
 
 input EditProjectInput {
-  category: String!
   fileResources: [ProjectFileResourceInput]
   id: ID!
   image: Upload
@@ -63,6 +62,7 @@ input EditProjectInput {
   name: String!
   publish: Boolean
   tip: String
+  topic: String!
 }
 
 input EditUserInput {
@@ -176,7 +176,6 @@ interface Profile {
 
 type Project implements Node {
   author: User!
-  category: ProjectCategory!
   favorite: Boolean
   favoriteCount: Int
   fileResources: [ProjectFileResource]
@@ -195,6 +194,7 @@ type Project implements Node {
   relatedPostCount: Int
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
+  topic: ProjectTopic!
   viewCount: Int
   viewed: Boolean
 }
@@ -204,7 +204,8 @@ type ProjectCategory implements Node {
   id: ID!
   image: String
   name: String!
-  projects: [Project]
+  projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
+  topics(after: String, before: String, first: Int, last: Int, order: RankOrder = NAME): ProjectTopicConnection
 }
 
 type ProjectCategoryConnection {
@@ -254,6 +255,7 @@ input ProjectFileResourceInput {
 input ProjectFilter {
   categories: [String]
   name: String
+  topics: [String]
 }
 
 input ProjectInput {
@@ -305,6 +307,28 @@ enum ProjectOrder {
 
 type ProjectResult {
   project: Project!
+}
+
+type ProjectTopic implements Node {
+  category: ProjectCategory!
+
+  """The ID of an object"""
+  id: ID!
+  name: String!
+  projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
+}
+
+type ProjectTopicConnection {
+  edges: [ProjectTopicEdge]
+  pageInfo: PageInfo!
+}
+
+type ProjectTopicEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: ProjectTopic
 }
 
 enum RankOrder {

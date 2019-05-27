@@ -33,15 +33,6 @@ export default class ProjectsScreen extends Component {
       hotest: PropTypes.shape({
         edges: PropTypes.arrayOf(PropTypes.object),
       }),
-      categories: PropTypes.shape({
-        edges: PropTypes.arrayOf(PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string,
-            image: PropTypes.string,
-          }),
-        })),
-      }),
     }),
     variables: PropTypes.shape({
       count: PropTypes.number,
@@ -81,25 +72,19 @@ export default class ProjectsScreen extends Component {
     navigation.navigate('SearchDetail', { keyword, categories });
   };
 
-  handleSelectCategory = (selection) => {
-    const { navigation, query } = this.props;
-    const categories = query.categories.edges.map(({ node }, index) => (
-      selection[index] ? node.name : null
-    )).filter(Boolean);
-
-    navigation.setParams({ categories });
+  handleSelectTopic = (topics) => {
+    const { navigation } = this.props;
+    navigation.setParams({ topics });
   };
 
   handleOpenFilter = () => {
-    const { navigation, query } = this.props;
-    const categories = query.categories.edges.map(({ node }) => node);
-    const selected = navigation.getParam('categories');
+    const { navigation } = this.props;
+    const selected = navigation.getParam('topics');
 
-    navigation.navigate('SelectCategoryModal', {
-      categories,
+    navigation.navigate('SelectTopicModal', {
       selected,
-      multipleSelect: true,
-      onSelect: this.handleSelectCategory,
+      multiple: true,
+      onSelect: this.handleSelectTopic,
     });
   };
 
@@ -124,7 +109,7 @@ export default class ProjectsScreen extends Component {
     } = this.props;
     const { addProjectButtonVisible } = this.state;
     const keyword = navigation.getParam('keyword');
-    const categories = navigation.getParam('categories');
+    const topics = navigation.getParam('topics');
     const tabs = [
       i18n.t('projects.tabs.newest'),
       i18n.t('projects.tabs.hotest'),
@@ -138,7 +123,7 @@ export default class ProjectsScreen extends Component {
           renderHeader={() => (
             <SearchHeader
               keyword={keyword}
-              categories={categories || []}
+              topics={topics || []}
               onSearch={this.handleSearch}
               onOpenFilter={this.handleOpenFilter}
             />
@@ -155,7 +140,7 @@ export default class ProjectsScreen extends Component {
             query={query}
             batchLoad={variables.count}
             keyword={keyword}
-            categories={categories}
+            topics={topics}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />
@@ -164,7 +149,7 @@ export default class ProjectsScreen extends Component {
             query={query}
             batchLoad={variables.count}
             keyword={keyword}
-            categories={categories}
+            topics={topics}
             headerPadding
             onProjectPress={this.handleOpenProject}
           />

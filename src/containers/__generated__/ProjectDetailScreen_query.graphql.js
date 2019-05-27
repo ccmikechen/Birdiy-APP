@@ -20,7 +20,7 @@ export type ProjectDetailScreen_query = {|
     +id: string,
     +name: string,
     +image: ?string,
-    +category: {|
+    +topic: {|
       +name: string
     |},
     +introduction: ?string,
@@ -105,10 +105,10 @@ return {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "category",
+          "name": "topic",
           "storageKey": null,
           "args": null,
-          "concreteType": "ProjectCategory",
+          "concreteType": "ProjectTopic",
           "plural": false,
           "selections": [
             (v0/*: any*/)
@@ -197,5 +197,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd843e0b65c010c2f85ec60a76757bbb6';
+(node/*: any*/).hash = 'af0a12bae83b678ffd65b6e532ffee89';
 module.exports = node;

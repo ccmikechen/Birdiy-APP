@@ -44,9 +44,9 @@ export default {
         title: 'プロジェクト名',
         placeholder: 'プロジェクト名を入力',
       },
-      category: {
-        title: 'カテゴリー',
-        placeholder: 'カテゴリーを選ぶ',
+      topic: {
+        title: 'トピック',
+        placeholder: 'トピックを選ぶ',
       },
       submit: '保存して編集に進む',
     },
@@ -64,9 +64,9 @@ export default {
         title: 'プロジェクト名',
         placeholder: 'プロジェクト名を入力',
       },
-      category: {
-        title: 'カテゴリー',
-        placeholder: 'カテゴリーを選ぶ',
+      topic: {
+        title: 'トピック',
+        placeholder: 'トピックを選ぶ',
       },
       intro: {
         title: '紹介',
@@ -169,7 +169,7 @@ export default {
       favorites: '気に入り',
     },
   },
-  categories: {
+  topics: {
     '3D Printing': '3Dプリント',
     Appliance: '家庭用器具',
     Art: '芸術',
@@ -207,8 +207,8 @@ export default {
   allCategories: {
     title: 'すべてのカテゴリー',
   },
-  selectCategory: {
-    title: 'カテゴリー',
+  selectTopic: {
+    title: 'トピックを選ぶ',
   },
   cart: {
     title: '買い物リスト',

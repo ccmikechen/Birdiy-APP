@@ -83,7 +83,7 @@ export default class ProjectDetailScreen extends Component {
     id: '',
     name: '',
     image: '',
-    category: {
+    topic: {
       name: '',
     },
     introduction: '',

@@ -8,10 +8,10 @@ import createMainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/LoginScreen';
 import AllCategoriesScreen from '../containers/AllCategoriesScreen';
-import CreateProjectScreen from '../containers/CreateProjectScreen';
+import CreateProjectScreen from '../screens/CreateProjectScreen';
 import EditProjectScreen from '../containers/EditProjectScreen';
 import EditPostScreen from '../containers/EditPostScreen';
-import SelectCategoryScreen from '../screens/SelectCategoryScreen';
+import SelectTopicScreen from '../containers/SelectTopicScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
 import PostImagesScreen from '../containers/PostImagesScreen';
 import SettingScreen from '../screens/SettingScreen';
@@ -30,7 +30,7 @@ const modals = {
   CreateProjectModal: CreateProjectScreen,
   EditProjectModal: EditProjectScreen,
   EditPostModal: EditPostScreen,
-  SelectCategoryModal: SelectCategoryScreen,
+  SelectTopicModal: SelectTopicScreen,
   CreatePostModal: CreatePostScreen,
   PostImagesModal: PostImagesScreen,
   SettingModal: SettingScreen,

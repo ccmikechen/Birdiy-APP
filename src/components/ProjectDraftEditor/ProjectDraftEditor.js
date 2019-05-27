@@ -19,12 +19,9 @@ export default class ProjectDraftEditor extends Component {
   static propTypes = {
     initialValues: PropTypes.shape({
       name: PropTypes.string,
-      category: PropTypes.string,
+      topic: PropTypes.string,
     }),
-    categories: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-    })),
-    onOpenCategorySelector: PropTypes.func,
+    onOpenTopicSelector: PropTypes.func,
     onSubmit: PropTypes.func,
     onSubmitPress: PropTypes.func,
   };
@@ -32,10 +29,9 @@ export default class ProjectDraftEditor extends Component {
   static defaultProps = {
     initialValues: {
       name: '',
-      category: null,
+      topic: null,
     },
-    categories: [],
-    onOpenCategorySelector: () => {},
+    onOpenTopicSelector: () => {},
     onSubmit: () => {},
     onSubmitPress: () => {},
   };
@@ -47,8 +43,7 @@ export default class ProjectDraftEditor extends Component {
   render() {
     const {
       initialValues,
-      categories,
-      onOpenCategorySelector,
+      onOpenTopicSelector,
       onSubmit,
       onSubmitPress,
     } = this.props;
@@ -67,10 +62,10 @@ export default class ProjectDraftEditor extends Component {
             handleChange,
             submitForm,
           } = props;
-          const { name, category } = values;
+          const { name, topic } = values;
 
           const nameError = touched.name && errors.name;
-          const categoryError = touched.category && errors.category;
+          const topicError = touched.topic && errors.topic;
 
           this.bindSubmit(submitForm);
 
@@ -91,16 +86,15 @@ export default class ProjectDraftEditor extends Component {
                 />
               </EditSection>
               <EditSection
-                title={i18n.t('category.title', i18nOptions)}
-                error={categoryError}
+                title={i18n.t('topic.title', i18nOptions)}
+                error={topicError}
               >
                 <PureSelector
-                  placeholder={i18n.t('category.placeholder', i18nOptions)}
-                  value={category && i18n.t(`categories.${category}`)}
-                  error={categoryError}
-                  onPress={() => onOpenCategorySelector(categories, (index) => {
-                    const selectedCategory = categories[index] && categories[index].name;
-                    handleChange('category')(selectedCategory);
+                  placeholder={i18n.t('topic.placeholder', i18nOptions)}
+                  value={topic && i18n.t(`topics.${topic}`)}
+                  error={topicError}
+                  onPress={() => onOpenTopicSelector((selected) => {
+                    handleChange('topic')(selected);
                   })}
                 />
               </EditSection>

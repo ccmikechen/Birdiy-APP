@@ -49,9 +49,9 @@ export default {
         title: 'Project Name',
         placeholder: 'Enter your project\'s name',
       },
-      category: {
-        title: 'Category',
-        placeholder: 'Select category of your project',
+      topic: {
+        title: 'Topic',
+        placeholder: 'Select topic of your project',
       },
       submit: 'Save and Continue',
     },
@@ -69,9 +69,9 @@ export default {
         title: 'Project Name',
         placeholder: 'Enter your project\'s name',
       },
-      category: {
-        title: 'Category',
-        placeholder: 'Select category of your project',
+      topic: {
+        title: 'Topic',
+        placeholder: 'Select topic of your project',
       },
       intro: {
         title: 'Introduction',
@@ -174,13 +174,13 @@ export default {
       favorites: 'Favorites',
     },
   },
-  categories: {
+  topics: {
   },
   allCategories: {
     title: 'All Categories',
   },
-  selectCategory: {
-    title: 'Category',
+  selectTopic: {
+    title: 'Select Topic',
   },
   cart: {
     title: 'Purchase List',

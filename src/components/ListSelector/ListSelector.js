@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native';
+import { FlatList, SectionList } from 'react-native';
+import { flatten } from 'lodash';
 import i18n from 'i18n-js';
 
 import ListSelectorItem from '../ListSelectorItem';
 
-const generateSelectionMap = (items, selected) => {
-  const selectionMap = new Map(items.map(item => [item, false]));
+const generateSelectionMap = (items, selected, section) => {
+  const selectionMap = section
+    ? new Map(flatten(items.map(({ data }) => data.map(item => [item, false]))))
+    : new Map(items.map(item => [item, false]));
 
   if (Array.isArray(selected)) {
     selected.forEach(item => selectionMap.set(item, true));
@@ -19,12 +22,18 @@ const generateSelectionMap = (items, selected) => {
 
 export default class ListSelector extends Component {
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        data: PropTypes.arrayOf(PropTypes.string).isRequired,
+      }),
+    ])),
     selected: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]),
     multiple: PropTypes.bool,
+    section: PropTypes.bool,
     onSelect: PropTypes.func,
     i18nScope: PropTypes.string,
   };
@@ -33,25 +42,26 @@ export default class ListSelector extends Component {
     items: [],
     selected: null,
     multiple: false,
+    section: false,
     onSelect: () => {},
     i18nScope: undefined,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { items, selected } = nextProps;
+    const { items, selected, section } = nextProps;
 
     return {
       ...prevState,
-      selectionMap: generateSelectionMap(items, selected),
+      selectionMap: generateSelectionMap(items, selected, section),
     };
   }
 
   constructor(props) {
     super(props);
 
-    const { items, selected } = props;
+    const { items, selected, section } = props;
     this.state = {
-      selectionMap: generateSelectionMap(items, selected),
+      selectionMap: generateSelectionMap(items, selected, section),
     };
   }
 
@@ -73,7 +83,7 @@ export default class ListSelector extends Component {
 
     return (
       <ListSelectorItem
-        text={i18n.t(item, { scope: i18nScope })}
+        text={i18n.t(item, { scope: i18nScope, defaultValue: item })}
         selected={selected}
         onPress={this.handleItemPress(item, selected)}
       />
@@ -85,16 +95,26 @@ export default class ListSelector extends Component {
       multiple,
       selected,
       items,
+      section,
       ...restProps
     } = this.props;
 
-    return (
+    const listProps = {
+      renderItem: this.renderItem,
+      extraData: this.props,
+      keyExtractor: item => item,
+      ...restProps,
+    };
+
+    return section ? (
+      <SectionList
+        sections={items}
+        {...listProps}
+      />
+    ) : (
       <FlatList
         data={items}
-        renderItem={this.renderItem}
-        extraData={this.props}
-        keyExtractor={item => item}
-        {...restProps}
+        {...listProps}
       />
     );
   }

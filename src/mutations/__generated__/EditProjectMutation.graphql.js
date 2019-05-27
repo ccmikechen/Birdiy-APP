@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9b25eae2f615eaaff9f7a113cfee756f
+ * @relayHash 8dbb1c06712fe574c96c0251454cb8a4
  */
 
 /* eslint-disable */
@@ -10,7 +10,6 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type EditProjectInput = {|
-  category: string,
   fileResources?: ?$ReadOnlyArray<?ProjectFileResourceInput>,
   id: string,
   image?: ?any,
@@ -20,6 +19,7 @@ export type EditProjectInput = {|
   name: string,
   publish?: ?boolean,
   tip?: ?string,
+  topic: string,
 |};
 export type ProjectFileResourceInput = {|
   file?: ?any,

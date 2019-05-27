@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7f1d140e7ac34dd15653ad5a080be139
+ * @relayHash 4ceb7e4857da404baecb8657a410c4fa
  */
 
 /* eslint-disable */
@@ -102,7 +102,7 @@ fragment ProjectActivitySection_project on Project {
   }
   image
   name
-  category {
+  topic {
     name
     id
   }
@@ -277,10 +277,10 @@ v8 = [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "category",
+                "name": "topic",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "ProjectCategory",
+                "concreteType": "ProjectTopic",
                 "plural": false,
                 "selections": [
                   (v4/*: any*/),
@@ -464,7 +464,7 @@ return {
     "operationKind": "query",
     "name": "TimelineScreenQuery",
     "id": null,
-    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllActivityList_query\n  ...FollowingActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        insertedAt\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query TimelineScreenQuery(\n  $count: Int!\n  $allCursor: String\n  $followingCursor: String\n) {\n  ...TimelineScreen_query\n}\n\nfragment TimelineScreen_query on RootQueryType {\n  ...AllActivityList_query\n  ...FollowingActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        insertedAt\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment FollowingActivityList_query on RootQueryType {\n  viewer {\n    following: followingUserActivities(first: $count, after: $followingCursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          project {\n            ...ProjectActivitySection_project\n            id\n          }\n          post {\n            ...PostSection_post\n            id\n          }\n          insertedAt\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  topic {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

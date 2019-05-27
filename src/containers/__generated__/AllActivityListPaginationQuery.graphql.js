@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 287a8dbf64a6f9611bfdc50fb4d93c3c
+ * @relayHash e6c1fc90e9bea7b6fd393dc65c2e994d
  */
 
 /* eslint-disable */
@@ -67,7 +67,7 @@ fragment ProjectActivitySection_project on Project {
   }
   image
   name
-  category {
+  topic {
     name
     id
   }
@@ -264,10 +264,10 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "category",
+                        "name": "topic",
                         "storageKey": null,
                         "args": null,
-                        "concreteType": "ProjectCategory",
+                        "concreteType": "ProjectTopic",
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
@@ -381,7 +381,7 @@ return {
     "operationKind": "query",
     "name": "AllActivityListPaginationQuery",
     "id": null,
-    "text": "query AllActivityListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        insertedAt\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  category {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query AllActivityListPaginationQuery(\n  $count: Int!\n  $allCursor: String\n) {\n  ...AllActivityList_query\n}\n\nfragment AllActivityList_query on RootQueryType {\n  all: allActivities(first: $count, after: $allCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        project {\n          ...ProjectActivitySection_project\n          id\n        }\n        post {\n          ...PostSection_post\n          id\n        }\n        insertedAt\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectActivitySection_project on Project {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  image\n  name\n  topic {\n    name\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
