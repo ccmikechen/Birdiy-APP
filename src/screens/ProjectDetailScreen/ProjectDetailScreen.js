@@ -7,11 +7,13 @@ import {
   Linking,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import videoUrl from 'js-video-url-parser';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import LikeButton from '../../components/LikeButton';
+import VideoPlayer from '../../components/VideoPlayer';
 import ProjectDetailSection from '../../components/ProjectDetailSection';
 import ProjectAuthor from '../../containers/ProjectAuthor';
 import ProjectOptionButtons from '../../components/ProjectOptionButtons';
@@ -83,6 +85,7 @@ export default class ProjectDetailScreen extends Component {
     id: '',
     name: '',
     image: '',
+    video: null,
     topic: {
       name: '',
     },
@@ -232,6 +235,8 @@ export default class ProjectDetailScreen extends Component {
     const { navigation, query, loading } = this.props;
     const { cartMaterials } = this.state;
     const project = query ? query.project : this.defaultProject;
+    const video = project.video && videoUrl.parse(project.video);
+    const showVideo = video && ['youtube', 'vimeo'].includes(video.provider);
 
     return (
       <TopScreenView
@@ -247,10 +252,19 @@ export default class ProjectDetailScreen extends Component {
         loading={loading}
       >
         <View style={styles.projectImageContainer}>
-          <Image
-            style={styles.projectImage}
-            source={{ uri: project.image }}
-          />
+          {
+            showVideo ? (
+              <VideoPlayer
+                style={styles.projectVideo}
+                video={video}
+              />
+            ) : (
+              <Image
+                style={styles.projectImage}
+                source={{ uri: project.image }}
+              />
+            )
+          }
         </View>
         <View style={styles.headerSection}>
           <View style={styles.headerInfoContainer}>

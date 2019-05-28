@@ -16,6 +16,7 @@ export type EditProjectScreen_query = {|
     +name: string,
     +published: ?boolean,
     +image: ?string,
+    +video: ?string,
     +topic: {|
       +name: string
     |},
@@ -49,14 +50,14 @@ const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
@@ -103,7 +104,18 @@ return {
       "concreteType": "Project",
       "plural": false,
       "selections": [
-        (v0/*: any*/),
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "topic",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "ProjectTopic",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ]
+        },
         (v1/*: any*/),
         {
           "kind": "ScalarField",
@@ -114,17 +126,13 @@ return {
         },
         (v2/*: any*/),
         {
-          "kind": "LinkedField",
+          "kind": "ScalarField",
           "alias": null,
-          "name": "topic",
-          "storageKey": null,
+          "name": "video",
           "args": null,
-          "concreteType": "ProjectTopic",
-          "plural": false,
-          "selections": [
-            (v1/*: any*/)
-          ]
+          "storageKey": null
         },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -148,8 +156,8 @@ return {
           "concreteType": "ProjectMaterial",
           "plural": true,
           "selections": [
-            (v0/*: any*/),
             (v1/*: any*/),
+            (v0/*: any*/),
             {
               "kind": "ScalarField",
               "alias": null,
@@ -169,8 +177,8 @@ return {
           "concreteType": "ProjectFileResource",
           "plural": true,
           "selections": [
-            (v0/*: any*/),
             (v1/*: any*/),
+            (v0/*: any*/),
             (v3/*: any*/),
             {
               "kind": "ScalarField",
@@ -190,7 +198,7 @@ return {
           "concreteType": "ProjectMethod",
           "plural": true,
           "selections": [
-            (v0/*: any*/),
+            (v1/*: any*/),
             (v2/*: any*/),
             {
               "kind": "ScalarField",
@@ -214,5 +222,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2cd41d53f7f18a021a0a730a7e092114';
+(node/*: any*/).hash = 'e8bab85ea3c24f21ce5b6014b13830be';
 module.exports = node;

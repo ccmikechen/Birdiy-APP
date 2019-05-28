@@ -8,6 +8,10 @@ export default StyleSheet.create({
   },
   projectImageContainer: {
   },
+  projectVideo: {
+    width: '100%',
+    aspectRatio: 16 / 9,
+  },
   projectImage: {
     width: '100%',
     aspectRatio: 1,
@@ -61,7 +65,8 @@ export default StyleSheet.create({
     lineHeight: 24,
   },
   tipContainer: {
-    padding: 20,
+    padding: 40,
+    paddingBottom: 20,
     paddingTop: 0,
   },
   tip: {

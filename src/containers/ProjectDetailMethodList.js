@@ -10,7 +10,10 @@ const ProjectDetailMethodList = (props) => {
   const { project } = props;
 
   return project.methods.length === 0 ? null : (
-    <ProjectDetailSection title={i18n.t('project.sections.methods.title')}>
+    <ProjectDetailSection
+      title={i18n.t('project.sections.methods.title')}
+      style={{ paddingBottom: 0 }}
+    >
       <MethodList
         {...props}
         methods={project.methods}

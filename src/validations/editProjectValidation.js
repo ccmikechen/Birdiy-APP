@@ -2,6 +2,8 @@ import { object, string, array } from 'yup';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
+import video from '../helpers/video';
+
 import { DEFAULT_METHOD } from '../constants/defaults';
 
 export default (state) => {
@@ -12,6 +14,11 @@ export default (state) => {
         topic: string().nullable().required(),
         introduction: string().nullable().required().max(300),
         image: string().nullable().required(),
+        video: string().nullable().test(
+          'video',
+          i18n.t('errors.video'),
+          video.isValid,
+        ),
         materials: array().of(object().shape({
           name: string().nullable().max(20).when(['amountUnit', 'url'], {
             is: (amountUnit, url) => (amountUnit || url),
@@ -58,6 +65,11 @@ export default (state) => {
         topic: string().nullable().required(),
         introduction: string().nullable().max(300),
         image: string().nullable(),
+        video: string().nullable().test(
+          'video',
+          i18n.t('errors.video'),
+          video.isValid,
+        ),
         materials: array().of(object().shape({
           name: string().nullable().max(20).when(['amountUnit', 'url'], {
             is: (amountUnit, url) => (amountUnit || url),

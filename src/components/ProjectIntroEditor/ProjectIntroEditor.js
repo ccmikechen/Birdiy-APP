@@ -19,12 +19,15 @@ const ProjectIntroEditor = (props) => {
     errors,
     touched,
   } = props;
-  const { name, introduction, topic } = project;
+  const {
+    name, introduction, topic, video,
+  } = project;
 
   const error = {
     name: touched.name && errors.name,
     topic: touched.topic && errors.topic,
     introduction: touched.introduction && errors.introduction,
+    video: touched.video && errors.video,
   };
 
   return (
@@ -80,6 +83,18 @@ const ProjectIntroEditor = (props) => {
           counter
         />
       </EditSection>
+      <EditSection
+        title={i18n.t('video.title', i18nOptions)}
+        error={error.video}
+      >
+        <PureTextInput
+          style={styles.textInput}
+          value={video}
+          error={error.video}
+          placeholder={i18n.t('video.placeholder', i18nOptions)}
+          onChangeText={onChange('video')}
+        />
+      </EditSection>
     </InputScrollView>
   );
 };
@@ -96,6 +111,7 @@ ProjectIntroEditor.propTypes = {
     name: PropTypes.string,
     introduction: PropTypes.string,
     topic: PropTypes.string,
+    video: PropTypes.string,
   }),
   touched: PropTypes.shape({
     name: PropTypes.bool,

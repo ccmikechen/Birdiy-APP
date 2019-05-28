@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dab6d6af1a81b9386121899e1d05fdb0
+ * @relayHash 0320179c4cda0d30734d242bc7c64bc9
  */
 
 /* eslint-disable */
@@ -20,6 +20,7 @@ export type EditProjectInput = {|
   publish?: ?boolean,
   tip?: ?string,
   topic: string,
+  video?: ?string,
 |};
 export type ProjectFileResourceInput = {|
   file?: ?any,

@@ -72,6 +72,10 @@ export default {
         title: '紹介',
         placeholder: 'プロジェクトの紹介を書く',
       },
+      video: {
+        title: '動画',
+        placeholder: '（任意）Youtube / Vimeo 動画リンク',
+      },
       image: {
         title: '写真',
       },
@@ -325,5 +329,6 @@ export default {
     methods: {
       notEmpty: '最小ステップ１つが必要',
     },
+    video: '正しい動画リンクが必要',
   },
 };

@@ -77,6 +77,10 @@ export default {
         title: 'Introduction',
         placeholder: 'Introduce your project',
       },
+      video: {
+        title: 'Video',
+        placeholder: '(Optional) Youtube / Vimeo video url',
+      },
       image: {
         title: 'Main Image',
       },
@@ -297,5 +301,6 @@ export default {
     methods: {
       notEmpty: 'At least 1 step',
     },
+    video: 'Valid video URL is required',
   },
 };

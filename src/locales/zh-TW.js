@@ -72,6 +72,10 @@ export default {
         title: '介紹',
         placeholder: '介紹你的專案',
       },
+      video: {
+        title: '影片',
+        placeholder: '（可選）Youtube / Vimeo 影片連結',
+      },
       image: {
         title: '主圖',
       },
@@ -333,5 +337,6 @@ export default {
     methods: {
       notEmpty: '至少1個步驟',
     },
+    video: '不正確的影片連結',
   },
 };

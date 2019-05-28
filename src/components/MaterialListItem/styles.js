@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingRight: 5,
   },
   name: {
-    fontSize: 16,
+    fontSize: 14,
     color: TextColor.primaryDark,
   },
   amountContainer: {
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     paddingRight: 5,
   },
   amount: {
-    fontSize: 16,
+    fontSize: 14,
     color: TextColor.subDark,
   },
   buttonsContainer: {

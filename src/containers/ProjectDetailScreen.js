@@ -12,6 +12,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         id
         name
         image
+        video
         ...ProjectAuthor_project
         topic {
           name

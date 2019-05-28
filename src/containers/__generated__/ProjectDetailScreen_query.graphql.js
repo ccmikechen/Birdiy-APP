@@ -20,6 +20,7 @@ export type ProjectDetailScreen_query = {|
     +id: string,
     +name: string,
     +image: ?string,
+    +video: ?string,
     +topic: {|
       +name: string
     |},
@@ -79,7 +80,7 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "viewed",
+          "name": "likeCount",
           "args": null,
           "storageKey": null
         },
@@ -94,6 +95,13 @@ return {
           "kind": "ScalarField",
           "alias": null,
           "name": "image",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "video",
           "args": null,
           "storageKey": null
         },
@@ -135,14 +143,14 @@ return {
           "args": null,
           "storageKey": null
         },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "likeCount",
+          "name": "viewed",
           "args": null,
           "storageKey": null
         },
-        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -197,5 +205,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'af0a12bae83b678ffd65b6e532ffee89';
+(node/*: any*/).hash = '3e512235e76643067645363b40728005';
 module.exports = node;

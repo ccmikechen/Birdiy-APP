@@ -6,6 +6,8 @@ import i18n from 'i18n-js';
 import ProjectDetailSection from '../components/ProjectDetailSection';
 import FollowPostView from '../components/FollowPostView';
 
+import { Tertiary } from '../constants/Colors';
+
 class ProjectDetailFollowPostList extends Component {
   static propTypes = {
     project: PropTypes.shape({
@@ -50,7 +52,14 @@ class ProjectDetailFollowPostList extends Component {
     const data = project.relatedPosts.edges.map(({ node }) => node);
 
     return data.length === 0 ? null : (
-      <ProjectDetailSection title={i18n.t('project.sections.followingPosts')}>
+      <ProjectDetailSection
+        title={i18n.t('project.sections.followingPosts')}
+        style={{
+          backgroundColor: '#fafafa',
+          borderTopWidth: 1,
+          borderColor: Tertiary(100),
+        }}
+      >
         <FollowPostView
           {...this.props}
           posts={data}

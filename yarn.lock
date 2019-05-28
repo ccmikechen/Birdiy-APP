@@ -4981,6 +4981,11 @@ js-tokens@^3.0.2:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   integrity sha1-mGbfOVECEw449/mWvOtlRDIJwls=
 
+js-video-url-parser@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/js-video-url-parser/-/js-video-url-parser-0.3.3.tgz#f345b491744f484636aaac86ad10dab2a4ae1e81"
+  integrity sha512-kLzQ+MybGYiD9t7UQmZalhiD22cXSda1svKYpU7In9+KSo3pL3Vrh+ExAP4Zqt2F5WH6+hgJ8loC4kuMMW4kBw==
+
 js-yaml@^3.12.0, js-yaml@^3.7.0, js-yaml@^3.9.0:
   version "3.12.2"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.2.tgz#ef1d067c5a9d9cb65bd72f285b5d8105c77f14fc"

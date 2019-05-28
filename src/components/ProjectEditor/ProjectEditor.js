@@ -27,6 +27,7 @@ export default class ProjectEditor extends Component {
       name: PropTypes.string,
       published: PropTypes.bool,
       image: PropTypes.string,
+      video: PropTypes.string,
       topic: PropTypes.string,
       tip: PropTypes.string,
       materials: PropTypes.arrayOf(PropTypes.shape({
@@ -66,7 +67,7 @@ export default class ProjectEditor extends Component {
   };
 
   tabFields = [
-    ['name', 'topic', 'introduction'],
+    ['name', 'topic', 'introduction', 'video'],
     ['image'],
     ['materials'],
     ['files'],

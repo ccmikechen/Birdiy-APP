@@ -63,6 +63,7 @@ input EditProjectInput {
   publish: Boolean
   tip: String
   topic: String!
+  video: String
 }
 
 input EditUserInput {
@@ -195,6 +196,7 @@ type Project implements Node {
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
   tip: String
   topic: ProjectTopic!
+  video: String
   viewCount: Int
   viewed: Boolean
 }

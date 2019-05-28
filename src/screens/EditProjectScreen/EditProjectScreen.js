@@ -63,6 +63,7 @@ export default class EditProjectScreen extends Component {
         name: PropTypes.string,
         published: PropTypes.bool,
         image: PropTypes.string,
+        video: PropTypes.string,
         topic: PropTypes.shape({
           name: PropTypes.string.isRequired,
         }),
@@ -115,6 +116,7 @@ export default class EditProjectScreen extends Component {
       initialProject: {
         id: project.id,
         image: project.image,
+        video: project.video,
         name: project.name,
         topic: project.topic.name,
         introduction: project.introduction || '',
