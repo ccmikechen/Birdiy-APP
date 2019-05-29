@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Surface } from 'react-native-paper';
+import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
 import ToggleButton from '../ToggleButton';
@@ -32,6 +33,11 @@ export default class PurchaseSection extends Component {
     onDelete: () => {},
     onOpenProject: () => {},
   };
+
+  shouldComponentUpdate(nextProps) {
+    const { project } = this.props;
+    return !isEqual(project, nextProps.project);
+  }
 
   renderListItem = (type, item) => {
     const { onToggle } = this.props;
