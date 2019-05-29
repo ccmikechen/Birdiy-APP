@@ -3,8 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
+import MessageView from '../MessageView';
 import PostSection from '../../containers/PostSection';
 
 import styles from './styles';
@@ -101,6 +103,9 @@ export default class PostList extends Component {
           ListHeaderComponent={() => (headerPadding ? (
             <View style={styles.paddingView} />
           ) : null)}
+          ListEmptyComponent={
+            <MessageView message={i18n.t('posts.emptyMessage')} />
+          }
           innerRef={(ref) => { this.scrollView = ref; }}
           refresh={refresh}
           keyExtractor={item => item.__id}

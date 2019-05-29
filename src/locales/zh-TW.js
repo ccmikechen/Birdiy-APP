@@ -165,6 +165,9 @@ export default {
     },
     emptyMessage: '找不到相關專案',
   },
+  posts: {
+    emptyMessage: '用戶尚未發布任何貼文',
+  },
   profile: {
     title: '我的工作坊',
     following: '跟隨中',

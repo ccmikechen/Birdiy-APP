@@ -170,6 +170,9 @@ export default {
     },
     emptyMessage: 'No projects found',
   },
+  posts: {
+    emptyMessage: 'No posts',
+  },
   profile: {
     title: 'My Workshop',
     following: 'Following',

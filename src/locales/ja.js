@@ -165,6 +165,9 @@ export default {
     },
     emptyMessage: '関連するプロジェクトが見つかりません',
   },
+  posts: {
+    emptyMessage: '投稿がありません',
+  },
   profile: {
     title: 'MY工房',
     following: 'フォロー',
