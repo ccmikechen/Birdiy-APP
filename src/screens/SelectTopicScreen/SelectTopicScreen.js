@@ -122,11 +122,14 @@ export default class SelectTopicScreen extends Component {
 
   handleSubmit = () => {
     const { navigation } = this.props;
-    const { selected } = this.state;
+    const { selected, categoryMap } = this.state;
     const onSelect = navigation.getParam('onSelect');
 
     if (onSelect) {
-      onSelect(selected);
+      const category = selected.length === 1
+        ? categoryMap.get(selected[0])
+        : null;
+      onSelect(selected, category);
     }
     navigation.goBack();
   };

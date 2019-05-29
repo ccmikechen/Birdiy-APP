@@ -6,10 +6,6 @@ import TabsPager from '../TabsPager';
 
 export default class TabsScreenView extends Component {
   static propTypes = {
-    navigation: PropTypes.shape({
-      setParams: PropTypes.func.isRequired,
-    }).isRequired,
-    onToggleTabBar: PropTypes.func,
     tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -19,7 +15,6 @@ export default class TabsScreenView extends Component {
   };
 
   static defaultProps = {
-    onToggleTabBar: () => {},
     tabsScrollable: false,
   };
 
@@ -28,11 +23,8 @@ export default class TabsScreenView extends Component {
   };
 
   handleChangeTab = (index) => {
-    const { navigation, onToggleTabBar } = this.props;
-
     this.setState({ tabIndex: index });
-    navigation.setParams({ isTabBarVisible: true });
-    onToggleTabBar(true);
+    this.screenView.setHeaderVisible(true);
   };
 
   render() {
@@ -47,7 +39,10 @@ export default class TabsScreenView extends Component {
     } = this.state;
 
     return (
-      <SimpleScreenView {...restProps}>
+      <SimpleScreenView
+        ref={(ref) => { this.screenView = ref; }}
+        {...restProps}
+      >
         <TabsPager
           tabs={tabs}
           tabsScrollable={tabsScrollable}

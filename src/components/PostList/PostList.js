@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
@@ -39,7 +41,7 @@ export default class PostList extends Component {
     refresh: null,
   };
 
-  renderPost = (post) => {
+  renderPost = ({ item: post }) => {
     const {
       onUserPress,
       onActionButtonPress,
@@ -89,18 +91,21 @@ export default class PostList extends Component {
     }
 
     return (
-      <InfiniteList
-        data={posts}
-        loadMoreContentAsync={loadMore}
-        renderSection={this.renderPost}
-        onScrollTrigger={onScrollTrigger}
-        canLoadMoreContent={canLoadMore}
-        renderHeader={() => (headerPadding ? (
-          <View style={styles.paddingView} />
-        ) : null)}
-        innerRef={(ref) => { this.scrollView = ref; }}
-        refresh={refresh}
-      />
+      <View style={styles.container}>
+        <InfiniteList
+          data={posts}
+          loadMoreContentAsync={loadMore}
+          renderItem={this.renderPost}
+          onScrollTrigger={onScrollTrigger}
+          canLoadMoreContent={canLoadMore}
+          ListHeaderComponent={() => (headerPadding ? (
+            <View style={styles.paddingView} />
+          ) : null)}
+          innerRef={(ref) => { this.scrollView = ref; }}
+          refresh={refresh}
+          keyExtractor={item => item.__id}
+        />
+      </View>
     );
   }
 }

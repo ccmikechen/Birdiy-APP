@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListView } from 'react-native';
+import { FlatList } from 'react-native';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import { isEqual } from 'lodash';
 
@@ -9,15 +9,11 @@ import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
 const TriggerScrollView = scrollViewTrigger(InfiniteScrollView);
 
-const rowHasChanged = (r1, r2) => (
-  JSON.stringify(r1) !== JSON.stringify(r2)
-);
-
 export default class InfiniteList extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.any).isRequired,
     loadMoreContentAsync: PropTypes.func.isRequired,
-    renderSection: PropTypes.func.isRequired,
+    renderItem: PropTypes.func.isRequired,
     onScrollTrigger: PropTypes.func,
     canLoadMoreContent: PropTypes.bool,
     innerRef: PropTypes.func,
@@ -31,21 +27,7 @@ export default class InfiniteList extends Component {
     refresh: null,
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { data } = nextProps;
-    const { dataSource } = prevState;
-    const ids = data.map((_, index) => index);
-
-    return {
-      ...prevState,
-      dataSource: dataSource.cloneWithRows(data, ids),
-    };
-  }
-
   state = {
-    dataSource: new ListView.DataSource({ rowHasChanged }),
-    onScrollTrigger: () => {},
-    canLoadMoreContent: false,
     refreshing: false,
   };
 
@@ -95,21 +77,24 @@ export default class InfiniteList extends Component {
   render() {
     const {
       loadMoreContentAsync,
-      renderSection,
       onScrollTrigger,
       canLoadMoreContent,
       innerRef,
       refresh,
+      data,
+      ...restProps
     } = this.props;
-    const { dataSource, refreshing } = this.state;
+    const { refreshing } = this.state;
 
     return (
-      <ListView
-        {...this.props}
+      <FlatList
         renderScrollComponent={props => (
           <TriggerScrollView
             {...props}
-            onScroll={this.handleScroll}
+            onScroll={(e) => {
+              this.handleScroll(e);
+              props.onScroll(e);
+            }}
             onScrollDown={onScrollTrigger(false)}
             onScrollUp={onScrollTrigger(true)}
             ref={(ref) => {
@@ -124,11 +109,14 @@ export default class InfiniteList extends Component {
             )}
           />
         )}
-        dataSource={dataSource}
-        renderRow={renderSection}
+        data={data}
         canLoadMore={canLoadMoreContent}
         onLoadMoreAsync={loadMoreContentAsync}
-        enableEmptySections
+        keyExtractor={(item, index) => `${index}`}
+        extraData={this.props}
+        initialNumToRender={5}
+        removeClippedSubviews
+        {...restProps}
       />
     );
   }

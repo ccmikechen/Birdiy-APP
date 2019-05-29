@@ -1,8 +1,12 @@
+/* eslint-disable no-underscore-dangle */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
+import MessageView from '../MessageView';
 import ProjectActivitySection from '../../containers/ProjectActivitySection';
 import PostSection from '../../containers/PostSection';
 
@@ -75,7 +79,7 @@ export default class ActivityList extends Component {
     );
   };
 
-  renderSectionContent = (section) => {
+  renderItemContent = (section) => {
     switch (section.type) {
       case 'project':
         return this.renderProject(section.data, section.createdAt);
@@ -86,9 +90,9 @@ export default class ActivityList extends Component {
     }
   }
 
-  renderSection = section => (
+  renderItem = ({ item }) => (
     <View style={styles.sectionContainer}>
-      {this.renderSectionContent(section)}
+      {this.renderItemContent(item)}
     </View>
   );
 
@@ -109,18 +113,24 @@ export default class ActivityList extends Component {
     }
 
     return (
-      <InfiniteList
-        ref={innerRef}
-        data={sections}
-        loadMoreContentAsync={loadMore}
-        renderSection={this.renderSection}
-        onScrollTrigger={onScrollTrigger}
-        canLoadMoreContent={canLoadMore}
-        renderHeader={() => (headerPadding ? (
-          <View style={styles.paddingView} />
-        ) : null)}
-        refresh={refresh}
-      />
+      <View style={styles.container}>
+        <InfiniteList
+          ref={innerRef}
+          data={sections}
+          loadMoreContentAsync={loadMore}
+          renderItem={this.renderItem}
+          onScrollTrigger={onScrollTrigger}
+          canLoadMoreContent={canLoadMore}
+          ListHeaderComponent={headerPadding ? (
+            <View style={styles.paddingView} />
+          ) : null}
+          ListEmptyComponent={
+            <MessageView message={i18n.t('timeline.emptyMessage')} />
+          }
+          refresh={refresh}
+          keyExtractor={item => item.data.__id}
+        />
+      </View>
     );
   }
 }

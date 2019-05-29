@@ -82,4 +82,5 @@ export default {
   loginButton: Primary(900),
   settingBorder: '#c8c7cc',
   danger: '#ff0000',
+  defaultMessage: '#858fa0',
 };

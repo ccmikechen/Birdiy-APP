@@ -16,7 +16,7 @@ const FollowPostView = ({
   <InfiniteList
     style={styles.container}
     data={posts}
-    renderSection={post => (
+    renderItem={({ item: post }) => (
       <FollowPostViewItem
         post={post}
         onPress={onPress}

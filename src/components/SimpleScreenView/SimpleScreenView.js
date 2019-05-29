@@ -35,7 +35,7 @@ export default class SimpleScreenView extends Component {
     isHeaderVisible: true,
   };
 
-  handleVisible = (visible) => {
+  setHeaderVisible = (visible) => {
     const {
       navigation,
       animatedScroll,
@@ -63,9 +63,9 @@ export default class SimpleScreenView extends Component {
 
     const newChildren = React.Children.map(children, child => (
       child && React.cloneElement(child, {
-        onScrollTrigger: visible => () => this.handleVisible(visible),
-        onScrollDown: () => this.handleVisible(false),
-        onScrollUp: () => this.handleVisible(true),
+        onScrollTrigger: visible => () => this.setHeaderVisible(visible),
+        onScrollDown: () => this.setHeaderVisible(false),
+        onScrollUp: () => this.setHeaderVisible(true),
         isHeaderVisible,
       })
     ));
@@ -74,7 +74,7 @@ export default class SimpleScreenView extends Component {
       <View style={styles.container}>
         <AnimatedHeader
           renderHeader={renderHeader}
-          visible={isHeaderVisible}
+          visible={!animatedScroll || isHeaderVisible}
         />
         {loading ? <LoadingIndicator /> : newChildren}
         {animatedScroll || fullScreen ? null : (

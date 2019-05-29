@@ -72,9 +72,13 @@ export default class ProjectsScreen extends Component {
     navigation.navigate('SearchDetail', { keyword, categories });
   };
 
-  handleSelectTopic = (topics) => {
+  handleSelectTopic = (topics, category) => {
     const { navigation } = this.props;
-    navigation.setParams({ topics });
+
+    navigation.setParams({
+      topics,
+      categories: category ? [category] : [],
+    });
   };
 
   handleOpenFilter = () => {

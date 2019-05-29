@@ -103,6 +103,7 @@ export default class ListSelector extends Component {
       renderItem: this.renderItem,
       extraData: this.props,
       keyExtractor: item => item,
+      initialNumToRender: items.length,
       ...restProps,
     };
 

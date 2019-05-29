@@ -160,6 +160,7 @@ export default {
       all: 'All',
       following: 'Following',
     },
+    emptyMessage: 'No activities',
   },
   projects: {
     title: 'Search',
@@ -167,6 +168,7 @@ export default {
       newest: 'Newest',
       hotest: 'Hotest',
     },
+    emptyMessage: 'No projects found',
   },
   profile: {
     title: 'My Workshop',

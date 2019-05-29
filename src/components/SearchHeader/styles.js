@@ -21,6 +21,5 @@ export default StyleSheet.create({
     color: Primary(900),
     fontWeight: '600',
     fontSize: 18,
-    marginLeft: 5,
   },
 });

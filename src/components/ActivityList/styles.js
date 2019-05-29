@@ -12,7 +12,6 @@ export default StyleSheet.create({
     zIndex: 0,
   },
   sectionContainer: {
-    flex: 1,
     backgroundColor: Base.lightest,
     margin: 10,
   },

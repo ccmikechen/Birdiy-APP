@@ -64,7 +64,7 @@ const ProjectIntroEditor = (props) => {
           value={topic && i18n.t(`topics.${topic}`, { defaultValue: topic })}
           error={error.topic}
           onPress={() => onSelectTopicPress(topic, (selected) => {
-            onChange('topic', selected);
+            onChange('topic')(selected);
           })}
         />
       </EditSection>

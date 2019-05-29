@@ -1,9 +1,13 @@
+/* eslint-disable no-underscore-dangle */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { chunk } from 'lodash';
+import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
+import MessageView from '../MessageView';
 import ProjectSection from '../../containers/ProjectSection';
 
 import styles from './styles';
@@ -42,13 +46,6 @@ export default class ProjectList extends Component {
     innerRef: null,
   };
 
-  scrollToTop = () => {
-    if (!this.scrollView) {
-      return;
-    }
-    this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
-  };
-
   renderProject = (project) => {
     const {
       onProjectPress,
@@ -74,10 +71,10 @@ export default class ProjectList extends Component {
     );
   };
 
-  renderProjectSection = data => (
+  renderItem = ({ item }) => (
     <View style={styles.projectSectionContainer}>
-      {this.renderProject(data[0])}
-      {this.renderProject(data[1])}
+      {this.renderProject(item[0])}
+      {this.renderProject(item[1])}
     </View>
   );
 
@@ -111,15 +108,20 @@ export default class ProjectList extends Component {
           ref={innerRef}
           data={projectSections}
           loadMoreContentAsync={loadMore}
-          renderSection={this.renderProjectSection}
+          renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}
           canLoadMoreContent={canLoadMore}
-          renderHeader={() => (headerPadding ? (
+          ListHeaderComponent={() => (headerPadding ? (
             <View style={styles.paddingView} />
           ) : null)}
-          renderFooter={() => <View style={styles.bottomPaddingView} />}
-          innerRef={(ref) => { this.scrollView = ref; }}
+          ListEmptyComponent={
+            <MessageView message={i18n.t('projects.emptyMessage')} />
+          }
+          ListFooterComponent={
+            <View style={styles.bottomPaddingView} />
+          }
           refresh={refresh}
+          keyExtractor={item => item[0].__id}
         />
       </View>
     );

@@ -30,7 +30,7 @@ class AllActivityList extends Component {
     batchLoad: DEFAULT_POST_BATCH_LOAD,
   };
 
-  loadMore = async () => {
+  loadMore = () => {
     const { relay, batchLoad } = this.props;
 
     if (!relay.hasMore() || relay.isLoading()) {
