@@ -103,12 +103,16 @@ export default class LoginScreen extends Component {
             style={styles.loginButton}
             type="twitter"
             button
+            onPress={this.handleFacebookLogin}
+            onLonePress={this.handleFacebookLogin}
             title={i18n.t('button', { ...i18nOptions, type: 'twitter' })}
           />
           <SocialIcon
             style={styles.loginButton}
             type="pinterest"
             button
+            onPress={this.handleFacebookLogin}
+            onLonePress={this.handleFacebookLogin}
             title={i18n.t('button', { ...i18nOptions, type: 'Pinterest' })}
           />
         </View>

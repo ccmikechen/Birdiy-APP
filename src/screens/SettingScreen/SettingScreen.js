@@ -31,17 +31,35 @@ export default class SettingScreen extends Component {
   }
 
   handleItemPress = (item) => {
+    const { navigation } = this.props;
+    const { isLoggedIn } = this.state;
+
     switch (item) {
       case 'profile':
+        if (!isLoggedIn) {
+          navigation.navigate('LoginModal');
+          break;
+        }
+
         this.handleProfile();
         break;
       case 'account':
+        if (!isLoggedIn) {
+          navigation.navigate('LoginModal');
+          break;
+        }
+
         this.handleAccount();
         break;
       case 'display':
         this.handleDisplay();
         break;
       case 'notification':
+        if (!isLoggedIn) {
+          navigation.navigate('LoginModal');
+          break;
+        }
+
         this.handleNotification();
         break;
       case 'about':

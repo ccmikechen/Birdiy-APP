@@ -353,6 +353,7 @@ export default {
   },
   login: {
     button: '透過 %{type} 登入',
+    loginRequiredMessage: '尚未登入',
   },
   searchBar: {
     placeholder: '找專案',

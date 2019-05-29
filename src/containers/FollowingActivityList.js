@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, createPaginationContainer } from 'react-relay';
-import { View } from 'react-native';
 
 import ActivityList from '../components/ActivityList';
+import LoginMessageView from '../components/LoginMessageView';
 
 import { DEFAULT_POST_BATCH_LOAD } from '../constants/defaults';
 
@@ -27,6 +27,7 @@ class FollowingActivityList extends Component {
       refetchConnection: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
+    onLogin: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -66,12 +67,16 @@ class FollowingActivityList extends Component {
   };
 
   render() {
-    const { query, relay, batchLoad } = this.props;
+    const {
+      query, relay, batchLoad, onLogin,
+    } = this.props;
 
     if (!query.viewer) {
       return (
-        // TODO
-        <View style={{ flex: 1 }} />
+        <LoginMessageView
+          onLogin={onLogin}
+          style={{ paddingTop: 200 }}
+        />
       );
     }
 

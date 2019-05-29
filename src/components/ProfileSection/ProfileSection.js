@@ -15,6 +15,8 @@ import styles from './styles';
 
 const ProfileSection = ({
   profile,
+  onAvatarPress,
+  onNamePress,
   onFollowerPress,
   onFollowingPress,
 }) => (
@@ -24,14 +26,18 @@ const ProfileSection = ({
         image={profile.image}
         size={Size.profileImageSize}
         borderRadius={Size.profileImageSize / 2}
+        onPress={onAvatarPress}
       />
     </View>
     <View style={styles.profileContainer}>
-      <View style={styles.nameContainer}>
+      <TouchableOpacity
+        style={styles.nameContainer}
+        onPress={onNamePress}
+      >
         <Text style={styles.name}>
           {profile.name}
         </Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.followStatusContainer}>
         <TouchableOpacity
           style={styles.followingContainer}
@@ -67,11 +73,15 @@ ProfileSection.propTypes = {
     followerCount: PropTypes.number.isRequired,
     followingCount: PropTypes.number.isRequired,
   }).isRequired,
+  onAvatarPress: PropTypes.func,
+  onNamePress: PropTypes.func,
   onFollowerPress: PropTypes.func,
   onFollowingPress: PropTypes.func,
 };
 
 ProfileSection.defaultProps = {
+  onAvatarPress: () => {},
+  onNamePress: () => {},
   onFollowerPress: () => {},
   onFollowingPress: () => {},
 };

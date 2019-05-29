@@ -7,6 +7,7 @@ import NormalTabBar from '../NormalTabBar';
 import UserProjectsScene from '../../containers/UserProjectsScene';
 import UserPostsScene from '../../containers/UserPostsScene';
 import UserFavoritesScene from '../../containers/UserFavoritesScene';
+import LoginMessageView from '../LoginMessageView';
 
 import styles from './styles';
 
@@ -29,6 +30,7 @@ export default class ProfileTabMenu extends Component {
     onEditPost: PropTypes.func,
     onDeletePost: PropTypes.func,
     onMoreFavoritesPress: PropTypes.func,
+    onLogin: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -130,6 +132,7 @@ export default class ProfileTabMenu extends Component {
   };
 
   render() {
+    const { profile, onLogin } = this.props;
     const { index } = this.state;
     const tabs = [
       i18n.t('profile.tabs.projects'),
@@ -145,7 +148,12 @@ export default class ProfileTabMenu extends Component {
           onChange={tabIndex => this.setState({ index: tabIndex })}
         />
         <View style={styles.contentContainer}>
-          {this.renderTabContent()}
+          {profile ? this.renderTabContent() : (
+            <LoginMessageView
+              style={{ height: 300 }}
+              onLogin={onLogin}
+            />
+          )}
         </View>
       </View>
     );

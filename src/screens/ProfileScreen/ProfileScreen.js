@@ -17,6 +17,8 @@ import {
   showDeletePostFailedAlert,
 } from '../../helpers/alert';
 
+import { DEFAULT_PROFILE } from '../../constants/defaults';
+
 export default class ProfileScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -45,10 +47,44 @@ export default class ProfileScreen extends Component {
     refreshing: false,
   };
 
+  handleAvatarPress = () => {
+    const { query, navigation } = this.props;
+
+    if (query && query.viewer) {
+      navigation.push('ProfileSettingModal');
+    } else {
+      navigation.navigate('LoginModal');
+    }
+  };
+
+  handleNamePress = () => {
+    const { query, navigation } = this.props;
+
+    if (query && query.viewer) {
+      navigation.push('ProfileSettingModal');
+    } else {
+      navigation.navigate('LoginModal');
+    }
+  };
+
   handleFollowerPress = () => {
+    const { query, navigation } = this.props;
+
+    if (query && query.viewer) {
+      // TODO
+    } else {
+      navigation.navigate('LoginModal');
+    }
   };
 
   handleFollowingPress = () => {
+    const { query, navigation } = this.props;
+
+    if (query && query.viewer) {
+      // TODO
+    } else {
+      navigation.navigate('LoginModal');
+    }
   };
 
   handleMoreProjectsPress = () => {
@@ -124,6 +160,11 @@ export default class ProfileScreen extends Component {
     });
   };
 
+  handleLoginPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('LoginModal');
+  };
+
   render() {
     const { navigation, query, loading } = this.props;
     const { refreshing } = this.state;
@@ -138,15 +179,18 @@ export default class ProfileScreen extends Component {
             onOpenSettings={() => navigation.navigate('SettingModal')}
           />
         )}
-        loading={loading || !query.viewer}
+        loading={loading}
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
       >
         <ProfileSection
-          profile={profile}
+          profile={profile || DEFAULT_PROFILE}
+          onAvatarPress={this.handleAvatarPress}
+          onNamePress={this.handleNamePress}
           onFollowerPress={this.handleFollowerPress}
           onFollowingPress={this.handleFollowingPress}
         />
+
         <ProfileTabMenu
           profile={profile}
           editable
@@ -161,6 +205,7 @@ export default class ProfileScreen extends Component {
           onEditPost={this.handleEditPost}
           onDeletePost={this.handleDeletePost}
           onMoreFavoritesPress={this.handleMoreFavoritesPress}
+          onLogin={this.handleLoginPress}
         />
       </TopScreenView>
     );

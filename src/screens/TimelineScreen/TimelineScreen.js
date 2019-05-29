@@ -164,6 +164,7 @@ export default class TimelineScreen extends Component {
             onActionButtonPress={post => this.postActions.show(post)}
             onImagePress={this.handleOpenImage}
             onProjectPress={this.handleOpenProject}
+            onLogin={this.handleLoginPress}
             batchLoad={variables.count}
             headerPadding
           />

@@ -244,6 +244,7 @@ export default {
   },
   login: {
     button: 'Log in with %{type}',
+    loginRequiredMessage: 'Login to your account',
   },
   searchBar: {
     placeholder: 'Find Projects',

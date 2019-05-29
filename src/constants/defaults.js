@@ -3,3 +3,9 @@ export const DEFAULT_FILE = { type: 'link', name: '', url: '' };
 export const DEFAULT_METHOD = { image: null, title: '', content: '' };
 export const DEFAULT_PROJECT_BATCH_LOAD = 10;
 export const DEFAULT_POST_BATCH_LOAD = 5;
+export const DEFAULT_PROFILE = {
+  name: 'Guest',
+  image: null,
+  followerCount: 0,
+  followingCount: 0,
+};

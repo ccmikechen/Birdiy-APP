@@ -353,6 +353,7 @@ export default {
   },
   login: {
     button: '%{type} でログインする',
+    loginRequiredMessage: 'ログインしてください',
   },
   searchBar: {
     placeholder: 'プロジェクト検索',
