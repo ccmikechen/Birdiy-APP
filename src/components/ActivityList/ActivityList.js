@@ -124,9 +124,12 @@ export default class ActivityList extends Component {
           ListHeaderComponent={headerPadding ? (
             <View style={styles.paddingView} />
           ) : null}
-          ListEmptyComponent={
-            <MessageView message={i18n.t('timeline.emptyMessage')} />
-          }
+          ListEmptyComponent={(
+            <MessageView
+              message={i18n.t('timeline.emptyMessage')}
+              style={{ paddingTop: 200 }}
+            />
+)}
           refresh={refresh}
           keyExtractor={item => item.data.__id}
         />

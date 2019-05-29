@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ListView } from 'react-native';
+import { View, FlatList } from 'react-native';
 import i18n from 'i18n-js';
 
 import MoreButton from '../MoreButton';
 import HorProjectSection from '../HorProjectSection';
+import MessageView from '../MessageView';
 
 import styles from './styles';
-
-const rowHasChanged = (r1, r2) => (
-  JSON.stringify(r1) !== JSON.stringify(r2)
-);
 
 export default class UserFavoritesScene extends Component {
   static propTypes = {
@@ -30,25 +27,7 @@ export default class UserFavoritesScene extends Component {
     onOpenProject: () => {},
   };
 
-  constructor(props) {
-    super(props);
-    const dataSource = new ListView.DataSource({ rowHasChanged });
-    this.state = {
-      dataSource: dataSource.cloneWithRows(props.projects),
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { projects } = nextProps;
-    const { dataSource } = prevState;
-
-    return {
-      ...prevState,
-      dataSource: dataSource.cloneWithRows(projects),
-    };
-  }
-
-  renderRow = (project) => {
+  renderRow = ({ item: project }) => {
     const { onOpenProject } = this.props;
 
     return (
@@ -61,23 +40,31 @@ export default class UserFavoritesScene extends Component {
   };
 
   render() {
-    const { onMorePress } = this.props;
-    const { dataSource } = this.state;
+    const { projects, onMorePress } = this.props;
 
     return (
       <View>
-        <ListView
+        <FlatList
           {...this.props}
           style={styles.listView}
-          dataSource={dataSource}
-          renderRow={this.renderRow}
+          data={projects}
+          renderItem={this.renderRow}
+          ListEmptyComponent={(
+            <MessageView
+              message={i18n.t('profile.emptyMessage.favorites')}
+              style={{ paddingTop: 100 }}
+            />
+)}
+          keyExtractor={item => item.id}
         />
-        <View style={styles.moreButtonContainer}>
-          <MoreButton
-            onPress={onMorePress}
-            text={i18n.t('general.more')}
-          />
-        </View>
+        {projects.length > 0 && (
+          <View style={styles.moreButtonContainer}>
+            <MoreButton
+              onPress={onMorePress}
+              text={i18n.t('general.more')}
+            />
+          </View>
+        )}
       </View>
     );
   }

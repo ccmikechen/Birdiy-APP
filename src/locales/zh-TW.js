@@ -177,6 +177,11 @@ export default {
       posts: '貼文',
       favorites: '收藏',
     },
+    emptyMessage: {
+      projects: '尚未建立任何專案',
+      posts: '尚未發布任何貼文',
+      favorites: '沒有收藏專案',
+    },
   },
   categories: {
     Craft: '手工藝',

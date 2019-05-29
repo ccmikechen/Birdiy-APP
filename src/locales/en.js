@@ -182,6 +182,11 @@ export default {
       posts: 'Posts',
       favorites: 'Favorites',
     },
+    emptyMessage: {
+      projects: 'No projects',
+      posts: 'No posts',
+      favorites: 'No favorite projects',
+    },
   },
   topics: {
   },

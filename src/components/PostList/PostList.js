@@ -103,9 +103,12 @@ export default class PostList extends Component {
           ListHeaderComponent={() => (headerPadding ? (
             <View style={styles.paddingView} />
           ) : null)}
-          ListEmptyComponent={
-            <MessageView message={i18n.t('posts.emptyMessage')} />
-          }
+          ListEmptyComponent={(
+            <MessageView
+              message={i18n.t('posts.emptyMessage')}
+              style={{ paddingTop: 200 }}
+            />
+)}
           innerRef={(ref) => { this.scrollView = ref; }}
           refresh={refresh}
           keyExtractor={item => item.__id}

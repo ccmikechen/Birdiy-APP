@@ -177,6 +177,11 @@ export default {
       posts: '投稿',
       favorites: '気に入り',
     },
+    emptyMessage: {
+      projects: 'プロジェクトがありません',
+      posts: '投稿がありません',
+      favorites: '保存したプロジェクトがありません',
+    },
   },
   categories: {
     Craft: '工芸',

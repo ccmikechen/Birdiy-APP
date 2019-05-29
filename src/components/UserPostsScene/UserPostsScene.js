@@ -4,7 +4,7 @@ import {
   View,
   Text,
   Image,
-  ListView,
+  FlatList,
   TouchableOpacity,
 } from 'react-native';
 import { Icon } from 'expo';
@@ -15,16 +15,13 @@ import UserProfileAddButton from '../UserProfileAddButton';
 import MoreButton from '../MoreButton';
 import ActionMenuButton from '../ActionMenuButton';
 import MyPostActions from '../MyPostActions';
+import MessageView from '../MessageView';
 
 import { timeAgo } from '../../helpers/datetime';
 
 import Size from '../../constants/Size';
 
 import styles from './styles';
-
-const rowHasChanged = (r1, r2) => (
-  JSON.stringify(r1) !== JSON.stringify(r2)
-);
 
 export default class UserPostsScene extends Component {
   static propTypes = {
@@ -51,25 +48,7 @@ export default class UserPostsScene extends Component {
     onDeletePost: () => {},
   };
 
-  constructor(props) {
-    super(props);
-    const dataSource = new ListView.DataSource({ rowHasChanged });
-    this.state = {
-      dataSource: dataSource.cloneWithRows(props.posts),
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { posts } = nextProps;
-    const { dataSource } = prevState;
-
-    return {
-      ...prevState,
-      dataSource: dataSource.cloneWithRows(posts),
-    };
-  }
-
-  renderRow = (post) => {
+  renderRow = ({ item: post }) => {
     const {
       onOpenPost,
       onEditPost,
@@ -127,8 +106,12 @@ export default class UserPostsScene extends Component {
   };
 
   render() {
-    const { onMorePress, onAddPress, editable } = this.props;
-    const { dataSource } = this.state;
+    const {
+      posts,
+      onMorePress,
+      onAddPress,
+      editable,
+    } = this.props;
 
     return (
       <View>
@@ -140,18 +123,27 @@ export default class UserPostsScene extends Component {
             />
           </View>
         ) : null}
-        <ListView
+        <FlatList
           {...this.props}
           style={styles.listView}
-          dataSource={dataSource}
-          renderRow={this.renderRow}
+          data={posts}
+          renderItem={this.renderRow}
+          ListEmptyComponent={(
+            <MessageView
+              message={i18n.t('profile.emptyMessage.posts')}
+              style={{ paddingTop: 100 }}
+            />
+)}
+          keyExtractor={item => item.id}
         />
-        <View style={styles.moreButtonContainer}>
-          <MoreButton
-            onPress={onMorePress}
-            text={i18n.t('general.more')}
-          />
-        </View>
+        {posts.length > 0 && (
+          <View style={styles.moreButtonContainer}>
+            <MoreButton
+              onPress={onMorePress}
+              text={i18n.t('general.more')}
+            />
+          </View>
+        )}
       </View>
     );
   }

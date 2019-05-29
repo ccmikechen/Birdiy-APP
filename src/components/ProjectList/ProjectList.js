@@ -114,9 +114,12 @@ export default class ProjectList extends Component {
           ListHeaderComponent={() => (headerPadding ? (
             <View style={styles.paddingView} />
           ) : null)}
-          ListEmptyComponent={
-            <MessageView message={i18n.t('projects.emptyMessage')} />
-          }
+          ListEmptyComponent={(
+            <MessageView
+              message={i18n.t('projects.emptyMessage')}
+              style={{ paddingTop: 200 }}
+            />
+)}
           ListFooterComponent={
             <View style={styles.bottomPaddingView} />
           }

@@ -48,7 +48,6 @@ export default class ProjectActivitySection extends Component {
 
   shoudComponentUpdate(nextProps) {
     const { project } = this.props;
-
     return !isEqual(project, nextProps.project);
   }
 
