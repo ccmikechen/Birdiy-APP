@@ -1,17 +1,18 @@
 import { Localization } from 'expo';
 import moment from 'moment-timezone';
-
 import 'moment/locale/ja';
 import 'moment/locale/zh-tw';
 
+import locale from '../locales';
+
 const { timezone } = Localization;
-const locale = Localization.locale.toLowerCase();
-moment.locale(locale);
+
+const appLocale = () => locale.getAppLocale().toLowerCase();
 
 export const localDatetime = datetime => (
   moment(datetime * 1000)
     .tz(timezone)
-    .locale(locale)
+    .locale(appLocale())
     .format('lll')
 );
 
@@ -23,5 +24,5 @@ export const timeAgo = (datetime) => {
     return localDatetime(datetime);
   }
 
-  return m.fromNow();
+  return m.locale(appLocale()).fromNow();
 };

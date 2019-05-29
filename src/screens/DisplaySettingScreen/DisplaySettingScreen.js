@@ -9,7 +9,7 @@ import DisplaySetting from '../../components/DisplaySetting';
 
 import LANGUAGES from '../../constants/languages';
 
-import { setAppLocale, getAppLocale } from '../../locales';
+import locale from '../../locales';
 
 const i18nOptions = { scope: 'settings.display' };
 
@@ -30,8 +30,8 @@ export default class DisplaySettingScreen extends Component {
     },
   };
 
-  async componentDidMount() {
-    const appLocale = await getAppLocale();
+  componentDidMount() {
+    const appLocale = locale.getAppLocale();
     this.setState({
       settings: {
         interfaceLanguage: appLocale,
@@ -55,7 +55,7 @@ export default class DisplaySettingScreen extends Component {
             if (language === settings.interfaceLanguage) {
               return;
             }
-            setAppLocale(language).then(() => Updates.reload());
+            locale.setAppLocale(language).then(() => Updates.reload());
           },
         });
         break;

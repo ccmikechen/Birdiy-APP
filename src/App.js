@@ -11,7 +11,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import createAppNavigator from './navigation/AppNavigator';
 
-import { initI18n } from './locales';
+import locale from './locales';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +27,7 @@ export default class App extends Component {
   };
 
   async componentWillMount() {
-    await initI18n();
+    await locale.init();
     this.AppNavigator = await createAppNavigator();
   }
 
