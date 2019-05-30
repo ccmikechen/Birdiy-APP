@@ -27,6 +27,11 @@ export default class TabsScreenView extends Component {
     this.screenView.setHeaderVisible(true);
   };
 
+  getTabIndex = () => {
+    const { tabIndex } = this.state;
+    return tabIndex;
+  };
+
   render() {
     const {
       tabs,

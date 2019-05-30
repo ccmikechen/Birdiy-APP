@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import TopScreenView from '../../components/TopScreenView';
 import ProfileHeader from '../../components/ProfileHeader';
 import ProfileSection from '../../containers/ProfileSection';
+import GuestProfileSection from '../../components/ProfileSection';
 import ProfileTabMenu from '../../containers/ProfileTabMenu';
 
 import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
@@ -48,43 +49,19 @@ export default class ProfileScreen extends Component {
   };
 
   handleAvatarPress = () => {
-    const { query, navigation } = this.props;
-
-    if (query && query.viewer) {
-      navigation.push('ProfileSettingModal');
-    } else {
-      navigation.navigate('LoginModal');
-    }
+    const { navigation } = this.props;
+    navigation.push('ProfileSettingModal');
   };
 
   handleNamePress = () => {
-    const { query, navigation } = this.props;
-
-    if (query && query.viewer) {
-      navigation.push('ProfileSettingModal');
-    } else {
-      navigation.navigate('LoginModal');
-    }
+    const { navigation } = this.props;
+    navigation.push('ProfileSettingModal');
   };
 
   handleFollowerPress = () => {
-    const { query, navigation } = this.props;
-
-    if (query && query.viewer) {
-      // TODO
-    } else {
-      navigation.navigate('LoginModal');
-    }
   };
 
   handleFollowingPress = () => {
-    const { query, navigation } = this.props;
-
-    if (query && query.viewer) {
-      // TODO
-    } else {
-      navigation.navigate('LoginModal');
-    }
   };
 
   handleMoreProjectsPress = () => {
@@ -183,14 +160,23 @@ export default class ProfileScreen extends Component {
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
       >
-        <ProfileSection
-          profile={profile || DEFAULT_PROFILE}
-          onAvatarPress={this.handleAvatarPress}
-          onNamePress={this.handleNamePress}
-          onFollowerPress={this.handleFollowerPress}
-          onFollowingPress={this.handleFollowingPress}
-        />
-
+        {profile ? (
+          <ProfileSection
+            profile={profile}
+            onAvatarPress={this.handleAvatarPress}
+            onNamePress={this.handleNamePress}
+            onFollowerPress={this.handleFollowerPress}
+            onFollowingPress={this.handleFollowingPress}
+          />
+        ) : (
+          <GuestProfileSection
+            profile={DEFAULT_PROFILE}
+            onAvatarPress={this.handleLoginPress}
+            onNamePress={this.handleLoginPress}
+            onFollowerPress={this.handleLoginPress}
+            onFollowingPress={this.handleLoginPress}
+          />
+        )}
         <ProfileTabMenu
           profile={profile}
           editable

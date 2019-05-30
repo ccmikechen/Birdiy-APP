@@ -31,6 +31,8 @@ export default class InfiniteList extends Component {
     refreshing: false,
   };
 
+  y = 0;
+
   shouldComponentUpdate(nextProps, nextState) {
     const { data } = this.props;
     const { refreshing } = this.state;

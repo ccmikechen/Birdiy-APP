@@ -55,8 +55,22 @@ export default class ProjectsScreen extends Component {
   }
 
   handleRefocus = () => {
-    this.newestList.scrollToTopOrRefresh();
-    this.hotestList.scrollToTopOrRefresh();
+    const { navigation } = this.props;
+    const tabIndex = this.screenView.getTabIndex();
+
+    if (tabIndex === 0) {
+      if (this.newestList.isOnTop()) {
+        navigation.setParams({ keyword: '', categories: [] });
+      } else {
+        this.newestList.scrollToTopOrRefresh();
+      }
+    } else if (tabIndex === 1) {
+      if (this.hotestList.isOnTop()) {
+        navigation.setParams({ keyword: '', categories: [] });
+      } else {
+        this.hotestList.scrollToTopOrRefresh();
+      }
+    }
   };
 
   handleOpenProject = (project) => {

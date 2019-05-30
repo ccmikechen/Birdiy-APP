@@ -80,6 +80,7 @@ export default class TabsPager extends Component {
           ref={(ref) => { this.pager = ref; }}
           style={styles.pageContainer}
           onPageSelected={this.handlePageChange}
+          initialPage={tabIndex}
         >
           {newChildren}
         </ViewPager>
