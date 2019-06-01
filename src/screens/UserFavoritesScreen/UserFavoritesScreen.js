@@ -31,9 +31,9 @@ export default class UserFavoritesScreen extends Component {
     loading: true,
   };
 
-  handleOpenProject = () => () => {
+  handleOpenProject = (project) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail');
+    navigation.push('ProjectDetail', { id: project.id });
   };
 
   render() {
@@ -59,6 +59,7 @@ export default class UserFavoritesScreen extends Component {
           batchLoad={variables.count}
           headerPadding
           userId={userId}
+          onProjectPress={this.handleOpenProject}
         />
       </SimpleScreenView>
     );

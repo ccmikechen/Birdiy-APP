@@ -30,7 +30,7 @@ export default class ProfileTabMenu extends Component {
     onEditPost: PropTypes.func,
     onDeletePost: PropTypes.func,
     onMoreFavoritesPress: PropTypes.func,
-    onLogin: PropTypes.func.isRequired,
+    onLogin: PropTypes.func,
   };
 
   static defaultProps = {
@@ -47,6 +47,7 @@ export default class ProfileTabMenu extends Component {
     onEditPost: () => {},
     onDeletePost: () => {},
     onMoreFavoritesPress: () => {},
+    onLogin: () => {},
   };
 
   state = {
