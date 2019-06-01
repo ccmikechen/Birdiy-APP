@@ -11,10 +11,8 @@ import MyPostActions from '../../components/MyPostActions';
 
 import DeletePostMutation from '../../mutations/DeletePostMutation';
 
-import {
-  showDeletePostSuccessAlert,
-  showDeletePostFailedAlert,
-} from '../../helpers/alert';
+import { showDeletePostSuccessAlert } from '../../helpers/alert';
+import { showDeletePostFailedMessage } from '../../helpers/toast';
 
 import styles from './styles';
 
@@ -65,7 +63,7 @@ export default class MyPostsScreen extends Component {
 
     mutation.commit()
       .then(showDeletePostSuccessAlert)
-      .catch(showDeletePostFailedAlert);
+      .catch(showDeletePostFailedMessage);
   };
 
   render() {

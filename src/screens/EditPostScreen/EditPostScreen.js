@@ -11,10 +11,12 @@ import PostEditor from '../../components/PostEditor';
 import EditPostMutation from '../../mutations/EditPostMutation';
 
 import {
-  showEditPostSuccessAlert,
-  showEditPostFailedAlert,
   showUnsavedGoBackAlert,
 } from '../../helpers/alert';
+import {
+  showEditPostSuccessMessage,
+  showEditPostFailedMessage,
+} from '../../helpers/toast';
 
 const i18nOptions = { scope: 'post.edit' };
 
@@ -120,13 +122,13 @@ export default class EditPostScreen extends Component {
           return;
         }
         navigation.goBack();
-        showEditPostSuccessAlert();
+        showEditPostSuccessMessage();
       })
       .catch(this.handleSubmittingError);
   };
 
   handleSubmittingError = () => {
-    showEditPostFailedAlert();
+    showEditPostFailedMessage();
   };
 
   handleGoBack = () => {

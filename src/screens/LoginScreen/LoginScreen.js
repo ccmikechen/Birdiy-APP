@@ -13,7 +13,7 @@ import LoginMutation from '../../mutations/LoginMutation';
 
 import { setTokens } from '../../helpers/credentails';
 import { resetToHome } from '../../helpers/navigation';
-import { showLoginFailedAlert } from '../../helpers/alert';
+import { showLoginFailedMessage } from '../../helpers/toast';
 
 import config from '../../configs';
 
@@ -58,7 +58,7 @@ export default class LoginScreen extends Component {
         .then(this.handleLoginResponse)
         .catch(() => {});
     } catch (e) {
-      showLoginFailedAlert();
+      showLoginFailedMessage();
     }
   };
 

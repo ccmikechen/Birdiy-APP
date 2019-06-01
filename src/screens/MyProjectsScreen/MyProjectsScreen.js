@@ -13,8 +13,10 @@ import DeleteProjectMutation from '../../mutations/DeleteProjectMutation';
 import {
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
-  showDeleteProjectFailedAlert,
 } from '../../helpers/alert';
+import {
+  showDeleteProjectFailedMessage,
+} from '../../helpers/toast';
 
 export default class MyProjectsScreen extends Component {
   static navigationOptions = {
@@ -63,7 +65,7 @@ export default class MyProjectsScreen extends Component {
 
     mutation.commit()
       .then(showDeleteProjectSuccessAlert)
-      .catch(showDeleteProjectFailedAlert);
+      .catch(showDeleteProjectFailedMessage);
   };
 
   render() {

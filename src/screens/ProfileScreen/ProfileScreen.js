@@ -13,10 +13,12 @@ import DeletePostMutation from '../../mutations/DeletePostMutation';
 import {
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
-  showDeleteProjectFailedAlert,
   showDeletePostSuccessAlert,
-  showDeletePostFailedAlert,
 } from '../../helpers/alert';
+import {
+  showDeleteProjectFailedMessage,
+  showDeletePostFailedMessage,
+} from '../../helpers/toast';
 
 import { DEFAULT_PROFILE } from '../../constants/defaults';
 
@@ -93,7 +95,7 @@ export default class ProfileScreen extends Component {
 
     mutation.commit()
       .then(showDeleteProjectSuccessAlert)
-      .catch(showDeleteProjectFailedAlert);
+      .catch(showDeleteProjectFailedMessage);
   };
 
   handleMorePostsPress = () => {
@@ -121,7 +123,7 @@ export default class ProfileScreen extends Component {
 
     mutation.commit()
       .then(showDeletePostSuccessAlert)
-      .catch(showDeletePostFailedAlert);
+      .catch(showDeletePostFailedMessage);
   };
 
   handleMoreFavoritesPress = () => {

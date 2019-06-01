@@ -8,7 +8,7 @@ import ProfileSetting from '../../components/ProfileSetting';
 
 import EditProfileMutation from '../../mutations/EditProfileMutation';
 
-import { showEditProfileFailedAlert } from '../../helpers/alert';
+import { showEditProfileFailedMessage } from '../../helpers/toast';
 
 export default class ProfileSettingScreen extends Component {
   static navigationOptions = {
@@ -88,7 +88,7 @@ export default class ProfileSettingScreen extends Component {
   };
 
   handleSavingError = () => {
-    showEditProfileFailedAlert();
+    showEditProfileFailedMessage();
   };
 
   render() {

@@ -8,9 +8,7 @@ import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
 import CreateProjectMutation from '../../mutations/CreateProjectMutation';
 
-import {
-  showSaveProjectFailedAlert,
-} from '../../helpers/alert';
+import { showSaveProjectFailedMessage } from '../../helpers/toast';
 
 const i18nOptions = { scope: 'project.create' };
 
@@ -65,7 +63,7 @@ export default class CreateProjectScreen extends Component {
   };
 
   handleSubmitError = () => {
-    showSaveProjectFailedAlert();
+    showSaveProjectFailedMessage();
   };
 
   render() {

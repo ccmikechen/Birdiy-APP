@@ -21,14 +21,16 @@ import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
 import {
   showGoBackAlert,
-  showSaveProjectSuccessAlert,
-  showSaveProjectFailedAlert,
-  showUnpublishProjectSuccessAlert,
-  showSetProjectStatusFailedAlert,
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
-  showDeleteProjectFailedAlert,
 } from '../../helpers/alert';
+import {
+  showSaveProjectSuccessMessage,
+  showSaveProjectFailedMessage,
+  showUnpublishProjectSuccessMessage,
+  showSetProjectStatusFailedMessage,
+  showDeleteProjectFailedMessage,
+} from '../../helpers/toast';
 
 import {
   DEFAULT_MATERIAL,
@@ -177,7 +179,7 @@ export default class EditProjectScreen extends Component {
         navigation.goBack();
         showDeleteProjectSuccessAlert();
       })
-      .catch(showDeleteProjectFailedAlert);
+      .catch(showDeleteProjectFailedMessage);
   };
 
   handleSaveButtonPress = () => {
@@ -212,7 +214,7 @@ export default class EditProjectScreen extends Component {
 
     mutation.commit()
       .then(this.handleSavingResponse)
-      .catch(() => showSetProjectStatusFailedAlert());
+      .catch(() => showSetProjectStatusFailedMessage());
   }
 
   handleSavingResponse = (res) => {
@@ -224,11 +226,11 @@ export default class EditProjectScreen extends Component {
       return;
     }
     navigation.goBack();
-    showSaveProjectSuccessAlert();
+    showSaveProjectSuccessMessage();
   };
 
   handleSavingError = () => {
-    showSaveProjectFailedAlert();
+    showSaveProjectFailedMessage();
   };
 
   handleUnpublish = () => {
@@ -250,9 +252,9 @@ export default class EditProjectScreen extends Component {
         }
 
         navigation.goBack();
-        showUnpublishProjectSuccessAlert();
+        showUnpublishProjectSuccessMessage();
       })
-      .catch(() => showSetProjectStatusFailedAlert());
+      .catch(() => showSetProjectStatusFailedMessage());
   };
 
   handleGoBack = () => {

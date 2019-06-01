@@ -10,10 +10,12 @@ import PostEditor from '../../components/PostEditor';
 import CreatePostMutation from '../../mutations/CreatePostMutation';
 
 import {
-  showCreatePostSuccessAlert,
-  showCreatePostFailedAlert,
   showGoBackAlert,
 } from '../../helpers/alert';
+import {
+  showCreatePostSuccessMessage,
+  showCreatePostFailedMessage,
+} from '../../helpers/toast';
 
 export default class CreatePostScreen extends Component {
   static navigationOptions = {
@@ -76,13 +78,13 @@ export default class CreatePostScreen extends Component {
           return;
         }
         navigation.goBack();
-        showCreatePostSuccessAlert();
+        showCreatePostSuccessMessage();
       })
       .catch(this.handleSubmittingError);
   };
 
   handleSubmittingError = () => {
-    showCreatePostFailedAlert();
+    showCreatePostFailedMessage();
   };
 
   handleGoBack = () => {
