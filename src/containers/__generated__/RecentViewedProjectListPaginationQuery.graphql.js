@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a4017a1e98be2bc83f9e309cc0d81e59
+ * @relayHash 93756ba6ed616da2b53309796bb5cd9a
  */
 
 /* eslint-disable */
@@ -56,6 +56,10 @@ fragment ProjectSection_project on Project {
   id
   name
   image
+  topic {
+    name
+    id
+  }
   author {
     name
     id
@@ -108,7 +112,11 @@ v3 = {
   "name": "name",
   "args": null,
   "storageKey": null
-};
+},
+v4 = [
+  (v3/*: any*/),
+  (v2/*: any*/)
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -203,15 +211,22 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
+                        "name": "topic",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "ProjectTopic",
+                        "plural": false,
+                        "selections": (v4/*: any*/)
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
                         "name": "author",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "User",
                         "plural": false,
-                        "selections": [
-                          (v3/*: any*/),
-                          (v2/*: any*/)
-                        ]
+                        "selections": (v4/*: any*/)
                       },
                       {
                         "kind": "ScalarField",
@@ -272,7 +287,7 @@ return {
     "operationKind": "query",
     "name": "RecentViewedProjectListPaginationQuery",
     "id": null,
-    "text": "query RecentViewedProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...RecentViewedProjectList_query\n}\n\nfragment RecentViewedProjectList_query on RootQueryType {\n  viewer {\n    projects: viewedProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query RecentViewedProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...RecentViewedProjectList_query\n}\n\nfragment RecentViewedProjectList_query on RootQueryType {\n  viewer {\n    projects: viewedProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

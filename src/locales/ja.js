@@ -45,8 +45,8 @@ export default {
         placeholder: 'プロジェクト名を入力',
       },
       topic: {
-        title: 'トピック',
-        placeholder: 'トピックを選ぶ',
+        title: 'テーマ',
+        placeholder: 'テーマを選ぶ',
       },
       submit: '保存して編集に進む',
     },
@@ -65,8 +65,8 @@ export default {
         placeholder: 'プロジェクト名を入力',
       },
       topic: {
-        title: 'トピック',
-        placeholder: 'トピックを選ぶ',
+        title: 'テーマ',
+        placeholder: 'テーマを選ぶ',
       },
       intro: {
         title: '紹介',
@@ -300,10 +300,10 @@ export default {
     Paper: '紙',
   },
   allTopics: {
-    title: 'すべてのトピック',
+    title: 'すべてのテーマ',
   },
   selectTopic: {
-    title: 'トピックを選ぶ',
+    title: 'テーマを選ぶ',
   },
   cart: {
     title: '買い物リスト',

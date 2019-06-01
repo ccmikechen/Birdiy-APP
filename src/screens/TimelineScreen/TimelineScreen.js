@@ -59,8 +59,17 @@ export default class TimelineScreen extends Component {
   }
 
   handleRefocus = () => {
-    this.allList.scrollToTopOrRefresh();
-    this.followingList.scrollToTopOrRefresh();
+    const tabIndex = this.screenView.getTabIndex();
+
+    if (!(this.allList && this.followingList)) {
+      return;
+    }
+
+    if (tabIndex === 0) {
+      this.allList.scrollToTopOrRefresh();
+    } else if (tabIndex === 1) {
+      this.followingList.scrollToTopOrRefresh();
+    }
   };
 
   handleSearch = () => {
@@ -134,6 +143,7 @@ export default class TimelineScreen extends Component {
     return (
       <View style={styles.container}>
         <TabsScreenView
+          ref={(ref) => { this.screenView = ref; }}
           navigation={navigation}
           renderHeader={() => (
             <TimelineHeader

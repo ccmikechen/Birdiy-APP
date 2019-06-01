@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1bd260a625b73ed54a20c664b0a080cb
+ * @relayHash 3eea9c065cc9e0eccf48ad92160f6802
  */
 
 /* eslint-disable */
@@ -62,6 +62,10 @@ fragment ProjectSection_project on Project {
   id
   name
   image
+  topic {
+    name
+    id
+  }
   author {
     name
     id
@@ -120,7 +124,11 @@ v3 = {
   "name": "name",
   "args": null,
   "storageKey": null
-};
+},
+v4 = [
+  (v3/*: any*/),
+  (v2/*: any*/)
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -222,15 +230,22 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
+                        "name": "topic",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "ProjectTopic",
+                        "plural": false,
+                        "selections": (v4/*: any*/)
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
                         "name": "author",
                         "storageKey": null,
                         "args": null,
                         "concreteType": "User",
                         "plural": false,
-                        "selections": [
-                          (v3/*: any*/),
-                          (v2/*: any*/)
-                        ]
+                        "selections": (v4/*: any*/)
                       },
                       {
                         "kind": "ScalarField",
@@ -291,7 +306,7 @@ return {
     "operationKind": "query",
     "name": "UserProjectsScreenQuery",
     "id": null,
-    "text": "query UserProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserProjectsScreen_query\n}\n\nfragment UserProjectsScreen_query on RootQueryType {\n  ...UserProjectList_query\n}\n\nfragment UserProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query UserProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserProjectsScreen_query\n}\n\nfragment UserProjectsScreen_query on RootQueryType {\n  ...UserProjectList_query\n}\n\nfragment UserProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

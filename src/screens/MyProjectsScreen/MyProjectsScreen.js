@@ -90,6 +90,7 @@ export default class MyProjectsScreen extends Component {
           onProjectPress={this.handleProjectPress}
           onActionButtonPress={project => this.actions.show(project)}
           showStatus
+          showCountings
         />
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}

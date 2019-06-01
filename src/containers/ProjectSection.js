@@ -9,6 +9,9 @@ export default createFragmentContainer(
       id
       name
       image
+      topic {
+        name
+      }
       author {
         name
       }

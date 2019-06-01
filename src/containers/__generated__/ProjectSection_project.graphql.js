@@ -14,6 +14,9 @@ export type ProjectSection_project = {|
   +id: string,
   +name: string,
   +image: ?string,
+  +topic: {|
+    +name: string
+  |},
   +author: {|
     +name: string
   |},
@@ -32,7 +35,10 @@ var v0 = {
   "name": "name",
   "args": null,
   "storageKey": null
-};
+},
+v1 = [
+  (v0/*: any*/)
+];
 return {
   "kind": "Fragment",
   "name": "ProjectSection_project",
@@ -58,14 +64,22 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "topic",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "ProjectTopic",
+      "plural": false,
+      "selections": (v1/*: any*/)
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
       "name": "author",
       "storageKey": null,
       "args": null,
       "concreteType": "User",
       "plural": false,
-      "selections": [
-        (v0/*: any*/)
-      ]
+      "selections": (v1/*: any*/)
     },
     {
       "kind": "ScalarField",
@@ -92,5 +106,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '0fe8b79cbe39bfb7a2dc63b7e1ecc1dd';
+(node/*: any*/).hash = '9d8b64b2c685d558866345b807a34369';
 module.exports = node;

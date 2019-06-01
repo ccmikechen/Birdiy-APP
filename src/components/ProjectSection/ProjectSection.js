@@ -10,6 +10,7 @@ import {
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 import { isEqual } from 'lodash';
+import i18n from 'i18n-js';
 
 import ActionMenuButton from '../ActionMenuButton';
 
@@ -23,6 +24,9 @@ export default class ProjectSection extends Component {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string,
+      topic: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
       author: PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired,
@@ -112,22 +116,27 @@ export default class ProjectSection extends Component {
           )}
           <View style={styles.infoContainer}>
             <View style={styles.infoTopContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.name}>{project.name}</Text>
+              <View style={styles.topicContainer}>
+                <Text style={styles.topic}>
+                  {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
+                </Text>
               </View>
               {showStatus && (
                 <View style={styles.statusContainer}>
                   {project.published ? (
                     <Text style={[styles.status, styles.publishedStatus]}>
-                      公開
+                      {i18n.t('project.status.published')}
                     </Text>
                   ) : (
                     <Text style={[styles.status, styles.draftStatus]}>
-                      草稿
+                      {i18n.t('project.status.draft')}
                     </Text>
                   )}
                 </View>
               )}
+            </View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.name}>{project.name}</Text>
             </View>
             <View style={styles.infoBottomContainer}>
               <View style={styles.authorContainer}>

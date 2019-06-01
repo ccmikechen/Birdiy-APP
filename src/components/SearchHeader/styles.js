@@ -15,7 +15,7 @@ export default StyleSheet.create({
   categorySub: {
     color: Primary(700),
     fontWeight: '600',
-    fontSize: 12,
+    fontSize: 10,
   },
   topic: {
     color: Primary(900),

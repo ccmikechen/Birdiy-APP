@@ -58,6 +58,7 @@ export default class UserProjectsScreen extends Component {
           headerPadding
           onProjectPress={this.handleOpenProject}
           userId={userId}
+          showCountings
         />
       </SimpleScreenView>
     );

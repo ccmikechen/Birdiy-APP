@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 54e2b29103a36f5d3d1f3a3894cc102f
+ * @relayHash c34892326008852933ea21afa743604a
  */
 
 /* eslint-disable */
@@ -84,6 +84,10 @@ fragment ProjectSection_project on Project {
   id
   name
   image
+  topic {
+    name
+    id
+  }
   author {
     name
     id
@@ -164,6 +168,10 @@ v5 = {
   "storageKey": null
 },
 v6 = [
+  (v5/*: any*/),
+  (v4/*: any*/)
+],
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -219,15 +227,22 @@ v6 = [
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "topic",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "ProjectTopic",
+            "plural": false,
+            "selections": (v6/*: any*/)
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
             "name": "author",
             "storageKey": null,
             "args": null,
             "concreteType": "User",
             "plural": false,
-            "selections": [
-              (v5/*: any*/),
-              (v4/*: any*/)
-            ]
+            "selections": (v6/*: any*/)
           },
           {
             "kind": "ScalarField",
@@ -269,11 +284,11 @@ v6 = [
     ]
   }
 ],
-v7 = [
+v8 = [
   "order",
   "filter"
 ],
-v8 = [
+v9 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -318,7 +333,7 @@ return {
         "args": (v3/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v7/*: any*/)
       },
       {
         "kind": "LinkedHandle",
@@ -327,26 +342,26 @@ return {
         "args": (v3/*: any*/),
         "handle": "connection",
         "key": "NewestProjectList_newest",
-        "filters": (v7/*: any*/)
+        "filters": (v8/*: any*/)
       },
       {
         "kind": "LinkedField",
         "alias": "hotest",
         "name": "allProjects",
         "storageKey": null,
-        "args": (v8/*: any*/),
+        "args": (v9/*: any*/),
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v7/*: any*/)
       },
       {
         "kind": "LinkedHandle",
         "alias": "hotest",
         "name": "allProjects",
-        "args": (v8/*: any*/),
+        "args": (v9/*: any*/),
         "handle": "connection",
         "key": "HotestProjectList_hotest",
-        "filters": (v7/*: any*/)
+        "filters": (v8/*: any*/)
       }
     ]
   },
@@ -354,7 +369,7 @@ return {
     "operationKind": "query",
     "name": "ProjectsScreenQuery",
     "id": null,
-    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

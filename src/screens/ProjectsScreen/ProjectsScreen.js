@@ -58,6 +58,10 @@ export default class ProjectsScreen extends Component {
     const { navigation } = this.props;
     const tabIndex = this.screenView.getTabIndex();
 
+    if (!(this.newestList && this.hotestList)) {
+      return;
+    }
+
     if (tabIndex === 0) {
       if (this.newestList.isOnTop()) {
         navigation.setParams({ keyword: '', categories: [] });

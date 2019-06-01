@@ -17,6 +17,31 @@ export default StyleSheet.create({
     borderTopLeftRadius: Size.projectSectionBorderRadius,
     borderTopRightRadius: Size.projectSectionBorderRadius,
   },
+  infoTopContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 5,
+    paddingBottom: 3,
+  },
+  topicContainer: {
+    flex: 1,
+    paddingRight: 3,
+  },
+  topic: {
+    fontSize: 10,
+    color: TextColor.subDark,
+  },
+  statusContainer: {
+  },
+  status: {
+    fontSize: 10,
+  },
+  draftStatus: {
+    color: Colors.draftStatus,
+  },
+  publishedStatus: {
+    color: Colors.publishedStatus,
+  },
   infoContainer: {
     backgroundColor: Base.lightest,
     minHeight: 40,
@@ -24,10 +49,6 @@ export default StyleSheet.create({
     borderBottomLeftRadius: Size.projectSectionBorderRadius,
     borderBottomRightRadius: Size.projectSectionBorderRadius,
     paddingBottom: 5,
-  },
-  infoTopContainer: {
-    flex: 1,
-    flexDirection: 'row',
   },
   nameContainer: {
     flex: 1,
@@ -37,19 +58,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
     padding: 5,
-  },
-  statusContainer: {
-    paddingTop: 5,
-    paddingRight: 5,
-  },
-  status: {
-    fontSize: 12,
-  },
-  draftStatus: {
-    color: Colors.draftStatus,
-  },
-  publishedStatus: {
-    color: Colors.publishedStatus,
+    paddingTop: 0,
   },
   infoBottomContainer: {
     flexDirection: 'row',

@@ -17,7 +17,11 @@ const ImageView = ({
         style={style}
         source={{ uri }}
         width={width}
-        PlaceholderContent={<LoadingIndicator />}
+        PlaceholderContent={(
+          <View style={[styles.loadingContainer, { height: width }]}>
+            <LoadingIndicator />
+          </View>
+)}
       />
       {amount > 1 && (
         <View style={styles.imagesInfoContainer}>

@@ -25,4 +25,9 @@ export default StyleSheet.create({
     color: Base.lightest,
     fontSize: 24,
   },
+  loadingContainer: {
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
