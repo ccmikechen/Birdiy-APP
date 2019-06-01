@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 89954b23ae68acab819fbb2148495240
+ * @relayHash 54e2b29103a36f5d3d1f3a3894cc102f
  */
 
 /* eslint-disable */
@@ -47,7 +47,7 @@ fragment ProjectsScreen_query on RootQueryType {
 }
 
 fragment NewestProjectList_query on RootQueryType {
-  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {
+  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -64,7 +64,7 @@ fragment NewestProjectList_query on RootQueryType {
 }
 
 fragment HotestProjectList_query on RootQueryType {
-  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {
+  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -89,6 +89,8 @@ fragment ProjectSection_project on Project {
     id
   }
   published
+  viewCount
+  likeCount
 }
 */
 
@@ -139,7 +141,13 @@ v3 = [
     "type": "String"
   },
   (v1/*: any*/),
-  (v2/*: any*/)
+  (v2/*: any*/),
+  {
+    "kind": "Literal",
+    "name": "order",
+    "value": "NEWEST",
+    "type": "ProjectOrder"
+  }
 ],
 v4 = {
   "kind": "ScalarField",
@@ -231,6 +239,20 @@ v6 = [
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "viewCount",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "likeCount",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "__typename",
             "args": null,
             "storageKey": null
@@ -248,6 +270,7 @@ v6 = [
   }
 ],
 v7 = [
+  "order",
   "filter"
 ],
 v8 = [
@@ -258,7 +281,13 @@ v8 = [
     "type": "String"
   },
   (v1/*: any*/),
-  (v2/*: any*/)
+  (v2/*: any*/),
+  {
+    "kind": "Literal",
+    "name": "order",
+    "value": "HOTEST",
+    "type": "ProjectOrder"
+  }
 ];
 return {
   "kind": "Request",
@@ -325,7 +354,7 @@ return {
     "operationKind": "query",
     "name": "ProjectsScreenQuery",
     "id": null,
-    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query ProjectsScreenQuery(\n  $count: Int!\n  $newestCursor: String\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...ProjectsScreen_query\n}\n\nfragment ProjectsScreen_query on RootQueryType {\n  ...NewestProjectList_query\n  ...HotestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

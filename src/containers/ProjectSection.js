@@ -13,6 +13,8 @@ export default createFragmentContainer(
         name
       }
       published
+      viewCount
+      likeCount
     }
   `,
 );

@@ -163,6 +163,7 @@ export default class ProjectsScreen extends Component {
             topics={topics}
             headerPadding
             onProjectPress={this.handleOpenProject}
+            showCountings
           />
           <HotestProjectList
             innerRef={(ref) => { this.hotestList = ref; }}
@@ -172,6 +173,7 @@ export default class ProjectsScreen extends Component {
             topics={topics}
             headerPadding
             onProjectPress={this.handleOpenProject}
+            showCountings
           />
         </TabsScreenView>
         <AnimatedAddButton

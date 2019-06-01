@@ -73,6 +73,12 @@ const node/*: ReaderFragment*/ = {
           "name": "filter",
           "variableName": "filter",
           "type": "ProjectFilter"
+        },
+        {
+          "kind": "Literal",
+          "name": "order",
+          "value": "HOTEST",
+          "type": "ProjectOrder"
         }
       ],
       "concreteType": "ProjectConnection",
@@ -149,5 +155,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ad1fa1421394f7cf1219750e5009141f';
+(node/*: any*/).hash = '4509aa75a663e0172813e80fb03f29c0';
 module.exports = node;

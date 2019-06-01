@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b1ea02d1f6f86db63fbafcb0496645c2
+ * @relayHash 521f5c78770c663c35584810825f11b9
  */
 
 /* eslint-disable */
@@ -67,6 +67,8 @@ fragment ProjectSection_project on Project {
     id
   }
   published
+  viewCount
+  likeCount
 }
 */
 
@@ -240,6 +242,20 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "viewCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "likeCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -275,7 +291,7 @@ return {
     "operationKind": "query",
     "name": "UserFavoritesScreenQuery",
     "id": null,
-    "text": "query UserFavoritesScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserFavoritesScreen_query\n}\n\nfragment UserFavoritesScreen_query on RootQueryType {\n  ...UserFavoriteProjectList_query\n}\n\nfragment UserFavoriteProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query UserFavoritesScreenQuery(\n  $count: Int!\n  $cursor: String\n  $id: ID!\n) {\n  ...UserFavoritesScreen_query\n}\n\nfragment UserFavoritesScreen_query on RootQueryType {\n  ...UserFavoriteProjectList_query\n}\n\nfragment UserFavoriteProjectList_query on RootQueryType {\n  user(id: $id) {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 543062b1cbedb1a4240067b2ec5fb21b
+ * @relayHash 8e762372077353b572468e5107077fed
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ query NewestProjectListPaginationQuery(
 }
 
 fragment NewestProjectList_query on RootQueryType {
-  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {
+  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -65,6 +65,8 @@ fragment ProjectSection_project on Project {
     id
   }
   published
+  viewCount
+  likeCount
 }
 */
 
@@ -107,6 +109,12 @@ v1 = [
     "name": "first",
     "variableName": "count",
     "type": "Int"
+  },
+  {
+    "kind": "Literal",
+    "name": "order",
+    "value": "NEWEST",
+    "type": "ProjectOrder"
   }
 ],
 v2 = {
@@ -228,6 +236,20 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
+                    "name": "viewCount",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "likeCount",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
@@ -253,6 +275,7 @@ return {
         "handle": "connection",
         "key": "NewestProjectList_newest",
         "filters": [
+          "order",
           "filter"
         ]
       }
@@ -262,7 +285,7 @@ return {
     "operationKind": "query",
     "name": "NewestProjectListPaginationQuery",
     "id": null,
-    "text": "query NewestProjectListPaginationQuery(\n  $count: Int!\n  $newestCursor: String\n  $filter: ProjectFilter\n) {\n  ...NewestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query NewestProjectListPaginationQuery(\n  $count: Int!\n  $newestCursor: String\n  $filter: ProjectFilter\n) {\n  ...NewestProjectList_query\n}\n\nfragment NewestProjectList_query on RootQueryType {\n  newest: allProjects(first: $count, after: $newestCursor, order: NEWEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

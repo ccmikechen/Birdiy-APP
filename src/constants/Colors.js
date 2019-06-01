@@ -83,4 +83,5 @@ export default {
   settingBorder: '#c8c7cc',
   danger: '#ff0000',
   defaultMessage: '#858fa0',
+  viewsIcon: '#4caf50',
 };

@@ -59,6 +59,7 @@ export default createPaginationContainer(
         hotest: allProjects(
           first: $count,
           after: $hotestCursor,
+          order: HOTEST,
           filter: $filter,
         ) @connection(key: "HotestProjectList_hotest") {
           pageInfo {

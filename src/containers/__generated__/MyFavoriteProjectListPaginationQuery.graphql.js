@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a0792ef92e0d6fd66926cbf96fd21665
+ * @relayHash 7daea49d0918fd25f1b1cc2452213b2b
  */
 
 /* eslint-disable */
@@ -61,6 +61,8 @@ fragment ProjectSection_project on Project {
     id
   }
   published
+  viewCount
+  likeCount
 }
 */
 
@@ -221,6 +223,20 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "viewCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "likeCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -256,7 +272,7 @@ return {
     "operationKind": "query",
     "name": "MyFavoriteProjectListPaginationQuery",
     "id": null,
-    "text": "query MyFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyFavoriteProjectList_query\n}\n\nfragment MyFavoriteProjectList_query on RootQueryType {\n  viewer {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query MyFavoriteProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyFavoriteProjectList_query\n}\n\nfragment MyFavoriteProjectList_query on RootQueryType {\n  viewer {\n    projects: favoriteProjects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

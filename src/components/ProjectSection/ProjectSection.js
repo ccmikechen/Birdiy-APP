@@ -13,6 +13,8 @@ import { isEqual } from 'lodash';
 
 import ActionMenuButton from '../ActionMenuButton';
 
+import { TextColor } from '../../constants/Colors';
+
 import styles from './styles';
 
 export default class ProjectSection extends Component {
@@ -25,11 +27,14 @@ export default class ProjectSection extends Component {
         name: PropTypes.string.isRequired,
       }).isRequired,
       published: PropTypes.bool.isRequired,
+      viewCount: PropTypes.number.isRequired,
+      likeCount: PropTypes.number.isRequired,
     }).isRequired,
     onPress: PropTypes.func,
     onActionButtonPress: PropTypes.func,
     actionButtonVisible: PropTypes.bool,
     showStatus: PropTypes.bool,
+    showCountings: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -37,6 +42,7 @@ export default class ProjectSection extends Component {
     onActionButtonPress: () => () => {},
     actionButtonVisible: false,
     showStatus: false,
+    showCountings: false,
   };
 
   shoudComponentUpdate(nextProps) {
@@ -45,6 +51,35 @@ export default class ProjectSection extends Component {
     return !isEqual(project, nextProps.project);
   }
 
+  renderCountings = () => {
+    const { project } = this.props;
+
+    return (
+      <View style={styles.countingsContainer}>
+        <View style={styles.viewsContainer}>
+          <Icon.MaterialCommunityIcons
+            name="eye"
+            size={14}
+            color={TextColor.subDark}
+          />
+          <Text style={styles.countingNumber}>
+            {project.viewCount}
+          </Text>
+        </View>
+        <View style={styles.likesContainer}>
+          <Icon.MaterialCommunityIcons
+            name="heart"
+            size={14}
+            color={TextColor.subDark}
+          />
+          <Text style={styles.countingNumber}>
+            {project.likeCount}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
   render() {
     const {
       project,
@@ -52,6 +87,7 @@ export default class ProjectSection extends Component {
       onActionButtonPress,
       actionButtonVisible,
       showStatus,
+      showCountings,
     } = this.props;
 
     return (
@@ -104,6 +140,7 @@ export default class ProjectSection extends Component {
               )}
             </View>
           </View>
+          {showCountings && this.renderCountings()}
         </Surface>
       </TouchableOpacity>
     );

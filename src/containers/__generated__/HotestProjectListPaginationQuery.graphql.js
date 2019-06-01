@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b001806455059026fb693621da1c8da9
+ * @relayHash 406c860fb2068931ee3497f93a23169b
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ query HotestProjectListPaginationQuery(
 }
 
 fragment HotestProjectList_query on RootQueryType {
-  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {
+  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {
     pageInfo {
       hasNextPage
       endCursor
@@ -65,6 +65,8 @@ fragment ProjectSection_project on Project {
     id
   }
   published
+  viewCount
+  likeCount
 }
 */
 
@@ -107,6 +109,12 @@ v1 = [
     "name": "first",
     "variableName": "count",
     "type": "Int"
+  },
+  {
+    "kind": "Literal",
+    "name": "order",
+    "value": "HOTEST",
+    "type": "ProjectOrder"
   }
 ],
 v2 = {
@@ -228,6 +236,20 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
+                    "name": "viewCount",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "likeCount",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
@@ -253,6 +275,7 @@ return {
         "handle": "connection",
         "key": "HotestProjectList_hotest",
         "filters": [
+          "order",
           "filter"
         ]
       }
@@ -262,7 +285,7 @@ return {
     "operationKind": "query",
     "name": "HotestProjectListPaginationQuery",
     "id": null,
-    "text": "query HotestProjectListPaginationQuery(\n  $count: Int!\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...HotestProjectList_query\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n}\n",
+    "text": "query HotestProjectListPaginationQuery(\n  $count: Int!\n  $hotestCursor: String\n  $filter: ProjectFilter\n) {\n  ...HotestProjectList_query\n}\n\nfragment HotestProjectList_query on RootQueryType {\n  hotest: allProjects(first: $count, after: $hotestCursor, order: HOTEST, filter: $filter) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectSection_project\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

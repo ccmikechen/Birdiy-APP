@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import Colors, { Base, Tertiary } from '../../constants/Colors';
+import Colors, { Base, TextColor } from '../../constants/Colors';
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   name: {
-    color: Tertiary(900),
+    color: TextColor.primaryDark,
     fontWeight: '600',
     fontSize: 16,
     padding: 5,
@@ -59,12 +59,33 @@ export default StyleSheet.create({
     flex: 1,
   },
   author: {
-    color: Tertiary(500),
+    color: TextColor.subDark,
     fontSize: 12,
     padding: 5,
   },
   optionContainer: {
     justifyContent: 'flex-end',
     paddingRight: 5,
+  },
+  countingsContainer: {
+    flexDirection: 'row',
+    padding: 5,
+    backgroundColor: Base.light,
+    borderBottomLeftRadius: Size.projectSectionBorderRadius,
+    borderBottomRightRadius: Size.projectSectionBorderRadius,
+  },
+  viewsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  likesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  countingNumber: {
+    fontSize: 10,
+    color: TextColor.subDark,
+    marginLeft: 5,
   },
 });

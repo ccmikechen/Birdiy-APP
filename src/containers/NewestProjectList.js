@@ -59,6 +59,7 @@ export default createPaginationContainer(
         newest: allProjects(
           first: $count,
           after: $newestCursor,
+          order: NEWEST,
           filter: $filter,
         ) @connection(key: "NewestProjectList_newest") {
           pageInfo {

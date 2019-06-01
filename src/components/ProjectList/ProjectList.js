@@ -26,6 +26,7 @@ export default class ProjectList extends Component {
     headerPadding: PropTypes.bool,
     canLoadMore: PropTypes.bool,
     showStatus: PropTypes.bool,
+    showCountings: PropTypes.bool,
     refresh: PropTypes.func,
     innerRef: PropTypes.func,
   };
@@ -42,6 +43,7 @@ export default class ProjectList extends Component {
     headerPadding: false,
     canLoadMore: false,
     showStatus: false,
+    showCountings: false,
     refresh: null,
     innerRef: null,
   };
@@ -52,6 +54,7 @@ export default class ProjectList extends Component {
       onActionButtonPress,
       actionButtonVisible,
       showStatus,
+      showCountings,
     } = this.props;
 
     return (
@@ -64,6 +67,7 @@ export default class ProjectList extends Component {
               onActionButtonPress={onActionButtonPress}
               actionButtonVisible={actionButtonVisible}
               showStatus={showStatus}
+              showCountings={showCountings}
             />
           ) : null
         }
