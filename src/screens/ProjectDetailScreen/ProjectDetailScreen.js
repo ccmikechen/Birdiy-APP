@@ -55,6 +55,9 @@ export default class ProjectDetailScreen extends Component {
       project: PropTypes.shape({
         name: PropTypes.string,
         image: PropTypes.string,
+        topic: PropTypes.shape({
+          name: PropTypes.string,
+        }),
         author: PropTypes.object,
         category: PropTypes.shape({
           name: PropTypes.string,
@@ -268,6 +271,11 @@ export default class ProjectDetailScreen extends Component {
         </View>
         <View style={styles.headerSection}>
           <View style={styles.headerInfoContainer}>
+            <View style={[styles.contentSection, styles.topicContainer]}>
+              <Text style={styles.topic}>
+                {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
+              </Text>
+            </View>
             <View style={[styles.contentSection, styles.titleContainer]}>
               <Text style={styles.title}>
                 {project.name}
@@ -290,8 +298,6 @@ export default class ProjectDetailScreen extends Component {
           <ProjectAuthor
             project={project}
             onUserPress={this.handleUserPress}
-            onFollow={this.handleFollowUser}
-            onUnfollow={this.handleUnfollowUser}
           />
         </View>
         <View style={styles.optionsContainer}>

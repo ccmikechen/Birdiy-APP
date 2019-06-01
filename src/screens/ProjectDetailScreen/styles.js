@@ -31,7 +31,12 @@ export default StyleSheet.create({
   headerInfoContainer: {
     flex: 1,
   },
+  topic: {
+    fontSize: 12,
+    color: TextColor.subDark,
+  },
   titleContainer: {
+    paddingTop: 5,
   },
   title: {
     fontSize: 22,

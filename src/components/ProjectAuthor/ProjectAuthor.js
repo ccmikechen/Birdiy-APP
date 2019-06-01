@@ -7,7 +7,6 @@ import {
 import i18n from 'i18n-js';
 
 import Avatar from '../Avatar';
-import FollowUserButton from '../FollowUserButton';
 
 import Size from '../../constants/Size';
 
@@ -18,8 +17,6 @@ const i18nOptions = { scope: 'project.author' };
 const ProjectAuthor = ({
   author,
   onUserPress,
-  onFollow,
-  onUnfollow,
 }) => (
   <View style={styles.container}>
     <Avatar
@@ -40,13 +37,6 @@ const ProjectAuthor = ({
         </Text>
       </View>
     </View>
-    <View>
-      <FollowUserButton
-        following={author.following}
-        onFollow={() => onFollow(author.id)}
-        onUnfollow={() => onUnfollow(author.id)}
-      />
-    </View>
   </View>
 );
 
@@ -60,14 +50,10 @@ ProjectAuthor.propTypes = {
     projectCount: PropTypes.number.isRequired,
   }).isRequired,
   onUserPress: PropTypes.func,
-  onFollow: PropTypes.func,
-  onUnfollow: PropTypes.func,
 };
 
 ProjectAuthor.defaultProps = {
   onUserPress: () => {},
-  onFollow: () => {},
-  onUnfollow: () => {},
 };
 
 export default ProjectAuthor;
