@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import Size from '../../constants/Size';
 
@@ -11,5 +11,8 @@ export default StyleSheet.create({
   },
   pageContainer: {
     flex: 1,
+  },
+  page: {
+    width: Dimensions.get('window').width,
   },
 });

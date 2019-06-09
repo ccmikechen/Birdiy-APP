@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Alert, Platform } from 'react-native';
 import { ViewPager } from 'rn-viewpager';
 
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
@@ -35,7 +35,10 @@ export default class TabsPager extends Component {
   handleTabChange = (index) => {
     const { onChangeTab } = this.props;
     onChangeTab(index);
-    this.pager.setPage(index);
+
+    if (Platform.OS === 'android') {
+      this.pager.setPage(index);
+    }
   };
 
   handlePageChange = ({ position }) => {
@@ -61,9 +64,13 @@ export default class TabsPager extends Component {
     } = this.props;
 
     const newChildren = React.Children.map(children, (child, index) => (
-      React.cloneElement(child, {
-        onScrollTrigger: this.handleScrollTrigger(index),
-      })
+      <View style={styles.page}>
+        {
+          React.cloneElement(child, {
+            onScrollTrigger: this.handleScrollTrigger(index),
+          })
+        }
+      </View>
     ));
 
     return (
@@ -79,6 +86,7 @@ export default class TabsPager extends Component {
         <ViewPager
           ref={(ref) => { this.pager = ref; }}
           style={styles.pageContainer}
+          onPageScroll={(data) => console.log(data)}
           onPageSelected={this.handlePageChange}
           initialPage={tabIndex}
         >
