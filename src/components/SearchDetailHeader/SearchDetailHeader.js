@@ -15,13 +15,11 @@ export default class SearchDetailHeader extends Component {
     onKeywordChange: PropTypes.func,
     onBack: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
-    onOpenFilter: PropTypes.func,
   };
 
   static defaultProps = {
     keyword: '',
     onKeywordChange: () => {},
-    onOpenFilter: () => {},
   };
 
   focusSearchBar = () => {
@@ -36,7 +34,6 @@ export default class SearchDetailHeader extends Component {
     const {
       onKeywordChange,
       onBack,
-      onOpenFilter,
       onSearch,
       keyword,
     } = this.props;
@@ -59,10 +56,6 @@ export default class SearchDetailHeader extends Component {
             selectionColor={Tertiary(500)}
           />
         )}
-        rightButton={{
-          icon: 'filter-list',
-          onPress: onOpenFilter,
-        }}
       />
     );
   }
