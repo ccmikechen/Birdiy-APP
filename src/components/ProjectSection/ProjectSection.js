@@ -30,9 +30,9 @@ export default class ProjectSection extends Component {
       author: PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired,
-      published: PropTypes.bool.isRequired,
-      viewCount: PropTypes.number.isRequired,
-      likeCount: PropTypes.number.isRequired,
+      published: PropTypes.bool,
+      viewCount: PropTypes.number,
+      likeCount: PropTypes.number,
     }).isRequired,
     onPress: PropTypes.func,
     onActionButtonPress: PropTypes.func,
@@ -136,7 +136,12 @@ export default class ProjectSection extends Component {
               )}
             </View>
             <View style={styles.nameContainer}>
-              <Text style={styles.name}>{project.name}</Text>
+              <Text
+                style={styles.name}
+                numberOfLines={2}
+              >
+                {project.name}
+              </Text>
             </View>
             <View style={styles.infoBottomContainer}>
               <View style={styles.authorContainer}>

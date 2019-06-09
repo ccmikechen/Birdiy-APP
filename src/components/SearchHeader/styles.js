@@ -8,7 +8,7 @@ export default StyleSheet.create({
     height: Size.searchBarHeight,
   },
   category: {
-    color: Primary(700),
+    color: Primary(900),
     fontWeight: '600',
     fontSize: 18,
   },

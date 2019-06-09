@@ -8,7 +8,7 @@ const query = graphql`
   query HomeScreenQuery (
     $hotCategoryCount: Int!,
     $hotCategoryOrder: RankOrder,
-    $newProjectCount: Int!,
+    $projectCount: Int!,
   ) {
     ...HomeScreen_query
   }
@@ -18,8 +18,43 @@ const HomeScreenFragmentContainer = createRefetchContainer(
   HomeScreen,
   graphql`
     fragment HomeScreen_query on RootQueryType {
-      ...ProjectThumbnailsTable_query
       ...CategoriesTable_query
+      craftProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Craft"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
+      electronicsProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Electronics"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
+      livingProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Living"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
+      outsideProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Outside"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
+      scienceProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Science"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
+      workshopProjects: allProjects(
+        first: $projectCount,
+        filter: {categories: ["Workshop"]},
+      ) {
+        ...ProjectThumbnailsTable_projects
+      }
     }
   `,
   query,
@@ -34,7 +69,7 @@ export default withNavigation(
       variables: {
         hotCategoryCount: 6,
         hotCategoryOrder: 'NAME',
-        newProjectCount: 4,
+        projectCount: 4,
       },
     },
   ),

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import HomeHeader from '../../components/HomeHeader';
-import HomeSection from '../../components/HomeSection';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 import CategoriesTable from '../../containers/CategoriesTable';
 import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
+
+import styles from './styles';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -83,31 +85,17 @@ export default class HomeScreen extends Component {
     const { query } = this.props;
 
     return (
-      <ExtensibleSectionContent
-        onMorePress={this.handleMoreCategory}
-        renderContent={() => (
-          <CategoriesTable
-            query={query}
-            onCategoryPress={this.handleCategoryPress}
-          />
-        )}
-      />
-    );
-  };
-
-  renderNewProjects = () => {
-    const { query } = this.props;
-
-    return (
-      <ExtensibleSectionContent
-        onMorePress={this.handleMoreProject}
-        renderContent={() => (
-          <ProjectThumbnailsTable
-            query={query}
-            onPressProject={this.handleOpenProject}
-          />
-        )}
-      />
+      <View style={styles.categoriesContainer}>
+        <ExtensibleSectionContent
+          onMorePress={this.handleMoreCategory}
+          renderContent={() => (
+            <CategoriesTable
+              query={query}
+              onCategoryPress={this.handleCategoryPress}
+            />
+          )}
+        />
+      </View>
     );
   };
 
@@ -120,7 +108,7 @@ export default class HomeScreen extends Component {
   };
 
   render() {
-    const { navigation, loading } = this.props;
+    const { navigation, query, loading } = this.props;
     const { refreshing } = this.state;
 
     return (
@@ -136,13 +124,43 @@ export default class HomeScreen extends Component {
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
       >
-        <HomeSection
-          title={i18n.t('home.categories')}
-          renderContent={this.renderCategories}
+        {this.renderCategories()}
+        <ProjectThumbnailsTable
+          title={i18n.t('categories.Craft')}
+          category="Craft"
+          projects={query && query.craftProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
         />
-        <HomeSection
-          title={i18n.t('home.newestProjects')}
-          renderContent={this.renderNewProjects}
+        <ProjectThumbnailsTable
+          category="Electronics"
+          projects={query && query.electronicsProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
+        />
+        <ProjectThumbnailsTable
+          category="Living"
+          projects={query && query.livingProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
+        />
+        <ProjectThumbnailsTable
+          category="Outside"
+          projects={query && query.outsideProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
+        />
+        <ProjectThumbnailsTable
+          category="Science"
+          projects={query && query.scienceProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
+        />
+        <ProjectThumbnailsTable
+          category="Workshop"
+          projects={query && query.workshopProjects}
+          onProjectPress={this.handleOpenProject}
+          onCategoryPress={this.handleCategoryPress}
         />
       </TopScreenView>
     );
