@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
-import MaterialTabs from 'react-native-material-tabs';
+import { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 
 import Size from '../../constants/Size';
-import { TextColor, Secondary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -20,18 +19,12 @@ export default class AnimatedTopTabBar extends Component {
   static propTypes = {
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-    tabs: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-    ])).isRequired,
-    index: PropTypes.number,
-    onChange: PropTypes.func,
+    activeTab: PropTypes.number,
   };
 
   static defaultProps = {
     duration: 100,
-    index: 0,
-    onChange: () => {},
+    activeTab: 0,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -56,16 +49,13 @@ export default class AnimatedTopTabBar extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    const { visible, index } = this.props;
+    const { visible, activeTab } = this.props;
 
     return (visible !== nextProps.visible)
-      || (index !== nextProps.index);
+      || (activeTab !== nextProps.activeTab);
   }
 
   render() {
-    const {
-      tabs, index, onChange,
-    } = this.props;
     const { offset } = this.state;
 
     return (
@@ -74,17 +64,10 @@ export default class AnimatedTopTabBar extends Component {
           transform: [{ translateY: offset }],
         }]}
       >
-        <MaterialTabs
+        <ScrollableTabBar
           {...this.props}
           style={styles.tabBar}
-          items={tabs}
-          selectedIndex={index}
-          barColor="transparent"
-          activeTextColor={Secondary(500)}
-          activeTextStyle={{ fontWeight: '600' }}
-          inactiveTextColor={TextColor.subDark}
-          indicatorColor={Secondary(500)}
-          onChange={onChange}
+          scrollOffset={0}
         />
       </Animated.View>
     );

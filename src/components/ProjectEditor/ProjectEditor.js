@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Formik } from 'formik';
 import i18n from 'i18n-js';
 
@@ -136,7 +136,6 @@ export default class ProjectEditor extends Component {
 
           this.bindSubmit(submitForm);
 
-          const tabErrors = this.getTabErrors(touched, errors);
           const tabs = [
             i18n.t('tabs.intro', i18nOptions),
             i18n.t('tabs.image', i18nOptions),
@@ -144,17 +143,7 @@ export default class ProjectEditor extends Component {
             i18n.t('tabs.files', i18nOptions),
             i18n.t('tabs.methods', i18nOptions),
             i18n.t('tabs.tip', i18nOptions),
-          ].map((tab, index) => {
-            const style = [
-              styles.tab,
-              index === tabIndex ? styles.currentTab : null,
-              index !== tabIndex && tabErrors[index] ? styles.errorTab : null,
-            ];
-
-            return (
-              <Text key={`tab-${index}`} style={style}>{tab}</Text>
-            );
-          });
+          ];
 
           return (
             <TabsPager

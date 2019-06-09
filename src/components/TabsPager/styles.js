@@ -13,6 +13,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   page: {
+    flex: 1,
     width: Dimensions.get('window').width,
   },
 });

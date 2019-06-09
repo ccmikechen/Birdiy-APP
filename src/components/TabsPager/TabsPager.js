@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Alert, Platform } from 'react-native';
-import { ViewPager } from 'rn-viewpager';
+import { View } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
+
+import { TextColor, Secondary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -32,18 +34,9 @@ export default class TabsPager extends Component {
     isHeaderVisible: true,
   };
 
-  handleTabChange = (index) => {
+  handleTabChange = ({ i }) => {
     const { onChangeTab } = this.props;
-    onChangeTab(index);
-
-    if (Platform.OS === 'android') {
-      this.pager.setPage(index);
-    }
-  };
-
-  handlePageChange = ({ position }) => {
-    const { onChangeTab } = this.props;
-    onChangeTab(position);
+    onChangeTab(i);
   };
 
   handleScrollTrigger = index => visible => () => {
@@ -64,7 +57,10 @@ export default class TabsPager extends Component {
     } = this.props;
 
     const newChildren = React.Children.map(children, (child, index) => (
-      <View style={styles.page}>
+      <View
+        style={styles.page}
+        tabLabel={tabs[index]}
+      >
         {
           React.cloneElement(child, {
             onScrollTrigger: this.handleScrollTrigger(index),
@@ -76,22 +72,22 @@ export default class TabsPager extends Component {
     return (
       <View style={styles.contentContainer}>
         <View style={styles.tabBarPaddingView} />
-        <AnimatedTopTabBar
-          visible={isHeaderVisible}
-          tabs={tabs}
-          index={tabIndex}
-          onChange={this.handleTabChange}
-          scrollable={tabsScrollable}
-        />
-        <ViewPager
+        <ScrollableTabView
           ref={(ref) => { this.pager = ref; }}
+          renderTabBar={() => (
+            <AnimatedTopTabBar
+              visible={isHeaderVisible}
+              scrollable={tabsScrollable}
+            />
+          )}
           style={styles.pageContainer}
-          onPageScroll={(data) => console.log(data)}
-          onPageSelected={this.handlePageChange}
+          onChangeTab={this.handleTabChange}
+          tabBarActiveTextColor={Secondary(500)}
+          tabBarInactiveTextColor={TextColor.subDark}
           initialPage={tabIndex}
         >
           {newChildren}
-        </ViewPager>
+        </ScrollableTabView>
       </View>
     );
   }
