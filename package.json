@@ -16,6 +16,7 @@
   "dependencies": {
     "@absinthe/socket": "^0.2.1",
     "@absinthe/socket-relay": "^0.2.1",
+    "@valdio/react-native-scrollable-tabview": "^0.8.11",
     "babel-eslint": "^10.0.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -50,7 +51,6 @@
     "react-native-paper": "^2.13.0",
     "react-native-root-toast": "^3.1.1",
     "react-native-scroll-into-view": "^1.0.3",
-    "react-native-scrollable-tab-view": "^0.10.0",
     "react-native-settings-list": "^1.8.0",
     "react-native-super-grid": "^3.0.3",
     "react-navigation": "^3.3.2",

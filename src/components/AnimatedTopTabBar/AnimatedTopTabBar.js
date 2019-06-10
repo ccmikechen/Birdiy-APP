@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
-import { ScrollableTabBar } from 'react-native-scrollable-tab-view';
+import { ScrollableTabBar } from '@valdio/react-native-scrollable-tabview';
 
 import Size from '../../constants/Size';
 
@@ -19,12 +19,12 @@ export default class AnimatedTopTabBar extends Component {
   static propTypes = {
     visible: PropTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
     duration: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-    activeTab: PropTypes.number,
+    index: PropTypes.number,
   };
 
   static defaultProps = {
     duration: 100,
-    activeTab: 0,
+    index: 0,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -49,13 +49,14 @@ export default class AnimatedTopTabBar extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    const { visible, activeTab } = this.props;
+    const { visible, index } = this.props;
 
     return (visible !== nextProps.visible)
-      || (activeTab !== nextProps.activeTab);
+      || (index !== nextProps.index);
   }
 
   render() {
+    const { index } = this.props;
     const { offset } = this.state;
 
     return (
@@ -66,6 +67,7 @@ export default class AnimatedTopTabBar extends Component {
       >
         <ScrollableTabBar
           {...this.props}
+          activeTab={index}
           style={styles.tabBar}
           scrollOffset={0}
         />

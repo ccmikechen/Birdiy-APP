@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import { ScrollableTabView } from '@valdio/react-native-scrollable-tabview';
 
 import AnimatedTopTabBar from '../AnimatedTopTabBar';
 
@@ -34,9 +34,16 @@ export default class TabsPager extends Component {
     isHeaderVisible: true,
   };
 
-  handleTabChange = ({ i }) => {
+  handleTabChange = (i) => {
     const { onChangeTab } = this.props;
     onChangeTab(i);
+  };
+
+  handleTabScroll = (position) => {
+    const { tabIndex } = this.props;
+    if (position % 1 === 0 && tabIndex !== position) {
+      this.handleTabChange(Math.round(position));
+    }
   };
 
   handleScrollTrigger = index => visible => () => {
@@ -78,13 +85,17 @@ export default class TabsPager extends Component {
             <AnimatedTopTabBar
               visible={isHeaderVisible}
               scrollable={tabsScrollable}
+              index={tabIndex}
             />
           )}
           style={styles.pageContainer}
-          onChangeTab={this.handleTabChange}
+          onScroll={this.handleTabScroll}
+          onChangeTab={({ i }) => this.handleTabChange(i)}
           tabBarActiveTextColor={Secondary(500)}
           tabBarInactiveTextColor={TextColor.subDark}
           initialPage={tabIndex}
+          prerenderingSiblingsNumber={Infinity}
+          scrollWithoutAnimation
         >
           {newChildren}
         </ScrollableTabView>

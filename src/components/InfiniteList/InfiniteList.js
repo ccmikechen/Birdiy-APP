@@ -118,6 +118,7 @@ export default class InfiniteList extends Component {
         extraData={this.props}
         initialNumToRender={5}
         removeClippedSubviews
+        bounces={false}
         {...restProps}
       />
     );
