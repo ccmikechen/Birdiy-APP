@@ -6,8 +6,8 @@ export default StyleSheet.create({
   contentContainer: {
   },
   moreButtonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
+    flex: 1,
+    marginTop: 0,
+    margin: 10,
   },
 });

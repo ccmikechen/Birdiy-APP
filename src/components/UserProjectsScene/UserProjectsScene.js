@@ -9,8 +9,6 @@ import MyProjectActions from '../MyProjectActions';
 import HorProjectSection from '../HorProjectSection';
 import MessageView from '../MessageView';
 
-import styles from './styles';
-
 export default class UserProjectsScene extends Component {
   static propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
@@ -77,12 +75,10 @@ export default class UserProjectsScene extends Component {
     return (
       <View>
         {editable ? (
-          <View style={styles.addButtonContainer}>
-            <UserProfileAddButton
-              text={i18n.t('project.create.title')}
-              onPress={onAddPress}
-            />
-          </View>
+          <UserProfileAddButton
+            text={i18n.t('project.create.title')}
+            onPress={onAddPress}
+          />
         ) : null}
         <FlatList
           {...this.props}
@@ -97,12 +93,10 @@ export default class UserProjectsScene extends Component {
           keyExtractor={item => item.id}
         />
         {projects.length > 0 && (
-          <View style={styles.moreButtonContainer}>
-            <MoreButton
-              onPress={onMorePress}
-              text={i18n.t('general.more')}
-            />
-          </View>
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         )}
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}

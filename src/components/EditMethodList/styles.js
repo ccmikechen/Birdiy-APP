@@ -23,19 +23,18 @@ export default StyleSheet.create({
     color: TextColor.primaryDark,
   },
   addButtonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+    flex: 1,
     marginTop: 10,
   },
   addButton: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '90%',
     height: 40,
     borderRadius: 10,
     backgroundColor: Primary(700),
-    padding: 5,
+    marginLeft: 10,
+    marginRight: 10,
   },
   addButtonText: {
     fontSize: 16,

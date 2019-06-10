@@ -251,7 +251,6 @@ export default class ProjectDetailScreen extends Component {
           />
         )}
         headerPadding={false}
-        animatedScroll
         loading={loading}
       >
         <View style={styles.projectImageContainer}>

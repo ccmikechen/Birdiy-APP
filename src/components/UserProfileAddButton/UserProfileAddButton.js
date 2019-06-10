@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-elements';
 
 import styles from './styles';
 
-const UserProfileAddButton = ({
-  text,
-  onPress,
-}) => (
+const UserProfileAddButton = ({ text, onPress }) => (
   <Button
-    style={styles.container}
-    icon="add"
-    mode="outlined"
-    color="#ffffff"
+    title={text}
+    titleStyle={styles.text}
+    containerStyle={styles.container}
+    buttonStyle={styles.button}
+    icon={{
+      name: 'add',
+      size: 20,
+      color: '#ffffff',
+    }}
     onPress={onPress}
-  >
-    <Text style={styles.text}>{text}</Text>
-  </Button>
+  />
 );
 
 UserProfileAddButton.propTypes = {

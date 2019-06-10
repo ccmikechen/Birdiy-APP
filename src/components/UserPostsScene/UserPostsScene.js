@@ -116,12 +116,10 @@ export default class UserPostsScene extends Component {
     return (
       <View>
         {editable ? (
-          <View style={styles.addButtonContainer}>
-            <UserProfileAddButton
-              text={i18n.t('post.create.title')}
-              onPress={onAddPress}
-            />
-          </View>
+          <UserProfileAddButton
+            text={i18n.t('post.create.title')}
+            onPress={onAddPress}
+          />
         ) : null}
         <FlatList
           {...this.props}
@@ -137,12 +135,10 @@ export default class UserPostsScene extends Component {
           keyExtractor={item => item.id}
         />
         {posts.length > 0 && (
-          <View style={styles.moreButtonContainer}>
-            <MoreButton
-              onPress={onMorePress}
-              text={i18n.t('general.more')}
-            />
-          </View>
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         )}
       </View>
     );

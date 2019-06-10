@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import styles from './styles';
 
 const MoreButton = ({ text, onPress }) => (
-  <TouchableOpacity
-    style={styles.container}
+  <Button
+    title={text}
+    titleStyle={styles.text}
+    containerStyle={styles.container}
+    buttonStyle={styles.button}
     onPress={onPress}
-  >
-    <Text style={styles.text}>
-      {text}
-    </Text>
-  </TouchableOpacity>
+  />
 );
 
 MoreButton.propTypes = {

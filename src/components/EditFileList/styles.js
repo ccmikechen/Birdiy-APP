@@ -10,12 +10,15 @@ export default StyleSheet.create({
   listContainer: {
     width: '100%',
   },
-  addButtonContainer: {
+  buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     marginTop: 10,
+  },
+  addButtonContainer: {
+    flex: 1,
   },
   addButton: {
     flex: 1,

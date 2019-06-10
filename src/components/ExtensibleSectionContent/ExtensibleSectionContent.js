@@ -15,12 +15,11 @@ const ExtensibleSectionContent = ({
     <View style={styles.contentContainer}>
       {renderContent()}
     </View>
-    <View style={styles.moreButtonContainer}>
-      <MoreButton
-        onPress={onMorePress}
-        text={i18n.t('general.more')}
-      />
-    </View>
+    <MoreButton
+      onPress={onMorePress}
+      text={i18n.t('general.more')}
+      containerStyle={styles.moreButtonContainer}
+    />
   </View>
 );
 

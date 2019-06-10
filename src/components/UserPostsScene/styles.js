@@ -55,14 +55,4 @@ export default StyleSheet.create({
     paddingTop: 5,
     paddingRight: 5,
   },
-  addButtonContainer: {
-    width: '100%',
-    alignItems: 'center',
-    paddingBottom: 10,
-  },
-  moreButtonContainer: {
-    width: '100%',
-    alignItems: 'center',
-    paddingBottom: 10,
-  },
 });

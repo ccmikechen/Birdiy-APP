@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import i18n from 'i18n-js';
 
@@ -98,17 +98,13 @@ export default class ProjectDraftEditor extends Component {
                   })}
                 />
               </EditSection>
-              <View style={styles.submitButtonContainer}>
-                <Button
-                  style={styles.submitButton}
-                  mode="contained"
-                  onPress={onSubmitPress}
-                >
-                  <Text style={styles.submitButtonText}>
-                    {i18n.t('submit', i18nOptions)}
-                  </Text>
-                </Button>
-              </View>
+              <Button
+                title={i18n.t('submit', i18nOptions)}
+                titleStyle={styles.submitButtonText}
+                containerStyle={styles.submitButtonContainer}
+                buttonStyle={styles.submitButton}
+                onPress={onSubmitPress}
+              />
             </View>
           );
         }}

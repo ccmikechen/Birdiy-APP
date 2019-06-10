@@ -58,12 +58,10 @@ export default class UserFavoritesScene extends Component {
           keyExtractor={item => item.id}
         />
         {projects.length > 0 && (
-          <View style={styles.moreButtonContainer}>
-            <MoreButton
-              onPress={onMorePress}
-              text={i18n.t('general.more')}
-            />
-          </View>
+          <MoreButton
+            onPress={onMorePress}
+            text={i18n.t('general.more')}
+          />
         )}
       </View>
     );

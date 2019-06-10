@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Icon } from 'expo';
+import { Button } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import EditMethodListItem from '../EditMethodListItem';
@@ -127,19 +128,20 @@ export default class EditMethodList extends Component {
         <View style={styles.listContainer}>
           {data.map(this.renderItem)}
         </View>
-        <View style={styles.addButtonContainer}>
-          <Button
-            style={styles.addButton}
-            icon="add"
-            mode="outlined"
-            color="#ffffff"
-            onPress={this.handleItemAdd}
-          >
-            <Text style={styles.addButtonText}>
-              {i18n.t('add', i18nOptions)}
-            </Text>
-          </Button>
-        </View>
+        <Button
+          title={i18n.t('add', i18nOptions)}
+          titleStyle={styles.addButtonText}
+          containerStyle={styles.addButtonContainer}
+          buttonStyle={styles.addButton}
+          icon={(
+            <Icon.MaterialIcons
+              name="add"
+              size={20}
+              color="#ffffff"
+            />
+)}
+          onPress={this.handleItemAdd}
+        />
       </View>
     );
   }

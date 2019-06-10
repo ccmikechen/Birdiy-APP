@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { DocumentPicker } from 'expo';
-import { Button } from 'react-native-paper';
+import { Button } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import EditFileListItem from '../EditFileListItem';
@@ -125,29 +125,21 @@ export default class EditFileList extends Component {
         <View style={styles.listContainer}>
           {data.map(this.renderItem)}
         </View>
-        <View style={styles.addButtonContainer}>
+        <View style={styles.buttonsContainer}>
           <Button
-            style={styles.addButton}
-            icon="insert-link"
-            mode="outlined"
-            color="#ffffff"
+            title={i18n.t('addLink', i18nOptions)}
+            titleStyle={styles.addButtonText}
+            containerStyle={styles.addButtonContainer}
+            buttonStyle={styles.addButton}
             onPress={this.handleFileLinkAdd}
-          >
-            <Text style={styles.addButtonText}>
-              {i18n.t('addLink', i18nOptions)}
-            </Text>
-          </Button>
+          />
           <Button
-            style={styles.addButton}
-            icon="file-upload"
-            mode="outlined"
-            color="#ffffff"
+            title={i18n.t('upload', i18nOptions)}
+            titleStyle={styles.addButtonText}
+            containerStyle={styles.addButtonContainer}
+            buttonStyle={styles.addButton}
             onPress={this.handleUploadFile}
-          >
-            <Text style={styles.addButtonText}>
-              {i18n.t('upload', i18nOptions)}
-            </Text>
-          </Button>
+          />
         </View>
       </View>
     );

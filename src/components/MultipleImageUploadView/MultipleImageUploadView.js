@@ -6,12 +6,10 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
 import { Icon, ImagePicker, Permissions } from 'expo';
 import i18n from 'i18n-js';
-
-import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -123,23 +121,17 @@ export default class MultipleImageUploadView extends Component {
       <View style={styles.container}>
         <View style={styles.buttonsContainer}>
           <Button
-            style={styles.button}
-            icon="image"
-            mode="contained"
-            color={Primary(700)}
+            title={i18n.t('upload', i18nOptions)}
+            containerStyle={styles.button}
+            type="solid"
             onPress={this.handleImageUpload}
-          >
-            {i18n.t('upload', i18nOptions)}
-          </Button>
+          />
           <Button
-            style={styles.button}
-            icon="camera-alt"
-            mode="contained"
-            color={Primary(700)}
+            title={i18n.t('camera', i18nOptions)}
+            containerStyle={styles.button}
+            type="solid"
             onPress={this.handleCamera}
-          >
-            {i18n.t('camera', i18nOptions)}
-          </Button>
+          />
         </View>
         <View style={styles.imagesContainer}>
           <FlatGrid
