@@ -32,7 +32,7 @@ const ProjectThumbnailsTable = ({
         onPress={() => onCategoryPress({ name: category })}
       >
         <Text style={styles.category}>
-          {i18n.t(`categories.${category}`)}
+          {i18n.t(`categories.${category}`, { defaultValue: category })}
         </Text>
         <Icon.MaterialIcons
           name="navigate-next"

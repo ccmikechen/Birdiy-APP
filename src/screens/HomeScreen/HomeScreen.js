@@ -126,7 +126,6 @@ export default class HomeScreen extends Component {
       >
         {this.renderCategories()}
         <ProjectThumbnailsTable
-          title={i18n.t('categories.Craft')}
           category="Craft"
           projects={query && query.craftProjects}
           onProjectPress={this.handleOpenProject}
