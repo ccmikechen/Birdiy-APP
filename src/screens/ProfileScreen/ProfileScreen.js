@@ -71,6 +71,9 @@ export default class ProfileScreen extends Component {
   };
 
   handleFollowerPress = () => {
+    const { navigation, query } = this.props;
+    const userId = query.viewer.user.id;
+    navigation.push('Followers', { id: userId });
   };
 
   handleMoreProjectsPress = () => {

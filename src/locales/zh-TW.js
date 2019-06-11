@@ -123,7 +123,7 @@ export default {
     },
     author: {
       projects: '專案',
-      followers: '跟隨',
+      followers: '關注',
     },
     options: {
       favorite: '收藏專案',
@@ -153,7 +153,7 @@ export default {
     title: '動態',
     tabs: {
       all: '所有人',
-      following: '跟隨中',
+      following: '關注中',
     },
     emptyMessage: '沒有相關投稿動態',
   },
@@ -170,8 +170,8 @@ export default {
   },
   profile: {
     title: '我的工作坊',
-    following: '跟隨中',
-    follower: '跟隨者',
+    following: '關注中',
+    follower: '關注者',
     tabs: {
       projects: '專案',
       posts: '貼文',
@@ -182,6 +182,12 @@ export default {
       posts: '尚未發布任何貼文',
       favorites: '沒有收藏專案',
     },
+  },
+  followingUsers: {
+    emptyMessage: '尚無關注中',
+  },
+  followers: {
+    emptyMessage: '尚無關注者',
   },
   categories: {
     Craft: '手工藝',
@@ -362,8 +368,8 @@ export default {
     title: '建立專案 / 貼文',
   },
   followUserActions: {
-    follow: '跟隨',
-    unfollow: '取消跟隨',
+    follow: '關注',
+    unfollow: '取消關注',
   },
   loginActions: {
     title: '需要登入',
@@ -371,8 +377,8 @@ export default {
     likeProjectMessage: '喜歡專案之前必須先登入',
     favoriteProjectMessage: '收藏專案之前必須先登入',
     creatingFollowingPostMessage: '發布跟著做投稿之前必須先登入',
-    followingMessage: '跟隨用戶之前必須先登入',
-    unfollowingMessage: '取消跟隨用戶之前必須先登入',
+    followingMessage: '關注用戶之前必須先登入',
+    unfollowingMessage: '取消關注用戶之前必須先登入',
     creatingProjectMessage: '新增專案之前必須先登入',
   },
   imageUploadActions: {

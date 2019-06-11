@@ -5,11 +5,11 @@ import i18n from 'i18n-js';
 
 import UserList from '../components/UserList';
 
-class FollowingUserList extends Component {
+class FollowerList extends Component {
   static propTypes = {
     query: PropTypes.shape({
       user: PropTypes.shape({
-        followingUsers: PropTypes.object,
+        followedUsers: PropTypes.object,
       }),
     }).isRequired,
     relay: PropTypes.shape({
@@ -35,7 +35,7 @@ class FollowingUserList extends Component {
 
   render() {
     const { query, relay, batchLoad } = this.props;
-    const data = query.user.followingUsers.edges.map(({ node }) => node);
+    const data = query.user.followedUsers.edges.map(({ node }) => node);
 
     return query ? (
       <UserList
@@ -46,7 +46,7 @@ class FollowingUserList extends Component {
         refresh={(callback) => {
           relay.refetchConnection(null, callback, { count: batchLoad });
         }}
-        emptyMessage={i18n.t('followingUsers.emptyMessage')}
+        emptyMessage={i18n.t('followers.emptyMessage')}
       />
     ) : null;
   }
@@ -54,15 +54,15 @@ class FollowingUserList extends Component {
 
 
 export default createPaginationContainer(
-  FollowingUserList,
+  FollowerList,
   {
     query: graphql`
-      fragment FollowingUserList_query on RootQueryType {
+      fragment FollowerList_query on RootQueryType {
         user(id: $id) {
-          followingUsers(
+          followedUsers(
             first: $count,
             after: $cursor,
-          ) @connection(key: "FollowingUserList_followingUsers") {
+          ) @connection(key: "FollowerList_followedUsers") {
             pageInfo {
               hasNextPage
               endCursor
@@ -80,7 +80,7 @@ export default createPaginationContainer(
   {
     direction: 'forward',
     getConnectionFromProps: props => (
-      props.query && props.query.user.followingUsers
+      props.query && props.query.user.followedUsers
     ),
     getFragmentVariables: (prevVars, totalCount) => ({
       ...prevVars,
@@ -93,12 +93,12 @@ export default createPaginationContainer(
     }),
     variables: { cursor: null },
     query: graphql`
-      query FollowingUserListPaginationQuery (
+      query FollowerListPaginationQuery (
         $id: ID!,
         $count: Int!,
         $cursor: String,
       ) {
-        ...FollowingUserList_query
+        ...FollowerList_query
       }
     `,
   },

@@ -66,7 +66,7 @@ export default class TabsPager extends Component {
     const newChildren = React.Children.map(children, (child, index) => (
       <View
         style={styles.page}
-        tabLabel={tabs[index]}
+        tabLabel={tabs[index].toUpperCase()}
       >
         {
           React.cloneElement(child, {

@@ -188,6 +188,12 @@ export default {
       favorites: 'No favorite projects',
     },
   },
+  followingUsers: {
+    emptyMessage: 'No following users',
+  },
+  followers: {
+    emptyMessage: 'No followers',
+  },
   topics: {
   },
   allTopics: {

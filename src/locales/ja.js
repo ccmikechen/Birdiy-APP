@@ -183,6 +183,12 @@ export default {
       favorites: '保存したプロジェクトがありません',
     },
   },
+  followingUsers: {
+    emptyMessage: 'フォローしたユーザーがいません',
+  },
+  followers: {
+    emptyMessage: 'まだフォローされていません',
+  },
   categories: {
     Craft: '工芸',
     Workshop: '工房',

@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
 import MessageView from '../MessageView';
@@ -24,6 +23,7 @@ export default class UserList extends Component {
     canLoadMore: PropTypes.bool,
     refresh: PropTypes.func,
     innerRef: PropTypes.func,
+    emptyMessage: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -62,6 +62,7 @@ export default class UserList extends Component {
       canLoadMore,
       refresh,
       innerRef,
+      emptyMessage,
     } = this.props;
 
     if (refreshing) {
@@ -86,7 +87,7 @@ export default class UserList extends Component {
           ) : null)}
           ListEmptyComponent={(
             <MessageView
-              message={i18n.t('projects.emptyMessage')}
+              message={emptyMessage}
               style={{ paddingTop: 200 }}
             />
 )}

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import SearchBarHeader from '../../components/SearchBarHeader';
-import FollowingUserList from '../../containers/FollowingUserList';
+import FollowerList from '../../containers/FollowerList';
 
-export default class FollowingUsersScreen extends Component {
+export default class FollowersScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -51,7 +51,7 @@ export default class FollowingUsersScreen extends Component {
         )}
         loading={loading}
       >
-        <FollowingUserList
+        <FollowerList
           query={query}
           batchLoad={variables.count}
           headerPadding
