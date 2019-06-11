@@ -22,6 +22,7 @@ const UserScreenFragmentContainer = createRefetchContainer(
       user(id: $id) {
         ...ProfileSection_profile
         ...ProfileTabMenu_profile
+        following
       }
     }
   `,

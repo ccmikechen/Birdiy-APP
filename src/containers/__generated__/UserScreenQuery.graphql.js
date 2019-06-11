@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7ba99772a563688b28abf53f0b7f971c
+ * @relayHash 0a6d26bb60c1398c96f2847cb8a7fd1e
  */
 
 /* eslint-disable */
@@ -36,6 +36,7 @@ fragment UserScreen_query on RootQueryType {
   user(id: $id) {
     ...ProfileSection_profile
     ...ProfileTabMenu_profile
+    following
     id
   }
 }
@@ -349,6 +350,13 @@ return {
               }
             ]
           },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "following",
+            "args": null,
+            "storageKey": null
+          },
           (v4/*: any*/)
         ]
       }
@@ -358,7 +366,7 @@ return {
     "operationKind": "query",
     "name": "UserScreenQuery",
     "id": null,
-    "text": "query UserScreenQuery(\n  $id: ID!\n  $count: Int!\n) {\n  ...UserScreen_query\n}\n\nfragment UserScreen_query on RootQueryType {\n  user(id: $id) {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n    id\n  }\n}\n\nfragment ProfileSection_profile on Profile {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on Profile {\n  projects(first: $count) {\n    ...UserProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...UserPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...UserFavoritesScene_projects\n  }\n}\n\nfragment UserProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n      published\n    }\n  }\n}\n\nfragment UserPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n        id\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment UserFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n        id\n      }\n    }\n  }\n}\n",
+    "text": "query UserScreenQuery(\n  $id: ID!\n  $count: Int!\n) {\n  ...UserScreen_query\n}\n\nfragment UserScreen_query on RootQueryType {\n  user(id: $id) {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n    following\n    id\n  }\n}\n\nfragment ProfileSection_profile on Profile {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on Profile {\n  projects(first: $count) {\n    ...UserProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...UserPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...UserFavoritesScene_projects\n  }\n}\n\nfragment UserProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n      published\n    }\n  }\n}\n\nfragment UserPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n        id\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment UserFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n        id\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

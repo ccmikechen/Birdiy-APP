@@ -6,6 +6,9 @@ import UserHeader from '../../components/UserHeader';
 import ProfileSection from '../../containers/ProfileSection';
 import ProfileTabMenu from '../../containers/ProfileTabMenu';
 
+import FollowUserMutation from '../../mutations/FollowUserMutation';
+import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+
 export default class UserScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -17,7 +20,9 @@ export default class UserScreen extends Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
-      viewer: PropTypes.object,
+      user: PropTypes.shape({
+        following: PropTypes.bool.isRequired,
+      }).isRequired,
     }),
     relay: PropTypes.shape({
       refetch: PropTypes.func.isRequired,
@@ -38,6 +43,20 @@ export default class UserScreen extends Component {
   };
 
   handleFollowingPress = () => {
+  };
+
+  handleFollowUser = () => {
+    const { navigation } = this.props;
+    const id = navigation.getParam('id');
+
+    new FollowUserMutation({ id }).commit();
+  };
+
+  handleUnfollowUser = () => {
+    const { navigation } = this.props;
+    const id = navigation.getParam('id');
+
+    new CancelFollowUserMutation({ id }).commit();
   };
 
   handleMoreProjectsPress = () => {
@@ -89,6 +108,9 @@ export default class UserScreen extends Component {
           <UserHeader
             onBack={() => navigation.goBack()}
             onSearch={() => navigation.navigate('SearchDetail')}
+            onFollowUser={this.handleFollowUser}
+            onUnfollowUser={this.handleUnfollowUser}
+            following={(profile && profile.following) || false}
           />
         )}
         loading={loading}

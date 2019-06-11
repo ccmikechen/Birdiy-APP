@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -14,7 +16,10 @@ import Colors from '../../constants/Colors';
 import styles from './styles';
 
 const rightButtonShape = PropTypes.shape({
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
   text: PropTypes.string,
   color: PropTypes.string,
   onPress: PropTypes.func,
@@ -30,11 +35,13 @@ const renderRightButton = ({
   >
     {
       icon ? (
-        <Icon.MaterialIcons
-          name={icon}
-          size={30}
-          color={color || Colors.headerIcon}
-        />
+        React.isValidElement(icon) ? icon : (
+          <Icon.MaterialIcons
+            name={icon}
+            size={30}
+            color={color || Colors.headerIcon}
+          />
+        )
       ) : (
         <Text style={[styles.buttonText, {
           color: color || Colors.headerIcon,

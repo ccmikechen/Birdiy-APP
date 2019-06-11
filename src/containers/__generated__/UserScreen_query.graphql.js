@@ -14,7 +14,8 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type UserScreen_query$ref: FragmentReference;
 export type UserScreen_query = {|
   +user: ?{|
-    +$fragmentRefs: ProfileSection_profile$ref & ProfileTabMenu_profile$ref
+    +following: boolean,
+    +$fragmentRefs: ProfileSection_profile$ref & ProfileTabMenu_profile$ref,
   |},
   +$refType: UserScreen_query$ref,
 |};
@@ -59,11 +60,18 @@ const node/*: ReaderFragment*/ = {
           "kind": "FragmentSpread",
           "name": "ProfileTabMenu_profile",
           "args": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "following",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '83d80412301e730f094993e5f9c59c44';
+(node/*: any*/).hash = '9ac571169c2a82f744e600f5040cda2a';
 module.exports = node;
