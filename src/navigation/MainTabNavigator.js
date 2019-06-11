@@ -23,6 +23,7 @@ import MyFavoritesScreen from '../containers/MyFavoritesScreen';
 import UserProjectsScreen from '../containers/UserProjectsScreen';
 import UserPostsScreen from '../containers/UserPostsScreen';
 import UserFavoritesScreen from '../containers/UserFavoritesScreen';
+import FollowingUsersScreen from '../containers/FollowingUsersScreen';
 import UserScreen from '../containers/UserScreen';
 import RecentViewedScreen from '../containers/RecentViewedScreen';
 
@@ -34,6 +35,7 @@ const sharedScreens = {
   UserProjects: UserProjectsScreen,
   UserPosts: UserPostsScreen,
   UserFavorites: UserFavoritesScreen,
+  FollowingUsers: FollowingUsersScreen,
   SearchDetail: SearchDetailScreen,
   RecentViewed: RecentViewedScreen,
 };

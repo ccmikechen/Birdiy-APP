@@ -162,11 +162,11 @@ type PostResult {
 
 interface Profile {
   favoriteProjects(after: String, first: Int): ProjectConnection
-  followedUsers: [User]
+  followedUsers(after: String, first: Int): UserConnection
   followerCount: Int
   following: Boolean!
   followingCount: Int
-  followingUsers: [User]
+  followingUsers(after: String, first: Int): UserConnection
   id: ID!
   image: String
   likedProjects(after: String, first: Int): ProjectConnection
@@ -399,11 +399,11 @@ scalar Upload
 
 type User implements Profile & Node {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
-  followedUsers: [User]
+  followedUsers(after: String, before: String, first: Int, last: Int): UserConnection
   followerCount: Int
   following: Boolean!
   followingCount: Int
-  followingUsers: [User]
+  followingUsers(after: String, before: String, first: Int, last: Int): UserConnection
 
   """The ID of an object"""
   id: ID!
@@ -413,6 +413,19 @@ type User implements Profile & Node {
   posts(after: String, before: String, beforeId: ID, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
+}
+
+type UserConnection {
+  edges: [UserEdge]
+  pageInfo: PageInfo!
+}
+
+type UserEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: User
 }
 
 input UserInput {
@@ -421,13 +434,13 @@ input UserInput {
 
 type Viewer implements Profile & Node {
   favoriteProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
-  followedUsers: [User]
+  followedUsers(after: String, before: String, first: Int, last: Int): UserConnection
   followerCount: Int
   following: Boolean!
   followingCount: Int
   followingUserActivities(after: String, before: String, first: Int, last: Int, order: ActivityOrder = NEWEST): ActivityConnection
   followingUserPosts(after: String, before: String, first: Int, last: Int): PostConnection
-  followingUsers: [User]
+  followingUsers(after: String, before: String, first: Int, last: Int): UserConnection
 
   """The ID of an object"""
   id: ID!
@@ -437,6 +450,7 @@ type Viewer implements Profile & Node {
   posts(after: String, before: String, beforeId: ID, first: Int, last: Int, order: PostOrder = NEWEST): PostConnection
   projectCount: Int
   projects(after: String, before: String, filter: ProjectFilter, first: Int, last: Int, order: ProjectOrder = NEWEST): ProjectConnection
+  user: User
   viewedProjects(after: String, before: String, first: Int, last: Int): ProjectConnection
 }
 

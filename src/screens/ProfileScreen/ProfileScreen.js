@@ -33,7 +33,11 @@ export default class ProfileScreen extends Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     query: PropTypes.shape({
-      viewer: PropTypes.object,
+      viewer: PropTypes.shape({
+        user: PropTypes.shape({
+          id: PropTypes.string.isRequired,
+        }).isRequired,
+      }),
     }),
     relay: PropTypes.shape({
       refetch: PropTypes.func.isRequired,
@@ -60,10 +64,13 @@ export default class ProfileScreen extends Component {
     navigation.push('ProfileSettingModal');
   };
 
-  handleFollowerPress = () => {
+  handleFollowingPress = () => {
+    const { navigation, query } = this.props;
+    const userId = query.viewer.user.id;
+    navigation.push('FollowingUsers', { id: userId });
   };
 
-  handleFollowingPress = () => {
+  handleFollowerPress = () => {
   };
 
   handleMoreProjectsPress = () => {

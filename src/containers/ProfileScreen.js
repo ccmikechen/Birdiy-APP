@@ -21,6 +21,9 @@ const ProfileScreenFragmentContainer = createRefetchContainer(
       viewer {
         ...ProfileSection_profile
         ...ProfileTabMenu_profile
+        user {
+          id
+        }
       }
     }
   `,

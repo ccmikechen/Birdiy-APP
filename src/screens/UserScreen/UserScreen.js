@@ -43,6 +43,9 @@ export default class UserScreen extends Component {
   };
 
   handleFollowingPress = () => {
+    const { navigation } = this.props;
+    const id = navigation.getParam('id');
+    navigation.push('FollowingUsers', { id });
   };
 
   handleFollowUser = () => {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
-import UserPostsHeader from '../../components/UserPostsHeader';
+import SearchBarHeader from '../../components/SearchBarHeader';
 import MyPostList from '../../containers/MyPostList';
 import MyPostActions from '../../components/MyPostActions';
 
@@ -77,10 +77,9 @@ export default class MyPostsScreen extends Component {
         <SimpleScreenView
           navigation={navigation}
           renderHeader={() => (
-            <UserPostsHeader
+            <SearchBarHeader
               onBack={() => navigation.goBack()}
               onSearch={() => navigation.navigate('SearchDetail')}
-              onReorder={this.handleReorder}
             />
           )}
           animatedScroll

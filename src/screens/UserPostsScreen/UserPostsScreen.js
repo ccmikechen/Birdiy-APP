@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
-import UserPostsHeader from '../../components/UserPostsHeader';
+import SearchBarHeader from '../../components/SearchBarHeader';
 import UserPostList from '../../containers/UserPostList';
 import PostActions from '../../components/PostActions';
 
@@ -73,7 +73,7 @@ export default class UserPostsScreen extends Component {
         <SimpleScreenView
           navigation={navigation}
           renderHeader={() => (
-            <UserPostsHeader
+            <SearchBarHeader
               onBack={() => navigation.goBack()}
               onSearch={() => navigation.navigate('SearchDetail')}
             />

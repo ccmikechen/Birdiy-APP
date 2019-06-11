@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import SimpleScreenView from '../../components/SimpleScreenView';
 import SearchBarHeader from '../../components/SearchBarHeader';
-import UserProjectList from '../../containers/UserProjectList';
+import FollowingUserList from '../../containers/FollowingUserList';
 
-export default class UserProjectsScreen extends Component {
+export default class UserScreen extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -29,9 +29,9 @@ export default class UserProjectsScreen extends Component {
     loading: true,
   };
 
-  handleOpenProject = (project) => {
+  handleOpenUser = (user) => {
     const { navigation } = this.props;
-    navigation.push('ProjectDetail', { id: project.id });
+    navigation.push('User', { id: user.id });
   };
 
   render() {
@@ -49,16 +49,14 @@ export default class UserProjectsScreen extends Component {
             onSearch={() => navigation.navigate('SearchDetail')}
           />
         )}
-        animatedScroll
         loading={loading}
       >
-        <UserProjectList
+        <FollowingUserList
           query={query}
           batchLoad={variables.count}
           headerPadding
-          onProjectPress={this.handleOpenProject}
+          onUserPress={this.handleOpenUser}
           userId={userId}
-          showCountings
         />
       </SimpleScreenView>
     );
