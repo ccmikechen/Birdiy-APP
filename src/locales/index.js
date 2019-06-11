@@ -10,6 +10,21 @@ import en from './en';
 
 import initYup from './yup';
 
+const supportedLocales = [
+  'zh-TW', 'en', 'ja',
+];
+
+const parseLocale = (locale) => {
+  if (supportedLocales.includes(locale)) {
+    return locale;
+  } if (locale.startsWith('en')) {
+    return 'en';
+  } if (locale.startsWith('zh')) {
+    return 'zh-TW';
+  }
+  return 'en';
+};
+
 class Locale {
   init = async () => {
     i18n.fallbacks = true;
@@ -21,10 +36,15 @@ class Locale {
     i18n.defaultLocale = 'en';
 
     let locale = await AsyncStorage.getItem('locale');
+
     if (!locale) {
-      locale = Localization.locale;
+      locale = parseLocale(Localization.locale);
+      await this.setAppLocale(locale);
+    } else if (!supportedLocales.includes(locale)) {
+      locale = parseLocale(locale);
       await this.setAppLocale(locale);
     }
+
     i18n.locale = locale;
     this.locale = locale;
 
