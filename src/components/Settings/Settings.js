@@ -62,20 +62,20 @@ export default class Settings extends Component {
           icon={this.renderIcon(Icon.MaterialIcons, 'smartphone')}
           onPress={() => onItemPress('display')}
         />
-        <Item
-          title={i18n.t('settings.notification.title')}
-          titleStyle={styles.title}
-          itemWidth={Size.settingItemHeight}
-          icon={this.renderIcon(Icon.MaterialIcons, 'notifications')}
-          onPress={() => onItemPress('notification')}
-        />
-        <Item
-          title={i18n.t('about.title')}
-          titleStyle={styles.title}
-          itemWidth={Size.settingItemHeight}
-          icon={this.renderIcon(Icon.MaterialIcons, 'info')}
-          onPress={() => onItemPress('about')}
-        />
+        {/* <Item */}
+        {/*   title={i18n.t('settings.notification.title')} */}
+        {/*   titleStyle={styles.title} */}
+        {/*   itemWidth={Size.settingItemHeight} */}
+        {/*   icon={this.renderIcon(Icon.MaterialIcons, 'notifications')} */}
+        {/*   onPress={() => onItemPress('notification')} */}
+        {/* /> */}
+        {/* <Item */}
+        {/*   title={i18n.t('about.title')} */}
+        {/*   titleStyle={styles.title} */}
+        {/*   itemWidth={Size.settingItemHeight} */}
+        {/*   icon={this.renderIcon(Icon.MaterialIcons, 'info')} */}
+        {/*   onPress={() => onItemPress('about')} */}
+        {/* /> */}
         <Item
           title={i18n.t('feedback.title')}
           titleStyle={styles.title}

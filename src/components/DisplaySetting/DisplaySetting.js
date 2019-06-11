@@ -30,12 +30,12 @@ const DisplaySetting = (props) => {
         itemWidth={Size.settingItemHeight}
         onPress={() => onItemPress('interfaceLanguage')}
       />
-      <Item
-        title={i18n.t('settings.display.language.displayProjects.title')}
-        titleStyle={styles.title}
-        itemWidth={Size.settingItemHeight}
-        onPress={() => onItemPress('displayProjectsLanguage')}
-      />
+      {/* <Item */}
+      {/*   title={i18n.t('settings.display.language.displayProjects.title')} */}
+      {/*   titleStyle={styles.title} */}
+      {/*   itemWidth={Size.settingItemHeight} */}
+      {/*   onPress={() => onItemPress('displayProjectsLanguage')} */}
+      {/* /> */}
     </SettingsList>
   );
 };
