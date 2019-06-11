@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import Ripple from 'react-native-material-ripple';
 import { Surface } from 'react-native-paper';
 import { isEqual } from 'lodash';
 
@@ -99,7 +100,7 @@ export default class PostSection extends Component {
             {post.message}
           </Text>
         </View>
-        <TouchableOpacity
+        <Ripple
           style={styles.imageContainer}
           onPress={() => onImagePress(post.id)}
         >
@@ -109,7 +110,7 @@ export default class PostSection extends Component {
             width={Dimensions.get('window').width - 20}
             amount={post.photosCount}
           />
-        </TouchableOpacity>
+        </Ripple>
         {
           post.relatedProjectType === 'project' ? (
             <TouchableOpacity

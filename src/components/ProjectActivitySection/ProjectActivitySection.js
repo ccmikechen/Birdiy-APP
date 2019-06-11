@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import Ripple from 'react-native-material-ripple';
 import { Surface } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
@@ -130,7 +131,7 @@ export default class ProjectActivitySection extends Component {
         <View style={styles.messageContainer}>
           {this.renderMessage(project.topic.name)}
         </View>
-        <TouchableOpacity
+        <Ripple
           style={styles.imageContainer}
           onPress={() => onProjectPress(project.id)}
         >
@@ -139,7 +140,7 @@ export default class ProjectActivitySection extends Component {
             uri={project.image ? project.image : null}
             width={Dimensions.get('window').width - 20}
           />
-        </TouchableOpacity>
+        </Ripple>
         <TouchableOpacity
           style={styles.sourceContainer}
           onPress={() => onProjectPress(project.id)}

@@ -5,9 +5,9 @@ import {
   Text,
   Image,
   FlatList,
-  TouchableOpacity,
 } from 'react-native';
 import { Icon } from 'expo';
+import Ripple from 'react-native-material-ripple';
 import { Surface } from 'react-native-paper';
 import i18n from 'i18n-js';
 
@@ -58,7 +58,7 @@ export default class UserPostsScene extends Component {
 
     return (
       <Surface style={styles.rowContainer}>
-        <TouchableOpacity
+        <Ripple
           style={styles.touchable}
           onPress={() => onOpenPost(post.id)}
         >
@@ -95,7 +95,7 @@ export default class UserPostsScene extends Component {
               />
             </View>
           ) : null}
-        </TouchableOpacity>
+        </Ripple>
         <MyPostActions
           ref={(ref) => { this.actions = ref; }}
           onEditPost={({ id }) => onEditPost(id)}

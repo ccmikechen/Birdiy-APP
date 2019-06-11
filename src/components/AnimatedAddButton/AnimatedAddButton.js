@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import {
   Animated,
   ViewPropTypes,
-  TouchableOpacity,
 } from 'react-native';
-
+import Ripple from 'react-native-material-ripple';
 import styles from './styles';
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchable = Animated.createAnimatedComponent(Ripple);
 
 const startOffsetAnimation = (offset, toValue, duration) => {
   Animated.timing(offset, {
@@ -64,6 +63,7 @@ export default class AnimatedAddButton extends Component {
         style={[style, styles.container, {
           transform: [{ translateX: offset }],
         }]}
+        rippleContainerBorderRadius={30}
         onPress={onPress}
       >
         {renderIcon()}

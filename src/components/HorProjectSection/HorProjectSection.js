@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  TouchableOpacity,
   Image,
   Text,
 } from 'react-native';
 import { Icon } from 'expo';
+import Ripple from 'react-native-material-ripple';
 import { Surface } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
@@ -59,7 +59,7 @@ export default class HorProjectSection extends Component {
 
     return (
       <Surface style={styles.container}>
-        <TouchableOpacity
+        <Ripple
           style={styles.touchable}
           onPress={onPress}
         >
@@ -113,7 +113,7 @@ export default class HorProjectSection extends Component {
               )}
             </View>
           </View>
-        </TouchableOpacity>
+        </Ripple>
       </Surface>
     );
   }

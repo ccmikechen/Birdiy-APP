@@ -4,10 +4,10 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import { Icon } from 'expo';
+import Ripple from 'react-native-material-ripple';
 import { Surface } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
@@ -95,11 +95,11 @@ export default class ProjectSection extends Component {
     } = this.props;
 
     return (
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => onPress(project)}
-      >
-        <Surface style={styles.container}>
+      <Surface style={styles.container}>
+        <Ripple
+          style={styles.container}
+          onPress={() => onPress(project)}
+        >
           {project.image ? (
             <Image
               source={{ uri: project.image }}
@@ -155,8 +155,8 @@ export default class ProjectSection extends Component {
             </View>
           </View>
           {showCountings && this.renderCountings()}
-        </Surface>
-      </TouchableOpacity>
+        </Ripple>
+      </Surface>
     );
   }
 }

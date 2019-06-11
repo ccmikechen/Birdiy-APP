@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import {
   Text,
   ImageBackground,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import i18n from 'i18n-js';
-
+import Ripple from 'react-native-material-ripple';
 import { FlatGrid } from 'react-native-super-grid';
 
 import styles from './styles';
@@ -22,7 +21,7 @@ const CategoriesTable = ({ categories, onCategoryPress }) => (
     items={categories}
     style={styles.container}
     renderItem={({ item }) => (
-      <TouchableOpacity
+      <Ripple
         style={styles.itemContainer}
         onPress={() => onCategoryPress(item)}
       >
@@ -35,7 +34,7 @@ const CategoriesTable = ({ categories, onCategoryPress }) => (
             {i18n.t(`categories.${item.name}`, { defaultValue: item.name })}
           </Text>
         </ImageBackground>
-      </TouchableOpacity>
+      </Ripple>
     )}
   />
 );

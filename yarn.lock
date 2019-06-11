@@ -6735,6 +6735,13 @@ react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
+react-native-material-ripple@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-material-ripple/-/react-native-material-ripple-0.8.0.tgz#b8c24e6fdea2af2a21e8468b1f40b35483019e2f"
+  integrity sha1-uMJOb96iryoh6EaLH0CzVIMBni8=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-material-tabs@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/react-native-material-tabs/-/react-native-material-tabs-3.8.1.tgz#17cd333be3b7b4756fcebb18b6bdde6662bc9483"
