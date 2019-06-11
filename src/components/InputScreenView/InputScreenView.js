@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
 
 import SimpleScreenView from '../SimpleScreenView';
@@ -19,7 +18,6 @@ export default class InputScreenView extends Component {
     navigation: PropTypes.shape({
       setParams: PropTypes.func.isRequired,
     }).isRequired,
-    headerPadding: PropTypes.bool,
     refreshing: PropTypes.bool,
     onRefresh: PropTypes.func,
   };
@@ -27,7 +25,6 @@ export default class InputScreenView extends Component {
   static defaultProps = {
     children: null,
     loading: false,
-    headerPadding: true,
     refreshing: false,
     onRefresh: null,
   };
@@ -41,7 +38,6 @@ export default class InputScreenView extends Component {
     const {
       children,
       loading,
-      headerPadding,
       refreshing,
       onRefresh,
     } = this.props;
@@ -58,8 +54,8 @@ export default class InputScreenView extends Component {
           refreshControl={onRefresh && (
             <Refresh refreshing={refreshing} onRefresh={onRefresh} />
           )}
+          {...this.props}
         >
-          <View style={headerPadding ? styles.paddingView : styles.statusBarPaddingView} />
           {loading ? <LoadingIndicator /> : children}
 
         </InputScrollView>

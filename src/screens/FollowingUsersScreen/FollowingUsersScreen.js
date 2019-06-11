@@ -54,7 +54,6 @@ export default class FollowingUsersScreen extends Component {
         <FollowingUserList
           query={query}
           batchLoad={variables.count}
-          headerPadding
           onUserPress={this.handleOpenUser}
           userId={userId}
         />

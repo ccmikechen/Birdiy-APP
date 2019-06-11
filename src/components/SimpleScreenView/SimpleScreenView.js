@@ -18,6 +18,7 @@ export default class SimpleScreenView extends Component {
       PropTypes.node,
     ]),
     animatedScroll: PropTypes.bool,
+    headerPadding: PropTypes.bool,
     onToggleTabBar: PropTypes.func,
     fullScreen: PropTypes.bool,
     loading: PropTypes.bool,
@@ -26,6 +27,7 @@ export default class SimpleScreenView extends Component {
   static defaultProps = {
     animatedScroll: false,
     onToggleTabBar: () => {},
+    headerPadding: true,
     fullScreen: false,
     children: null,
     loading: false,
@@ -56,6 +58,7 @@ export default class SimpleScreenView extends Component {
       renderHeader,
       children,
       animatedScroll,
+      headerPadding,
       fullScreen,
       loading,
     } = this.props;
@@ -76,6 +79,9 @@ export default class SimpleScreenView extends Component {
           renderHeader={renderHeader}
           visible={!animatedScroll || isHeaderVisible}
         />
+        {animatedScroll || !headerPadding ? null : (
+          <View style={styles.paddingView} />
+        )}
         {loading ? <LoadingIndicator /> : newChildren}
         {animatedScroll || fullScreen ? null : (
           <View style={styles.bottomTabBarPaddingView} />

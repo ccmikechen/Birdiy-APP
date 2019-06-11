@@ -70,3 +70,7 @@ export const showEditProfileFailedMessage = () => (
 export const showLoginFailedMessage = () => (
   showError(i18n.t('alert.loginFailed'))
 );
+
+export const showSendFeedbackSuccessMessage = () => (
+  showMessage(i18n.t('alert.sendFeedbackSuccess'))
+);

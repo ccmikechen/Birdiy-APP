@@ -218,6 +218,12 @@ export default {
   },
   feedback: {
     title: 'Feedback',
+    type: {
+      feature: 'Feature request / advice',
+      bug: 'Bug report',
+    },
+    placeholder: 'Please leave your advice and well wishes.',
+    submit: 'Submit',
   },
   settings: {
     title: 'Settings',
@@ -303,6 +309,7 @@ export default {
       title: 'Delete purchase list',
       message: 'Delete %{projectName} from purchase list?',
     },
+    sendFeedbackSuccess: 'Your feedback has been submitted successfully',
   },
   errors: {
     required: 'Required',

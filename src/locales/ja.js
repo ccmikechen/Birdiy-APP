@@ -327,6 +327,12 @@ export default {
   },
   feedback: {
     title: 'ご意見',
+    type: {
+      feature: 'ご意見、ご要望',
+      bug: '機能の不具合',
+    },
+    placeholder: 'あなたのご意見をお聞かせください。',
+    submit: '意見を送る',
   },
   settings: {
     title: '設定',
@@ -412,6 +418,7 @@ export default {
       title: '買い物リストを削除',
       message: '%{projectName} を買い物リストから削除しますか？',
     },
+    sendFeedbackSuccess: 'ご意見頂きありがとうございます',
   },
   errors: {
     required: '必須',

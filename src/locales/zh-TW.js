@@ -327,6 +327,12 @@ export default {
   },
   feedback: {
     title: '意見回饋',
+    type: {
+      feature: '功能希望與建議',
+      bug: '錯誤回報',
+    },
+    placeholder: '留下您的寶貴建議，幫助我們持續改善。',
+    submit: '提交意見',
   },
   settings: {
     title: '設定',
@@ -412,6 +418,7 @@ export default {
       title: '刪除採買清單',
       message: '將 %{projectName} 從採買清單中刪除？',
     },
+    sendFeedbackSuccess: '您的意見已成功送出',
   },
   errors: {
     required: '必須',
