@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { Icon, Facebook } from 'expo';
-import { SocialIcon } from 'react-native-elements';
+import { Icon, Google, Facebook } from 'expo';
+import { Button } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import LoginMutation from '../../mutations/LoginMutation';
@@ -41,6 +41,33 @@ export default class LoginScreen extends Component {
   static defaultProps = {
   };
 
+  handleGoogleLogin = async () => {
+    const { screenProps: { spinner } } = this.props;
+    spinner.on();
+
+    const { type, accessToken } = await Google.logInAsync({
+      iosClientId: config.IOS_EXPO_CLIENT_ID,
+      androidClientId: config.ANDROID_EXPO_CLIENT_ID,
+      iosStandaloneAppClientId: config.IOS_CLIENT_ID,
+      androidStandaloneAppClientId: config.ANDROID_CLIENT_ID,
+    });
+
+    if (type !== 'success') {
+      spinner.off();
+      showLoginFailedMessage();
+      return;
+    }
+
+    const mutation = new LoginMutation({
+      method: 'google',
+      credential: accessToken,
+    }).setHook(spinner);
+
+    mutation.commit()
+      .then(this.handleLoginResponse)
+      .catch(() => {});
+  };
+
   handleFacebookLogin = async () => {
     const { screenProps: { spinner } } = this.props;
 
@@ -58,13 +85,13 @@ export default class LoginScreen extends Component {
         .then(this.handleLoginResponse)
         .catch(() => {});
     } catch (e) {
+      spinner.off();
       showLoginFailedMessage();
     }
   };
 
   handleLoginResponse = async (response) => {
     const { navigation } = this.props;
-
     const { login: { accessToken, refreshToken } } = response;
 
     await setTokens(accessToken, refreshToken);
@@ -91,29 +118,19 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.contentContainer}>
-          <SocialIcon
-            style={styles.loginButton}
-            type="facebook"
-            button
-            onPress={this.handleFacebookLogin}
-            onLonePress={this.handleFacebookLogin}
+          <Button
+            title={i18n.t('button', { ...i18nOptions, type: 'Google' })}
+            containerStyle={styles.loginButtonContainer}
+            buttonStyle={styles.loginButton}
+            onPress={this.handleGoogleLogin}
+            type="solid"
+          />
+          <Button
             title={i18n.t('button', { ...i18nOptions, type: 'facebook' })}
-          />
-          <SocialIcon
-            style={styles.loginButton}
-            type="twitter"
-            button
+            containerStyle={styles.loginButtonContainer}
+            buttonStyle={styles.loginButton}
             onPress={this.handleFacebookLogin}
-            onLonePress={this.handleFacebookLogin}
-            title={i18n.t('button', { ...i18nOptions, type: 'twitter' })}
-          />
-          <SocialIcon
-            style={styles.loginButton}
-            type="pinterest"
-            button
-            onPress={this.handleFacebookLogin}
-            onLonePress={this.handleFacebookLogin}
-            title={i18n.t('button', { ...i18nOptions, type: 'Pinterest' })}
+            type="solid"
           />
         </View>
       </View>

@@ -11,6 +11,9 @@ export default StyleSheet.create({
   headerContainer: {
     paddingTop: Constants.statusBarHeight,
   },
+  loginButtonContainer: {
+    margin: 10,
+  },
   loginButton: {
     width: 250,
   },
