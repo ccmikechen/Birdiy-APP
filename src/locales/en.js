@@ -311,6 +311,7 @@ export default {
       message: 'Delete %{projectName} from purchase list?',
     },
     sendFeedbackSuccess: 'Your feedback has been submitted successfully',
+    fileTooLarge: 'Maximum file size is %{limit}',
   },
   errors: {
     required: 'Required',

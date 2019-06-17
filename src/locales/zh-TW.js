@@ -420,6 +420,7 @@ export default {
       message: '將 %{projectName} 從採買清單中刪除？',
     },
     sendFeedbackSuccess: '您的意見已成功送出',
+    fileTooLarge: '檔案大小不可超過 %{limit}',
   },
   errors: {
     required: '必須',

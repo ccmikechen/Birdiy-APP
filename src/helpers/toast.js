@@ -74,3 +74,7 @@ export const showLoginFailedMessage = () => (
 export const showSendFeedbackSuccessMessage = () => (
   showMessage(i18n.t('alert.sendFeedbackSuccess'))
 );
+
+export const showFileTooLargeMessage = ({ limit = '5M' }) => (
+  showMessage(i18n.t('alert.fileTooLarge', { limit }))
+);

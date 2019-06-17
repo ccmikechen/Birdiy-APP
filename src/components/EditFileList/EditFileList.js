@@ -7,11 +7,14 @@ import i18n from 'i18n-js';
 
 import EditFileListItem from '../EditFileListItem';
 
+import { showFileTooLargeMessage } from '../../helpers/toast';
+
 import { DEFAULT_FILE } from '../../constants/defaults';
 
 import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit.files' };
+const MAX_FILE_BYTES = 5 * (1024 ** 2);
 
 export default class EditFileList extends Component {
   static propTypes = {
@@ -88,6 +91,11 @@ export default class EditFileList extends Component {
   handleUploadFile = async () => {
     const { data, onChange } = this.props;
     const result = await DocumentPicker.getDocumentAsync();
+
+    if (result.size >= MAX_FILE_BYTES) {
+      showFileTooLargeMessage({ limit: '5M' });
+      return;
+    }
 
     if (result.type !== 'success') {
       return;

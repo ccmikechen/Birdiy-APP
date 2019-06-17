@@ -420,6 +420,7 @@ export default {
       message: '%{projectName} を買い物リストから削除しますか？',
     },
     sendFeedbackSuccess: 'ご意見頂きありがとうございます',
+    fileTooLarge: 'ファイルサイズの上限は%{limit}です',
   },
   errors: {
     required: '必須',
