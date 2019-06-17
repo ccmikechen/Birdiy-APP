@@ -43,7 +43,7 @@ export class DocumentFile extends FormFile {
   getFormData() {
     const { uri, name, type } = this;
     const ext = type.split('.')[1];
-    const fileName = name.endsWith(ext) ? name : `${name}.${ext}`;
+    const fileName = `file.${ext}`;
     const contentType = mime.lookup(type) || mime.lookup(name) || 'text/plain';
 
     return {
