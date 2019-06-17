@@ -364,7 +364,8 @@ export default {
     },
   },
   login: {
-    button: '透過 %{type} 登入',
+    google: '透過 Google 登入',
+    facebook: '透過 Facebook 登入',
     loginRequiredMessage: '尚未登入',
   },
   searchBar: {

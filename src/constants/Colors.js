@@ -84,4 +84,5 @@ export default {
   danger: '#ff0000',
   defaultMessage: '#858fa0',
   viewsIcon: '#4caf50',
+  facebook: '#3b5998',
 };

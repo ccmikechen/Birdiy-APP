@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import Colors, { Base } from '../../constants/Colors';
+import Colors, { Base, Primary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -21,6 +21,9 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 10,
     color: Colors.headerIcon,
+  },
+  toggledButtonText: {
+    color: Primary(700),
   },
   divider: {
     width: 1,

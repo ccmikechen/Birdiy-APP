@@ -18,7 +18,7 @@ export const showMessage = (message, options = {}) => (
 
 export const showError = (message, options = {}) => (
   showMessage(message, {
-    backgroundColor: '#b71c1c',
+    //    backgroundColor: '#b71c1c',
     ...options,
   })
 );

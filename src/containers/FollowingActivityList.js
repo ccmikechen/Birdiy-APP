@@ -73,10 +73,7 @@ class FollowingActivityList extends Component {
 
     if (!query.viewer) {
       return (
-        <LoginMessageView
-          onLogin={onLogin}
-          style={{ paddingTop: 200 }}
-        />
+        <LoginMessageView onLogin={onLogin} />
       );
     }
 

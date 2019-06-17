@@ -255,7 +255,8 @@ export default {
     },
   },
   login: {
-    button: 'Log in with %{type}',
+    google: 'Sign in with Google',
+    facebook: 'Sign in with Facebook',
     loginRequiredMessage: 'Login to your account',
   },
   searchBar: {

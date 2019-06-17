@@ -364,7 +364,8 @@ export default {
     },
   },
   login: {
-    button: '%{type} でログインする',
+    google: 'Googleでログイン',
+    facebook: 'Facebookでログイン',
     loginRequiredMessage: 'ログインしてください',
   },
   searchBar: {

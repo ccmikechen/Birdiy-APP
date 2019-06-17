@@ -6,8 +6,9 @@ import {
   StatusBar,
 } from 'react-native';
 import { Icon, Google, Facebook } from 'expo';
-import { Button } from 'react-native-elements';
-import i18n from 'i18n-js';
+
+import GoogleLoginButton from '../../components/GoogleLoginButton';
+import FacebookLoginButton from '../../components/FacebookLoginButton';
 
 import LoginMutation from '../../mutations/LoginMutation';
 
@@ -18,8 +19,6 @@ import { showLoginFailedMessage } from '../../helpers/toast';
 import config from '../../configs';
 
 import styles from './styles';
-
-const i18nOptions = { scope: 'login' };
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -118,19 +117,13 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.contentContainer}>
-          <Button
-            title={i18n.t('button', { ...i18nOptions, type: 'Google' })}
-            containerStyle={styles.loginButtonContainer}
-            buttonStyle={styles.loginButton}
+          <GoogleLoginButton
+            style={styles.loginButtonContainer}
             onPress={this.handleGoogleLogin}
-            type="solid"
           />
-          <Button
-            title={i18n.t('button', { ...i18nOptions, type: 'facebook' })}
-            containerStyle={styles.loginButtonContainer}
-            buttonStyle={styles.loginButton}
+          <FacebookLoginButton
+            style={styles.loginButtonContainer}
             onPress={this.handleFacebookLogin}
-            type="solid"
           />
         </View>
       </View>

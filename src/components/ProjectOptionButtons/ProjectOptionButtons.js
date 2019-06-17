@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 import i18n from 'i18n-js';
 
-import Colors from '../../constants/Colors';
+import Colors, { Primary } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -12,7 +12,7 @@ const i18nOptions = { scope: 'project.options' };
 
 const ProjectOptionButtons = ({
   onFavoritePress,
-  onSharePress,
+  //  onSharePress,
   onNewPostPress,
   favorite,
 }) => (
@@ -25,9 +25,9 @@ const ProjectOptionButtons = ({
         <Icon.AntDesign
           name="folder1"
           size={26}
-          color={Colors.headerIcon}
+          color={Primary(700)}
         />
-        <Text style={styles.buttonText}>
+        <Text style={[styles.buttonText, styles.toggledButtonText]}>
           {i18n.t('cancelFavorite', i18nOptions)}
         </Text>
       </TouchableOpacity>
@@ -49,20 +49,6 @@ const ProjectOptionButtons = ({
     <View style={styles.divider} />
     <TouchableOpacity
       style={styles.buttonContainer}
-      onPress={onSharePress}
-    >
-      <Icon.MaterialIcons
-        name="share"
-        size={26}
-        color={Colors.headerIcon}
-      />
-      <Text style={styles.buttonText}>
-        {i18n.t('share', i18nOptions)}
-      </Text>
-    </TouchableOpacity>
-    <View style={styles.divider} />
-    <TouchableOpacity
-      style={styles.buttonContainer}
       onPress={onNewPostPress}
     >
       <Icon.MaterialCommunityIcons
@@ -79,14 +65,14 @@ const ProjectOptionButtons = ({
 
 ProjectOptionButtons.propTypes = {
   onFavoritePress: PropTypes.func,
-  onSharePress: PropTypes.func,
+  //  onSharePress: PropTypes.func,
   onNewPostPress: PropTypes.func,
   favorite: PropTypes.bool,
 };
 
 ProjectOptionButtons.defaultProps = {
   onFavoritePress: () => {},
-  onSharePress: () => {},
+  //  onSharePress: () => {},
   onNewPostPress: () => {},
   favorite: false,
 };

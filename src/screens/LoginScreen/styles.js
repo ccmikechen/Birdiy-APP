@@ -14,9 +14,6 @@ export default StyleSheet.create({
   loginButtonContainer: {
     margin: 10,
   },
-  loginButton: {
-    width: 250,
-  },
   closeButton: {
     marginTop: 10,
     marginRight: 10,
