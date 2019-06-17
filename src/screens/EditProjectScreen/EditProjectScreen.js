@@ -289,6 +289,7 @@ export default class EditProjectScreen extends Component {
             />
           )}
           fullScreen
+          headerPadding={false}
           loading={loading}
         >
           <ProjectEditor

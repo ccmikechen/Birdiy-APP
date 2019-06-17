@@ -92,6 +92,7 @@ export default class EditFileList extends Component {
     if (result.type !== 'success') {
       return;
     }
+
     onChange([...data, {
       type: 'file',
       name: result.name,

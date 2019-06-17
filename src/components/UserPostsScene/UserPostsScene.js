@@ -7,8 +7,7 @@ import {
   FlatList,
 } from 'react-native';
 import { Icon } from 'expo';
-import Ripple from 'react-native-material-ripple';
-import { Surface } from 'react-native-paper';
+import { Surface, TouchableRipple } from 'react-native-paper';
 import i18n from 'i18n-js';
 
 import UserProfileAddButton from '../UserProfileAddButton';
@@ -58,44 +57,46 @@ export default class UserPostsScene extends Component {
 
     return (
       <Surface style={styles.rowContainer}>
-        <Ripple
+        <TouchableRipple
           style={styles.touchable}
           onPress={() => onOpenPost(post.id)}
         >
-          <View style={styles.imageContainer}>
-            {post.thumbnail ? (
-              <Image
-                source={{ uri: post.thumbnail.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Size.userProjectListImageSize / 2}
-                color="#ffffff"
-              />
-            )}
+          <View style={styles.touchable}>
+            <View style={styles.imageContainer}>
+              {post.thumbnail ? (
+                <Image
+                  source={{ uri: post.thumbnail.image }}
+                  style={styles.image}
+                />
+              ) : (
+                <Icon.MaterialCommunityIcons
+                  name="image-filter"
+                  size={Size.userProjectListImageSize / 2}
+                  color="#ffffff"
+                />
+              )}
+            </View>
+            <View style={styles.contentContainer}>
+              <View style={styles.messageContainer}>
+                <Text style={styles.message} numberOfLines={3}>
+                  {post.message}
+                </Text>
+              </View>
+              <View style={styles.dateContainer}>
+                <Text style={styles.date}>
+                  {timeAgo(post.insertedAt)}
+                </Text>
+              </View>
+            </View>
+            {editable ? (
+              <View style={styles.optionContainer}>
+                <ActionMenuButton
+                  onPress={() => this.actions.show(post)}
+                />
+              </View>
+            ) : null}
           </View>
-          <View style={styles.contentContainer}>
-            <View style={styles.messageContainer}>
-              <Text style={styles.message} numberOfLines={3}>
-                {post.message}
-              </Text>
-            </View>
-            <View style={styles.dateContainer}>
-              <Text style={styles.date}>
-                {timeAgo(post.insertedAt)}
-              </Text>
-            </View>
-          </View>
-          {editable ? (
-            <View style={styles.optionContainer}>
-              <ActionMenuButton
-                onPress={() => this.actions.show(post)}
-              />
-            </View>
-          ) : null}
-        </Ripple>
+        </TouchableRipple>
         <MyPostActions
           ref={(ref) => { this.actions = ref; }}
           onEditPost={({ id }) => onEditPost(id)}

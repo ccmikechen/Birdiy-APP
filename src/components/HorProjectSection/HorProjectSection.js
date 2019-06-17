@@ -6,8 +6,7 @@ import {
   Text,
 } from 'react-native';
 import { Icon } from 'expo';
-import Ripple from 'react-native-material-ripple';
-import { Surface } from 'react-native-paper';
+import { Surface, TouchableRipple } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
@@ -59,61 +58,63 @@ export default class HorProjectSection extends Component {
 
     return (
       <Surface style={styles.container}>
-        <Ripple
+        <TouchableRipple
           style={styles.touchable}
           onPress={onPress}
         >
-          <View style={styles.imageContainer}>
-            {project.image ? (
-              <Image
-                source={{ uri: project.image }}
-                style={styles.image}
-              />
-            ) : (
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Size.userProjectListImageSize / 2}
-                color="#ffffff"
-              />
-            )}
-          </View>
-          <View style={styles.contentContainer}>
-            <View style={styles.topContentContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.name}>
-                  {project.name}
-                </Text>
-              </View>
-              {hasActions && (
-                <View style={styles.optionContainer}>
-                  <ActionMenuButton onPress={onActionButtonPress} />
-                </View>
+          <View style={styles.touchable}>
+            <View style={styles.imageContainer}>
+              {project.image ? (
+                <Image
+                  source={{ uri: project.image }}
+                  style={styles.image}
+                />
+              ) : (
+                <Icon.MaterialCommunityIcons
+                  name="image-filter"
+                  size={Size.userProjectListImageSize / 2}
+                  color="#ffffff"
+                />
               )}
             </View>
-            <View style={styles.bottomContentContainer}>
-              {hasStatus && (
-                <View style={styles.statusContainer}>
-                  {project.published ? (
-                    <Text style={[styles.status, styles.publishedStatus]}>
-                      {i18n.t('project.status.published')}
-                    </Text>
-                  ) : (
-                    <Text style={[styles.status, styles.draftStatus]}>
-                      {i18n.t('project.status.draft')}
-                    </Text>
-                  )}
-                </View>
-              )}
-              {hasAuthor && (
-                <View style={styles.authorContainer}>
-                  <Text style={styles.author}>
-                    {`by ${project.author.name}`}
+            <View style={styles.contentContainer}>
+              <View style={styles.topContentContainer}>
+                <View style={styles.nameContainer}>
+                  <Text style={styles.name}>
+                    {project.name}
                   </Text>
                 </View>
-              )}
+                {hasActions && (
+                  <View style={styles.optionContainer}>
+                    <ActionMenuButton onPress={onActionButtonPress} />
+                  </View>
+                )}
+              </View>
+              <View style={styles.bottomContentContainer}>
+                {hasStatus && (
+                  <View style={styles.statusContainer}>
+                    {project.published ? (
+                      <Text style={[styles.status, styles.publishedStatus]}>
+                        {i18n.t('project.status.published')}
+                      </Text>
+                    ) : (
+                      <Text style={[styles.status, styles.draftStatus]}>
+                        {i18n.t('project.status.draft')}
+                      </Text>
+                    )}
+                  </View>
+                )}
+                {hasAuthor && (
+                  <View style={styles.authorContainer}>
+                    <Text style={styles.author}>
+                      {`by ${project.author.name}`}
+                    </Text>
+                  </View>
+                )}
+              </View>
             </View>
           </View>
-        </Ripple>
+        </TouchableRipple>
       </Surface>
     );
   }

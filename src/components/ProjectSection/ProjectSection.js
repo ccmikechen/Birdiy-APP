@@ -7,8 +7,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Icon } from 'expo';
-import Ripple from 'react-native-material-ripple';
-import { Surface } from 'react-native-paper';
+import { Surface, TouchableRipple } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
@@ -96,66 +95,68 @@ export default class ProjectSection extends Component {
 
     return (
       <Surface style={styles.container}>
-        <Ripple
+        <TouchableRipple
           style={styles.container}
           onPress={() => onPress(project)}
         >
-          {project.image ? (
-            <Image
-              source={{ uri: project.image }}
-              style={styles.image}
-            />
-          ) : (
-            <View style={styles.image}>
-              <Icon.MaterialCommunityIcons
-                name="image-filter"
-                size={Dimensions.get('window').width / 6}
-                color="#ffffff"
+          <View style={styles.container}>
+            {project.image ? (
+              <Image
+                source={{ uri: project.image }}
+                style={styles.image}
               />
-            </View>
-          )}
-          <View style={styles.infoContainer}>
-            <View style={styles.infoTopContainer}>
-              <View style={styles.topicContainer}>
-                <Text style={styles.topic}>
-                  {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
+            ) : (
+              <View style={styles.image}>
+                <Icon.MaterialCommunityIcons
+                  name="image-filter"
+                  size={Dimensions.get('window').width / 6}
+                  color="#ffffff"
+                />
+              </View>
+            )}
+            <View style={styles.infoContainer}>
+              <View style={styles.infoTopContainer}>
+                <View style={styles.topicContainer}>
+                  <Text style={styles.topic}>
+                    {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
+                  </Text>
+                </View>
+                {showStatus && (
+                  <View style={styles.statusContainer}>
+                    {project.published ? (
+                      <Text style={[styles.status, styles.publishedStatus]}>
+                        {i18n.t('project.status.published')}
+                      </Text>
+                    ) : (
+                      <Text style={[styles.status, styles.draftStatus]}>
+                        {i18n.t('project.status.draft')}
+                      </Text>
+                    )}
+                  </View>
+                )}
+              </View>
+              <View style={styles.nameContainer}>
+                <Text
+                  style={styles.name}
+                  numberOfLines={2}
+                >
+                  {project.name}
                 </Text>
               </View>
-              {showStatus && (
-                <View style={styles.statusContainer}>
-                  {project.published ? (
-                    <Text style={[styles.status, styles.publishedStatus]}>
-                      {i18n.t('project.status.published')}
-                    </Text>
-                  ) : (
-                    <Text style={[styles.status, styles.draftStatus]}>
-                      {i18n.t('project.status.draft')}
-                    </Text>
-                  )}
+              <View style={styles.infoBottomContainer}>
+                <View style={styles.authorContainer}>
+                  <Text style={styles.author}>{`by ${project.author.name}`}</Text>
                 </View>
-              )}
-            </View>
-            <View style={styles.nameContainer}>
-              <Text
-                style={styles.name}
-                numberOfLines={2}
-              >
-                {project.name}
-              </Text>
-            </View>
-            <View style={styles.infoBottomContainer}>
-              <View style={styles.authorContainer}>
-                <Text style={styles.author}>{`by ${project.author.name}`}</Text>
+                {actionButtonVisible && (
+                  <View style={styles.optionContainer}>
+                    <ActionMenuButton onPress={() => onActionButtonPress(project)} />
+                  </View>
+                )}
               </View>
-              {actionButtonVisible && (
-                <View style={styles.optionContainer}>
-                  <ActionMenuButton onPress={() => onActionButtonPress(project)} />
-                </View>
-              )}
             </View>
+            {showCountings && this.renderCountings()}
           </View>
-          {showCountings && this.renderCountings()}
-        </Ripple>
+        </TouchableRipple>
       </Surface>
     );
   }
