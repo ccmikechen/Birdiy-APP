@@ -17,6 +17,7 @@ export default {
     selectAll: 'Select all',
     clear: 'Clear',
     delete: 'Delete',
+    download: 'Download',
   },
   post: {
     create: {

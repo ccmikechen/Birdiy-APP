@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 import { Surface } from 'react-native-paper';
 import i18n from 'i18n-js';
@@ -16,6 +16,7 @@ const i18nOptions = { scope: 'project.edit.files' };
 const EditFileListItem = ({
   data,
   onChange,
+  onDownload,
   onMoveUp,
   onMoveDown,
   onDelete,
@@ -52,13 +53,26 @@ const EditFileListItem = ({
                 color={Colors.headerIcon}
               />
             </View>
-            <PureTextInput
-              style={styles.textInput}
-              value={data.localFileName || data.url}
-              error={error.url}
-              editable={false}
-              multiline
-            />
+            {
+              data.localFileName ? (
+                <PureTextInput
+                  style={styles.textInput}
+                  value={data.localFileName}
+                  error={error.url}
+                  editable={false}
+                  multiline
+                />
+              ) : (
+                <TouchableOpacity
+                  style={styles.textInput}
+                  onPress={() => onDownload(data.url)}
+                >
+                  <Text style={styles.downloadLinkText}>
+                    {i18n.t('general.download')}
+                  </Text>
+                </TouchableOpacity>
+              )
+            }
           </View>
         ) : (
           <View style={styles.linkContainer}>
@@ -127,6 +141,7 @@ EditFileListItem.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   onChange: PropTypes.func,
+  onDownload: PropTypes.func,
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
   onDelete: PropTypes.func,
@@ -142,6 +157,7 @@ EditFileListItem.propTypes = {
 
 EditFileListItem.defaultProps = {
   onChange: () => {},
+  onDownload: () => {},
   onMoveUp: () => {},
   onMoveDown: () => {},
   onDelete: () => {},

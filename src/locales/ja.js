@@ -12,6 +12,7 @@ export default {
     selectAll: '全部選択',
     clear: 'クリア',
     delete: '削除',
+    download: 'ダウンロード',
   },
   post: {
     create: {

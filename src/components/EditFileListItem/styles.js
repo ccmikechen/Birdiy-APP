@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
-import Colors, { Base, Tertiary } from '../../constants/Colors';
+import Colors, { Base, Primary, Tertiary } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -28,6 +28,12 @@ export default StyleSheet.create({
   textInput: {
     borderWidth: 1,
     borderColor: 'transparent',
+  },
+  downloadLinkText: {
+    padding: Platform.OS === 'ios' ? 10 : 8,
+    paddingTop: Platform.OS === 'ios' ? 12 : 8,
+    fontSize: 16,
+    color: Primary(700),
   },
   iconContainer: {
     justifyContent: 'center',

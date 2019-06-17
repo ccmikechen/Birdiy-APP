@@ -12,6 +12,7 @@ export default {
     selectAll: '全選',
     clear: '清除',
     delete: '刪除',
+    download: '下載',
   },
   post: {
     create: {

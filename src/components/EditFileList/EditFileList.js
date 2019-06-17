@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Linking } from 'react-native';
 import { DocumentPicker } from 'expo';
 import { Button } from 'react-native-elements';
 import i18n from 'i18n-js';
@@ -47,6 +47,10 @@ export default class EditFileList extends Component {
     const { data, onChange } = this.props;
     data[index] = newData;
     onChange(data);
+  };
+
+  handleDownload = (link) => {
+    Linking.openURL(link);
   };
 
   handleItemMoveUp = index => () => {
@@ -117,6 +121,7 @@ export default class EditFileList extends Component {
         key={`file-${index}`}
         data={item}
         onChange={newData => this.handleDataChange(index, newData)}
+        onDownload={this.handleDownload}
         onMoveUp={this.handleItemMoveUp(index)}
         onMoveDown={this.handleItemMoveDown(index)}
         onDelete={this.handleItemDelete(index)}
