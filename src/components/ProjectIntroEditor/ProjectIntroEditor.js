@@ -50,7 +50,8 @@ const ProjectIntroEditor = (props) => {
           error={error.name}
           placeholder={i18n.t('projectName.placeholder', i18nOptions)}
           onChangeText={onChange('name')}
-          maxLength={20}
+          maxLength={100}
+          multiline
           counter
         />
       </EditSection>

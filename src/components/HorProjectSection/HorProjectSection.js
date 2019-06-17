@@ -80,7 +80,7 @@ export default class HorProjectSection extends Component {
             <View style={styles.contentContainer}>
               <View style={styles.topContentContainer}>
                 <View style={styles.nameContainer}>
-                  <Text style={styles.name}>
+                  <Text style={styles.name} numberOfLines={3}>
                     {project.name}
                   </Text>
                 </View>

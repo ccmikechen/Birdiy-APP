@@ -10,7 +10,7 @@ export default (state) => {
   switch (state) {
     case 'published':
       return object({
-        name: string().required().max(20),
+        name: string().required().max(100),
         topic: string().nullable().required(),
         introduction: string().nullable().required().max(300),
         image: string().nullable().required(),

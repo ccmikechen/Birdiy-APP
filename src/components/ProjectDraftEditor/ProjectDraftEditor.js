@@ -81,7 +81,8 @@ export default class ProjectDraftEditor extends Component {
                   error={nameError}
                   placeholder={i18n.t('projectName.placeholder', i18nOptions)}
                   onChangeText={handleChange('name')}
-                  maxLength={20}
+                  maxLength={100}
+                  multiline
                   counter
                 />
               </EditSection>
