@@ -48,13 +48,13 @@ export default class Settings extends Component {
           icon={this.renderIcon(Icon.AntDesign, 'profile')}
           onPress={() => onItemPress('profile')}
         />
-        <Item
-          title={i18n.t('settings.account.title')}
-          titleStyle={styles.title}
-          itemWidth={Size.settingItemHeight}
-          icon={this.renderIcon(Icon.MaterialCommunityIcons, 'account')}
-          onPress={() => onItemPress('account')}
-        />
+        {/* <Item */}
+        {/*   title={i18n.t('settings.account.title')} */}
+        {/*   titleStyle={styles.title} */}
+        {/*   itemWidth={Size.settingItemHeight} */}
+        {/*   icon={this.renderIcon(Icon.MaterialCommunityIcons, 'account')} */}
+        {/*   onPress={() => onItemPress('account')} */}
+        {/* /> */}
         <Item
           title={i18n.t('settings.display.title')}
           titleStyle={styles.title}
