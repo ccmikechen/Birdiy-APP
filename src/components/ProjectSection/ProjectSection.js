@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import { Icon } from 'expo';
+import * as Icon from '@expo/vector-icons';
 import { Surface, TouchableRipple } from 'react-native-paper';
 import { isEqual } from 'lodash';
 import i18n from 'i18n-js';

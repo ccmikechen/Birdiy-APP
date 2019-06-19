@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { Icon, Google, Facebook } from 'expo';
+import { Google, Facebook } from 'expo';
+import * as Icon from '@expo/vector-icons';
 
 import GoogleLoginButton from '../../components/GoogleLoginButton';
 import FacebookLoginButton from '../../components/FacebookLoginButton';

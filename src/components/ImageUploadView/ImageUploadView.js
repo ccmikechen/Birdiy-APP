@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image } from 'react-native';
-import { Icon, ImagePicker, Permissions } from 'expo';
+import { ImagePicker, Permissions } from 'expo';
+import * as Icon from '@expo/vector-icons';
 
 import styles from './styles';
 

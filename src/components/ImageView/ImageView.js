@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, ViewPropTypes, Text } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import { Icon } from 'expo';
+import * as Icon from '@expo/vector-icons';
 
 import LoadingIndicator from '../LoadingIndicator';
 

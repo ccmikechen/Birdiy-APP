@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  AppLoading,
-  Asset,
-  Font,
-  Icon,
-} from 'expo';
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset';
+import * as Font from 'expo-font';
+import * as Icon from '@expo/vector-icons';
 
 import Spinner from 'react-native-loading-spinner-overlay';
 

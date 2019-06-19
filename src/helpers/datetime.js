@@ -1,4 +1,4 @@
-import { Localization } from 'expo';
+import * as Localization from 'expo-localization';
 import moment from 'moment-timezone';
 import 'moment/locale/ja';
 import 'moment/locale/zh-tw';

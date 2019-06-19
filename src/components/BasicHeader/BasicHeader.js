@@ -8,7 +8,7 @@ import {
   Text,
   ViewPropTypes,
 } from 'react-native';
-import { Icon } from 'expo';
+import * as Icon from '@expo/vector-icons';
 import { Surface } from 'react-native-paper';
 
 import Colors from '../../constants/Colors';

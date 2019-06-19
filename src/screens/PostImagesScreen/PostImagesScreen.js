@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, StatusBar } from 'react-native';
-import { Icon } from 'expo';
+import * as Icon from '@expo/vector-icons';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
 import PostImageSlider from '../../containers/PostImageSlider';

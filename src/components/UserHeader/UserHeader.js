@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'expo';
+import * as Icon from '@expo/vector-icons';
 
 import BasicHeader from '../BasicHeader';
 import SearchBarButton from '../SearchBarButton';

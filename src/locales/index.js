@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 
 import { AsyncStorage } from 'react-native';
-import { Localization } from 'expo';
+import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
 import zhTW from './zh-TW';

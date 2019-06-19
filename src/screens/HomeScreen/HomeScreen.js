@@ -49,11 +49,6 @@ export default class HomeScreen extends Component {
     navigation.push('ProjectDetail', { id: project.id });
   };
 
-  handleMoreProject = () => {
-    const { navigation } = this.props;
-    navigation.navigate('Projects');
-  };
-
   handleCategoryPress = (category) => {
     const { navigation } = this.props;
     navigation.navigate('Projects', {

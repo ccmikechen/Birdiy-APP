@@ -3,7 +3,7 @@
     "name": "Birdiy",
     "slug": "birdiy",
     "privacy": "unlisted",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
@@ -29,6 +29,8 @@
     "android": {
       "package": "com.birdiy.birdiy"
     },
-    "description": "DIY sharing"
+    "description": "DIY sharing",
+    "facebookAppId": "595828547560598",
+    "facebookDisplayName": "Birdiy"
   }
 }

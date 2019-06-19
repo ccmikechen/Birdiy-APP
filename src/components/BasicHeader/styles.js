@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 
 import Colors, { Base } from '../../constants/Colors';
 import Size from '../../constants/Size';
