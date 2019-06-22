@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import * as FacebookAds from 'expo-ads-facebook';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -8,8 +9,11 @@ import HomeHeader from '../../components/HomeHeader';
 import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
 import CategoriesTable from '../../containers/CategoriesTable';
 import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
+import FacebookSectionAd from '../../components/FacebookSectionAd';
 
 import styles from './styles';
+
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_623846844758768', 1);
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -126,6 +130,9 @@ export default class HomeScreen extends Component {
           onProjectPress={this.handleOpenProject}
           onCategoryPress={this.handleCategoryPress}
         />
+        <View style={styles.sectionAd}>
+          <FacebookSectionAd adsManager={adsManager} />
+        </View>
         <ProjectThumbnailsTable
           category="Electronics"
           projects={query && query.electronicsProjects}
