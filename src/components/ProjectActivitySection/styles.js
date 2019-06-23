@@ -48,6 +48,10 @@ export default StyleSheet.create({
     fontWeight: '600',
   },
   imageContainer: {
+    width: '100%',
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
   },

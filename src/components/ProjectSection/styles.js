@@ -46,9 +46,11 @@ export default StyleSheet.create({
     backgroundColor: Base.lightest,
     minHeight: 40,
     flexGrow: 1,
+    paddingBottom: 5,
+  },
+  infoContainerBottom: {
     borderBottomLeftRadius: Size.projectSectionBorderRadius,
     borderBottomRightRadius: Size.projectSectionBorderRadius,
-    paddingBottom: 5,
   },
   nameContainer: {
     flex: 1,

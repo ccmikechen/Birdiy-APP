@@ -39,7 +39,7 @@ const ImageView = ({
       )}
     </View>
   ) : (
-    <View style={[style, styles.defaultImage, { height: width }]}>
+    <View style={[style, styles.defaultImage, { width, height: width }]}>
       <Icon.MaterialCommunityIcons
         name="image-filter"
         size={width / 3}

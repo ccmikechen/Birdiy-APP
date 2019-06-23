@@ -45,6 +45,10 @@ export default StyleSheet.create({
     fontSize: 14,
   },
   imageContainer: {
+    width: '100%',
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
   },

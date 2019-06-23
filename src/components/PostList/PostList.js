@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import * as FacebookAds from 'expo-ads-facebook';
 import { Surface } from 'react-native-paper';
+import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
@@ -14,7 +15,20 @@ import FacebookActivitySectionAd from '../FacebookActivitySectionAd';
 
 import styles from './styles';
 
-const adsManager = new FacebookAds.NativeAdsManager('595828547560598_626276971182422', 4);
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_626276971182422', 3);
+
+const sectionsWithAds = (posts) => {
+  const sections = [];
+
+  for (let i = 0; i < posts.length; i += 1) {
+    if (i % 10 === 2) {
+      sections.push({ type: 'ad', key: `ad${i}` });
+    }
+    sections.push({ type: 'post', data: posts[i] });
+  }
+
+  return sections;
+};
 
 export default class PostList extends Component {
   static propTypes = {
@@ -48,6 +62,32 @@ export default class PostList extends Component {
     refresh: null,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { posts } = nextProps;
+    const { posts: prevProjects } = prevState;
+
+    if (isEqual(posts, prevProjects)) {
+      return null;
+    }
+
+    return {
+      ...prevState,
+      posts,
+      sections: sectionsWithAds(posts),
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    const { posts } = this.props;
+
+    this.state = {
+      posts,
+      sections: sectionsWithAds(posts),
+    };
+  }
+
   renderPost = (post) => {
     const {
       onUserPress,
@@ -73,7 +113,7 @@ export default class PostList extends Component {
     </Surface>
   );
 
-  renderItemContent = (section) => {
+  renderSection = (section) => {
     switch (section.type) {
       case 'post':
         return this.renderPost(section.data);
@@ -86,7 +126,7 @@ export default class PostList extends Component {
 
   renderItem = ({ item }) => (
     <View style={styles.postContainer}>
-      {this.renderItemContent(item)}
+      {this.renderSection(item)}
     </View>
   );
 
@@ -97,23 +137,8 @@ export default class PostList extends Component {
     this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
   };
 
-  sectionsWithAds = () => {
-    const { posts } = this.props;
-    const newSections = [];
-
-    for (let i = 0; i < posts.length; i += 1) {
-      if (i % 10 === 2) {
-        newSections.push({ type: 'ad', key: `ad${i}` });
-      }
-      newSections.push({ type: 'post', data: posts[i] });
-    }
-
-    return newSections;
-  };
-
   render() {
     const {
-      posts,
       loadMore,
       renderNoItem,
       refreshing,
@@ -123,19 +148,20 @@ export default class PostList extends Component {
       canLoadMore,
       refresh,
     } = this.props;
+    const { sections } = this.state;
 
     if (refreshing) {
       return renderRefresh();
     }
 
-    if (!posts) {
+    if (!sections) {
       return renderNoItem();
     }
 
     return (
       <View style={styles.container}>
         <InfiniteList
-          data={this.sectionsWithAds()}
+          data={sections}
           loadMoreContentAsync={loadMore}
           renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}

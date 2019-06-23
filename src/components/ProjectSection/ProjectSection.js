@@ -114,7 +114,11 @@ export default class ProjectSection extends Component {
                 />
               </View>
             )}
-            <View style={styles.infoContainer}>
+            <View style={[
+              styles.infoContainer,
+              showCountings ? null : styles.infoContainerBottom,
+            ]}
+            >
               <View style={styles.infoTopContainer}>
                 <View style={styles.topicContainer}>
                   <Text style={styles.topic}>

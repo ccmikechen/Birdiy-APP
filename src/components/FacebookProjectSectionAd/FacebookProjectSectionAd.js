@@ -6,22 +6,22 @@ import * as FacebookAds from 'expo-ads-facebook';
 import styles from './styles';
 
 const {
-  AdOptionsView,
   AdTriggerView,
   AdIconView,
   AdMediaView,
 } = FacebookAds;
 
-class FacebookSectionAd extends PureComponent {
+class FacebookProjectSectionAd extends PureComponent {
   static propTypes = {
     nativeAd: PropTypes.shape({
       adTranslation: PropTypes.string.isRequired,
       advertiserName: PropTypes.string.isRequired,
       headline: PropTypes.string.isRequired,
-      bodyText: PropTypes.string.isRequired,
       callToActionText: PropTypes.string.isRequired,
     }).isRequired,
   };
+
+  componentDidCatch() {}
 
   render() {
     const { nativeAd } = this.props;
@@ -29,45 +29,42 @@ class FacebookSectionAd extends PureComponent {
       adTranslation,
       advertiserName,
       headline,
-      bodyText,
       callToActionText,
     } = nativeAd;
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.adContainer}>
-            <Text style={styles.adText}>
-              {adTranslation}
-            </Text>
-          </View>
-          <AdOptionsView />
-        </View>
-        <AdTriggerView>
+        <View style={styles.mediaContainer}>
           <AdMediaView style={styles.media} />
-          {headline ? (
-            <View style={styles.headlineContainer}>
-              <Text style={styles.headline}>
-                {headline}
-              </Text>
-            </View>
-          ) : null}
-          <View style={styles.bodyTextContainer}>
-            <Text
-              style={styles.bodyText}
-              numberOfLines={3}
-            >
-              {bodyText}
-            </Text>
-          </View>
-          <View style={styles.footerContainer}>
+        </View>
+        <AdTriggerView style={styles.infoContainer}>
+          <View style={styles.infoTopContainer}>
             <View style={styles.advertiserContainer}>
-              <AdIconView style={styles.icon} />
+              <View style={styles.adTextContainer}>
+                <Text style={styles.adText}>
+                  {adTranslation}
+                </Text>
+              </View>
               <View style={styles.advertiserNameContainer}>
-                <Text style={styles.advertiserName}>
+                <Text
+                  style={styles.advertiserName}
+                  numberOfLines={2}
+                  textBreakStrategy="simple"
+                >
                   {advertiserName}
                 </Text>
               </View>
+            </View>
+            <AdIconView style={styles.icon} />
+          </View>
+          <View style={styles.bottomContainer}>
+            <View style={styles.headlineContainer}>
+              <Text
+                style={styles.headline}
+                numberOfLines={3}
+              >
+                {headline}
+              </Text>
             </View>
             <View style={styles.installTextContainer}>
               <Text style={styles.installText}>
@@ -81,4 +78,4 @@ class FacebookSectionAd extends PureComponent {
   }
 }
 
-export default FacebookAds.withNativeAd(FacebookSectionAd);
+export default FacebookAds.withNativeAd(FacebookProjectSectionAd);

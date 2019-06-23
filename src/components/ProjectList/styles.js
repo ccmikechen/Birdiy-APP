@@ -24,4 +24,9 @@ export default StyleSheet.create({
     margin: 5,
     elevation: 1,
   },
+  adContainer: {
+    flex: 1,
+    borderRadius: Size.projectSectionBorderRadius,
+    elevation: 2,
+  },
 });

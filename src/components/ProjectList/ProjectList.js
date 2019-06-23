@@ -3,14 +3,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { chunk } from 'lodash';
+import * as FacebookAds from 'expo-ads-facebook';
+import { Surface } from 'react-native-paper';
+import { chunk, isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
 import MessageView from '../MessageView';
 import ProjectSection from '../../containers/ProjectSection';
+import FacebookProjectSectionAd from '../FacebookProjectSectionAd';
 
 import styles from './styles';
+
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_626298657846920', 5);
+
+const sectionsWithAds = (projects) => {
+  const sections = [];
+
+  for (let i = 0; i < projects.length; i += 1) {
+    if (i % 12 === 4) {
+      sections.push({ type: 'ad', key: `ad${i}` });
+    }
+    sections.push({ type: 'project', data: projects[i] });
+  }
+
+  return chunk(sections, 2);
+};
 
 export default class ProjectList extends Component {
   static propTypes = {
@@ -48,6 +66,32 @@ export default class ProjectList extends Component {
     innerRef: null,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { projects } = nextProps;
+    const { projects: prevProjects } = prevState;
+
+    if (isEqual(projects, prevProjects)) {
+      return null;
+    }
+
+    return {
+      ...prevState,
+      projects,
+      sections: sectionsWithAds(projects),
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    const { projects } = this.props;
+
+    this.state = {
+      projects,
+      sections: sectionsWithAds(projects),
+    };
+  }
+
   renderProject = (project) => {
     const {
       onProjectPress,
@@ -57,28 +101,47 @@ export default class ProjectList extends Component {
       showCountings,
     } = this.props;
 
-    return (
-      <View style={styles.projectContainer}>
-        {
-          project ? (
-            <ProjectSection
-              project={project}
-              onPress={onProjectPress}
-              onActionButtonPress={onActionButtonPress}
-              actionButtonVisible={actionButtonVisible}
-              showStatus={showStatus}
-              showCountings={showCountings}
-            />
-          ) : null
-        }
-      </View>
-    );
+    return project ? (
+      <ProjectSection
+        project={project}
+        onPress={onProjectPress}
+        onActionButtonPress={onActionButtonPress}
+        actionButtonVisible={actionButtonVisible}
+        showStatus={showStatus}
+        showCountings={showCountings}
+      />
+    ) : null;
+  };
+
+  renderAd = () => (
+    <Surface style={styles.adContainer}>
+      <FacebookProjectSectionAd adsManager={adsManager} />
+    </Surface>
+  );
+
+  renderSection = (section) => {
+    if (!section) {
+      return null;
+    }
+
+    switch (section.type) {
+      case 'project':
+        return this.renderProject(section.data);
+      case 'ad':
+        return this.renderAd();
+      default:
+        return null;
+    }
   };
 
   renderItem = ({ item }) => (
     <View style={styles.projectSectionContainer}>
-      {this.renderProject(item[0])}
-      {this.renderProject(item[1])}
+      <View style={styles.projectContainer}>
+        {this.renderSection(item[0])}
+      </View>
+      <View style={styles.projectContainer}>
+        {this.renderSection(item[1])}
+      </View>
     </View>
   );
 
@@ -95,6 +158,7 @@ export default class ProjectList extends Component {
       refresh,
       innerRef,
     } = this.props;
+    const { sections } = this.state;
 
     if (refreshing) {
       return renderRefresh();
@@ -104,13 +168,11 @@ export default class ProjectList extends Component {
       return renderNoItem();
     }
 
-    const projectSections = chunk(projects, 2);
-
     return (
       <View style={styles.container}>
         <InfiniteList
           ref={innerRef}
-          data={projectSections}
+          data={sections}
           loadMoreContentAsync={loadMore}
           renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}
@@ -128,7 +190,9 @@ export default class ProjectList extends Component {
             <View style={styles.bottomPaddingView} />
           }
           refresh={refresh}
-          keyExtractor={item => item[0].__id}
+          keyExtractor={item => (
+            item[0].type === 'ad' ? item[0].key : item[0].data.__id
+          )}
         />
       </View>
     );

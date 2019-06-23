@@ -38,7 +38,7 @@ export default StyleSheet.create({
     fontSize: 14,
   },
   media: {
-    height: 300,
+    aspectRatio: 1,
   },
   footerContainer: {
     justifyContent: 'center',

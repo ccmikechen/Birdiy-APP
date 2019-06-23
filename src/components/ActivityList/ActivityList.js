@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import * as FacebookAds from 'expo-ads-facebook';
 import { Surface } from 'react-native-paper';
+import { isEqual } from 'lodash';
 import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
@@ -15,7 +16,20 @@ import FacebookActivitySectionAd from '../FacebookActivitySectionAd';
 
 import styles from './styles';
 
-const adsManager = new FacebookAds.NativeAdsManager('595828547560598_625862821223837', 4);
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_625862821223837', 3);
+
+const sectionsWithAds = (items) => {
+  const sections = [];
+
+  for (let i = 0; i < items.length; i += 1) {
+    if (i % 10 === 2) {
+      sections.push({ type: 'ad', key: `ad${i}` });
+    }
+    sections.push(items[i]);
+  }
+
+  return sections;
+};
 
 export default class ActivityList extends Component {
   static propTypes = {
@@ -45,6 +59,32 @@ export default class ActivityList extends Component {
     canLoadMore: false,
     refresh: null,
     innerRef: null,
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { sections: items } = nextProps;
+    const { items: prevItems } = prevState;
+
+    if (isEqual(items, prevItems)) {
+      return null;
+    }
+
+    return {
+      ...prevState,
+      items,
+      sections: sectionsWithAds(items),
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    const { sections } = this.props;
+
+    this.state = {
+      items: sections,
+      sections: sectionsWithAds(sections),
+    };
   }
 
   renderProject = (project, createdAt) => {
@@ -109,24 +149,9 @@ export default class ActivityList extends Component {
     </View>
   );
 
-  sectionsWithAds = () => {
-    const { sections } = this.props;
-    const newSections = [];
-
-    for (let i = 0; i < sections.length; i += 1) {
-      if (i % 10 === 2) {
-        newSections.push({ type: 'ad', key: `ad${i}` });
-      }
-      newSections.push(sections[i]);
-    }
-
-    return newSections;
-  };
-
   render() {
     const {
       innerRef,
-      sections,
       loadMore,
       renderNoItem,
       onScrollTrigger,
@@ -134,6 +159,7 @@ export default class ActivityList extends Component {
       canLoadMore,
       refresh,
     } = this.props;
+    const { sections } = this.state;
 
     if (!sections) {
       return renderNoItem();
@@ -143,7 +169,7 @@ export default class ActivityList extends Component {
       <View style={styles.container}>
         <InfiniteList
           ref={innerRef}
-          data={this.sectionsWithAds()}
+          data={sections}
           loadMoreContentAsync={loadMore}
           renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}

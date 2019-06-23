@@ -28,7 +28,7 @@ const CHANNEL_CONFIGS = Object.freeze({
   IOS_EXPO_CLIENT_ID,
 });
 
-if (ENV !== 'production') {
+if (ENV === 'development') {
   FacebookAds.AdSettings.addTestDevice(FacebookAds.AdSettings.currentDeviceHash);
 }
 
