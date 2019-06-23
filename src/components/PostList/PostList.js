@@ -3,13 +3,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import * as FacebookAds from 'expo-ads-facebook';
+import { Surface } from 'react-native-paper';
 import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
 import MessageView from '../MessageView';
 import PostSection from '../../containers/PostSection';
+import FacebookActivitySectionAd from '../FacebookActivitySectionAd';
 
 import styles from './styles';
+
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_626276971182422', 4);
 
 export default class PostList extends Component {
   static propTypes = {
@@ -43,7 +48,7 @@ export default class PostList extends Component {
     refresh: null,
   };
 
-  renderPost = ({ item: post }) => {
+  renderPost = (post) => {
     const {
       onUserPress,
       onActionButtonPress,
@@ -52,23 +57,58 @@ export default class PostList extends Component {
     } = this.props;
 
     return (
-      <View style={styles.postContainer}>
-        <PostSection
-          post={post}
-          onUserPress={onUserPress}
-          onActionButtonPress={onActionButtonPress}
-          onImagePress={onImagePress}
-          onProjectPress={onProjectPress}
-        />
-      </View>
+      <PostSection
+        post={post}
+        onUserPress={onUserPress}
+        onActionButtonPress={onActionButtonPress}
+        onImagePress={onImagePress}
+        onProjectPress={onProjectPress}
+      />
     );
   };
+
+  renderAd = () => (
+    <Surface style={styles.adContainer}>
+      <FacebookActivitySectionAd adsManager={adsManager} />
+    </Surface>
+  );
+
+  renderItemContent = (section) => {
+    switch (section.type) {
+      case 'post':
+        return this.renderPost(section.data);
+      case 'ad':
+        return this.renderAd();
+      default:
+        return null;
+    }
+  };
+
+  renderItem = ({ item }) => (
+    <View style={styles.postContainer}>
+      {this.renderItemContent(item)}
+    </View>
+  );
 
   scrollToTop = () => {
     if (!this.scrollView) {
       return;
     }
     this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
+  };
+
+  sectionsWithAds = () => {
+    const { posts } = this.props;
+    const newSections = [];
+
+    for (let i = 0; i < posts.length; i += 1) {
+      if (i % 10 === 2) {
+        newSections.push({ type: 'ad', key: `ad${i}` });
+      }
+      newSections.push({ type: 'post', data: posts[i] });
+    }
+
+    return newSections;
   };
 
   render() {
@@ -95,9 +135,9 @@ export default class PostList extends Component {
     return (
       <View style={styles.container}>
         <InfiniteList
-          data={posts}
+          data={this.sectionsWithAds()}
           loadMoreContentAsync={loadMore}
-          renderItem={this.renderPost}
+          renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}
           canLoadMoreContent={canLoadMore}
           ListHeaderComponent={() => (headerPadding ? (
@@ -111,7 +151,9 @@ export default class PostList extends Component {
 )}
           innerRef={(ref) => { this.scrollView = ref; }}
           refresh={refresh}
-          keyExtractor={item => item.__id}
+          keyExtractor={item => (
+            item.type === 'ad' ? item.key : item.data.__id
+          )}
         />
       </View>
     );

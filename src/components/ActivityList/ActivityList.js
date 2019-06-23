@@ -3,14 +3,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import * as FacebookAds from 'expo-ads-facebook';
+import { Surface } from 'react-native-paper';
 import i18n from 'i18n-js';
 
 import InfiniteList from '../InfiniteList';
 import MessageView from '../MessageView';
 import ProjectActivitySection from '../../containers/ProjectActivitySection';
 import PostSection from '../../containers/PostSection';
+import FacebookActivitySectionAd from '../FacebookActivitySectionAd';
 
 import styles from './styles';
+
+const adsManager = new FacebookAds.NativeAdsManager('595828547560598_625862821223837', 4);
 
 export default class ActivityList extends Component {
   static propTypes = {
@@ -79,12 +84,20 @@ export default class ActivityList extends Component {
     );
   };
 
+  renderAd = () => (
+    <Surface style={styles.adContainer}>
+      <FacebookActivitySectionAd adsManager={adsManager} />
+    </Surface>
+  );
+
   renderItemContent = (section) => {
     switch (section.type) {
       case 'project':
         return this.renderProject(section.data, section.createdAt);
       case 'post':
         return this.renderPost(section.data);
+      case 'ad':
+        return this.renderAd();
       default:
         return null;
     }
@@ -95,6 +108,20 @@ export default class ActivityList extends Component {
       {this.renderItemContent(item)}
     </View>
   );
+
+  sectionsWithAds = () => {
+    const { sections } = this.props;
+    const newSections = [];
+
+    for (let i = 0; i < sections.length; i += 1) {
+      if (i % 10 === 2) {
+        newSections.push({ type: 'ad', key: `ad${i}` });
+      }
+      newSections.push(sections[i]);
+    }
+
+    return newSections;
+  };
 
   render() {
     const {
@@ -116,7 +143,7 @@ export default class ActivityList extends Component {
       <View style={styles.container}>
         <InfiniteList
           ref={innerRef}
-          data={sections}
+          data={this.sectionsWithAds()}
           loadMoreContentAsync={loadMore}
           renderItem={this.renderItem}
           onScrollTrigger={onScrollTrigger}
@@ -131,7 +158,9 @@ export default class ActivityList extends Component {
             />
 )}
           refresh={refresh}
-          keyExtractor={item => item.data.__id}
+          keyExtractor={item => (
+            item.type === 'ad' ? item.key : item.data.__id
+          )}
         />
       </View>
     );

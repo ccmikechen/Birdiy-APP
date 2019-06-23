@@ -15,4 +15,7 @@ export default StyleSheet.create({
     backgroundColor: Base.lightest,
     margin: 10,
   },
+  adContainer: {
+    elevation: 4,
+  },
 });

@@ -40,17 +40,18 @@ export default StyleSheet.create({
   messageContainer: {
     padding: 10,
   },
-  mesasge: {
+  message: {
     color: TextColor.primaryDark,
-    fontSize: 16,
+    fontSize: 14,
   },
   imageContainer: {
   },
   image: {
   },
   sourceContainer: {
-    minHeight: 60,
+    minHeight: 50,
     padding: 10,
+    justifyContent: 'center',
   },
   source: {
     color: Secondary(900),

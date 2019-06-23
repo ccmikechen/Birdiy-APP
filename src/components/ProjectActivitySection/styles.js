@@ -52,7 +52,8 @@ export default StyleSheet.create({
   image: {
   },
   sourceContainer: {
-    minHeight: 60,
+    justifyContent: 'center',
+    minHeight: 50,
     padding: 10,
   },
   source: {
