@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, TextColor } from '../../constants/Colors';
+import Colors, { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   header: {
@@ -68,6 +68,15 @@ export default StyleSheet.create({
     fontSize: 16,
     color: TextColor.secondaryDark,
     lineHeight: 24,
+  },
+  adContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: Base.lighter,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: Colors.divider,
   },
   tipContainer: {
     padding: 40,

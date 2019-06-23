@@ -72,6 +72,7 @@ export default class CartScreen extends Component {
             title={i18n.t('cart.title')}
           />
         )}
+        adType="admob"
       >
         <NavigationEvents
           onWillFocus={this.handleWillFocus}

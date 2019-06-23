@@ -24,6 +24,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "expo": "^33.0.0",
+    "expo-ads-admob": "~5.0.1",
     "expo-ads-facebook": "~5.0.1",
     "expo-asset": "^5.0.1",
     "expo-constants": "~5.0.1",

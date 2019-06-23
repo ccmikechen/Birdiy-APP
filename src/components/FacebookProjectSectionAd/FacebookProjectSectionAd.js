@@ -33,11 +33,11 @@ class FacebookProjectSectionAd extends PureComponent {
     } = nativeAd;
 
     return (
-      <View style={styles.container}>
+      <AdTriggerView style={styles.container}>
         <View style={styles.mediaContainer}>
           <AdMediaView style={styles.media} />
         </View>
-        <AdTriggerView style={styles.infoContainer}>
+        <View style={styles.infoContainer}>
           <View style={styles.infoTopContainer}>
             <View style={styles.advertiserContainer}>
               <View style={styles.adTextContainer}>
@@ -72,8 +72,8 @@ class FacebookProjectSectionAd extends PureComponent {
               </Text>
             </View>
           </View>
-        </AdTriggerView>
-      </View>
+        </View>
+      </AdTriggerView>
     );
   }
 }

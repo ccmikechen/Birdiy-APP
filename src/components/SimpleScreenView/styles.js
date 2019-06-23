@@ -15,7 +15,14 @@ export default StyleSheet.create({
   paddingView: {
     height: Size.headerHeight,
   },
-  bottomTabBarPaddingView: {
-    height: Size.bottomTabBarHeight,
+  adContainer: {
+    position: 'absolute',
+    bottom: Size.bottomTabBarHeight,
+    width: '100%',
+    height: 50,
+    zIndex: 100,
+  },
+  admobContainer: {
+    alignItems: 'center',
   },
 });

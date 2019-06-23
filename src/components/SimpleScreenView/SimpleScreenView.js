@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import * as FacebookAds from 'expo-ads-facebook';
+import { AdMobBanner } from 'expo-ads-admob';
 
 import AnimatedHeader from '../AnimatedHeader';
 import LoadingIndicator from '../LoadingIndicator';
+
+import Size from '../../constants/Size';
 
 import styles from './styles';
 
@@ -22,6 +26,7 @@ export default class SimpleScreenView extends Component {
     onToggleTabBar: PropTypes.func,
     fullScreen: PropTypes.bool,
     loading: PropTypes.bool,
+    adType: PropTypes.oneOf(['admob', 'facebook']),
   };
 
   static defaultProps = {
@@ -31,6 +36,7 @@ export default class SimpleScreenView extends Component {
     fullScreen: false,
     children: null,
     loading: false,
+    adType: null,
   };
 
   state = {
@@ -53,6 +59,33 @@ export default class SimpleScreenView extends Component {
     onToggleTabBar(visible);
   };
 
+  renderAd = () => {
+    const { adType } = this.props;
+
+    switch (adType) {
+      case 'admob':
+        return (
+          <View style={[styles.adContainer, styles.admobContainer]}>
+            <AdMobBanner
+              bannerSize="banner"
+              adUnitID="ca-app-pub-9037534471740373/5155078086"
+            />
+          </View>
+        );
+      case 'facebook':
+        return (
+          <View style={styles.adContainer}>
+            <FacebookAds.BannerAd
+              placementId="595828547560598_626427057834080"
+              type="standard"
+            />
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
   render() {
     const {
       renderHeader,
@@ -61,6 +94,7 @@ export default class SimpleScreenView extends Component {
       headerPadding,
       fullScreen,
       loading,
+      adType,
     } = this.props;
     const { isHeaderVisible } = this.state;
 
@@ -73,6 +107,11 @@ export default class SimpleScreenView extends Component {
       })
     ));
 
+    const adPadding = adType ? 50 : 0;
+    const bottomTabBarPadding = animatedScroll || fullScreen
+      ? 0
+      : Size.bottomTabBarHeight;
+
     return (
       <View style={styles.container}>
         <AnimatedHeader
@@ -83,9 +122,8 @@ export default class SimpleScreenView extends Component {
           <View style={styles.paddingView} />
         )}
         {loading ? <LoadingIndicator /> : newChildren}
-        {animatedScroll || fullScreen ? null : (
-          <View style={styles.bottomTabBarPaddingView} />
-        )}
+        {this.renderAd()}
+        <View style={{ height: adPadding + bottomTabBarPadding }} />
       </View>
     );
   }

@@ -7,6 +7,7 @@ import {
   Linking,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { AdMobBanner } from 'expo-ads-admob';
 import videoUrl from 'js-video-url-parser';
 import i18n from 'i18n-js';
 
@@ -252,6 +253,7 @@ export default class ProjectDetailScreen extends Component {
         )}
         headerPadding={false}
         loading={loading}
+        adType="facebook"
       >
         <View style={styles.projectImageContainer}>
           {
@@ -313,6 +315,12 @@ export default class ProjectDetailScreen extends Component {
             </Text>
           </View>
         </ProjectDetailSection>
+        <View style={styles.adContainer}>
+          <AdMobBanner
+            bannerSize="mediumRectangle"
+            adUnitID="ca-app-pub-9037534471740373/7681169073"
+          />
+        </View>
         <ProjectDetailMaterialList
           project={project}
           cart={cartMaterials}

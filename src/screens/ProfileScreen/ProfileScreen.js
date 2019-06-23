@@ -171,6 +171,7 @@ export default class ProfileScreen extends Component {
         loading={loading}
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
+        adType="admob"
       >
         {profile ? (
           <ProfileSection

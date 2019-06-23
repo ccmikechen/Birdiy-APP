@@ -12,13 +12,13 @@ import * as STAGING from './staging';
 import * as PROD from './prod';
 
 const CONFIGS = {
-  devlopment: DEV,
+  development: DEV,
   default: STAGING,
   staging: STAGING,
   production: PROD,
 };
 
-const ENV = Constants.manifest.releaseChannel || 'devlopment';
+const ENV = Constants.manifest.releaseChannel || 'development';
 const CHANNEL_CONFIGS = Object.freeze({
   ...CONFIGS[ENV],
   FACEBOOK_APP_ID,
