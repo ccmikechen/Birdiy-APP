@@ -21,14 +21,16 @@ export default class SaveProjectActions extends Component {
   };
 
   handlePress = (index) => {
-    const { onSave, onSaveAndPublish } = this.props;
+    const { published, onSave, onSaveAndPublish } = this.props;
 
     switch (index) {
       case 0:
         onSave();
         break;
       case 1:
-        onSaveAndPublish();
+        if (!published) {
+          onSaveAndPublish();
+        }
         break;
       default:
     }

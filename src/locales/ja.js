@@ -403,6 +403,10 @@ export default {
     publishProjectSuccess: 'プロジェクトを公開しました',
     unpublishProjectSuccess: 'プロジェクトを非公開にしました',
     setProjectStatusFailed: 'プロジェクト状態の設定が失敗しました',
+    publishProjectLimit: {
+      title: 'プロジェクトを公開失敗',
+      message: '%{hours}時間以内に %{times} 回以上プロジェクトを公開することはできません。',
+    },
     deleteProject: {
       title: 'プロジェクトを削除',
       message: '削除したプロジェクトは手動で復元できません。削除してもよろしいですか？',

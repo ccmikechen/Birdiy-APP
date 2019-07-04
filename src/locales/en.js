@@ -294,6 +294,10 @@ export default {
     publishProjectSuccess: 'The project has been published',
     unpublishProjectSuccess: 'The project has been unpublished',
     setProjectStatusFailed: 'Failed to change status of this project',
+    publishProjectLimit: {
+      title: 'Failed to publish project',
+      message: 'You can\'t publish project more than %{times} times in %{hours} hours.',
+    },
     deleteProject: {
       title: 'Delete Project',
       message: 'Once the project is deleted, it cannot be restored manually. Are you sure you want to delete the project?',

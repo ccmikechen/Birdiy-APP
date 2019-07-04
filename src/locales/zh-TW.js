@@ -403,6 +403,10 @@ export default {
     publishProjectSuccess: '專案已設為公開',
     unpublishProjectSuccess: '專案已設為不公開',
     setProjectStatusFailed: '專案狀態設定失敗',
+    publishProjectLimit: {
+      title: '公開專案失敗',
+      message: '%{hours} 小時之內最多只能公開 %{times} 個專案',
+    },
     deleteProject: {
       title: '刪除專案',
       message: '專案一旦刪除則無法手動復原，確定要刪除專案嗎？',

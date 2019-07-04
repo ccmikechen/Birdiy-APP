@@ -5,6 +5,13 @@ export const showAlert = (message, title = '', options) => (
   setTimeout(() => Alert.alert(title, message, options), 100)
 );
 
+export const showPublishProjectLimitAlert = (hours, times) => (
+  showAlert(
+    i18n.t('alert.publishProjectLimit.message', { hours, times }),
+    i18n.t('alert.publishProjectLimit.title'),
+  )
+);
+
 export const showDeleteProjectAlert = () => new Promise(resolve => (
   showAlert(
     i18n.t('alert.deleteProject.message'),

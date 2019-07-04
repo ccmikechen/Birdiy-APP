@@ -21,6 +21,7 @@ import UnpublishProjectMutation from '../../mutations/UnpublishProjectMutation';
 
 import {
   showGoBackAlert,
+  showPublishProjectLimitAlert,
   showDeleteProjectAlert,
   showDeleteProjectSuccessAlert,
 } from '../../helpers/alert';
@@ -31,6 +32,7 @@ import {
   showSetProjectStatusFailedMessage,
   showDeleteProjectFailedMessage,
 } from '../../helpers/toast';
+import TimesRecord from '../../helpers/TimesRecord';
 
 import {
   DEFAULT_MATERIAL,
@@ -41,6 +43,8 @@ import {
 import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit' };
+const PUBLISH_LIMIT_HOURS = 24;
+const PUBLISH_LIMIT_TIMES = 3;
 
 export default class EditProjectScreen extends Component {
   static navigationOptions = {
@@ -103,6 +107,11 @@ export default class EditProjectScreen extends Component {
     projectPublished: false,
   };
 
+  publishTimesRecord = new TimesRecord(
+    PUBLISH_LIMIT_TIMES,
+    1000 * 60 * 60 * PUBLISH_LIMIT_HOURS,
+  );
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const { query } = nextProps;
     const { initialized } = prevState;
@@ -142,6 +151,7 @@ export default class EditProjectScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
+    this.publishTimesRecord.load('publishTImesRecord');
   }
 
   componentWillUnmount() {
@@ -209,11 +219,19 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSaveAndPublish = (values) => {
+    if (!this.publishTimesRecord.isValid()) {
+      showPublishProjectLimitAlert(PUBLISH_LIMIT_HOURS, PUBLISH_LIMIT_TIMES);
+      return;
+    }
+
     const { screenProps: { spinner } } = this.props;
     const mutation = new EditAndPublishProjectMutation(values).setHook(spinner);
 
     mutation.commit()
-      .then(this.handleSavingResponse)
+      .then((res) => {
+        this.publishTimesRecord.addRecord();
+        this.handleSavingResponse(res);
+      })
       .catch(() => showSetProjectStatusFailedMessage());
   }
 
