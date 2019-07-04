@@ -415,6 +415,10 @@ export default {
     deleteProjectFailed: 'プロジェクトの削除が失敗しました',
     createPostSuccess: '投稿を送りました',
     createPostFailed: '投稿の作成が失敗しました',
+    createPostLimit: {
+      title: '投稿失敗',
+      message: '%{hours}時間以内に %{times} 回以上投稿することはできません。',
+    },
     editPostSuccess: '投稿を保存しました',
     editPostFailed: '投稿の保存が失敗しました',
     deletePostSuccess: '投稿を削除しました。復元したい場合スタッフに連絡してください。',

@@ -11,11 +11,16 @@ import CreatePostMutation from '../../mutations/CreatePostMutation';
 
 import {
   showGoBackAlert,
+  showCreatePostLimitAlert,
 } from '../../helpers/alert';
 import {
   showCreatePostSuccessMessage,
   showCreatePostFailedMessage,
 } from '../../helpers/toast';
+import TimesRecord from '../../helpers/TimesRecord';
+
+const CREATE_LIMIT_HOURS = 24;
+const CREATE_LIMIT_TIMES = 3;
 
 export default class CreatePostScreen extends Component {
   static navigationOptions = {
@@ -37,6 +42,11 @@ export default class CreatePostScreen extends Component {
     }).isRequired,
   };
 
+  createTimesRecord = new TimesRecord(
+    CREATE_LIMIT_TIMES,
+    1000 * 60 * 60 * CREATE_LIMIT_HOURS,
+  );
+
   constructor(props) {
     super(props);
 
@@ -55,6 +65,7 @@ export default class CreatePostScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
+    this.createTimesRecord.load('createPostTimesRecord');
   }
 
   componentWillUnmount() {
@@ -66,6 +77,11 @@ export default class CreatePostScreen extends Component {
   };
 
   handleSubmit = (values) => {
+    if (!this.createTimesRecord.isValid()) {
+      showCreatePostLimitAlert(CREATE_LIMIT_HOURS, CREATE_LIMIT_TIMES);
+      return;
+    }
+
     const { navigation, screenProps: { spinner } } = this.props;
 
     const mutation = new CreatePostMutation(values).setHook(spinner);
@@ -77,6 +93,7 @@ export default class CreatePostScreen extends Component {
 
           return;
         }
+        this.createTimesRecord.addRecord();
         navigation.goBack();
         showCreatePostSuccessMessage();
       })

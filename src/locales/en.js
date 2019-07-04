@@ -306,6 +306,10 @@ export default {
     deleteProjectFailed: 'Failed to delete the project',
     createPostSuccess: 'The post has been created successfully',
     createPostFailed: 'Failed to create the post',
+    createPostLimit: {
+      title: 'Failed to create post',
+      message: 'You can\'t create post more than %{times} times in %{hours} hours.',
+    },
     editPostSuccess: 'The post has been saved successfully',
     editPostFailed: 'Failed to save the post',
     deletePostSuccess: 'The post has been deleted successfully. Please contact customer service staff if you want to recover.',

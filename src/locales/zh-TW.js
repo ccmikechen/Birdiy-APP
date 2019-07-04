@@ -415,6 +415,10 @@ export default {
     deleteProjectFailed: '專案刪除失敗',
     createPostSuccess: '貼文發佈成功',
     createPostFailed: '貼文發佈失敗',
+    createPostLimit: {
+      title: '貼文發佈失敗',
+      message: '%{hours} 小時之內最多只能發佈 %{times} 則貼文',
+    },
     editPostSuccess: '貼文編輯成功',
     editPostFailed: '貼文編輯失敗',
     deletePostSuccess: '貼文已成功刪除，若要復原請聯繫客服人員。',

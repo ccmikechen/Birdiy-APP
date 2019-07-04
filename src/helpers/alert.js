@@ -38,6 +38,13 @@ export const showGoBackAlert = () => new Promise(resolve => (
   )
 ));
 
+export const showCreatePostLimitAlert = (hours, times) => (
+  showAlert(
+    i18n.t('alert.createPostLimit.message', { hours, times }),
+    i18n.t('alert.createPostLimit.title'),
+  )
+);
+
 export const showDeletePostSuccessAlert = () => (
   showAlert(i18n.t('alert.deletePostSuccess'))
 );

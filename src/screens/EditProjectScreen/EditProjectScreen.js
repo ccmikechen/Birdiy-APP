@@ -151,7 +151,7 @@ export default class EditProjectScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleGoBack);
-    this.publishTimesRecord.load('publishTImesRecord');
+    this.publishTimesRecord.load('publishTimesRecord');
   }
 
   componentWillUnmount() {
