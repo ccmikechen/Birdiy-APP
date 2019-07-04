@@ -25,3 +25,9 @@ export class InvalidCredentialError extends GeneralError {
     super(4, 'Invalid credential');
   }
 }
+
+export class BannedError extends GeneralError {
+  constructor() {
+    super(5, 'User has been banned');
+  }
+}

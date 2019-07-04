@@ -8,6 +8,7 @@ const errorsMap = {
   2: general.PermissionDeniedError,
   3: general.RecordNotFoundError,
   4: general.InvalidCredentialError,
+  5: general.BannedError,
 
   1001: user.CreateUserError,
   1002: user.UpdateUserError,

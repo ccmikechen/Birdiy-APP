@@ -61,7 +61,7 @@ export default (state) => {
     case 'draft':
     default:
       return object({
-        name: string().required().max(20),
+        name: string().required().max(100),
         topic: string().nullable().required(),
         introduction: string().nullable().max(300),
         image: string().nullable(),
