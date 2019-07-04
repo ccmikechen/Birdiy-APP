@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import Colors, { Base, TextColor } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   header: {
@@ -87,5 +88,11 @@ export default StyleSheet.create({
     fontSize: 16,
     color: TextColor.secondaryDark,
     lineHeight: 24,
+  },
+  emptyView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: Dimensions.get('window').height - Size.bottomTabBarHeight - 60,
   },
 });

@@ -144,6 +144,7 @@ export default {
       tip: 'コツ',
       followingPosts: 'フォローした投稿',
     },
+    deletedMessage: 'このプロジェクトは公開されていないか削除されています',
   },
   home: {
     title: 'ホーム',

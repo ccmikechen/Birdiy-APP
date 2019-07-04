@@ -144,6 +144,7 @@ export default {
       tip: '小技巧',
       followingPosts: '跟著做',
     },
+    deletedMessage: '專案未公開或已刪除',
   },
   home: {
     title: '首頁',

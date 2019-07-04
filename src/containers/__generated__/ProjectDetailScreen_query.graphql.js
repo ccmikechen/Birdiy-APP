@@ -33,6 +33,8 @@ export type ProjectDetailScreen_query = {|
     +favorite: ?boolean,
     +relatedPostCount: ?number,
     +tip: ?string,
+    +publishedAt: ?any,
+    +deletedAt: ?any,
     +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref,
   |},
   +$refType: ProjectDetailScreen_query$ref,
@@ -80,7 +82,7 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "likeCount",
+          "name": "viewed",
           "args": null,
           "storageKey": null
         },
@@ -143,14 +145,14 @@ return {
           "args": null,
           "storageKey": null
         },
-        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "viewed",
+          "name": "likeCount",
           "args": null,
           "storageKey": null
         },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -198,6 +200,20 @@ return {
           "kind": "FragmentSpread",
           "name": "ProjectDetailFollowPostList_project",
           "args": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "publishedAt",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "deletedAt",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
@@ -205,5 +221,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3e512235e76643067645363b40728005';
+(node/*: any*/).hash = '78b199bc84451fd29c60d677ef704ee3';
 module.exports = node;

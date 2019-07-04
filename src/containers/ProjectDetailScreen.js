@@ -30,6 +30,8 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         ...ProjectDetailMethodList_project
         tip
         ...ProjectDetailFollowPostList_project
+        publishedAt
+        deletedAt
       }
     }
   `,

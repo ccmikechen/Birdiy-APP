@@ -49,7 +49,7 @@ export default class PurchaseList extends Component {
     const { projects, onDelete, onOpenProject } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View>
         {projects.length > 0 ? projects.map(project => (
           <PurchaseSection
             key={project.id}

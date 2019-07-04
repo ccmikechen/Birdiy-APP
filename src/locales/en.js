@@ -149,6 +149,7 @@ export default {
       tip: 'Tips',
       followingPosts: 'Followed Posts',
     },
+    deletedMessage: 'This project has not been published or has been deleted',
   },
   home: {
     title: 'Home',

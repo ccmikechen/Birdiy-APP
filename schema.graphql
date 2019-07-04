@@ -177,6 +177,7 @@ interface Profile {
 
 type Project implements Node {
   author: User!
+  deletedAt: Datetime
   favorite: Boolean
   favoriteCount: Int
   fileResources: [ProjectFileResource]
