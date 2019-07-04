@@ -319,6 +319,7 @@ export default {
         title: '材料',
       },
     },
+    emptyMessage: 'まだ材料を入れておりません。',
   },
   recentViewed: {
     title: '最近見たプロジェクト',

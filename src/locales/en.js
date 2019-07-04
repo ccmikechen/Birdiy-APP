@@ -210,6 +210,7 @@ export default {
         title: 'Materials',
       },
     },
+    emptyMessage: 'Purchase list is empty',
   },
   recentViewed: {
     title: 'Recently viewed',

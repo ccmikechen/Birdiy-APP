@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import i18n from 'i18n-js';
 
+import MessageView from '../MessageView';
 import PurchaseSection from '../PurchaseSection';
+
+import styles from './styles';
 
 export default class PurchaseList extends Component {
   static propTypes = {
@@ -45,8 +49,8 @@ export default class PurchaseList extends Component {
     const { projects, onDelete, onOpenProject } = this.props;
 
     return (
-      <View>
-        {projects.map(project => (
+      <View style={styles.container}>
+        {projects.length > 0 ? projects.map(project => (
           <PurchaseSection
             key={project.id}
             project={project}
@@ -54,7 +58,12 @@ export default class PurchaseList extends Component {
             onDelete={() => onDelete(project.id)}
             onOpenProject={() => onOpenProject(project.id)}
           />
-        ))}
+        )) : (
+          <MessageView
+            message={i18n.t('cart.emptyMessage')}
+            style={styles.emptyView}
+          />
+        )}
       </View>
     );
   }

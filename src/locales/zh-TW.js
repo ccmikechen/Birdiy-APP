@@ -319,6 +319,7 @@ export default {
         title: '材料',
       },
     },
+    emptyMessage: '尚未加入任何材料',
   },
   recentViewed: {
     title: '近期瀏覽',
