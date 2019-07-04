@@ -55,12 +55,10 @@ export default class EditPostScreen extends Component {
         })),
       }),
     }),
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -139,12 +137,11 @@ export default class EditPostScreen extends Component {
   };
 
   render() {
-    const { navigation, loading } = this.props;
     const { initialPost } = this.state;
 
     return (
       <InputScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={this.handleGoBack}
@@ -157,7 +154,6 @@ export default class EditPostScreen extends Component {
           />
         )}
         fullScreen
-        loading={loading}
       >
         <PostEditor
           ref={(ref) => { this.postEditor = ref; }}

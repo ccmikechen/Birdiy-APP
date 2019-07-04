@@ -36,12 +36,10 @@ export default class HomeScreen extends Component {
     relay: PropTypes.shape({
       refetch: PropTypes.func.isRequired,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -107,19 +105,18 @@ export default class HomeScreen extends Component {
   };
 
   render() {
-    const { navigation, query, loading } = this.props;
+    const { navigation, query } = this.props;
     const { refreshing } = this.state;
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <HomeHeader
             onSearch={() => navigation.navigate('SearchDetail')}
             onOpenCart={() => navigation.push('Cart')}
           />
         )}
-        loading={loading}
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
       >

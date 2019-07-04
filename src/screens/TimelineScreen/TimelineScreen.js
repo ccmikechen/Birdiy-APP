@@ -41,12 +41,10 @@ export default class TimelineScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -132,7 +130,7 @@ export default class TimelineScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const { addPostButtonVisible } = this.state;
     const tabs = [
@@ -143,8 +141,8 @@ export default class TimelineScreen extends Component {
     return (
       <View style={styles.container}>
         <TabsScreenView
+          {...this.props}
           ref={(ref) => { this.screenView = ref; }}
-          navigation={navigation}
           renderHeader={() => (
             <TimelineHeader
               onSearch={() => navigation.navigate('SearchDetail')}
@@ -155,7 +153,6 @@ export default class TimelineScreen extends Component {
             this.setState({ addPostButtonVisible: visible });
           }}
           animatedScroll
-          loading={loading}
         >
           <AllActivityList
             innerRef={(ref) => { this.allList = ref; }}

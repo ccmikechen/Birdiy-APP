@@ -94,12 +94,10 @@ export default class EditProjectScreen extends Component {
         })),
       }),
     }),
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -283,14 +281,13 @@ export default class EditProjectScreen extends Component {
   };
 
   render() {
-    const { navigation, loading } = this.props;
     const { initialProject, projectPublished } = this.state;
 
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
         <SimpleScreenView
-          navigation={navigation}
+          {...this.props}
           renderHeader={() => (
             <NormalBackHeader
               onBack={this.handleGoBack}
@@ -308,7 +305,6 @@ export default class EditProjectScreen extends Component {
           )}
           fullScreen
           headerPadding={false}
-          loading={loading}
         >
           <ProjectEditor
             ref={(ref) => { this.projectEditor = ref; }}

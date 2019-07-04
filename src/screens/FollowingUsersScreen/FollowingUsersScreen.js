@@ -21,12 +21,10 @@ export default class FollowingUsersScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleOpenUser = (user) => {
@@ -36,20 +34,19 @@ export default class FollowingUsersScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const userId = navigation.getParam('id');
 
     return (
       <SimpleScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <SearchBarHeader
             onBack={() => navigation.goBack()}
             onSearch={() => navigation.navigate('SearchDetail')}
           />
         )}
-        loading={loading}
       >
         <FollowingUserList
           query={query}

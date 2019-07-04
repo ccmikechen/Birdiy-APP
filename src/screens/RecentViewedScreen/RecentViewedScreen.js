@@ -23,12 +23,10 @@ export default class RecentViewedScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleOpenProject = (project) => {
@@ -38,12 +36,12 @@ export default class RecentViewedScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
 
     return (
       <SimpleScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <RecentViewedHeader
             onBack={() => navigation.goBack()}
@@ -51,7 +49,6 @@ export default class RecentViewedScreen extends Component {
           />
         )}
         animatedScroll
-        loading={loading}
       >
         <RecentViewedProjectList
           query={query}

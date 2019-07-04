@@ -53,7 +53,7 @@ export default class SearchDetailScreen extends Component {
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <SearchDetailHeader
             ref={(header) => { this.header = header; }}

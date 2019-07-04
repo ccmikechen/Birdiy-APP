@@ -31,7 +31,7 @@ export default class SearchUserScreen extends Component {
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <SearchDetailHeader
             ref={(header) => { this.header = header; }}

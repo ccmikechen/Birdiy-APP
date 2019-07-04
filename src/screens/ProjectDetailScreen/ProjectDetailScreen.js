@@ -78,12 +78,10 @@ export default class ProjectDetailScreen extends Component {
         relatedPosts: PropTypes.object,
       }),
     }),
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   defaultProject = {
@@ -239,7 +237,7 @@ export default class ProjectDetailScreen extends Component {
   };
 
   render() {
-    const { navigation, query, loading } = this.props;
+    const { navigation, query } = this.props;
     const { cartMaterials } = this.state;
     const project = query ? query.project : this.defaultProject;
     const video = project.video && videoUrl.parse(project.video);
@@ -248,7 +246,7 @@ export default class ProjectDetailScreen extends Component {
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
@@ -256,7 +254,6 @@ export default class ProjectDetailScreen extends Component {
           />
         )}
         headerPadding={false}
-        loading={loading}
         adType="facebook"
       >
         {isExist ? (

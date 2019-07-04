@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import * as FacebookAds from 'expo-ads-facebook';
 import { AdMobBanner } from 'expo-ads-admob';
+import i18n from 'i18n-js';
 
 import AnimatedHeader from '../AnimatedHeader';
 import LoadingIndicator from '../LoadingIndicator';
+import ReloadMessageView from '../ReloadMessageView';
+
+import { NetworkRequestError } from '../../errors';
 
 import Size from '../../constants/Size';
 
@@ -26,6 +30,8 @@ export default class SimpleScreenView extends Component {
     onToggleTabBar: PropTypes.func,
     fullScreen: PropTypes.bool,
     loading: PropTypes.bool,
+    error: PropTypes.instanceOf(Error),
+    retry: PropTypes.func,
     adType: PropTypes.oneOf(['admob', 'facebook']),
   };
 
@@ -37,6 +43,8 @@ export default class SimpleScreenView extends Component {
     children: null,
     loading: false,
     adType: null,
+    retry: () => {},
+    error: null,
   };
 
   state = {
@@ -86,15 +94,12 @@ export default class SimpleScreenView extends Component {
     }
   };
 
-  render() {
+  renderChildren = () => {
     const {
-      renderHeader,
       children,
-      animatedScroll,
-      headerPadding,
-      fullScreen,
       loading,
-      adType,
+      error,
+      retry,
     } = this.props;
     const { isHeaderVisible } = this.state;
 
@@ -106,6 +111,39 @@ export default class SimpleScreenView extends Component {
         isHeaderVisible,
       })
     ));
+
+    if (error instanceof NetworkRequestError) {
+      return (
+        <ReloadMessageView
+          message={i18n.t('networkErrorMessage')}
+          onReload={retry}
+          style={styles.errorView}
+        />
+      );
+    }
+
+    if (error) {
+      return (
+        <ReloadMessageView
+          message={i18n.t('generalErrorMessage')}
+          onReload={retry}
+          style={styles.errorView}
+        />
+      );
+    }
+
+    return loading ? <LoadingIndicator /> : newChildren;
+  };
+
+  render() {
+    const {
+      renderHeader,
+      animatedScroll,
+      headerPadding,
+      fullScreen,
+      adType,
+    } = this.props;
+    const { isHeaderVisible } = this.state;
 
     const adPadding = adType ? 50 : 0;
     const bottomTabBarPadding = animatedScroll || fullScreen
@@ -121,7 +159,7 @@ export default class SimpleScreenView extends Component {
         {animatedScroll || !headerPadding ? null : (
           <View style={styles.paddingView} />
         )}
-        {loading ? <LoadingIndicator /> : newChildren}
+        {this.renderChildren()}
         {this.renderAd()}
         <View style={{ height: adPadding + bottomTabBarPadding }} />
       </View>

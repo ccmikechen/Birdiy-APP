@@ -22,7 +22,7 @@ export default (FragmentComponent, Component, config) => {
         environment={auth ? authEnvironment : environment}
         query={query}
         variables={variables}
-        render={({ error, props }) => {
+        render={({ error, props, retry }) => {
           if (error instanceof InternalServerError) {
             return null;
           }
@@ -32,6 +32,7 @@ export default (FragmentComponent, Component, config) => {
               {...componentProps}
               query={props}
               error={error}
+              retry={retry}
               loading={!(error || props)}
               variables={variables}
             />

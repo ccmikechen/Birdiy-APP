@@ -18,6 +18,7 @@ export default {
     clear: 'Clear',
     delete: 'Delete',
     download: 'Download',
+    reload: 'Reload',
   },
   post: {
     create: {
@@ -334,4 +335,6 @@ export default {
     },
     video: 'Valid video URL is required',
   },
+  networkErrorMessage: 'Check your network connection and try again.',
+  generalErrorMessage: 'Something went wrong, please try again.',
 };

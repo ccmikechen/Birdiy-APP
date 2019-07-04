@@ -71,7 +71,7 @@ export default class CreateProjectScreen extends Component {
 
     return (
       <InputScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}

@@ -20,7 +20,7 @@ export default class UserFilterScreen extends Component {
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}

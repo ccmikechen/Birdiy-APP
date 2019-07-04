@@ -32,12 +32,10 @@ export default class ProfileSettingScreen extends Component {
         image: PropTypes.string,
       }),
     }),
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -92,12 +90,12 @@ export default class ProfileSettingScreen extends Component {
   };
 
   render() {
-    const { navigation, loading } = this.props;
+    const { navigation } = this.props;
     const { profile } = this.state;
 
     return (
       <InputScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
@@ -110,7 +108,6 @@ export default class ProfileSettingScreen extends Component {
           />
         )}
         fullScreen
-        loading={loading}
       >
         <ProfileSetting
           profile={profile}

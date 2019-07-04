@@ -23,12 +23,10 @@ export default class UserFavoritesScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleOpenProject = (project) => {
@@ -38,13 +36,13 @@ export default class UserFavoritesScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const userId = navigation.getParam('id');
 
     return (
       <SimpleScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <SearchBarHeader
             onBack={() => navigation.goBack()}
@@ -52,7 +50,6 @@ export default class UserFavoritesScreen extends Component {
           />
         )}
         animatedScroll
-        loading={loading}
       >
         <UserFavoriteProjectList
           query={query}

@@ -65,7 +65,7 @@ export default class CartScreen extends Component {
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}

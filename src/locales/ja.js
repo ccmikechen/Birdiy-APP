@@ -13,6 +13,7 @@ export default {
     clear: 'クリア',
     delete: '削除',
     download: 'ダウンロード',
+    reload: '再読み込み',
   },
   post: {
     create: {
@@ -443,4 +444,6 @@ export default {
     },
     video: '正しい動画リンクが必要',
   },
+  networkErrorMessage: '通信環境の良いところで再度お試しください。',
+  generalErrorMessage: '問題が発生しました。もう一度お試しください。',
 };

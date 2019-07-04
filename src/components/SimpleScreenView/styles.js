@@ -25,4 +25,7 @@ export default StyleSheet.create({
   admobContainer: {
     alignItems: 'center',
   },
+  errorView: {
+    flex: 1,
+  },
 });

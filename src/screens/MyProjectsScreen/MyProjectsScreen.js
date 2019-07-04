@@ -32,12 +32,10 @@ export default class MyProjectsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleProjectPress = project => (
@@ -70,12 +68,11 @@ export default class MyProjectsScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
 
     return (
       <SimpleScreenView
-        navigation={navigation}
         renderHeader={() => (
           <SearchBarHeader
             onBack={() => navigation.goBack()}
@@ -83,7 +80,6 @@ export default class MyProjectsScreen extends Component {
           />
         )}
         animatedScroll
-        loading={loading}
       >
         <MyProjectList
           query={query}

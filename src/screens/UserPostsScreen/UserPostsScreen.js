@@ -28,12 +28,10 @@ export default class UserPostsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleOpenImage = (id) => {
@@ -63,7 +61,7 @@ export default class UserPostsScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const userId = navigation.getParam('userId');
     const postId = navigation.getParam('postId');
@@ -71,7 +69,6 @@ export default class UserPostsScreen extends Component {
     return (
       <View style={styles.container}>
         <SimpleScreenView
-          navigation={navigation}
           renderHeader={() => (
             <SearchBarHeader
               onBack={() => navigation.goBack()}
@@ -79,7 +76,6 @@ export default class UserPostsScreen extends Component {
             />
           )}
           animatedScroll
-          loading={loading}
         >
           <UserPostList
             query={query}

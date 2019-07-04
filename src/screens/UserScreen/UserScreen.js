@@ -27,12 +27,10 @@ export default class UserScreen extends Component {
     relay: PropTypes.shape({
       refetch: PropTypes.func.isRequired,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -103,13 +101,13 @@ export default class UserScreen extends Component {
   };
 
   render() {
-    const { navigation, query, loading } = this.props;
+    const { navigation, query } = this.props;
     const { refreshing } = this.state;
     const profile = query && query.user;
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <UserHeader
             onBack={() => navigation.goBack()}
@@ -119,7 +117,6 @@ export default class UserScreen extends Component {
             following={(profile && profile.following) || false}
           />
         )}
-        loading={loading}
         refreshing={refreshing}
         onRefresh={this.handleRefresh}
       >

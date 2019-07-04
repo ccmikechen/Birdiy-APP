@@ -112,11 +112,9 @@ export default class CreatePostScreen extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
-
     return (
       <InputScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={this.handleGoBack}

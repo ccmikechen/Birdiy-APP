@@ -37,12 +37,10 @@ export default class ProjectsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state = {
@@ -127,7 +125,7 @@ export default class ProjectsScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const { addProjectButtonVisible } = this.state;
     const keyword = navigation.getParam('keyword');
@@ -142,7 +140,7 @@ export default class ProjectsScreen extends Component {
       <View style={styles.container}>
         <TabsScreenView
           ref={(ref) => { this.screenView = ref; }}
-          navigation={navigation}
+          {...this.props}
           renderHeader={() => (
             <SearchHeader
               keyword={keyword}
@@ -157,7 +155,6 @@ export default class ProjectsScreen extends Component {
             this.setState({ addProjectButtonVisible: visible });
           }}
           animatedScroll
-          loading={loading}
         >
           <NewestProjectList
             innerRef={(ref) => { this.newestList = ref; }}

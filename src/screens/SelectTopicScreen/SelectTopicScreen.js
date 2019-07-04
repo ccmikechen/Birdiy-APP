@@ -44,12 +44,10 @@ export default class SelectTopicScreen extends Component {
         })),
       }),
     }),
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   state ={
@@ -110,6 +108,11 @@ export default class SelectTopicScreen extends Component {
 
   handleSelectAll = () => {
     const { query } = this.props;
+
+    if (!query) {
+      return;
+    }
+
     const selected = flatten(query.categories.edges.map(({ node: { topics } }) => (
       topics.edges.map(({ node: { name } }) => name)
     )));
@@ -183,14 +186,14 @@ export default class SelectTopicScreen extends Component {
   };
 
   render() {
-    const { navigation, loading } = this.props;
+    const { navigation } = this.props;
     const { selected } = this.state;
     const title = navigation.getParam('title') || i18n.t('selectTopic.title');
     const multiple = navigation.getParam('multiple');
 
     return (
       <TopScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}
@@ -208,7 +211,6 @@ export default class SelectTopicScreen extends Component {
           />
         )}
         fullScreen
-        loading={loading}
       >
         <ListSelector
           items={this.getItems()}

@@ -32,7 +32,7 @@ export default class FeedbackScreen extends Component {
 
     return (
       <InputScreenView
-        navigation={navigation}
+        {...this.props}
         renderHeader={() => (
           <NormalBackHeader
             onBack={() => navigation.goBack()}

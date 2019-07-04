@@ -13,6 +13,7 @@ export default {
     clear: '清除',
     delete: '刪除',
     download: '下載',
+    reload: '重新載入',
   },
   post: {
     create: {
@@ -443,4 +444,6 @@ export default {
     },
     video: '不正確的影片連結',
   },
+  networkErrorMessage: '請檢查行動網路或 wi-fi 再試一次',
+  generalErrorMessage: '發生錯誤，請重新載入',
 };

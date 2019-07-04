@@ -30,12 +30,10 @@ export default class MyPostsScreen extends Component {
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
-    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     query: null,
-    loading: true,
   };
 
   handleOpenImage = (id) => {
@@ -68,14 +66,14 @@ export default class MyPostsScreen extends Component {
 
   render() {
     const {
-      navigation, query, variables, loading,
+      navigation, query, variables,
     } = this.props;
     const postId = navigation.getParam('postId');
 
     return (
       <View style={styles.container}>
         <SimpleScreenView
-          navigation={navigation}
+          {...this.props}
           renderHeader={() => (
             <SearchBarHeader
               onBack={() => navigation.goBack()}
@@ -83,7 +81,6 @@ export default class MyPostsScreen extends Component {
             />
           )}
           animatedScroll
-          loading={loading}
         >
           <MyPostList
             query={query}
