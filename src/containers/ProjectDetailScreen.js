@@ -18,6 +18,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
           name
         }
         introduction
+        source
         viewCount
         favoriteCount
         likeCount

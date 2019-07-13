@@ -67,7 +67,7 @@ export default class ProjectEditor extends Component {
   };
 
   tabFields = [
-    ['name', 'topic', 'introduction', 'video'],
+    ['name', 'topic', 'introduction', 'source', 'video'],
     ['image'],
     ['materials'],
     ['files'],

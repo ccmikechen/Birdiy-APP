@@ -74,6 +74,10 @@ export default {
         title: '介紹',
         placeholder: '介紹你的專案',
       },
+      source: {
+        title: '專案來源',
+        placeholder: '（可選）輸入專案來源或相關連結',
+      },
       video: {
         title: '影片',
         placeholder: '（可選）Youtube / Vimeo 影片連結',
@@ -135,6 +139,7 @@ export default {
     },
     sections: {
       intro: '介紹',
+      source: '專案來源',
       materials: '材料',
       files: '檔案資料',
       methods: {
@@ -436,6 +441,7 @@ export default {
   },
   errors: {
     required: '必須',
+    url: '不正確的連結',
     photos: {
       min: '至少%{min}張照片',
     },

@@ -195,6 +195,7 @@ type Project implements Node {
   publishedAt: Datetime
   relatedPostCount: Int
   relatedPosts(after: String, before: String, first: Int, last: Int): PostConnection
+  source: String
   tip: String
   topic: ProjectTopic!
   video: String

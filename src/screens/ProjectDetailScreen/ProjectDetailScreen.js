@@ -4,10 +4,12 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
   Linking,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { AdMobBanner } from 'expo-ads-admob';
+import parseURL from 'url-parse';
 import videoUrl from 'js-video-url-parser';
 import i18n from 'i18n-js';
 
@@ -66,6 +68,7 @@ export default class ProjectDetailScreen extends Component {
           name: PropTypes.string,
         }),
         introduction: PropTypes.string,
+        source: PropTypes.string,
         viewCount: PropTypes.number,
         favoriteCount: PropTypes.number,
         likeCount: PropTypes.number,
@@ -94,6 +97,7 @@ export default class ProjectDetailScreen extends Component {
       name: '',
     },
     introduction: '',
+    source: null,
     viewCount: 0,
     favoriteCount: 0,
     likeCount: 0,
@@ -318,6 +322,18 @@ export default class ProjectDetailScreen extends Component {
                   {project.introduction}
                 </Text>
               </View>
+              {project.source && (
+                <View style={styles.sourceContainer}>
+                  <Text style={styles.sourceTitle}>
+                    {i18n.t('sections.source', i18nOptions)}
+                  </Text>
+                  <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync(project.source)}>
+                    <Text style={styles.source}>
+                      {parseURL(project.source, true).host}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </ProjectDetailSection>
             {isAdsVisible() && (
               <View style={styles.adContainer}>

@@ -16,6 +16,7 @@ export type EditProjectScreen_query = {|
     +name: string,
     +published: ?boolean,
     +image: ?string,
+    +source: ?string,
     +video: ?string,
     +topic: {|
       +name: string
@@ -128,6 +129,13 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "source",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "video",
           "args": null,
           "storageKey": null
@@ -222,5 +230,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e8bab85ea3c24f21ce5b6014b13830be';
+(node/*: any*/).hash = '9307207e55cc3b60346954fadb4de72f';
 module.exports = node;

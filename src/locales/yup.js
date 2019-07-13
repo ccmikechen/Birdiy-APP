@@ -6,5 +6,8 @@ export default () => {
     mixed: {
       required: i18n.t('errors.required'),
     },
+    string: {
+      url: i18n.t('errors.url'),
+    },
   });
 };

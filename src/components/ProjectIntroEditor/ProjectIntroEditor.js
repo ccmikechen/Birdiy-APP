@@ -20,13 +20,14 @@ const ProjectIntroEditor = (props) => {
     touched,
   } = props;
   const {
-    name, introduction, topic, video,
+    name, introduction, topic, source, video,
   } = project;
 
   const error = {
     name: touched.name && errors.name,
     topic: touched.topic && errors.topic,
     introduction: touched.introduction && errors.introduction,
+    source: touched.source && errors.source,
     video: touched.video && errors.video,
   };
 
@@ -85,6 +86,18 @@ const ProjectIntroEditor = (props) => {
         />
       </EditSection>
       <EditSection
+        title={i18n.t('source.title', i18nOptions)}
+        error={error.source}
+      >
+        <PureTextInput
+          style={styles.textInput}
+          value={source}
+          error={error.source}
+          placeholder={i18n.t('source.placeholder', i18nOptions)}
+          onChangeText={onChange('source')}
+        />
+      </EditSection>
+      <EditSection
         title={i18n.t('video.title', i18nOptions)}
         error={error.video}
       >
@@ -112,12 +125,15 @@ ProjectIntroEditor.propTypes = {
     name: PropTypes.string,
     introduction: PropTypes.string,
     topic: PropTypes.string,
+    source: PropTypes.string,
     video: PropTypes.string,
   }),
   touched: PropTypes.shape({
     name: PropTypes.bool,
     introduction: PropTypes.bool,
     topic: PropTypes.bool,
+    source: PropTypes.bool,
+    video: PropTypes.bool,
   }),
 };
 

@@ -74,6 +74,10 @@ export default {
         title: '紹介',
         placeholder: 'プロジェクトの紹介を書く',
       },
+      source: {
+        title: '参考URL',
+        placeholder: '（任意）参考サイトのURLを入力',
+      },
       video: {
         title: '動画',
         placeholder: '（任意）Youtube / Vimeo 動画リンク',
@@ -135,6 +139,7 @@ export default {
     },
     sections: {
       intro: '紹介',
+      source: '参考サイト',
       materials: '材料',
       files: 'ファイル',
       methods: {
@@ -436,6 +441,7 @@ export default {
   },
   errors: {
     required: '必須',
+    url: '不正確なURL',
     photos: {
       min: '写真%{min}枚が必要',
     },

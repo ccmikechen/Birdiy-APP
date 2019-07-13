@@ -25,6 +25,7 @@ export type ProjectDetailScreen_query = {|
       +name: string
     |},
     +introduction: ?string,
+    +source: ?string,
     +viewCount: ?number,
     +favoriteCount: ?number,
     +likeCount: ?number,
@@ -134,6 +135,13 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "source",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "viewCount",
           "args": null,
           "storageKey": null
@@ -221,5 +229,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '78b199bc84451fd29c60d677ef704ee3';
+(node/*: any*/).hash = 'a2ba817f72929a5d852ff4edb8b4e5ec';
 module.exports = node;

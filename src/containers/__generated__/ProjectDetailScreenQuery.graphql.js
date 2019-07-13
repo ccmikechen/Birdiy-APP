@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 683b0c42b6729d562c6c47c8c110c390
+ * @relayHash cb3ca96f2d4fa48da7ccd69118043a1b
  */
 
 /* eslint-disable */
@@ -46,6 +46,7 @@ fragment ProjectDetailScreen_query on RootQueryType {
       id
     }
     introduction
+    source
     viewCount
     favoriteCount
     likeCount
@@ -300,6 +301,13 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "source",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "viewCount",
             "args": null,
             "storageKey": null
@@ -540,7 +548,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailScreenQuery",
     "id": null,
-    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    id\n    name\n    image\n    video\n    ...ProjectAuthor_project\n    topic {\n      name\n      id\n    }\n    introduction\n    viewCount\n    favoriteCount\n    likeCount\n    viewed\n    liked\n    favorite\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    publishedAt\n    deletedAt\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    id\n    name\n    image\n    following\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    id\n    name\n    amountUnit\n    url\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n    id\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailScreenQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  ...ProjectDetailScreen_query\n}\n\nfragment ProjectDetailScreen_query on RootQueryType {\n  project(id: $projectId) {\n    id\n    name\n    image\n    video\n    ...ProjectAuthor_project\n    topic {\n      name\n      id\n    }\n    introduction\n    source\n    viewCount\n    favoriteCount\n    likeCount\n    viewed\n    liked\n    favorite\n    relatedPostCount\n    ...ProjectDetailMaterialList_project\n    ...ProjectDetailFileList_project\n    ...ProjectDetailMethodList_project\n    tip\n    ...ProjectDetailFollowPostList_project\n    publishedAt\n    deletedAt\n  }\n}\n\nfragment ProjectAuthor_project on Project {\n  author {\n    id\n    name\n    image\n    following\n    followerCount\n    projectCount\n  }\n}\n\nfragment ProjectDetailMaterialList_project on Project {\n  materials {\n    id\n    name\n    amountUnit\n    url\n  }\n}\n\nfragment ProjectDetailFileList_project on Project {\n  fileResources {\n    name\n    url\n    id\n  }\n}\n\nfragment ProjectDetailMethodList_project on Project {\n  methods {\n    image\n    title\n    content\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

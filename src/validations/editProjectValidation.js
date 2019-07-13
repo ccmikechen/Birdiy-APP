@@ -13,6 +13,7 @@ export default (state) => {
         name: string().required().max(100),
         topic: string().nullable().required(),
         introduction: string().nullable().required().max(2000),
+        source: string().url().nullable(),
         image: string().nullable().required(),
         video: string().nullable().test(
           'video',
@@ -64,6 +65,7 @@ export default (state) => {
         name: string().required().max(100),
         topic: string().nullable().required(),
         introduction: string().nullable().max(2000),
+        source: string().url().nullable(),
         image: string().nullable(),
         video: string().nullable().test(
           'video',

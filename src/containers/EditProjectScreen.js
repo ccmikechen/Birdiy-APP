@@ -15,6 +15,7 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
         name
         published
         image
+        source
         video
         topic {
           name

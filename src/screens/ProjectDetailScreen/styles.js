@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import Colors, { Base, TextColor } from '../../constants/Colors';
+import Colors, { Base, TextColor, Primary } from '../../constants/Colors';
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
@@ -69,6 +69,20 @@ export default StyleSheet.create({
     fontSize: 16,
     color: TextColor.secondaryDark,
     lineHeight: 24,
+  },
+  sourceContainer: {
+    flexDirection: 'row',
+    padding: 20,
+    paddingTop: 0,
+  },
+  sourceTitle: {
+    fontSize: 16,
+    color: TextColor.primaryDark,
+    paddingRight: 10,
+  },
+  source: {
+    fontSize: 16,
+    color: Primary(700),
   },
   adContainer: {
     justifyContent: 'center',

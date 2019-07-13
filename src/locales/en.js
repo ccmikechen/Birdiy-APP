@@ -79,6 +79,10 @@ export default {
         title: 'Introduction',
         placeholder: 'Introduce your project',
       },
+      source: {
+        title: 'Project Source',
+        placeholder: '(Optional) Enter source URL link of this project',
+      },
       video: {
         title: 'Video',
         placeholder: '(Optional) Youtube / Vimeo video url',
@@ -140,6 +144,7 @@ export default {
     },
     sections: {
       intro: 'Introduction',
+      source: 'Project Source',
       materials: 'Materials',
       files: 'Files',
       methods: {
@@ -327,6 +332,7 @@ export default {
   },
   errors: {
     required: 'Required',
+    url: 'Invalid URL',
     photos: {
       min: 'At least %{min} photo',
     },

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 84715c01e877d0989861117df6274ca7
+ * @relayHash 0678800180eaf37ebf4e114af81b899c
  */
 
 /* eslint-disable */
@@ -36,6 +36,7 @@ fragment EditProjectScreen_query on RootQueryType {
     name
     published
     image
+    source
     video
     topic {
       name
@@ -164,6 +165,13 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "source",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "video",
             "args": null,
             "storageKey": null
@@ -260,7 +268,7 @@ return {
     "operationKind": "query",
     "name": "EditProjectScreenQuery",
     "id": null,
-    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    video\n    topic {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n}\n",
+    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    source\n    video\n    topic {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
