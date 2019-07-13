@@ -14,6 +14,8 @@ import ProjectActivitySection from '../../containers/ProjectActivitySection';
 import PostSection from '../../containers/PostSection';
 import FacebookActivitySectionAd from '../FacebookActivitySectionAd';
 
+import { isAdsVisible } from '../../helpers/ads';
+
 import styles from './styles';
 
 const adsManager = new FacebookAds.NativeAdsManager('595828547560598_625862821223837', 3);
@@ -22,7 +24,7 @@ const sectionsWithAds = (items) => {
   const sections = [];
 
   for (let i = 0; i < items.length; i += 1) {
-    if (i % 10 === 2) {
+    if (i % 10 === 2 && isAdsVisible()) {
       sections.push({ type: 'ad', key: `ad${i}` });
     }
     sections.push(items[i]);

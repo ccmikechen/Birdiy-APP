@@ -13,6 +13,8 @@ import MessageView from '../MessageView';
 import ProjectSection from '../../containers/ProjectSection';
 import FacebookProjectSectionAd from '../FacebookProjectSectionAd';
 
+import { isAdsVisible } from '../../helpers/ads';
+
 import styles from './styles';
 
 const adsManager = new FacebookAds.NativeAdsManager('595828547560598_626298657846920', 5);
@@ -21,7 +23,7 @@ const sectionsWithAds = (projects) => {
   const sections = [];
 
   for (let i = 0; i < projects.length; i += 1) {
-    if (i % 12 === 4) {
+    if (i % 12 === 4 && isAdsVisible()) {
       sections.push({ type: 'ad', key: `ad${i}` });
     }
     sections.push({ type: 'project', data: projects[i] });

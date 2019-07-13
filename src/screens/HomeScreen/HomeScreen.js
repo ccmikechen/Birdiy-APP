@@ -11,6 +11,8 @@ import CategoriesTable from '../../containers/CategoriesTable';
 import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
 import FacebookSectionAd from '../../components/FacebookSectionAd';
 
+import { isAdsVisible } from '../../helpers/ads';
+
 import styles from './styles';
 
 const adsManager = new FacebookAds.NativeAdsManager('595828547560598_623846844758768', 1);
@@ -127,9 +129,11 @@ export default class HomeScreen extends Component {
           onProjectPress={this.handleOpenProject}
           onCategoryPress={this.handleCategoryPress}
         />
-        <View style={styles.sectionAd}>
-          <FacebookSectionAd adsManager={adsManager} />
-        </View>
+        {isAdsVisible() && (
+          <View style={styles.sectionAd}>
+            <FacebookSectionAd adsManager={adsManager} />
+          </View>
+        )}
         <ProjectThumbnailsTable
           category="Electronics"
           projects={query && query.electronicsProjects}

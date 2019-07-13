@@ -9,6 +9,8 @@ import AnimatedHeader from '../AnimatedHeader';
 import LoadingIndicator from '../LoadingIndicator';
 import ReloadMessageView from '../ReloadMessageView';
 
+import { isAdsVisible } from '../../helpers/ads';
+
 import { NetworkRequestError } from '../../errors';
 
 import Size from '../../constants/Size';
@@ -149,6 +151,7 @@ export default class SimpleScreenView extends Component {
     const bottomTabBarPadding = animatedScroll || fullScreen
       ? 0
       : Size.bottomTabBarHeight;
+    const bottomPadding = (isAdsVisible() ? adPadding : 0) + bottomTabBarPadding;
 
     return (
       <View style={styles.container}>
@@ -160,8 +163,8 @@ export default class SimpleScreenView extends Component {
           <View style={styles.paddingView} />
         )}
         {this.renderChildren()}
-        {this.renderAd()}
-        <View style={{ height: adPadding + bottomTabBarPadding }} />
+        {isAdsVisible() && this.renderAd()}
+        <View style={{ height: bottomPadding }} />
       </View>
     );
   }

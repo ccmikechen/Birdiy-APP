@@ -35,6 +35,7 @@ import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
 import Cart from '../../helpers/cart';
+import { isAdsVisible } from '../../helpers/ads';
 
 import { UnauthorizedError } from '../../errors';
 
@@ -318,12 +319,14 @@ export default class ProjectDetailScreen extends Component {
                 </Text>
               </View>
             </ProjectDetailSection>
-            <View style={styles.adContainer}>
-              <AdMobBanner
-                bannerSize="mediumRectangle"
-                adUnitID="ca-app-pub-9037534471740373/7681169073"
-              />
-            </View>
+            {isAdsVisible() && (
+              <View style={styles.adContainer}>
+                <AdMobBanner
+                  bannerSize="mediumRectangle"
+                  adUnitID="ca-app-pub-9037534471740373/7681169073"
+                />
+              </View>
+            )}
             <ProjectDetailMaterialList
               project={project}
               cart={cartMaterials}
