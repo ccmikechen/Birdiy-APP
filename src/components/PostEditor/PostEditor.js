@@ -87,7 +87,7 @@ export default class PostEditor extends Component {
                   error={messageError}
                   placeholder={i18n.t('message.placeholder', i18nOptions)}
                   onChangeText={handleChange('message')}
-                  maxLength={500}
+                  maxLength={1000}
                   multiline
                   counter
                 />
@@ -115,7 +115,7 @@ export default class PostEditor extends Component {
                           id: null,
                         });
                       }}
-                      maxLength={20}
+                      maxLength={100}
                       counter
                     />
                   ) : (

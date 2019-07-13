@@ -79,7 +79,7 @@ const ProjectIntroEditor = (props) => {
           error={error.introduction}
           placeholder={i18n.t('intro.placeholder', i18nOptions)}
           onChangeText={onChange('introduction')}
-          maxLength={300}
+          maxLength={2000}
           multiline
           counter
         />

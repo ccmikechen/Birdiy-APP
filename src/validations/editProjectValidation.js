@@ -12,7 +12,7 @@ export default (state) => {
       return object({
         name: string().required().max(100),
         topic: string().nullable().required(),
-        introduction: string().nullable().required().max(300),
+        introduction: string().nullable().required().max(2000),
         image: string().nullable().required(),
         video: string().nullable().test(
           'video',
@@ -20,7 +20,7 @@ export default (state) => {
           video.isValid,
         ),
         materials: array().of(object().shape({
-          name: string().nullable().max(20).when(['amountUnit', 'url'], {
+          name: string().nullable().max(50).when(['amountUnit', 'url'], {
             is: (amountUnit, url) => (amountUnit || url),
             then: string().required(),
           }),
@@ -31,7 +31,7 @@ export default (state) => {
           url: string().url().nullable(),
         }, ['name', 'amountUnit', 'url'])),
         files: array().of(object().shape({
-          name: string().nullable().max(20).when('url', {
+          name: string().nullable().max(50).when('url', {
             is: url => url,
             then: string().required(),
           }),
@@ -44,8 +44,8 @@ export default (state) => {
           }),
         }, ['url', 'name'])),
         methods: array().of(object().shape({
-          title: string().nullable().max(20),
-          content: string().nullable().max(300).when(['title', 'image'], {
+          title: string().nullable().max(50),
+          content: string().nullable().max(1000).when(['title', 'image'], {
             is: (title, image) => (title || image),
             then: string().required(),
           }),
@@ -56,14 +56,14 @@ export default (state) => {
               .filter(method => !isEqual(method, DEFAULT_METHOD))
               .length > 0
           )),
-        tip: string().nullable().max(300),
+        tip: string().nullable().max(1000),
       }).required();
     case 'draft':
     default:
       return object({
         name: string().required().max(100),
         topic: string().nullable().required(),
-        introduction: string().nullable().max(300),
+        introduction: string().nullable().max(2000),
         image: string().nullable(),
         video: string().nullable().test(
           'video',
@@ -71,7 +71,7 @@ export default (state) => {
           video.isValid,
         ),
         materials: array().of(object().shape({
-          name: string().nullable().max(20).when(['amountUnit', 'url'], {
+          name: string().nullable().max(50).when(['amountUnit', 'url'], {
             is: (amountUnit, url) => (amountUnit || url),
             then: string().required(),
           }),
@@ -82,7 +82,7 @@ export default (state) => {
           url: string().url().nullable(),
         }, ['name', 'amountUnit', 'url'])),
         files: array().of(object().shape({
-          name: string().nullable().max(20).when('url', {
+          name: string().nullable().max(50).when('url', {
             is: url => url,
             then: string().required(),
           }),
@@ -95,14 +95,14 @@ export default (state) => {
           }),
         }, ['url', 'name'])),
         methods: array().of(object().shape({
-          title: string().nullable().max(20),
-          content: string().nullable().max(300).when(['title', 'image'], {
+          title: string().nullable().max(50),
+          content: string().nullable().max(1000).when(['title', 'image'], {
             is: (title, image) => (title || image),
             then: string().required(),
           }),
           image: string().nullable(),
         }, ['title', 'content', 'image'])),
-        tip: string().nullable().max(300),
+        tip: string().nullable().max(1000),
       }).required();
   }
 };

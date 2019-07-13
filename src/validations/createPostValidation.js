@@ -8,7 +8,7 @@ const photosMinMessage = ({ min }) => (
 );
 
 export default () => object({
-  message: string().required().max(500),
+  message: string().required().max(1000),
   relatedProject: object({
     type: mixed().oneOf(['custom', 'project']).required(),
     id: string().nullable().when('type', {
@@ -17,7 +17,7 @@ export default () => object({
     }),
     name: string().when('type', {
       is: 'custom',
-      then: string().required(),
+      then: string().required().max(100),
     }),
   }).required(),
   photos: array().of(string()).min(1, photosMinMessage),

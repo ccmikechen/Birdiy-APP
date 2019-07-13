@@ -57,7 +57,7 @@ const EditMethodListItem = ({
           onChangeText={(value) => {
             onChange({ ...data, content: value });
           }}
-          maxLength={500}
+          maxLength={1000}
           multiline
           counter
         />

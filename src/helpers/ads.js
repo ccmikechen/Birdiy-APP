@@ -1,3 +1,3 @@
-/* eslint-disable prefer-destructuring */
+/* eslint-disable import/prefer-default-export */
 
 export const isAdsVisible = () => false;

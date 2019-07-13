@@ -35,7 +35,7 @@ const ProjectTipEditor = (props) => {
           error={error}
           placeholder={i18n.t('tip.placeholder', i18nOptions)}
           onChangeText={onChange('tip')}
-          maxLength={300}
+          maxLength={1000}
           multiline
           counter
         />
