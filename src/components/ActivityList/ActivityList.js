@@ -38,6 +38,8 @@ export default class ActivityList extends Component {
     sections: PropTypes.arrayOf(PropTypes.object),
     loadMore: PropTypes.func.isRequired,
     renderNoItem: PropTypes.func,
+    refreshing: PropTypes.bool,
+    renderRefresh: PropTypes.func,
     onScrollTrigger: PropTypes.func,
     onUserPress: PropTypes.func,
     onActionButtonPress: PropTypes.func,
@@ -52,6 +54,8 @@ export default class ActivityList extends Component {
   static defaultProps = {
     sections: null,
     renderNoItem: () => null,
+    refreshing: false,
+    renderRefresh: () => null,
     onScrollTrigger: () => {},
     onUserPress: () => {},
     onActionButtonPress: () => {},
@@ -87,6 +91,13 @@ export default class ActivityList extends Component {
       items: sections,
       sections: sectionsWithAds(sections),
     };
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { sections, refreshing } = this.props;
+
+    return !isEqual(sections, nextProps.sections)
+      || nextProps.refreshing !== refreshing;
   }
 
   renderProject = (project, createdAt) => {
@@ -156,12 +167,18 @@ export default class ActivityList extends Component {
       innerRef,
       loadMore,
       renderNoItem,
+      refreshing,
+      renderRefresh,
       onScrollTrigger,
       headerPadding,
       canLoadMore,
       refresh,
     } = this.props;
     const { sections } = this.state;
+
+    if (refreshing) {
+      return renderRefresh();
+    }
 
     if (!sections) {
       return renderNoItem();

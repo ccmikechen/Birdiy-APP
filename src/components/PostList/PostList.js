@@ -90,6 +90,13 @@ export default class PostList extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { posts, refreshing } = this.props;
+
+    return !isEqual(posts, nextProps.posts)
+      || nextProps.refreshing !== refreshing;
+  }
+
   renderPost = (post) => {
     const {
       onUserPress,

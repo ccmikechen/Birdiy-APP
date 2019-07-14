@@ -94,6 +94,14 @@ export default class ProjectList extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { projects, refreshing, actionButtonVisible } = this.props;
+
+    return !isEqual(projects, nextProps.projects)
+      || nextProps.refreshing !== refreshing
+      || nextProps.actionButtonVisible !== actionButtonVisible;
+  }
+
   renderProject = (project) => {
     const {
       onProjectPress,
