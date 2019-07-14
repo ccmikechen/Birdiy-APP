@@ -135,7 +135,7 @@ export default class HomeScreen extends Component {
           </View>
         )}
         <ProjectThumbnailsTable
-          category="Electronics"
+          category="Circuits"
           projects={query && query.electronicsProjects}
           onProjectPress={this.handleOpenProject}
           onCategoryPress={this.handleCategoryPress}

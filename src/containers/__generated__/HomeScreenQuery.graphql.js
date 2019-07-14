@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dfeffe68b96d488403b4491d5c157f59
+ * @relayHash d54fb58d76957e1be21a4196ec1f00c1
  */
 
 /* eslint-disable */
@@ -40,7 +40,7 @@ fragment HomeScreen_query on RootQueryType {
   craftProjects: allProjects(first: $projectCount, filter: {categories: ["Craft"]}) {
     ...ProjectThumbnailsTable_projects
   }
-  electronicsProjects: allProjects(first: $projectCount, filter: {categories: ["Electronics"]}) {
+  electronicsProjects: allProjects(first: $projectCount, filter: {categories: ["Circuits"]}) {
     ...ProjectThumbnailsTable_projects
   }
   livingProjects: allProjects(first: $projectCount, filter: {categories: ["Living"]}) {
@@ -319,7 +319,7 @@ return {
             "name": "filter",
             "value": {
               "categories": [
-                "Electronics"
+                "Circuits"
               ]
             },
             "type": "ProjectFilter"
@@ -424,7 +424,7 @@ return {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $projectCount: Int!\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...CategoriesTable_query\n  craftProjects: allProjects(first: $projectCount, filter: {categories: [\"Craft\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  electronicsProjects: allProjects(first: $projectCount, filter: {categories: [\"Electronics\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  livingProjects: allProjects(first: $projectCount, filter: {categories: [\"Living\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  outsideProjects: allProjects(first: $projectCount, filter: {categories: [\"Outside\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  scienceProjects: allProjects(first: $projectCount, filter: {categories: [\"Science\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  workshopProjects: allProjects(first: $projectCount, filter: {categories: [\"Workshop\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectThumbnailsTable_projects on ProjectConnection {\n  edges {\n    node {\n      ...ProjectSection_project\n      id\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $projectCount: Int!\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...CategoriesTable_query\n  craftProjects: allProjects(first: $projectCount, filter: {categories: [\"Craft\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  electronicsProjects: allProjects(first: $projectCount, filter: {categories: [\"Circuits\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  livingProjects: allProjects(first: $projectCount, filter: {categories: [\"Living\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  outsideProjects: allProjects(first: $projectCount, filter: {categories: [\"Outside\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  scienceProjects: allProjects(first: $projectCount, filter: {categories: [\"Science\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  workshopProjects: allProjects(first: $projectCount, filter: {categories: [\"Workshop\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectThumbnailsTable_projects on ProjectConnection {\n  edges {\n    node {\n      ...ProjectSection_project\n      id\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

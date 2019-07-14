@@ -27,7 +27,7 @@ const HomeScreenFragmentContainer = createRefetchContainer(
       }
       electronicsProjects: allProjects(
         first: $projectCount,
-        filter: {categories: ["Electronics"]},
+        filter: {categories: ["Circuits"]},
       ) {
         ...ProjectThumbnailsTable_projects
       }

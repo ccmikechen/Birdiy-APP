@@ -102,7 +102,7 @@ return {
           "name": "filter",
           "value": {
             "categories": [
-              "Electronics"
+              "Circuits"
             ]
           },
           "type": "ProjectFilter"
@@ -205,5 +205,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ec32ec017711d3983a5236a3cc0e577d';
+(node/*: any*/).hash = 'f091f736a87af16daa320e8c1d97d7ec';
 module.exports = node;

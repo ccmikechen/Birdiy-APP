@@ -200,7 +200,7 @@ export default {
   categories: {
     Craft: '手工藝',
     Workshop: '工作坊',
-    Electronics: '電子',
+    Circuits: '電子',
     Living: '生活',
     Outside: '戶外',
     Science: '科學',
@@ -250,7 +250,7 @@ export default {
     Solar: '太陽能',
     Tools: '工具',
 
-    // Electronics
+    // Circuits
     Computers: '電腦',
     Robots: '機器人',
     Cameras: '相機',
