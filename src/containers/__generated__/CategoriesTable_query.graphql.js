@@ -16,7 +16,6 @@ export type CategoriesTable_query = {|
       +node: ?{|
         +id: string,
         +name: string,
-        +image: ?string,
       |}
     |}>
   |},
@@ -96,13 +95,6 @@ const node/*: ReaderFragment*/ = {
                   "name": "name",
                   "args": null,
                   "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "image",
-                  "args": null,
-                  "storageKey": null
                 }
               ]
             }
@@ -113,5 +105,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'd685bacc200fdaa2e4249b3febfaf232';
+(node/*: any*/).hash = 'd428ebe2732c68cccb0a916b4d8e97e3';
 module.exports = node;

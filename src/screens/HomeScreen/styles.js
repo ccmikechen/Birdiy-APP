@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import Colors, { Tertiary } from '../../constants/Colors';
+import Colors from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   categoriesContainer: {
     paddingTop: 5,
     paddingBottom: 5,
-    marginBottom: 10,
+  },
+  paddingView: {
+    height: Size.homeSectionPadding,
     backgroundColor: Colors.homeSectionDark,
-    borderBottomWidth: 1,
-    borderColor: Tertiary(100),
   },
   sectionAd: {
     width: '100%',
@@ -18,6 +19,5 @@ export default StyleSheet.create({
     backgroundColor: Colors.homeSectionDark,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: Tertiary(100),
   },
 });

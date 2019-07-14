@@ -85,5 +85,5 @@ export default {
   defaultMessage: '#858fa0',
   viewsIcon: '#4caf50',
   facebook: '#3b5998',
-  homeSectionDark: '#fafafa',
+  homeSectionDark: '#ebeff5',
 };

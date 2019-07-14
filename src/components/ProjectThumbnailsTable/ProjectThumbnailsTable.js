@@ -12,7 +12,7 @@ import i18n from 'i18n-js';
 
 import ProjectSection from '../../containers/ProjectSection';
 
-import { Secondary } from '../../constants/Colors';
+import { TextColor } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -37,7 +37,7 @@ const ProjectThumbnailsTable = ({
         <Icon.MaterialIcons
           name="navigate-next"
           size={22}
-          color={Secondary(900)}
+          color={TextColor.sectionTitle}
         />
       </TouchableOpacity>
       <FlatGrid
@@ -53,6 +53,7 @@ const ProjectThumbnailsTable = ({
           />
         )}
       />
+      <View style={styles.bottomPaddingView} />
     </View>
   )
 );

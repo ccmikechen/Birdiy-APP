@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import { Secondary } from '../../constants/Colors';
+import Colors, { TextColor } from '../../constants/Colors';
+import Size from '../../constants/Size';
 
 export default StyleSheet.create({
   container: {
@@ -17,10 +18,13 @@ export default StyleSheet.create({
   },
   category: {
     fontSize: 16,
-    color: Secondary(900),
-    fontWeight: '600',
+    color: TextColor.sectionTitle,
   },
   itemContainer: {
     justifyContent: 'flex-start',
+  },
+  bottomPaddingView: {
+    height: Size.homeSectionPadding,
+    backgroundColor: Colors.homeSectionDark,
   },
 });

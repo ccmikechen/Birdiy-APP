@@ -23,7 +23,6 @@ CategoriesTableFragmentContainer.propTypes = {
         node: PropTypes.shape({
           id: PropTypes.string,
           name: PropTypes.string,
-          image: PropTypes.string,
         }),
       })),
     }),
@@ -42,7 +41,6 @@ export default createFragmentContainer(
           node {
             id
             name
-            image
           }
         }
       }

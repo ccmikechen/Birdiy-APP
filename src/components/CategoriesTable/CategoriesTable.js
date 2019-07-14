@@ -9,6 +9,8 @@ import i18n from 'i18n-js';
 import Ripple from 'react-native-material-ripple';
 import { FlatGrid } from 'react-native-super-grid';
 
+import { CATEGORIES } from '../../images';
+
 import styles from './styles';
 
 const SPACING = 5;
@@ -26,7 +28,7 @@ const CategoriesTable = ({ categories, onCategoryPress }) => (
         onPress={() => onCategoryPress(item)}
       >
         <ImageBackground
-          source={item.image ? { uri: item.image } : null}
+          source={CATEGORIES[item.name]}
           style={styles.imageBackground}
           imageStyle={styles.image}
         >
@@ -42,7 +44,6 @@ const CategoriesTable = ({ categories, onCategoryPress }) => (
 CategoriesTable.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.string,
   })).isRequired,
   onCategoryPress: PropTypes.func,
 };

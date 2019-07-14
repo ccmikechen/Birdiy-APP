@@ -123,6 +123,7 @@ export default class HomeScreen extends Component {
         onRefresh={this.handleRefresh}
       >
         {this.renderCategories()}
+        <View style={styles.paddingView} />
         <ProjectThumbnailsTable
           category="Craft"
           projects={query && query.craftProjects}

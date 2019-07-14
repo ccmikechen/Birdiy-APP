@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d54fb58d76957e1be21a4196ec1f00c1
+ * @relayHash ac4a14925a1020c2df525ad8501609f7
  */
 
 /* eslint-disable */
@@ -63,7 +63,6 @@ fragment CategoriesTable_query on RootQueryType {
       node {
         id
         name
-        image
       }
     }
   }
@@ -132,23 +131,16 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
   "kind": "Variable",
   "name": "first",
   "variableName": "projectCount",
   "type": "Int"
 },
-v5 = [
+v4 = [
   (v2/*: any*/),
   (v1/*: any*/)
 ],
-v6 = [
+v5 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -169,7 +161,13 @@ v6 = [
         "selections": [
           (v1/*: any*/),
           (v2/*: any*/),
-          (v3/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "image",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -178,7 +176,7 @@ v6 = [
             "args": null,
             "concreteType": "ProjectTopic",
             "plural": false,
-            "selections": (v5/*: any*/)
+            "selections": (v4/*: any*/)
           },
           {
             "kind": "LinkedField",
@@ -188,7 +186,7 @@ v6 = [
             "args": null,
             "concreteType": "User",
             "plural": false,
-            "selections": (v5/*: any*/)
+            "selections": (v4/*: any*/)
           },
           {
             "kind": "ScalarField",
@@ -278,8 +276,7 @@ return {
                 "plural": false,
                 "selections": [
                   (v1/*: any*/),
-                  (v2/*: any*/),
-                  (v3/*: any*/)
+                  (v2/*: any*/)
                 ]
               }
             ]
@@ -302,11 +299,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -324,11 +321,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -346,11 +343,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -368,11 +365,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -390,11 +387,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       },
       {
         "kind": "LinkedField",
@@ -412,11 +409,11 @@ return {
             },
             "type": "ProjectFilter"
           },
-          (v4/*: any*/)
+          (v3/*: any*/)
         ],
         "concreteType": "ProjectConnection",
         "plural": false,
-        "selections": (v6/*: any*/)
+        "selections": (v5/*: any*/)
       }
     ]
   },
@@ -424,7 +421,7 @@ return {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $projectCount: Int!\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...CategoriesTable_query\n  craftProjects: allProjects(first: $projectCount, filter: {categories: [\"Craft\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  electronicsProjects: allProjects(first: $projectCount, filter: {categories: [\"Circuits\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  livingProjects: allProjects(first: $projectCount, filter: {categories: [\"Living\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  outsideProjects: allProjects(first: $projectCount, filter: {categories: [\"Outside\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  scienceProjects: allProjects(first: $projectCount, filter: {categories: [\"Science\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  workshopProjects: allProjects(first: $projectCount, filter: {categories: [\"Workshop\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n        image\n      }\n    }\n  }\n}\n\nfragment ProjectThumbnailsTable_projects on ProjectConnection {\n  edges {\n    node {\n      ...ProjectSection_project\n      id\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query HomeScreenQuery(\n  $hotCategoryCount: Int!\n  $hotCategoryOrder: RankOrder\n  $projectCount: Int!\n) {\n  ...HomeScreen_query\n}\n\nfragment HomeScreen_query on RootQueryType {\n  ...CategoriesTable_query\n  craftProjects: allProjects(first: $projectCount, filter: {categories: [\"Craft\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  electronicsProjects: allProjects(first: $projectCount, filter: {categories: [\"Circuits\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  livingProjects: allProjects(first: $projectCount, filter: {categories: [\"Living\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  outsideProjects: allProjects(first: $projectCount, filter: {categories: [\"Outside\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  scienceProjects: allProjects(first: $projectCount, filter: {categories: [\"Science\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n  workshopProjects: allProjects(first: $projectCount, filter: {categories: [\"Workshop\"]}) {\n    ...ProjectThumbnailsTable_projects\n  }\n}\n\nfragment CategoriesTable_query on RootQueryType {\n  categories: allProjectCategories(first: $hotCategoryCount, order: $hotCategoryOrder) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment ProjectThumbnailsTable_projects on ProjectConnection {\n  edges {\n    node {\n      ...ProjectSection_project\n      id\n    }\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

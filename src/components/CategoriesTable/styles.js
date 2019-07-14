@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, Secondary } from '../../constants/Colors';
+import { Base, TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -14,8 +14,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     aspectRatio: 1,
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: Secondary(900),
     backgroundColor: Base.lightest,
   },
   image: {
@@ -23,8 +21,14 @@ export default StyleSheet.create({
   },
   name: {
     textAlign: 'center',
-    color: Secondary(900),
+    color: TextColor.primaryLight,
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 20,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {
+      width: -1,
+      height: 1,
+    },
+    textShadowRadius: 10,
   },
 });
