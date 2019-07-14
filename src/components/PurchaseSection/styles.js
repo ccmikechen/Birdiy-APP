@@ -17,6 +17,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  nameContainer: {
+    flex: 1,
+    paddingRight: 5,
+  },
   name: {
     fontSize: 20,
     fontWeight: '600',

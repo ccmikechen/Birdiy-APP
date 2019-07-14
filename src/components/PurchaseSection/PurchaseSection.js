@@ -95,6 +95,7 @@ export default class PurchaseSection extends Component {
       <Surface style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity
+            style={styles.nameContainer}
             onPress={onOpenProject}
           >
             <Text style={styles.name}>{project.name}</Text>

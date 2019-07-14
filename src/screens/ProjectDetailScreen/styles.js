@@ -37,6 +37,7 @@ export default StyleSheet.create({
     color: TextColor.subDark,
   },
   titleContainer: {
+    flex: 1,
     paddingTop: 5,
   },
   title: {
@@ -51,7 +52,7 @@ export default StyleSheet.create({
     color: TextColor.subDark,
   },
   likeButtonContainer: {
-    width: 70,
+    width: 60,
     justifyContent: 'center',
     alignItems: 'center',
   },
