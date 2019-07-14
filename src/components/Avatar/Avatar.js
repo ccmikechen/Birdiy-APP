@@ -5,7 +5,8 @@ import {
   Image,
 } from 'react-native';
 import { Surface } from 'react-native-paper';
-import { ImagePicker, Permissions } from 'expo';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import * as Icon from '@expo/vector-icons';
 
 import UploadImageActions from '../UploadImageActions';

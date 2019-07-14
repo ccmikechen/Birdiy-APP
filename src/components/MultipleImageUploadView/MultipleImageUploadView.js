@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
-import { ImagePicker, Permissions } from 'expo';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import * as Icon from '@expo/vector-icons';
 import i18n from 'i18n-js';
 

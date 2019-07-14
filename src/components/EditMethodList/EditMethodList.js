@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import * as Icon from '@expo/vector-icons';
 import { Button } from 'react-native-elements';
+import { clone } from 'lodash';
 import i18n from 'i18n-js';
 
 import EditMethodListItem from '../EditMethodListItem';
@@ -90,7 +91,7 @@ export default class EditMethodList extends Component {
 
   handleItemAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, DEFAULT_METHOD]);
+    onChange([...data, clone(DEFAULT_METHOD)]);
   };
 
   renderItem = (item, index) => {

@@ -69,6 +69,7 @@ export default class UserPostsScreen extends Component {
     return (
       <View style={styles.container}>
         <SimpleScreenView
+          {...this.props}
           renderHeader={() => (
             <SearchBarHeader
               onBack={() => navigation.goBack()}

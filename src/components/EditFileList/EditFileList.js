@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
 import { DocumentPicker } from 'expo';
 import { Button } from 'react-native-elements';
+import { clone } from 'lodash';
 import i18n from 'i18n-js';
 
 import EditFileListItem from '../EditFileListItem';
@@ -89,7 +90,7 @@ export default class EditFileList extends Component {
 
   handleFileLinkAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, DEFAULT_FILE]);
+    onChange([...data, clone(DEFAULT_FILE)]);
   };
 
   handleUploadFile = async () => {

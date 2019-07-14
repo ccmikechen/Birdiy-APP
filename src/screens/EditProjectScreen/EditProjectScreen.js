@@ -219,7 +219,9 @@ export default class EditProjectScreen extends Component {
   };
 
   handleSaveAndPublish = (values) => {
-    if (!this.publishTimesRecord.isValid()) {
+    const { projectPublished } = this.state;
+
+    if (!projectPublished && !this.publishTimesRecord.isValid()) {
       showPublishProjectLimitAlert(PUBLISH_LIMIT_HOURS, PUBLISH_LIMIT_TIMES);
       return;
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { clone } from 'lodash';
 import i18n from 'i18n-js';
 
 import EditMaterialListItem from '../EditMaterialListItem';
@@ -81,7 +82,7 @@ export default class EditMaterialList extends Component {
 
   handleItemAdd = () => {
     const { data, onChange } = this.props;
-    onChange([...data, DEFAULT_MATERIAL]);
+    onChange([...data, clone(DEFAULT_MATERIAL)]);
   };
 
   renderItem = (item, index) => {
