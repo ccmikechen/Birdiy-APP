@@ -1,5 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
@@ -26,7 +24,11 @@ export default class MyPostsScreen extends Component {
       push: PropTypes.func.isRequired,
       goBack: PropTypes.func.isRequired,
     }).isRequired,
-    query: PropTypes.object,
+    query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,
@@ -57,7 +59,10 @@ export default class MyPostsScreen extends Component {
   };
 
   handleDeletePost = (post) => {
-    const mutation = new DeletePostMutation({ id: post.id });
+    const { query } = this.props;
+    const mutation = new DeletePostMutation({
+      id: post.id,
+    }, query.viewer);
 
     mutation.commit()
       .then(showDeletePostSuccessAlert)

@@ -12,6 +12,9 @@ type MyPostList_query$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MyPostsScreen_query$ref: FragmentReference;
 export type MyPostsScreen_query = {|
+  +viewer: ?{|
+    +id: string
+  |},
   +$fragmentRefs: MyPostList_query$ref,
   +$refType: MyPostsScreen_query$ref,
 |};
@@ -26,6 +29,24 @@ const node/*: ReaderFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "viewer",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Viewer",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
       "kind": "FragmentSpread",
       "name": "MyPostList_query",
       "args": null
@@ -33,5 +54,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '79becf5aea5c5af542e4a9e1fe7703e8';
+(node/*: any*/).hash = '2cff469e59b388cd1525b5568228ce8c';
 module.exports = node;

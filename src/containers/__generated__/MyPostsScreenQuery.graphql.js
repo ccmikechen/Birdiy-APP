@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e53d6c6950a60c6cb1ab885d03f8afbb
+ * @relayHash 8a9987fe48e4950105069939accb0cbb
  */
 
 /* eslint-disable */
@@ -35,6 +35,9 @@ query MyPostsScreenQuery(
 }
 
 fragment MyPostsScreen_query on RootQueryType {
+  viewer {
+    id
+  }
   ...MyPostList_query
 }
 
@@ -103,7 +106,14 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = [
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -123,13 +133,6 @@ v1 = [
     "type": "Int"
   }
 ],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
 v3 = {
   "kind": "ScalarField",
   "alias": null,
@@ -174,12 +177,13 @@ return {
         "concreteType": "Viewer",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "posts",
             "storageKey": null,
-            "args": (v1/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "PostConnection",
             "plural": false,
             "selections": [
@@ -226,7 +230,7 @@ return {
                     "concreteType": "Post",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
+                      (v1/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -236,7 +240,7 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
+                          (v1/*: any*/),
                           (v3/*: any*/),
                           (v4/*: any*/),
                           {
@@ -279,7 +283,7 @@ return {
                         "plural": false,
                         "selections": [
                           (v4/*: any*/),
-                          (v2/*: any*/)
+                          (v1/*: any*/)
                         ]
                       },
                       {
@@ -305,7 +309,7 @@ return {
                         "concreteType": "Project",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
+                          (v1/*: any*/),
                           (v3/*: any*/)
                         ]
                       },
@@ -333,14 +337,13 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "posts",
-            "args": (v1/*: any*/),
+            "args": (v2/*: any*/),
             "handle": "connection",
             "key": "MyPostList_posts",
             "filters": [
               "beforeId"
             ]
-          },
-          (v2/*: any*/)
+          }
         ]
       }
     ]
@@ -349,7 +352,7 @@ return {
     "operationKind": "query",
     "name": "MyPostsScreenQuery",
     "id": null,
-    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $postId: ID\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
+    "text": "query MyPostsScreenQuery(\n  $count: Int!\n  $cursor: String\n  $postId: ID\n) {\n  ...MyPostsScreen_query\n}\n\nfragment MyPostsScreen_query on RootQueryType {\n  viewer {\n    id\n  }\n  ...MyPostList_query\n}\n\nfragment MyPostList_query on RootQueryType {\n  viewer {\n    posts(first: $count, after: $cursor, beforeId: $postId) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...PostSection_post\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment PostSection_post on Post {\n  id\n  author {\n    id\n    name\n    image\n    following\n  }\n  insertedAt\n  message\n  photosCount\n  thumbnail {\n    image\n    id\n  }\n  relatedProjectType\n  relatedProjectName\n  relatedProject {\n    id\n    name\n  }\n}\n",
     "metadata": {}
   }
 };

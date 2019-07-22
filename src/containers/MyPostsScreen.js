@@ -8,6 +8,9 @@ const MyPostsScreenFragmentContainer = createFragmentContainer(
   MyPostsScreen,
   graphql`
     fragment MyPostsScreen_query on RootQueryType {
+      viewer {
+        id
+      }
       ...MyPostList_query
     }
   `,

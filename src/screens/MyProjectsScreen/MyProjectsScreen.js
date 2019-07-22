@@ -1,5 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -28,7 +26,11 @@ export default class MyProjectsScreen extends Component {
       goBack: PropTypes.func.isRequired,
       push: PropTypes.func.isRequired,
     }).isRequired,
-    query: PropTypes.object,
+    query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
     variables: PropTypes.shape({
       count: PropTypes.number,
     }).isRequired,

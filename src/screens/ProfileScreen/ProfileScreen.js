@@ -131,7 +131,10 @@ export default class ProfileScreen extends Component {
   };
 
   handleDeletePost = (id) => {
-    const mutation = new DeletePostMutation({ id });
+    const { query } = this.props;
+    const mutation = new DeletePostMutation({
+      id,
+    }, query.viewer);
 
     mutation.commit()
       .then(showDeletePostSuccessAlert)
