@@ -17,6 +17,24 @@ export default class EditPostMutation extends Mutation {
       editPost(input: $input) {
         post {
           id
+          author {
+            id
+            name
+            image
+            following
+          }
+          insertedAt
+          message
+          photosCount
+          thumbnail {
+            image
+          }
+          relatedProjectType
+          relatedProjectName
+          relatedProject {
+            id
+            name
+          }
         }
       }
     }
