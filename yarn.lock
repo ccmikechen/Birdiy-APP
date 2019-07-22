@@ -6695,12 +6695,12 @@ react-google-maps@^9.4.5:
     scriptjs "^2.5.8"
     warning "^3.0.0"
 
-react-is@^16.6.0, react-is@^16.8.6:
+react-is@^16.6.0, react-is@^16.8.1, react-is@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
-react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
+react-is@^16.7.0, react-is@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
@@ -6789,8 +6789,8 @@ react-native-infinite-scroll-view@^0.4.5:
     react-native-scrollable-mixin "^1.0.0"
 
 react-native-input-scroll-view@birdiy/react-native-input-scroll-view#master:
-  version "1.9.1"
-  resolved "https://codeload.github.com/birdiy/react-native-input-scroll-view/tar.gz/9880eba5d94a3981fa01211e27106b42275cba46"
+  version "1.9.3"
+  resolved "https://codeload.github.com/birdiy/react-native-input-scroll-view/tar.gz/b8d582ffec66976b576d55309415119e9820dddf"
   dependencies:
     prop-types "^15.5.10"
 
