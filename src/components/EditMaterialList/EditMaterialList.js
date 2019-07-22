@@ -74,6 +74,7 @@ export default class EditMaterialList extends Component {
     const { data, onChange } = this.props;
 
     if (data.length <= 1) {
+      onChange([clone(DEFAULT_MATERIAL)]);
       return;
     }
     data.splice(index, 1);

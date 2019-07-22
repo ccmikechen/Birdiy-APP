@@ -83,6 +83,7 @@ export default class EditMethodList extends Component {
     const { data, onChange } = this.props;
 
     if (data.length <= 1) {
+      onChange([clone(DEFAULT_METHOD)]);
       return;
     }
     data.splice(index, 1);

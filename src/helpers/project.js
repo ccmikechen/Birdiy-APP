@@ -9,8 +9,14 @@ import {
 } from '../constants/defaults';
 
 export const parseMaterials = materials => (
-  materials.filter(material => (
-    !isEqual(material, DEFAULT_MATERIAL)
+  materials.filter(({
+    name, amountUnit, url,
+  }) => (
+    !isEqual({
+      name: name || '',
+      amountUnit: amountUnit || '',
+      url: url || '',
+    }, DEFAULT_MATERIAL)
   )).map((material, index) => ({
     ...material,
     order: index + 1,
@@ -18,8 +24,14 @@ export const parseMaterials = materials => (
 );
 
 export const parseFiles = files => (
-  files.filter(file => (
-    !isEqual(file, DEFAULT_FILE)
+  files.filter(({
+    type, name, url,
+  }) => (
+    !isEqual({
+      type,
+      name: name || '',
+      url: url || '',
+    }, DEFAULT_FILE)
   )).map((file, index) => ({
     id: file.id,
     name: file.name,
@@ -32,8 +44,14 @@ export const parseFiles = files => (
 );
 
 export const parseMethods = methods => (
-  methods.filter(method => (
-    !isEqual(method, DEFAULT_METHOD)
+  methods.filter(({
+    image, title, content,
+  }) => (
+    !isEqual({
+      image,
+      title: title || '',
+      content: content || '',
+    }, DEFAULT_METHOD)
   )).map((method, index) => ({
     id: method.id,
     title: method.title,

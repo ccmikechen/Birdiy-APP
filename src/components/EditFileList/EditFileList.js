@@ -82,6 +82,7 @@ export default class EditFileList extends Component {
     const { data, onChange } = this.props;
 
     if (data.length <= 1) {
+      onChange([clone(DEFAULT_FILE)]);
       return;
     }
     data.splice(index, 1);
