@@ -184,6 +184,9 @@ export default class PostList extends Component {
               style={{ paddingTop: 200 }}
             />
 )}
+          ListFooterComponent={
+            <View style={styles.bottomPaddingView} />
+          }
           innerRef={(ref) => { this.scrollView = ref; }}
           refresh={refresh}
           keyExtractor={item => (

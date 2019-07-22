@@ -11,6 +11,10 @@ export default StyleSheet.create({
     height: Size.headerHeight,
     zIndex: 0,
   },
+  bottomPaddingView: {
+    height: Size.bottomTabBarHeight,
+    zIndex: 0,
+  },
   sectionContainer: {
     backgroundColor: Base.lightest,
     margin: 10,

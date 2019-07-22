@@ -202,6 +202,9 @@ export default class ActivityList extends Component {
               style={{ paddingTop: 200 }}
             />
 )}
+          ListFooterComponent={
+            <View style={styles.bottomPaddingView} />
+          }
           refresh={refresh}
           keyExtractor={item => (
             item.type === 'ad' ? item.key : item.data.__id

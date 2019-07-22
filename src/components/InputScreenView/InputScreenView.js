@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import InputScrollView from 'react-native-input-scroll-view';
 
 import SimpleScreenView from '../SimpleScreenView';
@@ -44,21 +45,21 @@ export default class InputScreenView extends Component {
 
     return (
       <SimpleScreenView {...this.props}>
-        <InputScrollView
-          style={styles.container}
-          keyboardOffset={100}
-          keyboardShouldPersistTaps="always"
-          keyboardAvoidingViewProps={{
-            behavior: 'padding',
-          }}
-          refreshControl={onRefresh && (
-            <Refresh refreshing={refreshing} onRefresh={onRefresh} />
-          )}
-          {...this.props}
-        >
-          {loading ? <LoadingIndicator /> : children}
-
-        </InputScrollView>
+        <View style={styles.container}>
+          <InputScrollView
+            keyboardOffset={100}
+            keyboardShouldPersistTaps="always"
+            keyboardAvoidingViewProps={{
+              behavior: 'padding',
+            }}
+            refreshControl={onRefresh && (
+              <Refresh refreshing={refreshing} onRefresh={onRefresh} />
+            )}
+            {...this.props}
+          >
+            {loading ? <LoadingIndicator /> : children}
+          </InputScrollView>
+        </View>
       </SimpleScreenView>
     );
   }
