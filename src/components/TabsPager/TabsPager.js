@@ -81,6 +81,9 @@ export default class TabsPager extends Component {
         <View style={styles.tabBarPaddingView} />
         <ScrollableTabView
           ref={(ref) => { this.pager = ref; }}
+          contentProps={{
+            keyboardShouldPersistTaps: 'always',
+          }}
           renderTabBar={() => (
             <AnimatedTopTabBar
               visible={isHeaderVisible}
