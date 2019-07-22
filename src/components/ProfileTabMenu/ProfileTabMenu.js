@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-prop-types */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
@@ -13,11 +15,7 @@ import styles from './styles';
 
 export default class ProfileTabMenu extends Component {
   static propTypes = {
-    profile: PropTypes.shape({
-      projects: PropTypes.object,
-      posts: PropTypes.object,
-      favoriteProjects: PropTypes.object,
-    }),
+    profile: PropTypes.object,
     editable: PropTypes.bool,
     onMoreProjectsPress: PropTypes.func,
     onAddProjectPress: PropTypes.func,
@@ -67,7 +65,7 @@ export default class ProfileTabMenu extends Component {
 
     return (
       <UserProjectsScene
-        projects={profile.projects}
+        profile={profile}
         editable={editable}
         onMorePress={onMoreProjectsPress}
         onAddPress={onAddProjectPress}
@@ -91,7 +89,7 @@ export default class ProfileTabMenu extends Component {
 
     return (
       <UserPostsScene
-        posts={profile.posts}
+        profile={profile}
         editable={editable}
         onMorePress={onMorePostsPress}
         onAddPress={onAddPostPress}
@@ -111,7 +109,7 @@ export default class ProfileTabMenu extends Component {
 
     return (
       <UserFavoritesScene
-        projects={profile.favoriteProjects}
+        profile={profile}
         onMorePress={onMoreFavoritesPress}
         onOpenProject={onOpenProject}
       />

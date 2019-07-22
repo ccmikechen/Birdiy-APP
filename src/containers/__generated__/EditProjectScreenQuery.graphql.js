@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0678800180eaf37ebf4e114af81b899c
+ * @relayHash e8d52e331fc58913bda67feb19557bce
  */
 
 /* eslint-disable */
@@ -31,6 +31,9 @@ query EditProjectScreenQuery(
 }
 
 fragment EditProjectScreen_query on RootQueryType {
+  viewer {
+    id
+  }
   project(id: $id) {
     id
     name
@@ -78,14 +81,14 @@ var v0 = [
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -127,6 +130,18 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Viewer",
+        "plural": false,
+        "selections": [
+          (v1/*: any*/)
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
         "name": "project",
         "storageKey": null,
         "args": [
@@ -149,11 +164,11 @@ return {
             "concreteType": "ProjectTopic",
             "plural": false,
             "selections": [
-              (v1/*: any*/),
-              (v2/*: any*/)
+              (v2/*: any*/),
+              (v1/*: any*/)
             ]
           },
-          (v2/*: any*/),
+          (v1/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -176,7 +191,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          (v1/*: any*/),
+          (v2/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -200,8 +215,8 @@ return {
             "concreteType": "ProjectMaterial",
             "plural": true,
             "selections": [
-              (v2/*: any*/),
               (v1/*: any*/),
+              (v2/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -221,8 +236,8 @@ return {
             "concreteType": "ProjectFileResource",
             "plural": true,
             "selections": [
-              (v2/*: any*/),
               (v1/*: any*/),
+              (v2/*: any*/),
               (v4/*: any*/),
               {
                 "kind": "ScalarField",
@@ -242,7 +257,7 @@ return {
             "concreteType": "ProjectMethod",
             "plural": true,
             "selections": [
-              (v2/*: any*/),
+              (v1/*: any*/),
               (v3/*: any*/),
               {
                 "kind": "ScalarField",
@@ -268,7 +283,7 @@ return {
     "operationKind": "query",
     "name": "EditProjectScreenQuery",
     "id": null,
-    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    source\n    video\n    topic {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n}\n",
+    "text": "query EditProjectScreenQuery(\n  $id: ID!\n) {\n  ...EditProjectScreen_query\n}\n\nfragment EditProjectScreen_query on RootQueryType {\n  viewer {\n    id\n  }\n  project(id: $id) {\n    id\n    name\n    published\n    image\n    source\n    video\n    topic {\n      name\n      id\n    }\n    introduction\n    tip\n    materials {\n      id\n      name\n      amountUnit\n      url\n    }\n    fileResources {\n      id\n      name\n      url\n      type\n    }\n    methods {\n      id\n      image\n      title\n      content\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

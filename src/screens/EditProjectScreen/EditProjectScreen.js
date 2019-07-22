@@ -64,6 +64,9 @@ export default class EditProjectScreen extends Component {
       }).isRequired,
     }).isRequired,
     query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        id: PropTypes.string,
+      }),
       project: PropTypes.shape({
         id: PropTypes.string,
         name: PropTypes.string,
@@ -182,7 +185,7 @@ export default class EditProjectScreen extends Component {
     } = this.props;
     const mutation = new DeleteProjectMutation({
       id: query.project.id,
-    }).setHook(spinner);
+    }, query.viewer).setHook(spinner);
 
     mutation.commit()
       .then(() => {

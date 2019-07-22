@@ -34,6 +34,7 @@ export default class ProfileScreen extends Component {
     }).isRequired,
     query: PropTypes.shape({
       viewer: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         user: PropTypes.shape({
           id: PropTypes.string.isRequired,
         }).isRequired,
@@ -99,7 +100,10 @@ export default class ProfileScreen extends Component {
   };
 
   deleteProject = (id) => {
-    const mutation = new DeleteProjectMutation({ id });
+    const { query } = this.props;
+    const mutation = new DeleteProjectMutation({
+      id,
+    }, query.viewer);
 
     mutation.commit()
       .then(showDeleteProjectSuccessAlert)

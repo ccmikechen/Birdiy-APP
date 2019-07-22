@@ -10,6 +10,9 @@ const MyProjectsScreenFragmentContainer = createFragmentContainer(
   MyProjectsScreen,
   graphql`
     fragment MyProjectsScreen_query on RootQueryType {
+      viewer {
+        id
+      }
       ...MyProjectList_query
     }
   `,

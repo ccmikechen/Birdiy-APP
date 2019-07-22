@@ -19,6 +19,7 @@ const ProfileScreenFragmentContainer = createRefetchContainer(
   graphql`
     fragment ProfileScreen_query on RootQueryType {
       viewer {
+        id
         ...ProfileSection_profile
         ...ProfileTabMenu_profile
         user {

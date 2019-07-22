@@ -59,7 +59,10 @@ export default class MyProjectsScreen extends Component {
   };
 
   deleteProject = (id) => {
-    const mutation = new DeleteProjectMutation({ id });
+    const { query } = this.props;
+    const mutation = new DeleteProjectMutation({
+      id,
+    }, query.viewer);
 
     mutation.commit()
       .then(showDeleteProjectSuccessAlert)
@@ -73,6 +76,7 @@ export default class MyProjectsScreen extends Component {
 
     return (
       <SimpleScreenView
+        {...this.props}
         renderHeader={() => (
           <SearchBarHeader
             onBack={() => navigation.goBack()}
@@ -92,8 +96,8 @@ export default class MyProjectsScreen extends Component {
         />
         <MyProjectActions
           ref={(ref) => { this.actions = ref; }}
-          onEditProject={this.handleEditProject}
-          onDeleteProject={this.handleDeleteProject}
+          onEditProject={({ id }) => this.handleEditProject(id)}
+          onDeleteProject={({ id }) => this.handleDeleteProject(id)}
         />
       </SimpleScreenView>
     );

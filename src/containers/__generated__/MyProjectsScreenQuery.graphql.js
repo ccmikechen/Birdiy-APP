@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 711996b122c62f16504b5a01de3e00af
+ * @relayHash 24a776682252fe4d19a47b8007e5b322
  */
 
 /* eslint-disable */
@@ -33,6 +33,9 @@ query MyProjectsScreenQuery(
 }
 
 fragment MyProjectsScreen_query on RootQueryType {
+  viewer {
+    id
+  }
   ...MyProjectList_query
 }
 
@@ -89,7 +92,14 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = [
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v2 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -103,13 +113,6 @@ v1 = [
     "type": "Int"
   }
 ],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
 v3 = {
   "kind": "ScalarField",
   "alias": null,
@@ -119,7 +122,7 @@ v3 = {
 },
 v4 = [
   (v3/*: any*/),
-  (v2/*: any*/)
+  (v1/*: any*/)
 ];
 return {
   "kind": "Request",
@@ -151,12 +154,13 @@ return {
         "concreteType": "Viewer",
         "plural": false,
         "selections": [
+          (v1/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "projects",
             "storageKey": null,
-            "args": (v1/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "ProjectConnection",
             "plural": false,
             "selections": [
@@ -203,7 +207,7 @@ return {
                     "concreteType": "Project",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
+                      (v1/*: any*/),
                       (v3/*: any*/),
                       {
                         "kind": "ScalarField",
@@ -277,12 +281,11 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "projects",
-            "args": (v1/*: any*/),
+            "args": (v2/*: any*/),
             "handle": "connection",
             "key": "MyProjectList_projects",
             "filters": null
-          },
-          (v2/*: any*/)
+          }
         ]
       }
     ]
@@ -291,7 +294,7 @@ return {
     "operationKind": "query",
     "name": "MyProjectsScreenQuery",
     "id": null,
-    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query MyProjectsScreenQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectsScreen_query\n}\n\nfragment MyProjectsScreen_query on RootQueryType {\n  viewer {\n    id\n  }\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

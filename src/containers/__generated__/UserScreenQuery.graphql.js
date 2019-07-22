@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0a6d26bb60c1398c96f2847cb8a7fd1e
+ * @relayHash 40bbe129eb7026a6bd240134856f2052
  */
 
 /* eslint-disable */
@@ -49,52 +49,70 @@ fragment ProfileSection_profile on Profile {
 }
 
 fragment ProfileTabMenu_profile on Profile {
+  ...UserProjectsScene_profile
+  ...UserPostsScene_profile
+  ...UserFavoritesScene_profile
+}
+
+fragment UserProjectsScene_profile on Profile {
   projects(first: $count) {
-    ...UserProjectsScene_projects
-  }
-  posts(first: $count) {
-    ...UserPostsScene_posts
-  }
-  favoriteProjects(first: $count) {
-    ...UserFavoritesScene_projects
-  }
-}
-
-fragment UserProjectsScene_projects on ProjectConnection {
-  edges {
-    node {
-      id
-      name
-      image
-      published
-    }
-  }
-}
-
-fragment UserPostsScene_posts on PostConnection {
-  edges {
-    node {
-      id
-      thumbnail {
-        image
+    edges {
+      node {
         id
-      }
-      message
-      insertedAt
-    }
-  }
-}
-
-fragment UserFavoritesScene_projects on ProjectConnection {
-  edges {
-    node {
-      id
-      image
-      name
-      author {
         name
-        id
+        image
+        published
+        __typename
       }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+fragment UserPostsScene_profile on Profile {
+  posts(first: $count) {
+    edges {
+      node {
+        id
+        thumbnail {
+          image
+          id
+        }
+        message
+        insertedAt
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+
+fragment UserFavoritesScene_profile on Profile {
+  favoriteProjects(first: $count) {
+    edges {
+      node {
+        id
+        image
+        name
+        author {
+          name
+          id
+        }
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
     }
   }
 }
@@ -143,6 +161,45 @@ v4 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "cursor",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "pageInfo",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "endCursor",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hasNextPage",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 };
 return {
   "kind": "Request",
@@ -233,12 +290,24 @@ return {
                         "name": "published",
                         "args": null,
                         "storageKey": null
-                      }
+                      },
+                      (v5/*: any*/)
                     ]
-                  }
+                  },
+                  (v6/*: any*/)
                 ]
-              }
+              },
+              (v7/*: any*/)
             ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "projects",
+            "args": (v3/*: any*/),
+            "handle": "connection",
+            "key": "UserProjectsScene_projects",
+            "filters": null
           },
           {
             "kind": "LinkedField",
@@ -294,12 +363,24 @@ return {
                         "name": "insertedAt",
                         "args": null,
                         "storageKey": null
-                      }
+                      },
+                      (v5/*: any*/)
                     ]
-                  }
+                  },
+                  (v6/*: any*/)
                 ]
-              }
+              },
+              (v7/*: any*/)
             ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "posts",
+            "args": (v3/*: any*/),
+            "handle": "connection",
+            "key": "UserPostsScene_posts",
+            "filters": null
           },
           {
             "kind": "LinkedField",
@@ -343,12 +424,24 @@ return {
                           (v1/*: any*/),
                           (v4/*: any*/)
                         ]
-                      }
+                      },
+                      (v5/*: any*/)
                     ]
-                  }
+                  },
+                  (v6/*: any*/)
                 ]
-              }
+              },
+              (v7/*: any*/)
             ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "favoriteProjects",
+            "args": (v3/*: any*/),
+            "handle": "connection",
+            "key": "UserProjectsScene_favoriteProjects",
+            "filters": null
           },
           {
             "kind": "ScalarField",
@@ -366,7 +459,7 @@ return {
     "operationKind": "query",
     "name": "UserScreenQuery",
     "id": null,
-    "text": "query UserScreenQuery(\n  $id: ID!\n  $count: Int!\n) {\n  ...UserScreen_query\n}\n\nfragment UserScreen_query on RootQueryType {\n  user(id: $id) {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n    following\n    id\n  }\n}\n\nfragment ProfileSection_profile on Profile {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on Profile {\n  projects(first: $count) {\n    ...UserProjectsScene_projects\n  }\n  posts(first: $count) {\n    ...UserPostsScene_posts\n  }\n  favoriteProjects(first: $count) {\n    ...UserFavoritesScene_projects\n  }\n}\n\nfragment UserProjectsScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      name\n      image\n      published\n    }\n  }\n}\n\nfragment UserPostsScene_posts on PostConnection {\n  edges {\n    node {\n      id\n      thumbnail {\n        image\n        id\n      }\n      message\n      insertedAt\n    }\n  }\n}\n\nfragment UserFavoritesScene_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      image\n      name\n      author {\n        name\n        id\n      }\n    }\n  }\n}\n",
+    "text": "query UserScreenQuery(\n  $id: ID!\n  $count: Int!\n) {\n  ...UserScreen_query\n}\n\nfragment UserScreen_query on RootQueryType {\n  user(id: $id) {\n    ...ProfileSection_profile\n    ...ProfileTabMenu_profile\n    following\n    id\n  }\n}\n\nfragment ProfileSection_profile on Profile {\n  name\n  image\n  followingCount\n  followerCount\n}\n\nfragment ProfileTabMenu_profile on Profile {\n  ...UserProjectsScene_profile\n  ...UserPostsScene_profile\n  ...UserFavoritesScene_profile\n}\n\nfragment UserProjectsScene_profile on Profile {\n  projects(first: $count) {\n    edges {\n      node {\n        id\n        name\n        image\n        published\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment UserPostsScene_profile on Profile {\n  posts(first: $count) {\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        message\n        insertedAt\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment UserFavoritesScene_profile on Profile {\n  favoriteProjects(first: $count) {\n    edges {\n      node {\n        id\n        image\n        name\n        author {\n          name\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -8,99 +8,42 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type UserFavoritesScene_projects$ref = any;
-type UserPostsScene_posts$ref = any;
-type UserProjectsScene_projects$ref = any;
+type UserFavoritesScene_profile$ref = any;
+type UserPostsScene_profile$ref = any;
+type UserProjectsScene_profile$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProfileTabMenu_profile$ref: FragmentReference;
 export type ProfileTabMenu_profile = {|
-  +projects: ?{|
-    +$fragmentRefs: UserProjectsScene_projects$ref
-  |},
-  +posts: ?{|
-    +$fragmentRefs: UserPostsScene_posts$ref
-  |},
-  +favoriteProjects: ?{|
-    +$fragmentRefs: UserFavoritesScene_projects$ref
-  |},
+  +$fragmentRefs: UserProjectsScene_profile$ref & UserPostsScene_profile$ref & UserFavoritesScene_profile$ref,
   +$refType: ProfileTabMenu_profile$ref,
 |};
 */
 
 
-const node/*: ReaderFragment*/ = (function(){
-var v0 = [
-  {
-    "kind": "Variable",
-    "name": "first",
-    "variableName": "count",
-    "type": "Int"
-  }
-];
-return {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "ProfileTabMenu_profile",
   "type": "Profile",
   "metadata": null,
-  "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "count",
-      "type": "Int"
-    }
-  ],
+  "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "projects",
-      "storageKey": null,
-      "args": (v0/*: any*/),
-      "concreteType": "ProjectConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "UserProjectsScene_projects",
-          "args": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "UserProjectsScene_profile",
+      "args": null
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "posts",
-      "storageKey": null,
-      "args": (v0/*: any*/),
-      "concreteType": "PostConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "UserPostsScene_posts",
-          "args": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "UserPostsScene_profile",
+      "args": null
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "favoriteProjects",
-      "storageKey": null,
-      "args": (v0/*: any*/),
-      "concreteType": "ProjectConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "UserFavoritesScene_projects",
-          "args": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "UserFavoritesScene_profile",
+      "args": null
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = 'a281cf56246e03479a46f971af531975';
+(node/*: any*/).hash = '6b503638b5725a338a95586e403f00c1';
 module.exports = node;

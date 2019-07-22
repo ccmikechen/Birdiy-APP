@@ -5,36 +5,42 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import UserPostsScene from '../components/UserPostsScene';
 
 const UserPostsSceneFragmentContainer = (props) => {
-  const { posts } = props;
+  const { profile } = props;
 
   return (
     <UserPostsScene
       {...props}
-      posts={posts.edges.map(({ node }) => node)}
+      posts={profile.posts.edges.map(({ node }) => node)}
     />
   );
 };
 
 UserPostsSceneFragmentContainer.propTypes = {
-  posts: PropTypes.shape({
-    edges: PropTypes.arrayOf(PropTypes.shape({
-      node: PropTypes.object.isRequired,
-    })).isRequired,
+  profile: PropTypes.shape({
+    posts: PropTypes.shape({
+      edges: PropTypes.arrayOf(PropTypes.shape({
+        node: PropTypes.object.isRequired,
+      })).isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
 export default createFragmentContainer(
   UserPostsSceneFragmentContainer,
   graphql`
-    fragment UserPostsScene_posts on PostConnection {
-      edges {
-        node {
-          id
-          thumbnail {
-            image 
+    fragment UserPostsScene_profile on Profile {
+      posts(
+        first: $count,
+      ) @connection(key: "UserPostsScene_posts") {
+        edges {
+          node {
+            id
+            thumbnail {
+              image 
+            }
+            message
+            insertedAt
           }
-          message
-          insertedAt
         }
       }
     }

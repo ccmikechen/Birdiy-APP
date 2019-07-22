@@ -8,6 +8,9 @@ const EditProjectScreenFragmentContainer = createFragmentContainer(
   EditProjectScreen,
   graphql`
     fragment EditProjectScreen_query on RootQueryType {
+      viewer {
+        id
+      }
       project(
         id: $id,
       ) {
