@@ -16,6 +16,8 @@ import ProjectTipEditor from '../ProjectTipEditor';
 
 import editProjectValidation from '../../validations/editProjectValidation';
 
+import { showSaveProjectErrorAlert } from '../../helpers/alert';
+
 import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit' };
@@ -75,6 +77,8 @@ export default class ProjectEditor extends Component {
     ['tip'],
   ];
 
+  lastSubmitCount = 0;
+
   constructor(props) {
     super(props);
 
@@ -94,6 +98,10 @@ export default class ProjectEditor extends Component {
         submitForm();
       });
     };
+  };
+
+  onSubmitValidationError = () => {
+    showSaveProjectErrorAlert();
   };
 
   getTabErrors = (touched, errors) => (
@@ -125,7 +133,20 @@ export default class ProjectEditor extends Component {
             touched,
             handleChange,
             submitForm,
+            submitCount,
+            isSubmitting,
+            isValid,
           } = props;
+
+          if (
+            this.lastSubmitCount < submitCount
+              && !isSubmitting
+              && !isValid
+              && Object.keys(errors).length > 0
+          ) {
+            showSaveProjectErrorAlert(errors);
+            this.lastSubmitCount = submitCount;
+          }
 
           const sectionProps = {
             project: values,
@@ -137,7 +158,7 @@ export default class ProjectEditor extends Component {
           this.bindSubmit(submitForm);
 
           const tabs = [
-            i18n.t('tabs.intro', i18nOptions),
+            i18n.t('tabs.introduction', i18nOptions),
             i18n.t('tabs.image', i18nOptions),
             i18n.t('tabs.materials', i18nOptions),
             i18n.t('tabs.files', i18nOptions),

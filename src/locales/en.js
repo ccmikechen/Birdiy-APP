@@ -47,7 +47,7 @@ export default {
   project: {
     create: {
       title: 'New Project',
-      projectName: {
+      name: {
         title: 'Project Name',
         placeholder: 'Enter your project\'s name',
       },
@@ -60,14 +60,14 @@ export default {
     edit: {
       title: 'Edit Project',
       tabs: {
-        intro: 'Introduction',
+        introduction: 'Introduction',
         image: 'Main Photo',
         materials: 'Materials',
         files: 'Files',
         methods: 'Steps',
         tip: 'Tip',
       },
-      projectName: {
+      name: {
         title: 'Project Name',
         placeholder: 'Enter your project\'s name',
       },
@@ -75,7 +75,7 @@ export default {
         title: 'Topic',
         placeholder: 'Select topic of your project',
       },
-      intro: {
+      introduction: {
         title: 'Introduction',
         placeholder: 'Introduce your project',
       },
@@ -143,7 +143,7 @@ export default {
       follow: 'Follow',
     },
     sections: {
-      intro: 'Introduction',
+      introduction: 'Introduction',
       source: 'Project Source',
       materials: 'Materials',
       files: 'Files',
@@ -297,6 +297,7 @@ export default {
     loginFailed: 'Failed to login',
     saveProjectSuccess: 'The project has been saved successfully',
     saveProjectFailed: 'Failed to save the current project',
+    saveProjectError: 'Input not correct. Please make sure following fields are filled out correctly.\n\n%{fields}',
     publishProjectSuccess: 'The project has been published',
     unpublishProjectSuccess: 'The project has been unpublished',
     setProjectStatusFailed: 'Failed to change status of this project',
@@ -325,7 +326,7 @@ export default {
     unsavedGoBack: 'Are you sure you want to go back without saving?',
     deleteCartProject: {
       title: 'Delete purchase list',
-      message: 'Delete %{projectName} from purchase list?',
+      message: 'Delete %{name} from purchase list?',
     },
     sendFeedbackSuccess: 'Your feedback has been submitted successfully',
     fileTooLarge: 'Maximum file size is %{limit}',

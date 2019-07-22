@@ -42,7 +42,7 @@ export default {
   project: {
     create: {
       title: '新增專案',
-      projectName: {
+      name: {
         title: '專案名稱',
         placeholder: '輸入你的專案名稱',
       },
@@ -55,14 +55,14 @@ export default {
     edit: {
       title: '編輯專案',
       tabs: {
-        intro: '簡介',
+        introduction: '簡介',
         image: '主圖',
         materials: '材料',
         files: '檔案資料',
         methods: '作法',
         tip: '小技巧',
       },
-      projectName: {
+      name: {
         title: '專案名稱',
         placeholder: '輸入你的專案名稱',
       },
@@ -70,7 +70,7 @@ export default {
         title: '主題',
         placeholder: '選擇你的專案主題',
       },
-      intro: {
+      introduction: {
         title: '介紹',
         placeholder: '介紹你的專案',
       },
@@ -138,7 +138,7 @@ export default {
       follow: '跟著做',
     },
     sections: {
-      intro: '介紹',
+      introduction: '介紹',
       source: '專案來源',
       materials: '材料',
       files: '檔案資料',
@@ -406,6 +406,7 @@ export default {
     loginFailed: '登入失敗',
     saveProjectSuccess: '專案儲存成功',
     saveProjectFailed: '專案儲存失敗',
+    saveProjectError: '以下欄位輸入不完整，請修正後再試一次。\n\n%{fields}',
     publishProjectSuccess: '專案已設為公開',
     unpublishProjectSuccess: '專案已設為不公開',
     setProjectStatusFailed: '專案狀態設定失敗',
@@ -434,7 +435,7 @@ export default {
     unsavedGoBack: '確定要放棄編輯嗎？',
     deleteCartProject: {
       title: '刪除採買清單',
-      message: '將 %{projectName} 從採買清單中刪除？',
+      message: '將 %{name} 從採買清單中刪除？',
     },
     sendFeedbackSuccess: '您的意見已成功送出',
     fileTooLarge: '檔案大小不可超過 %{limit}',

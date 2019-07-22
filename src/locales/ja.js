@@ -42,7 +42,7 @@ export default {
   project: {
     create: {
       title: 'プロジェクトを作成',
-      projectName: {
+      name: {
         title: 'プロジェクト名',
         placeholder: 'プロジェクト名を入力',
       },
@@ -55,14 +55,14 @@ export default {
     edit: {
       title: 'プロジェクトを編集',
       tabs: {
-        intro: '紹介',
+        introduction: '紹介',
         image: '写真',
         materials: '材料',
         files: 'ファイル',
         methods: '作り方',
         tip: 'コツ',
       },
-      projectName: {
+      name: {
         title: 'プロジェクト名',
         placeholder: 'プロジェクト名を入力',
       },
@@ -70,7 +70,7 @@ export default {
         title: 'テーマ',
         placeholder: 'テーマを選ぶ',
       },
-      intro: {
+      introduction: {
         title: '紹介',
         placeholder: 'プロジェクトの紹介を書く',
       },
@@ -138,7 +138,7 @@ export default {
       follow: 'フォロー',
     },
     sections: {
-      intro: '紹介',
+      introduction: '紹介',
       source: '参考サイト',
       materials: '材料',
       files: 'ファイル',
@@ -406,6 +406,7 @@ export default {
     loginFailed: 'ログイン失敗',
     saveProjectSuccess: 'プロジェクトを保存しました',
     saveProjectFailed: 'プロジェクトの保存が失敗しました',
+    saveProjectError: '以下のフィールドの情報が入力されていないか、不足しています。修正してまたお試しください。\n\n%{fields}',
     publishProjectSuccess: 'プロジェクトを公開しました',
     unpublishProjectSuccess: 'プロジェクトを非公開にしました',
     setProjectStatusFailed: 'プロジェクト状態の設定が失敗しました',
@@ -434,7 +435,7 @@ export default {
     unsavedGoBack: '本当に保存しないまま戻りますか？',
     deleteCartProject: {
       title: '買い物リストを削除',
-      message: '%{projectName} を買い物リストから削除しますか？',
+      message: '%{name} を買い物リストから削除しますか？',
     },
     sendFeedbackSuccess: 'ご意見頂きありがとうございます',
     fileTooLarge: 'ファイルサイズの上限は%{limit}です',

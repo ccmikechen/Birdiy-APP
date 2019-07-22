@@ -72,14 +72,14 @@ export default class ProjectDraftEditor extends Component {
           return (
             <View style={styles.container}>
               <EditSection
-                title={i18n.t('projectName.title', i18nOptions)}
+                title={i18n.t('name.title', i18nOptions)}
                 error={nameError}
               >
                 <PureTextInput
                   style={styles.textInput}
                   value={name}
                   error={nameError}
-                  placeholder={i18n.t('projectName.placeholder', i18nOptions)}
+                  placeholder={i18n.t('name.placeholder', i18nOptions)}
                   onChangeText={handleChange('name')}
                   maxLength={100}
                   multiline

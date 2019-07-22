@@ -42,14 +42,14 @@ const ProjectIntroEditor = (props) => {
       contentContainerStyle={styles.contentContainer}
     >
       <EditSection
-        title={i18n.t('projectName.title', i18nOptions)}
+        title={i18n.t('name.title', i18nOptions)}
         error={error.name}
       >
         <PureTextInput
           style={styles.textInput}
           value={name}
           error={error.name}
-          placeholder={i18n.t('projectName.placeholder', i18nOptions)}
+          placeholder={i18n.t('name.placeholder', i18nOptions)}
           onChangeText={onChange('name')}
           maxLength={100}
           multiline
@@ -71,14 +71,14 @@ const ProjectIntroEditor = (props) => {
         />
       </EditSection>
       <EditSection
-        title={i18n.t('intro.title', i18nOptions)}
+        title={i18n.t('introduction.title', i18nOptions)}
         error={error.introduction}
       >
         <PureTextInput
           style={styles.textInput}
           value={introduction}
           error={error.introduction}
-          placeholder={i18n.t('intro.placeholder', i18nOptions)}
+          placeholder={i18n.t('introduction.placeholder', i18nOptions)}
           onChangeText={onChange('introduction')}
           maxLength={2000}
           multiline

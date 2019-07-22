@@ -60,9 +60,9 @@ export const showUnsavedGoBackAlert = () => new Promise(resolve => (
   )
 ));
 
-export const showDeleteCartProjectAlert = projectName => new Promise(resolve => (
+export const showDeleteCartProjectAlert = name => new Promise(resolve => (
   showAlert(
-    i18n.t('alert.deleteCartProject.message', { projectName }),
+    i18n.t('alert.deleteCartProject.message', { name }),
     i18n.t('alert.deleteCartProject.title'),
     [
       { text: i18n.t('general.cancel') },
@@ -70,3 +70,10 @@ export const showDeleteCartProjectAlert = projectName => new Promise(resolve => 
     ],
   )
 ));
+
+export const showSaveProjectErrorAlert = (errors) => {
+  const fields = Object.keys(errors).map(field => (
+    i18n.t(`project.edit.${field}.title`)
+  )).join('\n');
+  showAlert(i18n.t('alert.saveProjectError', { fields }));
+};

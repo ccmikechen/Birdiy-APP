@@ -316,7 +316,7 @@ export default class ProjectDetailScreen extends Component {
                 onNewPostPress={this.handleNewPostPress}
               />
             </View>
-            <ProjectDetailSection title={i18n.t('sections.intro', i18nOptions)}>
+            <ProjectDetailSection title={i18n.t('sections.introduction', i18nOptions)}>
               <View style={styles.introContainer}>
                 <Text style={styles.intro}>
                   {project.introduction}
