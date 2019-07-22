@@ -7,7 +7,7 @@ import { fromRight } from 'react-navigation-transitions';
 import createMainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/LoginScreen';
-import CreateProjectScreen from '../screens/CreateProjectScreen';
+import CreateProjectScreen from '../containers/CreateProjectScreen';
 import EditProjectScreen from '../containers/EditProjectScreen';
 import EditPostScreen from '../containers/EditPostScreen';
 import SelectTopicScreen from '../containers/SelectTopicScreen';

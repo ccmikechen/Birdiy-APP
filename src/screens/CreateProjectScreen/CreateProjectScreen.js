@@ -29,6 +29,15 @@ export default class CreateProjectScreen extends Component {
         off: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
+  };
+
+  static defaultProps = {
+    query: null,
   };
 
   initialProject = {
@@ -49,8 +58,11 @@ export default class CreateProjectScreen extends Component {
   };
 
   handleSubmit = (values) => {
-    const { navigation, screenProps: { spinner } } = this.props;
-    const mutation = new CreateProjectMutation(values).setHook(spinner);
+    const { navigation, screenProps: { spinner }, query } = this.props;
+    const mutation = new CreateProjectMutation(
+      values,
+      query.viewer,
+    ).setHook(spinner);
 
     mutation.commit()
       .then((response) => {

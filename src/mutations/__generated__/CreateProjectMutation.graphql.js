@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ee92d1fe8e332e0afd125c24fd447773
+ * @relayHash f49435203bdce28317808df70fb6c4dd
  */
 
 /* eslint-disable */
@@ -19,7 +19,18 @@ export type CreateProjectMutationVariables = {|
 export type CreateProjectMutationResponse = {|
   +createProject: ?{|
     +project: {|
-      +id: string
+      +id: string,
+      +name: string,
+      +image: ?string,
+      +topic: {|
+        +name: string
+      |},
+      +author: {|
+        +name: string
+      |},
+      +published: ?boolean,
+      +viewCount: ?number,
+      +likeCount: ?number,
     |}
   |}
 |};
@@ -37,6 +48,19 @@ mutation CreateProjectMutation(
   createProject(input: $input) {
     project {
       id
+      name
+      image
+      topic {
+        name
+        id
+      }
+      author {
+        name
+        id
+      }
+      published
+      viewCount
+      likeCount
     }
   }
 }
@@ -53,41 +77,60 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "createProject",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input",
-        "type": "CreateProjectInput!"
-      }
-    ],
-    "concreteType": "ProjectResult",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "project",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Project",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input",
+    "type": "CreateProjectInput!"
   }
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "image",
+  "args": null,
+  "storageKey": null
+},
+v5 = [
+  (v3/*: any*/)
+],
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "published",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "viewCount",
+  "args": null,
+  "storageKey": null
+},
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "likeCount",
+  "args": null,
+  "storageKey": null
+},
+v9 = [
+  (v3/*: any*/),
+  (v2/*: any*/)
 ];
 return {
   "kind": "Request",
@@ -97,23 +140,121 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "topic",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "ProjectTopic",
+                "plural": false,
+                "selections": (v5/*: any*/)
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "author",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "User",
+                "plural": false,
+                "selections": (v5/*: any*/)
+              },
+              (v6/*: any*/),
+              (v7/*: any*/),
+              (v8/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "CreateProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "topic",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "ProjectTopic",
+                "plural": false,
+                "selections": (v9/*: any*/)
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "author",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "User",
+                "plural": false,
+                "selections": (v9/*: any*/)
+              },
+              (v6/*: any*/),
+              (v7/*: any*/),
+              (v8/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "CreateProjectMutation",
     "id": null,
-    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation CreateProjectMutation(\n  $input: CreateProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      id\n      name\n      image\n      topic {\n        name\n        id\n      }\n      author {\n        name\n        id\n      }\n      published\n      viewCount\n      likeCount\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'afbc69dd702c045bcd07b8a9db119f2a';
+(node/*: any*/).hash = '4fd29e6908e661a534b96f0950454cae';
 module.exports = node;
