@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 826d7d1230123ad2219be027578145a1
+ * @relayHash 3d196ed9c64ea9226950fcdd8031ed73
  */
 
 /* eslint-disable */
@@ -41,8 +41,8 @@ fragment MyProjectList_query on RootQueryType {
       }
       edges {
         node {
-          ...ProjectSection_project
           id
+          ...ProjectSection_project
           __typename
         }
         cursor
@@ -287,7 +287,7 @@ return {
     "operationKind": "query",
     "name": "MyProjectListPaginationQuery",
     "id": null,
-    "text": "query MyProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          ...ProjectSection_project\n          id\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
+    "text": "query MyProjectListPaginationQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...MyProjectList_query\n}\n\nfragment MyProjectList_query on RootQueryType {\n  viewer {\n    projects(first: $count, after: $cursor) {\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      edges {\n        node {\n          id\n          ...ProjectSection_project\n          __typename\n        }\n        cursor\n      }\n    }\n    id\n  }\n}\n\nfragment ProjectSection_project on Project {\n  id\n  name\n  image\n  topic {\n    name\n    id\n  }\n  author {\n    name\n    id\n  }\n  published\n  viewCount\n  likeCount\n}\n",
     "metadata": {}
   }
 };

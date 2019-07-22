@@ -84,6 +84,7 @@ export default createPaginationContainer(
             }
             edges {
               node {
+                id
                 ...ProjectSection_project
               }
             }

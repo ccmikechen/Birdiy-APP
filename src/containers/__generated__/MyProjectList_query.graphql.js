@@ -20,7 +20,8 @@ export type MyProjectList_query = {|
       |},
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
-          +$fragmentRefs: ProjectSection_project$ref
+          +id: string,
+          +$fragmentRefs: ProjectSection_project$ref,
         |}
       |}>,
     |}
@@ -122,6 +123,13 @@ const node/*: ReaderFragment*/ = {
                   "plural": false,
                   "selections": [
                     {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "name": "id",
+                      "args": null,
+                      "storageKey": null
+                    },
+                    {
                       "kind": "FragmentSpread",
                       "name": "ProjectSection_project",
                       "args": null
@@ -151,5 +159,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '231b9bf2320a7ad444185fdbc776e8b8';
+(node/*: any*/).hash = '38f7f4d74383a52ecd4f55e7caae0773';
 module.exports = node;

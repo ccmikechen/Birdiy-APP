@@ -15,6 +15,12 @@ export default class EditAndPublishProjectMutation extends Mutation {
       editAndPublishProject(input: $input) {
         project {
           id
+          name
+          image
+          topic {
+            name
+          }
+          published
         }
       }
     }

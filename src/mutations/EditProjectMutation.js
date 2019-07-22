@@ -15,6 +15,11 @@ export default class EditProjectMutation extends Mutation {
       editProject(input: $input) {
         project {
           id
+          name
+          image
+          topic {
+            name
+          }
         }
       }
     }

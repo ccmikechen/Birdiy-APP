@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0320179c4cda0d30734d242bc7c64bc9
+ * @relayHash 11ddc8cfd0e3b9cab47e2ad34d9075a9
  */
 
 /* eslint-disable */
@@ -49,7 +49,13 @@ export type EditAndPublishProjectMutationVariables = {|
 export type EditAndPublishProjectMutationResponse = {|
   +editAndPublishProject: ?{|
     +project: {|
-      +id: string
+      +id: string,
+      +name: string,
+      +image: ?string,
+      +topic: {|
+        +name: string
+      |},
+      +published: ?boolean,
     |}
   |}
 |};
@@ -67,6 +73,13 @@ mutation EditAndPublishProjectMutation(
   editAndPublishProject(input: $input) {
     project {
       id
+      name
+      image
+      topic {
+        name
+        id
+      }
+      published
     }
   }
 }
@@ -83,42 +96,40 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "editAndPublishProject",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input",
-        "type": "EditProjectInput!"
-      }
-    ],
-    "concreteType": "ProjectResult",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "project",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Project",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input",
+    "type": "EditProjectInput!"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "image",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "published",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -127,23 +138,102 @@ return {
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "editAndPublishProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "topic",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "ProjectTopic",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/)
+                ]
+              },
+              (v5/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "EditAndPublishProjectMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "editAndPublishProject",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ProjectResult",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "project",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Project",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "topic",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "ProjectTopic",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/),
+                  (v2/*: any*/)
+                ]
+              },
+              (v5/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "EditAndPublishProjectMutation",
     "id": null,
-    "text": "mutation EditAndPublishProjectMutation(\n  $input: EditProjectInput!\n) {\n  editAndPublishProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation EditAndPublishProjectMutation(\n  $input: EditProjectInput!\n) {\n  editAndPublishProject(input: $input) {\n    project {\n      id\n      name\n      image\n      topic {\n        name\n        id\n      }\n      published\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c67490cce6758b040603625a2dba1445';
+(node/*: any*/).hash = 'c7d2f588b897977402308c5bcfbe89a5';
 module.exports = node;
