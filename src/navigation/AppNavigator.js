@@ -11,7 +11,7 @@ import CreateProjectScreen from '../containers/CreateProjectScreen';
 import EditProjectScreen from '../containers/EditProjectScreen';
 import EditPostScreen from '../containers/EditPostScreen';
 import SelectTopicScreen from '../containers/SelectTopicScreen';
-import CreatePostScreen from '../screens/CreatePostScreen';
+import CreatePostScreen from '../containers/CreatePostScreen';
 import PostImagesScreen from '../containers/PostImagesScreen';
 import SettingScreen from '../screens/SettingScreen';
 import ProfileSettingScreen from '../containers/ProfileSettingScreen';

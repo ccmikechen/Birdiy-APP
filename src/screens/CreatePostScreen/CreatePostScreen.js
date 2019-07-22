@@ -40,6 +40,15 @@ export default class CreatePostScreen extends Component {
         off: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    query: PropTypes.shape({
+      viewer: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
+  };
+
+  static defaultProps = {
+    query: null,
   };
 
   createTimesRecord = new TimesRecord(
@@ -82,9 +91,12 @@ export default class CreatePostScreen extends Component {
       return;
     }
 
-    const { navigation, screenProps: { spinner } } = this.props;
+    const { navigation, screenProps: { spinner }, query } = this.props;
 
-    const mutation = new CreatePostMutation(values).setHook(spinner);
+    const mutation = new CreatePostMutation(
+      values,
+      query.viewer,
+    ).setHook(spinner);
 
     mutation.commit()
       .then((res) => {
