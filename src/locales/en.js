@@ -264,6 +264,7 @@ export default {
     },
   },
   login: {
+    description: 'Do it yourself, enjoy the fun of DIY.',
     google: 'Sign in with Google',
     facebook: 'Sign in with Facebook',
     loginRequiredMessage: 'Login to your account',

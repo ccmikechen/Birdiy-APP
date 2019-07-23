@@ -373,6 +373,7 @@ export default {
     },
   },
   login: {
+    description: '自己動手做，享受手作的樂趣。',
     google: '透過 Google 登入',
     facebook: '透過 Facebook 登入',
     loginRequiredMessage: '尚未登入',

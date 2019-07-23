@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Base, TextColor } from '../../constants/Colors';
+import { TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -14,10 +14,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     aspectRatio: 1,
     borderRadius: 20,
-    backgroundColor: Base.lightest,
+    backgroundColor: '#000000',
   },
   image: {
     borderRadius: 20,
+    opacity: 0.6,
   },
   name: {
     textAlign: 'center',

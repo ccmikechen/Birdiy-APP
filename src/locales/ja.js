@@ -373,6 +373,7 @@ export default {
     },
   },
   login: {
+    description: '自分で作ろう、DIYの楽しさを毎日の幸せに。',
     google: 'Googleでログイン',
     facebook: 'Facebookでログイン',
     loginRequiredMessage: 'ログインしてください',

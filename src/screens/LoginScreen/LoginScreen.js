@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Google, Facebook } from 'expo';
 import * as Icon from '@expo/vector-icons';
+import i18n from 'i18n-js';
 
 import GoogleLoginButton from '../../components/GoogleLoginButton';
 import FacebookLoginButton from '../../components/FacebookLoginButton';
@@ -130,7 +131,7 @@ export default class LoginScreen extends Component {
           </View>
           <View style={styles.descriptionContainer}>
             <Text style={styles.description}>
-              自己動手做，享受手作的樂趣。
+              {i18n.t('login.description')}
             </Text>
           </View>
         </View>
