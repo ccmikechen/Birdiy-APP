@@ -7,6 +7,7 @@ import NormalBackHeader from '../../components/NormalBackHeader';
 import FeedbackForm from '../../components/FeedbackForm';
 
 import { showSendFeedbackSuccessMessage } from '../../helpers/toast';
+import Feedback from '../../helpers/feedback';
 
 const i18nOptions = { scope: 'feedback' };
 
@@ -21,8 +22,9 @@ export default class FeedbackScreen extends Component {
     }).isRequired,
   };
 
-  handleSubmit = () => {
+  handleSubmit = ({ type, message }) => {
     const { navigation } = this.props;
+    Feedback.send(type, message);
     navigation.goBack();
     showSendFeedbackSuccessMessage();
   };

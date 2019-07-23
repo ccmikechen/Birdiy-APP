@@ -7,7 +7,8 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import { Google, Facebook } from 'expo';
+import { Google } from 'expo';
+import * as Facebook from 'expo-facebook';
 import * as Icon from '@expo/vector-icons';
 import i18n from 'i18n-js';
 

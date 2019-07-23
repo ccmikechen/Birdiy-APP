@@ -6,6 +6,7 @@ import {
   IOS_CLIENT_ID,
   ANDROID_EXPO_CLIENT_ID,
   IOS_EXPO_CLIENT_ID,
+  SENDGRID_APIKEY,
 } from 'react-native-dotenv';
 import * as DEV from './dev';
 import * as STAGING from './staging';
@@ -26,6 +27,7 @@ const CHANNEL_CONFIGS = Object.freeze({
   IOS_CLIENT_ID,
   ANDROID_EXPO_CLIENT_ID,
   IOS_EXPO_CLIENT_ID,
+  SENDGRID_APIKEY,
 });
 
 if (ENV === 'development') {
