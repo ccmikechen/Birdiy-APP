@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
+  Text,
   TouchableOpacity,
+  Image,
   StatusBar,
 } from 'react-native';
 import { Google, Facebook } from 'expo';
@@ -20,6 +22,8 @@ import { showLoginFailedMessage } from '../../helpers/toast';
 import config from '../../configs';
 
 import styles from './styles';
+
+const LOGO = require('../../images/logo.png');
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -113,9 +117,22 @@ export default class LoginScreen extends Component {
             <Icon.MaterialIcons
               name="close"
               size={30}
-              color="#000000"
+              color="#ffffff"
             />
           </TouchableOpacity>
+        </View>
+        <View style={styles.brandContainer}>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={LOGO}
+            />
+          </View>
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.description}>
+              自己動手做，享受手作的樂趣。
+            </Text>
+          </View>
         </View>
         <View style={styles.contentContainer}>
           <GoogleLoginButton

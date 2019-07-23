@@ -62,6 +62,7 @@ export const Secondary = Material('indigo');
 export const Tertiary = Material('blueGray');
 
 export default {
+  appIcon: '#003991',
   tabIconDefault: '#cccccc',
   tabIconSelected: Secondary(500),
   tabBar: '#fefefe',

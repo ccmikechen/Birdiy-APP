@@ -17,7 +17,7 @@ export default StyleSheet.create({
     width: 220,
     height: 40,
     borderRadius: 3,
-    backgroundColor: '#4285f4',
+    backgroundColor: '#fefefe',
   },
   buttonContent: {
     flex: 1,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#ffffff',
+    color: '#666666',
     fontSize: 14,
     fontFamily: 'Roboto',
     fontWeight: '500',
