@@ -21,7 +21,7 @@ export type ProjectSection_project = {|
     +name: string
   |},
   +published: ?boolean,
-  +viewCount: ?number,
+  +viewCount: number,
   +likeCount: ?number,
   +$refType: ProjectSection_project$ref,
 |};

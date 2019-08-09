@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d48434d4b5368eb518d35c244b05e912
+ * @relayHash c83d3244fd2e0e9f66f0f538660f8443
  */
 
 /* eslint-disable */
@@ -19,7 +19,7 @@ export type ViewProjectMutationResponse = {|
   +viewProject: ?{|
     +project: {|
       +viewed: ?boolean,
-      +viewCount: ?number,
+      +viewCount: number,
     |}
   |}
 |};

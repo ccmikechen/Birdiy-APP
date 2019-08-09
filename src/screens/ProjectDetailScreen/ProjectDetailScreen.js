@@ -125,8 +125,14 @@ export default class ProjectDetailScreen extends Component {
       return null;
     }
 
-    const mutation = new ViewProjectMutation({ id: query.project.id });
-    mutation.commit().catch(() => {});
+    isLoggedIn().then((loggedIn) => {
+      if (!loggedIn) {
+        return;
+      }
+
+      const mutation = new ViewProjectMutation({ id: query.project.id });
+      mutation.commit().catch(() => {});
+    });
 
     return { ...prevState, viewed: true };
   }

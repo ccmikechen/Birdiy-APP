@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c1beb932d226fdf2bb72db2a927e1bf7
+ * @relayHash 2f58dc21dbe5ddcf9370f12010ce35bc
  */
 
 /* eslint-disable */
@@ -29,7 +29,7 @@ export type CreateProjectMutationResponse = {|
         +name: string
       |},
       +published: ?boolean,
-      +viewCount: ?number,
+      +viewCount: number,
       +likeCount: ?number,
     |}
   |}

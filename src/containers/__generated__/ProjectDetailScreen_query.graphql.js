@@ -26,7 +26,7 @@ export type ProjectDetailScreen_query = {|
     |},
     +introduction: ?string,
     +source: ?string,
-    +viewCount: ?number,
+    +viewCount: number,
     +favoriteCount: ?number,
     +likeCount: ?number,
     +viewed: ?boolean,

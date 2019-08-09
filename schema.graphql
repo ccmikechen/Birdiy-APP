@@ -200,7 +200,7 @@ type Project implements Node {
   tip: String
   topic: ProjectTopic!
   video: String
-  viewCount: Int
+  viewCount: Int!
   viewed: Boolean
 }
 
