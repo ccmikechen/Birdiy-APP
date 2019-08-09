@@ -33,6 +33,7 @@ const EditMethodListItem = ({
       <ImageUploadView
         width="100%"
         aspect={[4, 3]}
+        resize={{ width: 700, height: 525 }}
         iconSize={Dimensions.get('window').width / 2}
         image={data.image}
         onUpload={onImageUpload}

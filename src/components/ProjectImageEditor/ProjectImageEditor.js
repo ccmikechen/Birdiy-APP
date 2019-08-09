@@ -58,6 +58,7 @@ export default class ProjectImageEditor extends Component {
             <ImageUploadView
               width="100%"
               aspect={[4, 3]}
+              resize={{ width: 700, height: 525 }}
               iconSize={Dimensions.get('window').width / 2}
               image={image}
               onUpload={this.handleImageUpload}

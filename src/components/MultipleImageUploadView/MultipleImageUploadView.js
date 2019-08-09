@@ -9,6 +9,7 @@ import {
 import { Button } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
 import * as ImagePicker from 'expo-image-picker';
+import * as ImageManipulator from 'expo-image-manipulator';
 import * as Permissions from 'expo-permissions';
 import * as Icon from '@expo/vector-icons';
 import i18n from 'i18n-js';
@@ -31,6 +32,7 @@ export default class MultipleImageUploadView extends Component {
     dimension: PropTypes.number,
     spacing: PropTypes.number,
     onDeleteImage: PropTypes.func,
+    maxSize: PropTypes.number,
   };
 
   static defaultProps = {
@@ -38,6 +40,7 @@ export default class MultipleImageUploadView extends Component {
     dimension: 100,
     spacing: 10,
     onDeleteImage: () => {},
+    maxSize: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -62,7 +65,7 @@ export default class MultipleImageUploadView extends Component {
       allowsEditing: true,
 
     });
-    this.handleUploadResult(result);
+    await this.handleUploadResult(result);
   };
 
   handleCamera = async () => {
@@ -75,7 +78,7 @@ export default class MultipleImageUploadView extends Component {
       allowsEditing: true,
 
     });
-    this.handleUploadResult(result);
+    await this.handleUploadResult(result);
   };
 
   grantPermission = async (permission) => {
@@ -83,13 +86,43 @@ export default class MultipleImageUploadView extends Component {
     return status === 'granted';
   }
 
-  handleUploadResult = (result) => {
-    const { onUpload } = this.props;
-    if (result.cancelled) {
+  handleUploadResult = async (result) => {
+    if (!result.cancelled) {
+      await this.resizeAndUpload(result);
+    }
+  }
+
+  resizeAndUpload = async (image) => {
+    const { maxSize, onUpload } = this.props;
+
+    if (!maxSize) {
+      onUpload(image);
       return;
     }
-    onUpload(result);
-  }
+
+    const { uri, width, height } = image;
+
+    const newImage = await ImageManipulator.manipulateAsync(
+      uri,
+      [{ resize: this.calculateNewSize(maxSize, width, height) }],
+    );
+    onUpload(newImage);
+  };
+
+  calculateNewSize = (maxSize, width, height) => {
+    let newWidth;
+    let newHeight;
+
+    if (width > height) {
+      newWidth = Math.min(width, maxSize);
+      newHeight = height * newWidth / width;
+    } else {
+      newHeight = Math.min(height, maxSize);
+      newWidth = width * newHeight / height;
+    }
+
+    return { width: newWidth, height: newHeight };
+  };
 
   renderImage = ({ item: image, index }) => {
     const { onDeleteImage } = this.props;

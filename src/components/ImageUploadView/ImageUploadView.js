@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as ImageManipulator from 'expo-image-manipulator';
 import * as Permissions from 'expo-permissions';
 import * as Icon from '@expo/vector-icons';
 
@@ -14,6 +15,10 @@ export default class ImageUploadView extends Component {
       PropTypes.string,
     ]),
     aspect: PropTypes.arrayOf(PropTypes.number),
+    resize: PropTypes.shape({
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
+    }),
     iconSize: PropTypes.number,
     image: PropTypes.string,
     onUpload: PropTypes.func,
@@ -22,6 +27,7 @@ export default class ImageUploadView extends Component {
   static defaultProps = {
     width: '100%',
     aspect: [1, 1],
+    resize: null,
     iconSize: 30,
     image: null,
     onUpload: () => {},
@@ -32,7 +38,7 @@ export default class ImageUploadView extends Component {
   };
 
   pickImage = async () => {
-    const { onUpload, aspect } = this.props;
+    const { aspect } = this.props;
     const {
       status: cameraRollPerm,
     } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -47,8 +53,23 @@ export default class ImageUploadView extends Component {
     });
 
     if (!result.cancelled) {
-      onUpload(result);
+      await this.resizeAndUpload(result);
     }
+  };
+
+  resizeAndUpload = async (image) => {
+    const { resize, onUpload } = this.props;
+
+    if (!resize) {
+      onUpload(image);
+      return;
+    }
+
+    const newImage = await ImageManipulator.manipulateAsync(
+      image.uri,
+      [{ resize }],
+    );
+    onUpload(newImage);
   };
 
   render() {
