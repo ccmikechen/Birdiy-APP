@@ -8,7 +8,12 @@ import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
 import CreateProjectMutation from '../../mutations/CreateProjectMutation';
 
-import { showSaveProjectFailedMessage } from '../../helpers/toast';
+import {
+  showTooManyDraftsMessage,
+  showSaveProjectFailedMessage,
+} from '../../helpers/toast';
+
+import { TooManyDraftsError } from '../../errors';
 
 const i18nOptions = { scope: 'project.create' };
 
@@ -74,7 +79,11 @@ export default class CreateProjectScreen extends Component {
       .catch(this.handleSubmitError);
   };
 
-  handleSubmitError = () => {
+  handleSubmitError = (e) => {
+    if (e instanceof TooManyDraftsError) {
+      showTooManyDraftsMessage();
+      return;
+    }
     showSaveProjectFailedMessage();
   };
 

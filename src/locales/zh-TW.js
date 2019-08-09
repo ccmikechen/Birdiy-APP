@@ -407,6 +407,7 @@ export default {
     loginFailed: '登入失敗',
     saveProjectSuccess: '專案儲存成功',
     saveProjectFailed: '專案儲存失敗',
+    tooManyDrafts: '最多只能同時存在3個專案草稿',
     saveProjectError: '以下欄位輸入不完整，請修正後再試一次。\n\n%{fields}',
     publishProjectSuccess: '專案已設為公開',
     unpublishProjectSuccess: '專案已設為不公開',

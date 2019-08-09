@@ -298,6 +298,7 @@ export default {
     loginFailed: 'Failed to login',
     saveProjectSuccess: 'The project has been saved successfully',
     saveProjectFailed: 'Failed to save the current project',
+    tooManyDrafts: 'You can only have up to 3 drafts of the project at the same time',
     saveProjectError: 'Input not correct. Please make sure following fields are filled out correctly.\n\n%{fields}',
     publishProjectSuccess: 'The project has been published',
     unpublishProjectSuccess: 'The project has been unpublished',

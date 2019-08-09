@@ -70,6 +70,10 @@ export default class CreateProjectMutation extends Mutation {
     return {
       updater: (store) => {
         const payload = store.getRootField('createProject');
+
+        if (!payload) {
+          return;
+        }
         const project = payload.getLinkedRecord('project');
         this.sharedUpdater(store, project);
       },

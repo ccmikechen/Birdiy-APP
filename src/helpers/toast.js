@@ -31,6 +31,10 @@ export const showSaveProjectFailedMessage = () => (
   showError(i18n.t('alert.saveProjectFailed'))
 );
 
+export const showTooManyDraftsMessage = () => (
+  showError(i18n.t('alert.tooManyDrafts'))
+);
+
 export const showUnpublishProjectSuccessMessage = () => (
   showMessage(i18n.t('alert.unpublishProjectSuccess'))
 );

@@ -18,6 +18,7 @@ const errorsMap = {
   2003: project.DeleteProjectError,
   2004: project.PublishProjectError,
   2005: project.UnpublishProjectError,
+  2006: project.TooManyDraftsError,
 
   3001: post.CreatePostError,
   3002: post.UpdatePostError,

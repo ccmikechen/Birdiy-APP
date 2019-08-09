@@ -31,3 +31,9 @@ export class UnpublishProjectError extends ProjectError {
     super(2005, 'Cannot unpublish project');
   }
 }
+
+export class TooManyDraftsError extends ProjectError {
+  constructor() {
+    super(2006, 'Cannot create project since too many drafts');
+  }
+}

@@ -407,6 +407,7 @@ export default {
     loginFailed: 'ログイン失敗',
     saveProjectSuccess: 'プロジェクトを保存しました',
     saveProjectFailed: 'プロジェクトの保存が失敗しました',
+    tooManyDrafts: '未公開プロジェクト数の上限は３つです',
     saveProjectError: '以下のフィールドの情報が入力されていないか、不足しています。修正してまたお試しください。\n\n%{fields}',
     publishProjectSuccess: 'プロジェクトを公開しました',
     unpublishProjectSuccess: 'プロジェクトを非公開にしました',
