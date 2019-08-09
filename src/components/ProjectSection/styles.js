@@ -12,7 +12,7 @@ export default StyleSheet.create({
   image: {
     justifyContent: 'center',
     alignItems: 'center',
-    aspectRatio: 1,
+    aspectRatio: 6 / 5,
     backgroundColor: Base.dark,
     borderTopLeftRadius: Size.projectSectionBorderRadius,
     borderTopRightRadius: Size.projectSectionBorderRadius,

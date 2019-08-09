@@ -26,7 +26,7 @@ export default StyleSheet.create({
     fontSize: 24,
   },
   loadingContainer: {
-    aspectRatio: 1,
+    aspectRatio: 4 / 3,
     justifyContent: 'center',
     alignItems: 'center',
   },

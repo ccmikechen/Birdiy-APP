@@ -60,7 +60,7 @@ export default class MultipleImageUploadView extends Component {
 
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [1, 1],
+
     });
     this.handleUploadResult(result);
   };
@@ -73,7 +73,7 @@ export default class MultipleImageUploadView extends Component {
 
     const result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      aspect: [1, 1],
+
     });
     this.handleUploadResult(result);
   };
@@ -96,9 +96,9 @@ export default class MultipleImageUploadView extends Component {
     const { dimension } = this.state;
 
     return (
-      <View style={[styles.imageContainer, { height: dimension }]}>
+      <View style={[styles.imageContainer, { width: dimension }]}>
         <Image
-          style={[styles.image, { height: dimension }]}
+          style={[styles.image, { width: dimension }]}
           source={{ uri: image }}
         />
         <TouchableOpacity

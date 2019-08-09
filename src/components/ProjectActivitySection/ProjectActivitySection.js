@@ -139,6 +139,7 @@ export default class ProjectActivitySection extends Component {
             style={styles.image}
             uri={project.image ? project.image : null}
             width={Dimensions.get('window').width - 20}
+            aspectRatio={4 / 3}
           />
         </Ripple>
         <TouchableOpacity

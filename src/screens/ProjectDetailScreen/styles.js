@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   projectImage: {
     width: '100%',
-    aspectRatio: 1,
+    aspectRatio: 4 / 3,
   },
   contentSection: {
     width: '100%',

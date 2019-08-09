@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ViewPropTypes, Text } from 'react-native';
-import AutoHeightImage from 'react-native-auto-height-image';
+import {
+  View, ViewPropTypes, Text, Image,
+} from 'react-native';
 import * as Icon from '@expo/vector-icons';
 
 import LoadingIndicator from '../LoadingIndicator';
@@ -9,16 +10,15 @@ import LoadingIndicator from '../LoadingIndicator';
 import styles from './styles';
 
 const ImageView = ({
-  style, width, uri, amount,
+  style, width, aspectRatio, uri, amount,
 }) => (
   uri ? (
     <View style={styles.imageContainer}>
-      <AutoHeightImage
-        style={style}
+      <Image
+        style={[style, { width, aspectRatio }]}
         source={{ uri }}
-        width={width}
         PlaceholderContent={(
-          <View style={[styles.loadingContainer, { height: width }]}>
+          <View style={[styles.loadingContainer, { width, aspectRatio }]}>
             <LoadingIndicator />
           </View>
 )}
@@ -39,7 +39,7 @@ const ImageView = ({
       )}
     </View>
   ) : (
-    <View style={[style, styles.defaultImage, { width, height: width }]}>
+    <View style={[style, styles.defaultImage, { width, aspectRatio }]}>
       <Icon.MaterialCommunityIcons
         name="image-filter"
         size={width / 3}
@@ -52,6 +52,7 @@ const ImageView = ({
 ImageView.propTypes = {
   style: ViewPropTypes.style,
   width: PropTypes.number.isRequired,
+  aspectRatio: PropTypes.number.isRequired,
   uri: PropTypes.string,
   amount: PropTypes.number,
 };

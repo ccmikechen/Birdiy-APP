@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b38f21ede9280dda7d143a64288cd98c
+ * @relayHash 8feaabced1622f945835ae4844d043c3
  */
 
 /* eslint-disable */
@@ -18,8 +18,9 @@ export type EditProjectInput = {|
   methods?: ?$ReadOnlyArray<?ProjectMethodInput>,
   name: string,
   publish?: ?boolean,
+  source?: ?string,
   tip?: ?string,
-  topic: string,
+  topicName: string,
   video?: ?string,
 |};
 export type ProjectFileResourceInput = {|

@@ -26,7 +26,11 @@ export default class CreateProjectMutation extends Mutation {
   `;
 
   constructor(input, profile) {
-    super(input);
+    const { topic, ...restInput } = input;
+
+    const parsedInput = { topicName: topic, ...restInput };
+
+    super(parsedInput);
     this.profile = profile;
   }
 

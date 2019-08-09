@@ -13,7 +13,6 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   image: {
-    aspectRatio: 1,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },

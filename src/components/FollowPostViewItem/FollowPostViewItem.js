@@ -55,6 +55,7 @@ export default class FollowPostViewItem extends Component {
             style={styles.image}
             uri={post.thumbnail ? post.thumbnail.image : null}
             width={Size.followPostImageSize}
+            aspectRatio={4 / 3}
           />
         </TouchableOpacity>
         <TouchableOpacity

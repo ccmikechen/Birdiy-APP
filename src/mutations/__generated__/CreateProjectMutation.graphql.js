@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f49435203bdce28317808df70fb6c4dd
+ * @relayHash c1beb932d226fdf2bb72db2a927e1bf7
  */
 
 /* eslint-disable */
@@ -11,7 +11,7 @@
 import type { ConcreteRequest } from 'relay-runtime';
 export type CreateProjectInput = {|
   name: string,
-  topic: string,
+  topicName: string,
 |};
 export type CreateProjectMutationVariables = {|
   input: CreateProjectInput

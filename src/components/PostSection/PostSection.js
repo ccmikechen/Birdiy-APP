@@ -108,6 +108,7 @@ export default class PostSection extends Component {
             style={styles.image}
             uri={post.thumbnail ? post.thumbnail.image : null}
             width={Dimensions.get('window').width - 20}
+            aspectRatio={4 / 3}
             amount={post.photosCount}
           />
         </Ripple>

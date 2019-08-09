@@ -49,7 +49,7 @@ export default StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    aspectRatio: 1,
+    aspectRatio: 4 / 3,
     justifyContent: 'center',
     alignItems: 'center',
   },

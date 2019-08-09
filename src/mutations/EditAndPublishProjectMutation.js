@@ -28,6 +28,7 @@ export default class EditAndPublishProjectMutation extends Mutation {
 
   constructor(input) {
     const {
+      topic,
       image,
       materials,
       files,
@@ -37,6 +38,7 @@ export default class EditAndPublishProjectMutation extends Mutation {
 
     const parsedInput = {
       ...restInput,
+      topicName: topic,
       ...(ImageFile.parseURI(image, 'image')),
       materials: parseMaterials(materials),
       fileResources: parseFiles(files),
