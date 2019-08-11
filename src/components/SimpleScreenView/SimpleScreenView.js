@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import * as FacebookAds from 'expo-ads-facebook';
 import { AdMobBanner } from 'expo-ads-admob';
 import i18n from 'i18n-js';
@@ -31,6 +31,7 @@ export default class SimpleScreenView extends Component {
     headerPadding: PropTypes.bool,
     onToggleTabBar: PropTypes.func,
     fullScreen: PropTypes.bool,
+    showStatusBar: PropTypes.bool,
     loading: PropTypes.bool,
     error: PropTypes.instanceOf(Error),
     retry: PropTypes.func,
@@ -42,6 +43,7 @@ export default class SimpleScreenView extends Component {
     onToggleTabBar: () => {},
     headerPadding: true,
     fullScreen: false,
+    showStatusBar: true,
     children: null,
     loading: false,
     adType: null,
@@ -143,6 +145,7 @@ export default class SimpleScreenView extends Component {
       animatedScroll,
       headerPadding,
       fullScreen,
+      showStatusBar,
       adType,
     } = this.props;
     const { isHeaderVisible } = this.state;
@@ -155,6 +158,12 @@ export default class SimpleScreenView extends Component {
 
     return (
       <View style={styles.container}>
+        {!showStatusBar && (
+          <StatusBar
+            hidden
+            showHideTransition="slide"
+          />
+        )}
         <AnimatedHeader
           renderHeader={renderHeader}
           visible={!animatedScroll || isHeaderVisible}

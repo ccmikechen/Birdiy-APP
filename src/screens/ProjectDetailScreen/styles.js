@@ -1,9 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import Constants from 'expo-constants';
 
 import Colors, { Base, TextColor, Primary } from '../../constants/Colors';
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
+  statusBarPaddingView: {
+    height: Constants.statusBarHeight,
+  },
   header: {
     backgroundColor: 'transparent',
   },

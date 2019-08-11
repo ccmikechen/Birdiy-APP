@@ -122,7 +122,7 @@ export default {
       draft: '草稿',
     },
     statistics: {
-      viewed: '看過',
+      viewed: '瀏覽',
       liked: '喜歡',
       favorited: '收藏',
       followed: '跟著做',

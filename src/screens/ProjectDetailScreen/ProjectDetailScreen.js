@@ -267,6 +267,7 @@ export default class ProjectDetailScreen extends Component {
         headerPadding={false}
         adType="facebook"
       >
+        <View style={styles.statusBarPaddingView} />
         {isExist ? (
           <View>
             <View style={styles.projectImageContainer}>
