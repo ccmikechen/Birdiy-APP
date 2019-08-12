@@ -15,7 +15,7 @@
     "splash": {
       "image": "./src/images/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#003991"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,10 +25,10 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.birdiy.birdiy"
+      "bundleIdentifier": "com.birdiy.app"
     },
     "android": {
-      "package": "com.birdiy.birdiy",
+      "package": "com.birdiy.app",
       "intentFilters": [
         {
           "action": "VIEW",
