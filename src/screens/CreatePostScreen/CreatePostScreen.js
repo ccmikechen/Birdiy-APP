@@ -96,7 +96,7 @@ export default class CreatePostScreen extends Component {
     const mutation = new CreatePostMutation(
       values,
       query.viewer,
-    ).setHook(spinner);
+    ).setHook(spinner, i18n.t('general.saving'));
 
     mutation.commit()
       .then((res) => {

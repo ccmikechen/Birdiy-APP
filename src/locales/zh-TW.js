@@ -14,6 +14,7 @@ export default {
     delete: '刪除',
     download: '下載',
     reload: '重新載入',
+    saving: '儲存中',
   },
   post: {
     create: {

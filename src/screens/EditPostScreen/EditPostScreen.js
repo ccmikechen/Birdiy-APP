@@ -110,7 +110,8 @@ export default class EditPostScreen extends Component {
   handleSubmit = (values) => {
     const { navigation, screenProps: { spinner } } = this.props;
 
-    const mutation = new EditPostMutation(values).setHook(spinner);
+    const mutation = new EditPostMutation(values)
+      .setHook(spinner, i18n.t('general.saving'));
 
     mutation.commit()
       .then((res) => {

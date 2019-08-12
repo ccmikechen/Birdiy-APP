@@ -19,6 +19,7 @@ export default {
     delete: 'Delete',
     download: 'Download',
     reload: 'Reload',
+    saving: 'Saving',
   },
   post: {
     create: {

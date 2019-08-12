@@ -214,7 +214,8 @@ export default class EditProjectScreen extends Component {
 
   handleSave = (values) => {
     const { screenProps: { spinner } } = this.props;
-    const mutation = new EditProjectMutation(values).setHook(spinner);
+    const mutation = new EditProjectMutation(values)
+      .setHook(spinner, i18n.t('general.saving'));
 
     mutation.commit()
       .then(this.handleSavingResponse)
@@ -230,7 +231,8 @@ export default class EditProjectScreen extends Component {
     }
 
     const { screenProps: { spinner } } = this.props;
-    const mutation = new EditAndPublishProjectMutation(values).setHook(spinner);
+    const mutation = new EditAndPublishProjectMutation(values)
+      .setHook(spinner, i18n.t('general.saving'));
 
     mutation.commit()
       .then((res) => {

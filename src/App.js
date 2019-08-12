@@ -22,6 +22,7 @@ export default class App extends Component {
   state = {
     isLoadingComplete: false,
     isSpinnerVisible: false,
+    spinnerText: null,
   };
 
   async componentWillMount() {
@@ -44,18 +45,22 @@ export default class App extends Component {
     this.setState({ isLoadingComplete: true });
   };
 
-  showLoadingSpinner = () => {
-    this.setState({ isSpinnerVisible: true });
+  showLoadingSpinner = (message = null) => {
+    this.setState({
+      isSpinnerVisible: true,
+      spinnerText: message,
+    });
   };
 
   closeLoadingSpinner = () => {
-    this.setState({ isSpinnerVisible: false });
+    this.setState({ isSpinnerVisible: false, spinnerText: null });
   };
 
   render() {
     const {
       isLoadingComplete,
       isSpinnerVisible,
+      spinnerText,
     } = this.state;
     const { AppNavigator } = this;
 
@@ -71,6 +76,8 @@ export default class App extends Component {
         />
         <Spinner
           visible={isSpinnerVisible}
+          textContent={spinnerText}
+          textStyle={{ color: 'white' }}
         />
       </View>
     ) : (

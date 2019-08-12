@@ -14,6 +14,7 @@ export default {
     delete: '削除',
     download: 'ダウンロード',
     reload: '再読み込み',
+    saving: '保存中',
   },
   post: {
     create: {

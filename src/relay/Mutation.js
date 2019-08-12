@@ -53,8 +53,9 @@ export default class Mutation {
     return this.constructor.mutationConfig;
   }
 
-  setHook = (obj) => {
+  setHook = (obj, ...args) => {
     this.hookObject = obj;
+    this.hookArgs = args;
 
     return this;
   };
@@ -68,7 +69,7 @@ export default class Mutation {
 
     const mutationConfig = this.getMutationConfig();
     if (this.hookObject) {
-      this.hookObject.on();
+      this.hookObject.on(...this.hookArgs);
     }
 
     return new Promise((resolve, reject) => commitMutation(
