@@ -6,17 +6,17 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Button } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 import * as Permissions from 'expo-permissions';
 import * as Icon from '@expo/vector-icons';
-import i18n from 'i18n-js';
+
+import UploadImageActions from '../UploadImageActions';
+
+import { Primary } from '../../constants/Colors';
 
 import styles from './styles';
-
-const i18nOptions = { scope: 'imageUploadActions' };
 
 const getRealDimension = (dimension, spacing) => {
   const screenWidth = Dimensions.get('window').width;
@@ -124,15 +124,19 @@ export default class MultipleImageUploadView extends Component {
     return { width: newWidth, height: newHeight };
   };
 
-  renderImage = ({ item: image, index }) => {
+  renderItem = ({ item, index }) => {
     const { onDeleteImage } = this.props;
     const { dimension } = this.state;
+
+    if (item === 'add') {
+      return this.renderAddButton();
+    }
 
     return (
       <View style={[styles.imageContainer, { width: dimension }]}>
         <Image
           style={[styles.image, { width: dimension }]}
-          source={{ uri: image }}
+          source={{ uri: item }}
         />
         <TouchableOpacity
           style={styles.deleteButton}
@@ -148,35 +152,50 @@ export default class MultipleImageUploadView extends Component {
     );
   };
 
-  render() {
-    const { images } = this.props;
+  renderAddButton = () => {
     const { dimension } = this.state;
 
     return (
+      <TouchableOpacity
+        style={[
+          styles.addButtonContainer,
+          { width: dimension },
+        ]}
+        onPress={() => this.uploadActions.show()}
+      >
+        <Icon.Ionicons
+          name="ios-add-circle-outline"
+          size={40}
+          color={Primary(700)}
+        />
+      </TouchableOpacity>
+    );
+  };
+
+  render() {
+    const { images } = this.props;
+    const { dimension } = this.state;
+    const items = [
+      ...images,
+      ...(images.length < 10 ? ['add'] : []),
+    ];
+
+    return (
       <View style={styles.container}>
-        <View style={styles.buttonsContainer}>
-          <Button
-            title={i18n.t('upload', i18nOptions)}
-            containerStyle={styles.button}
-            type="solid"
-            onPress={this.handleImageUpload}
-          />
-          <Button
-            title={i18n.t('camera', i18nOptions)}
-            containerStyle={styles.button}
-            type="solid"
-            onPress={this.handleCamera}
-          />
-        </View>
         <View style={styles.imagesContainer}>
           <FlatGrid
             itemDimension={dimension}
-            items={images}
-            renderItem={this.renderImage}
+            items={items}
+            renderItem={this.renderItem}
             spacing={5}
             fixed
           />
         </View>
+        <UploadImageActions
+          ref={(ref) => { this.uploadActions = ref; }}
+          onPick={this.handleImageUpload}
+          onCamera={this.handleCamera}
+        />
       </View>
     );
   }
