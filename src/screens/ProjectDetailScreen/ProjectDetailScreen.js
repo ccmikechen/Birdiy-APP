@@ -121,7 +121,9 @@ export default class ProjectDetailScreen extends Component {
     const { query } = nextProps;
     const { viewed } = prevState;
 
-    if (!query || query.project.viewed || viewed) {
+    const isExist = query && query.project;
+    const isViewed = (isExist && query.project.viewed) || viewed;
+    if (!isExist || isViewed) {
       return null;
     }
 
@@ -251,9 +253,9 @@ export default class ProjectDetailScreen extends Component {
     const { navigation, query } = this.props;
     const { cartMaterials } = this.state;
     const project = query ? query.project : this.defaultProject;
-    const video = project.video && videoUrl.parse(project.video);
+    const isExist = project && !project.deletedAt && project.publishedAt;
+    const video = isExist && project.video && videoUrl.parse(project.video);
     const showVideo = video && ['youtube', 'vimeo'].includes(video.provider);
-    const isExist = !project.deletedAt && project.publishedAt;
 
     return (
       <TopScreenView
@@ -268,125 +270,127 @@ export default class ProjectDetailScreen extends Component {
         adType="facebook"
       >
         <View style={styles.statusBarPaddingView} />
-        {isExist ? (
-          <View>
-            <View style={styles.projectImageContainer}>
-              {
-                showVideo ? (
-                  <VideoPlayer
-                    style={styles.projectVideo}
-                    video={video}
-                  />
-                ) : (
-                  <Image
-                    style={styles.projectImage}
-                    source={{ uri: project.image }}
-                  />
-                )
-              }
-            </View>
-            <View style={styles.headerSection}>
-              <View style={styles.headerInfoContainer}>
-                <View style={[styles.contentSection, styles.topicContainer]}>
-                  <Text style={styles.topic}>
-                    {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
-                  </Text>
+        {
+          isExist ? (
+            <View>
+              <View style={styles.projectImageContainer}>
+                {
+                  showVideo ? (
+                    <VideoPlayer
+                      style={styles.projectVideo}
+                      video={video}
+                    />
+                  ) : (
+                    <Image
+                      style={styles.projectImage}
+                      source={{ uri: project.image }}
+                    />
+                  )
+                }
+              </View>
+              <View style={styles.headerSection}>
+                <View style={styles.headerInfoContainer}>
+                  <View style={[styles.contentSection, styles.topicContainer]}>
+                    <Text style={styles.topic}>
+                      {i18n.t(`topics.${project.topic.name}`, { defaultValue: project.topic.name })}
+                    </Text>
+                  </View>
+                  <View style={[styles.contentSection, styles.titleContainer]}>
+                    <Text style={styles.title}>
+                      {project.name}
+                    </Text>
+                  </View>
+                  <View style={[styles.contentSection, styles.statisticsContainer]}>
+                    <Text style={styles.statistics}>
+                      {`${project.viewCount} ${i18n.t('statistics.viewed', i18nOptions)}．${project.likeCount} ${i18n.t('statistics.liked', i18nOptions)}．${project.favoriteCount} ${i18n.t('statistics.favorited', i18nOptions)}．${project.relatedPostCount} ${i18n.t('statistics.followed', i18nOptions)}`}
+                    </Text>
+                  </View>
                 </View>
-                <View style={[styles.contentSection, styles.titleContainer]}>
-                  <Text style={styles.title}>
-                    {project.name}
-                  </Text>
-                </View>
-                <View style={[styles.contentSection, styles.statisticsContainer]}>
-                  <Text style={styles.statistics}>
-                    {`${project.viewCount} ${i18n.t('statistics.viewed', i18nOptions)}．${project.likeCount} ${i18n.t('statistics.liked', i18nOptions)}．${project.favoriteCount} ${i18n.t('statistics.favorited', i18nOptions)}．${project.relatedPostCount} ${i18n.t('statistics.followed', i18nOptions)}`}
-                  </Text>
+                <View style={styles.likeButtonContainer}>
+                  <LikeButton
+                    liked={project.liked}
+                    onPress={this.handleLikePress}
+                  />
                 </View>
               </View>
-              <View style={styles.likeButtonContainer}>
-                <LikeButton
-                  liked={project.liked}
-                  onPress={this.handleLikePress}
+              <View style={styles.authorContainer}>
+                <ProjectAuthor
+                  project={project}
+                  onUserPress={this.handleUserPress}
                 />
               </View>
-            </View>
-            <View style={styles.authorContainer}>
-              <ProjectAuthor
-                project={project}
-                onUserPress={this.handleUserPress}
-              />
-            </View>
-            <View style={styles.optionsContainer}>
-              <ProjectOptionButtons
-                favorite={project.favorite}
-                onFavoritePress={this.handleFavoritePress}
-                onNewPostPress={this.handleNewPostPress}
-              />
-            </View>
-            <ProjectDetailSection title={i18n.t('sections.introduction', i18nOptions)}>
-              <View style={styles.introContainer}>
-                <Text style={styles.intro}>
-                  {project.introduction}
-                </Text>
+              <View style={styles.optionsContainer}>
+                <ProjectOptionButtons
+                  favorite={project.favorite}
+                  onFavoritePress={this.handleFavoritePress}
+                  onNewPostPress={this.handleNewPostPress}
+                />
               </View>
-              {project.source && (
-                <View style={styles.sourceContainer}>
-                  <Text style={styles.sourceTitle}>
-                    {i18n.t('sections.source', i18nOptions)}
+              <ProjectDetailSection title={i18n.t('sections.introduction', i18nOptions)}>
+                <View style={styles.introContainer}>
+                  <Text style={styles.intro}>
+                    {project.introduction}
                   </Text>
-                  <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync(project.source)}>
-                    <Text style={styles.source}>
-                      {parseURL(project.source, true).host}
+                </View>
+                {project.source && (
+                  <View style={styles.sourceContainer}>
+                    <Text style={styles.sourceTitle}>
+                      {i18n.t('sections.source', i18nOptions)}
                     </Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync(project.source)}>
+                      <Text style={styles.source}>
+                        {parseURL(project.source, true).host}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </ProjectDetailSection>
+              {isAdsVisible() && (
+                <View style={styles.adContainer}>
+                  <AdMobBanner
+                    bannerSize="mediumRectangle"
+                    adUnitID="ca-app-pub-9037534471740373/7681169073"
+                  />
                 </View>
               )}
-            </ProjectDetailSection>
-            {isAdsVisible() && (
-              <View style={styles.adContainer}>
-                <AdMobBanner
-                  bannerSize="mediumRectangle"
-                  adUnitID="ca-app-pub-9037534471740373/7681169073"
-                />
-              </View>
-            )}
-            <ProjectDetailMaterialList
-              project={project}
-              cart={cartMaterials}
-              onLinkPress={this.handleMaterialLinkPress}
-              onCartToggle={this.handleMaterialCartToggle}
+              <ProjectDetailMaterialList
+                project={project}
+                cart={cartMaterials}
+                onLinkPress={this.handleMaterialLinkPress}
+                onCartToggle={this.handleMaterialCartToggle}
+              />
+              <ProjectDetailFileList
+                project={project}
+                onLinkPress={this.handleFileLinkPress}
+              />
+              <ProjectDetailMethodList project={project} />
+              {project.tip ? (
+                <ProjectDetailSection title={i18n.t('sections.tip', i18nOptions)}>
+                  <View style={styles.tipContainer}>
+                    <Text style={styles.tip}>
+                      {project.tip}
+                    </Text>
+                  </View>
+                </ProjectDetailSection>
+              ) : null}
+              <ProjectDetailFollowPostList
+                projectId={project.id}
+                project={project}
+                onPress={this.handleOpenPost}
+                onUserPress={this.handleUserPress}
+              />
+              <LoginActions
+                ref={(ref) => { this.loginActions = ref; }}
+                onLogin={this.handleLoginPress}
+              />
+            </View>
+          ) : (
+            <MessageView
+              message={i18n.t('project.deletedMessage')}
+              style={styles.emptyView}
             />
-            <ProjectDetailFileList
-              project={project}
-              onLinkPress={this.handleFileLinkPress}
-            />
-            <ProjectDetailMethodList project={project} />
-            {project.tip ? (
-              <ProjectDetailSection title={i18n.t('sections.tip', i18nOptions)}>
-                <View style={styles.tipContainer}>
-                  <Text style={styles.tip}>
-                    {project.tip}
-                  </Text>
-                </View>
-              </ProjectDetailSection>
-            ) : null}
-            <ProjectDetailFollowPostList
-              projectId={project.id}
-              project={project}
-              onPress={this.handleOpenPost}
-              onUserPress={this.handleUserPress}
-            />
-            <LoginActions
-              ref={(ref) => { this.loginActions = ref; }}
-              onLogin={this.handleLoginPress}
-            />
-          </View>
-        ) : (
-          <MessageView
-            message={i18n.t('project.deletedMessage')}
-            style={styles.emptyView}
-          />
-        )}
+          )
+        }
       </TopScreenView>
     );
   }
