@@ -64,13 +64,13 @@ export default class ProjectsScreen extends Component {
       if (this.newestList.isOnTop()) {
         navigation.setParams({ keyword: '', categories: [] });
       } else {
-        this.newestList.scrollToTopOrRefresh();
+        this.newestList.scrollToTop();
       }
     } else if (tabIndex === 1) {
       if (this.hotestList.isOnTop()) {
         navigation.setParams({ keyword: '', categories: [] });
       } else {
-        this.hotestList.scrollToTopOrRefresh();
+        this.hotestList.scrollToTop();
       }
     }
   };

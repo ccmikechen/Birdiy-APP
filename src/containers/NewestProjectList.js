@@ -84,14 +84,10 @@ export default createPaginationContainer(
       ...prevVars,
       count: totalCount,
     }),
-    getVariables: (props, { count, cursor }) => ({
+    getVariables: (props, { count, cursor }, fragmentVars) => ({
       count,
       newestCursor: cursor,
-      filter: {
-        name: props.keyword,
-        categories: props.categories,
-        topics: props.topics,
-      },
+      filter: fragmentVars.filter,
     }),
     variables: { newestCursor: null },
     query: graphql`

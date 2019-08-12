@@ -64,9 +64,17 @@ export default class TimelineScreen extends Component {
     }
 
     if (tabIndex === 0) {
-      this.allList.scrollToTopOrRefresh();
+      if (this.allList.isOnTop()) {
+        this.allList.refresh();
+      } else {
+        this.allList.scrollToTop();
+      }
     } else if (tabIndex === 1) {
-      this.followingList.scrollToTopOrRefresh();
+      if (this.followingList.isOnTop()) {
+        this.followingList.refresh();
+      } else {
+        this.followingList.scrollToTop();
+      }
     }
   };
 

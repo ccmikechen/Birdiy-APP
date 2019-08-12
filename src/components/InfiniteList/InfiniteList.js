@@ -64,14 +64,6 @@ export default class InfiniteList extends Component {
     this.scrollView.scrollTo({ x: 0, y: 0, animated: true });
   };
 
-  scrollToTopOrRefresh = () => {
-    if (this.isOnTop()) {
-      this.refresh();
-    } else {
-      this.scrollToTop();
-    }
-  };
-
   isOnTop = () => (
     this.y === 0
   );
