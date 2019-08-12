@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { WebView, View, ViewPropTypes } from 'react-native';
+import {
+  AppState, WebView, View, ViewPropTypes,
+} from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import videoUrl from 'js-video-url-parser';
 
 import LoadingIndicator from '../LoadingIndicator';
@@ -17,18 +20,38 @@ const VideoPlayer = (props) => {
     },
   }).split('//')[1];
 
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    AppState.addEventListener('change', setAppState);
+
+    return () => {
+      AppState.removeEventListener('change', setAppState);
+    };
+  });
+
   return (
-    <WebView
-      style={[styles.container, style]}
-      source={{ uri: `https://${uri}` }}
-      javaScriptEnabled
-      startInLoadingState
-      renderLoading={() => (
-        <View style={[styles.container, style]}>
-          <LoadingIndicator />
-        </View>
-      )}
-    />
+    <View>
+      <NavigationEvents
+        onDidFocus={() => setAppState('active')}
+        onWillBlur={() => setAppState('inactive')}
+      />
+      {
+        appState === 'active' && (
+          <WebView
+            style={[styles.container, style]}
+            source={{ uri: `https://${uri}` }}
+            javaScriptEnabled
+            startInLoadingState
+            renderLoading={() => (
+              <View style={[styles.container, style]}>
+                <LoadingIndicator />
+              </View>
+            )}
+          />
+        )
+      }
+    </View>
   );
 };
 
