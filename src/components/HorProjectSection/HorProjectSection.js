@@ -41,7 +41,7 @@ export default class HorProjectSection extends Component {
     onActionButtonPress: () => {},
   };
 
-  shoudComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps) {
     const { project } = this.props;
     return !isEqual(project, nextProps.project);
   }

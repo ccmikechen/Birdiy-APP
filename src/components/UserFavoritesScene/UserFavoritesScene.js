@@ -20,11 +20,13 @@ export default class UserFavoritesScene extends Component {
     })).isRequired,
     onMorePress: PropTypes.func,
     onOpenProject: PropTypes.func,
+    visible: PropTypes.bool,
   };
 
   static defaultProps = {
     onMorePress: () => {},
     onOpenProject: () => {},
+    visible: true,
   };
 
   renderRow = ({ item: project }) => {
@@ -40,10 +42,10 @@ export default class UserFavoritesScene extends Component {
   };
 
   render() {
-    const { projects, onMorePress } = this.props;
+    const { projects, onMorePress, visible } = this.props;
 
     return (
-      <View>
+      <View style={visible ? null : { display: 'none' }}>
         <FlatList
           {...this.props}
           style={styles.listView}

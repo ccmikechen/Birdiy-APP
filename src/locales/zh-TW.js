@@ -183,12 +183,12 @@ export default {
     follower: '關注者',
     tabs: {
       projects: '專案',
-      posts: '貼文',
+      posts: '跟著做',
       favorites: '收藏',
     },
     emptyMessage: {
       projects: '尚未建立任何專案',
-      posts: '尚未發布任何貼文',
+      posts: '尚未發布任何跟著做貼文',
       favorites: '沒有收藏專案',
     },
   },
@@ -394,7 +394,7 @@ export default {
     defaultMessage: '使用此功能前必須先登入',
     likeProjectMessage: '喜歡專案之前必須先登入',
     favoriteProjectMessage: '收藏專案之前必須先登入',
-    creatingFollowingPostMessage: '發布跟著做投稿之前必須先登入',
+    creatingFollowingPostMessage: '發布跟著做貼文之前必須先登入',
     followingMessage: '關注用戶之前必須先登入',
     unfollowingMessage: '取消關注用戶之前必須先登入',
     creatingProjectMessage: '新增專案之前必須先登入',

@@ -62,6 +62,7 @@ export default class ProfileTabMenu extends Component {
       profile,
       editable,
     } = this.props;
+    const { index } = this.state;
 
     return (
       <UserProjectsScene
@@ -72,6 +73,7 @@ export default class ProfileTabMenu extends Component {
         onOpenProject={onOpenProject}
         onEditProject={onEditProject}
         onDeleteProject={onDeleteProject}
+        visible={index === 0}
       />
     );
   };
@@ -86,6 +88,7 @@ export default class ProfileTabMenu extends Component {
       profile,
       editable,
     } = this.props;
+    const { index } = this.state;
 
     return (
       <UserPostsScene
@@ -96,6 +99,7 @@ export default class ProfileTabMenu extends Component {
         onOpenPost={onOpenPost}
         onEditPost={onEditPost}
         onDeletePost={onDeletePost}
+        visible={index === 1}
       />
     );
   };
@@ -106,28 +110,16 @@ export default class ProfileTabMenu extends Component {
       onOpenProject,
       profile,
     } = this.props;
+    const { index } = this.state;
 
     return (
       <UserFavoritesScene
         profile={profile}
         onMorePress={onMoreFavoritesPress}
         onOpenProject={onOpenProject}
+        visible={index === 2}
       />
     );
-  };
-
-  renderTabContent = () => {
-    const { index } = this.state;
-    switch (index) {
-      case 0:
-        return this.renderProjects();
-      case 1:
-        return this.renderPosts();
-      case 2:
-        return this.renderFavorites();
-      default:
-        return null;
-    }
   };
 
   render() {
@@ -147,7 +139,13 @@ export default class ProfileTabMenu extends Component {
           onChange={tabIndex => this.setState({ index: tabIndex })}
         />
         <View style={styles.contentContainer}>
-          {profile ? this.renderTabContent() : (
+          {profile ? (
+            <View>
+              {this.renderProjects()}
+              {this.renderPosts()}
+              {this.renderFavorites()}
+            </View>
+          ) : (
             <LoginMessageView
               style={{ height: 300 }}
               onLogin={onLogin}

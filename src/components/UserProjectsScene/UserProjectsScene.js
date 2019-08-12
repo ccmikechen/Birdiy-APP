@@ -23,6 +23,7 @@ export default class UserProjectsScene extends Component {
     onOpenProject: PropTypes.func,
     onEditProject: PropTypes.func,
     onDeleteProject: PropTypes.func,
+    visible: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -31,6 +32,7 @@ export default class UserProjectsScene extends Component {
     onOpenProject: () => {},
     onEditProject: () => {},
     onDeleteProject: () => {},
+    visible: true,
   };
 
   renderEditableRow = ({ item: project }) => {
@@ -70,10 +72,11 @@ export default class UserProjectsScene extends Component {
       editable,
       onEditProject,
       onDeleteProject,
+      visible,
     } = this.props;
 
     return (
-      <View>
+      <View style={visible ? null : { display: 'none' }}>
         {editable ? (
           <UserProfileAddButton
             text={i18n.t('project.create.title')}
