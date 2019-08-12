@@ -6,7 +6,7 @@ import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
 import HomeHeader from '../../components/HomeHeader';
-import ExtensibleSectionContent from '../../components/ExtensibleSectionContent';
+import TouchableSectionTitle from '../../components/TouchableSectionTitle';
 import CategoriesTable from '../../containers/CategoriesTable';
 import ProjectThumbnailsTable from '../../containers/ProjectThumbnailsTable';
 import FacebookSectionAd from '../../components/FacebookSectionAd';
@@ -85,14 +85,13 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={styles.categoriesContainer}>
-        <ExtensibleSectionContent
-          onMorePress={this.handleMoreCategory}
-          renderContent={() => (
-            <CategoriesTable
-              query={query}
-              onCategoryPress={this.handleCategoryPress}
-            />
-          )}
+        <TouchableSectionTitle
+          title={i18n.t('allTopics.title')}
+          onPress={this.handleMoreCategory}
+        />
+        <CategoriesTable
+          query={query}
+          onCategoryPress={this.handleCategoryPress}
         />
       </View>
     );

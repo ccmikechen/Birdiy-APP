@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import * as Icon from '@expo/vector-icons';
+import { View, Dimensions } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import i18n from 'i18n-js';
 
+import TouchableSectionTitle from '../TouchableSectionTitle';
 import ProjectSection from '../../containers/ProjectSection';
-
-import { TextColor } from '../../constants/Colors';
 
 import styles from './styles';
 
@@ -27,19 +20,10 @@ const ProjectThumbnailsTable = ({
 }) => (
   projects && projects.length > 0 && (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.categoryContainer}
+      <TouchableSectionTitle
+        title={i18n.t(`categories.${category}`, { defaultValue: category })}
         onPress={() => onCategoryPress({ name: category })}
-      >
-        <Text style={styles.category}>
-          {i18n.t(`categories.${category}`, { defaultValue: category })}
-        </Text>
-        <Icon.MaterialIcons
-          name="navigate-next"
-          size={22}
-          color={TextColor.sectionTitle}
-        />
-      </TouchableOpacity>
+      />
       <FlatGrid
         itemDimension={DIMENSION}
         spacing={SPACING}
