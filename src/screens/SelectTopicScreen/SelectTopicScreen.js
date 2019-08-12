@@ -50,8 +50,10 @@ export default class SelectTopicScreen extends Component {
     query: null,
   };
 
-  state ={
+  state = {
     initialized: false,
+    topicMap: null,
+    items: [],
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -62,14 +64,19 @@ export default class SelectTopicScreen extends Component {
       return null;
     }
 
-    const categoryMap = new Map();
-    query.categories.edges.forEach(({ node: { name, topics } }) => {
+    const topicMap = new Map();
+    const items = query.categories.edges.map(({ node: { name, topics } }) => {
       topics.edges.forEach(({ node: { name: topic } }) => {
-        categoryMap.set(topic, name);
+        topicMap.set(topic, name);
+      });
+
+      return ({
+        category: name,
+        data: topics.edges.map(({ node: { name: topic } }) => topic),
       });
     });
 
-    return { initialized: true, categoryMap };
+    return { initialized: true, topicMap, items };
   }
 
   constructor(props) {
@@ -82,7 +89,7 @@ export default class SelectTopicScreen extends Component {
 
   handleSelect = (item, isSelected) => {
     const { navigation } = this.props;
-    const { selected, categoryMap } = this.state;
+    const { selected, topicMap } = this.state;
     const multiple = navigation.getParam('multiple');
     const onSelect = navigation.getParam('onSelect');
 
@@ -90,7 +97,7 @@ export default class SelectTopicScreen extends Component {
       this.setState({ selected: item });
 
       if (onSelect) {
-        onSelect(item, categoryMap.get(item));
+        onSelect(item, topicMap.get(item));
       }
       navigation.goBack();
 
@@ -125,12 +132,12 @@ export default class SelectTopicScreen extends Component {
 
   handleSubmit = () => {
     const { navigation } = this.props;
-    const { selected, categoryMap } = this.state;
+    const { selected, topicMap } = this.state;
     const onSelect = navigation.getParam('onSelect');
 
     if (onSelect) {
       const category = selected.length === 1
-        ? categoryMap.get(selected[0])
+        ? topicMap.get(selected[0])
         : null;
       onSelect(selected, category);
     }
@@ -172,22 +179,9 @@ export default class SelectTopicScreen extends Component {
     </TouchableOpacity>
   );
 
-  getItems = () => {
-    const { query } = this.props;
-
-    if (!query) {
-      return [];
-    }
-
-    return query.categories.edges.map(({ node: { name, topics } }) => ({
-      category: name,
-      data: topics.edges.map(({ node: { name: topic } }) => topic),
-    }));
-  };
-
   render() {
     const { navigation } = this.props;
-    const { selected } = this.state;
+    const { items, selected } = this.state;
     const title = navigation.getParam('title') || i18n.t('selectTopic.title');
     const multiple = navigation.getParam('multiple');
 
@@ -213,7 +207,7 @@ export default class SelectTopicScreen extends Component {
         fullScreen
       >
         <ListSelector
-          items={this.getItems()}
+          items={items}
           selected={selected}
           multiple={multiple}
           section
