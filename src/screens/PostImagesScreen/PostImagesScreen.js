@@ -33,20 +33,17 @@ export default class PostImagesScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar hidden={false} />
-
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={() => navigation.goBack()}
-          >
-            <Icon.MaterialIcons
-              name="close"
-              size={30}
-              color="#ffffff"
-            />
-          </TouchableOpacity>
-        </View>
+        <StatusBar hidden />
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Icon.MaterialIcons
+            name="close"
+            size={30}
+            color="#ffffff"
+          />
+        </TouchableOpacity>
         <View style={styles.contentContainer}>
           {loading ? (
             <LoadingIndicator />
