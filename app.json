@@ -28,7 +28,20 @@
       "bundleIdentifier": "com.birdiy.birdiy"
     },
     "android": {
-      "package": "com.birdiy.birdiy"
+      "package": "com.birdiy.birdiy",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "https",
+            "host": "birdiy.com"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "description": "DIY sharing",
     "facebookAppId": "595828547560598",
