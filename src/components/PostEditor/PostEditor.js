@@ -132,6 +132,7 @@ export default class PostEditor extends Component {
                 <MultipleImageUploadView
                   images={photos.map(({ image }) => image)}
                   maxSize={700}
+                  maxLength={10}
                   onUpload={(image) => {
                     handleChange('photos')([
                       ...photos,

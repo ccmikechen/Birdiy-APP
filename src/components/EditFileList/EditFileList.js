@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Linking } from 'react-native';
-import { DocumentPicker } from 'expo';
+import * as DocumentPicker from 'expo-document-picker';
 import { Button } from 'react-native-elements';
 import { clone } from 'lodash';
 import i18n from 'i18n-js';
@@ -15,7 +15,7 @@ import { DEFAULT_FILE } from '../../constants/defaults';
 import styles from './styles';
 
 const i18nOptions = { scope: 'project.edit.files' };
-const MAX_FILE_BYTES = 5 * (1024 ** 2);
+const MAX_FILE_BYTES = 2 * (1024 ** 2);
 
 export default class EditFileList extends Component {
   static propTypes = {
@@ -99,7 +99,7 @@ export default class EditFileList extends Component {
     const result = await DocumentPicker.getDocumentAsync();
 
     if (result.size >= MAX_FILE_BYTES) {
-      showFileTooLargeMessage({ limit: '5M' });
+      showFileTooLargeMessage({ limit: '2M' });
       return;
     }
 
@@ -141,22 +141,24 @@ export default class EditFileList extends Component {
         <View style={styles.listContainer}>
           {data.map(this.renderItem)}
         </View>
-        <View style={styles.buttonsContainer}>
-          <Button
-            title={i18n.t('addLink', i18nOptions)}
-            titleStyle={styles.addButtonText}
-            containerStyle={styles.addButtonContainer}
-            buttonStyle={styles.addButton}
-            onPress={this.handleFileLinkAdd}
-          />
-          <Button
-            title={i18n.t('upload', i18nOptions)}
-            titleStyle={styles.addButtonText}
-            containerStyle={styles.addButtonContainer}
-            buttonStyle={styles.addButton}
-            onPress={this.handleUploadFile}
-          />
-        </View>
+        {data.length < 10 && (
+          <View style={styles.buttonsContainer}>
+            <Button
+              title={i18n.t('addLink', i18nOptions)}
+              titleStyle={styles.addButtonText}
+              containerStyle={styles.addButtonContainer}
+              buttonStyle={styles.addButton}
+              onPress={this.handleFileLinkAdd}
+            />
+            <Button
+              title={i18n.t('upload', i18nOptions)}
+              titleStyle={styles.addButtonText}
+              containerStyle={styles.addButtonContainer}
+              buttonStyle={styles.addButton}
+              onPress={this.handleUploadFile}
+            />
+          </View>
+        )}
       </View>
     );
   }

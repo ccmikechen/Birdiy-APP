@@ -6,6 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Base.lightest,
+    paddingBottom: 10,
   },
   listContainer: {
     width: '100%',

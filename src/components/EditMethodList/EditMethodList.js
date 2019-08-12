@@ -130,20 +130,22 @@ export default class EditMethodList extends Component {
         <View style={styles.listContainer}>
           {data.map(this.renderItem)}
         </View>
-        <Button
-          title={i18n.t('add', i18nOptions)}
-          titleStyle={styles.addButtonText}
-          containerStyle={styles.addButtonContainer}
-          buttonStyle={styles.addButton}
-          icon={(
-            <Icon.MaterialIcons
-              name="add"
-              size={20}
-              color="#ffffff"
-            />
-)}
-          onPress={this.handleItemAdd}
-        />
+        {data.length < 20 && (
+          <Button
+            title={i18n.t('add', i18nOptions)}
+            titleStyle={styles.addButtonText}
+            containerStyle={styles.addButtonContainer}
+            buttonStyle={styles.addButton}
+            icon={(
+              <Icon.MaterialIcons
+                name="add"
+                size={20}
+                color="#ffffff"
+              />
+            )}
+            onPress={this.handleItemAdd}
+          />
+        )}
       </View>
     );
   }

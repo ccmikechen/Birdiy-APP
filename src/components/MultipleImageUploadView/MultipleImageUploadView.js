@@ -33,6 +33,7 @@ export default class MultipleImageUploadView extends Component {
     spacing: PropTypes.number,
     onDeleteImage: PropTypes.func,
     maxSize: PropTypes.number,
+    maxLength: PropTypes.number,
   };
 
   static defaultProps = {
@@ -41,6 +42,7 @@ export default class MultipleImageUploadView extends Component {
     spacing: 10,
     onDeleteImage: () => {},
     maxSize: null,
+    maxLength: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -173,11 +175,11 @@ export default class MultipleImageUploadView extends Component {
   };
 
   render() {
-    const { images } = this.props;
+    const { images, maxLength } = this.props;
     const { dimension } = this.state;
     const items = [
       ...images,
-      ...(images.length < 10 ? ['add'] : []),
+      ...(!maxLength || images.length < maxLength ? ['add'] : []),
     ];
 
     return (

@@ -28,6 +28,7 @@
     "expo-ads-facebook": "~6.0.0",
     "expo-asset": "^6.0.0",
     "expo-constants": "~6.0.0",
+    "expo-document-picker": "~6.0.0",
     "expo-facebook": "~6.0.0",
     "expo-font": "~6.0.1",
     "expo-image-manipulator": "~6.0.0",
