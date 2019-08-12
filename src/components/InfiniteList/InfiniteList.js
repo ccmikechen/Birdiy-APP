@@ -7,6 +7,8 @@ import { isEqual } from 'lodash';
 import Refresh from '../Refresh';
 import scrollViewTrigger from '../../helpers/scrollViewTrigger';
 
+import Size from '../../constants/Size';
+
 const TriggerScrollView = scrollViewTrigger(InfiniteScrollView);
 
 export default class InfiniteList extends Component {
@@ -99,6 +101,7 @@ export default class InfiniteList extends Component {
               <Refresh
                 refreshing={refreshing}
                 onRefresh={this.handleRefresh}
+                progressViewOffset={Size.headerHeight}
               />
             )}
           />

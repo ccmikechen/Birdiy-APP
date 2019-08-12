@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RefreshControl } from 'react-native';
 
-import Size from '../../constants/Size';
 import { Secondary } from '../../constants/Colors';
 
 const Refresh = props => (
   <RefreshControl
     {...props}
-    progressViewOffset={Size.headerHeight}
     colors={[Secondary(500)]}
   />
 );
