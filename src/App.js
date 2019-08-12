@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { AppLoading } from 'expo';
+import { AppLoading, Linking } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Icon from '@expo/vector-icons';
@@ -64,6 +64,8 @@ export default class App extends Component {
     } = this.state;
     const { AppNavigator } = this;
 
+    const prefix = Linking.makeUrl('/');
+
     return isLoadingComplete ? (
       <View style={styles.container}>
         <AppNavigator
@@ -73,6 +75,7 @@ export default class App extends Component {
               off: this.closeLoadingSpinner,
             },
           }}
+          uriPrefix={prefix}
         />
         <Spinner
           visible={isSpinnerVisible}

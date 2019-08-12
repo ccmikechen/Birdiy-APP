@@ -43,7 +43,10 @@ const modals = {
 };
 
 export default async () => createAppContainer(createStackNavigator({
-  Main: await createMainTabNavigator(),
+  Main: {
+    screen: await createMainTabNavigator(),
+    path: '',
+  },
   ...modals,
 }, {
   mode: 'modal',

@@ -31,7 +31,10 @@ import RecentViewedScreen from '../containers/RecentViewedScreen';
 import Colors from '../constants/Colors';
 
 const sharedScreens = {
-  ProjectDetail: ProjectDetailScreen,
+  ProjectDetail: {
+    screen: ProjectDetailScreen,
+    path: ':id',
+  },
   User: UserScreen,
   UserProjects: UserProjectsScreen,
   UserPosts: UserPostsScreen,
@@ -84,17 +87,20 @@ export default () => createBottomTabNavigator({
     },
     transitionConfig: noAnimationTransitionConfig,
   }),
-  ProjectsStack: createStackNavigator({
-    Projects: ProjectsScreen,
-    ...sharedScreens,
-  }, {
-    navigationOptions: {
-      tabBarLabel: i18n.t('projects.title'),
-      tabBarIcon: tabBarIcon('search'),
-      tabBarOptions,
-    },
-    transitionConfig: noAnimationTransitionConfig,
-  }),
+  ProjectsStack: {
+    screen: createStackNavigator({
+      Projects: ProjectsScreen,
+      ...sharedScreens,
+    }, {
+      navigationOptions: {
+        tabBarLabel: i18n.t('projects.title'),
+        tabBarIcon: tabBarIcon('search'),
+        tabBarOptions,
+      },
+      transitionConfig: noAnimationTransitionConfig,
+    }),
+    path: 'project',
+  },
   ProfileStack: createStackNavigator({
     Profile: ProfileScreen,
     MyProjects: MyProjectsScreen,

@@ -2,6 +2,7 @@
   "expo": {
     "name": "Birdiy",
     "slug": "birdiy",
+    "scheme": "birdiy",
     "privacy": "unlisted",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -31,6 +32,6 @@
     },
     "description": "DIY sharing",
     "facebookAppId": "595828547560598",
-    "facebookDisplayName": "Birdiy"
+    "facebookDisplayName": "Birdiy",
   }
 }
