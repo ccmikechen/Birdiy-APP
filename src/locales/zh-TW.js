@@ -56,7 +56,7 @@ export default {
       title: '編輯專案',
       tabs: {
         introduction: '簡介',
-        image: '主圖',
+        image: '封面圖片',
         materials: '材料',
         files: '檔案資料',
         methods: '作法',
@@ -83,7 +83,7 @@ export default {
         placeholder: '（可選）Youtube / Vimeo 影片連結',
       },
       image: {
-        title: '主圖',
+        title: '封面圖片',
       },
       materials: {
         title: '材料',

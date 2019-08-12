@@ -61,7 +61,7 @@ export default {
       title: 'Edit Project',
       tabs: {
         introduction: 'Introduction',
-        image: 'Main Photo',
+        image: 'Photo',
         materials: 'Materials',
         files: 'Files',
         methods: 'Steps',
@@ -88,7 +88,7 @@ export default {
         placeholder: '(Optional) Youtube / Vimeo video url',
       },
       image: {
-        title: 'Main Image',
+        title: 'Photo',
       },
       materials: {
         title: 'Materials',
