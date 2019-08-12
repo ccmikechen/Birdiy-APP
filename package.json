@@ -58,6 +58,7 @@
     "react-native-indicators": "^0.13.0",
     "react-native-infinite-scroll-view": "^0.4.5",
     "react-native-input-scroll-view": "birdiy/react-native-input-scroll-view#master",
+    "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-material-ripple": "^0.8.0",
     "react-native-material-tabs": "^3.8.1",

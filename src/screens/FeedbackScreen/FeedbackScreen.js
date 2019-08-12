@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import i18n from 'i18n-js';
 
-import InputScreenView from '../../components/InputScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import FeedbackForm from '../../components/FeedbackForm';
 
@@ -33,7 +34,7 @@ export default class FeedbackScreen extends Component {
     const { navigation } = this.props;
 
     return (
-      <InputScreenView
+      <SimpleScreenView
         {...this.props}
         renderHeader={() => (
           <NormalBackHeader
@@ -44,8 +45,10 @@ export default class FeedbackScreen extends Component {
         fullScreen
         keyboardOffset={0}
       >
-        <FeedbackForm onSubmit={this.handleSubmit} />
-      </InputScreenView>
+        <KeyboardAwareScrollView>
+          <FeedbackForm onSubmit={this.handleSubmit} />
+        </KeyboardAwareScrollView>
+      </SimpleScreenView>
     );
   }
 }

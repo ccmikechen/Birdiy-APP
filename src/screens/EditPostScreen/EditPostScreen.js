@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BackHandler } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { cloneDeep } from 'lodash';
 import i18n from 'i18n-js';
 
-import InputScreenView from '../../components/InputScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import PostEditor from '../../components/PostEditor';
 
@@ -141,7 +142,7 @@ export default class EditPostScreen extends Component {
     const { initialPost } = this.state;
 
     return (
-      <InputScreenView
+      <SimpleScreenView
         {...this.props}
         renderHeader={() => (
           <NormalBackHeader
@@ -156,12 +157,17 @@ export default class EditPostScreen extends Component {
         )}
         fullScreen
       >
-        <PostEditor
-          ref={(ref) => { this.postEditor = ref; }}
-          initialValues={initialPost}
-          onSubmit={this.handleSubmit}
-        />
-      </InputScreenView>
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps="always"
+          enableOnAndroid
+        >
+          <PostEditor
+            ref={(ref) => { this.postEditor = ref; }}
+            initialValues={initialPost}
+            onSubmit={this.handleSubmit}
+          />
+        </KeyboardAwareScrollView>
+      </SimpleScreenView>
     );
   }
 }

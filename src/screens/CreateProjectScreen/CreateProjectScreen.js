@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import i18n from 'i18n-js';
 
-import InputScreenView from '../../components/InputScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProjectDraftEditor from '../../components/ProjectDraftEditor';
 
@@ -91,7 +92,7 @@ export default class CreateProjectScreen extends Component {
     const { navigation } = this.props;
 
     return (
-      <InputScreenView
+      <SimpleScreenView
         {...this.props}
         renderHeader={() => (
           <NormalBackHeader
@@ -106,14 +107,19 @@ export default class CreateProjectScreen extends Component {
         )}
         fullScreen
       >
-        <ProjectDraftEditor
-          ref={(ref) => { this.projectDraftEditor = ref; }}
-          initialValue={this.initialProject}
-          onOpenTopicSelector={this.handleOpenTopicSelector}
-          onSubmit={this.handleSubmit}
-          onSubmitPress={this.handleSubmitPress}
-        />
-      </InputScreenView>
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps="always"
+          enableOnAndroid
+        >
+          <ProjectDraftEditor
+            ref={(ref) => { this.projectDraftEditor = ref; }}
+            initialValue={this.initialProject}
+            onOpenTopicSelector={this.handleOpenTopicSelector}
+            onSubmit={this.handleSubmit}
+            onSubmitPress={this.handleSubmitPress}
+          />
+        </KeyboardAwareScrollView>
+      </SimpleScreenView>
     );
   }
 }

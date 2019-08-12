@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import i18n from 'i18n-js';
 
-import InputScreenView from '../../components/InputScreenView';
+import SimpleScreenView from '../../components/SimpleScreenView';
 import NormalBackHeader from '../../components/NormalBackHeader';
 import ProfileSetting from '../../components/ProfileSetting';
 
@@ -94,7 +95,7 @@ export default class ProfileSettingScreen extends Component {
     const { profile } = this.state;
 
     return (
-      <InputScreenView
+      <SimpleScreenView
         {...this.props}
         renderHeader={() => (
           <NormalBackHeader
@@ -109,11 +110,16 @@ export default class ProfileSettingScreen extends Component {
         )}
         fullScreen
       >
-        <ProfileSetting
-          profile={profile}
-          onChange={this.handleChange}
-        />
-      </InputScreenView>
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps="always"
+          enableOnAndroid
+        >
+          <ProfileSetting
+            profile={profile}
+            onChange={this.handleChange}
+          />
+        </KeyboardAwareScrollView>
+      </SimpleScreenView>
     );
   }
 }
