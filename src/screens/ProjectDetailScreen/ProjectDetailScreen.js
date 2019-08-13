@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  Share,
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import { AdMobBanner } from 'expo-ads-admob';
@@ -40,6 +41,8 @@ import Cart from '../../helpers/cart';
 import { isAdsVisible } from '../../helpers/ads';
 
 import { UnauthorizedError } from '../../errors';
+
+import config from '../../configs';
 
 import styles from './styles';
 
@@ -200,6 +203,19 @@ export default class ProjectDetailScreen extends Component {
     });
   };
 
+  handleSharePress = () => {
+    const { query: { project } } = this.props;
+    const url = `${config.BIRDIY_SERVER_HOST}/project/${project.id}`;
+
+    Share.share({
+      title: project.name,
+      message: url,
+      url,
+    }, {
+      dialogTitle: i18n.t('general.shareTo'),
+    });
+  };
+
   handleNewPostPress = async () => {
     if (!(await isLoggedIn())) {
       this.loginActions.show(i18n.t('loginActions.creatingFollowingPostMessage'));
@@ -323,6 +339,7 @@ export default class ProjectDetailScreen extends Component {
                 <ProjectOptionButtons
                   favorite={project.favorite}
                   onFavoritePress={this.handleFavoritePress}
+                  onSharePress={this.handleSharePress}
                   onNewPostPress={this.handleNewPostPress}
                 />
               </View>

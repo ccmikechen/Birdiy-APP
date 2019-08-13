@@ -13,11 +13,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 1,
-    borderRadius: 20,
+    borderRadius: 5,
     backgroundColor: '#000000',
   },
   image: {
-    borderRadius: 20,
+    borderRadius: 5,
     opacity: 0.6,
   },
   name: {

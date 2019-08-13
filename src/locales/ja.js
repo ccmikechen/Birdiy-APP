@@ -15,6 +15,7 @@ export default {
     download: 'ダウンロード',
     reload: '再読み込み',
     saving: '保存中',
+    shareTo: 'シェア',
   },
   post: {
     create: {
@@ -410,6 +411,7 @@ export default {
     camera: '新しい写真を取る',
   },
   alert: {
+    copyToClipboard: 'クリップボードにコピーしました',
     login: 'ログインしてください',
     loginFailed: 'ログイン失敗',
     saveProjectSuccess: 'プロジェクトを保存しました',

@@ -12,7 +12,7 @@ const i18nOptions = { scope: 'project.options' };
 
 const ProjectOptionButtons = ({
   onFavoritePress,
-  //  onSharePress,
+  onSharePress,
   onNewPostPress,
   favorite,
 }) => (
@@ -49,6 +49,20 @@ const ProjectOptionButtons = ({
     <View style={styles.divider} />
     <TouchableOpacity
       style={styles.buttonContainer}
+      onPress={onSharePress}
+    >
+      <Icon.MaterialIcons
+        name="share"
+        size={26}
+        color={Colors.headerIcon}
+      />
+      <Text style={styles.buttonText}>
+        {i18n.t('share', i18nOptions)}
+      </Text>
+    </TouchableOpacity>
+    <View style={styles.divider} />
+    <TouchableOpacity
+      style={styles.buttonContainer}
       onPress={onNewPostPress}
     >
       <Icon.MaterialCommunityIcons
@@ -65,14 +79,14 @@ const ProjectOptionButtons = ({
 
 ProjectOptionButtons.propTypes = {
   onFavoritePress: PropTypes.func,
-  //  onSharePress: PropTypes.func,
+  onSharePress: PropTypes.func,
   onNewPostPress: PropTypes.func,
   favorite: PropTypes.bool,
 };
 
 ProjectOptionButtons.defaultProps = {
   onFavoritePress: () => {},
-  //  onSharePress: () => {},
+  onSharePress: () => {},
   onNewPostPress: () => {},
   favorite: false,
 };

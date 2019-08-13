@@ -15,6 +15,7 @@ export default {
     download: '下載',
     reload: '重新載入',
     saving: '儲存中',
+    shareTo: '分享至',
   },
   post: {
     create: {
@@ -410,6 +411,7 @@ export default {
     camera: '拍攝照片',
   },
   alert: {
+    copyToClipboard: '已複製到剪貼簿',
     login: '請先登入',
     loginFailed: '登入失敗',
     saveProjectSuccess: '專案儲存成功',

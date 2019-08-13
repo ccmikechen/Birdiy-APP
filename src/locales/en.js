@@ -20,6 +20,7 @@ export default {
     download: 'Download',
     reload: 'Reload',
     saving: 'Saving',
+    shareTo: 'Share to',
   },
   post: {
     create: {
@@ -301,6 +302,7 @@ export default {
     camera: 'Take new picture',
   },
   alert: {
+    copyToClipboard: 'Copied to Clipboard',
     login: 'Please login',
     loginFailed: 'Failed to login',
     saveProjectSuccess: 'The project has been saved successfully',
