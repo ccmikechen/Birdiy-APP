@@ -42,9 +42,9 @@ const modals = {
   SelectorModal: SelectorScreen,
 };
 
-export default async () => createAppContainer(createStackNavigator({
+export default () => createAppContainer(createStackNavigator({
   Main: {
-    screen: await createMainTabNavigator(),
+    screen: createMainTabNavigator(),
     path: '',
   },
   ...modals,

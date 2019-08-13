@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { AppLoading, Linking } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
@@ -13,24 +13,12 @@ import locale from './locales';
 
 import { preloadImages } from './images';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
-
 export default class App extends Component {
   state = {
     isLoadingComplete: false,
     isSpinnerVisible: false,
     spinnerText: null,
   };
-
-  async componentWillMount() {
-    await locale.init();
-    this.AppNavigator = await createAppNavigator();
-  }
 
   loadResourcesAsync = async () => Promise.all([
     Asset.loadAsync([
@@ -39,10 +27,8 @@ export default class App extends Component {
     Font.loadAsync({
       ...Icon.Ionicons.font,
     }),
+    locale.init(),
   ]);
-
-  handleLoadingError = () => {
-  };
 
   handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
@@ -59,18 +45,13 @@ export default class App extends Component {
     this.setState({ isSpinnerVisible: false, spinnerText: null });
   };
 
-  render() {
-    const {
-      isLoadingComplete,
-      isSpinnerVisible,
-      spinnerText,
-    } = this.state;
-    const { AppNavigator } = this;
-
+  renderApp = () => {
+    const { isSpinnerVisible, spinnerText } = this.state;
     const prefix = Linking.makeUrl('/');
+    const AppNavigator = createAppNavigator();
 
-    return isLoadingComplete ? (
-      <View style={styles.container}>
+    return (
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <AppNavigator
           screenProps={{
             spinner: {
@@ -86,12 +67,20 @@ export default class App extends Component {
           textStyle={{ color: 'white' }}
         />
       </View>
-    ) : (
-      <AppLoading
-        startAsync={this.loadResourcesAsync}
-        onError={this.handleLoadingError}
-        onFinish={this.handleFinishLoading}
-      />
     );
+  };
+
+  render() {
+    const { isLoadingComplete } = this.state;
+
+    return isLoadingComplete
+      ? this.renderApp()
+      : (
+        <AppLoading
+          startAsync={this.loadResourcesAsync}
+          onError={console.warn} // eslint-disable-line no-console
+          onFinish={this.handleFinishLoading}
+        />
+      );
   }
 }
