@@ -226,6 +226,12 @@ export default {
   about: {
     title: 'About Birdiy',
   },
+  privacy: {
+    title: 'Privacy Policy',
+  },
+  terms: {
+    title: 'Terms of Service',
+  },
   feedback: {
     title: 'Feedback',
     type: {

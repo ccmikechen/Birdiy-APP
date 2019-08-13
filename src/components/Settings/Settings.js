@@ -77,6 +77,20 @@ export default class Settings extends Component {
         {/*   onPress={() => onItemPress('about')} */}
         {/* /> */}
         <Item
+          title={i18n.t('privacy.title')}
+          titleStyle={styles.title}
+          itemWidth={Size.settingItemHeight}
+          icon={this.renderIcon(Icon.MaterialCommunityIcons, 'key-variant')}
+          onPress={() => onItemPress('privacy')}
+        />
+        <Item
+          title={i18n.t('terms.title')}
+          titleStyle={styles.title}
+          itemWidth={Size.settingItemHeight}
+          icon={this.renderIcon(Icon.MaterialCommunityIcons, 'file-document-outline')}
+          onPress={() => onItemPress('terms')}
+        />
+        <Item
           title={i18n.t('feedback.title')}
           titleStyle={styles.title}
           itemWidth={Size.settingItemHeight}

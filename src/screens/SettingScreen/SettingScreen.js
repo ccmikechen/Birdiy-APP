@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as WebBrowser from 'expo-web-browser';
 import i18n from 'i18n-js';
 
 import TopScreenView from '../../components/TopScreenView';
@@ -64,6 +65,12 @@ export default class SettingScreen extends Component {
         break;
       case 'about':
         this.handleAbout();
+        break;
+      case 'privacy':
+        WebBrowser.openBrowserAsync('https://birdiy.com/privacy');
+        break;
+      case 'terms':
+        WebBrowser.openBrowserAsync('https://birdiy.com/terms');
         break;
       case 'feedback':
         this.handleFeedback();

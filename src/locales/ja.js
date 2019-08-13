@@ -335,6 +335,12 @@ export default {
   about: {
     title: 'Birdiyについて',
   },
+  privacy: {
+    title: 'プライバシーポリシー',
+  },
+  terms: {
+    title: '利用規約',
+  },
   feedback: {
     title: 'ご意見',
     type: {
