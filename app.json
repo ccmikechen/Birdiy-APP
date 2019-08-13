@@ -29,6 +29,7 @@
     },
     "android": {
       "package": "com.birdiy.app",
+      "versionCode": 1,
       "intentFilters": [
         {
           "action": "VIEW",

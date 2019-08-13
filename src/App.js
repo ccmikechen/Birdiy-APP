@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { AppLoading, Linking } from 'expo';
+import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Icon from '@expo/vector-icons';
@@ -47,8 +47,9 @@ export default class App extends Component {
 
   renderApp = () => {
     const { isSpinnerVisible, spinnerText } = this.state;
-    const prefix = Linking.makeUrl('/');
     const AppNavigator = createAppNavigator();
+
+    const prefix = /https:\/\/birdiy.com\/|birdiy:\/\//;
 
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
