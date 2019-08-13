@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
+  TouchableOpacity,
   Text,
 } from 'react-native';
 import i18n from 'i18n-js';
@@ -25,7 +26,10 @@ const ProjectAuthor = ({
       size={Size.projectProfileImageSize}
       borderRadius={Size.projectProfileImageSize / 2}
     />
-    <View style={styles.infoContainer}>
+    <TouchableOpacity
+      style={styles.infoContainer}
+      onPress={() => onUserPress(author.id)}
+    >
       <View style={styles.userNameContainer}>
         <Text style={styles.userName}>
           {author.name}
@@ -36,7 +40,7 @@ const ProjectAuthor = ({
           {`${author.projectCount} ${i18n.t('projects', i18nOptions)}．${author.followerCount} ${i18n.t('followers', i18nOptions)}`}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </View>
 );
 
