@@ -16,6 +16,7 @@ export default {
     reload: '重新載入',
     saving: '儲存中',
     shareTo: '分享至',
+    watchVideo: '觀看原始影片',
   },
   post: {
     create: {

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import { AdMobBanner } from 'expo-ads-admob';
+import * as Icon from '@expo/vector-icons';
 import parseURL from 'url-parse';
 import videoUrl from 'js-video-url-parser';
 import i18n from 'i18n-js';
@@ -41,6 +42,8 @@ import Cart from '../../helpers/cart';
 import { isAdsVisible } from '../../helpers/ads';
 
 import { UnauthorizedError } from '../../errors';
+
+import { TextColor } from '../../constants/Colors';
 
 import config from '../../configs';
 
@@ -157,6 +160,11 @@ export default class ProjectDetailScreen extends Component {
 
     this.setState({ cartMaterials });
   }
+
+  handleOpenVideo = () => {
+    const { query: { project: { video } } } = this.props;
+    Linking.openURL(video);
+  };
 
   handleUserPress = (id) => {
     const { navigation } = this.props;
@@ -292,10 +300,25 @@ export default class ProjectDetailScreen extends Component {
               <View style={styles.projectImageContainer}>
                 {
                   showVideo ? (
-                    <VideoPlayer
-                      style={styles.projectVideo}
-                      video={video}
-                    />
+                    <View style={styles.videoContainer}>
+                      <VideoPlayer
+                        style={styles.projectVideo}
+                        video={video}
+                      />
+                      <TouchableOpacity
+                        style={styles.videoButton}
+                        onPress={this.handleOpenVideo}
+                      >
+                        <Text style={styles.videoButtonText}>
+                          {i18n.t('general.watchVideo')}
+                        </Text>
+                        <Icon.MaterialIcons
+                          name="navigate-next"
+                          size={14}
+                          color={TextColor.primaryLight}
+                        />
+                      </TouchableOpacity>
+                    </View>
                   ) : (
                     <Image
                       style={styles.projectImage}

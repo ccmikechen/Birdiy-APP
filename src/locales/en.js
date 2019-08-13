@@ -21,6 +21,7 @@ export default {
     reload: 'Reload',
     saving: 'Saving',
     shareTo: 'Share to',
+    watchVideo: 'Go to original video',
   },
   post: {
     create: {

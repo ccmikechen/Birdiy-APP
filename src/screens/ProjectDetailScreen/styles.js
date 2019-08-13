@@ -1,7 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
-import Colors, { Base, TextColor, Primary } from '../../constants/Colors';
+import Colors, {
+  Base, TextColor, Primary, Tertiary,
+} from '../../constants/Colors';
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
@@ -13,9 +15,22 @@ export default StyleSheet.create({
   },
   projectImageContainer: {
   },
+  videoContainer: {
+  },
   projectVideo: {
     width: '100%',
     aspectRatio: 16 / 9,
+  },
+  videoButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Tertiary(800),
+  },
+  videoButtonText: {
+    color: TextColor.primaryLight,
+    fontSize: 14,
+    padding: 5,
   },
   projectImage: {
     width: '100%',

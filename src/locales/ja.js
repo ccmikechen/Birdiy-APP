@@ -16,6 +16,7 @@ export default {
     reload: '再読み込み',
     saving: '保存中',
     shareTo: 'シェア',
+    watchVideo: '動画サイトへ',
   },
   post: {
     create: {
