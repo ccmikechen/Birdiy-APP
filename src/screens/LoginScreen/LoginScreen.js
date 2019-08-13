@@ -7,7 +7,7 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import { Google } from 'expo';
+import * as Google from 'expo-google-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as Icon from '@expo/vector-icons';
 import i18n from 'i18n-js';
@@ -44,12 +44,8 @@ export default class LoginScreen extends Component {
     }).isRequired,
   };
 
-  static defaultProps = {
-  };
-
   handleGoogleLogin = async () => {
     const { screenProps: { spinner } } = this.props;
-    spinner.on();
 
     const { type, accessToken } = await Google.logInAsync({
       iosClientId: config.IOS_EXPO_CLIENT_ID,
