@@ -42,7 +42,12 @@
             "DEFAULT"
           ]
         }
-      ]
+      ],
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyAAk30yPn14KfuNSE7-5pSMTkigKeXE8Ys"
+        }
+      }
     },
     "description": "DIY sharing",
     "facebookAppId": "595828547560598",

@@ -52,6 +52,7 @@ export default class LoginScreen extends Component {
       androidClientId: config.ANDROID_EXPO_CLIENT_ID,
       iosStandaloneAppClientId: config.IOS_CLIENT_ID,
       androidStandaloneAppClientId: config.ANDROID_CLIENT_ID,
+      behavior: 'web',
     });
 
     if (type !== 'success') {
