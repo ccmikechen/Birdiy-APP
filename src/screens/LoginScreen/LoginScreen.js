@@ -7,7 +7,7 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import * as Google from 'expo-google-app-auth';
+import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import * as Icon from '@expo/vector-icons';
 import i18n from 'i18n-js';
@@ -44,16 +44,15 @@ export default class LoginScreen extends Component {
     }).isRequired,
   };
 
+  componentDidMount() {
+    GoogleSignIn.initAsync({ clientId: config.ANDROID_CLIENT_ID });
+  }
+
   handleGoogleLogin = async () => {
     const { screenProps: { spinner } } = this.props;
 
-    const { type, accessToken } = await Google.logInAsync({
-      iosClientId: config.IOS_EXPO_CLIENT_ID,
-      androidClientId: config.ANDROID_EXPO_CLIENT_ID,
-      iosStandaloneAppClientId: config.IOS_CLIENT_ID,
-      androidStandaloneAppClientId: config.ANDROID_CLIENT_ID,
-      behavior: 'web',
-    });
+    await GoogleSignIn.askForPlayServicesAsync();
+    const { type, user } = await GoogleSignIn.signInAsync();
 
     if (type !== 'success') {
       spinner.off();
@@ -63,7 +62,7 @@ export default class LoginScreen extends Component {
 
     const mutation = new LoginMutation({
       method: 'google',
-      credential: accessToken,
+      credential: user.auth.accessToken,
     }).setHook(spinner);
 
     mutation.commit()

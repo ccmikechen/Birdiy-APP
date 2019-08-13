@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "266590291919",
+    "firebase_url": "https://birdiyapp.firebaseio.com",
+    "project_id": "birdiyapp",
+    "storage_bucket": "birdiyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266590291919:android:4905d7ef7a853d19",
+        "android_client_info": {
+          "package_name": "com.birdiy.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266590291919-21m7fjj31eckrra2t7c8055mfvg4pfsf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.birdiy.app",
+            "certificate_hash": "2398dee3c6d038b34e543fc20a36058a93a3ce5c"
+          }
+        },
+        {
+          "client_id": "266590291919-u67llen85v5l5iql1bciqemm31dv0e97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDci6zkPeKAcAo1SnCXa3HdVAd4Je1gmmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266590291919-u67llen85v5l5iql1bciqemm31dv0e97.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "266590291919-r7uc0un8g947gbcgcg3drkpf7gn8pmvb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

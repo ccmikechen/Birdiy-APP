@@ -3387,13 +3387,6 @@ expo-ads-facebook@~6.0.0:
     fbemitter "^2.1.1"
     nullthrows "^1.1.0"
 
-expo-app-auth@~6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/expo-app-auth/-/expo-app-auth-6.0.0.tgz#4b2535da16a0234f67e813708960fc146aec867e"
-  integrity sha512-/7dv/RXYfg4OGmm5xOJUTecezTqccxmaUuYx1jt+hoI/QqD+q5uvT2u5Phi8uU4WsE5bi8qlkSRNTpL+rGSVoQ==
-  dependencies:
-    invariant "^2.2.4"
-
 expo-app-loader-provider@~6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/expo-app-loader-provider/-/expo-app-loader-provider-6.0.0.tgz#c187a39942ac27cfaec3b394a5c9851d3f39678b"
@@ -3441,13 +3434,12 @@ expo-font@~6.0.1:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-google-app-auth@^6.0.0:
+expo-google-sign-in@~6.0.0:
   version "6.0.0"
-  resolved "https://registry.yarnpkg.com/expo-google-app-auth/-/expo-google-app-auth-6.0.0.tgz#1d9e4603271fa89d36ebaf604adb0169739f4235"
-  integrity sha512-23gkverd0OKGuCSjCxR/Uo08GvlMpTBR5yipbfwGosqvEk3WuCAhISGWIEg0Ozd0WA8DfZ9AyQhLYyWkbM4EIQ==
+  resolved "https://registry.yarnpkg.com/expo-google-sign-in/-/expo-google-sign-in-6.0.0.tgz#ff5c521a046dbdbd24a628e5d09db25fb7bd59bf"
+  integrity sha512-wWiiuRyMYbMy1LdHeUsyu2XAtyKbGB2gek9xUIMQJMklfmOO+wm8KshQipx4ZnYcQVVm2iN0bQCigASlewBdDw==
   dependencies:
-    expo-app-auth "~6.0.0"
-    expo-constants "~6.0.0"
+    invariant "^2.2.4"
 
 expo-image-manipulator@~6.0.0:
   version "6.0.0"
