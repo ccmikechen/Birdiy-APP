@@ -6,9 +6,9 @@ import {
 import { Surface, TouchableRipple } from 'react-native-paper';
 import i18n from 'i18n-js';
 
-import styles from './styles';
+import { GOOGLE_ICON } from '../../images';
 
-const icon = require('../../images/google-icon.png');
+import styles from './styles';
 
 const GoogleLoginButton = ({ style, onPress }) => (
   <Surface style={[styles.container, style]}>
@@ -19,7 +19,7 @@ const GoogleLoginButton = ({ style, onPress }) => (
       <View style={styles.buttonContent}>
         <View style={styles.iconContainer}>
           <Image
-            source={icon}
+            source={GOOGLE_ICON}
             style={styles.icon}
           />
         </View>

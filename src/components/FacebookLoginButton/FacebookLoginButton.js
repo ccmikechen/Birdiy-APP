@@ -8,9 +8,9 @@ import i18n from 'i18n-js';
 
 import Colors from '../../constants/Colors';
 
-import styles from './styles';
+import { FACEBOOK_ICON } from '../../images';
 
-const icon = require('../../images/facebook-icon.png');
+import styles from './styles';
 
 const FacebookLoginButton = ({ style, onPress }) => (
   <Surface style={[styles.container, style]}>
@@ -21,7 +21,7 @@ const FacebookLoginButton = ({ style, onPress }) => (
       <View style={styles.buttonContent}>
         <View style={styles.iconContainer}>
           <Image
-            source={icon}
+            source={FACEBOOK_ICON}
             style={styles.icon}
             backgroundColor={Colors.facebook}
             tintColor="#ffffff"

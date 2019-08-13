@@ -11,6 +11,8 @@ import createAppNavigator from './navigation/AppNavigator';
 
 import locale from './locales';
 
+import { preloadImages } from './images';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,6 +34,7 @@ export default class App extends Component {
 
   loadResourcesAsync = async () => Promise.all([
     Asset.loadAsync([
+      ...preloadImages,
     ]),
     Font.loadAsync({
       ...Icon.Ionicons.font,
