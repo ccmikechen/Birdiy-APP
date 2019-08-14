@@ -72,7 +72,8 @@ export default class ProfileSettingScreen extends Component {
     const { navigation, screenProps: { spinner } } = this.props;
     const { profile } = this.state;
 
-    const mutation = new EditProfileMutation(profile).setHook(spinner);
+    const mutation = new EditProfileMutation(profile)
+      .setHook(spinner, i18n.t('general.saving'));
 
     mutation.commit()
       .then((res) => {

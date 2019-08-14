@@ -6,9 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2019-08-14
+### Changed
+- Fix bug of AppNavigator re-redering.
+
 ## [1.0.0] - 2019-08-12
 ### Added
 - CHANGELOG file.
 
-[Unreleased]: https://github.com/ccmikechen/Birdiy-app/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/ccmikechen/Birdiy-app/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/ccmikechen/Birdiy-app/releases/tag/v1.0.1
 [1.0.0]: https://github.com/ccmikechen/Birdiy-app/releases/tag/v1.0.0
