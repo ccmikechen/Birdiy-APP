@@ -45,9 +45,27 @@ export default class App extends Component {
     this.setState({ isSpinnerVisible: false, spinnerText: null });
   };
 
-  renderApp = () => {
-    const { isSpinnerVisible, spinnerText } = this.state;
-    const AppNavigator = createAppNavigator();
+  render() {
+    const {
+      isLoadingComplete,
+      isSpinnerVisible,
+      spinnerText,
+    } = this.state;
+
+    if (!isLoadingComplete) {
+      return (
+        <AppLoading
+          startAsync={this.loadResourcesAsync}
+          onError={console.warn} // eslint-disable-line no-console
+          onFinish={this.handleFinishLoading}
+        />
+      );
+    }
+
+    if (!this.AppNavigator) {
+      this.AppNavigator = createAppNavigator();
+    }
+    const { AppNavigator } = this;
 
     const prefix = /https:\/\/birdiy.com\/|birdiy:\/\//;
 
@@ -69,19 +87,5 @@ export default class App extends Component {
         />
       </View>
     );
-  };
-
-  render() {
-    const { isLoadingComplete } = this.state;
-
-    return isLoadingComplete
-      ? this.renderApp()
-      : (
-        <AppLoading
-          startAsync={this.loadResourcesAsync}
-          onError={console.warn} // eslint-disable-line no-console
-          onFinish={this.handleFinishLoading}
-        />
-      );
   }
 }
