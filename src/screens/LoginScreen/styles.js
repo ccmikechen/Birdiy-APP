@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
-import Color from '../../constants/Colors';
+import Color, { TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -44,5 +44,19 @@ export default StyleSheet.create({
     marginTop: 10,
     marginRight: 10,
     alignSelf: 'flex-end',
+  },
+  footerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBottom: 20,
+  },
+  agreement: {
+    color: TextColor.primaryLight,
+    fontSize: 14,
+  },
+  terms: {
+    color: TextColor.primaryLight,
+    textDecorationLine: 'underline',
   },
 });

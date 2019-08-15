@@ -386,6 +386,7 @@ export default {
     google: '透過 Google 登入',
     facebook: '透過 Facebook 登入',
     loginRequiredMessage: '尚未登入',
+    agreement: '繼續進行即表示你同意',
   },
   searchBar: {
     placeholder: '找專案',

@@ -10,6 +10,7 @@ import {
 import * as GoogleSignIn from 'expo-google-sign-in';
 import * as Facebook from 'expo-facebook';
 import * as Icon from '@expo/vector-icons';
+import * as WebBrowser from 'expo-web-browser';
 import i18n from 'i18n-js';
 
 import GoogleLoginButton from '../../components/GoogleLoginButton';
@@ -45,7 +46,9 @@ export default class LoginScreen extends Component {
   };
 
   componentDidMount() {
-    GoogleSignIn.initAsync({ clientId: config.ANDROID_CLIENT_ID });
+    GoogleSignIn
+      .initAsync({ clientId: config.ANDROID_CLIENT_ID })
+      .catch(() => {});
   }
 
   handleGoogleLogin = async () => {
@@ -100,6 +103,10 @@ export default class LoginScreen extends Component {
     resetToHome(navigation);
   };
 
+  handleTermsPress = () => {
+    WebBrowser.openBrowserAsync('https://birdiy.com/terms');
+  };
+
   render() {
     const { navigation } = this.props;
 
@@ -141,6 +148,16 @@ export default class LoginScreen extends Component {
             style={styles.loginButtonContainer}
             onPress={this.handleFacebookLogin}
           />
+        </View>
+        <View style={styles.footerContainer}>
+          <Text style={styles.agreement}>
+            {i18n.t('login.agreement')}
+          </Text>
+          <TouchableOpacity onPress={this.handleTermsPress}>
+            <Text style={styles.terms}>
+              {i18n.t('terms.title')}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
