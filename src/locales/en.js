@@ -22,6 +22,7 @@ export default {
     saving: 'Saving',
     shareTo: 'Share to',
     watchVideo: 'Go to original video',
+    report: 'Report',
   },
   post: {
     create: {
@@ -159,6 +160,7 @@ export default {
       followingPosts: 'Followed Posts',
     },
     deletedMessage: 'This project has not been published or has been deleted',
+    report: 'Report project',
   },
   home: {
     title: 'Home',
@@ -277,6 +279,10 @@ export default {
     google: 'Sign in with Google',
     facebook: 'Sign in with Facebook',
     loginRequiredMessage: 'Login to your account',
+    agreement: {
+      head: 'By continuing, you agree to our ',
+      tail: '.',
+    },
   },
   searchBar: {
     placeholder: 'Find Projects',
@@ -342,6 +348,11 @@ export default {
     },
     sendFeedbackSuccess: 'Your feedback has been submitted successfully',
     fileTooLarge: 'Maximum file size is %{limit}',
+    reportSuccess: 'Successfully reported',
+    reportProject: {
+      title: 'Report project',
+      message: 'Are you sure that this project contains inappropriate content or graphic plagiarism?',
+    },
   },
   errors: {
     required: 'Required',

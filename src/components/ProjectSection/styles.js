@@ -13,7 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 6 / 5,
-    backgroundColor: Base.dark,
+    backgroundColor: Base.darkest,
     borderTopLeftRadius: Size.projectSectionBorderRadius,
     borderTopRightRadius: Size.projectSectionBorderRadius,
   },
@@ -57,7 +57,6 @@ export default StyleSheet.create({
   },
   name: {
     color: TextColor.primaryDark,
-    fontWeight: '600',
     fontSize: 16,
     padding: 5,
     paddingTop: 0,

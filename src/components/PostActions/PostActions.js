@@ -7,11 +7,13 @@ export default class PostActions extends Component {
   static propTypes = {
     onFollowUser: PropTypes.func,
     onUnfollowUser: PropTypes.func,
+    onReport: PropTypes.func,
   };
 
   static defaultProps = {
     onFollowUser: () => {},
     onUnfollowUser: () => {},
+    onReport: () => {},
   };
 
   state = {
@@ -26,7 +28,7 @@ export default class PostActions extends Component {
 
   handlePress = (index) => {
     const { post } = this.state;
-    const { onFollowUser, onUnfollowUser } = this.props;
+    const { onFollowUser, onUnfollowUser, onReport } = this.props;
 
     switch (index) {
       case 0:
@@ -35,6 +37,9 @@ export default class PostActions extends Component {
         } else {
           onFollowUser(post.author.id);
         }
+        break;
+      case 1:
+        onReport(post.id);
         break;
       default:
     }
@@ -50,9 +55,10 @@ export default class PostActions extends Component {
           post.author.following
             ? i18n.t('followUserActions.unfollow')
             : i18n.t('followUserActions.follow'),
+          i18n.t('general.report'),
           i18n.t('general.cancel'),
         ]}
-        cancelButtonIndex={1}
+        cancelButtonIndex={2}
         destructiveButtonIndex={post.author.following && 0}
         onPress={this.handlePress}
       />

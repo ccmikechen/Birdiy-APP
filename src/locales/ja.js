@@ -17,6 +17,7 @@ export default {
     saving: '保存中',
     shareTo: 'シェア',
     watchVideo: '動画サイトへ',
+    report: '報告する',
   },
   post: {
     create: {
@@ -154,6 +155,7 @@ export default {
       followingPosts: 'フォローした投稿',
     },
     deletedMessage: 'このプロジェクトは公開されていないか削除されています',
+    report: 'プロジェクトを報告する',
   },
   home: {
     title: 'ホーム',
@@ -386,6 +388,10 @@ export default {
     google: 'Googleでログイン',
     facebook: 'Facebookでログイン',
     loginRequiredMessage: 'ログインしてください',
+    agreement: {
+      head: '本',
+      tail: 'に同意した上で本サービスを利用してください',
+    },
   },
   searchBar: {
     placeholder: 'プロジェクト検索',
@@ -451,6 +457,11 @@ export default {
     },
     sendFeedbackSuccess: 'ご意見頂きありがとうございます',
     fileTooLarge: 'ファイルサイズの上限は%{limit}です',
+    reportSuccess: '報告しました',
+    reportProject: {
+      title: 'プロジェクトを報告する',
+      message: 'このプロジェクトに不適切なコンテンツやグラフィックの盗作が含まれていると確信していますか？',
+    },
   },
   errors: {
     required: '必須',

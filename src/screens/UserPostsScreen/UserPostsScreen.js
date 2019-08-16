@@ -11,6 +11,9 @@ import PostActions from '../../components/PostActions';
 
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+import ReportPostMutation from '../../mutations/ReportPostMutation';
+
+import { showReportSuccessMessage } from '../../helpers/toast';
 
 import styles from './styles';
 
@@ -59,6 +62,15 @@ export default class UserPostsScreen extends Component {
     mutation.commit().catch(() => {});
   };
 
+  handleReportPost = (id) => {
+    const mutation = new ReportPostMutation({ id });
+    mutation.commit()
+      .then(() => {
+        showReportSuccessMessage();
+      })
+      .catch(() => {});
+  };
+
   render() {
     const {
       navigation, query, variables,
@@ -94,6 +106,7 @@ export default class UserPostsScreen extends Component {
           ref={(ref) => { this.actions = ref; }}
           onFollowUser={this.handleFollowUser}
           onUnfollowUser={this.handleUnfollowUser}
+          onReport={this.handleReportPost}
         />
       </View>
     );

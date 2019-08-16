@@ -142,7 +142,7 @@ export default class ProjectSection extends Component {
               <View style={styles.nameContainer}>
                 <Text
                   style={styles.name}
-                  numberOfLines={2}
+                  numberOfLines={1}
                 >
                   {project.name}
                 </Text>

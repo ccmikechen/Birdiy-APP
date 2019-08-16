@@ -3,7 +3,7 @@ export default {
   bottomTabBarHeight: 50,
   topTabBarHeight: 47,
   homeSectionPadding: 20,
-  searchBarHeight: 35,
+  searchBarHeight: 48,
   postProfileImageSize: 50,
   projectProfileImageSize: 50,
   profileImageSize: 70,

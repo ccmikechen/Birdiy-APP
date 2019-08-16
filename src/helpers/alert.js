@@ -77,3 +77,14 @@ export const showSaveProjectErrorAlert = (errors) => {
   )).join('\n');
   showAlert(i18n.t('alert.saveProjectError', { fields }));
 };
+
+export const showConfirmReportingProjectAlert = () => new Promise(resolve => (
+  showAlert(
+    i18n.t('alert.reportProject.message'),
+    i18n.t('alert.reportProject.title'),
+    [
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.confirm'), onPress: () => resolve() },
+    ],
+  )
+));
