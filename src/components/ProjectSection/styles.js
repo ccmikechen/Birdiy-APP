@@ -13,7 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     aspectRatio: 6 / 5,
-    backgroundColor: Base.dark,
+    backgroundColor: Base.darkest,
     borderTopLeftRadius: Size.projectSectionBorderRadius,
     borderTopRightRadius: Size.projectSectionBorderRadius,
   },

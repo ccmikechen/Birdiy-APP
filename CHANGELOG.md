@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Fix google auth.
+- Improve UI.
 
 ## [1.0.1] - 2019-08-14
 ### Changed

@@ -42,6 +42,7 @@ export const Material = (color) => {
 export const Base = {
   dark: '#e1e1e1',
   darker: '#b0b0b0',
+  darkest: '#707070',
   light: '#f8f8f8',
   lighter: '#fbfbfb',
   lightest: '#ffffff',
