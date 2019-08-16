@@ -386,6 +386,10 @@ export default {
     google: 'Googleでログイン',
     facebook: 'Facebookでログイン',
     loginRequiredMessage: 'ログインしてください',
+    agreement: {
+      head: '本',
+      tail: 'に同意した上で本サービスを利用してください',
+    },
   },
   searchBar: {
     placeholder: 'プロジェクト検索',

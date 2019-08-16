@@ -151,13 +151,16 @@ export default class LoginScreen extends Component {
         </View>
         <View style={styles.footerContainer}>
           <Text style={styles.agreement}>
-            {i18n.t('login.agreement')}
+            {i18n.t('login.agreement.head')}
           </Text>
           <TouchableOpacity onPress={this.handleTermsPress}>
             <Text style={styles.terms}>
               {i18n.t('terms.title')}
             </Text>
           </TouchableOpacity>
+          <Text style={styles.agreement}>
+            {i18n.t('login.agreement.tail')}
+          </Text>
         </View>
       </View>
     );

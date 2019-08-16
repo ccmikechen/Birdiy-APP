@@ -277,6 +277,10 @@ export default {
     google: 'Sign in with Google',
     facebook: 'Sign in with Facebook',
     loginRequiredMessage: 'Login to your account',
+    agreement: {
+      head: 'By continuing, you agree to our ',
+      tail: '.',
+    },
   },
   searchBar: {
     placeholder: 'Find Projects',
