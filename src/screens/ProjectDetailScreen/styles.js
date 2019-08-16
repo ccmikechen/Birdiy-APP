@@ -7,6 +7,9 @@ import Colors, {
 import Size from '../../constants/Size';
 
 export default StyleSheet.create({
+  container: {
+    backgroundColor: Colors.homeSectionDark,
+  },
   statusBarPaddingView: {
     height: Constants.statusBarHeight,
   },
@@ -128,5 +131,19 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: Dimensions.get('window').height - Size.bottomTabBarHeight - 60,
+  },
+  reportButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Base.lightest,
+    paddingLeft: 20,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  reportText: {
+    color: TextColor.subDark,
+    fontSize: 14,
+    fontWeight: '600',
+    padding: 10,
   },
 });

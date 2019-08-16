@@ -155,6 +155,7 @@ export default {
       followingPosts: 'フォローした投稿',
     },
     deletedMessage: 'このプロジェクトは公開されていないか削除されています',
+    report: 'プロジェクトを報告する',
   },
   home: {
     title: 'ホーム',
@@ -457,6 +458,10 @@ export default {
     sendFeedbackSuccess: 'ご意見頂きありがとうございます',
     fileTooLarge: 'ファイルサイズの上限は%{limit}です',
     reportSuccess: '報告しました',
+    reportProject: {
+      title: 'プロジェクトを報告する',
+      message: 'このプロジェクトに不適切なコンテンツやグラフィックの盗作が含まれていると確信していますか？',
+    },
   },
   errors: {
     required: '必須',

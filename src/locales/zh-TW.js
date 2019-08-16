@@ -155,6 +155,7 @@ export default {
       followingPosts: '跟著做',
     },
     deletedMessage: '專案未公開或已刪除',
+    report: '檢舉專案',
   },
   home: {
     title: '首頁',
@@ -457,6 +458,10 @@ export default {
     sendFeedbackSuccess: '您的意見已成功送出',
     fileTooLarge: '檔案大小不可超過 %{limit}',
     reportSuccess: '已檢舉並通知客服人員',
+    reportProject: {
+      title: '檢舉專案',
+      message: '你確定此專案含有不當內容或圖文抄襲嗎？',
+    },
   },
   errors: {
     required: '必須',

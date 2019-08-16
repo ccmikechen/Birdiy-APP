@@ -36,10 +36,13 @@ import FavoriteProjectMutation from '../../mutations/FavoriteProjectMutation';
 import CancelFavoriteProjectMutation from '../../mutations/CancelFavoriteProjectMutation';
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+import ReportProjectMutation from '../../mutations/ReportProjectMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
 import Cart from '../../helpers/cart';
 import { isAdsVisible } from '../../helpers/ads';
+import { showConfirmReportingProjectAlert } from '../../helpers/alert';
+import { showReportSuccessMessage } from '../../helpers/toast';
 
 import { UnauthorizedError } from '../../errors';
 
@@ -273,6 +276,19 @@ export default class ProjectDetailScreen extends Component {
     navigation.navigate('LoginModal');
   };
 
+  handleReportProject = () => {
+    const { query: { project: { id } } } = this.props;
+
+    showConfirmReportingProjectAlert().then(() => {
+      const mutation = new ReportProjectMutation({ id });
+      mutation.commit()
+        .then(() => {
+          showReportSuccessMessage();
+        })
+        .catch(() => {});
+    });
+  };
+
   render() {
     const { navigation, query } = this.props;
     const { cartMaterials } = this.state;
@@ -296,7 +312,7 @@ export default class ProjectDetailScreen extends Component {
         <View style={styles.statusBarPaddingView} />
         {
           isExist ? (
-            <View>
+            <View style={styles.container}>
               <View style={styles.projectImageContainer}>
                 {
                   showVideo ? (
@@ -419,6 +435,19 @@ export default class ProjectDetailScreen extends Component {
                 onPress={this.handleOpenPost}
                 onUserPress={this.handleUserPress}
               />
+              <TouchableOpacity
+                style={styles.reportButton}
+                onPress={this.handleReportProject}
+              >
+                <Icon.FontAwesome
+                  name="flag"
+                  size={14}
+                  color={TextColor.subDark}
+                />
+                <Text style={styles.reportText}>
+                  {i18n.t('report', i18nOptions)}
+                </Text>
+              </TouchableOpacity>
               <LoginActions
                 ref={(ref) => { this.loginActions = ref; }}
                 onLogin={this.handleLoginPress}

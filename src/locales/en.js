@@ -160,6 +160,7 @@ export default {
       followingPosts: 'Followed Posts',
     },
     deletedMessage: 'This project has not been published or has been deleted',
+    report: 'Report project',
   },
   home: {
     title: 'Home',
@@ -348,6 +349,10 @@ export default {
     sendFeedbackSuccess: 'Your feedback has been submitted successfully',
     fileTooLarge: 'Maximum file size is %{limit}',
     reportSuccess: 'Successfully reported',
+    reportProject: {
+      title: 'Report project',
+      message: 'Are you sure that this project contains inappropriate content or graphic plagiarism?',
+    },
   },
   errors: {
     required: 'Required',
