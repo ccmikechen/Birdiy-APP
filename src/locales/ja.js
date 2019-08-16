@@ -17,6 +17,7 @@ export default {
     saving: '保存中',
     shareTo: 'シェア',
     watchVideo: '動画サイトへ',
+    report: '報告する',
   },
   post: {
     create: {
@@ -455,6 +456,7 @@ export default {
     },
     sendFeedbackSuccess: 'ご意見頂きありがとうございます',
     fileTooLarge: 'ファイルサイズの上限は%{limit}です',
+    reportSuccess: '報告しました',
   },
   errors: {
     required: '必須',

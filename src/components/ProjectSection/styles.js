@@ -57,7 +57,6 @@ export default StyleSheet.create({
   },
   name: {
     color: TextColor.primaryDark,
-    fontWeight: '600',
     fontSize: 16,
     padding: 5,
     paddingTop: 0,

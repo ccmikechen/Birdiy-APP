@@ -14,8 +14,10 @@ import LoginActions from '../../components/LoginActions';
 
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
+import ReportPostMutation from '../../mutations/ReportPostMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
+import { showReportSuccessMessage } from '../../helpers/toast';
 
 import { UnauthorizedError } from '../../errors';
 
@@ -131,6 +133,15 @@ export default class TimelineScreen extends Component {
     });
   };
 
+  handleReportPost = (id) => {
+    const mutation = new ReportPostMutation({ id });
+    mutation.commit()
+      .then(() => {
+        showReportSuccessMessage();
+      })
+      .catch(() => {});
+  };
+
   handleLoginPress = () => {
     const { navigation } = this.props;
     navigation.navigate('LoginModal');
@@ -201,6 +212,7 @@ export default class TimelineScreen extends Component {
           ref={(ref) => { this.postActions = ref; }}
           onFollowUser={this.handleFollowUser}
           onUnfollowUser={this.handleUnfollowUser}
+          onReport={this.handleReportPost}
         />
         <LoginActions
           ref={(ref) => { this.loginActions = ref; }}

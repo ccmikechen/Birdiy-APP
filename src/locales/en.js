@@ -22,6 +22,7 @@ export default {
     saving: 'Saving',
     shareTo: 'Share to',
     watchVideo: 'Go to original video',
+    report: 'Report',
   },
   post: {
     create: {
@@ -346,6 +347,7 @@ export default {
     },
     sendFeedbackSuccess: 'Your feedback has been submitted successfully',
     fileTooLarge: 'Maximum file size is %{limit}',
+    reportSuccess: 'Successfully reported',
   },
   errors: {
     required: 'Required',

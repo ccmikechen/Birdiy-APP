@@ -82,3 +82,7 @@ export const showSendFeedbackSuccessMessage = () => (
 export const showFileTooLargeMessage = ({ limit = '5M' }) => (
   showMessage(i18n.t('alert.fileTooLarge', { limit }))
 );
+
+export const showReportSuccessMessage = () => (
+  showMessage(i18n.t('alert.reportSuccess'))
+);

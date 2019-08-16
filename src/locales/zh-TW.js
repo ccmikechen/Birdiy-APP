@@ -17,6 +17,7 @@ export default {
     saving: '儲存中',
     shareTo: '分享至',
     watchVideo: '觀看原始影片',
+    report: '檢舉',
   },
   post: {
     create: {
@@ -455,6 +456,7 @@ export default {
     },
     sendFeedbackSuccess: '您的意見已成功送出',
     fileTooLarge: '檔案大小不可超過 %{limit}',
+    reportSuccess: '已檢舉並通知客服人員',
   },
   errors: {
     required: '必須',
