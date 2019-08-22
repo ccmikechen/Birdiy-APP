@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e044f26b3d3f284f8a301b11501ffce9
+ * @relayHash b1679882de5b4f2bfcf4fe887ce0d975
  */
 
 /* eslint-disable */
@@ -9,59 +9,75 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type ProjectDetailFollowPostList_project$ref = any;
-export type ProjectDetailFollowPostListPaginationQueryVariables = {|
-  projectId: string,
-  relatedPostsCount: number,
+type ProjectCommentListItem_comment$ref = any;
+export type ProjectCommentListItemQueryVariables = {|
+  commentId: string,
+  repliesCount: number,
   cursor?: ?string,
 |};
-export type ProjectDetailFollowPostListPaginationQueryResponse = {|
-  +project: ?{|
-    +$fragmentRefs: ProjectDetailFollowPostList_project$ref
+export type ProjectCommentListItemQueryResponse = {|
+  +projectComment: ?{|
+    +$fragmentRefs: ProjectCommentListItem_comment$ref
   |}
 |};
-export type ProjectDetailFollowPostListPaginationQuery = {|
-  variables: ProjectDetailFollowPostListPaginationQueryVariables,
-  response: ProjectDetailFollowPostListPaginationQueryResponse,
+export type ProjectCommentListItemQuery = {|
+  variables: ProjectCommentListItemQueryVariables,
+  response: ProjectCommentListItemQueryResponse,
 |};
 */
 
 
 /*
-query ProjectDetailFollowPostListPaginationQuery(
-  $projectId: ID!
-  $relatedPostsCount: Int!
+query ProjectCommentListItemQuery(
+  $commentId: ID!
+  $repliesCount: Int!
   $cursor: String
 ) {
-  project(id: $projectId) {
-    ...ProjectDetailFollowPostList_project
+  projectComment(id: $commentId) {
+    ...ProjectCommentListItem_comment
     id
   }
 }
 
-fragment ProjectDetailFollowPostList_project on Project {
-  relatedPosts(first: $relatedPostsCount, after: $cursor) {
+fragment ProjectCommentListItem_comment on ProjectComment {
+  id
+  user {
+    name
+    image
+    id
+  }
+  message
+  insertedAt
+  ...ProjectCommentReplyList_comment
+}
+
+fragment ProjectCommentReplyList_comment on ProjectComment {
+  id
+  replies(first: $repliesCount, after: $cursor) {
     pageInfo {
       hasNextPage
       endCursor
     }
     edges {
       node {
+        ...ProjectCommentReplyListItem_comment
         id
-        thumbnail {
-          image
-          id
-        }
-        author {
-          id
-          image
-          name
-        }
         __typename
       }
       cursor
     }
   }
+}
+
+fragment ProjectCommentReplyListItem_comment on ProjectComment {
+  id
+  user {
+    name
+    image
+    id
+  }
+  message
+  insertedAt
 }
 */
 
@@ -69,13 +85,13 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "projectId",
+    "name": "commentId",
     "type": "ID!",
     "defaultValue": null
   },
   {
     "kind": "LocalArgument",
-    "name": "relatedPostsCount",
+    "name": "repliesCount",
     "type": "Int!",
     "defaultValue": null
   },
@@ -90,11 +106,58 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "projectId",
+    "variableName": "commentId",
     "type": "ID!"
   }
 ],
-v2 = [
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "user",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "User",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "image",
+      "args": null,
+      "storageKey": null
+    },
+    (v2/*: any*/)
+  ]
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "message",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "insertedAt",
+  "args": null,
+  "storageKey": null
+},
+v6 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -104,29 +167,15 @@ v2 = [
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "relatedPostsCount",
+    "variableName": "repliesCount",
     "type": "Int"
   }
-],
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ProjectDetailFollowPostListPaginationQuery",
+    "name": "ProjectCommentListItemQuery",
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -134,15 +183,15 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "project",
+        "name": "projectComment",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "Project",
+        "concreteType": "ProjectComment",
         "plural": false,
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "ProjectDetailFollowPostList_project",
+            "name": "ProjectCommentListItem_comment",
             "args": null
           }
         ]
@@ -151,25 +200,29 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ProjectDetailFollowPostListPaginationQuery",
+    "name": "ProjectCommentListItemQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "project",
+        "name": "projectComment",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "Project",
+        "concreteType": "ProjectComment",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "relatedPosts",
+            "name": "replies",
             "storageKey": null,
-            "args": (v2/*: any*/),
-            "concreteType": "PostConnection",
+            "args": (v6/*: any*/),
+            "concreteType": "ProjectCommentConnection",
             "plural": false,
             "selections": [
               {
@@ -203,7 +256,7 @@ return {
                 "name": "edges",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "PostEdge",
+                "concreteType": "ProjectCommentEdge",
                 "plural": true,
                 "selections": [
                   {
@@ -212,43 +265,13 @@ return {
                     "name": "node",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "Post",
+                    "concreteType": "ProjectComment",
                     "plural": false,
                     "selections": [
+                      (v2/*: any*/),
                       (v3/*: any*/),
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "thumbnail",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "PostPhoto",
-                        "plural": false,
-                        "selections": [
-                          (v4/*: any*/),
-                          (v3/*: any*/)
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "author",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "User",
-                        "plural": false,
-                        "selections": [
-                          (v3/*: any*/),
-                          (v4/*: any*/),
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "name",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
+                      (v4/*: any*/),
+                      (v5/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -272,26 +295,25 @@ return {
           {
             "kind": "LinkedHandle",
             "alias": null,
-            "name": "relatedPosts",
-            "args": (v2/*: any*/),
+            "name": "replies",
+            "args": (v6/*: any*/),
             "handle": "connection",
-            "key": "ProjectDetailFollowPostList_relatedPosts",
+            "key": "ProjectCommentReplyList_replies",
             "filters": null
-          },
-          (v3/*: any*/)
+          }
         ]
       }
     ]
   },
   "params": {
     "operationKind": "query",
-    "name": "ProjectDetailFollowPostListPaginationQuery",
+    "name": "ProjectCommentListItemQuery",
     "id": null,
-    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $cursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectCommentListItemQuery(\n  $commentId: ID!\n  $repliesCount: Int!\n  $cursor: String\n) {\n  projectComment(id: $commentId) {\n    ...ProjectCommentListItem_comment\n    id\n  }\n}\n\nfragment ProjectCommentListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n  ...ProjectCommentReplyList_comment\n}\n\nfragment ProjectCommentReplyList_comment on ProjectComment {\n  id\n  replies(first: $repliesCount, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentReplyListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentReplyListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6065d5c4d9cce44026dfb8e3d0062c0c';
+(node/*: any*/).hash = '5e040987ded2397c809f9b1e40deac53';
 module.exports = node;

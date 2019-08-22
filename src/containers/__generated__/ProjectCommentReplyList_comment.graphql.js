@@ -8,60 +8,39 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type ProjectCommentReplyListItem_comment$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type ProjectDetailFollowPostList_project$ref: FragmentReference;
-export type ProjectDetailFollowPostList_project = {|
-  +relatedPosts: ?{|
+declare export opaque type ProjectCommentReplyList_comment$ref: FragmentReference;
+export type ProjectCommentReplyList_comment = {|
+  +id: string,
+  +replies: ?{|
     +pageInfo: {|
       +hasNextPage: boolean,
       +endCursor: ?string,
     |},
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: string,
-        +thumbnail: ?{|
-          +image: string
-        |},
-        +author: {|
-          +id: string,
-          +image: ?string,
-          +name: string,
-        |},
+        +$fragmentRefs: ProjectCommentReplyListItem_comment$ref
       |}
     |}>,
   |},
-  +$refType: ProjectDetailFollowPostList_project$ref,
+  +$refType: ProjectCommentReplyList_comment$ref,
 |};
 */
 
 
-const node/*: ReaderFragment*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "image",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "ProjectDetailFollowPostList_project",
-  "type": "Project",
+  "name": "ProjectCommentReplyList_comment",
+  "type": "ProjectComment",
   "metadata": {
     "connection": [
       {
-        "count": "relatedPostsCount",
+        "count": "repliesCount",
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "relatedPosts"
+          "replies"
         ]
       }
     ]
@@ -69,7 +48,7 @@ return {
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
-      "name": "relatedPostsCount",
+      "name": "repliesCount",
       "type": "Int"
     },
     {
@@ -80,12 +59,19 @@ return {
   ],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
-      "alias": "relatedPosts",
-      "name": "__ProjectDetailFollowPostList_relatedPosts_connection",
+      "alias": "replies",
+      "name": "__ProjectCommentReplyList_replies_connection",
       "storageKey": null,
       "args": null,
-      "concreteType": "PostConnection",
+      "concreteType": "ProjectCommentConnection",
       "plural": false,
       "selections": [
         {
@@ -119,7 +105,7 @@ return {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "PostEdge",
+          "concreteType": "ProjectCommentEdge",
           "plural": true,
           "selections": [
             {
@@ -128,41 +114,13 @@ return {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "Post",
+              "concreteType": "ProjectComment",
               "plural": false,
               "selections": [
-                (v0/*: any*/),
                 {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "thumbnail",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "PostPhoto",
-                  "plural": false,
-                  "selections": [
-                    (v1/*: any*/)
-                  ]
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "author",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "User",
-                  "plural": false,
-                  "selections": [
-                    (v0/*: any*/),
-                    (v1/*: any*/),
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "name",
-                      "args": null,
-                      "storageKey": null
-                    }
-                  ]
+                  "kind": "FragmentSpread",
+                  "name": "ProjectCommentReplyListItem_comment",
+                  "args": null
                 },
                 {
                   "kind": "ScalarField",
@@ -186,7 +144,6 @@ return {
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = 'b27a23d57462856c2ad8be9dfc879e8d';
+(node/*: any*/).hash = '135cddf212c726b2c54a45cc99891f5e';
 module.exports = node;

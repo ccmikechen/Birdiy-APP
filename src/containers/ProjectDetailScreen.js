@@ -47,10 +47,10 @@ export default withNavigation(
       query: graphql`
         query ProjectDetailScreenQuery (
           $projectId: ID!,
+          $cursor: String,
           $relatedPostsCount: Int!,
-          $relatedPostsCursor: String
           $commentsCount: Int!,
-          $commentsCursor: String
+          $repliesCount: Int!
         ) {
           ...ProjectDetailScreen_query
         }
@@ -58,7 +58,8 @@ export default withNavigation(
       auth: true,
       variables: {
         relatedPostsCount: 5,
-        commentsCount: 5,
+        commentsCount: 3,
+        repliesCount: 1,
       },
       queriesParams: props => ({
         projectId: props.navigation.getParam('id'),

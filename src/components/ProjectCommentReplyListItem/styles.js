@@ -4,7 +4,6 @@ import Colors, { TextColor } from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
-    marginBottom: 10,
   },
   headerContainer: {
     flexDirection: 'row',

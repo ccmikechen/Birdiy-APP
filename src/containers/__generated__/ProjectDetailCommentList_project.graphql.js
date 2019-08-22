@@ -36,7 +36,7 @@ const node/*: ReaderFragment*/ = {
     "connection": [
       {
         "count": "commentsCount",
-        "cursor": "commentsCursor",
+        "cursor": "cursor",
         "direction": "forward",
         "path": [
           "comments"
@@ -52,7 +52,7 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "kind": "RootArgument",
-      "name": "commentsCursor",
+      "name": "cursor",
       "type": "String"
     }
   ],
@@ -137,5 +137,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '9b0d79ae4931a4e81483eb7591261f37';
+(node/*: any*/).hash = '2a4a8534ec005ec7aaef2073dc71dd50';
 module.exports = node;

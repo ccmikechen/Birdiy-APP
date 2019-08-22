@@ -65,7 +65,7 @@ export default createPaginationContainer(
       fragment ProjectDetailCommentList_project on Project {
         comments(
           first: $commentsCount,
-          after: $commentsCursor,
+          after: $cursor,
         ) @connection(key: "ProjectDetailCommentList_comments") {
           pageInfo {
             hasNextPage
@@ -92,14 +92,16 @@ export default createPaginationContainer(
     getVariables: (props, { count, cursor }) => ({
       projectId: props.projectId,
       commentsCount: count,
-      commentsCursor: cursor,
+      cursor,
+      repliesCount: 1,
     }),
-    variables: { commentsCursor: null },
+    variables: { cursor: null },
     query: graphql`
       query ProjectDetailCommentListPaginationQuery (
         $projectId: ID!,
         $commentsCount: Int!,
-        $commentsCursor: String
+        $cursor: String,
+        $repliesCount: Int!
       ) {
         project(id: $projectId) {
           ...ProjectDetailCommentList_project

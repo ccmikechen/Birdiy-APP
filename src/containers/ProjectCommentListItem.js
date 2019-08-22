@@ -1,18 +1,32 @@
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createRefetchContainer } from 'react-relay';
 
 import ProjectCommentListItem from '../components/ProjectCommentListItem';
 
-export default createFragmentContainer(
+export default createRefetchContainer(
   ProjectCommentListItem,
-  graphql`
-    fragment ProjectCommentListItem_comment on ProjectComment {
-      id
-      user {
-        name
-        image
+  {
+    comment: graphql`
+      fragment ProjectCommentListItem_comment on ProjectComment {
+        id
+        user {
+          name
+          image
+        }
+        message
+        insertedAt
+        ...ProjectCommentReplyList_comment
       }
-      message
-      insertedAt
+    `,
+  },
+  graphql`
+    query ProjectCommentListItemQuery (
+      $commentId: ID!,
+      $repliesCount: Int!,
+      $cursor: String
+    ) {
+      projectComment(id: $commentId) {
+        ...ProjectCommentListItem_comment
+      }
     }
   `,
 );

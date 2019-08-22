@@ -162,6 +162,9 @@ export default {
         title: 'Comments',
         showMore: 'More Comments',
       },
+      replies: {
+        showMore: 'More Replies',
+      },
     },
     deletedMessage: 'This project has not been published or has been deleted',
     report: 'Report project',

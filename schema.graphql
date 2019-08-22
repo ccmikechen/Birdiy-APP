@@ -431,6 +431,7 @@ type RootQueryType {
   ): Node
   post(id: ID!): Post
   project(id: ID!): Project
+  projectComment(id: ID!): ProjectComment
   user(id: ID!): User
   viewer: Viewer
 }

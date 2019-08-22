@@ -157,6 +157,9 @@ export default {
         title: 'コメント',
         showMore: 'コメントをもっと見る',
       },
+      replies: {
+        showMore: '返信をもっと見る',
+      },
     },
     deletedMessage: 'このプロジェクトは公開されていないか削除されています',
     report: 'プロジェクトを報告する',

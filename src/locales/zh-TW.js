@@ -157,6 +157,9 @@ export default {
         title: '留言',
         showMore: '查看更多留言',
       },
+      replies: {
+        showMore: '查看更多回覆',
+      },
     },
     deletedMessage: '專案未公開或已刪除',
     report: '檢舉專案',

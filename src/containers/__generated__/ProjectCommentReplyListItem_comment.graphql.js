@@ -8,10 +8,9 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type ProjectCommentReplyList_comment$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type ProjectCommentListItem_comment$ref: FragmentReference;
-export type ProjectCommentListItem_comment = {|
+declare export opaque type ProjectCommentReplyListItem_comment$ref: FragmentReference;
+export type ProjectCommentReplyListItem_comment = {|
   +id: string,
   +user: {|
     +name: string,
@@ -19,15 +18,14 @@ export type ProjectCommentListItem_comment = {|
   |},
   +message: string,
   +insertedAt: ?any,
-  +$fragmentRefs: ProjectCommentReplyList_comment$ref,
-  +$refType: ProjectCommentListItem_comment$ref,
+  +$refType: ProjectCommentReplyListItem_comment$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "ProjectCommentListItem_comment",
+  "name": "ProjectCommentReplyListItem_comment",
   "type": "ProjectComment",
   "metadata": null,
   "argumentDefinitions": [],
@@ -77,14 +75,9 @@ const node/*: ReaderFragment*/ = {
       "name": "insertedAt",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "ProjectCommentReplyList_comment",
-      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a1b6ba9b3086465dcab139cbd756427f';
+(node/*: any*/).hash = 'd58f9651e53875baf241f00bcca0e26b';
 module.exports = node;

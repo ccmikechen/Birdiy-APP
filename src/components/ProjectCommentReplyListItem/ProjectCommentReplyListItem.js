@@ -4,20 +4,19 @@ import { View, Text } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
 import ActionMenuButton from '../ActionMenuButton';
-import ProjectCommentReplyList from '../../containers/ProjectCommentReplyList';
 
 import { timeAgo } from '../../helpers/datetime';
 
 import styles from './styles';
 
-const ProjectCommentListItem = ({ comment, onActionButtonPress }) => (
+const ProjectCommentReplyListItem = ({ comment, onActionButtonPress }) => (
   <View style={styles.container}>
     <View style={styles.headerContainer}>
       <View style={styles.authorContainer}>
         <View style={styles.avatarContainer}>
           <Avatar.Image
             source={{ uri: comment.user.image }}
-            size={30}
+            size={25}
           />
         </View>
         <View style={styles.userNameContainer}>
@@ -32,14 +31,10 @@ const ProjectCommentListItem = ({ comment, onActionButtonPress }) => (
     <View style={styles.footerContainer}>
       <Text style={styles.date}>{timeAgo(comment.insertedAt)}</Text>
     </View>
-    <ProjectCommentReplyList
-      comment={comment}
-      onActionButtonPress={onActionButtonPress}
-    />
   </View>
 );
 
-ProjectCommentListItem.propTypes = {
+ProjectCommentReplyListItem.propTypes = {
   comment: PropTypes.shape({
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -51,7 +46,7 @@ ProjectCommentListItem.propTypes = {
   onActionButtonPress: PropTypes.func.isRequired,
 };
 
-ProjectCommentListItem.defaultProps = {
+ProjectCommentReplyListItem.defaultProps = {
 };
 
-export default React.memo(ProjectCommentListItem);
+export default React.memo(ProjectCommentReplyListItem);
