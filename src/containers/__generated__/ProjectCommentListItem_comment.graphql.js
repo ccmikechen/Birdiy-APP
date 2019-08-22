@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProjectCommentListItem_comment$ref: FragmentReference;
 export type ProjectCommentListItem_comment = {|
+  +id: string,
   +user: {|
     +name: string,
     +image: ?string,
@@ -29,6 +30,13 @@ const node/*: ReaderFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -71,5 +79,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e5d248ca3cba18de4fd287631815313a';
+(node/*: any*/).hash = '04fbb91ca7ae67181943cd3a137d35b4';
 module.exports = node;

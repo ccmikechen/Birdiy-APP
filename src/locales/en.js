@@ -357,6 +357,10 @@ export default {
       title: 'Report project',
       message: 'Are you sure that this project contains inappropriate content or graphic plagiarism?',
     },
+    reportComment: {
+      title: 'Report comment',
+      message: 'Are you sure that this comment contains inappropriate content?',
+    },
   },
   errors: {
     required: 'Required',

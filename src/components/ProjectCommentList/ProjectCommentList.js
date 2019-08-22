@@ -12,7 +12,12 @@ import ProjectCommentListItem from '../../containers/ProjectCommentListItem';
 import styles from './styles';
 
 const ProjectCommentList = (props) => {
-  const { comments, loadMore, canLoadMore } = props;
+  const {
+    comments,
+    loadMore,
+    canLoadMore,
+    onActionButtonPress,
+  } = props;
 
   return (
     <View style={styles.container}>
@@ -20,7 +25,10 @@ const ProjectCommentList = (props) => {
         {...props}
         data={comments}
         renderItem={({ item }) => (
-          <ProjectCommentListItem comment={item} />
+          <ProjectCommentListItem
+            comment={item}
+            onActionButtonPress={onActionButtonPress}
+          />
         )}
         keyExtractor={item => item.__id}
       />
@@ -42,6 +50,7 @@ ProjectCommentList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadMore: PropTypes.func.isRequired,
   canLoadMore: PropTypes.bool,
+  onActionButtonPress: PropTypes.func.isRequired,
 };
 
 ProjectCommentList.defaultProps = {

@@ -466,6 +466,10 @@ export default {
       title: '檢舉專案',
       message: '你確定此專案含有不當內容或圖文抄襲嗎？',
     },
+    reportComment: {
+      title: '檢舉留言',
+      message: '你確定此留言含有不當內容嗎？',
+    },
   },
   errors: {
     required: '必須',

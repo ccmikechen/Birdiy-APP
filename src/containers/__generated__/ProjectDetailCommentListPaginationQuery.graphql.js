@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 052870a9c9df51c5c7bae6d410732eae
+ * @relayHash bdc3dd123ee2083acbae594892ea4e0b
  */
 
 /* eslint-disable */
@@ -57,6 +57,7 @@ fragment ProjectDetailCommentList_project on Project {
 }
 
 fragment ProjectCommentListItem_comment on ProjectComment {
+  id
   user {
     name
     image
@@ -210,6 +211,7 @@ return {
                     "concreteType": "ProjectComment",
                     "plural": false,
                     "selections": [
+                      (v3/*: any*/),
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -250,7 +252,6 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      (v3/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -289,7 +290,7 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailCommentListPaginationQuery",
     "id": null,
-    "text": "query ProjectDetailCommentListPaginationQuery(\n  $projectId: ID!\n  $commentsCount: Int!\n  $commentsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailCommentList_project\n    id\n  }\n}\n\nfragment ProjectDetailCommentList_project on Project {\n  comments(first: $commentsCount, after: $commentsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentListItem_comment on ProjectComment {\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
+    "text": "query ProjectDetailCommentListPaginationQuery(\n  $projectId: ID!\n  $commentsCount: Int!\n  $commentsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailCommentList_project\n    id\n  }\n}\n\nfragment ProjectDetailCommentList_project on Project {\n  comments(first: $commentsCount, after: $commentsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
     "metadata": {}
   }
 };

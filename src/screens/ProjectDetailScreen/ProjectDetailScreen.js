@@ -27,6 +27,7 @@ import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
 import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
 import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
 import ProjectDetailCommentList from '../../containers/ProjectDetailCommentList';
+import ProjectCommentActions from '../../components/ProjectCommentActions';
 import LoginActions from '../../components/LoginActions';
 import MessageView from '../../components/MessageView';
 
@@ -38,11 +39,15 @@ import CancelFavoriteProjectMutation from '../../mutations/CancelFavoriteProject
 import FollowUserMutation from '../../mutations/FollowUserMutation';
 import CancelFollowUserMutation from '../../mutations/CancelFollowUserMutation';
 import ReportProjectMutation from '../../mutations/ReportProjectMutation';
+import ReportProjectCommentMutation from '../../mutations/ReportProjectCommentMutation';
 
 import { isLoggedIn } from '../../helpers/credentails';
 import Cart from '../../helpers/cart';
 import { isAdsVisible } from '../../helpers/ads';
-import { showConfirmReportingProjectAlert } from '../../helpers/alert';
+import {
+  showConfirmReportingProjectAlert,
+  showConfirmReportingCommentAlert,
+} from '../../helpers/alert';
 import { showReportSuccessMessage } from '../../helpers/toast';
 
 import { UnauthorizedError } from '../../errors';
@@ -272,7 +277,22 @@ export default class ProjectDetailScreen extends Component {
     navigation.push('UserPosts', { userId, postId });
   };
 
-  handleLoginPress = () => {
+  handleCommentActionPress = (comment) => {
+    this.projectCommentActions.show(comment);
+  };
+
+  handleReportComment = (commentId) => {
+    showConfirmReportingCommentAlert().then(() => {
+      const mutation = new ReportProjectCommentMutation({ id: commentId });
+      mutation.commit()
+        .then(() => {
+          showReportSuccessMessage();
+        })
+        .catch(() => {});
+    });
+  };
+
+  handleLogin = () => {
     const { navigation } = this.props;
     navigation.navigate('LoginModal');
   };
@@ -439,6 +459,7 @@ export default class ProjectDetailScreen extends Component {
               <ProjectDetailCommentList
                 projectId={project.id}
                 project={project}
+                onActionButtonPress={this.handleCommentActionPress}
               />
               <TouchableOpacity
                 style={styles.reportButton}
@@ -453,9 +474,13 @@ export default class ProjectDetailScreen extends Component {
                   {i18n.t('report', i18nOptions)}
                 </Text>
               </TouchableOpacity>
+              <ProjectCommentActions
+                ref={(ref) => { this.projectCommentActions = ref; }}
+                onReport={this.handleReportComment}
+              />
               <LoginActions
                 ref={(ref) => { this.loginActions = ref; }}
-                onLogin={this.handleLoginPress}
+                onLogin={this.handleLogin}
               />
             </View>
           ) : (

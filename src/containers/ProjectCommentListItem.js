@@ -6,6 +6,7 @@ export default createFragmentContainer(
   ProjectCommentListItem,
   graphql`
     fragment ProjectCommentListItem_comment on ProjectComment {
+      id
       user {
         name
         image
