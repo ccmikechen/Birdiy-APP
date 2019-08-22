@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 59d8c6eea41a1d9522b387991537ed1d
+ * @relayHash 7eb1dcc24851f55fb24fa629b6858143
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type PublishProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type PublishProjectMutationResponse = {|
   +publishProject: ?{|
@@ -32,7 +32,7 @@ export type PublishProjectMutation = {|
 
 /*
 mutation PublishProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   publishProject(input: $input) {
     project {
@@ -48,7 +48,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -63,7 +63,7 @@ v1 = [
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "ProjectInput!"
+        "type": "IdInput!"
       }
     ],
     "concreteType": "ProjectResult",
@@ -117,11 +117,11 @@ return {
     "operationKind": "mutation",
     "name": "PublishProjectMutation",
     "id": null,
-    "text": "mutation PublishProjectMutation(\n  $input: ProjectInput!\n) {\n  publishProject(input: $input) {\n    project {\n      id\n      published\n    }\n  }\n}\n",
+    "text": "mutation PublishProjectMutation(\n  $input: IdInput!\n) {\n  publishProject(input: $input) {\n    project {\n      id\n      published\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '445d1149b6017dc882727d2fffdd3b3a';
+(node/*: any*/).hash = '06eefdcc4784e40192e98fb9ff325aee';
 module.exports = node;

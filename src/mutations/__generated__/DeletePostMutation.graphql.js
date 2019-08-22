@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f92bf8bf18f5054112dde5d34d540900
+ * @relayHash d9d1082974163f7916a052123536e765
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type PostInput = {|
+export type IdInput = {|
   id: string
 |};
 export type DeletePostMutationVariables = {|
-  input: PostInput
+  input: IdInput
 |};
 export type DeletePostMutationResponse = {|
   +deletePost: ?{|
@@ -31,7 +31,7 @@ export type DeletePostMutation = {|
 
 /*
 mutation DeletePostMutation(
-  $input: PostInput!
+  $input: IdInput!
 ) {
   deletePost(input: $input) {
     post {
@@ -46,7 +46,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "PostInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -61,7 +61,7 @@ v1 = [
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "PostInput!"
+        "type": "IdInput!"
       }
     ],
     "concreteType": "PostResult",
@@ -108,11 +108,11 @@ return {
     "operationKind": "mutation",
     "name": "DeletePostMutation",
     "id": null,
-    "text": "mutation DeletePostMutation(\n  $input: PostInput!\n) {\n  deletePost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeletePostMutation(\n  $input: IdInput!\n) {\n  deletePost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8ad98c1fe853cd4efc484920c05679e3';
+(node/*: any*/).hash = 'c751360a27e9679a9c8a4457635ba8d1';
 module.exports = node;

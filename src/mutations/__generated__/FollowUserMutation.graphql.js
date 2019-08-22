@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2cbde934aecb735042ab16d5b34d9f6a
+ * @relayHash 6d388eae3cecbe03767799445bf59a5b
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type UserInput = {|
+export type IdInput = {|
   id: string
 |};
 export type FollowUserMutationVariables = {|
-  input: UserInput
+  input: IdInput
 |};
 export type FollowUserMutationResponse = {|
   +followUser: ?{|
@@ -35,7 +35,7 @@ export type FollowUserMutation = {|
 
 /*
 mutation FollowUserMutation(
-  $input: UserInput!
+  $input: IdInput!
 ) {
   followUser(input: $input) {
     followingUser {
@@ -56,7 +56,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "UserInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -65,7 +65,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "UserInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -192,11 +192,11 @@ return {
     "operationKind": "mutation",
     "name": "FollowUserMutation",
     "id": null,
-    "text": "mutation FollowUserMutation(\n  $input: UserInput!\n) {\n  followUser(input: $input) {\n    followingUser {\n      followingCount\n      id\n    }\n    followedUser {\n      following\n      followerCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation FollowUserMutation(\n  $input: IdInput!\n) {\n  followUser(input: $input) {\n    followingUser {\n      followingCount\n      id\n    }\n    followedUser {\n      following\n      followerCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a00afb65ce020b62b22331fade249449';
+(node/*: any*/).hash = '76658559582280cf64fdaba82cbae465';
 module.exports = node;

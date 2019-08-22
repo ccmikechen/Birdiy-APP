@@ -9,6 +9,7 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type ProjectAuthor_project$ref = any;
+type ProjectDetailCommentList_project$ref = any;
 type ProjectDetailFileList_project$ref = any;
 type ProjectDetailFollowPostList_project$ref = any;
 type ProjectDetailMaterialList_project$ref = any;
@@ -36,7 +37,7 @@ export type ProjectDetailScreen_query = {|
     +tip: ?string,
     +publishedAt: ?any,
     +deletedAt: ?any,
-    +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref,
+    +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref & ProjectDetailCommentList_project$ref,
   |},
   +$refType: ProjectDetailScreen_query$ref,
 |};
@@ -210,6 +211,11 @@ return {
           "args": null
         },
         {
+          "kind": "FragmentSpread",
+          "name": "ProjectDetailCommentList_project",
+          "args": null
+        },
+        {
           "kind": "ScalarField",
           "alias": null,
           "name": "publishedAt",
@@ -229,5 +235,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a2ba817f72929a5d852ff4edb8b4e5ec';
+(node/*: any*/).hash = 'c5fb27a1472941eac3668c190901fb19';
 module.exports = node;

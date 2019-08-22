@@ -5,7 +5,7 @@ import Mutation from '../relay/Mutation';
 
 export default class DeletePostMutation extends Mutation {
   static mutation = graphql`
-    mutation DeletePostMutation($input: PostInput!) {
+    mutation DeletePostMutation($input: IdInput!) {
       deletePost(input: $input) {
         post {
           id

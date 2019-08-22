@@ -26,6 +26,7 @@ import ProjectDetailMaterialList from '../../containers/ProjectDetailMaterialLis
 import ProjectDetailFileList from '../../containers/ProjectDetailFileList';
 import ProjectDetailMethodList from '../../containers/ProjectDetailMethodList';
 import ProjectDetailFollowPostList from '../../containers/ProjectDetailFollowPostList';
+import ProjectDetailCommentList from '../../containers/ProjectDetailCommentList';
 import LoginActions from '../../components/LoginActions';
 import MessageView from '../../components/MessageView';
 
@@ -434,6 +435,10 @@ export default class ProjectDetailScreen extends Component {
                 project={project}
                 onPress={this.handleOpenPost}
                 onUserPress={this.handleUserPress}
+              />
+              <ProjectDetailCommentList
+                projectId={project.id}
+                project={project}
               />
               <TouchableOpacity
                 style={styles.reportButton}

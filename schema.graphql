@@ -36,6 +36,12 @@ input CreatePostInput {
   relatedProjectType: RelatedProjectType!
 }
 
+input CreateProjectCommentInput {
+  message: String!
+  parentId: ID
+  projectId: ID!
+}
+
 input CreateProjectInput {
   name: String!
   topicName: String!
@@ -50,6 +56,11 @@ input EditPostInput {
   relatedProjectId: ID
   relatedProjectName: String
   relatedProjectType: RelatedProjectType!
+}
+
+input EditProjectCommentInput {
+  id: ID!
+  message: String!
 }
 
 input EditProjectInput {
@@ -75,6 +86,10 @@ input EditUserInput {
 type FollowUserResult {
   followedUser: User!
   followingUser: User!
+}
+
+input IdInput {
+  id: ID!
 }
 
 input LoginInput {
@@ -135,10 +150,6 @@ type PostEdge {
   node: Post
 }
 
-input PostInput {
-  id: ID!
-}
-
 enum PostOrder {
   NEWEST
 }
@@ -178,6 +189,7 @@ interface Profile {
 
 type Project implements Node {
   author: User!
+  comments(after: String, before: String, first: Int, last: Int): ProjectCommentConnection
   deletedAt: Datetime
   favorite: Boolean
   favoriteCount: Int
@@ -226,6 +238,35 @@ type ProjectCategoryEdge {
   node: ProjectCategory
 }
 
+type ProjectComment implements Node {
+  """The ID of an object"""
+  id: ID!
+  insertedAt: Datetime
+  message: String!
+  parent: ProjectComment
+  project: Project!
+  replies(after: String, before: String, first: Int, last: Int): ProjectCommentConnection
+  reportCount: Int!
+  user: User!
+}
+
+type ProjectCommentConnection {
+  edges: [ProjectCommentEdge]
+  pageInfo: PageInfo!
+}
+
+type ProjectCommentEdge {
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """The item at the end of the edge"""
+  node: ProjectComment
+}
+
+type ProjectCommentResult {
+  projectComment: ProjectComment!
+}
+
 type ProjectConnection {
   edges: [ProjectEdge]
   pageInfo: PageInfo!
@@ -261,10 +302,6 @@ input ProjectFilter {
   categories: [String]
   name: String
   topics: [String]
-}
-
-input ProjectInput {
-  id: ID!
 }
 
 type ProjectMaterial implements Node {
@@ -354,27 +391,31 @@ type ReportResult {
 }
 
 type RootMutationType {
-  cancelFavoriteProject(input: ProjectInput!): ProjectResult
-  cancelFollowUser(input: UserInput!): FollowUserResult
-  cancelLikeProject(input: ProjectInput!): ProjectResult
+  cancelFavoriteProject(input: IdInput!): ProjectResult
+  cancelFollowUser(input: IdInput!): FollowUserResult
+  cancelLikeProject(input: IdInput!): ProjectResult
   createPost(input: CreatePostInput!): PostResult
   createProject(input: CreateProjectInput!): ProjectResult
-  deletePost(input: PostInput!): PostResult
-  deleteProject(input: ProjectInput!): ProjectResult
+  createProjectComment(input: CreateProjectCommentInput!): ProjectCommentResult
+  deletePost(input: IdInput!): PostResult
+  deleteProject(input: IdInput!): ProjectResult
+  deleteProjectComment(input: IdInput!): ProjectCommentResult
   editAndPublishProject(input: EditProjectInput!): ProjectResult
   editPost(input: EditPostInput!): PostResult
   editProject(input: EditProjectInput!): ProjectResult
+  editProjectComment(input: EditProjectCommentInput!): ProjectCommentResult
   editViewer(input: EditUserInput!): ViewerResult
-  favoriteProject(input: ProjectInput!): ProjectResult
-  followUser(input: UserInput!): FollowUserResult
-  likeProject(input: ProjectInput!): ProjectResult
+  favoriteProject(input: IdInput!): ProjectResult
+  followUser(input: IdInput!): FollowUserResult
+  likeProject(input: IdInput!): ProjectResult
   login(input: LoginInput!): Session
-  publishProject(input: ProjectInput!): ProjectResult
+  publishProject(input: IdInput!): ProjectResult
   refreshSession(input: RefreshSessionInput!): Session
-  reportPost(input: PostInput!): ReportResult
-  reportProject(input: ProjectInput!): ReportResult
-  unpublishProject(input: ProjectInput!): ProjectResult
-  viewProject(input: ProjectInput!): ProjectResult
+  reportPost(input: IdInput!): ReportResult
+  reportProject(input: IdInput!): ReportResult
+  reportProjectComment(input: IdInput!): ReportResult
+  unpublishProject(input: IdInput!): ProjectResult
+  viewProject(input: IdInput!): ProjectResult
 }
 
 type RootQueryType {
@@ -435,10 +476,6 @@ type UserEdge {
 
   """The item at the end of the edge"""
   node: User
-}
-
-input UserInput {
-  id: ID!
 }
 
 type Viewer implements Profile & Node {

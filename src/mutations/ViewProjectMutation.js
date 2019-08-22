@@ -5,7 +5,7 @@ import projectUpdater from '../updaters/projectUpdater';
 
 export default class ViewProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation ViewProjectMutation($input: ProjectInput!) {
+    mutation ViewProjectMutation($input: IdInput!) {
       viewProject(input: $input) {
         project {
           viewed

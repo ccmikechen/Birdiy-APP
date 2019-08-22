@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0bc7ad26cb4937d97980c78a4d806eee
+ * @relayHash 8e89048a9513e9c11b4cf2a93198acb1
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type DeleteProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type DeleteProjectMutationResponse = {|
   +deleteProject: ?{|
@@ -31,7 +31,7 @@ export type DeleteProjectMutation = {|
 
 /*
 mutation DeleteProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   deleteProject(input: $input) {
     project {
@@ -46,7 +46,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -61,7 +61,7 @@ v1 = [
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "ProjectInput!"
+        "type": "IdInput!"
       }
     ],
     "concreteType": "ProjectResult",
@@ -108,11 +108,11 @@ return {
     "operationKind": "mutation",
     "name": "DeleteProjectMutation",
     "id": null,
-    "text": "mutation DeleteProjectMutation(\n  $input: ProjectInput!\n) {\n  deleteProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeleteProjectMutation(\n  $input: IdInput!\n) {\n  deleteProject(input: $input) {\n    project {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'bdd4b1572e3574c8b66aad0a73a13968';
+(node/*: any*/).hash = 'b17f2bc4a192da1fe6e989c083516206';
 module.exports = node;

@@ -153,6 +153,10 @@ export default {
       },
       tip: 'コツ',
       followingPosts: 'フォローした投稿',
+      comments: {
+        title: 'コメント',
+        showMore: 'コメントをもっと見る',
+      },
     },
     deletedMessage: 'このプロジェクトは公開されていないか削除されています',
     report: 'プロジェクトを報告する',

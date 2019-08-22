@@ -158,6 +158,10 @@ export default {
       },
       tip: 'Tips',
       followingPosts: 'Followed Posts',
+      comments: {
+        title: 'Comments',
+        showMore: 'More Comments',
+      },
     },
     deletedMessage: 'This project has not been published or has been deleted',
     report: 'Report project',

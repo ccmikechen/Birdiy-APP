@@ -31,6 +31,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         ...ProjectDetailMethodList_project
         tip
         ...ProjectDetailFollowPostList_project
+        ...ProjectDetailCommentList_project
         publishedAt
         deletedAt
       }
@@ -48,6 +49,8 @@ export default withNavigation(
           $projectId: ID!,
           $relatedPostsCount: Int!,
           $relatedPostsCursor: String
+          $commentsCount: Int!,
+          $commentsCursor: String
         ) {
           ...ProjectDetailScreen_query
         }
@@ -55,6 +58,7 @@ export default withNavigation(
       auth: true,
       variables: {
         relatedPostsCount: 5,
+        commentsCount: 5,
       },
       queriesParams: props => ({
         projectId: props.navigation.getParam('id'),

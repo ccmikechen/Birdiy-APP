@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9b20d2a5afc1644073aa976d9384772b
+ * @relayHash fd8f628767beb6f2b0a7b151a39ba421
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type ReportProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type ReportProjectMutationResponse = {|
   +reportProject: ?{|
@@ -29,7 +29,7 @@ export type ReportProjectMutation = {|
 
 /*
 mutation ReportProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   reportProject(input: $input) {
     reported
@@ -42,7 +42,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -57,7 +57,7 @@ v1 = [
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "ProjectInput!"
+        "type": "IdInput!"
       }
     ],
     "concreteType": "ReportResult",
@@ -93,11 +93,11 @@ return {
     "operationKind": "mutation",
     "name": "ReportProjectMutation",
     "id": null,
-    "text": "mutation ReportProjectMutation(\n  $input: ProjectInput!\n) {\n  reportProject(input: $input) {\n    reported\n  }\n}\n",
+    "text": "mutation ReportProjectMutation(\n  $input: IdInput!\n) {\n  reportProject(input: $input) {\n    reported\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9ae19d55922f27eb0096cedf5a588a37';
+(node/*: any*/).hash = '1fc2dbafd2bdf6c52affb969569e33f1';
 module.exports = node;

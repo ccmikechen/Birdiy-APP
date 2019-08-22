@@ -153,6 +153,10 @@ export default {
       },
       tip: '小技巧',
       followingPosts: '跟著做',
+      comments: {
+        title: '留言',
+        showMore: '查看更多留言',
+      },
     },
     deletedMessage: '專案未公開或已刪除',
     report: '檢舉專案',

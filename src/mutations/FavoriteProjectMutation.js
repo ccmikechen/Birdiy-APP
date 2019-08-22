@@ -5,7 +5,7 @@ import projectUpdater from '../updaters/projectUpdater';
 
 export default class FavoriteProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation FavoriteProjectMutation($input: ProjectInput!) {
+    mutation FavoriteProjectMutation($input: IdInput!) {
       favoriteProject(input: $input) {
         project {
           favorite

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f82a492378c87d5caa1bbde3f0546c31
+ * @relayHash a64d306cff29c439dc62a1158f43abed
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type CancelLikeProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type CancelLikeProjectMutationResponse = {|
   +cancelLikeProject: ?{|
@@ -32,7 +32,7 @@ export type CancelLikeProjectMutation = {|
 
 /*
 mutation CancelLikeProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   cancelLikeProject(input: $input) {
     project {
@@ -49,7 +49,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -58,7 +58,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "ProjectInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -152,11 +152,11 @@ return {
     "operationKind": "mutation",
     "name": "CancelLikeProjectMutation",
     "id": null,
-    "text": "mutation CancelLikeProjectMutation(\n  $input: ProjectInput!\n) {\n  cancelLikeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation CancelLikeProjectMutation(\n  $input: IdInput!\n) {\n  cancelLikeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '48c9d9a23a2e43fe5d3711e229d59046';
+(node/*: any*/).hash = '1a766111b339f4100c32d4479867703a';
 module.exports = node;

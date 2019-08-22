@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c83d3244fd2e0e9f66f0f538660f8443
+ * @relayHash 056311a90b12a96ba069fb73dd467699
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type ViewProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type ViewProjectMutationResponse = {|
   +viewProject: ?{|
@@ -32,7 +32,7 @@ export type ViewProjectMutation = {|
 
 /*
 mutation ViewProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   viewProject(input: $input) {
     project {
@@ -49,7 +49,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -58,7 +58,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "ProjectInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -152,11 +152,11 @@ return {
     "operationKind": "mutation",
     "name": "ViewProjectMutation",
     "id": null,
-    "text": "mutation ViewProjectMutation(\n  $input: ProjectInput!\n) {\n  viewProject(input: $input) {\n    project {\n      viewed\n      viewCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation ViewProjectMutation(\n  $input: IdInput!\n) {\n  viewProject(input: $input) {\n    project {\n      viewed\n      viewCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c30994f9e195ab1367a5c62522b0932c';
+(node/*: any*/).hash = '4b9a22e8b2366d3b13228d4539d1b73d';
 module.exports = node;
