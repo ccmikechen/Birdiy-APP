@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b1679882de5b4f2bfcf4fe887ce0d975
+ * @relayHash 5d2b49178909afdeb3eb8bcefbd59093
  */
 
 /* eslint-disable */
@@ -13,7 +13,7 @@ type ProjectCommentListItem_comment$ref = any;
 export type ProjectCommentListItemQueryVariables = {|
   commentId: string,
   repliesCount: number,
-  cursor?: ?string,
+  repliesCursor?: ?string,
 |};
 export type ProjectCommentListItemQueryResponse = {|
   +projectComment: ?{|
@@ -31,7 +31,7 @@ export type ProjectCommentListItemQuery = {|
 query ProjectCommentListItemQuery(
   $commentId: ID!
   $repliesCount: Int!
-  $cursor: String
+  $repliesCursor: String
 ) {
   projectComment(id: $commentId) {
     ...ProjectCommentListItem_comment
@@ -53,7 +53,7 @@ fragment ProjectCommentListItem_comment on ProjectComment {
 
 fragment ProjectCommentReplyList_comment on ProjectComment {
   id
-  replies(first: $repliesCount, after: $cursor) {
+  replies(first: $repliesCount, after: $repliesCursor) {
     pageInfo {
       hasNextPage
       endCursor
@@ -97,7 +97,7 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "cursor",
+    "name": "repliesCursor",
     "type": "String",
     "defaultValue": null
   }
@@ -161,7 +161,7 @@ v6 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
+    "variableName": "repliesCursor",
     "type": "String"
   },
   {
@@ -309,11 +309,11 @@ return {
     "operationKind": "query",
     "name": "ProjectCommentListItemQuery",
     "id": null,
-    "text": "query ProjectCommentListItemQuery(\n  $commentId: ID!\n  $repliesCount: Int!\n  $cursor: String\n) {\n  projectComment(id: $commentId) {\n    ...ProjectCommentListItem_comment\n    id\n  }\n}\n\nfragment ProjectCommentListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n  ...ProjectCommentReplyList_comment\n}\n\nfragment ProjectCommentReplyList_comment on ProjectComment {\n  id\n  replies(first: $repliesCount, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentReplyListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentReplyListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
+    "text": "query ProjectCommentListItemQuery(\n  $commentId: ID!\n  $repliesCount: Int!\n  $repliesCursor: String\n) {\n  projectComment(id: $commentId) {\n    ...ProjectCommentListItem_comment\n    id\n  }\n}\n\nfragment ProjectCommentListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n  ...ProjectCommentReplyList_comment\n}\n\nfragment ProjectCommentReplyList_comment on ProjectComment {\n  id\n  replies(first: $repliesCount, after: $repliesCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentReplyListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentReplyListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5e040987ded2397c809f9b1e40deac53';
+(node/*: any*/).hash = '764cd7843c10dda2ce276da94e30e44d';
 module.exports = node;

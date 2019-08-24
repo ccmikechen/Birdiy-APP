@@ -157,8 +157,10 @@ export default {
       comments: {
         title: 'コメント',
         showMore: 'コメントをもっと見る',
+        addComment: 'コメントする',
       },
       replies: {
+        reply: '返信',
         showMore: '返信をもっと見る',
       },
     },

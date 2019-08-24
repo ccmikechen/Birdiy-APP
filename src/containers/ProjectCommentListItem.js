@@ -22,7 +22,7 @@ export default createRefetchContainer(
     query ProjectCommentListItemQuery (
       $commentId: ID!,
       $repliesCount: Int!,
-      $cursor: String
+      $repliesCursor: String,
     ) {
       projectComment(id: $commentId) {
         ...ProjectCommentListItem_comment

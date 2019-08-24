@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6a73a2d26188cf0c462479ed4d404e25
+ * @relayHash b4a23d77699c25c0c1fa752f722de959
  */
 
 /* eslint-disable */
@@ -18,7 +18,7 @@ export type CreateProjectCommentInput = {|
 export type CreateProjectCommentMutationVariables = {|
   input: CreateProjectCommentInput,
   repliesCount: number,
-  cursor?: ?string,
+  repliesCursor?: ?string,
 |};
 export type CreateProjectCommentMutationResponse = {|
   +createProjectComment: ?{|
@@ -51,7 +51,7 @@ export type CreateProjectCommentMutation = {|
 mutation CreateProjectCommentMutation(
   $input: CreateProjectCommentInput!
   $repliesCount: Int!
-  $cursor: String
+  $repliesCursor: String
 ) {
   createProjectComment(input: $input) {
     projectComment {
@@ -76,7 +76,7 @@ mutation CreateProjectCommentMutation(
 
 fragment ProjectCommentReplyList_comment on ProjectComment {
   id
-  replies(first: $repliesCount, after: $cursor) {
+  replies(first: $repliesCount, after: $repliesCursor) {
     pageInfo {
       hasNextPage
       endCursor
@@ -120,7 +120,7 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "cursor",
+    "name": "repliesCursor",
     "type": "String",
     "defaultValue": null
   }
@@ -209,7 +209,7 @@ v11 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "cursor",
+    "variableName": "repliesCursor",
     "type": "String"
   },
   {
@@ -399,11 +399,11 @@ return {
     "operationKind": "mutation",
     "name": "CreateProjectCommentMutation",
     "id": null,
-    "text": "mutation CreateProjectCommentMutation(\n  $input: CreateProjectCommentInput!\n  $repliesCount: Int!\n  $cursor: String\n) {\n  createProjectComment(input: $input) {\n    projectComment {\n      id\n      user {\n        name\n        image\n        id\n      }\n      parent {\n        id\n      }\n      project {\n        id\n      }\n      message\n      insertedAt\n      ...ProjectCommentReplyList_comment\n    }\n  }\n}\n\nfragment ProjectCommentReplyList_comment on ProjectComment {\n  id\n  replies(first: $repliesCount, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentReplyListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentReplyListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
+    "text": "mutation CreateProjectCommentMutation(\n  $input: CreateProjectCommentInput!\n  $repliesCount: Int!\n  $repliesCursor: String\n) {\n  createProjectComment(input: $input) {\n    projectComment {\n      id\n      user {\n        name\n        image\n        id\n      }\n      parent {\n        id\n      }\n      project {\n        id\n      }\n      message\n      insertedAt\n      ...ProjectCommentReplyList_comment\n    }\n  }\n}\n\nfragment ProjectCommentReplyList_comment on ProjectComment {\n  id\n  replies(first: $repliesCount, after: $repliesCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        ...ProjectCommentReplyListItem_comment\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment ProjectCommentReplyListItem_comment on ProjectComment {\n  id\n  user {\n    name\n    image\n    id\n  }\n  message\n  insertedAt\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '56ac62c6f6caabef93b861f18e539e48';
+(node/*: any*/).hash = '0441d8ede8a2c2db13e371121968d5a7';
 module.exports = node;

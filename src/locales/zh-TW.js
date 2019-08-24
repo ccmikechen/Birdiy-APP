@@ -157,8 +157,10 @@ export default {
       comments: {
         title: '留言',
         showMore: '查看更多留言',
+        addComment: '新增留言',
       },
       replies: {
+        reply: '回覆',
         showMore: '查看更多回覆',
       },
     },

@@ -56,6 +56,7 @@ export default withNavigation(
           $relatedPostsCount: Int!,
           $commentsCount: Int!,
           $repliesCount: Int!
+          $repliesCursor: String,
         ) {
           ...ProjectDetailScreen_query
         }

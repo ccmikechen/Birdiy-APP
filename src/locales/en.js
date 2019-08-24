@@ -162,8 +162,10 @@ export default {
       comments: {
         title: 'Comments',
         showMore: 'More Comments',
+        addComment: 'Add comment',
       },
       replies: {
+        reply: 'Reply',
         showMore: 'More Replies',
       },
     },

@@ -5,7 +5,11 @@ import Mutation from '../relay/Mutation';
 
 export default class CreateProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation CreateProjectCommentMutation($input: CreateProjectCommentInput!, $repliesCount: Int!, $cursor: String) {
+    mutation CreateProjectCommentMutation(
+      $input: CreateProjectCommentInput!,
+      $repliesCount: Int!,
+      $repliesCursor: String,
+    ) {
       createProjectComment(input: $input) {
         projectComment {
           id
@@ -65,6 +69,8 @@ export default class CreateProjectMutation extends Mutation {
   };
 
   getMutationConfig() {
+    this.tempId += 1;
+
     return {
       updater: (store) => {
         const payload = store.getRootField('createProjectComment');
@@ -78,7 +84,7 @@ export default class CreateProjectMutation extends Mutation {
       optimisticResponse: {
         createProjectComment: {
           projectComment: {
-            id: 'client:newProjectComment:0',
+            id: `client:newProjectComment:${this.tempId}`,
             user: null,
             parent: null,
             project: {

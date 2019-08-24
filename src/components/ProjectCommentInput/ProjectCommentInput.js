@@ -49,7 +49,7 @@ const ProjectCommentInput = ({
             style={[styles.input, { height }]}
             value={value}
             onChangeText={onChangeText}
-            placeholder="新增留言..."
+            placeholder={`${i18n.t('project.sections.comments.addComment')}...`}
             onFocus={() => {
               if (user) {
                 setFocus(true);

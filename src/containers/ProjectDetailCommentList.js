@@ -100,7 +100,8 @@ export default createPaginationContainer(
         $projectId: ID!,
         $commentsCount: Int!,
         $cursor: String,
-        $repliesCount: Int!
+        $repliesCount: Int!,
+        $repliesCursor: String,
       ) {
         project(id: $projectId) {
           ...ProjectDetailCommentList_project
