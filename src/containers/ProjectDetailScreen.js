@@ -8,6 +8,11 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
   ProjectDetailScreen,
   graphql`
     fragment ProjectDetailScreen_query on RootQueryType {
+      viewer {
+        user {
+          image
+        }
+      }
       project(id: $projectId) {
         id
         name

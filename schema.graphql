@@ -189,7 +189,7 @@ interface Profile {
 
 type Project implements Node {
   author: User!
-  comments(after: String, before: String, first: Int, last: Int): ProjectCommentConnection
+  comments(after: String, before: String, first: Int, last: Int, order: RankOrder = INSERTED_AT): ProjectCommentConnection
   deletedAt: Datetime
   favorite: Boolean
   favoriteCount: Int
@@ -374,6 +374,7 @@ type ProjectTopicEdge {
 }
 
 enum RankOrder {
+  INSERTED_AT
   NAME
 }
 

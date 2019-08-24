@@ -23,6 +23,7 @@ export default {
     shareTo: 'Share to',
     watchVideo: 'Go to original video',
     report: 'Report',
+    comment: 'Comment',
   },
   post: {
     create: {

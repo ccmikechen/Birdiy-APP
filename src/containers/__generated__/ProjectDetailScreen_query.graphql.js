@@ -17,6 +17,11 @@ type ProjectDetailMethodList_project$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProjectDetailScreen_query$ref: FragmentReference;
 export type ProjectDetailScreen_query = {|
+  +viewer: ?{|
+    +user: ?{|
+      +image: ?string
+    |}
+  |},
   +project: ?{|
     +id: string,
     +name: string,
@@ -48,6 +53,13 @@ const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "image",
+  "args": null,
+  "storageKey": null
+},
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
@@ -65,6 +77,29 @@ return {
     }
   ],
   "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "viewer",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Viewer",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "user",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "User",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ]
+        }
+      ]
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -95,13 +130,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "image",
-          "args": null,
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -123,7 +152,7 @@ return {
           "concreteType": "ProjectTopic",
           "plural": false,
           "selections": [
-            (v0/*: any*/)
+            (v1/*: any*/)
           ]
         },
         {
@@ -161,7 +190,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -235,5 +264,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c5fb27a1472941eac3668c190901fb19';
+(node/*: any*/).hash = '7f663864f05d9f6809d250272f7b8a07';
 module.exports = node;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { Avatar } from 'react-native-paper';
 
+import Avatar from '../Avatar';
 import ActionMenuButton from '../ActionMenuButton';
 import ProjectCommentReplyList from '../../containers/ProjectCommentReplyList';
 
@@ -15,9 +15,10 @@ const ProjectCommentListItem = ({ comment, onActionButtonPress }) => (
     <View style={styles.headerContainer}>
       <View style={styles.authorContainer}>
         <View style={styles.avatarContainer}>
-          <Avatar.Image
-            source={{ uri: comment.user.image }}
+          <Avatar
+            image={comment.user.image}
             size={30}
+            borderRadius={15}
           />
         </View>
         <View style={styles.userNameContainer}>

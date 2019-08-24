@@ -18,6 +18,7 @@ export default {
     shareTo: 'シェア',
     watchVideo: '動画サイトへ',
     report: '報告する',
+    comment: 'コメントする',
   },
   post: {
     create: {

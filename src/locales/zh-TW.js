@@ -18,6 +18,7 @@ export default {
     shareTo: '分享至',
     watchVideo: '觀看原始影片',
     report: '檢舉',
+    comment: '留言',
   },
   post: {
     create: {

@@ -20,7 +20,6 @@ class ProjectDetailCommentList extends Component {
       isLoading: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
-    onActionButtonPress: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -37,7 +36,7 @@ class ProjectDetailCommentList extends Component {
   }
 
   render() {
-    const { project, relay, onActionButtonPress } = this.props;
+    const { project, relay } = this.props;
     const comments = project.comments.edges.map(({ node }) => node);
 
     return comments.length === 0 ? null : (
@@ -48,10 +47,10 @@ class ProjectDetailCommentList extends Component {
         }}
       >
         <ProjectCommentList
+          {...this.props}
           comments={comments}
           canLoadMore={relay.hasMore()}
           loadMore={this.loadMore}
-          onActionButtonPress={onActionButtonPress}
         />
       </ProjectDetailSection>
     );

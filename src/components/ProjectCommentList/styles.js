@@ -6,6 +6,9 @@ export default StyleSheet.create({
   container: {
     padding: 15,
   },
+  commentInput: {
+    marginBottom: 30,
+  },
   moreButton: {
     alignItems: 'center',
   },

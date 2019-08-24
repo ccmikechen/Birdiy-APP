@@ -18,13 +18,14 @@ export default class Mutation {
 
   static auth = true;
 
-  constructor(input) {
+  constructor(input, variables = null) {
     const { defaultInput } = this.constructor;
 
     this.input = {
       ...defaultInput,
       ...input,
     };
+    this.variables = variables;
     this.uploadables = {};
     this.fileCounter = 1;
     this.generateUploadables(this.input);
@@ -81,6 +82,7 @@ export default class Mutation {
           [inputName]: {
             ...this.input,
           },
+          ...this.variables,
         },
         uploadables: this.uploadables,
         onCompleted: (response, errors) => {
