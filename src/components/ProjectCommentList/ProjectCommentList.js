@@ -33,6 +33,7 @@ const ProjectCommentList = (props) => {
         onChangeText={setNewComment}
         onSubmit={() => onComment(newComment)}
         onRequestLogin={onRequestLogin}
+        submitButtonText={i18n.t('general.comment')}
       />
       <FlatList
         {...props}
@@ -41,6 +42,8 @@ const ProjectCommentList = (props) => {
           <ProjectCommentListItem
             comment={item}
             onActionButtonPress={onActionButtonPress}
+            user={user}
+            onReply={onComment}
           />
         )}
         keyExtractor={item => item.__id}

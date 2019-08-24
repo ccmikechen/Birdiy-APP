@@ -19,6 +19,7 @@ export default {
     watchVideo: '動画サイトへ',
     report: '報告する',
     comment: 'コメントする',
+    reply: '返信',
   },
   post: {
     create: {

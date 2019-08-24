@@ -284,10 +284,11 @@ export default class ProjectDetailScreen extends Component {
     navigation.push('UserPosts', { userId, postId });
   };
 
-  handleComment = (comment) => {
+  handleComment = (comment, parent) => {
     const { query: { project } } = this.props;
     const mutation = new CreateProjectCommentMutation({
       projectId: project.id,
+      parentId: parent ? parent.id : null,
       message: comment,
     });
     mutation.commit().catch(() => {});

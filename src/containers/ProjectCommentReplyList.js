@@ -18,7 +18,6 @@ class ProjectCommentReplyListContainer extends Component {
       isLoading: PropTypes.func.isRequired,
     }).isRequired,
     batchLoad: PropTypes.number,
-    onActionButtonPress: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -35,15 +34,15 @@ class ProjectCommentReplyListContainer extends Component {
   }
 
   render() {
-    const { comment, relay, onActionButtonPress } = this.props;
+    const { comment, relay } = this.props;
     const replies = comment.replies.edges.map(({ node }) => node);
 
     return replies.length === 0 ? null : (
       <ProjectCommentReplyList
+        {...this.props}
         replies={replies}
         canLoadMore={relay.hasMore()}
         loadMore={this.loadMore}
-        onActionButtonPress={onActionButtonPress}
       />
     );
   }

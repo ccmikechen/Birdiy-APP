@@ -66,6 +66,19 @@ export default class CreateProjectMutation extends Mutation {
   };
 
   addReplyToComment = (store, projectComment, parentProxy) => {
+    const commentReplyListConnection = ConnectionHandler.getConnection(
+      parentProxy,
+      'ProjectCommentReplyList_replies',
+    );
+    if (commentReplyListConnection) {
+      const edge = ConnectionHandler.createEdge(
+        store,
+        commentReplyListConnection,
+        projectComment,
+        'ProjectCommentEdge',
+      );
+      ConnectionHandler.insertEdgeBefore(commentReplyListConnection, edge);
+    }
   };
 
   getMutationConfig() {
@@ -86,7 +99,9 @@ export default class CreateProjectMutation extends Mutation {
           projectComment: {
             id: `client:newProjectComment:${this.tempId}`,
             user: null,
-            parent: null,
+            parent: this.input.parentId ? {
+              id: this.input.parentId,
+            } : null,
             project: {
               id: this.input.projectId,
             },

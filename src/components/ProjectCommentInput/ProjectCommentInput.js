@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -20,14 +20,24 @@ const ProjectCommentInput = ({
   value,
   onChangeText,
   onSubmit,
+  onCancel,
   onRequestLogin,
   style,
   user,
+  avatarSize,
+  submitButtonText,
+  initialActive,
 }) => {
   const [focus, setFocus] = useState(false);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(initialActive);
   const [height, setHeight] = useState(40);
   const input = React.createRef();
+
+  useEffect(() => {
+    if (initialActive) {
+      input.current.focus();
+    }
+  }, []);
 
   return (
     <View style={[styles.container, style]}>
@@ -35,8 +45,8 @@ const ProjectCommentInput = ({
         <View style={styles.avatarContainer}>
           <Avatar
             image={user ? user.image : null}
-            size={30}
-            borderRadius={15}
+            size={avatarSize}
+            borderRadius={avatarSize / 2}
           />
         </View>
         <View style={[
@@ -76,6 +86,7 @@ const ProjectCommentInput = ({
               setFocus(false);
               onChangeText('');
               input.current.blur();
+              onCancel();
             }}
           >
             {i18n.t('general.cancel')}
@@ -91,7 +102,7 @@ const ProjectCommentInput = ({
               input.current.blur();
             }}
           >
-            {i18n.t('general.comment')}
+            {submitButtonText}
           </Button>
         </View>
       )}
@@ -103,20 +114,27 @@ ProjectCommentInput.propTypes = {
   value: PropTypes.string,
   onChangeText: PropTypes.func,
   onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
   onRequestLogin: PropTypes.func,
   style: ViewPropTypes.style,
   user: PropTypes.shape({
     image: PropTypes.string,
   }),
+  avatarSize: PropTypes.number,
+  submitButtonText: PropTypes.string.isRequired,
+  initialActive: PropTypes.bool,
 };
 
 ProjectCommentInput.defaultProps = {
   value: '',
   onChangeText: () => {},
   onSubmit: () => {},
+  onCancel: () => {},
   onRequestLogin: () => {},
   style: {},
   user: null,
+  avatarSize: 30,
+  initialActive: false,
 };
 
 export default ProjectCommentInput;

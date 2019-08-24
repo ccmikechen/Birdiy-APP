@@ -19,6 +19,7 @@ export default {
     watchVideo: '觀看原始影片',
     report: '檢舉',
     comment: '留言',
+    reply: '回覆',
   },
   post: {
     create: {

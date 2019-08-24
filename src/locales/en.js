@@ -24,6 +24,7 @@ export default {
     watchVideo: 'Go to original video',
     report: 'Report',
     comment: 'Comment',
+    reply: 'Reply',
   },
   post: {
     create: {

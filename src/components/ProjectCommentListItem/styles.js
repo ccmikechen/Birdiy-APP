@@ -37,12 +37,29 @@ export default StyleSheet.create({
     color: Colors.commentMessage,
   },
   footerContainer: {
+    flex: 1,
+    flexDirection: 'row',
     marginTop: 15,
     marginBottom: 15,
+    marginLeft: 40,
+  },
+  replyButtonContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  replyButton: {
+  },
+  dateContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'flex-end',
   },
   date: {
     fontSize: 12,
     color: TextColor.disabled,
+  },
+  commentInput: {
+    marginLeft: 40,
+    marginBottom: 15,
   },
 });
