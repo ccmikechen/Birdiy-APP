@@ -8,6 +8,11 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
   ProjectDetailScreen,
   graphql`
     fragment ProjectDetailScreen_query on RootQueryType {
+      viewer {
+        user {
+          image
+        }
+      }
       project(id: $projectId) {
         id
         name
@@ -31,6 +36,7 @@ const ProjectDetailScreenFragmentContainer = createFragmentContainer(
         ...ProjectDetailMethodList_project
         tip
         ...ProjectDetailFollowPostList_project
+        ...ProjectDetailCommentList_project
         publishedAt
         deletedAt
       }
@@ -46,8 +52,11 @@ export default withNavigation(
       query: graphql`
         query ProjectDetailScreenQuery (
           $projectId: ID!,
+          $cursor: String,
           $relatedPostsCount: Int!,
-          $relatedPostsCursor: String
+          $commentsCount: Int!,
+          $repliesCount: Int!
+          $repliesCursor: String,
         ) {
           ...ProjectDetailScreen_query
         }
@@ -55,6 +64,8 @@ export default withNavigation(
       auth: true,
       variables: {
         relatedPostsCount: 5,
+        commentsCount: 3,
+        repliesCount: 1,
       },
       queriesParams: props => ({
         projectId: props.navigation.getParam('id'),

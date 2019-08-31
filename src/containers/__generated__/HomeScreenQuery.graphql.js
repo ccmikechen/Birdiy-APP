@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ac4a14925a1020c2df525ad8501609f7
+ * @relayHash 4fbf73a3c2012fb1f20ac6815c4330dc
  */
 
 /* eslint-disable */
@@ -10,7 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type HomeScreen_query$ref = any;
-export type RankOrder = "NAME" | "%future added value";
+export type RankOrder = "INSERTED_AT" | "NAME" | "%future added value";
 export type HomeScreenQueryVariables = {|
   hotCategoryCount: number,
   hotCategoryOrder?: ?RankOrder,

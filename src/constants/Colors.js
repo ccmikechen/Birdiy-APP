@@ -88,4 +88,5 @@ export default {
   viewsIcon: '#4caf50',
   facebook: '#3b5998',
   homeSectionDark: '#ebeff5',
+  commentMessage: '#666680',
 };

@@ -5,7 +5,7 @@ import projectUpdater from '../updaters/projectUpdater';
 
 export default class LikeProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation LikeProjectMutation($input: ProjectInput!) {
+    mutation LikeProjectMutation($input: IdInput!) {
       likeProject(input: $input) {
         project {
           liked

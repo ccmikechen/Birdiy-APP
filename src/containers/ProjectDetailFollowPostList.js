@@ -78,7 +78,7 @@ export default createPaginationContainer(
       fragment ProjectDetailFollowPostList_project on Project {
         relatedPosts(
           first: $relatedPostsCount,
-          after: $relatedPostsCursor,
+          after: $cursor,
         ) @connection(key: "ProjectDetailFollowPostList_relatedPosts") {
           pageInfo {
             hasNextPage
@@ -113,14 +113,14 @@ export default createPaginationContainer(
     getVariables: (props, { count, cursor }) => ({
       projectId: props.projectId,
       relatedPostsCount: count,
-      relatedPostsCursor: cursor,
+      cursor,
     }),
-    variables: { relatedPostsCursor: null },
+    variables: { cursor: null },
     query: graphql`
       query ProjectDetailFollowPostListPaginationQuery (
         $projectId: ID!,
         $relatedPostsCount: Int!,
-        $relatedPostsCursor: String
+        $cursor: String
       ) {
         project(id: $projectId) {
           ...ProjectDetailFollowPostList_project

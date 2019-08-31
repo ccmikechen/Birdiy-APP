@@ -18,6 +18,8 @@ export default {
     shareTo: 'シェア',
     watchVideo: '動画サイトへ',
     report: '報告する',
+    comment: 'コメントする',
+    reply: '返信',
   },
   post: {
     create: {
@@ -153,6 +155,15 @@ export default {
       },
       tip: 'コツ',
       followingPosts: 'フォローした投稿',
+      comments: {
+        title: 'コメント',
+        showMore: 'コメントをもっと見る',
+        addComment: 'コメントする',
+      },
+      replies: {
+        reply: '返信',
+        showMore: '返信をもっと見る',
+      },
     },
     deletedMessage: 'このプロジェクトは公開されていないか削除されています',
     report: 'プロジェクトを報告する',
@@ -461,6 +472,10 @@ export default {
     reportProject: {
       title: 'プロジェクトを報告する',
       message: 'このプロジェクトに不適切なコンテンツやグラフィックの盗作が含まれていると確信していますか？',
+    },
+    reportComment: {
+      title: 'コメントを報告する',
+      message: 'このコメントに不適切なコンテンツが含まれていると確信していますか？',
     },
   },
   errors: {

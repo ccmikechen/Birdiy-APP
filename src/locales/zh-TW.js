@@ -18,6 +18,8 @@ export default {
     shareTo: '分享至',
     watchVideo: '觀看原始影片',
     report: '檢舉',
+    comment: '留言',
+    reply: '回覆',
   },
   post: {
     create: {
@@ -153,6 +155,15 @@ export default {
       },
       tip: '小技巧',
       followingPosts: '跟著做',
+      comments: {
+        title: '留言',
+        showMore: '查看更多留言',
+        addComment: '新增留言',
+      },
+      replies: {
+        reply: '回覆',
+        showMore: '查看更多回覆',
+      },
     },
     deletedMessage: '專案未公開或已刪除',
     report: '檢舉專案',
@@ -461,6 +472,10 @@ export default {
     reportProject: {
       title: '檢舉專案',
       message: '你確定此專案含有不當內容或圖文抄襲嗎？',
+    },
+    reportComment: {
+      title: '檢舉留言',
+      message: '你確定此留言含有不當內容嗎？',
     },
   },
   errors: {

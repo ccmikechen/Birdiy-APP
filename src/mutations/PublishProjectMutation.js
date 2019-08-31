@@ -4,7 +4,7 @@ import Mutation from '../relay/Mutation';
 
 export default class PublishProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation PublishProjectMutation($input: ProjectInput!) {
+    mutation PublishProjectMutation($input: IdInput!) {
       publishProject(input: $input) {
         project {
           id

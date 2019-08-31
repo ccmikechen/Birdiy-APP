@@ -23,6 +23,8 @@ export default {
     shareTo: 'Share to',
     watchVideo: 'Go to original video',
     report: 'Report',
+    comment: 'Comment',
+    reply: 'Reply',
   },
   post: {
     create: {
@@ -158,6 +160,15 @@ export default {
       },
       tip: 'Tips',
       followingPosts: 'Followed Posts',
+      comments: {
+        title: 'Comments',
+        showMore: 'More Comments',
+        addComment: 'Add comment',
+      },
+      replies: {
+        reply: 'Reply',
+        showMore: 'More Replies',
+      },
     },
     deletedMessage: 'This project has not been published or has been deleted',
     report: 'Report project',
@@ -352,6 +363,10 @@ export default {
     reportProject: {
       title: 'Report project',
       message: 'Are you sure that this project contains inappropriate content or graphic plagiarism?',
+    },
+    reportComment: {
+      title: 'Report comment',
+      message: 'Are you sure that this comment contains inappropriate content?',
     },
   },
   errors: {

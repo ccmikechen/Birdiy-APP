@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7702fdb15387f9064f76888e7e7bf5df
+ * @relayHash 98737f8288fe1aa22110a92b78c26514
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type UserInput = {|
+export type IdInput = {|
   id: string
 |};
 export type CancelFollowUserMutationVariables = {|
-  input: UserInput
+  input: IdInput
 |};
 export type CancelFollowUserMutationResponse = {|
   +cancelFollowUser: ?{|
@@ -35,7 +35,7 @@ export type CancelFollowUserMutation = {|
 
 /*
 mutation CancelFollowUserMutation(
-  $input: UserInput!
+  $input: IdInput!
 ) {
   cancelFollowUser(input: $input) {
     followingUser {
@@ -56,7 +56,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "UserInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -65,7 +65,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "UserInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -192,11 +192,11 @@ return {
     "operationKind": "mutation",
     "name": "CancelFollowUserMutation",
     "id": null,
-    "text": "mutation CancelFollowUserMutation(\n  $input: UserInput!\n) {\n  cancelFollowUser(input: $input) {\n    followingUser {\n      followingCount\n      id\n    }\n    followedUser {\n      following\n      followerCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation CancelFollowUserMutation(\n  $input: IdInput!\n) {\n  cancelFollowUser(input: $input) {\n    followingUser {\n      followingCount\n      id\n    }\n    followedUser {\n      following\n      followerCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3452f9bdaaea37dabc9e0740cb6ed5e6';
+(node/*: any*/).hash = 'a323b6631cd48cc80861343ac30e9a95';
 module.exports = node;

@@ -58,7 +58,7 @@ return {
     "connection": [
       {
         "count": "relatedPostsCount",
-        "cursor": "relatedPostsCursor",
+        "cursor": "cursor",
         "direction": "forward",
         "path": [
           "relatedPosts"
@@ -74,7 +74,7 @@ return {
     },
     {
       "kind": "RootArgument",
-      "name": "relatedPostsCursor",
+      "name": "cursor",
       "type": "String"
     }
   ],
@@ -188,5 +188,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f4e52f1e1585b4c34d606de9ef24dd63';
+(node/*: any*/).hash = 'b27a23d57462856c2ad8be9dfc879e8d';
 module.exports = node;

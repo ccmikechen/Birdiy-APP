@@ -5,7 +5,7 @@ import projectUpdater from '../updaters/projectUpdater';
 
 export default class CancelLikeProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation CancelLikeProjectMutation($input: ProjectInput!) {
+    mutation CancelLikeProjectMutation($input: IdInput!) {
       cancelLikeProject(input: $input) {
         project {
           liked

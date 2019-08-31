@@ -5,7 +5,7 @@ import projectUpdater from '../updaters/projectUpdater';
 
 export default class CancelFavoriteProjectMutation extends Mutation {
   static mutation = graphql`
-    mutation CancelFavoriteProjectMutation($input: ProjectInput!) {
+    mutation CancelFavoriteProjectMutation($input: IdInput!) {
       cancelFavoriteProject(input: $input) {
         project {
           favorite

@@ -5,7 +5,7 @@ import userUpdater from '../updaters/userUpdater';
 
 export default class CancelFollowUserMutation extends Mutation {
   static mutation = graphql`
-    mutation CancelFollowUserMutation($input: UserInput!) {
+    mutation CancelFollowUserMutation($input: IdInput!) {
       cancelFollowUser(input: $input) {
         followingUser {
           followingCount

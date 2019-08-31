@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f83ba24544b0adf41b5c2d42158a593f
+ * @relayHash ce866ac97232e904445f106e61217615
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type FavoriteProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type FavoriteProjectMutationResponse = {|
   +favoriteProject: ?{|
@@ -32,7 +32,7 @@ export type FavoriteProjectMutation = {|
 
 /*
 mutation FavoriteProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   favoriteProject(input: $input) {
     project {
@@ -49,7 +49,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -58,7 +58,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "ProjectInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -152,11 +152,11 @@ return {
     "operationKind": "mutation",
     "name": "FavoriteProjectMutation",
     "id": null,
-    "text": "mutation FavoriteProjectMutation(\n  $input: ProjectInput!\n) {\n  favoriteProject(input: $input) {\n    project {\n      favorite\n      favoriteCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation FavoriteProjectMutation(\n  $input: IdInput!\n) {\n  favoriteProject(input: $input) {\n    project {\n      favorite\n      favoriteCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '75b7d561b386bad47eb7084b8f6ad330';
+(node/*: any*/).hash = '3af98fe42e78538dcad149650907f239';
 module.exports = node;

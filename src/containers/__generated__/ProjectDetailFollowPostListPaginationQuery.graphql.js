@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a398064c7a313fa59920715ab2c2d9d4
+ * @relayHash e044f26b3d3f284f8a301b11501ffce9
  */
 
 /* eslint-disable */
@@ -13,7 +13,7 @@ type ProjectDetailFollowPostList_project$ref = any;
 export type ProjectDetailFollowPostListPaginationQueryVariables = {|
   projectId: string,
   relatedPostsCount: number,
-  relatedPostsCursor?: ?string,
+  cursor?: ?string,
 |};
 export type ProjectDetailFollowPostListPaginationQueryResponse = {|
   +project: ?{|
@@ -31,7 +31,7 @@ export type ProjectDetailFollowPostListPaginationQuery = {|
 query ProjectDetailFollowPostListPaginationQuery(
   $projectId: ID!
   $relatedPostsCount: Int!
-  $relatedPostsCursor: String
+  $cursor: String
 ) {
   project(id: $projectId) {
     ...ProjectDetailFollowPostList_project
@@ -40,7 +40,7 @@ query ProjectDetailFollowPostListPaginationQuery(
 }
 
 fragment ProjectDetailFollowPostList_project on Project {
-  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {
+  relatedPosts(first: $relatedPostsCount, after: $cursor) {
     pageInfo {
       hasNextPage
       endCursor
@@ -81,7 +81,7 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "relatedPostsCursor",
+    "name": "cursor",
     "type": "String",
     "defaultValue": null
   }
@@ -98,7 +98,7 @@ v2 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "relatedPostsCursor",
+    "variableName": "cursor",
     "type": "String"
   },
   {
@@ -287,11 +287,11 @@ return {
     "operationKind": "query",
     "name": "ProjectDetailFollowPostListPaginationQuery",
     "id": null,
-    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $relatedPostsCursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $relatedPostsCursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
+    "text": "query ProjectDetailFollowPostListPaginationQuery(\n  $projectId: ID!\n  $relatedPostsCount: Int!\n  $cursor: String\n) {\n  project(id: $projectId) {\n    ...ProjectDetailFollowPostList_project\n    id\n  }\n}\n\nfragment ProjectDetailFollowPostList_project on Project {\n  relatedPosts(first: $relatedPostsCount, after: $cursor) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        thumbnail {\n          image\n          id\n        }\n        author {\n          id\n          image\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a82e40952e14043d44a065599fb9c24e';
+(node/*: any*/).hash = '6065d5c4d9cce44026dfb8e3d0062c0c';
 module.exports = node;

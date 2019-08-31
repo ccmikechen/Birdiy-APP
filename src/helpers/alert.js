@@ -88,3 +88,14 @@ export const showConfirmReportingProjectAlert = () => new Promise(resolve => (
     ],
   )
 ));
+
+export const showConfirmReportingCommentAlert = () => new Promise(resolve => (
+  showAlert(
+    i18n.t('alert.reportComment.message'),
+    i18n.t('alert.reportComment.title'),
+    [
+      { text: i18n.t('general.cancel') },
+      { text: i18n.t('general.confirm'), onPress: () => resolve() },
+    ],
+  )
+));

@@ -9,6 +9,7 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type ProjectAuthor_project$ref = any;
+type ProjectDetailCommentList_project$ref = any;
 type ProjectDetailFileList_project$ref = any;
 type ProjectDetailFollowPostList_project$ref = any;
 type ProjectDetailMaterialList_project$ref = any;
@@ -16,6 +17,11 @@ type ProjectDetailMethodList_project$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ProjectDetailScreen_query$ref: FragmentReference;
 export type ProjectDetailScreen_query = {|
+  +viewer: ?{|
+    +user: ?{|
+      +image: ?string
+    |}
+  |},
   +project: ?{|
     +id: string,
     +name: string,
@@ -36,7 +42,7 @@ export type ProjectDetailScreen_query = {|
     +tip: ?string,
     +publishedAt: ?any,
     +deletedAt: ?any,
-    +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref,
+    +$fragmentRefs: ProjectAuthor_project$ref & ProjectDetailMaterialList_project$ref & ProjectDetailFileList_project$ref & ProjectDetailMethodList_project$ref & ProjectDetailFollowPostList_project$ref & ProjectDetailCommentList_project$ref,
   |},
   +$refType: ProjectDetailScreen_query$ref,
 |};
@@ -45,6 +51,13 @@ export type ProjectDetailScreen_query = {|
 
 const node/*: ReaderFragment*/ = (function(){
 var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "image",
+  "args": null,
+  "storageKey": null
+},
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
@@ -64,6 +77,29 @@ return {
     }
   ],
   "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "viewer",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Viewer",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "user",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "User",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ]
+        }
+      ]
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -94,13 +130,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "image",
-          "args": null,
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -122,7 +152,7 @@ return {
           "concreteType": "ProjectTopic",
           "plural": false,
           "selections": [
-            (v0/*: any*/)
+            (v1/*: any*/)
           ]
         },
         {
@@ -160,7 +190,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -210,6 +240,11 @@ return {
           "args": null
         },
         {
+          "kind": "FragmentSpread",
+          "name": "ProjectDetailCommentList_project",
+          "args": null
+        },
+        {
           "kind": "ScalarField",
           "alias": null,
           "name": "publishedAt",
@@ -229,5 +264,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a2ba817f72929a5d852ff4edb8b4e5ec';
+(node/*: any*/).hash = '7f663864f05d9f6809d250272f7b8a07';
 module.exports = node;

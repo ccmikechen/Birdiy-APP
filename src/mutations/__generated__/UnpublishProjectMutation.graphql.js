@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cf38591a8ddbae9e8d7df46c2a68f174
+ * @relayHash 100516e46a9642d674f754796ee22518
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type UnpublishProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type UnpublishProjectMutationResponse = {|
   +unpublishProject: ?{|
@@ -32,7 +32,7 @@ export type UnpublishProjectMutation = {|
 
 /*
 mutation UnpublishProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   unpublishProject(input: $input) {
     project {
@@ -48,7 +48,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -63,7 +63,7 @@ v1 = [
         "kind": "Variable",
         "name": "input",
         "variableName": "input",
-        "type": "ProjectInput!"
+        "type": "IdInput!"
       }
     ],
     "concreteType": "ProjectResult",
@@ -117,11 +117,11 @@ return {
     "operationKind": "mutation",
     "name": "UnpublishProjectMutation",
     "id": null,
-    "text": "mutation UnpublishProjectMutation(\n  $input: ProjectInput!\n) {\n  unpublishProject(input: $input) {\n    project {\n      id\n      published\n    }\n  }\n}\n",
+    "text": "mutation UnpublishProjectMutation(\n  $input: IdInput!\n) {\n  unpublishProject(input: $input) {\n    project {\n      id\n      published\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f7fe5c66316fb8d4e694d2d0bbbce5e1';
+(node/*: any*/).hash = '67e9e35cce772ad8aa9bf547c322e48c';
 module.exports = node;

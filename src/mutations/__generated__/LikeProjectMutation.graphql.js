@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fdf9e7e4c9213b76d47b4601647afc1
+ * @relayHash 831dd0acf74cb07cd8de4dc346eb093f
  */
 
 /* eslint-disable */
@@ -9,11 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectInput = {|
+export type IdInput = {|
   id: string
 |};
 export type LikeProjectMutationVariables = {|
-  input: ProjectInput
+  input: IdInput
 |};
 export type LikeProjectMutationResponse = {|
   +likeProject: ?{|
@@ -32,7 +32,7 @@ export type LikeProjectMutation = {|
 
 /*
 mutation LikeProjectMutation(
-  $input: ProjectInput!
+  $input: IdInput!
 ) {
   likeProject(input: $input) {
     project {
@@ -49,7 +49,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "ProjectInput!",
+    "type": "IdInput!",
     "defaultValue": null
   }
 ],
@@ -58,7 +58,7 @@ v1 = [
     "kind": "Variable",
     "name": "input",
     "variableName": "input",
-    "type": "ProjectInput!"
+    "type": "IdInput!"
   }
 ],
 v2 = {
@@ -152,11 +152,11 @@ return {
     "operationKind": "mutation",
     "name": "LikeProjectMutation",
     "id": null,
-    "text": "mutation LikeProjectMutation(\n  $input: ProjectInput!\n) {\n  likeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation LikeProjectMutation(\n  $input: IdInput!\n) {\n  likeProject(input: $input) {\n    project {\n      liked\n      likeCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6d6ff83d07202526e56e0702b3f87a7f';
+(node/*: any*/).hash = '8d4f6635bf804ad720b47bca0d750fe2';
 module.exports = node;
