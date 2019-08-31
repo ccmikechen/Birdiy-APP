@@ -44,6 +44,7 @@ const ProjectCommentList = (props) => {
             onActionButtonPress={onActionButtonPress}
             user={user}
             onReply={onComment}
+            onRequestLogin={onRequestLogin}
           />
         )}
         keyExtractor={item => item.__id}

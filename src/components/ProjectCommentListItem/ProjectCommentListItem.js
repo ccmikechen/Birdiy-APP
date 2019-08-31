@@ -20,6 +20,7 @@ const ProjectCommentListItem = ({
   onActionButtonPress,
   user,
   onReply,
+  onRequestLogin,
 }) => {
   const [replyInputVisible, setReplyInputVisible] = useState(false);
   const [newComment, setNewComment] = useState('');
@@ -48,7 +49,13 @@ const ProjectCommentListItem = ({
         <View style={styles.replyButtonContainer}>
           <Button
             color={Primary(700)}
-            onPress={() => setReplyInputVisible(true)}
+            onPress={() => {
+              if (user) {
+                setReplyInputVisible(true);
+              } else {
+                onRequestLogin();
+              }
+            }}
           >
             {i18n.t('general.reply')}
           </Button>
@@ -95,6 +102,7 @@ ProjectCommentListItem.propTypes = {
   }).isRequired,
   onActionButtonPress: PropTypes.func.isRequired,
   onReply: PropTypes.func.isRequired,
+  onRequestLogin: PropTypes.func.isRequired,
 };
 
 ProjectCommentListItem.defaultProps = {
