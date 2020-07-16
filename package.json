@@ -41,7 +41,7 @@
     "i18n-js": "^3.2.2",
     "js-video-url-parser": "^0.3.3",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "phoenix": "^1.4.3",
